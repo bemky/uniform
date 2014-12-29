@@ -1,0 +1,82 @@
+@mixin select-custom(){
+    display:inline-block;
+    border-radius: 2px;
+    border: 1px solid #bababa;
+    position:relative;
+    select{
+        position:relative;
+        z-index:1;
+        @include appearance(none);
+        outline: 1px;
+        cursor:pointer;
+        text-indent: 1px;
+        text-overflow: ellipsis;
+        font-family:$helvetica;
+        border:none;
+        margin:0;
+        padding: 0.3em 1em;
+        padding-right:2em;
+        background:none;
+    }
+    &:after{
+        color:$gray;
+        font-size:1.3em;
+//        TODO setup arrow icon
+//        font-family:$fortycons;
+//        content:$fortycon-arrow-down;
+        @include vertical-middle();
+        right:0.3em;
+        z-index:0;
+    }
+    &:focus{
+        color: #000;
+        box-shadow: 0 0 5px 1px $green-light;
+        border-color: $green-dark;
+    }
+}
+//----------------------------------------------------------------
+//             inline-input
+//----------------------------------------------------------------
+.inline-input{
+    display:table;
+    background:white;
+    border:1px solid darken(white, 15);
+    border-top-color:darken(white, 20);
+    &>*{
+        display:table-cell;
+        vertical-align:middle;
+    }
+    input{
+        box-shadow: none;
+        border:none;
+        display:block;
+    }
+    select{
+        @include select-custom;
+        display:block;
+        border:none;
+        margin:0;
+    }
+    label{
+        margin:0;
+        padding:5px;
+    }
+    .label, .add-on, .units{
+        white-space:nowrap;
+        width:auto;
+        padding-left: 7px;
+        padding-right: 7px;
+        border-left:1px solid darken(white, 15);
+        background:darken(white, 5);
+        color:lighten(black, 50);
+        font-weight:300;
+        &.pre, &:first-child{
+            border-left:none;
+            border-right:1px solid darken(white, 15);
+        }
+    }
+    &.active{
+        box-shadow: 0 0 3px 1px $green;
+        border-color:$green;
+    }
+}

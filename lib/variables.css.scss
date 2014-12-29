@@ -1,0 +1,44 @@
+// Colors
+$gray:#585858;
+$gray-light: #d9d9d9;
+$gray-dark:darken($gray, 10);
+$gray-background: rgb(238, 238, 238);
+
+$green:#97C848;
+$green-light:#BBFF00;
+$green-dark:#709239;
+
+$blue:#0994E2;
+$blue-light:#A7CDF2;
+$blue-dark:#396F96;
+
+$red:#E1563E;
+$red-light:#E5766C;
+$red-dark:#971710;
+
+$yellow: #D7E542;
+$yellow-dark: #BBC02C;
+$yellow-light: #E9F75A;
+
+
+//Responsive Breakpoints
+$mobile: new-breakpoint(max-width 600px 6);
+$mobile-narrow: new-breakpoint(max-width 450px 6);
+$wide: new-breakpoint(min-width 1200px);
+$narrow: new-breakpoint( max-width 1000px);
+$normal: new-breakpoint( min-width 1000px max-width 1200px);
+
+
+// Responsive Breakpoints based on Bootstrap sizes
+$xs: new-breakpoint(max-width 767px);
+$sm: new-breakpoint(min-width 768px max-width 991px);
+$md: new-breakpoint(min-width 992px max-width 1199px);
+$lg: new-breakpoint(min-width 1200px);
+$max-xs: new-breakpoint(max-width 767px);
+$max-sm: new-breakpoint(max-width 991px);
+$max-md: new-breakpoint(max-width 1199px);
+$max-lg: new-breakpoint(min-width 1200px);
+$min-xs: new-breakpoint(min-width 480px);
+$min-sm: new-breakpoint(min-width 768px);
+$min-md: new-breakpoint(min-width 992px);
+$min-lg: new-breakpoint( min-width 1200px);
