@@ -1,6 +1,3 @@
-//----------------------------------------------------------------
-//             Image Filters
-//----------------------------------------------------------------
 @mixin opacity($o: 1){
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$o*100+")";
     filter: alpha(opacity=$o*100);
@@ -8,7 +5,6 @@
     -khtml-opacity: $o;
     opacity: $o;
 }
-
 @mixin blur($amount: 5px){
     filter: blur($amount);
     -webkit-filter: blur($amount);
@@ -16,23 +12,9 @@
     -o-filter: blur($amount);
     -ms-filter: blur($amount);
 }
-
-@mixin grayscale($gray: 0.7, $opacity: 1){
-    opacity: $opacity;
-    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(grayscale=$gray)";
-    filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
-    filter: gray($gray);
-    -webkit-filter: grayscale($gray * 100%);
-    @if $gray == 0 {
-        filter: none;
-        -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(grayscale=0)";
-        -webkit-filter: grayscale(0);
-    }
+.text-overflow{
+    @include text-overflow;
 }
-
-//----------------------------------------------------------------
-//             Text
-//----------------------------------------------------------------
 @mixin text-overflow($inherit:false){
     @if $inherit == false {
         text-overflow: ellipsis;
@@ -48,31 +30,36 @@
     -webkit-backface-visibility: hidden; // Some weird safari bug involving hovering on li or a
     -webkit-transform: translate3d(0, 0, 0); // Some weird safari bug involving hovering on li or a
 }
-
-@mixin clean-icon(){
-    @include flicker-fix();
-    -webkit-font-smoothing: antialiased;
+@mixin grayscale($gray: 0.7, $opacity: 1){
+    opacity: $opacity;
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(grayscale=$gray)";
+    filter:url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22desaturate%22%3E%3CfeColorMatrix%20type%3D%22saturate%22%20values%3D%220%22/%3E%3C/filter%3E%3C/svg%3E#desaturate);
+    filter: gray($gray);
+    -webkit-filter: grayscale($gray * 100%);
+    @if $gray == 0 {
+        filter: none;
+        -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(grayscale=0)";
+        -webkit-filter: grayscale(0);
+    }
 }
-
-
-//----------------------------------------------------------------
-//             Position Alignment
-//----------------------------------------------------------------
 @mixin vertical-middle(){
     position:absolute;
     top:50%;
     @include transform(translateY(-50%));
 }
-
 @mixin horizontal-center(){
     position:absolute;
     left:50%;
     @include transform(translateX(-50%));
 }
-
 @mixin align-middle(){
     position:absolute;
     left:50%;
     top:50%;
     @include transform(translate(-50%, -50%));
+}
+@mixin clean-icon(){
+    -webkit-backface-visibility: hidden; // Some weird safari bug involving hovering on li or a
+    -webkit-transform: translate3d(0, 0, 0); // Some weird safari bug involving hovering on li or a
+    -webkit-font-smoothing: antialiased;
 }

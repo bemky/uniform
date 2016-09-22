@@ -1,0 +1,99 @@
+// Vertical Rule
+vr {
+    height:30px;
+    border-left:1px solid $gray-light;
+    margin:0 10px;
+    display: inline-block;
+    vertical-align:middle;
+}
+.rounded,
+.round{
+    border-radius:50%;
+}
+.pointer{
+    cursor: pointer !important;
+}
+.handle{
+    cursor: hand;
+}
+
+//----------------------------------------------------------------
+//             Layout
+//----------------------------------------------------------------
+.hide,
+.hidden{
+    display:none;
+}
+.right{
+    float:right;
+}
+.center{
+    text-align: center;
+}
+.clear{
+    clear:both;
+}
+.bleed-fix{
+    position:static;
+    overflow:hidden;
+}
+.no-gutter{
+    padding-left:0;
+    padding-right:0;
+}
+.no-pad{
+    padding-left:0;
+    padding-right:0;
+}
+.less-pad{
+    padding-left:5px;
+    padding-right:5px;
+}
+.pad{
+    padding:10px;
+}
+
+//----------------------------------------------------------------
+//             Text
+//----------------------------------------------------------------
+.text-overflow{
+    @include text-overflow;
+}
+.strong,
+strong,
+.bold{      font-weight: 700;}
+.light,
+.text-light{    font-weight: 300;}
+.italic{    font-style:italic;}
+.required{  color:$red;}
+.warn{
+    color:lighten($gray, 20);
+    &:hover{
+        color:$red;
+    }
+}
+h1, h2, h3, h4, h5, h6{
+    font-weight:normal;
+    &.no-margin{
+        margin: 0;
+        margin-top:10px;
+    }
+    &.no-margin-top{
+        margin-top:0;
+    }
+}
+
+.green{         color:$green;}
+.green-light{   color:$green-light;}
+.blue{         color:$blue;}
+.blue-light{   color:$blue-light;}
+
+p.large{
+    font-size:1.5em;
+    font-weight:300;
+    margin-bottom:20px;
+}
+.nowrap{
+    white-space: nowrap;
+    overflow:hidden;
+}
