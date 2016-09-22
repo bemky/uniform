@@ -2,8 +2,6 @@ require 'fileutils'
 require 'sprockets'
 require "sprockets-sass"
 require 'bundler/setup'
-require 'json'
-require 'erb'
 
 Bundler.require(:default)
 
@@ -13,11 +11,11 @@ environment.append_path 'lib'
 environment.append_path 'preview'
 environment.css_compressor = :scss
 
-desc "Compile uniform.css"
+desc "Compile preview"
 task :compile do
-  FileUtils.rm_f('./uniform.csss')
+  FileUtils.rm_f('./uniform.css')
 
-  File.open('./uniform.css', "w") do |file|
+  File.open('./preview/uniform.css', "w") do |file|
     file << environment['uniform.css.scss']
   end
   
