@@ -14,15 +14,37 @@
             
                 <li><a href="#uniform">Uniform</a></li>
             
+                <li><a href="#installation">Installation</a></li>
+            
                 <li><a href="#css_theory">Css Theory</a></li>
             
                 <li><a href="#colors">Colors</a></li>
             
                 <li><a href="#buttons">Buttons</a></li>
             
+                <li><a href="#grid">Grid</a></li>
+            
                 <li><a href="#inputs">Inputs</a></li>
             
+                <li><a href="#forms">Forms</a></li>
+            
                 <li><a href="#loaders">Loaders</a></li>
+            
+                <li><a href="#cards">Cards</a></li>
+            
+                <li><a href="#tiles">Tiles</a></li>
+            
+                <li><a href="#rows">Rows</a></li>
+            
+                <li><a href="#lists">Lists</a></li>
+            
+                <li><a href="#tables">Tables</a></li>
+            
+                <li><a href="#nav">Nav</a></li>
+            
+                <li><a href="#tabs">Tabs</a></li>
+            
+                <li><a href="#helpers">Helpers</a></li>
             
         </ul>
     </div>
@@ -32,6 +54,18 @@
             <div class="section" >
                 <h1>Uniform</h1>
                     <p class="large">Sass components and defaults for building a UI that's on fleak.</p>
+
+            </div>
+        
+            <a name="installation"></a>
+            <div class="section" >
+                <h1>Installation</h1>
+                    <p>Add to your gem file<br/><code>gem 'uniform-ui'</code></p>
+    <p>Execute:<br/><code>$ bundle</code></p>
+    <p>Or install it yourself:<br/><code>$ gem install uniform-ui</code></p>
+    <p>Include the css library in your asset pipeline.<br/><code>@import 'uniform';</code></p>
+    
+
 
             </div>
         
@@ -227,6 +261,13 @@
 
             </div>
         
+            <a name="grid"></a>
+            <div class="section" >
+                <h1>Grid</h1>
+                TODO
+
+            </div>
+        
             <a name="inputs"></a>
             <div class="section" >
                 <h1>Inputs</h1>
@@ -316,6 +357,13 @@
 
             </div>
         
+            <a name="forms"></a>
+            <div class="section" >
+                <h1>Forms</h1>
+                TODO
+
+            </div>
+        
             <a name="loaders"></a>
             <div class="section" >
                 <h1>Loaders</h1>
@@ -342,7 +390,7 @@
 <div class="row">
     <div class="col-sm-6">
         <span style="position:relative; display:inline-block">
-            <img src="https://unsplash.it/150/100/?random" style="display:inline-block;">
+            <img src="https://unsplash.it/150/100/?random" style="display:inline-block;" width="150" height="100">
             <div class="uniform-loader cover">
                 <div class="uniform-loader-container">
                     <span>&bull;</span>
@@ -368,7 +416,7 @@
 <div class="row">
     <div class="col-sm-6">
         <span style="position:relative; display:inline-block">
-            <img src="https://unsplash.it/150/100/?random" style="display:inline-block;">
+            <img src="https://unsplash.it/150/100/?random" style="display:inline-block;" width="150" height="100">
             <div class="uniform-loader cover light">
                 <div class="uniform-loader-container">
                     <span>&bull;</span>
@@ -391,6 +439,143 @@
 </span></xmp></pre>
     </div>
 </div>
+
+            </div>
+        
+            <a name="cards"></a>
+            <div class="section" >
+                <h1>Cards</h1>
+                <div class="row">
+    <div class="col-sm-6">
+        <div class="uniform-card">
+            <div class="uniform-card-title">
+                <span class="type">Sample Card</span>
+            </div>
+            <div class="uniform-card-body">Put Content In Here</div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><div class="uniform-card">
+    <div class="uniform-card-title">
+        <span class="type">Sample Card</span>
+    </div>
+    <div class="uniform-card-body">Put Content In Here</div>
+</div></xmp></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="uniform-card">
+            <div class="uniform-card-avatar">
+                <img src="https://unsplash.it/161/161/?random" style="display:block;" height="161" width="161">
+            </div>
+            <div class="uniform-card-container">
+                <div class="uniform-card-title">
+                    <span class="type">John Dozer</span>
+                    <div class="actions">
+                        <a class="btn">Edit</a>
+                    </div>
+                </div>
+                <div class="uniform-card-body">
+                    <div class="uniform-card-attributes">
+                        <div>
+                            <div>Company</div>
+                            <div>Friendly Associates</div>
+                        </div>
+                        <div>
+                            <div>Title</div>
+                            <div>Head Dude</div>
+                        </div>
+                        <div>
+                            <div>Skills</div>
+                            <div>Stapling, Jogging</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><div class="uniform-card">
+    <div class="uniform-card-avatar">
+        <img src="https://unsplash.it/161/161/?random" style="display:block;" height="161" width="161">
+    </div>
+    <div class="uniform-card-container">
+        <div class="uniform-card-title">
+            <span class="type">John Dozer</span>
+            <div class="actions">
+                <a class="btn">Edit</a>
+            </div>
+        </div>
+        <div class="uniform-card-body">
+            <div class="uniform-card-attributes">
+                <div>
+                    <div>Company</div>
+                    <div>Friendly Associates</div>
+                </div>
+                <div>
+                    <div>Title</div>
+                    <div>Head Dude</div>
+                </div>
+                <div>
+                    <div>Skills</div>
+                    <div>Stapling, Jogging</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></xmp></pre>
+    </div>
+</div>
+
+            </div>
+        
+            <a name="tiles"></a>
+            <div class="section" >
+                <h1>Tiles</h1>
+                TODO
+
+            </div>
+        
+            <a name="rows"></a>
+            <div class="section" >
+                <h1>Rows</h1>
+                TODO
+
+            </div>
+        
+            <a name="lists"></a>
+            <div class="section" >
+                <h1>Lists</h1>
+                TODO
+
+            </div>
+        
+            <a name="tables"></a>
+            <div class="section" >
+                <h1>Tables</h1>
+                TODO
+
+            </div>
+        
+            <a name="nav"></a>
+            <div class="section" >
+                <h1>Nav</h1>
+                TODO
+
+            </div>
+        
+            <a name="tabs"></a>
+            <div class="section" >
+                <h1>Tabs</h1>
+                TODO
+
+            </div>
+        
+            <a name="helpers"></a>
+            <div class="section" >
+                <h1>Helpers</h1>
+                TODO
 
             </div>
         
