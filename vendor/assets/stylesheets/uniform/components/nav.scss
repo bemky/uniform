@@ -18,4 +18,26 @@
             }
         }
     }
+    
+    &.horizontal{
+        
+        .uniform-nav-container{
+            display:table;
+            & > * {
+                display:table-cell;
+                vertical-align:middle;
+            }
+        }
+        .right{
+            text-align:right;
+            float:none;
+        }
+    }
+    
+    &.main{
+        border-bottom: 1px solid $gray-light;
+        .uniform-nav-container{
+            width: 100%;
+        }
+    }
 }

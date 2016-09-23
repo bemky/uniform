@@ -23,7 +23,7 @@ installation: <<-HTML,
 HTML
 
 
-css_theory: <<-HTML,
+philosophy: <<-HTML,
     <h3>Don't use ID's</h3>
     <p>Unless you have to, and even then, think twice. HTML Id's make things not reusable. There should only be one instance of an id in a document</p>
 
@@ -409,7 +409,44 @@ TODO
 HTML
 
 nav: <<-HTML,
-TODO
+<div class="row">
+    <div class="col-sm-6">
+        <div class="uniform-nav horizontal main">
+            <div class="pad">Logo</div>
+            <div class="right">
+                <div><a>Account</a></div>
+                <div><a>Sign Out</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><div class="uniform-nav horizontal main">
+    <div class="pad">Logo</div>
+    <div class="right">
+        <div><a>Account</a></div>
+        <div><a>Sign Out</a></div>
+    </div>
+</div></xmp></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="uniform-nav">
+            <ul>
+                <li><a>Account</a></li>
+                <li><a>Sign Out</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><div class="uniform-nav">
+    <ul>
+        <li><a>Account</a></li>
+        <li><a>Sign Out</a></li>
+    </ul>
+</div></xmp></pre>
+    </div>
+</div>
 HTML
 
 tabs: <<-HTML,
