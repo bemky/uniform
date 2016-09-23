@@ -1,0 +1,112 @@
+.uniformCard{
+    overflow:hidden;
+    background:white;
+    border:1px solid darken($background, 10);
+    border-bottom-color:darken($background, 20);
+    border-right-color:darken($background, 20);
+    border-radius:3px;
+    margin:10px 0;
+    &.selected{
+        border-color:$blue;
+        box-shadow:0 0 3px $blue;
+    }
+    .card{
+        border-radius:0;
+        border: none;
+        border-top:1px solid darken(white, 20);
+        margin:0;
+        background:darken(white, 3);
+    }
+    .uniformCard-actions{
+        padding:7px 0;
+        float:right;
+        .fortycon{
+            margin-right:0;
+        }
+        .delete{
+            margin-left:20px;
+            .fortycon{
+                width:14px;
+            }
+        }
+        .select{
+            margin-bottom:0;
+            input{
+                font-size:2em;
+            }
+        }
+    }
+    & > .title{
+        .type{
+            text-transform:uppercase;
+            color:lighten($gray, 40);
+            font-weight:bold;
+        }
+    }
+    & > .title{
+        padding:10px 20px;
+        border-bottom:1px solid darken(white, 15);
+    }
+    .details{
+        padding-top:15px;
+    }
+    h1{
+        font-weight:bold;
+        font-size:20px;
+        color:$gray;
+        a{
+            color:$gray;
+            text-decoration:none;
+            &:hover{
+                color:$blue;
+            }
+        }
+        &:first-child{
+            margin-top:0;
+        }
+    }
+    .uniformCard-attributes{
+        padding:10px 20px;
+    }
+    .uniformCard-attribute{
+        & > * {
+            padding:7px 0;
+            border-bottom:1px solid darken(white, 15);
+        }
+        &:last-child > *{
+            border-bottom:none;
+        }
+        & > *:first-child{
+            font-weight:bold;
+            font-size:0.8em;
+            padding-right:20px;
+            @include text-overflow;
+        }
+        & > *:last-child{
+            width:100%;
+        }
+        .body{
+            font-size:0.9em;
+        }
+    }
+    .stats{
+        background:darken(white, 3);
+        border-top:1px solid darken(white, 15);
+        table-layout:fixed;
+        & > * {
+            padding:5px 15px;
+            &:last-child{
+                border-right:none;
+            }
+        }
+        .label{
+            font-weight:bold;
+            font-size: 0.8em;
+            color: lighten($gray, 30);
+        }
+        .value{
+            font-size:24px;
+            font-weight:300;
+        }
+    }
+}

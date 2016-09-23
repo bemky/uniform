@@ -1,0 +1,44 @@
+a{
+    color:$blue;
+    &:hover{
+        color:$blue-dark;
+    }
+}
+blockquote{
+    border-left-color:lighten($green, 20);
+}
+mark{
+    background:lighten($green-light, 30);
+}
+code{
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-size:90%;
+    background:lighten($green-light, 35);
+    color:$green-dark;
+    font-weight:normal;
+}
+pre{
+    display:block;
+    background: darken(white, 10);
+    border:1px solid darken(white, 13);
+    padding: 15px 10px;
+    xmp{
+        margin: 0;
+    }
+}
+h1, h2, h3, h4, h5, h6{
+    &.no-margin{
+        margin: 0;
+        margin-top:10px;
+    }
+    &.no-margin-top{
+        margin-top:0;
+    }
+    &.bold{
+        font-weight:bold;
+    }
+    &.light{
+        font-weight: 300;
+    }
+}

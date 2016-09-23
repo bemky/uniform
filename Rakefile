@@ -1,3 +1,4 @@
+require 'active_support/core_ext/string'
 require 'fileutils'
 require 'sprockets'
 require "sprockets-sass"
@@ -7,24 +8,49 @@ Bundler.require(:default)
 
 # Setup Sprockets
 environment = Sprockets::Environment.new
-environment.append_path 'lib'
+environment.append_path 'vendor/assets/stylesheets'
 environment.append_path 'preview'
 environment.css_compressor = :scss
 
-desc "Compile preview"
-task :compile do
-  FileUtils.rm_f('./uniform.css')
+module Sass::Script::Functions
+  def global_variable(name)
+    assert_type name, :String, :name
+    environment.global_env.var(name.value)
+  end
+  declare :global_variable, [:string]
+end
 
-  File.open('./preview/uniform.css', "w") do |file|
-    file << environment['uniform.css.scss']
+desc "Compile page"
+task :compile do
+  
+  File.open('./site/uniform.css', "w") do |file|
+    file << environment['uniform.scss']
   end
   
-  File.open('./preview/preview.css', "w") do |file|
-    file << environment['preview.css.scss']
+  File.open('./site/preview.css', "w") do |file|
+    file << environment['preview.scss']
   end
   
   # Render the test html file
   File.open('./index.html', 'w') do |file|
+    file.write(ERB.new(File.read('preview/index.html.erb')).result(binding))
+  end
+  
+end
+
+desc "Compile preview"
+task :preview do
+  
+  File.open('./site/site/uniform.css', "w") do |file|
+    file << environment['uniform.scss']
+  end
+  
+  File.open('./site/site/preview.css', "w") do |file|
+    file << environment['preview.scss']
+  end
+  
+  # Render the test html file
+  File.open('./site/index.html', 'w') do |file|
     file.write(ERB.new(File.read('preview/index.html.erb')).result(binding))
   end
   

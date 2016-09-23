@@ -1,32 +1,37 @@
+//----------------------------------------------------------------
+//             Buttons
+//----------------------------------------------------------------
 .btn{
     @include appearance(none);
     @include user-select(none);
     @include linear-gradient(white, darken(white, 3));
     border:1px solid darken(white, 15);
     border-radius:3pt;
-    margin:0;
-    padding: 0.5em 1.5em;
-
+    padding: 6px 12px;
     cursor: pointer;
     display: inline-block;
     vertical-align: middle;
     text-align: center;
 
     color:$gray;
-    font-size:1em;
-    font-weight: normal;
-    white-space: nowrap;
-    
+
+    .fortycon{
+        line-height:1em;
+        vertical-align:-2px;
+        font-size:1.2em;
+        margin-right:3px;
+    }
+
     .subtext{
         display:block;
         font-weight:300;
         text-transform:none;
     }
-    
+
     &:visited{
         color:$gray;
     }
-    
+
     &:hover, &.hover, &:focus{
         outline:none;
         color:$green-dark;
@@ -46,30 +51,38 @@
     //----------------------------------------------------------------
     //             styles
     //----------------------------------------------------------------
-    
+
     &.outline{
         background:none !important;
         text-shadow:none !important;
+        &.dashed{
+            border-style:dashed;
+        }
+    }
+    &.dashed {
+        border-style: dashed;
     }
     &.circle{
         border-radius:2em;
     }
-    &.subtle,
-    &.small,
-    &.btn-xs{
+    &.subtle, &.btn-xs{
         padding: 0.05em 0.5em;
     }
-    &.small,
-    &.btn-sm{
-        padding: 0.2em 1em;
-        font-size:0.9em;
+    &.small, &.btn-sm{
+        padding: 0.1em 0.5em;
+        font-size: 0.8em;
+        vertical-align: top;
+        display: inline-block;
     }
-    &.large,
-    &.btn-lg{
+    &.large, &.btn-lg{
         padding: 1.2em 2.4em;
         text-transform:uppercase;
         letter-spacing:1px;
         font-weight:bold;
+        &.form-control{
+            padding-top: 0;
+            padding-bottom:0;
+        }
         .fortycon{
             line-height:0.5em;
             vertical-align:-6px;
@@ -78,8 +91,14 @@
             font-weight:normal;
         }
     }
-    &.block,
-    &.btn-block{
+    &.warn:hover{
+        border-color:$red;
+        background: $red;
+        &.outline{
+            color: $red;
+        }
+    }
+    &.block, &.btn-block{
         padding-left:5px !important;
         padding-right:5px !important;
         display:block;
@@ -88,23 +107,26 @@
     //----------------------------------------------------------------
     //             colors
     //----------------------------------------------------------------
-    &.green,
-    &.btn-primary,
-    &.btn-success{
+    &.green, &.btn-primary{
         @include linear-gradient(lighten($green, 5), darken($green, 3));
         border-color:darken($green, 5);
         color:white;
         text-shadow:0 -1px 0 rgba($green-dark, 0.5);
         &.outline{
             color:$green-dark;
+            &.inv{
+                color:$green-light;
+            }
         }
         &:hover, &.hover{
             background:$green-dark;
             border-color:darken($green-dark, 5);
+            &.inv{
+                border-color:$green-light;
+            }
         }
     }
-    &.red,
-    &.btn-danger{
+    &.red, &.btn-danger{
         @include linear-gradient($red, darken($red, 3));
         border-color:darken($red, 5);
         color:white;
@@ -112,13 +134,12 @@
             color:$red-dark;
         }
     }
-    &.yellow,
-    &.btn-warning{
-        @include linear-gradient($yellow, darken($yellow, 3));
-        border-color:darken($yellow, 5);
-        color:black;
+    &.blue, &.btn-danger{
+        @include linear-gradient($blue, darken($blue, 3));
+        border-color:$blue;
+        color:white;
         &.outline{
-            color:$yellow-dark;
+            color:$blue;
         }
     }
     &.white{
@@ -127,4 +148,15 @@
             border-color:white;
         }
     }
+    &.warning{
+        &.outline{
+            &:hover{
+                color:$red;
+                border-color:$red;
+            }
+        }
+    }
+}
+span.btn{
+    cursor: auto;
 }

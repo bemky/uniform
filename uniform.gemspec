@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.email       = ["benehmke@gmail.com"]
   s.homepage    = "http://bemky.github.io/uniform/"
   s.summary     = %q{Sass UI}
-  s.description = %q{Sass compenents and defaults for building a UI that's on fleak.}
+  s.description = %q{Sass components and defaults for building a UI that's on fleak.}
   s.license     = "MIT"
 
   s.required_ruby_version = ">= 1.9.3"
@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
   # Developoment 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'bundler'
+  s.add_development_dependency 'activesupport'
 
   # Runtime
   s.add_dependency 'bourbon'

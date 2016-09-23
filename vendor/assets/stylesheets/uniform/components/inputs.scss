@@ -17,13 +17,12 @@
         padding: 0.3em 1em;
         padding-right:2em;
         background:none;
+        border-radius:0;
     }
     &:after{
         color:$gray;
         font-size:1.3em;
-//        TODO setup arrow icon
-//        font-family:$fortycons;
-//        content:$fortycon-arrow-down;
+        content:"!";
         @include vertical-middle();
         right:0.3em;
         z-index:0;
@@ -34,42 +33,79 @@
         border-color: $green-dark;
     }
 }
+.custom-select{
+    @include select-custom;
+}
 //----------------------------------------------------------------
 //             inline-input
 //----------------------------------------------------------------
 .inline-input{
     display:table;
     background:white;
+    overflow:hidden;
     border:1px solid darken(white, 15);
     border-top-color:darken(white, 20);
-    &>*{
+    &>div,
+    &>span,
+    &>label{
         display:table-cell;
         vertical-align:middle;
+        float:none;
+        &.top{
+            vertical-align:top;
+        }
+        &.disabled,
+        &.disabled input{
+            background:darken(white, 4);
+            font-style:italic;
+        }
     }
-    input{
+
+    #{$text-inputs},
+    .textbox,
+    textarea {
+        @include appearance(none);
+        outline: none;
+        padding:5px;
         box-shadow: none;
         border:none;
-        display:block;
+        width:100%;
+    }
+    #{$text-inputs},
+    textarea,
+    .textbox,
+    select{
+        &:disabled{
+            background: $background;
+        }
     }
     select{
-        @include select-custom;
-        display:block;
+        width:100%;
         border:none;
         margin:0;
+        margin-top:2px;
     }
     label{
         margin:0;
+        font-weight:bold;
         padding:5px;
+        width:100%;
+        font-size:0.8em;
+        &:not(:first-of-type):not(.no-border){
+            border-top:1px solid darken(white, 15);
+        }
+    }
+    .select{
+        @include select-custom;
+        display:table-cell;
+        border:none;
     }
     .label, .add-on, .units{
         white-space:nowrap;
         width:auto;
         padding-left: 7px;
         padding-right: 7px;
-        border-left:1px solid darken(white, 15);
-        background:darken(white, 5);
         color:lighten(black, 50);
-        font-weight:300;
         &.pre, &:first-child{
             border-left:none;
             border-right:1px solid darken(white, 15);
@@ -78,5 +114,8 @@
     &.active{
         box-shadow: 0 0 3px 1px $green;
         border-color:$green;
+    }
+    &.error{
+        border-color:$red;
     }
 }

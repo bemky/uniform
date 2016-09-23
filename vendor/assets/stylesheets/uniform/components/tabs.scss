@@ -1,0 +1,32 @@
+// override for .nav-tab
+.uniformTabs{
+    border:none;
+    & > li {
+        margin-left:10px;
+        margin-right:10px;
+        & > a{
+            border:none;
+            padding-left:0;
+            padding-right:0;
+            border-bottom: 3px solid transparent;
+            color: lighten($gray, 20);
+            &:hover{
+                background:none;
+            }
+        }
+        &:first-of-type{
+            margin-left:0;
+        }
+        &:last-of-type{
+            margin-right:0;
+        }
+        &.active > a,
+        &.active > a:hover,
+        &.active > a:focus{
+            color:$green-dark;
+            border:none;
+            background:none;
+            border-bottom: 3px solid $green;
+        }
+    }
+}

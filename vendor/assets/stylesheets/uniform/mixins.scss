@@ -12,9 +12,6 @@
     -o-filter: blur($amount);
     -ms-filter: blur($amount);
 }
-.text-overflow{
-    @include text-overflow;
-}
 @mixin text-overflow($inherit:false){
     @if $inherit == false {
         text-overflow: ellipsis;

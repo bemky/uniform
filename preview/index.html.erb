@@ -2,309 +2,169 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Uniform</title>
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="preview/preview.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="preview/uniform.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="site/preview.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="site/uniform.css" type="text/css" media="screen" title="no title" charset="utf-8">
 </head>
 <body>
-    <div class="intro">
-        <div class="container">
-            <h1>Uniform</h1>
-            <p class="large">All the things to help us quickly develop front-end stuff with consistency</p>
+
+<% sections = {
+uniform: <<-HTML,
+    <p class="large">Sass components and defaults for building a UI that's on fleak.</p>
+HTML
+
+
+css_theory: <<-HTML,
+    <h3>Don't use ID's</h3>
+    <p>Unless you have to, and even then, think twice. HTML Id's make things not reusable. There should only be one instance of an id in a document</p>
+
+    <h3>Use Semanitc Classes Presentationaly :)</h3>
+    <p>Here's a decent post on OOCSS (Object Oriented CSS) as it relates to semantic vs presentational classes: <a href="http://blackfalcon.roughdraft.io/5255648-oocss-v-ooscss-sasscast-show-notes">OOCSS v OOSCSS</a>
+    <p><strong>TL;DR:</strong> Semantic classes explain what that element is. Presentational classes explain what the shoud look like.</p>
+    <p><code>class="property-list"</code> vs <code>class="ul-list col-sm-4"</code>
+    <p>Some of us don't want to touch css files (preference: presentational), and some of us live there (preference: semantic). Honestly, the art of good ui development is balancing semantic and presentational classes. Each taken to their extreme is bad.</p>
+    <p>Structure html so that the semantic class is first and presentational classes follow.</p>
+    <p><code>class="property-list ul-list col-sm-4"</code></p>
+
+    <h3>Save the Namespace, save the world</h3>
+    <p>Don't make presentational classes that will clash with elements that could mean something else. I'm looking at you Bootsrap!</p>
+    <p><code>class="label"</code> should be <code>class="text-label"</code></p>
+
+    <h3>Train-case</h3>
+    <p>Use train-case for class names, not camelCase or snake_case. It's quicker to type and honestly just conventional.</p>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Wrappers and Containers</h3>
+            <p>The order of nesting should go Wrapper > Element > Container. Sometimes you have to have an inside layer to do advanced css things, and the container should be that layer. This is not a suggestion for every object; use wrapper and/or container as needed.</p>
+        </div>
+        <div class="col-sm-6">
+            <h3>&nbsp;</h3>
+<pre><xmp><div class="property-wrapper">
+    <div class="property">
+        <div class="property-container">
         </div>
     </div>
-    <div class="container styles">
-
-    
-        <h2>Built on</h2>
-        <p class="large">There are many things these tools do. These docs are for things specific to uniform.</p>
-        <div style="overflow:hidden">
-            <div class="col-xs-4">
-                <a href="http://getbootstrap.com/css/" class="btn block large outline">
-                    Bootstrap
-                    <span class="subtext">(Framework)</span>
-                </a>
-            </div>
-            <div class="col-xs-4">
-                <a href="http://bourbon.io/docs/" class="btn block large outline">
-                    Bourbon
-                    <span class="subtext">(Sass Mixins)</span>
-                </a>
-            </div>
-        </div>
-    
-        <hr />
-        <h1>Colors</h1>
-        <table class="colors">
-            <tr class="row">
-                <td class="col-xs-6 gray-light">
-                    <code>sass// $gray-light</code>
-                </td>
-                <td class="col-xs-1 yellow-light">
-                    <code>sass// $yellow-light</code>
-                </td>
-                <td class="col-xs-3 green-light">
-                    <code>sass// $green-light</code>
-                </td>
-                <td class="col-xs-1 blue-light">
-                    <code>sass// $blue-light</code>
-                </td>
-                <td class="col-xs-1 red-light">
-                    <code>sass// $red-light</code>
-                </td>
-            </tr>
-            <tr class="row main">
-                <td class="col-xs-6 gray">
-                    <code>sass// $gray</code>
-                </td>
-                <td class="col-xs-1 yellow">
-                    <code>sass// $yellow</code>
-                </td>
-                <td class="col-xs-3 green">
-                    <code>sass// $green</code>
-                </td>
-                <td class="col-xs-1 blue">
-                    <code>sass// $blue</code>
-                </td>
-                <td class="col-xs-1 red">
-                    <code>sass// $red</code>
-                </td>
-            </tr>
-            <tr class="row">
-                <td class="col-xs-6 gray-dark" >
-                    <code>sass// $gray-dark</code>
-                </td>
-                <td class="col-xs-1 yellow-dark">
-                    <code>sass// $yellow-dark</code>
-                </td>
-                <td class="col-xs-3 green-dark">
-                    <code>sass// $green-dark</code>
-                </td>
-                <td class="col-xs-1 blue-dark">
-                    <code>sass// $blue-dark</code>
-                </td>
-                <td class="col-xs-1 red-dark">
-                    <code>sass// $red-dark</code>
-                </td>
-            </tr>
-        </table>
-    
-        <hr/>
-    
-        <h1>CSS Guidelines</h1>
-    
-        <h3>Don't use ID's</h3>
-        <p>Unless you have to, and even then, think twice. HTML Id's make things not reusable. There should only be one instance of an id in a document</p>
-    
-        <h3>Use Semanitc Classes Presentationaly :)</h3>
-        <p>Here's a decent post on OOCSS (Object Oriented CSS) as it relates to semantic vs presentational classes: <a href="http://blackfalcon.roughdraft.io/5255648-oocss-v-ooscss-sasscast-show-notes">OOCSS v OOSCSS</a>
-        <p><strong>TL;DR:</strong> Semantic classes explain what that element is. Presentational classes explain what the shoud look like.</p>
-        <p><code>class="property-list"</code> vs <code>class="ul-list col-sm-4"</code>
-        <p>Some of us don't want to touch css files (preference: presentational), and some of us live there (preference: semantic). Honestly, the art of good ui development is balancing semantic and presentational classes. Each taken to their extreme is bad.</p>
-        <p>Structure html so that the semantic class is first and presentational classes follow.</p>
-        <p><code>class="property-list ul-list col-sm-4"</code></p>
-    
-        <h3>Save the Namespace, save the world</h3>
-        <p>Don't make presentational classes that will clash with elements that could mean something else. I'm looking at you Bootsrap!</p>
-        <p><code>class="label"</code> should be <code>class="text-label"</code></p>
-
-        <h3>Train-case</h3>
-        <p>Use train-case for class names, not camelCase or snake_case. It's quicker to type and honestly just conventional.</p>
-    
-        <div class="row">
-                <div class="col-sm-6">
-                    <h3>Wrappers and Containers</h3>
-                    <p>The order of nesting should go Wrapper > Element > Container. Sometimes you have to have an inside layer to do advanced css things, and the container should be that layer. This is not a suggestion for every object; use wrapper and/or container as needed.</p>
-                </div>
-                <div class="col-sm-6">
-                    <h3>&nbsp;</h3>
-                    <pre><%= <<-HTML
-    <div class="property-wrapper">
-        <div class="property">
-            <div class="property-container">
-
-            </div>
+</div></xmp></pre>
         </div>
     </div>
-                HTML
-                %></pre>
-                </div>
-        </div>
+HTML
 
-        <hr />
 
-        <h1 id="tables">Buttons</h1>
-        <p><code><%= "<a href='#' class='btn'></a>" %></code></p>
-        <table class="table" cellspacing="0" cellpadding="0">
-            <tr>
-                <th></th>
-                <th>Normal or <code>btn-default</code></th>
-                <th><code>.green</code> or <code>.btn-primary</code></th>
-            </tr>
-            <tr>
-                <th></th>
-                <td><a class="btn">Button</a></td>
-                <td><a class="btn green">Button</a></td>
-            </tr>
-            <tr>
-                <th><code>:hover</code> or <code>.hover</code></th>
-                <td><a class="btn hover">Button</a></td>
-                <td><a class="btn green hover">Button</a></td>
-            </tr>
-            <tr>
-                <th><code>:active</code> or <code>.active</code></th>
-                <td><a class="btn active">Button</a></td>
-                <td><a class="btn green active">Button</a></td>
-            </tr>
-            <tr>
-                <th><code>:disabled</code> or <code>.disabled</code></th>
-                <td><a class="btn disabled">Button</a></td>
-                <td><a class="btn green disabled">Button</a></td>
-            </tr>
-            <tr>
-                <th><code>.subtle</code> or <code>.btn-xs</code></th>
-                <td><a class="btn subtle">Button</a></td>
-                <td><a class="btn green subtle">Button</a></td>
-            </tr>
-            <tr>
-                <th><code>.small</code> or <code>.btn-sm</code></th>
-                <td><a class="btn small">Button</a></td>
-                <td><a class="btn green small">Button</a></td>
-            </tr>
-            <tr>
-                <th><code>.large</code> or <code>.btn-lg</code></th>
-                <td><a class="btn large">Button</a></td>
-                <td><a class="btn green large">Button</a></td>
-            </tr>
-            <tr>
-                <th><code>.outline</code></th>
-                <td><a class="btn outline">Button</a></td>
-                <td><a class="btn green outline">Button</a></td>
-            </tr>
-            <tr>
-                <th><code>.circle</code></th>
-                <td><a class="btn circle">Button</a></td>
-                <td><a class="btn green circle">Button</a></td>
-            </tr>
-            <tr>
-                <th><code>.block</code> or <code>.btn-block</code></th>
-                <td><a class="btn block">Button</a></td>
-                <td><a class="btn green block">Button</a></td>
-            </tr>
-        </table>
-    
-    
-        <hr />
-    
-        <h1 id="loaders">Forms/Inputs</h1>
-        <h3>Custom Inputs</h3>
-        <p><code><%= "<span class='custom-select'><select></select></span>" %></code></p>
-        <p><span class='custom-select'><select class="custom"><option>An Option</option></select></span></p>
-    
-        <h3>Inline Inputs</h3>
-        <p>Ever want to put in an input and it's label in line, and have it be 100% width responsive? Well, you can't, unless you use something like inline-input.</p>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="inline-input" style="width:100%">
-                    <span class="label"><label for="name">Name</label></span>
-                    <span><input id="name" placeholder="Jonathan Doe"></span>
-                </div>
-                <br/>
-                <div class="inline-input" style="width:100%">
-                    <span class="label"><label for="car">Car Preference</label></span>
-                    <span class="select"><select id="car" class="custom"><option>Tesla</option></select></span>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                    <pre><%= <<-HTML 
-    <div class="inline-input">
-        <span class="label">
-            <label for="name">Name</label>
-        </span>
-        <span>
-            <input id="name" placeholder="Jonathan Doe">
-        </span>
-    </div>        
-                    HTML
-                    %></pre>
-            </div>
-        
-        </div>
-    
-    
-    
-    
-        <h3>Table Form</h3>
-        <div class="row">
-            <div class="col-sm-6">
-                <p><code><%= "<form class='table-form'..." %></code></p>
-                <%#= form_tag "#", :class => "table-form", :style => "margin-bottom: 20px" do %>
-                    <div class="table-form-container">
-                        <div class="inline-input">
-                            <div class="label"><%#= label_tag :name %></div>
-                            <div class="input"><%#= text_field_tag :name, "", :placeholder => "Jonathan Doe" %></div>
-                            <div class="error"></div>
-                        </div>
-                        <div class="inline-input">
-                            <div class="label"><%#= label_tag :email %></div>
-                            <div class="input"><%#= email_field_tag :email, "", :placeholder => "jonathan@42floors.com"  %></div>
-                            <div class="error"></div>
-                        </div>
-                        <div class="inline-input">
-                            <div class="label"><%#= label_tag :phone %></div>
-                            <div class="input"><%#= telephone_field_tag :phone, "", :placeholder => "###-###-####"  %></div>
-                            <div class="error"></div>
-                        </div>
-                    </div>
-                    <div class="submit">
-                        <%#= submit_tag "Contact Us", {class: "btn outline large"} %>
-                    </div>
-                <%# end %>
-            </div>
-            <div class="col-sm-6">
-                    <pre><%= <<-HTML
-    \<%= form_tag "#", :class => "table-form" do %\>
-        <div class="field-table">
-            <div class="inline-input">
-                <div class="label">\<%= label_tag :name %\></div>
-                <div class="input">\<%= text_field_tag :name, "", :placeholder => "Jonathan Doe" %\></div>
-                <div class="error"></div>
-            </div>
-            <div class="inline-input">
-                <div class="label">\<%= label_tag :email %\></div>
-                <div class="input">\<%= email_field_tag :email, "", :placeholder => "jonathan@42floors.com"  %\></div>
-                <div class="error"></div>
-            </div>
-            <div class="inline-input">
-                <div class="label">\<%= label_tag :phone %\></div>
-                <div class="input">\<%= telephone_field_tag :phone, "", :placeholder => "###-###-####"  %\></div>
-                <div class="error"></div>
-            </div>
-        </div>
-        <div class="submit">
-            \<%= submit_tag "Contact Us", {class: "btn outline white large"} %\>
-        </div>
-    \<% end %\>
-                    HTML
-                    %>
-                </pre>
-            </div>
-        
-        </div>
-    
-        <hr>
 
-        <h1 id="loaders">Loaders</h1>
+colors: <<-HTML,
+<table>
+#{%w(green blue red gray yellow).map{|color|
+    ["-light", "", "-dark"].map{|style|
+        "<tr>
+            <td><span class='swatch #{color}#{style}-bg'></span></td>
+            <td><code>sass// $#{color}#{style}</code></td>
+            <td><code>class// .#{color}#{style}</code></td>
+        </tr>"
+    } + ["<tr><td colspan='3'>&nbsp;</td></tr>"]
+}.flatten.join("\n")}
+</table>
+HTML
 
-        <h3>Dots</h3>
-        <div class="loader-dots">
-            <div class="loader-dots-container">
-                <span>&bull;</span>
-                <span>&bull;</span>
-                <span>&bull;</span>
+
+buttons: <<-HTML,
+    <p>Mix and match styles to make the right button, all colors are available as well.</p>
+    <p><code>#{CGI::escapeHTML "<a href='#' class='btn'></a>"}</code></p>
+    <table class="table" cellspacing="0" cellpadding="0">
+        <tr>
+            <th></th>
+            <th>Normal</th>
+            <th><code>.green</code></th>
+        </tr>
+        <tr>
+            <th></th>
+            <td><a class="btn">Button</a></td>
+            <td><a class="btn green">Button</a></td>
+        </tr>
+        <tr>
+            <th><code>:hover</code> or <code>.hover</code></th>
+            <td><a class="btn hover">Button</a></td>
+            <td><a class="btn green hover">Button</a></td>
+        </tr>
+        <tr>
+            <th><code>:active</code> or <code>.active</code></th>
+            <td><a class="btn active">Button</a></td>
+            <td><a class="btn green active">Button</a></td>
+        </tr>
+        <tr>
+            <th><code>:disabled</code> or <code>.disabled</code></th>
+            <td><a class="btn disabled">Button</a></td>
+            <td><a class="btn green disabled">Button</a></td>
+        </tr>
+        <tr>
+            <th><code>.subtle</code></th>
+            <td><a class="btn subtle">Button</a></td>
+            <td><a class="btn green subtle">Button</a></td>
+        </tr>
+        <tr>
+            <th><code>.small</code></th>
+            <td><a class="btn small">Button</a></td>
+            <td><a class="btn green small">Button</a></td>
+        </tr>
+        <tr>
+            <th><code>.large</code></th>
+            <td><a class="btn large">Button</a></td>
+            <td><a class="btn green large">Button</a></td>
+        </tr>
+        <tr>
+            <th><code>.outline</code></th>
+            <td><a class="btn outline">Button</a></td>
+            <td><a class="btn green outline">Button</a></td>
+        </tr>
+        <tr>
+            <th><code>.circle</code></th>
+            <td><a class="btn circle">Button</a></td>
+            <td><a class="btn green circle">Button</a></td>
+        </tr>
+        <tr>
+            <th><code>.block</code></th>
+            <td><a class="btn block">Button</a></td>
+            <td><a class="btn green block">Button</a></td>
+        </tr>
+    </table>
+HTML
+
+inputs: <<-HTML,
+    <h3>Custom Inputs</h3>
+    <p><code><xmp><span class='custom-select'><select></select></span></xmp></code></p>
+    <p><span class='custom-select'><select class="custom"><option>An Option</option></select></span></p>
+
+    <h3>Inline Inputs</h3>
+    <p>Ever want to put in an input and it's label in line, and have it be 100% width responsive? Well, you can't, unless you use something like inline-input.</p>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="inline-input" style="width:100%">
+                <span class="label"><label for="name">Name</label></span>
+                <span><input id="name" placeholder="Jonathan Doe"></span>
+            </div>
+            <br/>
+            <div class="inline-input" style="width:100%">
+                <span class="label"><label for="car">Car Preference</label></span>
+                <span class="select"><select id="car" class="custom"><option>Tesla</option></select></span>
             </div>
         </div>
-        <pre><%= <<-HTML
+        <div class="col-sm-6">
+<pre><xmp><div class="inline-input">
+    <span class="label">
+        <label for="name">Name</label>
+    </span>
+    <span>
+        <input id="name" placeholder="Jonathan Doe">
+    </span>
+</div></xmp></pre>
+        </div>
+    
+    </div>
+HTML
+
+
+loaders: <<-HTML,
+    <h3>Dots</h3>
     <div class="loader-dots">
         <div class="loader-dots-container">
             <span>&bull;</span>
@@ -312,186 +172,66 @@
             <span>&bull;</span>
         </div>
     </div>
-        HTML
-        %></pre>
+<pre><xmp><div class="loader-dots">
+    <div class="loader-dots-container">
+        <span>&bull;</span>
+        <span>&bull;</span>
+        <span>&bull;</span>
+    </div>
+</div></xmp></pre>
 
 
-        <div class="loader-dots light">
-            <div class="loader-dots-container">
-                <span>&bull;</span>
-                <span>&bull;</span>
-                <span>&bull;</span>
-            </div>
-        </div>
-        <h4>Optional Class: <code>light</code></h4>
-        <pre><%= <<-HTML
-            <div class="loader-dots light">
-                <div class="loader-dots-container">
-                    <span>&bull;</span>
-                    <span>&bull;</span>
-                    <span>&bull;</span>
-                </div>
-            </div>
-            HTML
-            %></pre>
-
-
-        <h4>Optional Class: <code>cover</code></h4>
-        <pre style="position:relative">
-        <div class="loader-dots cover">
-            <div class="loader-dots-container">
-                <span>&bull;</span>
-                <span>&bull;</span>
-                <span>&bull;</span>
-            </div>
-        </div>
-    <%= <<-HTML       
-    <div style="height:200px; position:relative;">
-        <div class="loader-dots cover">
-            <div class="loader-dots-container">
-                <span>&bull;</span>
-                <span>&bull;</span>
-                <span>&bull;</span>
-            </div>
+    <div class="loader-dots light">
+        <div class="loader-dots-container">
+            <span>&bull;</span>
+            <span>&bull;</span>
+            <span>&bull;</span>
         </div>
     </div>
-        HTML
-        %></pre>
+    <h4>Optional Class: <code>light</code></h4>
+<pre><xmp><div class="loader-dots light">
+    <div class="loader-dots-container">
+        <span>&bull;</span>
+        <span>&bull;</span>
+        <span>&bull;</span>
+    </div>
+</div></xmp></pre>
 
 
-        <h3>Windows</h3>
-        <div class="loader-windows">
-            <div class="loader-windows-container">
-                <div class="a1"></div>
-                <div class="a2"></div>
-                <div class="a3"></div>
-                <div class="a4"></div>
-                <div class="b1"></div>
-                <div class="b2"></div>
-                <div class="b3"></div>
-                <div class="c1"></div>
-                <div class="c2"></div>
-                <div class="c3"></div>
-                <div class="c4"></div>
-                <div class="c5"></div>
-                <div class="d1"></div>
-                <div class="d2"></div>
+    <h4>Optional Class: <code>cover</code></h4>
+<pre><xmp><div class="loader-dots cover">
+    <div class="loader-dots-container">
+        <span>&bull;</span>
+        <span>&bull;</span>
+        <span>&bull;</span>
+    </div>
+</div></xmp></pre>
+<pre><xmp><div style="height:200px; position:relative;">
+    <div class="loader-dots cover">
+        <div class="loader-dots-container">
+            <span>&bull;</span>
+            <span>&bull;</span>
+            <span>&bull;</span>
+        </div>
+    </div>
+</div></xmp></pre>
+HTML
+} %>
+    <div class="side-nav">
+        <ul class="uniform-nav">
+            <% sections.each do |key, html| %>
+                <li><a href="#<%= key %>"><%= key.to_s.titleize %></a></li>
+            <% end %>
+        </ul>
+    </div>
+    <div class="main-content">
+        <% sections.each do |key, html| %>
+            <a name="<%= key %>"></a>
+            <div class="section" >
+                <h1><%= key.to_s.titleize %></h1>
+                <%= html %>
             </div>
-        </div>
-        <pre><%= <<-HTML
-    <div class="loader-windows">
-        <div class="loader-windows-container">
-            <div class="a1"></div>
-            <div class="a2"></div>
-            <div class="a3"></div>
-            <div class="a4"></div>
-            <div class="b1"></div>
-            <div class="b2"></div>
-            <div class="b3"></div>
-            <div class="c1"></div>
-            <div class="c2"></div>
-            <div class="c3"></div>
-            <div class="c4"></div>
-            <div class="c5"></div>
-            <div class="d1"></div>
-            <div class="d2"></div>
-        </div>
+        <% end %>
     </div>
-            HTML
-            %>
-        </pre>
-
-
-        <h4>Optional Class: <code>small</code></h4>
-        <div class="loader-windows small">
-            <div class="loader-windows-container">
-                <div class="a1"></div>
-                <div class="a2"></div>
-                <div class="a3"></div>
-                <div class="a4"></div>
-                <div class="b1"></div>
-                <div class="b2"></div>
-                <div class="b3"></div>
-                <div class="c1"></div>
-                <div class="c2"></div>
-                <div class="c3"></div>
-                <div class="c4"></div>
-                <div class="c5"></div>
-                <div class="d1"></div>
-                <div class="d2"></div>
-            </div>
-        </div>
-        <pre><%= <<-HTML
-    <div class="loader-windows small">
-        <div class="loader-windows-container">
-            <div class="a1"></div>
-            <div class="a2"></div>
-            <div class="a3"></div>
-            <div class="a4"></div>
-            <div class="b1"></div>
-            <div class="b2"></div>
-            <div class="b3"></div>
-            <div class="c1"></div>
-            <div class="c2"></div>
-            <div class="c3"></div>
-            <div class="c4"></div>
-            <div class="c5"></div>
-            <div class="d1"></div>
-            <div class="d2"></div>
-        </div>
-    </div>
-            HTML
-            %>
-        </pre>
-
-
-
-        <h4>Optional Class: <code>cover</code></h4>
-    
-
-
-        <pre style="position:relative">
-                <div class="loader-windows cover">
-                    <div class="loader-windows-container">
-                        <div class="a1"></div>
-                        <div class="a2"></div>
-                        <div class="a3"></div>
-                        <div class="a4"></div>
-                        <div class="b1"></div>
-                        <div class="b2"></div>
-                        <div class="b3"></div>
-                        <div class="c1"></div>
-                        <div class="c2"></div>
-                        <div class="c3"></div>
-                        <div class="c4"></div>
-                        <div class="c5"></div>
-                        <div class="d1"></div>
-                        <div class="d2"></div>
-                    </div>
-                </div>
-    <%= <<-HTML
-    <div stlye="height:100px; position:relative;">
-        <div class="loader-windows cover">
-            <div class="loader-windows-container">
-                <div class="a1"></div>
-                <div class="a2"></div>
-                <div class="a3"></div>
-                <div class="a4"></div>
-                <div class="b1"></div>
-                <div class="b2"></div>
-                <div class="b3"></div>
-                <div class="c1"></div>
-                <div class="c2"></div>
-                <div class="c3"></div>
-                <div class="c4"></div>
-                <div class="c5"></div>
-                <div class="d1"></div>
-                <div class="d2"></div>
-            </div>
-        </div>
-    </div>
-            HTML
-            %>
-        </pre>
-    </div>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>

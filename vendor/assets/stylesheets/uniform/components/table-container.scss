@@ -1,0 +1,44 @@
+.table-container{
+    display:table;
+    width:100%;
+    & > *,
+    .table-row > *{
+        display:table-cell;
+        float:none;
+        &.top{
+            vertical-align:top;
+        }
+        &.middle > *{
+            vertical-align:middle;
+        }
+    }
+    .table-row{
+        display:table-row;
+    }
+    &.middle > *,
+    .middle{
+        vertical-align:middle;
+    }
+    &.top > *,
+    .top{
+        vertical-align:top;
+    }
+    @include media($xs){
+        &.break-xs{
+            & > *,
+            .table-row > *{
+                display:block;
+                float:inherit;
+            }
+            .table-row{
+                display:block;
+            }
+        }
+    }
+
+}
+@include media($xs){
+    .block-xs{
+    	display:block;
+    }
+}

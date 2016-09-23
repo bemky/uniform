@@ -16,6 +16,12 @@ vr {
 .handle{
     cursor: hand;
 }
+.honeypot{
+    position:absolute !important;
+    left:-999999px !important;
+    width:1px !important;
+    display:block !important;
+}
 
 //----------------------------------------------------------------
 //             Layout
@@ -97,3 +103,23 @@ p.large{
     white-space: nowrap;
     overflow:hidden;
 }
+
+//----------------------------------------------------------------
+//             Colors
+//----------------------------------------------------------------
+@mixin generate-color($class){
+.#{$class} {            color: global-variable($class);}
+.#{$class}-light {      color: global-variable("#{$class}-light");}
+.#{$class}-dark {       color: global-variable("#{$class}-light");}
+.#{$class}-bg {         background-color: global-variable($class);}
+.#{$class}-light-bg {   background-color: global-variable("#{$class}-light");}
+.#{$class}-dark-bg {    background-color: global-variable("#{$class}-dark");}
+}
+
+@include generate-color('green');
+@include generate-color('blue');
+@include generate-color('red');
+@include generate-color('gray');
+@include generate-color('yellow');
+
+

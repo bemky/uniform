@@ -1,0 +1,142 @@
+//----------------------------------------------------------------
+// Borrowed from Bootstrap
+//----------------------------------------------------------------
+
+$screen-xs: 480px !default;
+$screen-sm: 768px !default;
+$screen-md: 992px !default;
+$screen-lg: 1200px !default;
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
+$container-sm: (720px + $grid-gutter-width);
+$container-md: (940px + $grid-gutter-width);
+$container-lg: (1140px + $grid-gutter-width);
+
+$xs: new-breakpoint(max-width 767px);
+$sm: new-breakpoint(min-width 768px max-width 991px);
+$md: new-breakpoint(min-width 992px max-width 1199px);
+$lg: new-breakpoint(min-width 1200px);
+$max-xs: new-breakpoint(max-width 767px);
+$max-sm: new-breakpoint(max-width 991px);
+$max-md: new-breakpoint(max-width 1199px);
+$max-lg: new-breakpoint(min-width 1200px);
+$min-xs: new-breakpoint(min-width 480px);
+$min-sm: new-breakpoint(min-width 768px);
+$min-md: new-breakpoint(min-width 992px);
+$min-lg: new-breakpoint( min-width 1200px);
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Grid system
+//
+// Generate semantic grid columns with these mixins.
+
+// Centered container element
+@mixin container-fixed($gutter: $grid-gutter-width) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left:  floor(($gutter / 2));
+  padding-right: ceil(($gutter / 2));
+  @include clearfix;
+}
+
+// Creates a wrapper for a series of columns
+@mixin make-row($gutter: $grid-gutter-width) {
+  margin-left:  ceil(($gutter / -2));
+  margin-right: floor(($gutter / -2));
+  @include clearfix;
+}
+
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `$grid-columns`.
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
+  @for $i from (1 + 1) through $grid-columns {
+    $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+  }
+  #{$list} {
+    position: relative;
+    // Prevent columns from collapsing when empty
+    min-height: 1px;
+    // Inner gutter via padding
+    padding-left:  ceil(($grid-gutter-width / 2));
+    padding-right: floor(($grid-gutter-width / 2));
+  }
+}
+
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
+  @for $i from (1 + 1) through $grid-columns {
+    $list: "#{$list}, .col-#{$class}-#{$i}";
+  }
+  #{$list} {
+    float: left;
+  }
+}
+
+
+@mixin calc-grid-column($index, $class, $type) {
+  @if ($type == width) and ($index > 0) {
+    .col-#{$class}-#{$index} {
+      width: percentage(($index / $grid-columns));
+    }
+  }
+  @if ($type == push) and ($index > 0) {
+    .col-#{$class}-push-#{$index} {
+      left: percentage(($index / $grid-columns));
+    }
+  }
+  @if ($type == push) and ($index == 0) {
+    .col-#{$class}-push-0 {
+      left: auto;
+    }
+  }
+  @if ($type == pull) and ($index > 0) {
+    .col-#{$class}-pull-#{$index} {
+      right: percentage(($index / $grid-columns));
+    }
+  }
+  @if ($type == pull) and ($index == 0) {
+    .col-#{$class}-pull-0 {
+      right: auto;
+    }
+  }
+  @if ($type == offset) {
+    .col-#{$class}-offset-#{$index} {
+      margin-left: percentage(($index / $grid-columns));
+    }
+  }
+}
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin loop-grid-columns($columns, $class, $type) {
+  @for $i from 0 through $columns {
+    @include calc-grid-column($i, $class, $type);
+  }
+}
+
+
+// Create grid for specific class
+@mixin make-grid($class) {
+  @include float-grid-columns($class);
+  @include loop-grid-columns($grid-columns, $class, width);
+  @include loop-grid-columns($grid-columns, $class, pull);
+  @include loop-grid-columns($grid-columns, $class, push);
+  @include loop-grid-columns($grid-columns, $class, offset);
+}
+
+
