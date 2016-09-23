@@ -1,71 +1,62 @@
-.loader-dots{
-    font-size:2em;
-    line-height:1em;
+.uniform-loader{
     display:inline-block;
-    .loader-dots-container{
+    .uniform-loader-container{
         letter-spacing:-.05em;
         white-space:nowrap;
         span{
-            color:rgba(white, 1);
-            text-shadow:-1px -1px 0 rgba(black, .2);
-            @include animation(loader-dots 1s infinite linear);
-            @include animation-delay(.2s);
+            font-size:2em;
+            line-height:1em;
+            color:rgba(black, 1);
+            @include animation(uniform-loader 1s infinite linear);
+            @include animation-delay(.4s);
         }
         span:first-of-type{
-            @include animation-delay(0);
+            @include animation-delay(.2s);
         }
         span:last-of-type{
-            @include animation-delay(.4s);
+            @include animation-delay(.6s);
         }
     }
     &.light{
-        .loader-dots-container{
+        .uniform-loader-container{
             span{
-                color:rgba(black, 1);
-                text-shadow:-1px -1px 0 rgba(white, .2);
-                @include animation(loader-dots-light 1s infinite linear);
-                @include animation-delay(.2s);
+                color:rgba(white, 1);
+                @include animation(uniform-loader-light 1s infinite linear);
+                @include animation-delay(.4s);
             }
             span:first-of-type{
-                @include animation-delay(0);
+                @include animation-delay(.2s);
             }
             span:last-of-type{
-                @include animation-delay(.4s);
+                @include animation-delay(.6s);
             }
         }
     }
     &.cover{
         display:block;
-        background:rgba(black, .5);
+        background:rgba(white, 0.5);
         position:absolute;
         top:0;
         left:0;
         width:100%;
         height:100%;
         z-index:999999999;
-        .loader-dots-container,
-        .loader-windows-container{
+        .uniform-loader-container{
             position:absolute;
             @include align-middle;
         }
         &.light{
-            background:rgba(white, 0.5);
-        }
-    }
-    &.top{
-        .loader-dots-container,
-        .loader-windows-container{
-            top: 20px;
+            background:rgba(black, .5);
         }
     }
 }
-@include keyframes (loader-dots) {
-    0%{ color:rgba(white, 0); }
-    25%{ color:rgba(white, 1); }
-    100%{ color:rgba(white, 1); }
-}
-@include keyframes (loader-dots-light) {
+@include keyframes (uniform-loader) {
     0%{ color:rgba(black, 1); }
     25%{ color:rgba(black, 0.2); }
     100%{ color:rgba(black, 0.2); }
+}
+@include keyframes (uniform-loader-light) {
+    0%{ color:rgba(white, 1); }
+    25%{ color:rgba(white, 0.2); }
+    100%{ color:rgba(white, 0.2); }
 }

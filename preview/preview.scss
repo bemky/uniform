@@ -8,6 +8,9 @@ html, body{
     width:100%;
     padding: 100px 50px;
     border-bottom:1px solid darken(white, 20);
+    pre:first-of-type{
+        margin-top:0;
+    }
 }
 .side-nav{
     position:fixed;

@@ -231,34 +231,87 @@
             <div class="section" >
                 <h1>Inputs</h1>
                     <h3>Custom Inputs</h3>
-    <p><code><xmp><span class='custom-select'><select></select></span></xmp></code></p>
-    <p><span class='custom-select'><select class="custom"><option>An Option</option></select></span></p>
+    <div class="row">
+        <div class="col-sm-6">
+            <p>Styled Select Box
+            <p><span class="uniform-select"><select><option>An Option</option></select></span></p>
+        </div>
+        <div class="col-sm-6">
+<pre><xmp><span class='uniform-select'>
+    <select>
+        <option>An Option</option>
+    </select>
+</span></xmp></pre>
+        </div>
+    </div>
 
     <h3>Inline Inputs</h3>
     <p>Ever want to put in an input and it's label in line, and have it be 100% width responsive? Well, you can't, unless you use something like inline-input.</p>
     <div class="row">
         <div class="col-sm-6">
-            <div class="inline-input" style="width:100%">
-                <span class="label"><label for="name">Name</label></span>
-                <span><input id="name" placeholder="Jonathan Doe"></span>
+            
+            
+            <div class="inline-input">
+                <span class="label">
+                    <label for="rate">$</label>
+                </span>
+                <span>
+                    <input id="rate">
+                </span>
+                <span class="units">
+                    <label for="rate">/hour</label>
+                </span>
             </div>
-            <br/>
-            <div class="inline-input" style="width:100%">
+        </div>
+        <div class="col-sm-6">
+<pre><xmp><div class="inline-input">
+    <span class="label">$</span>
+    <span>
+        <input id="name" placeholder="Jonathan Doe">
+    </span>
+    <span class="units">/hour</span>
+</div></xmp></pre>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="inline-input">
                 <span class="label"><label for="car">Car Preference</label></span>
-                <span class="select"><select id="car" class="custom"><option>Tesla</option></select></span>
+                <span class="select"><select id="car"><option>Tesla</option></select></span>
             </div>
         </div>
         <div class="col-sm-6">
 <pre><xmp><div class="inline-input">
     <span class="label">
-        <label for="name">Name</label>
+        <label for="car">Car Preference</label>
     </span>
     <span>
-        <input id="name" placeholder="Jonathan Doe">
+        <select id="car"><option>Tesla</option></select>
     </span>
 </div></xmp></pre>
         </div>
-    
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="inline-input block">
+                <span class="label">
+                    <label for="car">Car Preference</label>
+                </span>
+                <span>
+                    <input id="name" value="Jonathan Doe" disabled>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+<pre><xmp><div class="inline-input block">
+    <span class="label">
+        <label for="car">Car Preference</label>
+    </span>
+    <span>
+        <input id="name" value="Jonathan Doe" disabled>
+    </span>
+</div></xmp></pre>
+        </div>
     </div>
 
             </div>
@@ -266,57 +319,78 @@
             <a name="loaders"></a>
             <div class="section" >
                 <h1>Loaders</h1>
-                    <h3>Dots</h3>
-    <div class="loader-dots">
-        <div class="loader-dots-container">
+                <div class="row">
+    <div class="col-sm-6">
+        <div class="uniform-loader">
+            <div class="uniform-loader-container">
+                <span>&bull;</span>
+                <span>&bull;</span>
+                <span>&bull;</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><div class="uniform-loader">
+    <div class="uniform-loader-container">
+        <span>&bull;</span>
+        <span>&bull;</span>
+        <span>&bull;</span>
+    </div>
+</div></xmp></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <span style="position:relative; display:inline-block">
+            <img src="https://unsplash.it/150/100/?random" style="display:inline-block;">
+            <div class="uniform-loader cover">
+                <div class="uniform-loader-container">
+                    <span>&bull;</span>
+                    <span>&bull;</span>
+                    <span>&bull;</span>
+                </div>
+            </div>
+        </span>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><span style="position:relative; display:inline-block">
+    <img src="https://unsplash.it/150/100/?random" style="display:inline-block;">
+    <div class="uniform-loader cover">
+        <div class="uniform-loader-container">
             <span>&bull;</span>
             <span>&bull;</span>
             <span>&bull;</span>
         </div>
     </div>
-<pre><xmp><div class="loader-dots">
-    <div class="loader-dots-container">
-        <span>&bull;</span>
-        <span>&bull;</span>
-        <span>&bull;</span>
+</span></xmp></pre>
     </div>
-</div></xmp></pre>
-
-
-    <div class="loader-dots light">
-        <div class="loader-dots-container">
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <span style="position:relative; display:inline-block">
+            <img src="https://unsplash.it/150/100/?random" style="display:inline-block;">
+            <div class="uniform-loader cover light">
+                <div class="uniform-loader-container">
+                    <span>&bull;</span>
+                    <span>&bull;</span>
+                    <span>&bull;</span>
+                </div>
+            </div>
+        </span>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><span style="position:relative; display:inline-block">
+    <img src="https://unsplash.it/150/100/?random" style="display:inline-block;">
+    <div class="uniform-loader cover light">
+        <div class="uniform-loader-container">
             <span>&bull;</span>
             <span>&bull;</span>
             <span>&bull;</span>
         </div>
     </div>
-    <h4>Optional Class: <code>light</code></h4>
-<pre><xmp><div class="loader-dots light">
-    <div class="loader-dots-container">
-        <span>&bull;</span>
-        <span>&bull;</span>
-        <span>&bull;</span>
+</span></xmp></pre>
     </div>
-</div></xmp></pre>
-
-
-    <h4>Optional Class: <code>cover</code></h4>
-<pre><xmp><div class="loader-dots cover">
-    <div class="loader-dots-container">
-        <span>&bull;</span>
-        <span>&bull;</span>
-        <span>&bull;</span>
-    </div>
-</div></xmp></pre>
-<pre><xmp><div style="height:200px; position:relative;">
-    <div class="loader-dots cover">
-        <div class="loader-dots-container">
-            <span>&bull;</span>
-            <span>&bull;</span>
-            <span>&bull;</span>
-        </div>
-    </div>
-</div></xmp></pre>
+</div>
 
             </div>
         

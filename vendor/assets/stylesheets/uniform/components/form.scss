@@ -93,8 +93,9 @@
             margin-bottom:2px;
             margin-left:-18px;
             &:before{
+                font-family:$fortycons;
                 display:inline-block;
-                content: "+";
+                content: $fortycon-add;
                 margin-right:5px;
             }
         }

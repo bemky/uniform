@@ -70,6 +70,7 @@ strong,
 .bold{      font-weight: 700;}
 .light,
 .text-light{    font-weight: 300;}
+.text-normal{    font-weight: normal;}
 .italic{    font-style:italic;}
 .required{  color:$red;}
 .warn{
@@ -79,7 +80,6 @@ strong,
     }
 }
 h1, h2, h3, h4, h5, h6{
-    font-weight:normal;
     &.no-margin{
         margin: 0;
         margin-top:10px;
