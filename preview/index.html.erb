@@ -10,7 +10,11 @@
 
 <% sections = {
 uniform: <<-HTML,
+
+<div class="center">
+    <img src="site/logo.png" width="451" height="101">
     <p class="large">Sass components and defaults for building a UI that's on fleak.</p>
+</div>
 HTML
 
 installation: <<-HTML,
@@ -459,6 +463,9 @@ HTML
 
 } %>
     <div class="side-nav">
+        <div style="padding: 20px; padding-right: 30px">
+            <img src="site/logo.png" style="width: 100%; height: auto;">
+        </div>
         <ul class="uniform-nav">
             <% sections.each do |key, html| %>
                 <li><a href="#<%= key %>"><%= key.to_s.titleize %></a></li>
@@ -468,8 +475,10 @@ HTML
     <div class="main-content">
         <% sections.each do |key, html| %>
             <a name="<%= key %>"></a>
-            <div class="section" >
+            <div class="section">
+                <% if key != :uniform %>
                 <h1><%= key.to_s.titleize %></h1>
+                <% end %>
                 <%= html %>
             </div>
         <% end %>
