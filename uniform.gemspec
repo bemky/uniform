@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "uniform-ui"
-  s.version     = '0.5'
+  s.version     = '0.5.1'
   s.authors     = ["Ben Ehmke"]
   s.email       = ["benehmke@gmail.com"]
   s.homepage    = "http://bemky.github.io/uniform/"
