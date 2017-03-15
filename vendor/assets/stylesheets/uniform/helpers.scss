@@ -36,7 +36,7 @@ vr {
 .text-right{
     text-align: right;
 }
-.center{
+.text-center{
     text-align: center;
 }
 .clear{
@@ -91,11 +91,6 @@ h1, h2, h3, h4, h5, h6{
         margin-top:0;
     }
 }
-
-.green{         color:$green;}
-.green-light{   color:$green-light;}
-.blue{         color:$blue;}
-.blue-light{   color:$blue-light;}
 
 p.large{
     font-size:1.5em;

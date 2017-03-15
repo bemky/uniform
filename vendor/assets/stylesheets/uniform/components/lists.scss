@@ -1,62 +1,62 @@
-li[data-step]{
+ul.uniform-checks,
+ol.uniform-step,
+ul.uniform-icons {
     list-style:none;
-    margin:0.5em 0;
-    position:relative;
-    &:before{
-        content: attr(data-step);
-        color:$green;
-        font-size:1em;
-        vertical-align:-2px;
-        border-radius:50%;
-        border:2px solid $green;
-        width:1.3em;
-        height:1.3em;
-        font-weight:normal;
-        line-height:1.1;
-        text-align:center;
-        position:absolute;
-        left:-1.5em;
-    }
-}
-li[data-number]{
-    list-style:none;
-    margin:0.5em 0;
-    position:relative;
-    &:before{
-        content: attr(data-number);
-        font-size:1em;
-        width:1.5em;
-        height:1.3em;
-        font-weight:bold;
-        line-height:1.3;
-        text-align:center;
-        position:absolute;
-        left:-1.5em;
+    margin: 0;
+    padding: 0;
+    li{
+        margin: 0.2em 0;
+        text-indent: -2em;
+        margin-left: 2em;
+        &:before{
+            margin-right: 0.5em;
+        }
     }
 }
 
+ol.uniform-step{
+    counter-reset: item;
+    li {
+        counter-increment: item;
+        &:before{
+            content: counter(item);
+            color:$green;
+            font-size:1em;
+            border-radius:50%;
+            border:0.15em solid $green;
+            width:1.35em;
+            height:1.35em;
+            
+            font-weight:normal;
+            line-height:1.1;
+            text-align:center;
+            text-indent: 0;
+            
+            display:inline-block;
+            margin-right: 0.5em;
+        }
+    }
+}
 
-ul.custom li,
-ul.checks li,
-li[data-fortycon],
-li[data-icon]{
-    position:relative;
-    &:before{
-        content: "c";
-        font-size:1.2em;
-        position:absolute;
-        left:-1.5em;
-        line-height:1;
+ul.uniform-checks {
+    li {
+        &:before {
+            font-family: $fortycons;
+            content: $fortycon-check;
+            color: $green;
+            font-size:1.3em;
+            vertical-align: -0.1em;
+        }
     }
 }
-li[data-fortycon],
-li[data-icon] {
-    &:before{
-        content: attr(data-fortycon);
-    }
-}
-ul.checks li {
-    &:before{
-        color: $green;
+
+ul.uniform-icons {
+    li {
+        &:before {
+            font-family: $fortycons;
+            content: attr(data-icon);
+            font-size:1.3em;
+            vertical-align: -0.1em;
+        }
     }
 }

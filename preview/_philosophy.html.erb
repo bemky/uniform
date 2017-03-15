@@ -1,0 +1,33 @@
+<h3>Don't use ID's</h3>
+<p>Unless you have to, and even then, think twice. HTML Id's make things not reusable. There should only be one instance of an id in a document</p>
+
+<h3>Use Semanitc Classes Presentationaly :)</h3>
+<p>Here's a decent post on OOCSS (Object Oriented CSS) as it relates to semantic vs presentational classes: <a href="http://blackfalcon.roughdraft.io/5255648-oocss-v-ooscss-sasscast-show-notes">OOCSS v OOSCSS</a>
+<p><strong>TL;DR:</strong> Semantic classes explain what that element is. Presentational classes explain what the shoud look like.</p>
+<p><code>class="property-list"</code> vs <code>class="ul-list col-sm-4"</code>
+<p>Some of us don't want to touch css files (preference: presentational), and some of us live there (preference: semantic). Honestly, the art of good ui development is balancing semantic and presentational classes. Each taken to their extreme is bad.</p>
+<p>Structure html so that the semantic class is first and presentational classes follow.</p>
+<p><code>class="property-list ul-list col-sm-4"</code></p>
+
+<h3>Save the Namespace, save the world</h3>
+<p>Don't make presentational classes that will clash with elements that could mean something else. I'm looking at you Bootsrap!</p>
+<p><code>class="label"</code> should be <code>class="text-label"</code></p>
+
+<h3>Train-case</h3>
+<p>Use train-case for class names, not camelCase or snake_case. It's quicker to type and honestly just conventional.</p>
+
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Wrappers and Containers</h3>
+        <p>The order of nesting should go Wrapper > Element > Container. Sometimes you have to have an inside layer to do advanced css things, and the container should be that layer. This is not a suggestion for every object; use wrapper and/or container as needed.</p>
+    </div>
+    <div class="col-sm-6">
+        <h3>&nbsp;</h3>
+<pre><xmp><div class="property-wrapper">
+<div class="property">
+    <div class="property-container">
+    </div>
+</div>
+</div></xmp></pre>
+    </div>
+</div>

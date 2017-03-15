@@ -1,10 +1,3 @@
-// add other options for media queries
-@mixin media($min-width){
-    @media (min-width: $min-width) {
-        @content;
-    }
-}
-
 @mixin opacity($o: 1){
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$o*100+")";
     filter: alpha(opacity=$o*100);
@@ -66,4 +59,42 @@
     -webkit-backface-visibility: hidden; // Some weird safari bug involving hovering on li or a
     -webkit-transform: translate3d(0, 0, 0); // Some weird safari bug involving hovering on li or a
     -webkit-font-smoothing: antialiased;
+}
+
+// Borrowed from Neat.io
+@mixin media($query: $feature $value $columns, $total-columns: $grid-columns) {
+  @if length($query) == 1 {
+    @media screen and ($default-feature: nth($query, 1)) {
+      $default-grid-columns: $grid-columns;
+      $grid-columns: $total-columns !global;
+      @content;
+      $grid-columns: $default-grid-columns !global;
+    }
+  } @else {
+    $loop-to: length($query);
+    $media-query: "screen and ";
+    $default-grid-columns: $grid-columns;
+    $grid-columns: $total-columns !global;
+
+    @if is-not(is-even(length($query))) {
+      $grid-columns: nth($query, $loop-to) !global;
+      $loop-to: $loop-to - 1;
+    }
+
+    $i: 1;
+    @while $i <= $loop-to {
+      $media-query: $media-query + "(" + nth($query, $i) + ": " + nth($query, $i + 1) + ") ";
+
+      @if ($i + 1) != $loop-to {
+        $media-query: $media-query + "and ";
+      }
+
+      $i: $i + 2;
+    }
+
+    @media #{$media-query} {
+      @content;
+      $grid-columns: $default-grid-columns !global;
+    }
+  }
 }

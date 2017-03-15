@@ -1,0 +1,12 @@
+<table>
+<% %w(green blue red gray yellow).each do |color| %>
+    <% ["-light", "", "-dark"].each do |style| %>
+        <tr>
+            <td><span class='swatch <%= color %><%= style %>-bg'></span></td>
+            <td><code>sass// $<%= color %><%= style %></code></td>
+            <td><code>class// .<%= color %><%= style %></code></td>
+        </tr>
+    <% end %>
+    <tr><td colspan='3'>&nbsp;</td></tr>
+<% end %>
+</table>

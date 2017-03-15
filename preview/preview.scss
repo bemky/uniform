@@ -3,6 +3,8 @@
 }
 html, body{
     font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
 }
 .section{
     width:100%;
@@ -39,4 +41,7 @@ html, body{
     td{
         padding: 5px;
     }
+}
+.side-nav{
+    font-size: 1.2em;
 }

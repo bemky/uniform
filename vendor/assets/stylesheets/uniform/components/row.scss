@@ -1,104 +1,63 @@
-.uniformRow{
+.uniform-row{
     line-height:1.3;
     font-size: 13px;
-    border-bottom:1px solid $gray-light;
+    border:1px solid $gray-light;
+    border-bottom:none;
     min-height: 49px; // two text lines with padding
     position:relative;
     overflow:hidden;
+    display:block;
+    color: $gray;
     &:hover{
         background-color: lighten($blue-light, 15);
-    }
-    &.archived{
-        color:lighten($gray, 30);
-        a{
-            color:lighten($gray, 30);
-        }
     }
     a:visited{
         color:#6738e4;
     }
-    .btn.outline{
-        background:white !important;
+    &:last-of-type{
+        border-bottom:1px solid $gray-light;
     }
-    time{
-        display:none;
-    }
-    .highlight{
-        position:absolute;
-        right:0;
-        top: 0;
-        bottom:0;
-        width:10px;
-        background:$green;
-    }
-    .details{
+    .uniform-row-container{
         overflow:hidden;
-        & > div{
-            padding:0;
+        display: block;
+        & > *{
+            display:block;
+            padding: 8px 12px;
             overflow:hidden;
             & > .pad {
                 display:block;
                 padding:8px 0;
             }
-            & > a:not(.btn){
-                display:block;
-                padding:8px 12px;
-                text-decoration:none;
-            }
         }
     }
-    .secondary{
+    .uniform-row-secondary{
         font-weight:normal;
         display:block;
         font-size:0.9em;
         color:lighten($gray, 30);
+        display: block;
     }
-    .actions{
-        padding-right:10px;
-        a:visited{
-            color:inherit;
-        }
-    }
-    .title{
-        font-weight:bold;
-    }
-    .avatar{
+    .uniform-row-avatar{
         vertical-align:top;
         text-align:center;
         position:relative;
         color:darken($background, 30);
         background-color:darken($background, 30);
-        a{
-            padding:0;
-        }
+        float:left;
         img{
             min-width:70px;
             background-color: $gray;
-            display: inline-block;
-        }
-        .label{
-            min-width:70px;
-            min-height:63px;
-            display:block;
-            padding-top: 26px;
-            color:white !important;
-            font-size:10px;
+            display: block;
         }
     }
     @include media($xs){
-        .details{
+        .uniform-row-container{
             & > div > a {
                 padding-top:0;
                 padding-bottom:8px;
             }
-            .title a{
-                padding-top:8px;
-            }
-            .address .unit {
-                display:block;
-            }
         }
-        .avatar{
+        .uniform-row-avatar{
             width:33%;
             img {
                 width: 100%;
@@ -108,7 +67,7 @@
     }
 }
 
-.uniformRow-header{
+.uniform-row-header{
     position:relative;
     overflow:visible !important;
     line-height:1em;

@@ -1,7 +1,7 @@
 //----------------------------------------------------------------
 //             Buttons
 //----------------------------------------------------------------
-.btn{
+.uniform-btn{
     @include appearance(none);
     @include user-select(none);
     @include linear-gradient(white, darken(white, 3));
@@ -65,16 +65,16 @@
     &.circle{
         border-radius:2em;
     }
-    &.subtle, &.btn-xs{
+    &.subtle, &.uniform-btn-xs{
         padding: 0.05em 0.5em;
     }
-    &.small, &.btn-sm{
+    &.small, &.uniform-btn-sm{
         padding: 0.1em 0.5em;
         font-size: 0.8em;
         vertical-align: top;
         display: inline-block;
     }
-    &.large, &.btn-lg{
+    &.large, &.uniform-btn-lg{
         padding: 1.2em 2.4em;
         text-transform:uppercase;
         letter-spacing:1px;
@@ -99,7 +99,7 @@
             color: $red;
         }
     }
-    &.block, &.btn-block{
+    &.block, &.uniform-btn-block{
         padding-left:5px !important;
         padding-right:5px !important;
         display:block;
@@ -108,7 +108,7 @@
     //----------------------------------------------------------------
     //             colors
     //----------------------------------------------------------------
-    &.green, &.btn-primary{
+    &.green, &.uniform-btn-primary{
         @include linear-gradient(lighten($green, 5), darken($green, 3));
         border-color:darken($green, 5);
         color:white;
@@ -127,7 +127,7 @@
             }
         }
     }
-    &.red, &.btn-danger{
+    &.red, &.uniform-btn-danger{
         @include linear-gradient($red, darken($red, 3));
         border-color:darken($red, 5);
         color:white;
@@ -135,7 +135,7 @@
             color:$red-dark;
         }
     }
-    &.blue, &.btn-danger{
+    &.blue, &.uniform-btn-danger{
         @include linear-gradient($blue, darken($blue, 3));
         border-color:$blue;
         color:white;
@@ -158,6 +158,6 @@
         }
     }
 }
-span.btn{
+span.uniform-btn{
     cursor: auto;
 }

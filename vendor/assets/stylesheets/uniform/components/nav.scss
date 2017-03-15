@@ -1,44 +1,80 @@
 .uniform-nav{
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    position:relative;
+    background: white;
+    box-shadow:0 1px 0 0 rgba(black, 0.15);
+    color: $gray;
+    z-index: 2;
+    position: relative;
+    .brand{
+        padding:7px 0;
+        margin-right:10px;
+    }
+    .container {
+        & > * {
+            display:inline-block;
+            vertical-align:bottom;
+        }
+        
+    }
+    & > * {
+        display:inline-block;
+        vertical-align:bottom;
+    }
+    a{
+        color: $gray;
+    }
+    img{
+        display: inline-block;
+    }
     ul {
-        list-style: none;
         margin: 0;
         padding: 0;
-    }
-    li{
-        display:block;
-        & > *{
-            display:block;
-            padding: 10px 20px;
-            text-decoration:none;
-            &:hover{
-                color: black;
-                background:rgba($green-light, 0.3);
+        list-style: none;
+        & > li {
+            display:inline-block;
+            & > *{
+                display:inline-block;
+                text-decoration:none;
+                padding: 16px 10px;
+                padding-top:17px;
+                background:none;
+                &:hover{
+                    color: $blue;
+                }
             }
         }
     }
+    .uniform-nav-right {
+        float: right;
+    }
     
-    &.horizontal{
-        
-        .uniform-nav-container{
-            display:table;
-            & > * {
-                display:table-cell;
+    &.uniform-nav-subnav{
+        z-index:1;
+        ul {
+            & > li {
                 vertical-align:middle;
+                & > *{
+                    padding-top: 6px;
+                    padding-bottom: 5px;
+                }
             }
         }
-        .right{
-            text-align:right;
-            float:none;
-        }
     }
-    
-    &.main{
-        border-bottom: 1px solid $gray-light;
-        .uniform-nav-container{
-            width: 100%;
+}
+
+.uniform-nav.vertical{
+    ul {
+        width: 100%;
+        li {
+            display:block;
+            & > * {
+                display:block;
+                padding: 10px 20px;
+                &:hover{
+                    color: black;
+                    background:rgba($green-light, 0.3);
+                }
+            }
         }
     }
 }
