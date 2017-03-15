@@ -1,3 +1,10 @@
+// add other options for media queries
+@mixin media($min-width){
+    @media (min-width: $min-width) {
+        @content;
+    }
+}
+
 @mixin opacity($o: 1){
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$o*100+")";
     filter: alpha(opacity=$o*100);
