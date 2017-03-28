@@ -18,6 +18,11 @@
   @include media ($min-lg) {
     width: $container-lg;
   }
+  &::after{
+      content: "";
+      clear: both;
+      display:block;
+  }
 }
 
 
@@ -28,6 +33,11 @@
 
 .container-fluid {
   @include container-fixed;
+  &::after{
+      content: "";
+      clear: both;
+      display:block;
+  }
 }
 
 
@@ -80,4 +90,18 @@
 
 @include media ($min-lg) {
   @include make-grid(lg);
+}
+
+.row.dividers{
+    & > div {
+        border-right: 1px solid $gray-light;
+        border-left: 1px solid $gray-light;
+        margin-right: -1px;
+        &:first-of-type{
+            border-left: none;
+        }
+        &:last-of-type{
+            border-right: none;
+        }
+    }
 }

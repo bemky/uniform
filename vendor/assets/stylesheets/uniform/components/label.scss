@@ -1,0 +1,41 @@
+.uniform-label{
+    padding: 0.1em 0.5em;
+    font-size:0.9em;
+    font-weight:bold;
+    color: white;
+    background: $gray;
+    border-radius: 0.3em;
+    border: 1px solid $gray;
+    &.green{
+        background: $green;
+    }
+    &.red{
+        background: $red;
+    }
+    &.yellow{
+        background: $yellow;
+    }
+    &.blue{
+        background: $blue;
+    }
+    &.outline{
+        background:none;
+        color: $gray;
+        &.green{
+            border-color: $green;
+            color: $green;
+        }
+        &.red{
+            border-color: $red;
+            color: $red;
+        }
+        &.yellow{
+            border-color: $yellow;
+            color: $yellow;
+        }
+        &.blue{
+            border-color: $blue;
+            color: $blue;
+        }
+    }
+}

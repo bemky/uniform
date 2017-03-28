@@ -61,6 +61,10 @@ vr {
 .pad{
     padding:10px;
 }
+.counter-pad{
+    margin-left: -15px;
+    margin-right: -15px;
+}
 
 //----------------------------------------------------------------
 //             Text
@@ -105,19 +109,48 @@ p.large{
 //----------------------------------------------------------------
 //             Colors
 //----------------------------------------------------------------
-@mixin generate-color($class){
-.#{$class} {            color: global-variable($class);}
-.#{$class}-light {      color: global-variable("#{$class}-light");}
-.#{$class}-dark {       color: global-variable("#{$class}-light");}
-.#{$class}-bg {         background-color: global-variable($class);}
-.#{$class}-light-bg {   background-color: global-variable("#{$class}-light");}
-.#{$class}-dark-bg {    background-color: global-variable("#{$class}-dark");}
+@mixin generate-color($class, $color){
+.#{$class} {            color: $color;}
+.#{$class}-bg {         background-color: $color;}
 }
 
-@include generate-color('green');
-@include generate-color('blue');
-@include generate-color('red');
-@include generate-color('gray');
-@include generate-color('yellow');
+@include generate-color('green', $green);
+@include generate-color('green-light', $green-light);
+@include generate-color('green-dark', $green-dark);
+@include generate-color('blue', $blue);
+@include generate-color('blue-light', $blue-light);
+@include generate-color('blue-dark', $blue-dark);
+@include generate-color('red', $red);
+@include generate-color('red-light', $red-light);
+@include generate-color('red-dark', $red-dark);
+@include generate-color('gray', $gray);
+@include generate-color('gray-light', $gray-light);
+@include generate-color('gray-dark', $gray-dark);
+@include generate-color('yellow', $yellow);
+@include generate-color('yellow-light', $yellow-light);
+@include generate-color('yellow-dark', $yellow-dark);
+
+
+//----------------------------------------------------------------
+//             Uniform Count
+//----------------------------------------------------------------
+.uniform-count{
+    padding: 0.1em 0.6em;
+    border-radius: 1em;
+    background: $gray;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: white;
+    vertical-align:1px;
+    &.invert{
+        background: white;
+        color: $gray;
+    }
+    &.outline{
+        background:none;
+        border: 1px solid $gray;
+        color: $gray;
+    }
+}
 
 

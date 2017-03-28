@@ -12,14 +12,6 @@ environment.append_path 'vendor/assets/stylesheets'
 environment.append_path 'preview'
 environment.css_compressor = :scss
 
-module Sass::Script::Functions
-  def global_variable(name)
-    assert_type name, :String, :name
-    environment.global_env.var(name.value)
-  end
-  declare :global_variable, [:string]
-end
-
 desc "Compile page"
 task :compile do
   

@@ -61,7 +61,9 @@
     -webkit-font-smoothing: antialiased;
 }
 
-// Borrowed from Neat.io
+// Borrowed from Neat.io v1.8.0
+$default-feature: min-width;
+$grid-columns: 12 !default;
 @mixin media($query: $feature $value $columns, $total-columns: $grid-columns) {
   @if length($query) == 1 {
     @media screen and ($default-feature: nth($query, 1)) {

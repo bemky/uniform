@@ -63,6 +63,9 @@
     overflow:hidden;
     border:1px solid darken(white, 15);
     border-top-color:darken(white, 20);
+    &:focus{
+        background: red;
+    }
     &.block{
         &>*{
             width: 100%;
