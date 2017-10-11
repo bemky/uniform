@@ -41,4 +41,7 @@
     @include apply-media-sizes('.margin-#{$direction}-more'){
         margin-#{$direction}: 2em !important;
     }
+    @include apply-media-sizes('.margin-#{$direction}-super'){
+        margin-#{$direction}: 4em !important;
+    }
 }
