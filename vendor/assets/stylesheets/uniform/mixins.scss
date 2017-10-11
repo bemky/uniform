@@ -1,17 +1,5 @@
-@mixin opacity($o: 1){
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$o*100+")";
-    filter: alpha(opacity=$o*100);
-    -moz-opacity: $o;
-    -khtml-opacity: $o;
-    opacity: $o;
-}
-@mixin blur($amount: 5px){
-    filter: blur($amount);
-    -webkit-filter: blur($amount);
-    -moz-filter: blur($amount);
-    -o-filter: blur($amount);
-    -ms-filter: blur($amount);
-}
+$text-inputs: "input:not([type=search]):not([type=submit]):not([type=checkbox]):not([type=radio])";
+
 @mixin text-overflow($inherit:false){
     @if $inherit == false {
         text-overflow: ellipsis;
@@ -42,18 +30,18 @@
 @mixin vertical-middle(){
     position:absolute;
     top:50%;
-    @include transform(translateY(-50%));
+    transform: translateY(-50%);
 }
 @mixin horizontal-center(){
     position:absolute;
     left:50%;
-    @include transform(translateX(-50%));
+    transform: translateX(-50%);
 }
 @mixin align-middle(){
     position:absolute;
     left:50%;
     top:50%;
-    @include transform(translate(-50%, -50%));
+    transform: translate(-50%, -50%);
 }
 @mixin clean-icon(){
     -webkit-backface-visibility: hidden; // Some weird safari bug involving hovering on li or a
@@ -61,42 +49,29 @@
     -webkit-font-smoothing: antialiased;
 }
 
-// Borrowed from Neat.io v1.8.0
-$default-feature: min-width;
-$grid-columns: 12 !default;
-@mixin media($query: $feature $value $columns, $total-columns: $grid-columns) {
-  @if length($query) == 1 {
-    @media screen and ($default-feature: nth($query, 1)) {
-      $default-grid-columns: $grid-columns;
-      $grid-columns: $total-columns !global;
-      @content;
-      $grid-columns: $default-grid-columns !global;
+@mixin media($query) {
+    @media only screen and (#{$query}){
+        @content;
     }
-  } @else {
-    $loop-to: length($query);
-    $media-query: "screen and ";
-    $default-grid-columns: $grid-columns;
-    $grid-columns: $total-columns !global;
+}
 
-    @if is-not(is-even(length($query))) {
-      $grid-columns: nth($query, $loop-to) !global;
-      $loop-to: $loop-to - 1;
+@mixin apply-media-sizes($base-name){
+    #{$base-name}{
+        @content
     }
-
-    $i: 1;
-    @while $i <= $loop-to {
-      $media-query: $media-query + "(" + nth($query, $i) + ": " + nth($query, $i + 1) + ") ";
-
-      @if ($i + 1) != $loop-to {
-        $media-query: $media-query + "and ";
-      }
-
-      $i: $i + 2;
+    @each $name, $size in ('sm', $sm) ('md', $md) ('lg', $lg) ('xl', $xl) {
+        @include media($size){
+            #{$base-name}-#{$name}{
+                @content
+            }
+        }
     }
+}
 
-    @media #{$media-query} {
-      @content;
-      $grid-columns: $default-grid-columns !global;
-    }
-  }
+@mixin position-fill() {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }

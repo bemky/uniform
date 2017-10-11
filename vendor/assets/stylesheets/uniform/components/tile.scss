@@ -1,32 +1,20 @@
-.uniform-tile{
-    border:1px solid darken($background, 15);
-    border-radius:3px;
-    margin-top:20px;
-    margin-bottom:20px;
-    overflow:hidden;
+.uniformTile{
+//  TODO remove extension of row
+    @extend .uniformRow;
+    margin: 0;
+    margin-bottom: -1px;
+    margin-right: -1px;
+    
+    padding: 1em !important;
+    
     .avatar{
-        img{
-            width:100%;
-            height:auto;
-        }
+        padding: 0;
     }
-    a{
-        color:$gray;
-        text-decoration:none;
+    .avatar-container{
+        display:block;
+        padding-top: 66%;
     }
-    .title{
-        vertical-align:middle;
-        font-size:12px;
-        padding-top:10px;
-        padding-bottom:10px;
-        .name{
-            font-size:16px;
-            margin-bottom:5px;
-        }
-        .company{
-            font-weight:bold;
-        }
-        .category{
-        }
+    &.pad-more{
+        padding: 2em !important;
     }
 }

@@ -1,3 +1,9 @@
+html{
+    font-size: 14px;
+}
+body{
+    font-size: 1rem;
+}
 *{
     box-sizing: border-box;
 }
@@ -6,28 +12,85 @@ a{
     &:hover{
         color:$blue-dark;
     }
-}
-blockquote{
-    border-left-color:lighten($green, 20);
-}
-mark{
-    background:lighten($green-light, 30);
-}
-code{
-    border-radius: 4px;
-    padding: 2px 4px;
-    font-size:90%;
-    background:lighten($green-light, 35);
-    color:$green-dark;
-    font-weight:normal;
-}
-pre{
-    display:block;
-    background: darken(white, 10);
-    border:1px solid darken(white, 13);
-    padding: 15px 10px;
-    overflow:auto;
-    xmp{
-        margin: 0;
+    &:visited{
+        color: #6738e4;
     }
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+pre{
+    margin: 0;
+    margin-bottom: 1em; // might want to do rem
+}
+
+ul,
+ol,
+dl{
+    ul,
+    ol,
+    dl{
+        margin-bottom: 0;
+    }
+}
+
+dd{
+    margin-left: 0;
+    margin-bottom: 0.5em;
+}
+dt{
+    font-weight: bold;
+}
+
+table{
+    background-color: transparent;
+    border-collapse: collapse;
+    td, th{
+        display: table-cell;
+        text-align: left;
+    }
+}
+
+fieldset{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+textarea{
+    resize: vertical;
+}
+
+input,
+select,
+textarea,
+button{
+    margin: 0;
+    line-height: inherit;
+}
+
+#{$text-inputs},
+textarea{
+    border:1px solid lighten($gray, 40);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+time{
+    @include text-overflow;
+}
+
+button{
+    font-family: $system-font;
+    color: $gray;
+    cursor: pointer;
 }

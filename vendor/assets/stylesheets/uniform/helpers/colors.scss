@@ -1,0 +1,37 @@
+@mixin generate-color($class, $color){
+.text-#{$class} {               color: $color !important;}
+.a-hover-#{$class} a:hover {    color: $color !important;}
+.bg-#{$class} {                 background-color: $color !important;}
+.uniformLabel-#{$class}{        border-color: $color !important;}
+.a-#{$class} a {
+    color: $color;
+    &:hover{
+        color: lighten($color, 20);
+    }
+    &:visited{
+        color: $color;
+    }
+}
+}
+
+@include generate-color('green', $green);
+@include generate-color('green-light', $green-light);
+@include generate-color('green-dark', $green-dark);
+@include generate-color('blue', $blue);
+@include generate-color('blue-light', $blue-light);
+@include generate-color('blue-dark', $blue-dark);
+@include generate-color('red', $red);
+@include generate-color('red-light', $red-light);
+@include generate-color('red-dark', $red-dark);
+@include generate-color('gray', $gray);
+@include generate-color('gray-light', $gray-light);
+@include generate-color('gray-dark', $gray-dark);
+@include generate-color('yellow', $yellow);
+@include generate-color('yellow-light', $yellow-light);
+@include generate-color('yellow-dark', $yellow-dark);
+@include generate-color('background', $background);
+@include generate-color('background-light', lighten($background, 2));
+@include generate-color('background-dark', darken($background, 5));
+
+@include generate-color('white', #FFFFFF);
+@include generate-color('muted', lighten($gray, 30));

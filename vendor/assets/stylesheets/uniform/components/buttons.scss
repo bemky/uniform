@@ -1,89 +1,86 @@
 //----------------------------------------------------------------
 //             Buttons
 //----------------------------------------------------------------
-.uniform-btn{
-    @include appearance(none);
-    @include user-select(none);
-    @include linear-gradient(white, darken(white, 3));
-    border:1px solid darken(white, 15);
-    border-radius:3pt;
-    padding: 6px 12px;
+.uniformButtonGroup a,
+.uniformButton{
+    outline: none;
+    appearance: none;
     cursor: pointer;
     display: inline-block;
+    text-decoration: none;
+
+    padding: 0.5em 0.75em;
     vertical-align: middle;
     text-align: center;
     line-height:1;
-    color:$gray;
+    position:relative; // for adding loaders to buttons which have position:absolute
+    transition: all 0.2s;
 
+    color:$gray;
+    background-color: white;
+    background-image: linear-gradient(white 33%, darken(white, 7));
+    border-radius: 0.25em;
+    border:1px solid lighten($gray, 40);
+    
     .fortycon{
-        line-height:1em;
-        vertical-align:-2px;
+        line-height:0;
+        vertical-align:-1px;
         font-size:1.2em;
         margin-right:3px;
-    }
-
-    .subtext{
-        display:block;
-        font-weight:300;
-        text-transform:none;
+        &.end{
+            margin-right: 0;
+            margin-left: 3px;
+        }
     }
 
     &:visited{
         color:$gray;
     }
 
-    &:hover, &.hover, &:focus{
-        outline:none;
-        color:$green-dark;
-        border-color:$green;
-        background-image:none !important;
+    &:hover,
+    &:focus,
+    &.hover{
+        box-shadow: inset 0 0 10px rgba(black, 0.1);
     }
-    &:active, &.active{
-        box-shadow:inset 0 1px 2px rgba(black, 0.2);
-        background-image:none !important;
-        outline: none;
+    &:active,
+    &.active{
     }
-    &:disabled, &.disabled{
-        color:$gray;
-        background-image:none !important;
-        background:darken(white, 5);
+    
+    &.green,
+    &.blue,
+    &.red {
+        color: white;
     }
+    &.green { background: $green;}
+    &.blue  { background: $blue;}
+    &.red   { background: $red;}
+    &.green { background: $green;}
+    &.blue  { background: $blue;}
+    &.red   { background: $red;}
+    
+    
     //----------------------------------------------------------------
     //             styles
     //----------------------------------------------------------------
-
+    &.clear{
+        background: none;
+        border-color: transparent;
+    }
     &.outline{
+        border-color: $gray;
         background:none !important;
         text-shadow:none !important;
         &.dashed{
             border-style:dashed;
         }
     }
-    &.dashed {
-        border-style: dashed;
-    }
-    &.circle{
-        border-radius:2em;
-    }
-    &.subtle, &.uniform-btn-xs{
-        padding: 0.05em 0.5em;
-    }
-    &.small, &.uniform-btn-sm{
-        padding: 0.1em 0.5em;
+    &.small{
+        padding: 0.3em 0.5em;
         font-size: 0.8em;
-        vertical-align: top;
-        display: inline-block;
     }
-    &.large, &.uniform-btn-lg{
-        padding: 1.2em 2.4em;
-        text-transform:uppercase;
-        letter-spacing:1px;
+    &.large{
+        padding: 1em 2em;
         font-weight:bold;
-        font-size: 110%;
-        &.form-control{
-            padding-top: 0;
-            padding-bottom:0;
-        }
         .fortycon{
             line-height:0.5em;
             vertical-align:-6px;
@@ -92,55 +89,69 @@
             font-weight:normal;
         }
     }
+    
     &.warn:hover{
         border-color:$red;
         background: $red;
+        color: white;
+        &.clear{
+            color: $red;
+            background: none;
+        }
         &.outline{
             color: $red;
+            border-color: lighten($gray, 30);
         }
     }
-    &.block, &.uniform-btn-block{
-        padding-left:5px !important;
-        padding-right:5px !important;
+    
+    &.block{
+        padding-left:0.5em !important;
+        padding-right:0.5em !important;
         display:block;
         width:100%;
     }
+    
+    
     //----------------------------------------------------------------
     //             colors
     //----------------------------------------------------------------
-    &.green, &.uniform-btn-primary{
-        @include linear-gradient(lighten($green, 5), darken($green, 3));
-        border-color:darken($green, 5);
-        color:white;
-        text-shadow:0 -1px 0 rgba($green-dark, 0.5);
+    
+    &.green{
+        background-color: darken($green, 3);
+        background-image: linear-gradient(lighten($green, 5), darken($green, 3));
+        border-color: darken($green, 3);
+        
         &.outline{
+            border-color: $green-dark;
             color:$green-dark;
-            &.inv{
-                color:$green-light;
-            }
-        }
-        &:hover, &.hover{
-            background:$green-dark;
-            border-color:darken($green-dark, 5);
-            &.inv{
-                border-color:$green-light;
-            }
         }
     }
-    &.red, &.uniform-btn-danger{
-        @include linear-gradient($red, darken($red, 3));
-        border-color:darken($red, 5);
+    
+    &.green,
+    &.red,
+    &.blue{
         color:white;
+        text-shadow:0 1px 2px rgba(black, 0.1);
+    }
+    
+    &.red{
+        background-color: darken($red, 3);
+        background-image: linear-gradient($red, darken($red, 3));
+        border-color: darken($red, 3);
         &.outline{
             color:$red-dark;
+            border-color:$red-dark;
         }
     }
-    &.blue, &.uniform-btn-danger{
-        @include linear-gradient($blue, darken($blue, 3));
-        border-color:$blue;
-        color:white;
+    
+    &.blue{
+        background-color: darken($blue, 3);
+        background-image: linear-gradient($blue, darken($blue, 3));
+        border-color:darken($blue, 3);
+        
         &.outline{
             color:$blue;
+            border-color: $blue;
         }
     }
     &.white{
@@ -149,15 +160,53 @@
             border-color:white;
         }
     }
-    &.warning{
+    
+    &.gray{
+        color: lighten($gray, 20);
         &.outline{
-            &:hover{
-                color:$red;
-                border-color:$red;
-            }
+            color: lighten($gray, 20);
+            border-color: lighten($gray, 30);
         }
     }
+    
+    &:disabled,
+    &.disabled,
+    &:disabled:hover,
+    &.disabled:hover{
+        cursor: not-allowed;
+        color:lighten($gray, 40);
+        background-image:none !important;
+        background-color: darken($background, 10);
+        border-color: lighten($gray, 40);
+        text-shadow: none;
+    }
 }
-span.uniform-btn{
+span.uniformButton{
     cursor: auto;
+}
+a.uniformButton{
+    user-select: none;
+}
+
+.uniformButtonGroup {
+    font-size: 0;
+    a{
+        font-size: 1rem;
+        position:relative;
+        z-index: 1;
+        margin-right: -1px;
+        border-radius: 0;
+        &:last-of-type{
+            border-radius: 0 0.25em 0.25em 0;
+        }
+        &:first-of-type{
+            border-radius: 0.25em 0 0 0.25em;
+        }
+        &.active{
+            background-color: darken($green, 3);
+            background-image: linear-gradient(lighten($green, 5), darken($green, 3));
+            border-color: darken($green, 3);
+            color: white;
+        }
+    }
 }

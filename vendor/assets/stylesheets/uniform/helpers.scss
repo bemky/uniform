@@ -1,18 +1,31 @@
-// Vertical Rule
-vr {
-    height:30px;
-    border-left:1px solid $gray-light;
-    margin:0 10px;
+.square-icon{
     display: inline-block;
+    height: 1em;
+    width: 1em;
+    border: 1px solid $gray;
+    border-radius: 0.1em;
     vertical-align:middle;
+    &.gray-light{
+        border-color: lighten($gray, 40);
+    }
 }
-.rounded,
+.hidden{
+    display:none !important;
+}
 .round{
     border-radius:50%;
 }
+.rounded{
+    border-radius: 0.25em;
+}
+[data-href],
 .pointer{
     cursor: pointer !important;
 }
+.cursor-help{
+    cursor: help;
+}
+
 .handle{
     cursor: hand;
 }
@@ -22,135 +35,87 @@ vr {
     width:1px !important;
     display:block !important;
 }
+@each $direction in 'top' 'right' 'bottom' 'left' {
+    @include apply-media-sizes('.border-#{$direction}'){
+        border-#{$direction}: 1px solid $gray-light;
+    }
+    @include apply-media-sizes('.border-dark-#{$direction}'){
+        border-#{$direction}: 1px solid darken($gray-light, 20);
+    }
+}
+img.disabled{
+    @include grayscale(1, 0.3)
+}
+table.fixed{
+    table-layout: fixed;
+}
 
 //----------------------------------------------------------------
 //             Layout
 //----------------------------------------------------------------
-.hide,
-.hidden{
-    display:none;
-}
-.right{
+@include apply-media-sizes('.float-right'){
     float:right;
+    &.margin{
+        margin: 0 0 1rem 1rem;
+    }
 }
-.text-right{
-    text-align: right;
-}
-.text-center{
-    text-align: center;
-}
-.clear{
-    clear:both;
+.float-left{
+    float: left;
+    &.margin{
+        margin: 0 1rem 1rem 0;
+    }
 }
 .bleed-fix{
     position:static;
     overflow:hidden;
 }
-.no-gutter{
-    padding-left:0;
-    padding-right:0;
+.clear{
+    clear:both;
 }
-.no-pad{
-    padding-left:0;
-    padding-right:0;
+@include apply-media-sizes('.block') {
+    display: block;
 }
-.less-pad{
-    padding-left:5px;
-    padding-right:5px;
+@include apply-media-sizes('.inline-block') {
+    display:inline-block !important;
 }
-.pad{
-    padding:10px;
-}
-.counter-pad{
-    margin-left: -15px;
-    margin-right: -15px;
+.align-middle{
+    @include align-middle;
 }
 
-//----------------------------------------------------------------
-//             Text
-//----------------------------------------------------------------
-.text-overflow{
-    @include text-overflow;
-}
-.strong,
-strong,
-.bold{      font-weight: 700;}
-.light,
-.text-light{    font-weight: 300;}
-.text-normal{    font-weight: normal;}
-.italic{    font-style:italic;}
-.required{  color:$red;}
-.warn{
-    color:lighten($gray, 20);
-    &:hover{
-        color:$red;
-    }
-}
-h1, h2, h3, h4, h5, h6{
-    &.no-margin{
-        margin: 0;
-        margin-top:10px;
-    }
-    &.no-margin-top{
-        margin-top:0;
-    }
+
+.relative{
+    position:relative;
 }
 
-p.large{
-    font-size:1.5em;
-    font-weight:300;
-    margin-bottom:20px;
+
+ul.raw{
+    margin: 0;
+    padding: 0;
+    list-style:none;
 }
-.nowrap{
-    white-space: nowrap;
+
+
+.text-col-2{
+    column-count: 2;
+    column-gap: 5em;
+}
+button.raw{
+    outline: none;
+    appearance: none;
+    border: none;
+    background:none;
+}
+.overflow-hidden{
     overflow:hidden;
 }
-
-//----------------------------------------------------------------
-//             Colors
-//----------------------------------------------------------------
-@mixin generate-color($class, $color){
-.#{$class} {            color: $color;}
-.#{$class}-bg {         background-color: $color;}
+.overflow-y{
+    overflow-y: auto;
 }
 
-@include generate-color('green', $green);
-@include generate-color('green-light', $green-light);
-@include generate-color('green-dark', $green-dark);
-@include generate-color('blue', $blue);
-@include generate-color('blue-light', $blue-light);
-@include generate-color('blue-dark', $blue-dark);
-@include generate-color('red', $red);
-@include generate-color('red-light', $red-light);
-@include generate-color('red-dark', $red-dark);
-@include generate-color('gray', $gray);
-@include generate-color('gray-light', $gray-light);
-@include generate-color('gray-dark', $gray-dark);
-@include generate-color('yellow', $yellow);
-@include generate-color('yellow-light', $yellow-light);
-@include generate-color('yellow-dark', $yellow-dark);
-
-
-//----------------------------------------------------------------
-//             Uniform Count
-//----------------------------------------------------------------
-.uniform-count{
-    padding: 0.1em 0.6em;
-    border-radius: 1em;
-    background: $gray;
-    font-size: 0.8em;
-    font-weight: bold;
-    color: white;
-    vertical-align:1px;
-    &.invert{
-        background: white;
-        color: $gray;
-    }
-    &.outline{
-        background:none;
-        border: 1px solid $gray;
-        color: $gray;
-    }
+img.block{
+    display:block;
+    width: 100%;
 }
-
-
+.height-auto{
+    height: auto;
+}

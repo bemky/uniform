@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Uniform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/site/uniform.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/site/preview.css" type="text/css" media="screen" charset="utf-8">
+</head>
+<body>
+<div class="side-nav">
+    <div class="pad">
+        <a href="/">
+        <img src="/site/logo.png" class="block">
+        </a>
+    </div>
+    <div class="uniformNav vertical">
+        <div class="nav">
+            
+                <a href="/site/colors.html">Colors</a>
+            
+                <a href="/site/tabs.html">Tabs</a>
+            
+                <a href="/site/tiles.html">Tiles</a>
+            
+                <a href="/site/helpers.html">Helpers</a>
+            
+                <a href="/site/cards.html">Cards</a>
+            
+                <a href="/site/nav.html">Nav</a>
+            
+                <a href="/site/grid.html">Grid</a>
+            
+                <a href="/site/buttons.html">Buttons</a>
+            
+                <a href="/site/inputs.html">Inputs</a>
+            
+                <a href="/site/rows.html">Rows</a>
+            
+                <a href="/site/loaders.html">Loaders</a>
+            
+                <a href="/site/forms.html">Forms</a>
+            
+                <a href="/site/tables.html">Tables</a>
+            
+        </div>
+    </div>
+</div>
+<div class="main-content overflow-hidden">
+    <h3>Uniform Input</h3>
+<div class="row">
+    <div class="col-sm-6">
+        <p><input type="text" class="uniform-input" /></p>
+        <p><input type="text" class="uniform-input large" /></p>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><input type="text" class="uniform-input" /></xmp></pre>
+<pre><xmp><input type="text" class="uniform-input large" /></xmp></pre>
+    </div>
+</div>
+
+<h3>Custom Inputs</h3>
+<div class="row">
+    <div class="col-sm-6">
+        <p>Styled Select Box</p>
+        <p><span class="uniform-select"><select><option>An Option</option></select></span></p>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><span class='uniform-select'>
+<select>
+    <option>An Option</option>
+</select>
+</span></xmp></pre>
+    </div>
+</div>
+
+<h3>Inline Inputs</h3>
+<p>Ever want to put in an input and it's label in line, and have it be 100% width responsive? Well, you can't, unless you use something like inline-input.</p>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="inline-input">
+            <span class="label">
+                <label for="rate">$</label>
+            </span>
+            <span>
+                <input id="rate">
+            </span>
+            <span class="units">
+                <label for="rate">/hour</label>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><div class="inline-input">
+<span class="label">$</span>
+<span>
+    <input id="name" placeholder="Jonathan Doe">
+</span>
+<span class="units">/hour</span>
+</div></xmp></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="inline-input">
+            <span class="label"><label for="car">Car Preference</label></span>
+            <span class="select"><select id="car"><option>Tesla</option></select></span>
+        </div>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><div class="inline-input">
+<span class="label">
+    <label for="car">Car Preference</label>
+</span>
+<span>
+    <select id="car"><option>Tesla</option></select>
+</span>
+</div></xmp></pre>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="inline-input block">
+            <span class="label">
+                <label for="car">Car Preference</label>
+            </span>
+            <span>
+                <input id="name" value="Jonathan Doe" disabled>
+            </span>
+        </div>
+    </div>
+    <div class="col-sm-6">
+<pre><xmp><div class="inline-input block">
+<span class="label">
+    <label for="car">Car Preference</label>
+</span>
+<span>
+    <input id="name" value="Jonathan Doe" disabled>
+</span>
+</div></xmp></pre>
+    </div>
+</div>
+</div>  
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>

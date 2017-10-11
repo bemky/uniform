@@ -1,0 +1,42 @@
+<div class="section">
+    <h1>Helpers</h1>
+    <p>These classes are mostly used as modifieres to base elements or compontents</p>
+    
+    <h3>Breakpoints</h3>
+    <p>
+        Any helper can have <code>-sm</code>, <code>-md</code>, <code>-lg</code>,
+        or <code>-xl</code> added to cause helper to only go into effect for that
+        breakpoint.
+    </p>
+    
+    <h3>Padding</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <% [
+            ['.pad-tiny', 'padding: 0.25em;'],
+            ['.pad-less', 'padding: 0.5em;'],
+            ['.pad', 'padding: 1em;'],
+            ['.pad-more', 'padding: 2em;'],
+            ['.pad-super', 'padding: 4em;'],
+            ['.pad-h', 'padding-left: 1em; padding-right: 1em;'],
+            ['.pad-h-less', 'padding-left: 0.5em; padding-right: 0.5em;'],
+            ['.pad-v', 'padding-top: 1em; padding-bottom: 1em;'],
+            ['.pad-v-less', 'padding-top: 0.5em; padding-bottom: 0.5em;'],
+        ].each do |klass| %>
+        <tr>
+            <td>
+                <code><%= klass[0] %></code>
+            </td>
+            <td>
+                <% html_block do %>
+                    <%= klass[1] %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    
+</div>

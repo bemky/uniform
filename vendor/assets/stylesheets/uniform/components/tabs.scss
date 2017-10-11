@@ -1,32 +1,45 @@
-// override for .nav-tab
-.uniform-tabs{
-    border:none;
-    & > li {
-        margin-left:10px;
-        margin-right:10px;
-        & > a{
-            border:none;
-            padding-left:0;
-            padding-right:0;
-            border-bottom: 3px solid transparent;
-            color: lighten($gray, 20);
-            &:hover{
-                background:none;
+.uniformTabs{
+    border-bottom: 1px solid darken($background, 10);
+    white-space: nowrap;
+    a{
+        display:inline-block;
+        margin-bottom: -1px;
+        padding: 0.5em 1em;
+        border-bottom: 2px solid transparent;
+        color: $gray;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover{
+            color: $blue;
+            .uniformLabel.fill{
+                background: $blue ;
             }
         }
-        &:first-of-type{
-            margin-left:0;
+        &.active{
+            border-color: $green-dark;
+            color: $green-dark;
+            .uniformLabel.fill{
+                background: $green-dark ;
+            }
         }
-        &:last-of-type{
-            margin-right:0;
-        }
-        &.active > a,
-        &.active > a:hover,
-        &.active > a:focus{
-            color:$green-dark;
-            border:none;
-            background:none;
-            border-bottom: 3px solid $green;
+    }
+    &.center{
+        text-align:center;
+    }
+    &.border-fix{
+        margin-bottom: -1px;
+    }
+    &.invert{
+        border-bottom-color: rgba($background, 0.4);
+        a{
+            color: white;
+            &:hover{
+                color: $blue-light;
+            }
+            &.active{
+                color: $green-light;
+                border-color: $green-light;
+            }
         }
     }
 }

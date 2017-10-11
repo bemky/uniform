@@ -1,0 +1,69 @@
+.uniformDropdown{
+    cursor: pointer;
+}
+.uniformDropdown-dropdown{
+    position: absolute;
+    z-index: 9999;
+    background: white;
+    border-top: white;
+    button{
+        appearance: none;
+        outline: none;
+        border: none;
+        background: none;
+        width: 100%;
+        padding: 0.5em;
+        display: block;
+        &:hover{
+            background: lighten($blue, 45);
+        }
+    }
+    &.absolute{
+        box-shadow: 0 0 3px 2px rgba(black, 0.2);
+    }
+    .uniformDropdown-pointer{
+        @include media($md){
+            position:absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -1em;
+            width: 2em;
+            height: 2em;
+            overflow: hidden;
+            &:after{
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: white;
+                transform: rotate(-45deg);
+                top: 85%;
+                left: 0;
+                box-shadow: 0 1px 3px 2px rgba(black, 0.2);
+            }
+        }
+    }
+    &.has-pointer{
+        @include media($md){
+            margin-top:1em;
+        }
+    }
+}
+
+@include media($sm){
+    .uniformOverlay{
+        position: fixed;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        z-index: 9998;
+    }
+    .uniformDropdown-dropdown{
+        left: 0 !important;
+        top: 0 !important;
+        box-shadow: none !important;
+        width: 100%;
+    }
+}

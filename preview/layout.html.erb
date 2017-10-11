@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Uniform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/site/uniform.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/site/preview.css" type="text/css" media="screen" charset="utf-8">
+</head>
+<body>
+<div class="side-nav">
+    <div class="pad">
+        <a href="/">
+        <img src="/site/logo.png" class="block">
+        </a>
+    </div>
+    <div class="uniformNav vertical">
+        <div class="nav">
+            <% Dir.foreach(File.join('preview')).select{|file| file =~ /\.erb$/ && file != "index.html.erb" && file != "layout.html.erb"}.each do |page| %>
+                <a href="/site/<%= page.split(".")[0] %>.html"><%= page.split(".")[0].titleize %></a>
+            <% end %>
+        </div>
+    </div>
+</div>
+<div class="main-content overflow-hidden">
+    <%= yield %>
+</div>  
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+</body>
