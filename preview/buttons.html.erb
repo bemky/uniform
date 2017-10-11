@@ -1,59 +1,62 @@
-<p>Mix and match styles to make the right button, all colors are available as well.</p>
-<p><code><%= CGI::escapeHTML "<a href='#' class='uniform-btn'></a>" %></code></p>
-<table class="table" cellspacing="0" cellpadding="0">
-    <tr>
-        <th></th>
-        <th>Normal</th>
-        <th><code>.green</code></th>
-    </tr>
-    <tr>
-        <th></th>
-        <td><a class="uniform-btn">Button</a></td>
-        <td><a class="uniform-btn green">Button</a></td>
-    </tr>
-    <tr>
-        <th><code>:hover</code> or <code>.hover</code></th>
-        <td><a class="uniform-btn hover">Button</a></td>
-        <td><a class="uniform-btn green hover">Button</a></td>
-    </tr>
-    <tr>
-        <th><code>:active</code> or <code>.active</code></th>
-        <td><a class="uniform-btn active">Button</a></td>
-        <td><a class="uniform-btn green active">Button</a></td>
-    </tr>
-    <tr>
-        <th><code>:disabled</code> or <code>.disabled</code></th>
-        <td><a class="uniform-btn disabled">Button</a></td>
-        <td><a class="uniform-btn green disabled">Button</a></td>
-    </tr>
-    <tr>
-        <th><code>.subtle</code></th>
-        <td><a class="uniform-btn subtle">Button</a></td>
-        <td><a class="uniform-btn green subtle">Button</a></td>
-    </tr>
-    <tr>
-        <th><code>.small</code></th>
-        <td><a class="uniform-btn small">Button</a></td>
-        <td><a class="uniform-btn green small">Button</a></td>
-    </tr>
-    <tr>
-        <th><code>.large</code></th>
-        <td><a class="uniform-btn large">Button</a></td>
-        <td><a class="uniform-btn green large">Button</a></td>
-    </tr>
-    <tr>
-        <th><code>.outline</code></th>
-        <td><a class="uniform-btn outline">Button</a></td>
-        <td><a class="uniform-btn green outline">Button</a></td>
-    </tr>
-    <tr>
-        <th><code>.circle</code></th>
-        <td><a class="uniform-btn circle">Button</a></td>
-        <td><a class="uniform-btn green circle">Button</a></td>
-    </tr>
-    <tr>
-        <th><code>.block</code></th>
-        <td><a class="uniform-btn block">Button</a></td>
-        <td><a class="uniform-btn green block">Button</a></td>
-    </tr>
-</table>
+<div class="section">
+    <h1>Buttons</h1>
+    <p>Mix and match styles to make the right button, all colors are available as well.</p>
+    <p><code><%= CGI::escapeHTML "<a href='#' class='uniformButton'></a>" %></code></p>
+    <table class="uniformTable" cellspacing="0" cellpadding="0">
+        <tr>
+            <th></th>
+            <th>Normal</th>
+            <th><code>.green</code></th>
+            <th><code>.blue</code></th>
+            <th><code>.red</code></th>
+            <th><code>.white</code></th>
+            <th><code>.gray</code></th>
+        </tr>
+        <tr>
+            <th></th>
+            <td><a class="uniformButton">Button</a></td>
+            <td><a class="uniformButton green">Button</a></td>
+            <td><a class="uniformButton blue">Button</a></td>
+            <td><a class="uniformButton red">Button</a></td>
+            <td><a class="uniformButton white">Button</a></td>
+            <td><a class="uniformButton gray">Button</a></td>
+        </tr>
+        <% [
+            ['hover, :hover', 'hover'],
+            ['active, :active', 'active'],
+            ['disabled, :disabled', 'disabled'],
+            'small',
+            'large',
+            'warn',
+            'block',
+            'outline',
+        ].each do |klass| %>
+            <% klass = [klass, klass] if !klass.is_a?(Array) %>
+            <tr>
+                <th><code>.<%= klass[0] %></code></th>
+                <td><a class="uniformButton <%= klass[1] %>">Button</a></td>
+                <td><a class="uniformButton green <%= klass[1] %>">Button</a></td>
+                <td><a class="uniformButton blue <%= klass[1] %>">Button</a></td>
+                <td><a class="uniformButton red <%= klass[1] %>">Button</a></td>
+                <td><a class="uniformButton white <%= klass[1] %>">Button</a></td>
+                <td><a class="uniformButton gray <%= klass[1] %>">Button</a></td>
+            </tr>
+        <% end %>
+        <tr>
+            <th><code>.outline</code></th>
+            <td class="bg-gray"><a class="uniformButton outline">Button</a></td>
+            <td class="bg-gray"><a class="uniformButton green outline">Button</a></td>
+            <td class="bg-gray"><a class="uniformButton blue outline">Button</a></td>
+            <td class="bg-gray"><a class="uniformButton red outline">Button</a></td>
+            <td class="bg-gray"><a class="uniformButton white outline">Button</a></td>
+            <td class="bg-gray"><a class="uniformButton gray outline">Button</a></td>
+        </tr>
+    </table>
+    
+    <h3 class="margin-top-more">uniformButtonGroup</h3>
+    <div class="uniformButtonGroup">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+    </div>
+</div>

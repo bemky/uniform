@@ -26,12 +26,195 @@
             ['.pad-v', 'padding-top: 1em; padding-bottom: 1em;'],
             ['.pad-v-less', 'padding-top: 0.5em; padding-bottom: 0.5em;'],
         ].each do |klass| %>
-        <tr>
+        <tr class="middle">
             <td>
                 <code><%= klass[0] %></code>
             </td>
             <td>
-                <% html_block do %>
+                <% html_block class: "margin-none" do %>
+                    <%= klass[1] %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    
+    <h3>Margin</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <% [
+            ['.margin-tiny', 'margin-top: 0.25em; margin-bottom:0.25em'],
+            ['.margin-less', 'margin-top: 0.5em; margin-bottom: 0.5em'],
+            ['.margin', 'margin-top: 1em; margin-bottom: 1em;'],
+            ['.margin-more', 'margin-top 2em; margin-bottom: 2em'],
+            ['.margin-super', 'margin-top: 4em; margin-bottom: 2em'],
+            ['.margin-h', 'margin-left: 1em; margin-right: 1em;'],
+            ['.margin-none', 'margin: 0 !important;'],
+        ].each do |klass| %>
+        <tr class="middle">
+            <td>
+                <code><%= klass[0] %></code>
+            </td>
+            <td>
+                <% html_block class: "margin-none" do %>
+                    <%= klass[1] %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    
+    <h3>Colors</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <% [
+            ['.text-green', 'color: $green'],
+            ['.bg-green', 'background-color: $green'],
+            ['.a-green', 'a{ color: $green}'],
+            ['.a-hover-green', 'a:hover{ color: $green}'],
+        ].each do |klass| %>
+        <tr class="middle">
+            <td>
+                <code><%= klass[0] %></code>
+            </td>
+            <td>
+                <% html_block class: "margin-none" do %>
+                    <%= klass[1] %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    
+    <h3>Sizes</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <% [
+            ['.width-50-p', 'width: 50%'],
+            ['.width-50-px', 'width: 50px'],
+            ['.width-50-vw', 'width: 50vw'],
+            ['.max-width-50-p', 'max-width: 50%'],
+            ['.max-width-50-px', 'max-width: 50px'],
+            ['.height-50-p', 'height: 50%'],
+            ['.height-50-px', 'height: 50px'],
+            ['.height-50-vh', 'height: 50vh'],
+            ['.max-height-50-px', 'max-height: 50px'],
+            ['.min-height-50-vh', 'min-height: 50vh'],
+        ].each do |klass| %>
+        <tr class="middle">
+            <td>
+                <code><%= klass[0] %></code>
+            </td>
+            <td>
+                <% html_block class: "margin-none" do %>
+                    <%= klass[1] %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    
+    <h3>Text</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <% [
+            ['.text-caps', 'text-transform: uppercase'],
+            ['.text-small-less', 'font-size: 0.9em'],
+            ['.text-small', 'font-size: 0.8em'],
+            ['.text-large', 'font-size: 1.2em'],
+            ['.text-1rem', 'font-size: 1rem'],
+            ['.text-larger', 'font-size: 1.4em'],
+            ['.text-super', 'font-size: 3em'],
+            ['.text-subtle', 'font-size: 90%; opacity: 0.8'],
+            ['.text-subtle-more', 'font-size: 80%; opacity: 0.6'],
+            ['.text-muted', 'opacity: 0.8'],
+            ['.text-muted-more', 'opacity: 0.6'],
+            ['.text-left', 'text-align: left !important'],
+            ['.text-right', 'text-align: right'],
+            ['.text-center', 'text-align: center'],
+            ['.text-justify', 'text-align: justify'],
+            ['.text-overflow', '@include text-overflow'],
+            ['.text-bold', 'font-weight: 700'],
+            ['.text-light', 'font-weight: 300'],
+            ['.text-lightest', 'font-weight: 100'],
+            ['.text-normal', 'font-weight: normal !important'],
+            ['.text-middle', 'vertical-align:middle'],
+            ['.text-top', 'vertical-align:top'],
+            ['.text-tight', 'line-height:1.3'],
+            ['.required', 'color:$red'],
+            ['.warn:hover', 'color:$red'],
+            ['p.large', 'font-size:1.5em; font-weight:300'],
+            ['.text-italic', 'font-style: italic'],
+            ['.text-no-wrap', 'white-space: nowrap; overflow:hidden'],
+            ['.text-no-decoration', 'text-decoration: none; a{text-decoration: none;}'],
+            ['.text-height-1', 'line-height: 1'],
+            ['.text-warn', '&:hover{color:$red !important;}']
+        ].each do |klass| %>
+        <tr class="middle">
+            <td>
+                <code><%= klass[0] %></code>
+            </td>
+            <td>
+                <% html_block class: "margin-none" do %>
+                    <%= klass[1] %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    
+    <h3>Layout</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <% [
+            ['.hidden', 'display:none !important;'],
+            ['.round', 'border-radius:50%;'],
+            ['.rounded', 'border-radius: 0.25em;'],
+            ['.pointer', 'cursor: pointer !important;'],
+            ['.cursor-help', 'cursor: help;'],
+            ['.handle', 'cursor: hand;'],
+            ['.honeypot', "position:absolute !important;\nleft:-999999px !important;\nwidth:1px !important;\ndisplay:block !important;"],
+            ['.border-#{$direction}', 'border-#{$direction}: 1px solid $gray-light;'],
+            ['.border-dark-#{$direction}', 'border-#{$direction}: 1px solid darken($gray-light, 20);'],
+            ['img.disabled', '@include grayscale(1, 0.3)'],
+            ['table.fixed', 'table-layout: fixed;'],
+            ['.float-right', 'float:right;'],
+            ['.float-left', 'float: left;'],
+            ['.bleed-fix', 'position:static; overflow:hidden;'],
+            ['.clear', 'clear:both;'],
+            ['.block ', 'display: block;'],
+            ['.inline-block ', 'display:inline-block !important;'],
+            ['.align-middle', '@include align-middle;'],
+            ['.relative', 'position:relative;'],
+            ['ul.raw', 'margin: 0; padding: 0; list-style:none;'],
+            ['.text-col-2', 'column-count: 2; column-gap: 5em;'],
+            ['button.raw', 'outline: none; appearance: none; border: none; background:none;'],
+            ['.overflow-hidden', 'overflow:hidden;'],
+            ['.overflow-y', 'overflow-y: auto;'],
+            ['img.block', 'display:block; width: 100%;'],
+            ['.height-auto', 'height: auto;'],
+        ].each do |klass| %>
+        <tr class="middle">
+            <td>
+                <code><%= klass[0] %></code>
+            </td>
+            <td>
+                <% html_block class: "margin-none" do %>
                     <%= klass[1] %>
                 <% end %>
             </td>

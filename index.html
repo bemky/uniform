@@ -16,37 +16,136 @@
     <div class="uniformNav vertical">
         <div class="nav">
             
-                <a href="/site/colors.html">Colors</a>
             
-                <a href="/site/tabs.html">Tabs</a>
+                
+                <a href="/site/helpers.html">
+                    Helpers
+                    
+                </a>
             
-                <a href="/site/tiles.html">Tiles</a>
+                
+                <a href="/site/colors.html">
+                    Colors
+                    
+                </a>
             
-                <a href="/site/helpers.html">Helpers</a>
+                
+                <a href="/site/grid.html">
+                    Grid
+                    
+                </a>
             
-                <a href="/site/cards.html">Cards</a>
+                
+                <a href="/site/buttons.html">
+                    Buttons
+                    
+                </a>
             
-                <a href="/site/nav.html">Nav</a>
+                
+                <a href="/site/tables.html">
+                    Tables
+                    
+                        <span class="uniformLabel yellow">todo</span>
+                    
+                </a>
             
-                <a href="/site/grid.html">Grid</a>
+                
+                <a href="/site/cards.html">
+                    Cards
+                    
+                </a>
             
-                <a href="/site/buttons.html">Buttons</a>
+                
+                <a href="/site/rows.html">
+                    Rows
+                    
+                </a>
             
-                <a href="/site/inputs.html">Inputs</a>
+                
+                <a href="/site/form.html">
+                    Form
+                    
+                </a>
             
-                <a href="/site/rows.html">Rows</a>
+                
+                <a href="/site/loaders.html">
+                    Loaders
+                    
+                </a>
             
-                <a href="/site/loaders.html">Loaders</a>
+                
+                <a href="/site/nav.html">
+                    Nav
+                    
+                </a>
             
-                <a href="/site/forms.html">Forms</a>
+                
+                <a href="/site/tabs.html">
+                    Tabs
+                    
+                </a>
             
-                <a href="/site/tables.html">Tables</a>
+                
+                <a href="/site/tiles.html">
+                    Tiles
+                    
+                        <span class="uniformLabel yellow">todo</span>
+                    
+                </a>
+            
+                
+                <a href="/site/labels.html">
+                    Labels
+                    
+                        <span class="uniformLabel yellow">todo</span>
+                    
+                </a>
+            
+                
+                <a href="/site/alerts.html">
+                    Alerts
+                    
+                        <span class="uniformLabel yellow">todo</span>
+                    
+                </a>
+            
+                
+                <a href="/site/dropdown.html">
+                    Dropdown
+                    
+                        <span class="uniformLabel yellow">todo</span>
+                    
+                </a>
+            
+                
+                <a href="/site/modal.html">
+                    Modal
+                    
+                        <span class="uniformLabel yellow">todo</span>
+                    
+                </a>
+            
+                
+                <a href="/site/select.html">
+                    Select
+                    
+                        <span class="uniformLabel yellow">todo</span>
+                    
+                </a>
+            
+                
+                <a href="/site/tooltip.html">
+                    Tooltip
+                    
+                        <span class="uniformLabel yellow">todo</span>
+                    
+                </a>
             
         </div>
     </div>
 </div>
 <div class="main-content overflow-hidden">
-    <div class="text-center margin-more">
+    <div class="text-center margin-top-more">
     <img src="site/logo.png" width="451" height="101">
     <p class="large">Sass components and helpers for building a UI.</p>
 </div>
@@ -56,6 +155,43 @@
     <p>Execute:<br/><code>$ bundle</code></p>
     <p>Or install it yourself:<br/><code>$ gem install uniform-ui</code></p>
     <p>Include the css library in your asset pipeline.<br/><code>@import 'uniform';</code></p>
+    <p>Include the javascript library in your asset pipeline.<br/><code>//= require uniform</code></p>
+    <h3>Scope Components</h3>
+    <p>Optionally, you can scope the components you want included in your assets.</p>
+    <pre class=''>// css
+@import &#39;uniform&#39;;
+// - OR -
+@import &#39;uniform/base&#39;;
+@import &#39;uniform/helpers&#39;;
+@import &#39;uniform/defaults&#39;;
+@import &#39;uniform/helpers/text&#39;;
+@import &#39;uniform/helpers/colors&#39;;
+@import &#39;uniform/helpers/sizes&#39;;
+@import &#39;uniform/helpers/margin&#39;;
+@import &#39;uniform/helpers/padding&#39;;
+@import &#39;uniform/components/tile&#39;;
+@import &#39;uniform/components/label&#39;;
+@import &#39;uniform/components/form&#39;;
+@import &#39;uniform/components/buttons&#39;;
+@import &#39;uniform/components/select&#39;;
+@import &#39;uniform/components/card&#39;;
+@import &#39;uniform/components/grid&#39;;
+@import &#39;uniform/components/table&#39;;
+@import &#39;uniform/components/row&#39;;
+@import &#39;uniform/components/tabs&#39;;
+@import &#39;uniform/components/tooltip&#39;;
+@import &#39;uniform/components/dropdown&#39;;
+@import &#39;uniform/components/alert&#39;;
+@import &#39;uniform/components/loaders&#39;;
+@import &#39;uniform/components/nav&#39;;
+@import &#39;uniform/components/modal&#39;;
+
+// javascript
+//= require uniform
+// - OR -
+//= require uniform/base
+//= require uniform/select</pre>
+    
 </div>
 <div class="section">
     <h1>Philosophy</h1>
@@ -106,4 +242,10 @@
 </div>
 </div>  
 <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-1.11.3.min.js"
+  integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g="
+  crossorigin="anonymous"></script>
+<script src="/site/preview.js"></script>
 </body>

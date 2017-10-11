@@ -1,33 +1,33 @@
-.loader-dots{
+.uniform-loader{
     font-size:2em;
     line-height:1em;
     display:inline-block;
-    .loader-dots-container{
+    .uniform-loader-container{
         letter-spacing:-.05em;
         white-space:nowrap;
         span{
-            color:rgba(white, 1);
-            text-shadow:-1px -1px 0 rgba(black, .2);
-            animation: loader-dots 1s infinite linear;
+            color:rgba(black, 1);
+            text-shadow:-1px -1px 0 rgba(#FFFFFF, .2);
+            animation: uniform-loader-light 1s infinite linear;
             animation-delay: 0.2s;
         }
         span:first-of-type{
-            animation-delay: 0;
+            animation-delay: 0s;
         }
         span:last-of-type{
             animation-delay: 0.4s;
         }
     }
     &.light{
-        .loader-dots-container{
+        .uniform-loader-container{
             span{
-                color:rgba(black, 1);
-                text-shadow:-1px -1px 0 rgba(#FFFFFF, .2);
-                animation: loader-dots-light 1s infinite linear;
+                color:rgba(white, 1);
+                text-shadow:-1px -1px 0 rgba(black, .2);
+                animation: uniform-loader 1s infinite linear;
                 animation-delay: 0.2s;
             }
             span:first-of-type{
-                animation-delay: 0;
+                animation-delay: 0s;
             }
             span:last-of-type{
                 animation-delay: 0.4s;
@@ -36,29 +36,28 @@
     }
     &.cover{
         display:block;
-        background:rgba(black, .5);
+        background:rgba(white, 0.5);
         position:absolute;
         top:0;
         left:0;
         width:100%;
         height:100%;
         z-index:999999999;
-        .loader-dots-container,
-        .loader-windows-container{
+        .uniform-loader-container{
             position:absolute;
             @include align-middle;
         }
         &.light{
-            background:rgba(white, 0.5);
+            background:rgba(black, .5);
         }
     }
     &.top{
-        .loader-dots-container{
+        .uniform-loader-container{
             top: 20px;
         }
     }
 }
-@keyframes loader-dots {
+@keyframes uniform-loader {
   0% {
     color: rgba(255, 255, 255, 0);
   }
@@ -70,7 +69,7 @@
   }
 }
 
-@keyframes loader-dots-light {
+@keyframes uniform-loader-light {
   0% {
     color: black;
   }

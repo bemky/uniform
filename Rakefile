@@ -48,8 +48,8 @@ ensure
   @output = old_output
 end
 
-def html_block(&block)
-  @output << "<pre>"
+def html_block(**options, &block)
+  @output << "<pre class='#{options[:class]}'>"
   @output << CGI::escapeHTML(capture(&block).strip)
   @output << "</pre>"
 end

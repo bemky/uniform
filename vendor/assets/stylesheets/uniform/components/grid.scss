@@ -45,6 +45,19 @@ $grid-gutter: 1em;
     
     &.grid-vertical{
         flex-direction: column;
+        .col,
+        [class*="col-"]{
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: $grid-gutter;
+            padding-bottom: $grid-gutter;
+            &:first-child{
+                padding-top: 0;
+            }
+            &:last-child{
+                padding-bottom: 0;
+            }
+        }
     }
     
     &.no-wrap{
@@ -95,6 +108,9 @@ $grid-gutter: 1em;
         }
         &:last-child{
             padding-right: 0;
+            &.pad{
+                padding-right: $grid-gutter/2;
+            }
         }
         &.no-gutter{
             padding-left: 0;
@@ -103,6 +119,11 @@ $grid-gutter: 1em;
         @include media($md){
             padding-left:$grid-gutter;
             padding-right: $grid-gutter;
+            &:last-child{
+                &.pad{
+                    padding-right: $grid-gutter;
+                }
+            }
         }
 
         &.col-center       {align-self: center;}

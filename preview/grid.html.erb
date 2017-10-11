@@ -1,62 +1,304 @@
-<p>Uses Bootstrap3 grid notation</p>
-<div class="row">
-    <div class="col-sm-4">
-        <div class="green-light-bg">col-sm-4</div>
-    </div>
-    <div class="col-sm-4">
-        <div class="green-light-bg">col-sm-4</div>
-    </div>
-    <div class="col-sm-4">
-        <div class="green-light-bg">col-sm-4</div>
-    </div>
+<div class="section">
+    <h1>Grid</h1>
+    <p>Similar to Bootstrap 4 with some modifications. Uses flexbox with a host of helper options.</p>
+    <h3>Breakpoints</h3>
+    <p>
+        Any helper can have <code>-sm</code>, <code>-md</code>, <code>-lg</code>,
+        or <code>-xl</code> added to cause helper to only go into effect for that
+        breakpoint.
+    </p>
+    <p><code>xs</code> = 480px</p>
+    <p><code>sm</code> = 768px</p>
+    <p><code>md</code> = 992px</p>
+    <p><code>lg</code> = 1200px</p>
+    <% html_block do %>
+<div class="grid">
+    <div class="col">content</div>
+    <div class="col">content</div>
+    <div class="col">content</div>
 </div>
-<br>
-<div class="row">
-    <div class="col-sm-2">
-        <div class="green-light-bg">col-sm-2</div>
-    </div>
-    <div class="col-sm-6">
-        <div class="green-light-bg">col-sm-6</div>
-    </div>
-    <div class="col-sm-4">
-        <div class="green-light-bg">col-sm-4</div>
-    </div>
-</div>
-<br>
-<pre><xmp><div class="row">
-    <div class="col-sm-4">
-        <div class="green-light-bg">col-sm-4</div>
-    </div>
-    <div class="col-sm-4">
-        <div class="green-light-bg">col-sm-4</div>
-    </div>
-    <div class="col-sm-4">
-        <div class="green-light-bg">col-sm-4</div>
-    </div>
-</div></xmp></pre>
-<br>
-<div class="row">
-    <div class="col-sm-3 col-sm-push-2">
-        <div class="green-light-bg">.col-sm-3 .col-sm-push-2</div>
-    </div>
-</div>
-<br>
-<div class="row dividers">
-    <div class="col-sm-4">
-        <div class="green-light-bg">col-sm-4</div>
-    </div>
-    <div class="col-sm-4">
-        <div class="green-light-bg">col-sm-4</div>
-    </div>
-    <div class="col-sm-4">
-        <div class="green-light-bg">col-sm-4</div>
-    </div>
-</div>
-<br>
+    <% end %>
+    <h3>Grid Options</h3>
+    <% [
+        'grid-center',
+        'grid-top',
+        'grid-bottom',
+        'grid-stretch',
+        'grid-h-left',
+        'grid-h-center',
+        'grid-h-right',
+        'grid-h-around',
+        'grid-h-between'
+    ].each do |klass| %>
+        <div class="margin-bottom bg-gray-light pad-bottom">
+        .grid .<%= klass %>
+        <div class="grid <%= klass %>">
+            <div class="col bg-green-light">
+                <div class="bg-red-light">col</div>
+            </div>
+            <div class="col bg-green-light">
+                <div class="bg-red-light height-100-px">col height-100-px</div>
+            </div>
+            <div class="col bg-green-light">
+                <div class="bg-red-light">col</div>
+            </div>
+        </div>
+        </div>
+    <% end %>
 
+    <% [
+        'grid-v-top',
+        'grid-v-center',
+        'grid-v-bottom',
+        'grid-v-around',
+        'grid-v-between',
+        'grid-v-stretch'
+    ].each do |klass| %>
+        <div class="margin-bottom bg-gray-light pad-bottom">
+        .grid .<%= klass %> .height-300-px
+        <div class="grid <%= klass %> height-300-px">
+            <div class="col-4 bg-green-light border">
+                <div class="bg-red-light">col-4</div>
+            </div>
+            <div class="col-4 bg-green-light border">
+                <div class="bg-red-light height-100-px">col-4 height-100-px</div>
+            </div>
+            <div class="col-4 bg-green-light border">
+                <div class="bg-red-light">col-4</div>
+            </div>
 
-<h3>Breakpoints</h3>
-<p><code>xs</code> = 480px</p>
-<p><code>sm</code> = 768px</p>
-<p><code>md</code> = 992px</p>
-<p><code>lg</code> = 1200px</p>
+            <div class="col-4 bg-green-light border">
+                <div class="bg-red-light">col-4</div>
+            </div>
+
+            <div class="col-4 bg-green-light border">
+                <div class="bg-red-light">col-4</div>
+            </div>
+
+            <div class="col-4 bg-green-light border">
+                <div class="bg-red-light">col-4</div>
+            </div>
+
+            <div class="col-4 bg-green-light border">
+                <div class="bg-red-light">col-4</div>
+            </div>
+        </div>
+        </div>
+    <% end %>
+    
+    
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid .no-wrap .height-300-px
+    <div class="grid no-wrap height-300-px">
+        <div class="col-4 bg-green-light border">
+            <div class="bg-red-light">col-4</div>
+        </div>
+        <div class="col-4 bg-green-light border">
+            <div class="bg-red-light height-100-px">col-4 height-100-px</div>
+        </div>
+        <div class="col-4 bg-green-light border">
+            <div class="bg-red-light">col-4</div>
+        </div>
+
+        <div class="col-4 bg-green-light border">
+            <div class="bg-red-light">col-4</div>
+        </div>
+
+        <div class="col-4 bg-green-light border">
+            <div class="bg-red-light">col-4</div>
+        </div>
+
+        <div class="col-4 bg-green-light border">
+            <div class="bg-red-light">col-4</div>
+        </div>
+
+        <div class="col-4 bg-green-light border">
+            <div class="bg-red-light">col-4</div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid .grid-vertical
+    <div class="grid grid-vertical">
+        <div class="col bg-green-light">
+            <div class="bg-red-light">col</div>
+        </div>
+        <div class="col bg-green-light">
+            <div class="bg-red-light height-100-px">col height-100-px</div>
+        </div>
+        <div class="col bg-green-light">
+            <div class="bg-red-light">col</div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid .no-gutter
+    <div class="grid no-gutter">
+        <div class="col bg-green-light">
+            <div class="bg-red-light">col</div>
+        </div>
+        <div class="col bg-green-light">
+            <div class="bg-red-light height-100-px">col height-100-px</div>
+        </div>
+        <div class="col bg-green-light">
+            <div class="bg-red-light">col</div>
+        </div>
+    </div>
+    </div>
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid .nest
+    <div class="grid nest">
+        <div class="col bg-green-light">
+            <div class="bg-red-light">col</div>
+        </div>
+        <div class="col bg-green-light">
+            <div class="bg-red-light height-100-px">col height-100-px</div>
+        </div>
+        <div class="col bg-green-light">
+            <div class="bg-red-light">col</div>
+        </div>
+    </div>
+    </div>
+    
+
+    
+    
+    
+    <h3>Col Options</h3>
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid
+    <div class="grid">
+        <div class="col">
+            <div class="bg-green-light">col</div>
+        </div>
+        <div class="col">
+            <div class="bg-green-light  pad-v">
+                <div class="width-200-px bg-red-light">
+                    col > width-200-px
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="bg-green-light">col</div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid
+    <div class="grid">
+        <div class="col">
+            <div class="bg-green-light">col</div>
+        </div>
+        <div class="col">
+            <div class="bg-green-light  pad-v">
+                <div class="width-200-px bg-red-light">
+                    col > width-200-px
+                </div>
+            </div>
+        </div>
+        <div class="col-fill">
+            <div class="bg-green-light">col-fill</div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid
+    <div class="grid">
+        <div class="col-4">
+            <div class="bg-green-light">col-4</div>
+        </div>
+        <div class="col-4">
+            <div class="bg-green-light">col-4</div>
+        </div>
+        <div class="col-4">
+            <div class="bg-green-light">col-4</div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid
+    <div class="grid">
+        <div class="col-2">
+            <div class="bg-green-light">col-2</div>
+        </div>
+        <div class="col-6">
+            <div class="bg-green-light">col-6</div>
+        </div>
+        <div class="col-4">
+            <div class="bg-green-light">col-4</div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid
+    <div class="grid">
+        <div class="col-3 col-push-2">
+            <div class="bg-green-light">.col-3 .col-push-2</div>
+        </div>
+    </div>
+    </div>
+    
+    
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid
+    <div class="grid">
+        <div class="col-4">
+            <div class="bg-green-light">col-4</div>
+        </div>
+        <div class="col-4">
+            <div class="bg-green-light">col-4</div>
+        </div>
+        <div class="col-4">
+            <div class="bg-green-light">col-4</div>
+        </div>
+    </div>
+    </div>
+    
+    
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid
+    <div class="grid">
+        <div class="col col-center">
+            <div class="bg-green-light">col col-center</div>
+        </div>
+        <div class="col">
+            <div class="bg-green-light pad-v">
+                <div class="width-200-px bg-red-light">
+                    col > width-200-px
+                </div>
+            </div>
+        </div>
+        <div class="col col-bottom">
+            <div class="bg-green-light">col col-bottom</div>
+        </div>
+        <div class="col col-stretch bg-green-light">
+            <div class="">col col-stretch</div>
+        </div>
+    </div>
+    </div>
+    
+    <div class="margin-bottom bg-gray-light pad-bottom">
+    .grid
+    <div class="grid">
+        <div class="col">
+            <div class="bg-green-light">col</div>
+        </div>
+        <div class="col no-gutter bg-green-light pad-v">
+            <div class="width-200-px bg-red-light">
+                col no-gutter > width-200-px
+            </div>
+        </div>
+        <div class="col">
+            <div class="bg-green-light">col</div>
+        </div>
+    </div>
+    </div>
+    
+    
+</div>

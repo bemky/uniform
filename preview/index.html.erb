@@ -1,4 +1,4 @@
-<div class="text-center margin-more">
+<div class="text-center margin-top-more">
     <img src="site/logo.png" width="451" height="101">
     <p class="large">Sass components and helpers for building a UI.</p>
 </div>
@@ -8,6 +8,25 @@
     <p>Execute:<br/><code>$ bundle</code></p>
     <p>Or install it yourself:<br/><code>$ gem install uniform-ui</code></p>
     <p>Include the css library in your asset pipeline.<br/><code>@import 'uniform';</code></p>
+    <p>Include the javascript library in your asset pipeline.<br/><code>//= require uniform</code></p>
+    <h3>Scope Components</h3>
+    <p>Optionally, you can scope the components you want included in your assets.</p>
+    <% html_block do %>
+// css
+@import 'uniform';
+// - OR -
+@import 'uniform/base';<% (Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss mixins.scss base.scss).include?(x)}.to_a +
+    Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'helpers')).map{|x| "helpers/#{x}"}.to_a +
+    Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
+@import 'uniform/<%= x.remove('.scss') %>';<% end %>
+
+// javascript
+//= require uniform
+// - OR -
+//= require uniform/base
+//= require uniform/select
+    <% end %>
+    
 </div>
 <div class="section">
     <h1>Philosophy</h1>
