@@ -2,7 +2,7 @@
 
 A rails gem of sass compenents and defaults for building a UI that's on fleak.
 
-Demo and Documentation: http://bemky.github.io/uniform/
+Demo and Documentation: http://uniform-ui.com
 
 ## Installation
 
