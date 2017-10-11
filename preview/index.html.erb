@@ -1,53 +1,77 @@
-<!DOCTYPE html>
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>Uniform</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="site/preview.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="site/uniform.css" type="text/css" media="screen" title="no title" charset="utf-8">
-</head>
-<body>
-<% sections = [
-    :uniform,
-    :installation,
-    :philosophy,
-    :colors,
-    :buttons,
-    :grid,
-    :inputs,
-    :forms,
-    :loaders,
-    :cards,
-    :tiles,
-    :rows,
-    :lists,
-    :tables,
-    :nav,
-    :tabs,
-    :helpers
-] %>
-<div class="side-nav">
-    <div style="padding: 20px; padding-right: 30px">
-        <img src="site/logo.png" style="width: 100%; height: auto;">
-    </div>
-    <div class="uniform-nav vertical">
-        <ul>
-        <% sections.each do |section| %>
-            <li><a href="#<%= section %>"><%= section.to_s.titleize %></a></li>
-        <% end %>
-        </ul>
-    </div>
+<div class="text-center margin-top-more">
+    <img src="site/logo.png" width="451" height="101">
+    <p class="large">Sass components and helpers for building a UI.</p>
 </div>
-<div class="main-content">
-    <% sections.each do |section| %>
-        <a name="<%= section %>"></a>
-        <div class="section">
-            <% if section != :uniform %>
-            <h1><%= section.to_s.titleize %></h1>
-            <% end %>
-            <%= ERB.new(File.read("preview/_#{section}.html.erb")).result %>
-        </div>
+<div class="section">
+    <h1>Installation</h1>
+    <p>Add to your gem file<br/><code>gem 'uniform-ui'</code></p>
+    <p>Execute:<br/><code>$ bundle</code></p>
+    <p>Or install it yourself:<br/><code>$ gem install uniform-ui</code></p>
+    <p>Include the css library in your asset pipeline.<br/><code>@import 'uniform';</code></p>
+    <p>Include the javascript library in your asset pipeline.<br/><code>//= require uniform</code></p>
+    <h3>Scope Components</h3>
+    <p>Optionally, you can scope the components you want included in your assets.</p>
+    <% html_block do %>
+// css
+@import 'uniform';
+// - OR -
+@import 'uniform/base';<% (Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss mixins.scss base.scss).include?(x)}.to_a +
+    Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'helpers')).map{|x| "helpers/#{x}"}.to_a +
+    Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
+@import 'uniform/<%= x.remove('.scss') %>';<% end %>
+
+// javascript
+//= require uniform
+// - OR -
+//= require uniform/base
+//= require uniform/select
     <% end %>
+    
 </div>
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-</body>
+<div class="section">
+    <h1>Philosophy</h1>
+    <h3>Don't use ID's</h3>
+    <p>Unless you have to, and even then, think twice. HTML Id's make things not
+        reusable. There should only be one instance of an id in a document</p>
+
+    <h3>Use Semanitc Classes Presentationaly :)</h3>
+    <p>
+        Here's a decent post on OOCSS (Object Oriented CSS) as it relates to
+        semantic vs presentational classes:
+        <a href="http://blackfalcon.roughdraft.io/5255648-oocss-v-ooscss-sasscast-show-notes">OOCSS v OOSCSS</a>
+    <p>
+        <strong>TL;DR:</strong> Semantic classes explain what that element is.
+        Presentational classes explain what the shoud look like.
+    </p>
+    <p>
+        <code>class="property-list"</code> vs <code>class="ul-list col-sm-4"</code>
+    </p>
+    <p>
+        Some of us don't want to touch css files (preference: presentational),
+        and some of us live there (preference: semantic). Honestly, the art of
+        good ui development is balancing semantic and presentational classes.
+        Each taken to their extreme is bad.
+    </p>
+    <p>
+        Structure html so that the semantic class is first and presentational
+        classes follow.
+    </p>
+    <p><code>class="property-list ul-list col-sm-4"</code></p>
+
+    <h3>Save the Namespace, save the world</h3>
+    <p>Don't make presentational classes that will clash with elements that could mean something else. I'm looking at you Bootsrap!</p>
+    <p><code>class="label"</code> should be <code>class="text-label"</code></p>
+
+    <h3>camelCase vs train-case</h3>
+    <p>Use camelCase for class names for components, not train-case or snake_case.</p>
+    <p>Use tran-case for class names for helpers or modifiers.</p>
+
+    <h3>Wrappers and Containers</h3>
+    <p>
+        Both <code>wrapper</code> and <code>container</code> can be used as class names
+        for an element that goes around a component. The difference is nuanced.
+        <code>wrapper</code> should be used to wrap a <strong>single</strong> element for a formatting purpose.
+        A <code>container</code> should be used to wrap <strong>multiple</strong> elements.
+    </p>
+    
+</div>

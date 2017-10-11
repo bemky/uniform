@@ -1,107 +1,290 @@
-@import "inputs";
-.uniform-form{
-    .uniform-form-section{
-        background:white;
-        border:1px solid darken($background, 10);
+div.uniformInputGroup{
+    background: white;
+    border: 1px solid lighten($gray, 40);
+    display: flex;
+    align-items: center;
+    transition: box-shadow 0.2s ease-in;
+    &>*{
+        flex: 0 1 auto;
+    }
+    input{
+        border: none !important;
+        background:none;
+        appearance: none;
+        outline: none;
         display:block;
-        overflow:hidden; // prolly need to remove
-        margin-bottom:20px;
+        width: 100%;
+        border-radius: 0 !important;
+        &:focus{
+            box-shadow: none;
+        }
     }
-    .uniform-form-section-head{
-        background:darken(white, 3);
-        overflow:hidden;
-        padding: 10px 15px;
-        border-bottom:1px solid darken($background, 10);
+    .input{
+        padding: 0;
+        flex: 1 1 auto;
+    }
+    &>*:not(input){
+        padding: 0 0.5em;
+        &.pad-tiny{
+            padding: 0 0.25em;
+        }
+    }
+    &.focus{
+        box-shadow: inset 0 -2px 0 $green;
+    }
+    .label{
+        color: lighten($gray, 20);
+    }
+    @include media($sm){
+        input{
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+        }
+    }
+    &.border-none{
+        border: none;
+    }
+}
+
+select.uniformInput,
+textarea.uniformInput,
+input.uniformInput,
+button.uniformInput,
+.uniformInput input,
+.uniformForm #{$text-inputs},
+.uniformForm textarea{
+    font-family: $system-font;
+    border:1px solid lighten($gray, 40);
+    padding: 0.5em;
+    line-height: 1.3;
+    outline: none;
+    appearance: none;
+    transition: box-shadow 0.2s ease-in;
+    &:focus{
+        box-shadow: inset 0 -2px 0 $green;
+    }
+    &.block{
+        width: 100%;
+        max-width: 100%;
+    }
+    @include media($sm){
+        font-size: 1.142em;
+    }
+    &.pad-more{
+        padding: 1em;
+    }
+    &.large{
+        font-size:1.2em;
+    }
+}
+select.uniformInput{
+    color: $gray;
+    background: white url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSIyNy4xNjdweCIgaGVpZ2h0PSIyOHB4IiB2aWV3Qm94PSIwIDAgMjcuMTY3IDI4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNy4xNjcgMjgiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnIGlkPSJpY29tb29uLWlnbm9yZSI+PC9nPjxwYXRoIGZpbGw9IiM1MDUxNTMiIGQ9Ik0xNiwxMWMwLDAuMjcxLTAuMSwwLjUwNS0wLjI5NywwLjcwM2wtNyw3QzguNTA1LDE4LjksOC4yNzEsMTksOCwxOXMtMC41MDUtMC4xLTAuNzAzLTAuMjk3bC03LTdDMC4wOTksMTEuNTA1LDAsMTEuMjcxLDAsMTFzMC4wOTktMC41MDUsMC4yOTctMC43MDNDMC40OTUsMTAuMDk5LDAuNzI5LDEwLDEsMTBoMTRjMC4yNzEsMCwwLjUwNSwwLjA5OSwwLjcwMywwLjI5N0MxNS45LDEwLjQ5NSwxNiwxMC43MjksMTYsMTF6Ii8+PC9zdmc+);
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: auto 40%;
+    position: relative;
+    border-radius: 0;
+    padding-right: 1.5em !important;
+}
+button.uniformInput{
+    background: white;
+    @include text-overflow;
+}
+
+.uniformError{
+    position:relative;
+    border-color: $red;
+    color: $red;
+    input{
+        border-color: $red !important;
+    }
+}
+
+.uniformErrorMessage{
+    color: $red;
+    font-size:11px;
+    line-height: 1.1;
+}
+
+@mixin uniformForm-table{
+    display: table;
+    width: 100%;
+    .form-group{
+        display: table-row;
         & > * {
-            margin: 0;
-        }
-        h1,h2,h3,h4,h5,h6{
-            margin: 0;
-            display:inline-block;
-        }
-    }
-    .uniform-form-section-foot{
-        background:darken(white, 3);
-        border-top:1px solid darken($background, 10);
-        text-align:center;
-        padding: 10px 15px;
-    }
-    .row{
-        .uniform-form-group{
-            margin-top:10px;
-            margin-bottom:10px;
-        }
-    }
-    .uniform-form-group{
-        margin-bottom:0;
-        .has-error > label,
-        & > label{
-            display:block;
-            &:not(:first-of-type) {
-                margin-top: 20px;
+            display: table-cell;
+            &.fill{
+                width: 100%;
             }
         }
-        .has-error > #{$text-inputs},
-        & > #{$text-inputs},
-        textarea {
-            @include uniform-input;
-            width:100%;
-        }
-        .has-error > #{$text-inputs}{
-            &:focus{
-                box-shadow:inset 0 -3px 0 $red;
-            }
-        }
-        .has-error > select,
-        & > select{
-            position:relative;
-            z-index:1;
-            @include appearance(none);
-            outline: 1px;
-            cursor:pointer;
-            text-indent: 1px;
-            text-overflow: ellipsis;
-            font-family:$helvetica;
-            border:1px solid $gray-light;
-            margin:0;
-            padding: 5px;
-            padding-right: 20px;
-            line-height:1.2;
-            min-height: 30px;
-            background: white;
-            border-radius:0;
-            background: url(asset_path('arrow_down_large.svg')) no-repeat;
-            background-size: 10px 10px;
-            background-position:right 5px center;
-            width: 100%;
-            &:focus{
-                border-color: $blue;
-            }
-        }
-        .inline-input{
-            width:100%;
-            select{
-                background:none;
-            }
-            &.active{
-                box-shadow:none;
-                border-color: $blue;
-            }
-            .add-on{
-                width: 30px;
-                border-right:none;
+        & > label,
+        & > div,
+        & > span {
+            padding-bottom: 1em;
+            padding-right: 0.5em;
+            &:last-child{
+                padding-right: 0;
             }
         }
     }
-    .has-error {
+}
+
+.uniformForm{
+    .form-group{
+        position: relative;
+        margin-bottom: 0.9em;
         label{
-            color: $red !important;
+            font-weight:bold;
+            display:block;
         }
-        #{$text-inputs}, textarea{
-            border-color:$red !important;
+        &.collapse{
+            margin-bottom: 0;
         }
-        .select2 .select2-selection{
-            border-color:$red !important;
+    }
+    [data-error-message]{
+        position: relative;
+        color: $red;
+        input{
+            border-color: $red !important;
         }
+        &::after{
+            content: attr(data-error-message);
+            color: $red;
+            position: absolute;
+            bottom: -7px;
+            left: 1em;
+            border: 1px solid $red;
+            background: white;
+            font-size:11px;
+            line-height: 14px;
+            @include text-overflow;
+            padding: 0 0.5em;
+            max-width: 100%;
+        }
+    }
+    select.uniformInput,
+    #{$text-inputs},
+    textarea{
+        display:block;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .uniformForm-table,
+    &.uniformForm-table{
+        @include uniformForm-table;
+    }
+    
+    &.invert{
+        #{$text-inputs},
+        textarea,
+        .uniformCheckboxCollection.inline,
+        .uniformCheckboxCollection.inline-md{
+            border-color: $gray;
+            border-radius: 0.25em;
+        }
+        .has-error{
+            color: $red-bright;
+        }
+        .uniformInputGroup{
+            overflow: hidden;
+            border-color: $gray;
+            border-radius: 0.25em;
+        }
+    }
+}
+@include apply-media-sizes('.uniformCheckboxCollection'){
+    label{
+        display:block;
+        margin-right: 1em;
+        font-weight: normal;
+        input{
+            margin-right: 0.25em;
+        }
+    }
+    &.inline{
+        color: $gray;
+        border:1px solid lighten($gray, 40);
+        background: white;
+        display: flex;
+        align-items: center;
+        label{
+            margin-right: 0;
+            padding: 0.5em;
+            line-height: 1.3;
+            flex: 1 1 auto;
+            border-left: 1px solid lighten($gray, 40);
+            text-align: center;
+            &:first-of-type{
+                border-left:none;
+            }
+        }
+    }
+}
+@include apply-media-sizes('.uniformForm-table'){
+    @include uniformForm-table;
+}
+
+.uniformFloatingLabel{
+    display: flex;
+    align-items: center;
+    border: 1px solid lighten($gray, 40);
+    position:relative;
+    background:white;
+    &>*{
+        flex: 0 1 auto;
+    }
+    label{
+        z-index: 1;
+        padding: 0 1em;
+        font-weight:normal !important;
+    }
+    & > input,
+    & > textarea,
+    & > select,
+    & > .uniformInputGroup{
+        position:relative;
+        display:block;
+        width: 100%;
+        border:none !important;
+        background:none;
+    }
+    & > select {
+        z-index: 2;
+    }
+    & > .uniformInputGroup{
+        display: flex;
+    }
+    
+    &.enabled{
+        label{
+            transition: font-size 0.1s, line-height 0.1s, opacity 0.1s;
+        }
+    }
+    
+    &.inactive{
+        input,
+        textarea,
+        select{
+            &::placeholder{
+                color: transparent;
+            }
+        }
+    }
+    &.float{
+        label{
+            font-size: 80%;
+            opacity: 0.8;
+        }
+    }
+    &.active{
+        label{
+            color: $green-dark;
+            opacity: 1;
+        }
+    }
+    input.pad-more{
+        padding: 1em;
     }
 }

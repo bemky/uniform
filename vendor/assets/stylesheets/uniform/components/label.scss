@@ -1,41 +1,63 @@
-.uniform-label{
-    padding: 0.1em 0.5em;
-    font-size:0.9em;
-    font-weight:bold;
-    color: white;
-    background: $gray;
+.uniformLabel{
+    display:inline-block;
+    vertical-align:baseline;
+    font-size: 0.8em;
+    padding: 0.0714em 0.357em 0.0714em;
+    border: 0.1em solid $gray;
+    color: $gray;
     border-radius: 0.3em;
-    border: 1px solid $gray;
-    &.green{
-        background: $green;
+    &.fill{
+        border: none;
+        background: lighten($gray, 20);
+        color: white;
     }
+    &.pad-more{
+        padding: 0.0714em 0.5em;
+    }
+    // TODO remove spire specific statuses
+    &.deleted,
     &.red{
-        background: $red;
+        border-color: $red;
+        color: $red;
+        &.fill{
+            background: $red;
+        }
     }
-    &.yellow{
-        background: $yellow;
+    
+    &.approved,
+    &.accepted,
+    &.active,
+    &.green{
+        border-color: $green-dark;
+        color: $green-dark;
+        &.fill{
+            background: $green-dark;
+        }
     }
+    
+    &.missed,
+    &.expired,
+    &.leased,
+    &.yellow,
+    &.initiated,
+    &.nurturing{
+        border-color: $yellow-dark;
+        color: $yellow-dark;
+        &.fill{
+            background: $yellow-dark;
+        }
+    }
+    &.muted,
+    &.closed{
+        border-color: lighten($gray, 30);
+        color: lighten($gray, 30);
+    }
+    
     &.blue{
-        background: $blue;
-    }
-    &.outline{
-        background:none;
-        color: $gray;
-        &.green{
-            border-color: $green;
-            color: $green;
-        }
-        &.red{
-            border-color: $red;
-            color: $red;
-        }
-        &.yellow{
-            border-color: $yellow;
-            color: $yellow;
-        }
-        &.blue{
-            border-color: $blue;
-            color: $blue;
+        border-color: $blue;
+        color: $blue;
+        &.fill{
+            background: $blue;
         }
     }
 }

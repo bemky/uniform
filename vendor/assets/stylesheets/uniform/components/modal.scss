@@ -1,0 +1,51 @@
+.uniformModal-overlay{
+    position:fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.6;
+    background: black;
+}
+.uniformModal{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align:center;
+    padding: 2em;
+}
+
+.uniformModal-container{
+    display:inline-block;
+    text-align:left;
+    position:relative;
+    margin: auto;
+    background: white;
+    border-radius: 0.25em;
+    max-width: 90%;
+    &.fill{
+        width: 90%;
+    }
+}
+
+.uniformModal-close{
+    position: absolute;
+    padding: 0.3em;
+    top: -2rem;
+    right: -2rem;
+    font-size:1.5em;
+    color: white;
+    opacity: 0.5;
+    line-height:1;
+    cursor: pointer;
+    &:hover{
+        opacity: 1;
+    }
+}
+
+.uniformModal-blur{
+    filter: blur(4px);
+}
+body.uniformModal-active{
+    background: $gray-dark;
+}

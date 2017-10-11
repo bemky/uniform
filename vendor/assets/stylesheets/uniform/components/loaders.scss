@@ -1,34 +1,36 @@
 .uniform-loader{
+    font-size:2em;
+    line-height:1em;
     display:inline-block;
     .uniform-loader-container{
         letter-spacing:-.05em;
         white-space:nowrap;
         span{
-            font-size:2em;
-            line-height:1em;
             color:rgba(black, 1);
-            @include animation(uniform-loader 1s infinite linear);
-            @include animation-delay(.4s);
+            text-shadow:-1px -1px 0 rgba(#FFFFFF, .2);
+            animation: uniform-loader-light 1s infinite linear;
+            animation-delay: 0.2s;
         }
         span:first-of-type{
-            @include animation-delay(.2s);
+            animation-delay: 0s;
         }
         span:last-of-type{
-            @include animation-delay(.6s);
+            animation-delay: 0.4s;
         }
     }
     &.light{
         .uniform-loader-container{
             span{
                 color:rgba(white, 1);
-                @include animation(uniform-loader-light 1s infinite linear);
-                @include animation-delay(.4s);
+                text-shadow:-1px -1px 0 rgba(black, .2);
+                animation: uniform-loader 1s infinite linear;
+                animation-delay: 0.2s;
             }
             span:first-of-type{
-                @include animation-delay(.2s);
+                animation-delay: 0s;
             }
             span:last-of-type{
-                @include animation-delay(.6s);
+                animation-delay: 0.4s;
             }
         }
     }
@@ -49,14 +51,32 @@
             background:rgba(black, .5);
         }
     }
+    &.top{
+        .uniform-loader-container{
+            top: 20px;
+        }
+    }
 }
-@include keyframes (uniform-loader) {
-    0%{ color:rgba(black, 1); }
-    25%{ color:rgba(black, 0.2); }
-    100%{ color:rgba(black, 0.2); }
+@keyframes uniform-loader {
+  0% {
+    color: rgba(255, 255, 255, 0);
+  }
+  25% {
+    color: white;
+  }
+  100% {
+    color: white;
+  }
 }
-@include keyframes (uniform-loader-light) {
-    0%{ color:rgba(white, 1); }
-    25%{ color:rgba(white, 0.2); }
-    100%{ color:rgba(white, 0.2); }
+
+@keyframes uniform-loader-light {
+  0% {
+    color: black;
+  }
+  25% {
+    color: rgba(0, 0, 0, 0.2);
+  }
+  100% {
+    color: rgba(0, 0, 0, 0.2);
+  }
 }

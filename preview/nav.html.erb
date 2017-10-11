@@ -1,0 +1,77 @@
+<div class="section">
+    <h1>Nav</h1>
+    <div class="uniformNav margin-bottom">
+        <div class="mobile-nav">
+            <button type="button">
+                <img src="/site/logo.png" height="31" width="137">
+            </button>
+        </div>
+        <div class="non-mobile-nav">
+            <div class="nav">
+                <a href="#" class="pad-none pad-right"><img src="/site/logo.png" height="31" width="137"></a>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+    <% html_block do %>
+<div class="uniformNav">
+    <div class="mobile-nav">
+        <button type="button">
+            <img src="/site/logo.png" height="31" width="137">
+        </button>
+    </div>
+    <div class="non-mobile-nav">
+        <div class="nav">
+            <a href="#" class="pad-none pad-right"><img src="/site/logo.png" height="31" width="137"></a>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+</div>
+    <% end %>
+    <br><br>
+    <h3>Vertical</h3>
+    <div class="grid no-wrap">
+        <div class="col-4">
+            <div class="uniformNav vertical">
+                <div class="mobile-nav">
+                    <button type="button">
+                        <img src="/site/logo.png" height="31" width="137">
+                    </button>
+                </div>
+                <div class="non-mobile-nav">
+                    <div class="nav">
+                        <a href="#" class="pad-none pad-right"><img src="/site/logo.png" height="31" width="137"></a>
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <% html_block class: "width-100-p" do %>
+<div class="uniformNav vertical">
+    <div class="mobile-nav">
+        <button type="button">
+            <img src="/site/logo.png" height="31" width="137">
+        </button>
+    </div>
+    <div class="non-mobile-nav">
+        <div class="nav">
+            <a href="#" class="pad-none pad-right"><img src="/site/logo.png" height="31" width="137"></a>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+</div>
+            <% end %>
+        </div>
+    </div>
+    
+    <p>//TODO show more options</p>
+</div>

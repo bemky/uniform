@@ -3,12 +3,12 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "uniform-ui"
-  s.version     = '0.6'
+  s.version     = '1.0'
   s.authors     = ["Ben Ehmke"]
   s.email       = ["benehmke@gmail.com"]
   s.homepage    = "http://bemky.github.io/uniform/"
   s.summary     = %q{Sass UI}
-  s.description = %q{Sass components and defaults for building a UI that's on fleak.}
+  s.description = %q{Sass components and helpers for building a UI.}
   s.license     = "MIT"
 
   s.required_ruby_version = ">= 1.9.3"
@@ -16,12 +16,6 @@ Gem::Specification.new do |s|
 
   # Developoment 
   s.add_development_dependency 'rake'
-  s.add_development_dependency 'bundler'
-  s.add_development_dependency 'activesupport'
-
-  # Runtime
-  s.add_dependency 'bourbon'
-  s.add_dependency 'neat'
   
   s.files        = `git ls-files`.split("\n")
   s.require_path = 'lib'

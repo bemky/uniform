@@ -1,5 +1,4 @@
-Uniform
-=======
+![alt text](https://raw.githubusercontent.com/bemky/uniform/master/site/logo.png)
 
 A rails gem of sass compenents and defaults for building a UI that's on fleak.
 

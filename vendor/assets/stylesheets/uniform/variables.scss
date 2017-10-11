@@ -1,7 +1,7 @@
 // Colors
 
 $gray:#505153;
-$gray-light: #d9d9d9;
+$gray-light: #cccccc;
 $gray-dark:darken($gray, 10);
 
 $green:#97C848;
@@ -15,6 +15,7 @@ $blue-dark:#167DBA;
 $red:#E1563E;
 $red-light:#E5766C;
 $red-dark:#971710;
+$red-bright:#ffab9b;
 
 $yellow: #D7E542;
 $yellow-dark: #BBC02C;
@@ -25,30 +26,11 @@ $background: lighten($gray, 63);
 
 $text-inputs: "input:not([type=search]):not([type=submit]):not([type=checkbox]):not([type=radio])";
 
-//----------------------------------------------------------------
-//             TODO add breaks for sizes based on bootstrap
-//----------------------------------------------------------------
+$system-font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 
-//----------------------------------------------------------------
-//             Scoped Fortycons
-//----------------------------------------------------------------
-@font-face {
-  font-family: "fortycons";
-  src: url("data:application/x-font-woff;charset=utf-8;base64,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") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-$fortycons:"fortycons";
-$fortycon-add: "\f18b";
-$fortycon-add-outline: "\f18a";
-$fortycon-arrow-down-large: "\f111";
-$fortycon-arrow-left-large: "\f112";
-$fortycon-arrow-right-large: "\f113";
-$fortycon-arrow-up-large: "\f114";
-$fortycon-caret-down: "\f11a";
-$fortycon-caret-left: "\f11b";
-$fortycon-caret-right: "\f11c";
-$fortycon-caret-up: "\f11d";
-$fortycon-check: "\f120";
-$fortycon-check-outline: "\f121";
-$fortycon-x: "\f17a";
+// Responsive Breakpoints
+// breakpoints at 720, 1080, 1440
+$sm: "max-width: 719px";
+$md: "min-width: 720px";
+$lg: "min-width: 1080px";
+$xl: "min-width: 1440px";

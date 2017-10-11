@@ -1,10 +1,9 @@
-@import "bourbon";
-@import 'neat';
 @import 'uniform/variables';
-@import 'uniform/functions';
+
 @import 'uniform/mixins';
-@import 'uniform/mixins/*';
+@import 'uniform/defaults';
 
 @import 'uniform/helpers';
-@import 'uniform/defaults';
+@import 'uniform/helpers/*';
+
 @import 'uniform/components/*';

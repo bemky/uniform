@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Uniform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/site/uniform.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/site/preview.css" type="text/css" media="screen" charset="utf-8">
+</head>
+<body>
+<div class="side-nav">
+    <div class="pad">
+        <a href="/">
+        <img src="/site/logo.png" class="block">
+        </a>
+    </div>
+    <div class="uniformNav vertical">
+        <div class="nav">
+            <%  %>
+            <% [
+                :helpers,
+                :colors,
+                :grid,
+                :buttons,
+                [:tables],
+                :cards,
+                :rows,
+                :form,
+                :loaders,
+                :nav,
+                :tabs,
+                [:tiles],
+                [:labels],
+                [:alerts],
+                [:dropdown],
+                [:modal],
+                [:select],
+                [:tooltip]
+            ].each do |page| %>
+                <% if page.is_a?(Array)
+                    page = page[0]
+                    todo = true
+                end %>
+                <a href="/site/<%= page %>.html">
+                    <%= page.to_s.titleize %>
+                    <% if todo %>
+                        <span class="uniformLabel yellow">todo</span>
+                    <% end %>
+                </a>
+            <% end %>
+        </div>
+    </div>
+</div>
+<div class="main-content overflow-hidden">
+    <%= yield %>
+</div>  
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-1.11.3.min.js"
+  integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g="
+  crossorigin="anonymous"></script>
+<script src="/site/preview.js"></script>
+</body>

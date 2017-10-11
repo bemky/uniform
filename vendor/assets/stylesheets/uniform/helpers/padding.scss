@@ -1,0 +1,74 @@
+@include apply-media-sizes('.pad'){
+    padding: 1em;
+}
+@include apply-media-sizes('.pad-tiny'){
+    padding: 0.25em;
+}
+@include apply-media-sizes('.pad-less'){
+    padding: 0.5em;
+}
+@include apply-media-sizes('.pad-more'){
+    padding: 2em;
+}
+@include apply-media-sizes('.pad-super'){
+    padding: 4em;
+}
+@include apply-media-sizes('.pad-more-important'){
+    padding: 2em !important;
+}
+.pad-h{
+    padding-left: 1em;
+    padding-right: 1em;
+}
+.pad-h-less{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+.pad-v{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+.pad-v-less{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+.pad-v-more{
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+.pad-v-super{
+    padding-top: 4em;
+    padding-bottom: 4em;
+}
+.pad-none{
+    padding:0 !important;
+}
+.pad-none-h{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.un-pad{
+    margin-left: -1em;
+    margin-right: -1em;
+}
+.un-pad-less{
+    margin-left: -0.5em;
+    margin-right: -0.5em;
+}
+.x-pad{
+    padding: 4em;
+}
+@each $direction in 'top' 'right' 'bottom' 'left' {
+    @include apply-media-sizes('.pad-#{$direction}-tiny'){
+        padding-#{$direction}: 0.25em !important;
+    }
+    @include apply-media-sizes('.pad-#{$direction}-less'){
+        padding-#{$direction}: 0.5em !important;
+    }
+    @include apply-media-sizes('.pad-#{$direction}'){
+        padding-#{$direction}: 1em !important;
+    }
+    @include apply-media-sizes('.pad-#{$direction}-more'){
+        padding-#{$direction}: 2em !important;
+    }
+}

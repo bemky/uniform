@@ -1,0 +1,27 @@
+.uniformAlert{
+    border-radius: 0.2em;
+    border: 1px solid $gray;
+    background: white;
+    color: $gray;
+    padding: 1em;
+    
+    p:last-of-type{
+        margin-bottom: 0 !important;
+    }
+    
+    &.green{
+        border-color: $green;
+        color: $green-dark;
+        background: lighten($green, 40);
+    }
+    &.red{
+        border-color: $red;
+        color: $red;
+        background: lighten($red, 40);
+    }
+    &.blue{
+        border-color: $blue;
+        color: $blue-dark;
+        background: lighten($blue, 50);
+    }
+}

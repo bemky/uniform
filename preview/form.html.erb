@@ -1,0 +1,233 @@
+<div class="section">
+    <h1>Forms</h1>
+    <h3>UniformForm</h3>
+    <div class="grid">
+        <div class="col-6">
+            <form class="uniformForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text">
+                </div>
+                <div class="form-group" data-error-message="example error message">
+                    <label>Phone</label>
+                    <input type="text">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text">
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <% html_block do %>
+<form class="uniformForm">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text">
+    </div>
+    <div class="form-group" data-error-message="example error message">
+        <label>Phone</label>
+        <input type="text">
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text">
+    </div>
+</form>
+            <% end %>
+        </div>
+    </div>
+    
+    <div class="grid">
+        <div class="col-6">
+            <form class="uniformForm uniformForm-table">
+                <div class="form-group">
+                    <label>Name</label>
+                    <div>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <div>
+                        <div data-error-message="example error message">
+                            <input type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <div>
+                        <input type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+            <% html_block do %>
+<form class="uniformForm uniformForm-table">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text">
+    </div>
+    <div class="form-group" data-error-message="example error message">
+        <label>Phone</label>
+        <input type="text">
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="text">
+    </div>
+</form>
+            <% end %>
+        </div>
+    </div>
+    
+    
+    <h3>UniformInput</h3>
+    <div class="grid">
+        <div class="col-6">
+            <p><input type="text" class="uniformInput" /></p>
+            <p><input type="text" class="uniformInput large" /></p>
+        </div>
+        <div class="col-6">
+            <% html_block do %>
+                <input type="text" class="uniformInput" />
+            <% end %>
+            <% html_block do %>
+                <input type="text" class="uniformInput large" />
+            <% end %>
+        </div>
+    </div>
+
+    <h3>Custom Inputs</h3>
+    <div class="grid nest">
+        <div class="col-6">
+            <p>Styled Select Box</p>
+            <p><span class="uniformSelect"><select><option>An Option</option></select></span></p>
+        </div>
+        <div class="col-6">
+            <% html_block do %>
+<span class='uniformSelect'>
+    <select>
+        <option>An Option</option>
+    </select>
+</span>
+            <% end %>
+        </div>
+        
+        <div class="col-6">
+            <p>uniformCheckboxCollection</p>
+            <div class="uniformCheckboxCollection">
+                <label><input type="checkbox"> Option 1</label>
+                <label><input type="checkbox"> Option 2</label>
+                <label><input type="checkbox"> Option 3</label>
+            </div>
+        </div>
+        <div class="col-6">
+            <% html_block do %>
+<div class="uniformCheckboxCollection">
+    <label><input type="checkbox"> Option 1</label>
+    <label><input type="checkbox"> Option 2</label>
+    <label><input type="checkbox"> Option 3</label>
+</div>
+            <% end %>
+        </div>
+        
+        <div class="col-6">
+            <p>uniformCheckboxCollection.inline</p>
+            <div class="uniformCheckboxCollection inline">
+                <label><input type="radio"> Option 1</label>
+                <label><input type="radio"> Option 2</label>
+                <label><input type="radio"> Option 3</label>
+            </div>
+        </div>
+        <div class="col-6">
+            <% html_block do %>
+<div class="uniformCheckboxCollection inline"> 
+    <label><input type="radio"> Option 1</label>
+    <label><input type="radio"> Option 2</label>
+    <label><input type="radio"> Option 3</label>
+</div>
+            <% end %>
+        </div>
+        
+        
+    </div>
+    
+    <h3>Floating Label</h3>
+    <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
+    <div class="grid">
+        <div class="col-6">
+            <div class="uniformFloatingLabel">
+                <label for="example-1">Name</label>
+                <input type="text" class="pad-more" id="example-1">
+            </div>
+        </div>
+        <div class="col-6">
+            <% html_block do %>
+<div class="uniformFloatingLabel">
+    <label for="example-1">Name</label>
+    <input type="text" class="pad-more" id="example-1">
+</div>
+            <% end %>
+        </div>
+    </div>
+
+    <h3>Input Group</h3>
+    <p>Ever want to put in an input and it's label in line, and have it be 100% width responsive? Well, you can't, unless you use something like uniformInputGroup.</p>
+    <div class="grid">
+        <div class="col-6">
+            <div class="uniformInputGroup">
+                <span class="label">
+                    <label for="rate">$</label>
+                </span>
+                <span class="input">
+                    <input id="rate">
+                </span>
+                <span class="units">
+                    <label for="rate">/hour</label>
+                </span>
+            </div>
+        </div>
+        <div class="col-6">
+            <% html_block do %>
+        <div class="uniformInputGroup">
+            <span class="label">
+                <label for="rate">$</label>
+            </span>
+            <span class="input">
+                <input id="rate">
+            </span>
+            <span class="units">
+                <label for="rate">/hour</label>
+            </span>
+        </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="grid">
+        <div class="col-6">
+            <div class="uniformInputGroup">
+                <span class="label">
+                    <label for="car">Car Preference</label>
+                </span>
+                <span>
+                    <input id="name" value="Jonathan Doe" disabled>
+                </span>
+            </div>
+        </div>
+        <div class="col-6">
+            <% html_block do %>
+<div class="uniformInputGroup">
+    <span class="label">
+        <label for="car">Car Preference</label>
+    </span>
+    <span class="input">
+        <input id="name" value="Jonathan Doe" disabled>
+    </span>
+</div>
+            <% end %>
+        </div>
+    </div>
+</div>
