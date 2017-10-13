@@ -5,10 +5,11 @@ select.uniformSelect{
 .uniformSelect-edit{
     @include text-overflow;
     position:relative;
+    text-align: left;
     &:after{
         color:$gray;
-        font-size:1.3em;
-        content:\25bc;
+        font-size:1em;
+        content:'\25bc';
         @include vertical-middle();
         right:0.3em;
         z-index:0;
@@ -39,6 +40,9 @@ select.uniformSelect{
         border-bottom: 1px solid $gray-light;
         background: $background;
         padding: 0.5em;
+        &:empty{
+            display:none;
+        }
     }
     .uniformSelect-show-all {
         color: $blue;
@@ -63,7 +67,7 @@ select.uniformSelect{
         &:after{
             color: $green;
             position: absolute;
-            content: \2714;
+            content: '\2714';
             top: 0.2em;
             right: 0.2em;
             font-size: 1.5em;

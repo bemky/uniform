@@ -38,10 +38,19 @@ html, body{
     a{
         color: black;
     }
+    @media only screen and (max-width: 700px) {
+        width: auto;
+        img{
+            display:none;
+        }
+    }
 }
 
 .main-content{
     margin-left:250px;
+    @media only screen and (max-width: 700px) {
+        margin-left: 0;
+    }
 }
 
 .swatch{

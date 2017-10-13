@@ -17,6 +17,8 @@
     <p>Or install it yourself:<br/><code>$ gem install uniform-ui</code></p>
     <p>Include the css library in your asset pipeline.<br/><code>@import 'uniform';</code></p>
     <p>Include the javascript library in your asset pipeline.<br/><code>//= require uniform</code></p>
+    <h3>Dependencies</h3>
+    <p>Components requiring javascript depend on <strong>JQuery 1.11+</strong></p>
     <h3>Scope Components</h3>
     <p>Optionally, you can scope the components you want included in your assets.</p>
     <% html_block do %>
@@ -31,8 +33,8 @@
 // javascript
 //= require uniform
 // - OR -
-//= require uniform/base
-//= require uniform/select
+//= require uniform/base<% (Dir.foreach(File.join('vendor', 'assets', 'javascripts', 'uniform')).reject{|x| %w(base.js).include?(x)}.to_a).select{|x| x.split('.').last == "js"}.each do |x| %>
+//= require uniform/<%= x.remove('.js') %><% end %>
     <% end %>
     
 </div>
