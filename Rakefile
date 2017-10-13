@@ -9,18 +9,23 @@ Bundler.require(:default)
 # Setup Sprockets
 environment = Sprockets::Environment.new
 environment.append_path 'vendor/assets/stylesheets'
+environment.append_path 'vendor/assets/javascripts'
 environment.append_path 'preview'
 environment.css_compressor = :scss
 
 desc "Compile page"
 task :compile do
   
-  File.open('./site/uniform.css', "w") do |file|
+  File.open('./site/assets/stylesheets/uniform.css', "w") do |file|
     file << environment['uniform.scss']
   end
   
-  File.open('./site/preview.css', "w") do |file|
+  File.open('./site/assets/stylesheets/preview.css', "w") do |file|
     file << environment['preview.scss']
+  end
+  
+  File.open('./site/assets/javascripts/uniform.js', "w") do |file|
+    file << environment['uniform.js']
   end
   
   # Render the test html file
