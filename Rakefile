@@ -43,7 +43,8 @@ task :compile do
       )
     end
   end
-    
+  
+  File.delete("./uniform.zip")
   Zip::File.open("./uniform.zip", Zip::File::CREATE) do |zipFile|
       FileList['./site/assets/javascripts/uniform.js', './site/assets/stylesheets/preview.css'].each do |filename|
           zipFile.add(filename.split('/').last, filename)

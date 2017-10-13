@@ -1,1 +1,25 @@
-TODO
+<div class="section">
+    <h1>UniformLabel</h1>
+    <table class="uniformTable">
+        <thead>
+            <tr>
+                <th></th>
+                <th><code>.uniformLabel</code></th>
+                <th><code>.uniformLabel.fill</code></th>
+            </tr>
+        </thead>
+        <% ["", "pad-more", "green", "yellow", "muted", "blue"].each do |lbl| %>
+        <tr>
+            <td>
+                <code>.<%= lbl %></code>
+            </td>
+            <td>
+                <span class="uniformLabel <%= lbl %>">label</span>
+            </td>
+            <td>
+                <span class="uniformLabel <%= lbl %> fill">label</span>
+            </td>
+        </tr> 
+        <% end %>
+    </table>
+</div>

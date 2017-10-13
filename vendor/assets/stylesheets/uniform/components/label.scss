@@ -20,6 +20,7 @@
         border-color: $red;
         color: $red;
         &.fill{
+            color: white;
             background: $red;
         }
     }
@@ -31,6 +32,7 @@
         border-color: $green-dark;
         color: $green-dark;
         &.fill{
+            color: white;
             background: $green-dark;
         }
     }
@@ -44,6 +46,7 @@
         border-color: $yellow-dark;
         color: $yellow-dark;
         &.fill{
+            color: white;
             background: $yellow-dark;
         }
     }
@@ -51,12 +54,17 @@
     &.closed{
         border-color: lighten($gray, 30);
         color: lighten($gray, 30);
+        &.fill{
+            color: white;
+            background: lighten($gray, 30);
+        }
     }
     
     &.blue{
         border-color: $blue;
         color: $blue;
         &.fill{
+            color: white;
             background: $blue;
         }
     }

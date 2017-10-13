@@ -1,4 +1,4 @@
-.table{
+@include apply-media-sizes('.table'){
     display:table;
     width:100%;
     & > *,
@@ -14,17 +14,6 @@
     }
     .row{
         display:table-row;
-    }
-    
-    @include apply-media-sizes('&.break'){
-        & > *,
-        .row > *{
-            display:block;
-            float:inherit;
-        }
-        .row{
-            display:block;
-        }
     }
 }
 
