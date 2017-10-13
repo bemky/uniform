@@ -3,6 +3,7 @@ require 'fileutils'
 require 'sprockets'
 require "sprockets-sass"
 require 'bundler/setup'
+require 'zip'
 
 Bundler.require(:default)
 
@@ -42,6 +43,12 @@ task :compile do
       )
     end
   end
+    
+  Zip::File.open("./uniform.zip", Zip::File::CREATE) do |zipFile|
+      FileList['./site/assets/javascripts/uniform.js', './site/assets/stylesheets/preview.css'].each do |filename|
+          zipFile.add(filename.split('/').last, filename)
+      end
+  end  
   
 end
 

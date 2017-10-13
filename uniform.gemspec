@@ -15,7 +15,13 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
 
   # Developoment 
+  s.add_development_dependency 'sass'
+  s.add_development_dependency 'sprockets-sass'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'activesupport'
+  s.add_development_dependency 'rubyzip'
+  
+  s.add_dependency 'sass'
   
   s.files        = `git ls-files`.split("\n")
   s.require_path = 'lib'

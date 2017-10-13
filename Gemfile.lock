@@ -13,6 +13,7 @@ GEM
     multi_json (1.12.1)
     rack (1.6.4)
     rake (11.3.0)
+    rubyzip (1.2.1)
     sass (3.4.22)
     sprockets (2.12.4)
       hike (~> 1.2)
@@ -33,6 +34,7 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   rake
+  rubyzip
   sass
   sprockets-sass
 
