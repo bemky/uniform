@@ -24,9 +24,14 @@ Include the css library in your asset pipeline.
 @import 'uniform';
 ```
 
+Include the javascript library in your asset pipeline.
+```javascript
+//= require uniform
+````
+
 ## Usage
 
-TODO documentation on importing individual compontents
+Checkout the [documentation](http://uniform-ui.com)
 
 ## Development
 
