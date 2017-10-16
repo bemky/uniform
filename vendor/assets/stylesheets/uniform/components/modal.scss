@@ -38,14 +38,28 @@
     opacity: 0.5;
     line-height:1;
     cursor: pointer;
+    height: 2rem;
+    width: 2rem;
     &:hover{
         opacity: 1;
+    }
+    &:after,
+    &:before{
+        content: "";
+        width: 1px;
+        height: 1.5rem;
+        transform-origin: 50% 50%;
+        transform: rotate(-45deg);
+        background: white;
+        position:absolute;
+        left: 50%;
+        top: 15%;
+    }
+    &:before{
+        transform: rotate(45deg);
     }
 }
 
 .uniformModal-blur{
     filter: blur(4px);
-}
-body.uniformModal-active{
-    background: $gray-dark;
 }

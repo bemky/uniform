@@ -58,9 +58,9 @@
                     :labels,
                     :alerts,
                     :select,
-                    [:dropdown],
-                    [:modal],
-                    [:tooltip]
+                    :modal,
+                    :dropdown,
+                    :tooltip
                 ].each do |page| %>
                     <% if page.is_a?(Array)
                         page = page[0]

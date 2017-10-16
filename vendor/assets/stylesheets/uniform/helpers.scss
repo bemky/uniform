@@ -18,6 +18,12 @@
 .rounded{
     border-radius: 0.25em;
 }
+@each $direction in 'top' 'bottom' {
+    .rounded-#{$direction}{
+        border-#{$direction}-right-radius: 0.25em;
+        border-#{$direction}-left-radius: 0.25em;
+    }
+}
 [data-href],
 .pointer{
     cursor: pointer !important;

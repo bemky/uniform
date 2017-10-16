@@ -1,3 +1,241 @@
+(function() {
+    uniformHelpers = {}
+    
+    var nativeIsArray = Array.isArray;
+    var property = function(key) {
+        return function(obj) {
+            return obj == null ? void 0 : obj[key];
+        };
+    };
+    var flatten = function(input, shallow, strict, startIndex) {
+        var output = [], idx = 0;
+        for (var i = startIndex || 0, length = getLength(input); i < length; i++) {
+            var value = input[i];
+            if (isArrayLike(value) && (uniformHelpers.isArray(value) || uniformHelpers.isArguments(value))) {
+                if (!shallow) value = flatten(value, shallow, strict);
+                var j = 0, len = value.length;
+                output.length += len;
+                while (j < len) {
+                    output[idx++] = value[j++];
+                }
+            } else if (!strict) {
+                output[idx++] = value;
+            }
+        }
+        return output;
+    };
+    var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+    var getLength = property('length');
+    var isArrayLike = function(collection) {
+        var length = getLength(collection);
+        return typeof length == 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
+    };
+    
+    uniformHelpers.has = function(obj, key) {
+        return obj != null && hasOwnProperty.call(obj, key);
+    };
+    uniformHelpers.isArguments = function(obj) {
+        return uniformHelpers.has(obj, 'callee');
+    };
+    uniformHelpers.isArray = nativeIsArray || function(obj) {
+        return toString.call(obj) === '[object Array]';
+    };
+    
+    uniformHelpers.isFunction = function(obj) {
+        return typeof obj == 'function' || false;
+    };
+    uniformHelpers.pick = function(object, oiteratee, context) {
+        var result = {}, obj = object, iteratee, keys;
+        if (obj == null) return result;
+        if (uniformHelpers.isFunction(oiteratee)) {
+            keys = obj.keys();
+            iteratee = optimizeCb(oiteratee, context);
+        } else {
+            keys = flatten(arguments, false, false, 1);
+            iteratee = function(value, key, obj) { return key in obj; };
+            obj = Object(obj);
+        }
+        for (var i = 0, length = keys.length; i < length; i++) {
+            var key = keys[i];
+            var value = obj[key];
+            if (iteratee(value, key, obj)) result[key] = value;
+        }
+        return result;
+    };
+    
+}.call(this));
+
+class UniformComponent {
+    constructor (options) {
+        this.eventListeners = new Array();
+        this.$el = $('<div>');
+        
+        this.initialize(options);
+    }
+    
+    initialize () {}
+    
+    on (type, handler) {
+        this.eventListeners.push({
+            type: type,
+            handler: handler
+        });
+    }
+
+    trigger (type) {
+        for (var i = 0; i < this.eventListeners.length; i++) {
+            if(type == "*" || type == "all" || type == this.eventListeners[i].type){
+                this.eventListeners[i].handler(type, this);
+            }
+        }
+    }
+}
+;
+(function( $ ) {
+ 
+    $.fn.uniformDropdown = function() {
+        return this.each(function(){
+            var el = $(this);
+            var options = {
+                align: el.data('dropdown-klass'),
+                trigger: el.data('dropdown-content'),
+                show_arrow: el.data('dropdown-show_arrow'),
+                hide_sme: el.data('dropdown-hide_sm'),
+                content: "<div class='pad'>" + el.data('dropdown-content') + "</div>",
+                el: el
+            };
+            if (el.data('dropdown-target')) {
+                options.content = $(el.data('dropdown-target'))
+            }
+            var dropdown = new UniformDropdown(options);
+            dropdown.on('*', function (event_type, dropdown) {
+                el.trigger('dropdown-' + type, dropdown);
+            });
+            dropdown.render();
+        });
+    };
+ 
+}( jQuery ));
+
+class UniformDropdown extends UniformComponent {
+	
+    /*
+        Options
+        content:    string|$el - content rendered in dropdown
+        align:      'center'|'left'|'right| - how dropdown aligns to trigger el
+        trigger:    'click'|'focus'|'mouseover' - what triggers showDropdown
+        show_arrow: true\false - show dropdown arrow
+        hide_sm:    true|false - don't show dropdown on mobile browsers
+    */
+    initialize (options) {
+        this.options = {
+            align: 'center',
+            trigger: 'click focus',
+            show_arrow: true,
+            hide_sm: false
+        };
+        $.extend(this.options, uniformHelpers.pick(Object.keys(this.options), 'align', 'trigger', 'show_arrow', 'min_width', 'hide_sm'));
+        
+        this.content = options.content;
+        this.$el = (options.el instanceof $) ? options.el : $(options.el);
+        
+        this.$el.on(this.options.trigger, this.show.bind(this));
+        $(window).on('resize', this.resize.bind(this));
+        $(document).on(this.options.trigger, this.outsideClick.bind(this));
+        $(document).on('keyup', this.keyup.bind(this));
+    }
+    
+    render () {
+        this.dropdown = $("<div class='uniformDropdown-dropdown absolute'>");
+        this.dropdown.css({
+            minWidth: this.$el.outerWidth()
+        })
+        if (this.options.show_arrow) {
+            this.dropdown.addClass('has-pointer');
+            this.dropdown.append("<div class='uniformDropdown-pointer'></div>")
+        }
+        this.dropdown.hide();
+        this.dropdown.append(this.content);
+        this.dropdown.appendTo($('body'));
+        this.dropdown.find('.hidden').removeClass('hidden');
+        
+        this.resize();
+        return this;
+    }
+    
+    // TODO add 'left' alignment
+    resize () {
+        if(!this.dropdown) return;
+        var position = {
+            top: this.$el.offset().top + this.$el.outerHeight()
+        }
+        if (this.options.align == "center") {
+            position.left = this.$el.offset().left + this.$el.outerWidth() / 2 - this.dropdown.outerWidth() / 2;
+        } else if(this.options.align == "right") {
+            position.right = $(window).width() - (this.$el.offset().left + this.$el.outerWidth());
+        } else {
+            position.left = this.$el.offset().left;
+        }
+        if (position.left && position.left + this.dropdown.outerWidth() > $(window).width()) {
+            position.left = $(window).width() - this.dropdown.outerWidth();
+        }
+        this.dropdown.css(position);
+    }
+    
+    remove () {
+        this.$el.remove();
+        this.$el.off(this.options.trigger);
+        $(window).off('resize', this.resize.bind(this));
+        $(document).off(this.options.trigger, this.outsideClick.bind(this));
+        $(document).off('keyup', this.keyup.bind(this));
+    }
+    
+    show () {
+        if(this.options.hide_sm && $(window).width() < 720) return;
+        if(!this.dropdown) this.render();
+        
+        this.dropdown.show();
+        this.$el.addClass('active');
+        
+        this.overlay = $("<div class='uniformOverlay'>");
+        $('body').append(this.overlay);
+
+        if ($(window).width() < 720) {
+            this.lastScrollPosition = $(window).scrollTop();
+            $('body').addClass('uniformModal-hideBody');
+        }
+        
+        this.overlay.click(this.hide.bind(this));
+        this.trigger('shown');
+    }
+    
+    hide () {
+        if(!this.dropdown) return;
+        this.dropdown.hide();
+        this.$el.removeClass('active');
+        this.overlay.remove();
+        if ($(window).width() < 720) {
+            $('body').removeClass('uniformModal-hideBody');
+            $(window).scrollTop(this.lastScrollPosition);
+        }
+        this.trigger('hidden');
+    }
+    
+    outsideClick (e) {
+        if (!this.dropdown || !this.dropdown.is(":visible")) return;
+        if (e.target === this.$el[0]) return;
+        if (e.target === this.overlay) return;
+        if ($.contains(this.$el[0], e.target)) return;
+        if ($.contains(this.dropdown[0], e.target)) return;
+        this.hide();
+    }
+    
+    keyup () {
+        if(e.which != 27) return;
+        this.hide();
+    }
+}
+;
 (function( $ ) {
  
     $.fn.uniformFloatingLabel = function() {
@@ -61,6 +299,120 @@
     };
  
 }( jQuery ));
+(function( $ ) {
+ 
+    $.fn.uniformModal = function() {
+        var el = $(this);
+        var options = {
+            klass: el.data('modal-klass'),
+            content: el.data('modal-content')
+        };
+        if (el.data('modal-target')) {
+            options.content = $(el.data('modal-target'))
+        }
+        var modal = new UniformModal(options);
+        modal.on('*', function (event_type, modal) {
+            el.trigger('modal-' + type, modal);
+        });
+        modal.render();
+    };
+ 
+}( jQuery ));
+
+class UniformModal extends UniformComponent {
+	
+    /*
+        Options
+        content:    string|$el|function
+        klass:      string - classes to append to modal container
+    */
+    initialize (options) {
+        this.options = {
+            klass: false,
+        };
+        $.extend(this.options, uniformHelpers.pick(options, 'klass'));
+        this.content = options.content;
+        
+        this.$el.addClass('uniformModal');
+        $(document).on('keyup', this.keyup.bind(this));
+        this.$el.click(this.checkClose.bind(this));
+        this.$el.click('.uniformModal-close', this.close.bind(this));
+    }
+    
+    keyup () {
+        if(e.which != 27) return;
+        this.close();
+    }
+    
+    render () {
+        var content = typeof this.content == 'function' ? this.content() : this.content;
+        this.highest_z_index = 0;
+        this.overlay = $('<div class="uniformModal-overlay"></div>');
+        
+        if ($('.uniformModal').length > 0) {
+            this.highest_z_index = Math.max($('.uniformModal').map(function(){ return parseInt($(this).css('zIndex'))}));
+            this.overlay.css('zIndex', this.highest_z_index + 1);
+            this.$el.css('zIndex', this.highest_z_index + 2);
+        }
+        
+        $('body').children().addClass('uniformModal-blur uniformModal-blur-' + this.highest_z_index);
+        $('body').addClass('uniformModal-active');
+        $('body').append(this.overlay);
+        $('body').append(this.$el);
+        
+        var container = $('<div class="uniformModal-container">');
+        container.append(content);
+        container.append('<div class="uniformModal-close"></div>');
+        this.$el.css('top', $(window).scrollTop());
+        this.overlay.click(this.close.bind(this));
+        this.$el.append(container);
+        
+        if (this.options.klass) container.addClass(this.options.klass);
+        if (content instanceof $) content.trigger('rendered');
+        this.trigger('rendered');
+        
+        return this;
+    }
+    
+    close () {
+        $('.uniformModal-active').removeClass('uniformModal-active');
+        $('.uniformModal-blur-' + this.highest_z_index).removeClass('uniformModal-blur-' + this.highest_z_index);
+        $('.uniformModal-blur').each(function(){
+            if($(this).attr('class').match('uniformModal-blur-')) return;
+            $(this).removeClass('uniformModal-blur');
+        });
+        this.trigger('closed');
+        this.remove();
+    }
+    
+    remove () {
+        this.overlay.remove();
+        this.$el.remove();
+        this.$el.off('click');
+        this.overlay.off('click');
+        $(document).off('keyup', this.keyup.bind(this));
+    }
+    
+    on (type, handler) {
+        this.eventListeners.push({
+            type: type,
+            handler: handler
+        });
+    }
+    
+    trigger (type) {
+        for (var i = 0; i < this.eventListeners.length; i++) {
+            if(type == "*" || type == "all" || type == this.eventListeners[i].type){
+                this.eventListeners[i].handler(type, this);
+            }
+        }
+    }
+    
+    checkClose (e) {
+        if(e.target == this.$el[0]) this.close();
+    }
+}
+;
 /*
     options
     class: String, appended to uniformSelect-edit button as class
@@ -262,3 +614,63 @@
     };
  
 }( jQuery ));
+(function( $ ) {
+ 
+    $.fn.uniformTooltip = function() {
+        return this.each(function(){
+            var el = $(this);
+            var tooltip = new UniformTooltip({
+                message: el.data('tooltip-message'),
+                el: this
+            });
+            tooltip.on('*', function (event_type, tooltip) {
+                el.trigger('tooltip-' + type, tooltip);
+            });
+            tooltip.render();
+        });
+    };
+ 
+}( jQuery ));
+
+class UniformTooltip extends UniformComponent {
+    initialize (options) {
+        this.message = options.message;
+        this.$el = (options.el instanceof $) ? options.el : $(options.el);
+        
+        this.$el.on('mouseover', this.show.bind(this));
+        this.$el.on('mouseout', this.hide.bind(this));
+    }
+    
+    render () {
+        this.popup = $('<div class="uniformTooltip-popup">' + this.message + '</div>');
+        this.popup.prepend("<div class='uniformTooltip-pointer'></div>");
+        this.$el.append(this.popup);
+        if (this.message.length > 100) {
+            this.popup.css({
+                minWidth: "200px"
+            })
+        }
+        if (this.popup.outerWidth(true) + this.popup.offset().left > $(window).width()) {
+            this.popup.css({
+                left: $(window).width() - this.popup.outerWidth(true) - this.popup.offset().left
+            })
+        }
+        return this;
+    }
+    
+    remove () {
+        this.$el.remove();
+    }
+    
+    show () {
+        if(!this.popup) this.render();
+        this.popup.addClass('active');
+        this.trigger('shown');
+    }
+    
+    hide () {
+        this.popup.removeClass('active');
+        this.trigger('hidden');
+    }
+}
+;

@@ -1,4 +1,9 @@
 $(document).ready(function(){
     $('.uniformFloatingLabel').uniformFloatingLabel();
     $('.uniformSelect').uniformSelect();
+    $('.uniformDropdown').uniformDropdown();
+    $('.uniformTooltip').uniformTooltip();
+    $('.launchUniformModal').click(function(){
+        $(this).uniformModal();
+    });
 })
