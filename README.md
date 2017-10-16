@@ -1,6 +1,6 @@
 ![Uniform](https://raw.githubusercontent.com/bemky/uniform/master/site/assets/images/logo.png)
 
-A rails gem of sass compenents and defaults for building a UI that's on fleak.
+A rails gem of sass components and helpers for building a UI.
 
 Demo and Documentation: http://uniform-ui.com
 
