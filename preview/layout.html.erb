@@ -57,19 +57,19 @@
                     :tiles,
                     :labels,
                     :alerts,
-                    :select,
-                    :modal,
-                    :dropdown,
-                    :tooltip
+                    [:select, 'js'],
+                    [:modal, 'js'],
+                    [:dropdown, 'js'],
+                    [:tooltip, 'js']
                 ].each do |page| %>
                     <% if page.is_a?(Array)
+                        tag = page[1]
                         page = page[0]
-                        todo = true
                     end %>
                     <a href="/site/<%= page %>.html">
                         <%= page.to_s.titleize %>
-                        <% if todo %>
-                            <span class="uniformLabel yellow">todo</span>
+                        <% if tag %>
+                            <span class="uniformLabel yellow"><%= tag %></span>
                         <% end %>
                     </a>
                 <% end %>
