@@ -29,7 +29,7 @@
             var edit_button = $("<button type='button' class='uniformSelect-edit uniformInput outline block" + options.class + "'></button>");
             container.append(edit_button);
             if (select.attr('name')) {
-                container.addClass(select.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, seperator || '-'));
+                container.addClass(select.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
             }
 
             select.hide();
@@ -69,7 +69,7 @@
             function renderOptions() {
                 select_options = $("<div class='uniformSelect-options'>");
                 if (select.attr('name')) {
-                    select_options.addClass(select.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, seperator || '-'));
+                    select_options.addClass(select.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
                 }
                 select_options.css({
                     fontSize: select.css('font-size')
