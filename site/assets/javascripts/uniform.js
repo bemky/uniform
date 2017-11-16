@@ -335,11 +335,10 @@ class UniformModal extends UniformComponent {
         
         this.$el.addClass('uniformModal');
         $(document).on('keyup', this.keyup.bind(this));
-        this.$el.click(this.checkClose.bind(this));
-        this.$el.click('.uniformModal-close', this.close.bind(this));
+        this.$el.on('click', '.uniformModal-close', this.close.bind(this));
     }
     
-    keyup () {
+    keyup (e) {
         if(e.which != 27) return;
         this.close();
     }
@@ -355,7 +354,10 @@ class UniformModal extends UniformComponent {
             this.$el.css('zIndex', this.highest_z_index + 2);
         }
         
-        $('body').children().addClass('uniformModal-blur uniformModal-blur-' + this.highest_z_index);
+        $('body').children().each(_.bind(function(el){
+            if($(el).hasClass('ignore-uniformModal-blur')) return;
+            $(el).addClass('uniformModal-blur uniformModal-blur-' + this.highest_z_index);
+        }, this));
         $('body').addClass('uniformModal-active');
         $('body').append(this.overlay);
         $('body').append(this.$el);
@@ -407,10 +409,6 @@ class UniformModal extends UniformComponent {
             }
         }
     }
-    
-    checkClose (e) {
-        if(e.target == this.$el[0]) this.close();
-    }
 }
 ;
 /*
@@ -445,7 +443,7 @@ class UniformModal extends UniformComponent {
             var edit_button = $("<button type='button' class='uniformSelect-edit uniformInput outline block" + options.class + "'></button>");
             container.append(edit_button);
             if (select.attr('name')) {
-                container.addClass(select.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, seperator || '-'));
+                container.addClass(select.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
             }
 
             select.hide();
@@ -485,7 +483,7 @@ class UniformModal extends UniformComponent {
             function renderOptions() {
                 select_options = $("<div class='uniformSelect-options'>");
                 if (select.attr('name')) {
-                    select_options.addClass(select.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, seperator || '-'));
+                    select_options.addClass(select.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
                 }
                 select_options.css({
                     fontSize: select.css('font-size')

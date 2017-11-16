@@ -6,6 +6,7 @@ select.uniformSelect{
     @include text-overflow;
     position:relative;
     text-align: left;
+    
     &:after{
         color:$gray;
         font-size:1em;
