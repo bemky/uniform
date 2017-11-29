@@ -90,7 +90,7 @@ class UniformComponent {
         }
     }
 }
-;
+
 (function( $ ) {
  
     $.fn.uniformDropdown = function() {
