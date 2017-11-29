@@ -12,7 +12,7 @@
                 el: el
             };
             if (el.data('dropdown-target')) {
-                options.content = $(el.data('dropdown-target'))
+                options.content = $(el.data('dropdown-target'));
             }
             var dropdown = new UniformDropdown(options);
             dropdown.on('*', function (event_type, dropdown) {
@@ -55,11 +55,11 @@ class UniformDropdown extends UniformComponent {
     render () {
         this.dropdown = $("<div class='uniformDropdown-dropdown absolute'>");
         this.dropdown.css({
-            minWidth: this.$el.outerWidth()
+            minWidth: this.$el.outerWidth();
         })
         if (this.options.show_arrow) {
             this.dropdown.addClass('has-pointer');
-            this.dropdown.append("<div class='uniformDropdown-pointer'></div>")
+            this.dropdown.append("<div class='uniformDropdown-pointer'></div>");
         }
         this.dropdown.hide();
         this.dropdown.append(this.content);
@@ -74,7 +74,7 @@ class UniformDropdown extends UniformComponent {
     resize () {
         if(!this.dropdown) return;
         var position = {
-            top: this.$el.offset().top + this.$el.outerHeight()
+            top: this.$el.offset().top + this.$el.outerHeight();
         }
         if (this.options.align == "center") {
             position.left = this.$el.offset().left + this.$el.outerWidth() / 2 - this.dropdown.outerWidth() / 2;

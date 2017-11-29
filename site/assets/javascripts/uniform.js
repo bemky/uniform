@@ -1,5 +1,5 @@
 (function() {
-    uniformHelpers = {}
+    uniformHelpers = {};
     
     var nativeIsArray = Array.isArray;
     var property = function(key) {

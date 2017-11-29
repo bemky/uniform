@@ -7,7 +7,7 @@
             content: el.data('modal-content')
         };
         if (el.data('modal-target')) {
-            options.content = $(el.data('modal-target'))
+            options.content = $(el.data('modal-target'));
         }
         var modal = new UniformModal(options);
         modal.on('*', function (event_type, modal) {
@@ -48,7 +48,9 @@ class UniformModal extends UniformComponent {
         this.overlay = $('<div class="uniformModal-overlay"></div>');
         
         if ($('.uniformModal').length > 0) {
-            this.highest_z_index = Math.max($('.uniformModal').map(function(){ return parseInt($(this).css('zIndex'))}));
+            this.highest_z_index = Math.max($('.uniformModal').map(function(){
+                return parseInt($(this).css('zIndex'));
+            }));
             this.overlay.css('zIndex', this.highest_z_index + 1);
             this.$el.css('zIndex', this.highest_z_index + 2);
         }

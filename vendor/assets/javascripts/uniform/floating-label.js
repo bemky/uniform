@@ -19,7 +19,7 @@
                 input.css({
                     paddingTop: padding + padding/2 + "px",
                     paddingBottom: padding - padding/2 - 2 + "px"
-                })
+                });
 
                 label.css({
                     position: 'absolute',
@@ -28,7 +28,7 @@
                     paddingLeft: input.css("paddingLeft"),
                     height: startingHeight,
                     lineHeight: startingHeight + "px"
-                })
+                });
             }
 
             function activate (e) {
@@ -48,7 +48,7 @@
                 el.addClass('inactive');
                 label.css({
                     lineHeight: startingHeight + "px"
-                })
+                });
             }
     
             render();

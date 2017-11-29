@@ -32,12 +32,12 @@ class UniformTooltip extends UniformComponent {
         if (this.message.length > 100) {
             this.popup.css({
                 minWidth: "200px"
-            })
+            });
         }
         if (this.popup.outerWidth(true) + this.popup.offset().left > $(window).width()) {
             this.popup.css({
                 left: $(window).width() - this.popup.outerWidth(true) - this.popup.offset().left
-            })
+            });
         }
         return this;
     }

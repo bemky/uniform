@@ -8,7 +8,7 @@
     $.fn.fixedParents = function (selector) {
         return this.parents().filter(function (){
             return $(this).css('position') == 'fixed';
-        })
+        });
     }
     
     $.fn.uniformSelect = function(options) {
@@ -25,7 +25,7 @@
         return this.each(function(){
             var showing, lastScrollPosition, select_options;
             var select = $(this);
-            var container = $("<div class='uniformSelect-container'></div>")
+            var container = $("<div class='uniformSelect-container'></div>");
             var edit_button = $("<button type='button' class='uniformSelect-edit uniformInput outline block" + options.class + "'></button>");
             container.append(edit_button);
             if (select.attr('name')) {
@@ -41,7 +41,7 @@
                 var value = $.map(select.find('option:selected'), function(el){
                     return $(el).text();
                 }).join(", ");
-                if (value == "") value = "&nbsp;"
+                if (value == "") value = "&nbsp;";
                 edit_button.html(value);
             }
             
@@ -51,10 +51,10 @@
                 edit_button.text('');
                 edit_button.css({
                     width: 'auto'
-                })
+                });
                 edit_button.css({
                     width: container.outerWidth()
-                })
+                });
                 edit_button.text(text);
         
                 if(typeof select_options === "undefined") return;
@@ -73,7 +73,7 @@
                 }
                 select_options.css({
                     fontSize: select.css('font-size')
-                })
+                });
                 select_options.hide();
                 select_options.appendTo('body');
                 select.find('option').each(function(index, el){
@@ -101,7 +101,7 @@
                     actions_el.append(show_all_button);
                 }
                 if (select.prop('multiple')) {
-                    var done_button = $("<button type='button' class='uniformSelect-done block outline blue'>Done</button>")
+                    var done_button = $("<button type='button' class='uniformSelect-done block outline blue'>Done</button>");
                     done_button.click(hideOptions);
                     actions_el.append(done_button);
                 }
@@ -166,7 +166,7 @@
                     select_options.offset({
                         top: container.offset().top + container.outerHeight(),
                         left: container.offset().left
-                    })
+                    });
                     select_options.addClass('fixed');
                 }
             }
