@@ -65,28 +65,27 @@
     
 }.call(this));
 
-class UniformComponent {
-    constructor (options) {
-        this.eventListeners = new Array();
-        this.$el = $('<div>');
-        
-        this.initialize(options);
-    }
+function UniformComponent (options) {
+    this.eventListeners = new Array();
+    this.$el = $('<div>');
     
-    initialize () {}
-    
-    on (type, handler) {
+    this.on = function (type, handler) {
         this.eventListeners.push({
             type: type,
             handler: handler
         });
-    }
-
-    trigger (type) {
+    };
+    
+    this.trigger = function (type) {
         for (var i = 0; i < this.eventListeners.length; i++) {
             if(type == "*" || type == "all" || type == this.eventListeners[i].type){
                 this.eventListeners[i].handler(type, this);
             }
         }
-    }
+    };
+    
+    this.initialize(options);
+    
+    return this;
 }
+UniformComponent.prototype.initialize = function () {}

@@ -18,96 +18,81 @@
  
 }( jQuery ));
 
-class UniformModal extends UniformComponent {
-	
-    /*
-        Options
-        content:    string|$el|function
-        klass:      string - classes to append to modal container
-    */
-    initialize (options) {
-        this.options = {
-            klass: false,
-        };
-        $.extend(this.options, uniformHelpers.pick(options, 'klass'));
-        this.content = options.content;
-        
-        this.$el.addClass('uniformModal');
-        $(document).on('keyup', this.keyup.bind(this));
-        this.$el.on('click', '.uniformModal-close', this.close.bind(this));
+function UniformModal(options){
+    UniformComponent.call(this, options);
+}
+UniformModal.prototype = Object.create(UniformComponent.prototype);
+UniformModal.prototype.constructor = UniformComponent;
+/*  UniformModal.initialize
+    Options
+    content:    string|$el|function
+    klass:      string - classes to append to modal container
+*/
+UniformModal.prototype.initialize = function (options) {
+    this.options = {
+        klass: false,
+    };
+    $.extend(this.options, uniformHelpers.pick(options, 'klass'));
+    this.content = options.content;
+    
+    this.$el.addClass('uniformModal');
+    $(document).on('keyup', this.keyup.bind(this));
+    this.$el.on('click', '.uniformModal-close', this.close.bind(this));
+}
+UniformModal.prototype.keyup = function (e) {
+    if(e.which != 27) return;
+    this.close();
+}
+UniformModal.prototype.render = function () {
+    var that = this;
+    var content = typeof this.content == 'function' ? this.content() : this.content;
+    this.highest_z_index = 0;
+    this.overlay = $('<div class="uniformModal-overlay"></div>');
+    
+    if ($('.uniformModal').length > 0) {
+        this.highest_z_index = Math.max($('.uniformModal').map(function(){
+            return parseInt($(this).css('zIndex'));
+        }));
+        this.overlay.css('zIndex', this.highest_z_index + 1);
+        this.$el.css('zIndex', this.highest_z_index + 2);
     }
     
-    keyup (e) {
-        if(e.which != 27) return;
-        this.close();
-    }
+    $('body').children().each(function(el){
+        if($(el).hasClass('ignore-uniformModal-blur')) return;
+        $(el).addClass('uniformModal-blur uniformModal-blur-' + that.highest_z_index);
+    });
+    $('body').addClass('uniformModal-active');
+    $('body').append(this.overlay);
+    $('body').append(this.$el);
     
-    render () {
-        var content = typeof this.content == 'function' ? this.content() : this.content;
-        this.highest_z_index = 0;
-        this.overlay = $('<div class="uniformModal-overlay"></div>');
-        
-        if ($('.uniformModal').length > 0) {
-            this.highest_z_index = Math.max($('.uniformModal').map(function(){
-                return parseInt($(this).css('zIndex'));
-            }));
-            this.overlay.css('zIndex', this.highest_z_index + 1);
-            this.$el.css('zIndex', this.highest_z_index + 2);
-        }
-        
-        $('body').children().each(_.bind(function(el){
-            if($(el).hasClass('ignore-uniformModal-blur')) return;
-            $(el).addClass('uniformModal-blur uniformModal-blur-' + this.highest_z_index);
-        }, this));
-        $('body').addClass('uniformModal-active');
-        $('body').append(this.overlay);
-        $('body').append(this.$el);
-        
-        var container = $('<div class="uniformModal-container">');
-        container.append(content);
-        container.append('<div class="uniformModal-close"></div>');
-        this.$el.css('top', $(window).scrollTop());
-        this.overlay.click(this.close.bind(this));
-        this.$el.append(container);
-        
-        if (this.options.klass) container.addClass(this.options.klass);
-        if (content instanceof $) content.trigger('rendered');
-        this.trigger('rendered');
-        
-        return this;
-    }
+    var container = $('<div class="uniformModal-container">');
+    container.append(content);
+    content.removeClass('hidden');
+    container.append('<div class="uniformModal-close"></div>');
+    this.$el.css('top', $(window).scrollTop());
+    this.overlay.click(this.close.bind(this));
+    this.$el.append(container);
     
-    close () {
-        $('.uniformModal-active').removeClass('uniformModal-active');
-        $('.uniformModal-blur-' + this.highest_z_index).removeClass('uniformModal-blur-' + this.highest_z_index);
-        $('.uniformModal-blur').each(function(){
-            if($(this).attr('class').match('uniformModal-blur-')) return;
-            $(this).removeClass('uniformModal-blur');
-        });
-        this.trigger('closed');
-        this.remove();
-    }
+    if (this.options.klass) container.addClass(this.options.klass);
+    if (content instanceof $) content.trigger('rendered');
+    this.trigger('rendered');
     
-    remove () {
-        this.overlay.remove();
-        this.$el.remove();
-        this.$el.off('click');
-        this.overlay.off('click');
-        $(document).off('keyup', this.keyup.bind(this));
-    }
-    
-    on (type, handler) {
-        this.eventListeners.push({
-            type: type,
-            handler: handler
-        });
-    }
-    
-    trigger (type) {
-        for (var i = 0; i < this.eventListeners.length; i++) {
-            if(type == "*" || type == "all" || type == this.eventListeners[i].type){
-                this.eventListeners[i].handler(type, this);
-            }
-        }
-    }
+    return this;
+}
+UniformModal.prototype.close = function () {
+    $('.uniformModal-active').removeClass('uniformModal-active');
+    $('.uniformModal-blur-' + this.highest_z_index).removeClass('uniformModal-blur-' + this.highest_z_index);
+    $('.uniformModal-blur').each(function(){
+        if($(this).attr('class').match('uniformModal-blur-')) return;
+        $(this).removeClass('uniformModal-blur');
+    });
+    this.trigger('closed');
+    this.remove();
+}
+UniformModal.prototype.remove = function () {
+    this.overlay.remove();
+    this.$el.remove();
+    this.$el.off('click');
+    this.overlay.off('click');
+    $(document).off('keyup', this.keyup.bind(this));
 }

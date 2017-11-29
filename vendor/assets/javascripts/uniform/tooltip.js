@@ -15,45 +15,43 @@
     };
  
 }( jQuery ));
+function UniformTooltip(options){
+    UniformComponent.call(this, options);
+}
+UniformTooltip.prototype = Object.create(UniformComponent.prototype);
+UniformTooltip.prototype.constructor = UniformComponent;
+UniformTooltip.prototype.initialize = function (options) {
+    this.message = options.message;
+    this.$el = (options.el instanceof $) ? options.el : $(options.el);
 
-class UniformTooltip extends UniformComponent {
-    initialize (options) {
-        this.message = options.message;
-        this.$el = (options.el instanceof $) ? options.el : $(options.el);
-        
-        this.$el.on('mouseover', this.show.bind(this));
-        this.$el.on('mouseout', this.hide.bind(this));
+    this.$el.on('mouseover', this.show.bind(this));
+    this.$el.on('mouseout', this.hide.bind(this));
+}
+UniformTooltip.prototype.render = function () {
+    this.popup = $('<div class="uniformTooltip-popup">' + this.message + '</div>');
+    this.popup.prepend("<div class='uniformTooltip-pointer'></div>");
+    this.$el.append(this.popup);
+    if (this.message.length > 100) {
+        this.popup.css({
+            minWidth: "200px"
+        });
     }
-    
-    render () {
-        this.popup = $('<div class="uniformTooltip-popup">' + this.message + '</div>');
-        this.popup.prepend("<div class='uniformTooltip-pointer'></div>");
-        this.$el.append(this.popup);
-        if (this.message.length > 100) {
-            this.popup.css({
-                minWidth: "200px"
-            });
-        }
-        if (this.popup.outerWidth(true) + this.popup.offset().left > $(window).width()) {
-            this.popup.css({
-                left: $(window).width() - this.popup.outerWidth(true) - this.popup.offset().left
-            });
-        }
-        return this;
+    if (this.popup.outerWidth(true) + this.popup.offset().left > $(window).width()) {
+        this.popup.css({
+            left: $(window).width() - this.popup.outerWidth(true) - this.popup.offset().left
+        });
     }
-    
-    remove () {
-        this.$el.remove();
-    }
-    
-    show () {
-        if(!this.popup) this.render();
-        this.popup.addClass('active');
-        this.trigger('shown');
-    }
-    
-    hide () {
-        this.popup.removeClass('active');
-        this.trigger('hidden');
-    }
+    return this;
+}
+UniformTooltip.prototype.remove = function () {
+    this.$el.remove();
+}
+UniformTooltip.prototype.show = function () {
+    if(!this.popup) this.render();
+    this.popup.addClass('active');
+    this.trigger('shown');
+}
+UniformTooltip.prototype.hide = function () {
+    this.popup.removeClass('active');
+    this.trigger('hidden');
 }
