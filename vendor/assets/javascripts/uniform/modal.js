@@ -46,6 +46,8 @@ UniformModal.prototype.keyup = function (e) {
 UniformModal.prototype.render = function () {
     var that = this;
     var content = typeof this.content == 'function' ? this.content() : this.content;
+    if (!(content instanceof jQuery)) content = $(content);
+    
     this.highest_z_index = 0;
     this.overlay = $('<div class="uniformModal-overlay"></div>');
     
@@ -67,7 +69,7 @@ UniformModal.prototype.render = function () {
     
     var container = $('<div class="uniformModal-container">');
     container.append(content);
-    content.removeClass('hidden');
+    
     container.append('<div class="uniformModal-close"></div>');
     this.$el.css('top', $(window).scrollTop());
     this.overlay.click(this.close.bind(this));
