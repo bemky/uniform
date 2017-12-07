@@ -82,7 +82,7 @@ table.fixed{
     clear:both;
 }
 @include apply-media-sizes('.block') {
-    display: block;
+    display: block !important;
 }
 @include apply-media-sizes('.inline-block') {
     display:inline-block !important;

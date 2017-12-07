@@ -116,6 +116,12 @@ $grid-gutter: 1em;
             padding-left: 0;
             padding-right: 0;
         }
+        &.no-gutter-right{
+            padding-right: 0;
+        }
+        &.no-gutter-left{
+            padding-right: 0;
+        }
         @include media($md){
             padding-left:$grid-gutter;
             padding-right: $grid-gutter;
