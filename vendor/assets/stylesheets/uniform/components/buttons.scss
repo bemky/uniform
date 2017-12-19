@@ -173,6 +173,17 @@
         }
     }
     
+    &.gray-dark{
+        color: white;
+        background-color: darken($gray-dark, 3);
+        background-image: linear-gradient($gray-dark, darken($gray-dark, 3));
+        border-color: darken($gray-dark, 3);
+        &.outline{
+            color: lighten($gray, 20);
+            border-color: lighten($gray, 30);
+        }
+    }
+    
     &:disabled,
     &.disabled,
     &:disabled:hover,

@@ -65,8 +65,8 @@ $grid-gutter: 1em;
     }
     
     &.no-gutter{
-        .col,
-        [class*="col-"]{
+        & > .col,
+        & > [class*="col-"]{
             padding-left: 0;
             padding-right: 0;
         }

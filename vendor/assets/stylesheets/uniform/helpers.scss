@@ -44,12 +44,15 @@
 @include apply-media-sizes('.border'){
     border: 1px solid $gray-light;
 }
+@include apply-media-sizes('.border-dark'){
+    border: 1px solid $gray-dark;
+}
 @each $direction in 'top' 'right' 'bottom' 'left' {
     @include apply-media-sizes('.border-#{$direction}'){
         border-#{$direction}: 1px solid $gray-light;
     }
     @include apply-media-sizes('.border-dark-#{$direction}'){
-        border-#{$direction}: 1px solid darken($gray-light, 20);
+        border-#{$direction}: 1px solid $gray-dark;
     }
 }
 img.disabled{
@@ -113,6 +116,7 @@ button.raw{
     appearance: none;
     border: none;
     background:none;
+    padding: 0;
 }
 .overflow-hidden{
     overflow:hidden;

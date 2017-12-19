@@ -7,6 +7,9 @@
 @include apply-media-sizes('.pad-less'){
     padding: 0.5em;
 }
+@include apply-media-sizes('.pad-less-important'){
+    padding: 0.5em !important;
+}
 @include apply-media-sizes('.pad-more'){
     padding: 2em;
 }
@@ -70,5 +73,16 @@
     }
     @include apply-media-sizes('.pad-#{$direction}-more'){
         padding-#{$direction}: 2em !important;
+    }
+}
+
+@for $i from 1 through 20 {
+    .pad-#{$i}     { padding: #{$i +"em"}; }
+    .pad-v-#{$i}     { padding-top: #{$i +"em"}; padding-bottom: #{$i +"em"}; }
+    .pad-h-#{$i}     { padding-left: #{$i +"em"}; padding-right: #{$i +"em"}; }
+    @each $direction in 'top' 'right' 'bottom' 'left' {
+        @include apply-media-sizes('.pad-#{$direction}-#{$i}'){
+            padding-#{$direction}: #{$i +"em"} !important;
+        }
     }
 }
