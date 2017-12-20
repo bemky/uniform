@@ -307,7 +307,8 @@ UniformDropdown.prototype.keyup = function (e) {
             content: el.data('modal-content')
         };
         if (el.data('modal-target')) {
-            options.content = $(el.data('modal-target'));
+            options.content = $(el.data('modal-target')).clone();
+            options.content.removeClass('hidden');
         }
         var modal = new UniformModal(options);
         modal.on('*', function (event_type, modal) {
@@ -346,10 +347,13 @@ UniformModal.prototype.keyup = function (e) {
 UniformModal.prototype.render = function () {
     var that = this;
     var content = typeof this.content == 'function' ? this.content() : this.content;
-    if (!(content instanceof jQuery)) content = $(content);
+    if (!(content instanceof jQuery)) content = $("<div>").html(content);
     
     this.highest_z_index = 0;
     this.overlay = $('<div class="uniformModal-overlay"></div>');
+    this.blur = $("<div class='uniformModal-blur'></div>");
+    this.original_scroll = window.scrollY;
+    this.blur.css('top', 0 - this.original_scroll + "px")
     
     if ($('.uniformModal').length > 0) {
         this.highest_z_index = Math.max($('.uniformModal').map(function(){
@@ -359,11 +363,10 @@ UniformModal.prototype.render = function () {
         this.$el.css('zIndex', this.highest_z_index + 2);
     }
     
-    $('body').children().each(function(el){
-        if($(el).hasClass('ignore-uniformModal-blur')) return;
-        $(el).addClass('uniformModal-blur uniformModal-blur-' + that.highest_z_index);
-    });
+    this.blur.append($('body').children());
+    
     $('body').addClass('uniformModal-active');
+    $('body').append(this.blur)
     $('body').append(this.overlay);
     $('body').append(this.$el);
     
@@ -383,11 +386,9 @@ UniformModal.prototype.render = function () {
 }
 UniformModal.prototype.close = function () {
     $('.uniformModal-active').removeClass('uniformModal-active');
-    $('.uniformModal-blur-' + this.highest_z_index).removeClass('uniformModal-blur-' + this.highest_z_index);
-    $('.uniformModal-blur').each(function(){
-        if($(this).attr('class').match('uniformModal-blur-')) return;
-        $(this).removeClass('uniformModal-blur');
-    });
+    $('body').append(this.blur.children());
+    this.blur.remove();
+    $(window).scrollTop(this.original_scroll);
     this.trigger('closed');
     this.remove();
 }

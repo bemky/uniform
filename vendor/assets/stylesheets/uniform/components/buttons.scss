@@ -194,6 +194,12 @@
         background-color: darken($background, 10);
         border-color: lighten($gray, 40);
         text-shadow: none;
+        &.disabled-dark{
+            background-color: $gray-dark;
+            color: lighten($gray-dark, 30);
+            border-color: darken($gray-dark, 5);
+            opacity: 0.75;
+        }
     }
 }
 span.uniformButton{

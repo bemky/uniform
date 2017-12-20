@@ -17,6 +17,9 @@
 }
 .rounded{
     border-radius: 0.25em;
+    &.clip{
+        overflow:hidden;
+    }
 }
 @each $direction in 'top' 'bottom' {
     .rounded-#{$direction}{
