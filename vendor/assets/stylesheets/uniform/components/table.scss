@@ -26,6 +26,14 @@
         border-bottom: 1px solid $gray-light;
     }
     
+    &.tight{
+        .row > *,
+        tr td,
+        th {
+            padding: 0.2em 0.5em;
+        }
+    }
+    
     .head > *,
     thead th{
         color: lighten($gray, 20);

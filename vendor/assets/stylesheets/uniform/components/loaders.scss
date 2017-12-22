@@ -1,14 +1,28 @@
 .uniform-loader{
-    font-size:2em;
     line-height:1em;
     display:inline-block;
+    white-space:nowrap;
+    letter-spacing:-.05em;
+    span{
+        color:rgba(black, 1);
+        text-shadow:-1px -1px 0 rgba(#FFFFFF, .2);
+        animation: uniform-loader-light 1s infinite linear;
+        animation-delay: 0.2s;
+    }
+    span:first-of-type{
+        animation-delay: 0s;
+    }
+    span:last-of-type{
+        animation-delay: 0.4s;
+    }
     .uniform-loader-container{
-        letter-spacing:-.05em;
         white-space:nowrap;
+    }
+    &.light{
         span{
-            color:rgba(black, 1);
-            text-shadow:-1px -1px 0 rgba(#FFFFFF, .2);
-            animation: uniform-loader-light 1s infinite linear;
+            color:rgba(white, 1);
+            text-shadow:-1px -1px 0 rgba(black, .2);
+            animation: uniform-loader 1s infinite linear;
             animation-delay: 0.2s;
         }
         span:first-of-type{
@@ -16,22 +30,6 @@
         }
         span:last-of-type{
             animation-delay: 0.4s;
-        }
-    }
-    &.light{
-        .uniform-loader-container{
-            span{
-                color:rgba(white, 1);
-                text-shadow:-1px -1px 0 rgba(black, .2);
-                animation: uniform-loader 1s infinite linear;
-                animation-delay: 0.2s;
-            }
-            span:first-of-type{
-                animation-delay: 0s;
-            }
-            span:last-of-type{
-                animation-delay: 0.4s;
-            }
         }
     }
     &.cover{
