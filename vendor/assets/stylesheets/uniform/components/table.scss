@@ -78,3 +78,20 @@
         }
     }
 }
+
+.uniformTableDotLeaders{
+    table-layout: fixed;
+    td{
+        vertical-align:bottom;
+        padding-left:0.5em;
+    }
+    th{
+        background-image:radial-gradient(black 1px, white 0px);
+        background-size: 8px 8px;
+        background-repeat:repeat-x;
+        background-position: left bottom;
+        span{
+            background-color: white;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 @mixin generate-color($class, $color){
 .text-#{$class} {               color: $color !important;}
 .a-hover-#{$class} a:hover {    color: $color !important;}
-.bg-#{$class} {                 background-color: $color !important;}
+.bg-#{$class} {                 background-color: $color;}
 .uniformLabel-#{$class}{        border-color: $color !important;}
 .a-#{$class} a {
     color: $color;

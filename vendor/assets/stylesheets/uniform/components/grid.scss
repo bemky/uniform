@@ -58,6 +58,13 @@ $grid-gutter: 1em;
                 padding-bottom: 0;
             }
         }
+        &.no-gutter{
+            & > .col,
+            & > [class*="col-"]{
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
     }
     
     &.no-wrap{

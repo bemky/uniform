@@ -8,6 +8,7 @@
     .height-#{$i * 5}-px        { height: #{$i * 5 + "px"}; }
     .height-#{$i * 5}-p        { height: #{$i * 5 + "%"}; }
     .max-height-#{$i * 5}-px    { max-height: #{$i * 5 + "px"}; }
+    .min-height-#{$i * 5}-px    { min-height: #{$i * 5 + "px"}; }
 }
 @for $i from 1 through 20 {
     .width-#{$i * 5}-vw     { width: #{$i * 5 +"vw"}; }
