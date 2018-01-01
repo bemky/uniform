@@ -1,7 +1,7 @@
 @mixin generate-color($class, $color){
 .text-#{$class} {               color: $color !important;}
 .a-hover-#{$class} a:hover {    color: $color !important;}
-.bg-#{$class} {                 background-color: $color;}
+.bg-#{$class} {                 background-color: $color !important;}
 .uniformLabel-#{$class}{        border-color: $color !important;}
 .a-#{$class} a {
     color: $color;
@@ -33,5 +33,10 @@
 @include generate-color('background-light', lighten($background, 2));
 @include generate-color('background-dark', darken($background, 5));
 
+@include generate-color('black', #000000);
 @include generate-color('white', #FFFFFF);
 @include generate-color('muted', lighten($gray, 30));
+
+@for $i from 1 through 20 {
+    .opacity-#{$i * 5}     { opacity: #{$i * 5 / 100.0}; }
+}

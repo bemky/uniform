@@ -80,7 +80,11 @@
 }
 
 .uniformTableDotLeaders{
+    line-height: 1;
     table-layout: fixed;
+    td, th{
+        padding: 0.3em 0;
+    }
     td{
         vertical-align:bottom;
         padding-left:0.5em;
@@ -89,9 +93,10 @@
         background-image:radial-gradient(black 1px, white 0px);
         background-size: 8px 8px;
         background-repeat:repeat-x;
-        background-position: left bottom;
+        background-position: left bottom 0.2em;
         span{
             background-color: white;
+            padding-right: 0.5em;
         }
     }
 }

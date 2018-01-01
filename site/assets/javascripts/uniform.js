@@ -96,16 +96,15 @@ UniformComponent.prototype.initialize = function () {}
         return this.each(function(){
             var el = $(this);
             var options = {
-                align: el.data('dropdown-klass'),
-                trigger: el.data('dropdown-content'),
-                show_arrow: el.data('dropdown-show_arrow'),
-                hide_sme: el.data('dropdown-hide_sm'),
-                content: "<div class='pad'>" + el.data('dropdown-content') + "</div>",
                 el: el
             };
-            if (el.data('dropdown-target')) {
-                options.content = $(el.data('dropdown-target'));
-            }
+            if (el.data('dropdown-align') !== undefined)      options.align       = el.data('dropdown-align');
+            if (el.data('dropdown-trigger') !== undefined)    options.trigger     = el.data('dropdown-trigger');
+            if (el.data('dropdown-show_arrow') !== undefined) options.show_arrow  = el.data('dropdown-show_arrow');
+            if (el.data('dropdown-hide_sm') !== undefined)    options.hide_sm     = el.data('dropdown-hide_sm');
+            if (el.data('dropdown-content') !== undefined)    options.content     = "<div class='pad'>" + el.data('dropdown-content') + "</div>";
+            if (el.data('dropdown-target') !== undefined)     options.content     = $(el.data('dropdown-target'));
+            
             var dropdown = new UniformDropdown(options);
             dropdown.on('*', function (event_type, dropdown) {
                 el.trigger('dropdown-' + type, dropdown);
@@ -129,14 +128,14 @@ UniformDropdown.prototype.constructor = UniformComponent;
     hide_sm:    true|false - don't show dropdown on mobile browsers
 */
 UniformDropdown.prototype.initialize = function (options) {
+    options = options || {}
     this.options = {
         align: 'center',
         trigger: 'click focus',
         show_arrow: true,
         hide_sm: false
     };
-    $.extend(this.options, uniformHelpers.pick(Object.keys(this.options), 'align', 'trigger', 'show_arrow', 'min_width', 'hide_sm'));
-
+    this.options = $.extend(this.options, uniformHelpers.pick(options, Object.keys(this.options)));
     this.content = options.content;
     this.$el = (options.el instanceof $) ? options.el : $(options.el);
 

@@ -47,7 +47,10 @@
                 padding-bottom: calc(1.3em - 2px);
             }
         }
-        
+        &.nest{
+            margin-left: -1em;
+            margin-right: -1em;
+        }
     }
     img{
         display: block;
