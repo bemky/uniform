@@ -6,7 +6,7 @@
     right: 0;
     opacity: 0.6;
     background: black;
-    z-index: 9998;
+    z-index: 1;
 }
 .uniformModal{
     position: absolute;
@@ -25,6 +25,7 @@
     background: white;
     border-radius: 0.25em;
     max-width: 90%;
+    z-index: 2;
     &.fill{
         width: 90%;
     }

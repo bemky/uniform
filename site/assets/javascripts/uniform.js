@@ -92,6 +92,42 @@ UniformComponent.prototype.initialize = function () {}
 ;
 (function( $ ) {
  
+    $.fn.uniformCheckbox = function() {
+        return this.each(function(){
+            var el = $(this);
+            var checkbox = new UniformCheckbox({
+                el: this
+            });
+            checkbox.render();
+        });
+    };
+    $.fn.uniformRadio = $.fn.uniformCheckbox;
+ 
+}( jQuery ));
+function UniformCheckbox(options){
+    UniformComponent.call(this, options);
+}
+UniformCheckbox.prototype = Object.create(UniformComponent.prototype);
+UniformCheckbox.prototype.constructor = UniformComponent;
+UniformCheckbox.prototype.initialize = function (options) {
+    this.$el = (options.el instanceof $) ? options.el : $(options.el);
+
+    this.$el.on('change', this.change.bind(this));
+}
+UniformCheckbox.prototype.render = function () {
+    var type = this.$el.hasClass('uniformRadio') ? 'uniformRadio' : 'uniformCheckbox';
+    this.checkbox = $('<div class="'+type+'-indicator">');
+    this.checkbox.addClass(this.$el.attr('class').replace(type, ''));
+    this.checkbox.toggleClass('checked', this.$el.prop('checked'));
+    this.$el.after(this.checkbox);
+    return this;
+}
+UniformCheckbox.prototype.change = function () {
+    this.checkbox.toggleClass('checked', this.$el.prop('checked'));
+}
+;
+(function( $ ) {
+ 
     $.fn.uniformDropdown = function() {
         return this.each(function(){
             var el = $(this);
@@ -213,7 +249,7 @@ UniformDropdown.prototype.hide = function () {
     if(!this.dropdown) return;
     this.dropdown.hide();
     this.$el.removeClass('active');
-    this.overlay.remove();
+    if (this.overlay) this.overlay.remove();
     if ($(window).width() < 720) {
         $('body').removeClass('uniformModal-hideBody');
         $(window).scrollTop(this.lastScrollPosition);
@@ -358,15 +394,13 @@ UniformModal.prototype.render = function () {
         this.highest_z_index = Math.max($('.uniformModal').map(function(){
             return parseInt($(this).css('zIndex'));
         }));
-        this.overlay.css('zIndex', this.highest_z_index + 1);
         this.$el.css('zIndex', this.highest_z_index + 2);
     }
-    
+    this.$el.append(this.overlay);
     this.blur.append($('body').children());
     
     $('body').addClass('uniformModal-active');
     $('body').append(this.blur)
-    $('body').append(this.overlay);
     $('body').append(this.$el);
     
     var container = $('<div class="uniformModal-container">');

@@ -3,6 +3,8 @@ $(document).ready(function(){
     $('.uniformSelect').uniformSelect();
     $('.uniformDropdown').uniformDropdown();
     $('.uniformTooltip').uniformTooltip();
+    $('.uniformCheckbox').uniformCheckbox();
+    $('.uniformRadio').uniformRadio();
     $('.launchUniformModal').click(function(){
         $(this).uniformModal();
     });

@@ -59,15 +59,13 @@ UniformModal.prototype.render = function () {
         this.highest_z_index = Math.max($('.uniformModal').map(function(){
             return parseInt($(this).css('zIndex'));
         }));
-        this.overlay.css('zIndex', this.highest_z_index + 1);
         this.$el.css('zIndex', this.highest_z_index + 2);
     }
-    
+    this.$el.append(this.overlay);
     this.blur.append($('body').children());
     
     $('body').addClass('uniformModal-active');
     $('body').append(this.blur)
-    $('body').append(this.overlay);
     $('body').append(this.$el);
     
     var container = $('<div class="uniformModal-container">');

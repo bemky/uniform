@@ -13,6 +13,9 @@
 .text-1rem{
     font-size: 1rem;
 }
+@for $i from 1 through 20 {
+    .text-#{str-replace(str-replace('' + $i * 0.2, '.', '_'), '_0', '')}-em { font-size: #{$i * 0.2 +"em"}; }
+}
 .text-larger{
     font-size: 1.4em;
 }

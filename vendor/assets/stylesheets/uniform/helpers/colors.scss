@@ -12,6 +12,14 @@
         color: $color;
     }
 }
+@include apply-media-sizes('.border-#{$class}'){
+    border: 1px solid $color !important;
+}
+@each $direction in 'top' 'right' 'bottom' 'left' {
+    @include apply-media-sizes('.border-#{$class}-#{$direction}'){
+        border-#{$direction}: 1px solid $color !important;
+    }
+}
 }
 
 @include generate-color('green', $green);
@@ -39,4 +47,14 @@
 
 @for $i from 1 through 20 {
     .opacity-#{$i * 5}     { opacity: #{$i * 5 / 100.0}; }
+}
+
+@include apply-media-sizes('.border'){
+    border: 1px solid $gray-light;
+}
+
+@each $direction in 'top' 'right' 'bottom' 'left' {
+    @include apply-media-sizes('.border-#{$direction}'){
+        border-#{$direction}: 1px solid $gray-light;
+    }
 }

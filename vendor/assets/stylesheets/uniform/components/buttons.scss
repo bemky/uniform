@@ -25,17 +25,6 @@
     &.input-height{
         line-height: 1.4;
     }
-    
-    .fortycon{
-        line-height:0;
-        vertical-align:-1px;
-        font-size:1.2em;
-        margin-right:3px;
-        &.end{
-            margin-right: 0;
-            margin-left: 3px;
-        }
-    }
 
     &:visited{
         color:$gray;
@@ -85,13 +74,6 @@
     &.large{
         padding: 1em 2em;
         font-weight:bold;
-        .fortycon{
-            line-height:0.5em;
-            vertical-align:-6px;
-            font-size:2em;
-            margin-right:7px;
-            font-weight:normal;
-        }
     }
     
     &.warn:hover{

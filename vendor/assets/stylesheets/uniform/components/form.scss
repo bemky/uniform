@@ -252,7 +252,7 @@ button.uniformInput{
         &.inline,
         &.buttons{
             label{
-                border-color: $gray-dark;
+                border-color: lighten($gray, 20);
                 &.active{
                     background: $gray-dark;
                 }
@@ -370,5 +370,50 @@ button.uniformInput{
     }
     input.pad-more{
         padding: 1em;
+    }
+}
+
+.uniformCheckbox,
+.uniformRadio{
+    display:none;
+}
+.uniformRadio-indicator,
+.uniformCheckbox-indicator{
+    display:inline-block;
+    width: 1em;
+    height: 1em;
+    border: 0.1em solid $gray-light;
+    vertical-align:middle;
+    margin-top: -0.15em;
+    border-radius: 0.25em;
+    position:relative;
+    &.invert{
+        border-color: rgba(white, 0.5);
+    }
+}
+.uniformCheckbox-indicator{
+    &.checked{
+        border-color: $blue;
+        background: $blue;
+        content: url("data:image/svg+xml; utf8,#{icon-check(#FFFFFF)}");
+        &.bg-checked-green{
+            background: $green;
+            border-color: $green; 
+        }
+    }
+}
+.uniformRadio-indicator{
+    border-radius: 50%;
+    &.checked{
+        border-color: $blue;
+        background: $blue;
+        box-shadow: inset 0 0 0 0.1em white;
+        &.invert{
+            box-shadow: inset 0 0 0 0.1em $gray;
+        }
+        &.bg-checked-green{
+            background: $green;
+            border-color: $green; 
+        }
     }
 }

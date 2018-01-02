@@ -121,7 +121,7 @@ UniformDropdown.prototype.hide = function () {
     if(!this.dropdown) return;
     this.dropdown.hide();
     this.$el.removeClass('active');
-    this.overlay.remove();
+    if (this.overlay) this.overlay.remove();
     if ($(window).width() < 720) {
         $('body').removeClass('uniformModal-hideBody');
         $(window).scrollTop(this.lastScrollPosition);

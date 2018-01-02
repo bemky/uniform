@@ -99,4 +99,12 @@
             padding-right: 0.5em;
         }
     }
+    &.bg-background{
+        th{
+            background-image:radial-gradient(black 1px, $background 0px);
+            span{
+                background-color: $background;
+            }
+        }
+    }
 }
