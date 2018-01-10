@@ -21,8 +21,10 @@ function UniformTooltip(options){
 UniformTooltip.prototype = Object.create(UniformComponent.prototype);
 UniformTooltip.prototype.constructor = UniformComponent;
 UniformTooltip.prototype.initialize = function (options) {
+    this.enabled = true;
     this.message = options.message;
     this.$el = (options.el instanceof $) ? options.el : $(options.el);
+    options.el.tooltip = this;
 
     this.$el.on('mouseover', this.show.bind(this));
     this.$el.on('mouseout', this.hide.bind(this));
@@ -48,10 +50,19 @@ UniformTooltip.prototype.remove = function () {
 }
 UniformTooltip.prototype.show = function () {
     if(!this.popup) this.render();
+    if(!this.enabled) return;
     this.popup.addClass('active');
     this.trigger('shown');
 }
 UniformTooltip.prototype.hide = function () {
     this.popup.removeClass('active');
     this.trigger('hidden');
+}
+
+UniformTooltip.prototype.disable = function () {
+    this.enabled = false;
+}
+
+UniformTooltip.prototype.enable = function () {
+    this.enabled = true;
 }

@@ -3,6 +3,7 @@
     .col-#{$i}-p                { flex: 0 0 #{$i+"%"}; max-width: #{$i + "%"}; }
     .width-#{$i}-p              { width: #{$i + "%"}; max-width: #{$i + "%"}; }
     .width-#{$i * 5}-px         { width: #{$i * 5 + "px"}; }
+    .min-width-#{$i}-p          { min-width: #{$i + "%"}; }
     .max-width-#{$i * 5}-px     { max-width: #{$i * 5 + "px"}; }
     .max-width-#{$i}-p          { max-width: #{$i + "%"}; }
     .height-#{$i * 5}-px        { height: #{$i * 5 + "px"}; }

@@ -34,6 +34,7 @@
 @include generate-color('gray', $gray);
 @include generate-color('gray-light', $gray-light);
 @include generate-color('gray-dark', $gray-dark);
+@include generate-color('gray-darker', darken($gray-dark, 7));
 @include generate-color('yellow', $yellow);
 @include generate-color('yellow-light', $yellow-light);
 @include generate-color('yellow-dark', $yellow-dark);
@@ -53,8 +54,15 @@
     border: 1px solid $gray-light;
 }
 
+@include apply-media-sizes('.border-none'){
+    border: none !important;
+}
+
 @each $direction in 'top' 'right' 'bottom' 'left' {
     @include apply-media-sizes('.border-#{$direction}'){
         border-#{$direction}: 1px solid $gray-light;
+    }
+    @include apply-media-sizes('.border-#{$direction}-none'){
+        border-#{$direction}: none;
     }
 }

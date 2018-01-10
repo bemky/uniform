@@ -42,6 +42,15 @@
         }
     }
     
+    &.no-pad{
+        .row > *,
+        tr td,
+        th {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    
     .head > *,
     thead th{
         color: lighten($gray, 20);
@@ -98,13 +107,13 @@
         padding-left:0.5em;
     }
     th{
-        background-image:radial-gradient(black 1px, white 0px);
-        background-size: 8px 8px;
-        background-repeat:repeat-x;
-        background-position: left bottom 0.2em;
+        background: url("data:image/svg+xml; utf8,#{icon-circle(6, 8, 1, $gray)}");
+        background-repeat: repeat-x;
+        background-position: left bottom;
         span{
             background-color: white;
             padding-right: 0.5em;
+            position: relative;
         }
     }
     &.bg-background{

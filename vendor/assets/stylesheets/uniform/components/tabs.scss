@@ -11,16 +11,32 @@
         cursor: pointer;
         &:hover{
             color: $blue;
+            .uniformLabel{
+                border-color:$blue;
+                color: $blue;
+            }
             .uniformLabel.fill{
-                background: $blue ;
+                background: $blue;
+                color: white;
             }
         }
         &.active{
-            border-color: $green-dark;
-            color: $green-dark;
-            .uniformLabel.fill{
-                background: $green-dark ;
+            border-color: $blue;
+            color: $blue;
+            .uniformLabel{
+                border-color:$blue;
+                color: $blue;
             }
+            .uniformLabel.fill{
+                background: $blue;
+                color: white;
+            }
+        }
+    }
+    &.pad-more{
+        padding: 0;
+        a {
+            padding: 1em;
         }
     }
     &.center{

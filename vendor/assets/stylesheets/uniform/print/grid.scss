@@ -1,0 +1,50 @@
+.grid{
+    display: table;
+    width :100%;
+    
+    &.grid-center {
+        .col,
+        [class*="col-"]{
+            vertical-align:center;
+        }
+    }
+    &.grid-top{
+        .col,
+        [class*="col-"]{
+            vertical-align:top;
+        }
+    }
+    &.grid-bottom {
+        .col,
+        [class*="col-"]{
+            vertical-align:bottom;
+        }
+    }
+    
+    .row{
+        display: table-row;
+    }
+    .col,
+    [class*="col-"]{
+        display: table-cell;
+        position: static;
+        vertical-align:top;
+        &.col-center       {vertical-align: center;}
+        &.col-top          {vertical-align: top;}
+        &.col-bottom       {vertical-align: bottom;}
+    }
+}
+
+.col-fill{
+}
+@for $i from 1 through $grid-columns {
+    .col-#{$i} {
+        width: #{($i / $grid-columns * 100) + "%"};
+    }
+}
+
+@for $i from 1 through 100 {
+    .col-#{$i * 5}-px               { width: #{$i * 5 + "px"}; }
+    .col-#{$i}-p                { width: #{$i + "%"}; }
+}
+
