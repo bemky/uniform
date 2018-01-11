@@ -231,6 +231,7 @@ button.uniformInput{
             border: 1px solid $gray-light;
             &.active{
                 background: $gray-light;
+                box-shadow: inset 0 -1px 0 0 $blue;
             }
             &:last-of-type{
                 margin-right: 0;
@@ -255,6 +256,7 @@ button.uniformInput{
             label{
                 border-color: lighten($gray, 20);
                 &.active{
+                    border-color: $gray-dark;
                     background: $gray-dark;
                 }
             }

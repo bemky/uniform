@@ -52,6 +52,11 @@ UniformTooltip.prototype.show = function () {
     if(!this.popup) this.render();
     if(!this.enabled) return;
     this.popup.addClass('active');
+    if (this.popup.offset().left < 0) {
+        this.popup.css({
+            left: 0
+        })
+    }
     this.trigger('shown');
 }
 UniformTooltip.prototype.hide = function () {
