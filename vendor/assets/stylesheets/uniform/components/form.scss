@@ -190,7 +190,8 @@ button.uniformInput{
         #{$text-inputs},
         textarea,
         .uniformCheckboxCollection.inline,
-        .uniformCheckboxCollection.inline-md{
+        .uniformCheckboxCollection.inline-md,
+        .uniformFloatingLabel{
             border-color: $gray;
             border-radius: 0.25em;
         }
