@@ -4,7 +4,7 @@
         return this.each(function(){
             var el = $(this);
             var options = {
-                el: el
+                el: this
             };
             if (el.data('dropdown-align') !== undefined)      options.align       = el.data('dropdown-align');
             if (el.data('dropdown-trigger') !== undefined)    options.trigger     = el.data('dropdown-trigger');
@@ -14,8 +14,8 @@
             if (el.data('dropdown-target') !== undefined)     options.content     = $(el.data('dropdown-target'));
             
             var dropdown = new UniformDropdown(options);
-            dropdown.on('*', function (event_type, dropdown) {
-                el.trigger('dropdown-' + type, dropdown);
+            dropdown.on('*', function (event_key, dropdown) {
+                el.trigger('dropdown-' + event_key, dropdown);
             });
             dropdown.render();
         });
@@ -46,8 +46,9 @@ UniformDropdown.prototype.initialize = function (options) {
     this.options = $.extend(this.options, uniformHelpers.pick(options, Object.keys(this.options)));
     this.content = options.content;
     this.$el = (options.el instanceof $) ? options.el : $(options.el);
+    options.el.dropdown = this;
 
-    this.$el.on(this.options.trigger, this.show.bind(this));
+    this.$el.on(this.options.trigger, this.toggle.bind(this));
     $(window).on('resize', this.resize.bind(this));
     $(document).on(this.options.trigger, this.outsideClick.bind(this));
     $(document).on('keyup', this.keyup.bind(this));
@@ -96,6 +97,14 @@ UniformDropdown.prototype.remove = function () {
     $(window).off('resize', this.resize.bind(this));
     $(document).off(this.options.trigger, this.outsideClick.bind(this));
     $(document).off('keyup', this.keyup.bind(this));
+}
+
+UniformDropdown.prototype.toggle = function () {
+    if (this.$el.hasClass('active')) {
+        this.hide();
+    } else {
+        this.show();
+    }
 }
 
 UniformDropdown.prototype.show = function () {

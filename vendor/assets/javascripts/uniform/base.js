@@ -76,10 +76,10 @@ function UniformComponent (options) {
         });
     };
     
-    this.trigger = function (type) {
+    this.trigger = function (event_key) {
         for (var i = 0; i < this.eventListeners.length; i++) {
-            if(type == "*" || type == "all" || type == this.eventListeners[i].type){
-                this.eventListeners[i].handler(type, this);
+            if(this.eventListeners[i].type == "*" || this.eventListeners[i].type == "all" || event_key == this.eventListeners[i].type){
+                this.eventListeners[i].handler(event_key, this);
             }
         }
     };
