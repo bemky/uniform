@@ -9,10 +9,10 @@
             if (el.data('dropdown-align') !== undefined)      options.align       = el.data('dropdown-align');
             if (el.data('dropdown-trigger') !== undefined)    options.trigger     = el.data('dropdown-trigger');
             if (el.data('dropdown-show_arrow') !== undefined) options.show_arrow  = el.data('dropdown-show_arrow');
+            if (el.data('dropdown-square') !== undefined)     options.square  = el.data('dropdown-square');
             if (el.data('dropdown-hide_sm') !== undefined)    options.hide_sm     = el.data('dropdown-hide_sm');
             if (el.data('dropdown-content') !== undefined)    options.content     = "<div class='pad'>" + el.data('dropdown-content') + "</div>";
             if (el.data('dropdown-target') !== undefined)     options.content     = $(el.data('dropdown-target'));
-            
             var dropdown = new UniformDropdown(options);
             dropdown.on('*', function (event_key, dropdown) {
                 el.trigger('dropdown-' + event_key, dropdown);
@@ -34,6 +34,7 @@ UniformDropdown.prototype.constructor = UniformComponent;
     trigger:    'click'|'focus'|'mouseover' - what triggers showDropdown
     show_arrow: true\false - show dropdown arrow
     hide_sm:    true|false - don't show dropdown on mobile browsers
+    square:     true|false - round corners on dropdown
 */
 UniformDropdown.prototype.initialize = function (options) {
     options = options || {}
@@ -41,7 +42,8 @@ UniformDropdown.prototype.initialize = function (options) {
         align: 'center',
         trigger: 'click focus',
         show_arrow: true,
-        hide_sm: false
+        hide_sm: false,
+        square: false
     };
     this.options = $.extend(this.options, uniformHelpers.pick(options, Object.keys(this.options)));
     this.content = options.content;
@@ -63,6 +65,7 @@ UniformDropdown.prototype.render = function () {
         this.dropdown.addClass('has-pointer');
         this.dropdown.append("<div class='uniformDropdown-pointer'></div>");
     }
+    this.dropdown.toggleClass('square', this.options.square);
     this.dropdown.hide();
     this.dropdown.append(this.content);
     this.dropdown.appendTo($('body'));
