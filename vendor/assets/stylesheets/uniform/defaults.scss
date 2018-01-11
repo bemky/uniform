@@ -29,6 +29,9 @@ dl,
 pre{
     margin: 0;
     margin-bottom: 1em; // might want to do rem
+    &:last-child{
+        margin-bottom: 0;
+    }
 }
 
 ul,
