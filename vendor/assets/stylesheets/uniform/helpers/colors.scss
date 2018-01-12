@@ -48,6 +48,7 @@
 
 @for $i from 1 through 20 {
     .opacity-#{$i * 5}     { opacity: #{$i * 5 / 100.0}; }
+    .bg-green-o-#{$i * 5}  { background: rgba($green, $i * 5 / 100.0); }
 }
 
 @include apply-media-sizes('.border'){
