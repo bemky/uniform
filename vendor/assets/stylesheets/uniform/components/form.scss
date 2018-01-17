@@ -151,10 +151,16 @@ button.uniformInput{
         &.collapse{
             margin-bottom: 0;
         }
+        &:last-of-type{
+            margin-bottom: 0;
+        }
     }
     [data-error-message]{
         position: relative;
         color: $red;
+        .uniformInputGroup{
+            border-color: $red !important;
+        }
         input{
             border-color: $red !important;
         }

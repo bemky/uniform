@@ -8,7 +8,7 @@
                 el: this
             });
             tooltip.on('*', function (event_type, tooltip) {
-                el.trigger('tooltip-' + type, tooltip);
+                el.trigger('tooltip-' + event_type, tooltip);
             });
             tooltip.render();
         });
@@ -37,6 +37,10 @@ UniformTooltip.prototype.render = function () {
         this.popup.css({
             minWidth: "200px"
         });
+    } else {
+        this.popup.css({
+            whiteSpace: "nowrap"
+        })
     }
     if (this.popup.outerWidth(true) + this.popup.offset().left > $(window).width()) {
         this.popup.css({

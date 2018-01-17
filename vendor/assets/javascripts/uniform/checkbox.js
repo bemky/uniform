@@ -28,7 +28,14 @@ UniformCheckbox.prototype.render = function () {
     this.checkbox.addClass(this.$el.attr('class').replace(type, ''));
     this.checkbox.toggleClass('checked', this.$el.prop('checked'));
     this.$el.after(this.checkbox);
+    this.checkbox.click(this.click.bind(this));
     return this;
+}
+UniformCheckbox.prototype.click = function (e){
+    if (this.$el.prop('disabled')) return;
+    this.$el.prop('checked', !this.$el.prop('checked'));
+    this.$el.trigger('change');
+    e.preventDefault();
 }
 UniformCheckbox.prototype.change = function () {
     this.checkbox.toggleClass('checked', this.$el.prop('checked'));
