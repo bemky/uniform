@@ -5,7 +5,8 @@
     border: 1px solid $gray-light;
     margin: 0.5em 0;
     text-decoration: none;
-    &.nest{
+    &.nest,
+    &.border-h-none{
         border-left: none;
         border-right: none;
     }
