@@ -1,17 +1,18 @@
 .uniformTooltip{
     position:relative;
+    z-index:2;
 }
 .uniformTooltip-popup{
+    display:none;
     position: absolute;
     background: white;
-    transition: opacity 0.2s, bottom 0.2s;
     border: 1px solid $gray-light;
     padding: 0.5em;
     opacity: 0;
     bottom: 0;
     left: -1.5em;
     margin: 0.5em;
-    z-index: -1;
+    z-index: 1;
     color: $gray;
     font-size:0.9em;
     border-radius: 0.25em;

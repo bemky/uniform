@@ -76,10 +76,10 @@ function UniformComponent (options) {
         });
     };
     
-    this.trigger = function (type) {
+    this.trigger = function (event_key) {
         for (var i = 0; i < this.eventListeners.length; i++) {
-            if(type == "*" || type == "all" || type == this.eventListeners[i].type){
-                this.eventListeners[i].handler(type, this);
+            if(this.eventListeners[i].type == "*" || this.eventListeners[i].type == "all" || event_key == this.eventListeners[i].type){
+                this.eventListeners[i].handler(event_key, this);
             }
         }
     };
@@ -88,6 +88,7 @@ function UniformComponent (options) {
     
     return this;
 }
+UniformComponent.namespace = "";
 UniformComponent.prototype.initialize = function () {}
 ;
 (function( $ ) {
@@ -115,12 +116,19 @@ UniformCheckbox.prototype.initialize = function (options) {
     this.$el.on('change', this.change.bind(this));
 }
 UniformCheckbox.prototype.render = function () {
-    var type = this.$el.hasClass('uniformRadio') ? 'uniformRadio' : 'uniformCheckbox';
-    this.checkbox = $('<div class="'+type+'-indicator">');
+    var type = this.$el.hasClass(''+UniformComponent.namespace+'uniformRadio') ? ''+UniformComponent.namespace+'uniformRadio' : ''+UniformComponent.namespace+'uniformCheckbox';
+    this.checkbox = $('<div class="'+UniformComponent.namespace+type+'-indicator">');
     this.checkbox.addClass(this.$el.attr('class').replace(type, ''));
     this.checkbox.toggleClass('checked', this.$el.prop('checked'));
     this.$el.after(this.checkbox);
+    this.checkbox.click(this.click.bind(this));
     return this;
+}
+UniformCheckbox.prototype.click = function (e){
+    if (this.$el.prop('disabled')) return;
+    this.$el.prop('checked', !this.$el.prop('checked'));
+    this.$el.trigger('change');
+    e.preventDefault();
 }
 UniformCheckbox.prototype.change = function () {
     this.checkbox.toggleClass('checked', this.$el.prop('checked'));
@@ -132,18 +140,18 @@ UniformCheckbox.prototype.change = function () {
         return this.each(function(){
             var el = $(this);
             var options = {
-                el: el
+                el: this
             };
             if (el.data('dropdown-align') !== undefined)      options.align       = el.data('dropdown-align');
             if (el.data('dropdown-trigger') !== undefined)    options.trigger     = el.data('dropdown-trigger');
             if (el.data('dropdown-show_arrow') !== undefined) options.show_arrow  = el.data('dropdown-show_arrow');
+            if (el.data('dropdown-square') !== undefined)     options.square  = el.data('dropdown-square');
             if (el.data('dropdown-hide_sm') !== undefined)    options.hide_sm     = el.data('dropdown-hide_sm');
-            if (el.data('dropdown-content') !== undefined)    options.content     = "<div class='pad'>" + el.data('dropdown-content') + "</div>";
+            if (el.data('dropdown-content') !== undefined)    options.content     = "<div class='"+UniformComponent.namespace+"pad'>" + el.data('dropdown-content') + "</div>";
             if (el.data('dropdown-target') !== undefined)     options.content     = $(el.data('dropdown-target'));
-            
             var dropdown = new UniformDropdown(options);
-            dropdown.on('*', function (event_type, dropdown) {
-                el.trigger('dropdown-' + type, dropdown);
+            dropdown.on('*', function (event_key, dropdown) {
+                el.trigger('dropdown-' + event_key, dropdown);
             });
             dropdown.render();
         });
@@ -162,6 +170,7 @@ UniformDropdown.prototype.constructor = UniformComponent;
     trigger:    'click'|'focus'|'mouseover' - what triggers showDropdown
     show_arrow: true\false - show dropdown arrow
     hide_sm:    true|false - don't show dropdown on mobile browsers
+    square:     true|false - round corners on dropdown
 */
 UniformDropdown.prototype.initialize = function (options) {
     options = options || {}
@@ -169,27 +178,30 @@ UniformDropdown.prototype.initialize = function (options) {
         align: 'center',
         trigger: 'click focus',
         show_arrow: true,
-        hide_sm: false
+        hide_sm: false,
+        square: false
     };
     this.options = $.extend(this.options, uniformHelpers.pick(options, Object.keys(this.options)));
     this.content = options.content;
     this.$el = (options.el instanceof $) ? options.el : $(options.el);
+    options.el.dropdown = this;
 
-    this.$el.on(this.options.trigger, this.show.bind(this));
+    this.$el.on(this.options.trigger, this.toggle.bind(this));
     $(window).on('resize', this.resize.bind(this));
     $(document).on(this.options.trigger, this.outsideClick.bind(this));
     $(document).on('keyup', this.keyup.bind(this));
 }
 
 UniformDropdown.prototype.render = function () {
-    this.dropdown = $("<div class='uniformDropdown-dropdown absolute'>");
+    this.dropdown = $("<div class='"+UniformComponent.namespace+"uniformDropdown-dropdown "+UniformComponent.namespace+"absolute'>");
     this.dropdown.css({
         minWidth: this.$el.outerWidth()
     })
     if (this.options.show_arrow) {
         this.dropdown.addClass('has-pointer');
-        this.dropdown.append("<div class='uniformDropdown-pointer'></div>");
+        this.dropdown.append("<div class='"+UniformComponent.namespace+"uniformDropdown-pointer'></div>");
     }
+    this.dropdown.toggleClass('square', this.options.square);
     this.dropdown.hide();
     this.dropdown.append(this.content);
     this.dropdown.appendTo($('body'));
@@ -226,6 +238,14 @@ UniformDropdown.prototype.remove = function () {
     $(document).off('keyup', this.keyup.bind(this));
 }
 
+UniformDropdown.prototype.toggle = function () {
+    if (this.$el.hasClass('active')) {
+        this.hide();
+    } else {
+        this.show();
+    }
+}
+
 UniformDropdown.prototype.show = function () {
     if(this.options.hide_sm && $(window).width() < 720) return;
     if(!this.dropdown) this.render();
@@ -233,12 +253,12 @@ UniformDropdown.prototype.show = function () {
     this.dropdown.show();
     this.$el.addClass('active');
 
-    this.overlay = $("<div class='uniformOverlay'>");
+    this.overlay = $("<div class='"+UniformComponent.namespace+"uniformOverlay'>");
     $('body').append(this.overlay);
 
     if ($(window).width() < 720) {
         this.lastScrollPosition = $(window).scrollTop();
-        $('body').addClass('uniformModal-hideBody');
+        $('body').addClass('"+UniformComponent.namespace+"uniformModal-hideBody');
     }
 
     this.overlay.click(this.hide.bind(this));
@@ -251,7 +271,7 @@ UniformDropdown.prototype.hide = function () {
     this.$el.removeClass('active');
     if (this.overlay) this.overlay.remove();
     if ($(window).width() < 720) {
-        $('body').removeClass('uniformModal-hideBody');
+        $('body').removeClass('"+UniformComponent.namespace+"uniformModal-hideBody');
         $(window).scrollTop(this.lastScrollPosition);
     }
     this.trigger('hidden');
@@ -371,27 +391,28 @@ UniformModal.prototype.initialize = function (options) {
     $.extend(this.options, uniformHelpers.pick(options, 'klass'));
     this.content = options.content;
     
-    this.$el.addClass('uniformModal');
+    this.$el.addClass(UniformComponent.namespace+'uniformModal');
     $(document).on('keyup', this.keyup.bind(this));
-    this.$el.on('click', '.uniformModal-close', this.close.bind(this));
+    this.$el.on('click', '.'+UniformComponent.namespace+'uniformModal-close', this.close.bind(this));
 }
 UniformModal.prototype.keyup = function (e) {
     if(e.which != 27) return;
     this.close();
 }
 UniformModal.prototype.render = function () {
+    console.log(UniformComponent.namespace);
     var that = this;
     var content = typeof this.content == 'function' ? this.content() : this.content;
     if (!(content instanceof jQuery)) content = $("<div>").html(content);
     
     this.highest_z_index = 0;
-    this.overlay = $('<div class="uniformModal-overlay"></div>');
-    this.blur = $("<div class='uniformModal-blur'></div>");
+    this.overlay = $('<div class="'+UniformComponent.namespace+'uniformModal-overlay"></div>');
+    this.blur = $('<div class="'+UniformComponent.namespace+'uniformModal-blur"></div>');
     this.original_scroll = window.scrollY;
     this.blur.css('top', 0 - this.original_scroll + "px")
     
-    if ($('.uniformModal').length > 0) {
-        this.highest_z_index = Math.max($('.uniformModal').map(function(){
+    if ($('.'+UniformComponent.namespace+'uniformModal').length > 0) {
+        this.highest_z_index = Math.max($('.'+UniformComponent.namespace+'uniformModal').map(function(){
             return parseInt($(this).css('zIndex'));
         }));
         this.$el.css('zIndex', this.highest_z_index + 2);
@@ -399,14 +420,14 @@ UniformModal.prototype.render = function () {
     this.$el.append(this.overlay);
     this.blur.append($('body').children());
     
-    $('body').addClass('uniformModal-active');
+    $('body').addClass(''+UniformComponent.namespace+'uniformModal-active');
     $('body').append(this.blur)
     $('body').append(this.$el);
     
-    var container = $('<div class="uniformModal-container">');
+    var container = $('<div class="'+UniformComponent.namespace+'uniformModal-container">');
     container.append(content);
     
-    container.append('<div class="uniformModal-close"></div>');
+    container.append('<div class="'+UniformComponent.namespace+'uniformModal-close"></div>');
     this.$el.css('top', $(window).scrollTop());
     this.overlay.click(this.close.bind(this));
     this.$el.append(container);
@@ -418,7 +439,7 @@ UniformModal.prototype.render = function () {
     return this;
 }
 UniformModal.prototype.close = function () {
-    $('.uniformModal-active').removeClass('uniformModal-active');
+    $('.'+UniformComponent.namespace+'uniformModal-active').removeClass(''+UniformComponent.namespace+'uniformModal-active');
     $('body').append(this.blur.children());
     this.blur.remove();
     $(window).scrollTop(this.original_scroll);
@@ -451,7 +472,7 @@ UniformModal.prototype.remove = function () {
         options = $.extend({
             class: "",
             showAll: function (select_options){
-                select_options.find('.uniformSelect-show-all').remove();
+                select_options.find('.'+UniformComponent.namespace+'uniformSelect-show-all').remove();
                 select_options.find('button.hidden').removeClass('hidden');
                 return false;
             },
@@ -461,8 +482,8 @@ UniformModal.prototype.remove = function () {
         return this.each(function(){
             var showing, lastScrollPosition, select_options;
             var select = $(this);
-            var container = $("<div class='uniformSelect-container'></div>");
-            var edit_button = $("<button type='button' class='uniformSelect-edit uniformInput outline block" + options.class + "'></button>");
+            var container = $("<div class='"+UniformComponent.namespace+"uniformSelect-container'></div>");
+            var edit_button = $("<button type='button' class='"+UniformComponent.namespace+"uniformSelect-edit "+UniformComponent.namespace+"uniformInput "+UniformComponent.namespace+"outline "+UniformComponent.namespace+"block" + options.class + "'></button>");
             container.append(edit_button);
             if (select.attr('name')) {
                 container.addClass(select.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
@@ -503,7 +524,7 @@ UniformModal.prototype.remove = function () {
             }
             
             function renderOptions() {
-                select_options = $("<div class='uniformSelect-options'>");
+                select_options = $("<div class='"+UniformComponent.namespace+"uniformSelect-options'>");
                 if (select.attr('name')) {
                     select_options.addClass(select.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
                 }
@@ -513,11 +534,11 @@ UniformModal.prototype.remove = function () {
                 select_options.hide();
                 select_options.appendTo('body');
                 select.find('option').each(function(index, el){
-                    var button = $("<button type='button' class='uniformSelect-option block outline text-left'>");
+                    var button = $("<button type='button' class='"+UniformComponent.namespace+"uniformSelect-option "+UniformComponent.namespace+"block "+UniformComponent.namespace+"outline "+UniformComponent.namespace+"text-left'>");
                     button[0].option = $(el);
                     button.text($(el).text());
                     button.attr('value', $(el).val());
-                    if (button.text() == "") button.html("<span class='text-italic text-muted'>None</span>");
+                    if (button.text() == "") button.html("<span class='"+UniformComponent.namespace+"text-italic "+UniformComponent.namespace+"text-muted'>None</span>");
                     if($(el).prop('selected')){
                         button.addClass('active');
                     } else if (options.limit && index > options.limit) {
@@ -527,9 +548,9 @@ UniformModal.prototype.remove = function () {
                     button.click(selectOption);
                 });
         
-                var actions_el = $('<div class="uniformSelect-options-actions">');
+                var actions_el = $('<div class="'+UniformComponent.namespace+'uniformSelect-options-actions">');
                 if (options.limit && select.find('option').length > options.limit) {
-                    var show_all_button = $("<button type='button' class='uniformSelect-show-all block outline blue' style='border: none'>Show All</button>");
+                    var show_all_button = $("<button type='button' class='"+UniformComponent.namespace+"uniformSelect-show-all "+UniformComponent.namespace+"block "+UniformComponent.namespace+"outline "+UniformComponent.namespace+"blue' style='border: none'>Show All</button>");
                     show_all_button.click(function(e){
                         options.showAll(select_options);
                         return false;
@@ -537,7 +558,7 @@ UniformModal.prototype.remove = function () {
                     actions_el.append(show_all_button);
                 }
                 if (select.prop('multiple')) {
-                    var done_button = $("<button type='button' class='uniformSelect-done block outline blue'>Done</button>");
+                    var done_button = $("<button type='button' class='"+UniformComponent.namespace+"uniformSelect-done "+UniformComponent.namespace+"block "+UniformComponent.namespace+"outline "+UniformComponent.namespace+"blue'>Done</button>");
                     done_button.click(hideOptions);
                     actions_el.append(done_button);
                 }
@@ -553,7 +574,7 @@ UniformModal.prototype.remove = function () {
                 showing = false;
                 select_options.hide();
                 select_options.removeClass('fixed');
-                $('body').removeClass('uniformModal-hideBody');
+                $('body').removeClass(UniformComponent.namespace+'uniformModal-hideBody');
                 if(lastScrollPosition) $(window).scrollTop(lastScrollPosition);
                 select.trigger('hidden:options');
             }
@@ -570,29 +591,29 @@ UniformModal.prototype.remove = function () {
         
                 lastScrollPosition = $(window).scrollTop();
                 updatePosition();
-                $('body').addClass('uniformModal-hideBody');
+                $('body').addClass(UniformComponent.namespace+'uniformModal-hideBody');
             }
             
             function selectOption(e) {
                 if (!select.prop('multiple')) {
                     select.find("option:selected").prop('selected', false);
-                    select_options.find('.uniformSelect-option.active').removeClass('active');
+                    select_options.find('.'+UniformComponent.namespace+'uniformSelect-option.'+UniformComponent.namespace+'active').removeClass(UniformComponent.namespace+'active');
                 }
-                $(e.currentTarget).toggleClass('active');
-                e.currentTarget.option.prop('selected', $(e.currentTarget).hasClass('active'));
+                $(e.currentTarget).toggleClass(UniformComponent.namespace+'active');
+                e.currentTarget.option.prop('selected', $(e.currentTarget).hasClass(UniformComponent.namespace+'active'));
                 select.trigger('change');
             }
             
             function updatePosition () {
                 if(!select_options) return;
         
-                if (select_options.hasClass('fixed')) {
+                if (select_options.hasClass(UniformComponent.namespace+'fixed')) {
                     if (container.fixedParents().length == 0) {
                         select_options.css({
                             position: 'absolute',
                             top: container.offset().top + container.outerHeight(),
                         });
-                        select_options.removeClass('fixed');
+                        select_options.removeClass(UniformComponent.namespace+'fixed');
                     }
                 } else if(container.fixedParents().length > 0) {
                     lastScrollPosition = false;
@@ -603,7 +624,7 @@ UniformModal.prototype.remove = function () {
                         top: container.offset().top + container.outerHeight(),
                         left: container.offset().left
                     });
-                    select_options.addClass('fixed');
+                    select_options.addClass(UniformComponent.namespace+'fixed');
                 }
             }
             
@@ -644,7 +665,7 @@ UniformModal.prototype.remove = function () {
                 el: this
             });
             tooltip.on('*', function (event_type, tooltip) {
-                el.trigger('tooltip-' + type, tooltip);
+                el.trigger('tooltip-' + event_type, tooltip);
             });
             tooltip.render();
         });
@@ -657,20 +678,26 @@ function UniformTooltip(options){
 UniformTooltip.prototype = Object.create(UniformComponent.prototype);
 UniformTooltip.prototype.constructor = UniformComponent;
 UniformTooltip.prototype.initialize = function (options) {
+    this.enabled = true;
     this.message = options.message;
     this.$el = (options.el instanceof $) ? options.el : $(options.el);
+    options.el.tooltip = this;
 
-    this.$el.on('mouseover', this.show.bind(this));
-    this.$el.on('mouseout', this.hide.bind(this));
+    this.$el.on('mouseenter', this.show.bind(this));
+    this.$el.on('mouseleave', this.hide.bind(this));
 }
 UniformTooltip.prototype.render = function () {
-    this.popup = $('<div class="uniformTooltip-popup">' + this.message + '</div>');
-    this.popup.prepend("<div class='uniformTooltip-pointer'></div>");
+    this.popup = $('<div class="'+UniformComponent.namespace+'uniformTooltip-popup">' + this.message + '</div>');
+    this.popup.prepend("<div class='"+UniformComponent.namespace+"uniformTooltip-pointer'></div>");
     this.$el.append(this.popup);
     if (this.message.length > 100) {
         this.popup.css({
             minWidth: "200px"
         });
+    } else {
+        this.popup.css({
+            whiteSpace: "nowrap"
+        })
     }
     if (this.popup.outerWidth(true) + this.popup.offset().left > $(window).width()) {
         this.popup.css({
@@ -682,13 +709,55 @@ UniformTooltip.prototype.render = function () {
 UniformTooltip.prototype.remove = function () {
     this.$el.remove();
 }
-UniformTooltip.prototype.show = function () {
+UniformTooltip.prototype.show = function (e) {
     if(!this.popup) this.render();
-    this.popup.addClass('active');
+    if(!this.enabled) return;
+    
+    if (this.hiding) return this.show_after_hide = true;
+    if (this.showing || this.shown) return;
+    this.popup.css('display', 'block');
+    this.showing = true;
+    this.hidden = false;
+    this.popup.animate({
+        bottom: "100%",
+        opacity: 1
+    }, 200, (function(){
+        this.showing = false;
+        this.shown = true;
+        if (this.hide_after_show) this.hide();
+        this.hide_after_show = false;
+    }).bind(this));
+    
+    if (this.popup.offset().left < 0) {
+        this.popup.css({
+            left: 0
+        })
+    }
     this.trigger('shown');
 }
-UniformTooltip.prototype.hide = function () {
-    this.popup.removeClass('active');
-    this.trigger('hidden');
+UniformTooltip.prototype.hide = function (e) {
+    if (this.showing) return this.show_after_hide = true;
+    if (this.hiding || this.hidden) return;
+    this.hiding = true;
+    this.shown = false;
+    this.popup.animate({
+        bottom: 0,
+        opacity: 0
+    }, 200, (function (){
+        this.popup.css('display', 'none');
+        this.hiding = false;
+        this.hidden = true;
+        this.trigger('hidden');
+        if (this.show_after_hide) this.show();
+        this.show_after_hide = false;
+    }).bind(this))
+}
+
+UniformTooltip.prototype.disable = function () {
+    this.enabled = false;
+}
+
+UniformTooltip.prototype.enable = function () {
+    this.enabled = true;
 }
 ;
