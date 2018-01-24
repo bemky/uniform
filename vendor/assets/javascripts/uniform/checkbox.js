@@ -23,8 +23,8 @@ UniformCheckbox.prototype.initialize = function (options) {
     this.$el.on('change', this.change.bind(this));
 }
 UniformCheckbox.prototype.render = function () {
-    var type = this.$el.hasClass('uniformRadio') ? 'uniformRadio' : 'uniformCheckbox';
-    this.checkbox = $('<div class="'+type+'-indicator">');
+    var type = this.$el.hasClass(''+UniformComponent.namespace+'uniformRadio') ? ''+UniformComponent.namespace+'uniformRadio' : ''+UniformComponent.namespace+'uniformCheckbox';
+    this.checkbox = $('<div class="'+UniformComponent.namespace+type+'-indicator">');
     this.checkbox.addClass(this.$el.attr('class').replace(type, ''));
     this.checkbox.toggleClass('checked', this.$el.prop('checked'));
     this.$el.after(this.checkbox);

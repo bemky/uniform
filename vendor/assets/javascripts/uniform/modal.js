@@ -36,27 +36,28 @@ UniformModal.prototype.initialize = function (options) {
     $.extend(this.options, uniformHelpers.pick(options, 'klass'));
     this.content = options.content;
     
-    this.$el.addClass('uniformModal');
+    this.$el.addClass(UniformComponent.namespace+'uniformModal');
     $(document).on('keyup', this.keyup.bind(this));
-    this.$el.on('click', '.uniformModal-close', this.close.bind(this));
+    this.$el.on('click', '.'+UniformComponent.namespace+'uniformModal-close', this.close.bind(this));
 }
 UniformModal.prototype.keyup = function (e) {
     if(e.which != 27) return;
     this.close();
 }
 UniformModal.prototype.render = function () {
+    console.log(UniformComponent.namespace);
     var that = this;
     var content = typeof this.content == 'function' ? this.content() : this.content;
     if (!(content instanceof jQuery)) content = $("<div>").html(content);
     
     this.highest_z_index = 0;
-    this.overlay = $('<div class="uniformModal-overlay"></div>');
-    this.blur = $("<div class='uniformModal-blur'></div>");
+    this.overlay = $('<div class="'+UniformComponent.namespace+'uniformModal-overlay"></div>');
+    this.blur = $('<div class="'+UniformComponent.namespace+'uniformModal-blur"></div>');
     this.original_scroll = window.scrollY;
     this.blur.css('top', 0 - this.original_scroll + "px")
     
-    if ($('.uniformModal').length > 0) {
-        this.highest_z_index = Math.max($('.uniformModal').map(function(){
+    if ($('.'+UniformComponent.namespace+'uniformModal').length > 0) {
+        this.highest_z_index = Math.max($('.'+UniformComponent.namespace+'uniformModal').map(function(){
             return parseInt($(this).css('zIndex'));
         }));
         this.$el.css('zIndex', this.highest_z_index + 2);
@@ -64,14 +65,14 @@ UniformModal.prototype.render = function () {
     this.$el.append(this.overlay);
     this.blur.append($('body').children());
     
-    $('body').addClass('uniformModal-active');
+    $('body').addClass(''+UniformComponent.namespace+'uniformModal-active');
     $('body').append(this.blur)
     $('body').append(this.$el);
     
-    var container = $('<div class="uniformModal-container">');
+    var container = $('<div class="'+UniformComponent.namespace+'uniformModal-container">');
     container.append(content);
     
-    container.append('<div class="uniformModal-close"></div>');
+    container.append('<div class="'+UniformComponent.namespace+'uniformModal-close"></div>');
     this.$el.css('top', $(window).scrollTop());
     this.overlay.click(this.close.bind(this));
     this.$el.append(container);
@@ -83,7 +84,7 @@ UniformModal.prototype.render = function () {
     return this;
 }
 UniformModal.prototype.close = function () {
-    $('.uniformModal-active').removeClass('uniformModal-active');
+    $('.'+UniformComponent.namespace+'uniformModal-active').removeClass(''+UniformComponent.namespace+'uniformModal-active');
     $('body').append(this.blur.children());
     this.blur.remove();
     $(window).scrollTop(this.original_scroll);

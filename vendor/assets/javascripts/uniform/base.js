@@ -88,4 +88,5 @@ function UniformComponent (options) {
     
     return this;
 }
+UniformComponent.namespace = "";
 UniformComponent.prototype.initialize = function () {}

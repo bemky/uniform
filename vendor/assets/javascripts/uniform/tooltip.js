@@ -30,8 +30,8 @@ UniformTooltip.prototype.initialize = function (options) {
     this.$el.on('mouseout', this.hide.bind(this));
 }
 UniformTooltip.prototype.render = function () {
-    this.popup = $('<div class="uniformTooltip-popup">' + this.message + '</div>');
-    this.popup.prepend("<div class='uniformTooltip-pointer'></div>");
+    this.popup = $('<div class="'+UniformComponent.namespace+'uniformTooltip-popup">' + this.message + '</div>');
+    this.popup.prepend("<div class='"+UniformComponent.namespace+"uniformTooltip-pointer'></div>");
     this.$el.append(this.popup);
     if (this.message.length > 100) {
         this.popup.css({
@@ -55,7 +55,7 @@ UniformTooltip.prototype.remove = function () {
 UniformTooltip.prototype.show = function () {
     if(!this.popup) this.render();
     if(!this.enabled) return;
-    this.popup.addClass('active');
+    this.popup.addClass(UniformComponent.namespace+'active');
     if (this.popup.offset().left < 0) {
         this.popup.css({
             left: 0
@@ -64,7 +64,7 @@ UniformTooltip.prototype.show = function () {
     this.trigger('shown');
 }
 UniformTooltip.prototype.hide = function () {
-    this.popup.removeClass('active');
+    this.popup.removeClass(UniformComponent.namespace+'active');
     this.trigger('hidden');
 }
 

@@ -11,7 +11,7 @@
             if (el.data('dropdown-show_arrow') !== undefined) options.show_arrow  = el.data('dropdown-show_arrow');
             if (el.data('dropdown-square') !== undefined)     options.square  = el.data('dropdown-square');
             if (el.data('dropdown-hide_sm') !== undefined)    options.hide_sm     = el.data('dropdown-hide_sm');
-            if (el.data('dropdown-content') !== undefined)    options.content     = "<div class='pad'>" + el.data('dropdown-content') + "</div>";
+            if (el.data('dropdown-content') !== undefined)    options.content     = "<div class='"+UniformComponent.namespace+"pad'>" + el.data('dropdown-content') + "</div>";
             if (el.data('dropdown-target') !== undefined)     options.content     = $(el.data('dropdown-target'));
             var dropdown = new UniformDropdown(options);
             dropdown.on('*', function (event_key, dropdown) {
@@ -57,13 +57,13 @@ UniformDropdown.prototype.initialize = function (options) {
 }
 
 UniformDropdown.prototype.render = function () {
-    this.dropdown = $("<div class='uniformDropdown-dropdown absolute'>");
+    this.dropdown = $("<div class='"+UniformComponent.namespace+"uniformDropdown-dropdown "+UniformComponent.namespace+"absolute'>");
     this.dropdown.css({
         minWidth: this.$el.outerWidth()
     })
     if (this.options.show_arrow) {
         this.dropdown.addClass('has-pointer');
-        this.dropdown.append("<div class='uniformDropdown-pointer'></div>");
+        this.dropdown.append("<div class='"+UniformComponent.namespace+"uniformDropdown-pointer'></div>");
     }
     this.dropdown.toggleClass('square', this.options.square);
     this.dropdown.hide();
@@ -117,12 +117,12 @@ UniformDropdown.prototype.show = function () {
     this.dropdown.show();
     this.$el.addClass('active');
 
-    this.overlay = $("<div class='uniformOverlay'>");
+    this.overlay = $("<div class='"+UniformComponent.namespace+"uniformOverlay'>");
     $('body').append(this.overlay);
 
     if ($(window).width() < 720) {
         this.lastScrollPosition = $(window).scrollTop();
-        $('body').addClass('uniformModal-hideBody');
+        $('body').addClass('"+UniformComponent.namespace+"uniformModal-hideBody');
     }
 
     this.overlay.click(this.hide.bind(this));
@@ -135,7 +135,7 @@ UniformDropdown.prototype.hide = function () {
     this.$el.removeClass('active');
     if (this.overlay) this.overlay.remove();
     if ($(window).width() < 720) {
-        $('body').removeClass('uniformModal-hideBody');
+        $('body').removeClass('"+UniformComponent.namespace+"uniformModal-hideBody');
         $(window).scrollTop(this.lastScrollPosition);
     }
     this.trigger('hidden');
