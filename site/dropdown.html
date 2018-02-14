@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/site/assets/stylesheets/uniform.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/site/assets/stylesheets/preview.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/site/assets/stylesheets/highlight/github.css" type="text/css" media="screen" title="no title" charset="utf-8">
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/site/favicons/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/site/favicons/apple-touch-icon-114x114.png" />
@@ -174,10 +175,10 @@
             </button>
         </div>
         <div class="col-6-md">
-<pre class=''>$(&#39;.uniformDropdown&#39;).uniformDropdown();</pre>
-            <pre class=''>&lt;button class=&quot;uniformButton green large uniformDropdown&quot; data-dropdown-content=&quot;This is example dropdown&quot;&gt;
+<pre><code class=''>$(&#39;.uniformDropdown&#39;).uniformDropdown();</code></pre>
+            <pre><code class=''>&lt;button class=&quot;uniformButton green large uniformDropdown&quot; data-dropdown-content=&quot;This is example dropdown&quot;&gt;
     Show Dropdown
-&lt;/button&gt;</pre>
+&lt;/button&gt;</code></pre>
         </div>
     </div>
     <div class="grid-md">
@@ -193,7 +194,7 @@
             </div>
         </div>
         <div class="col-6-md">
-            <pre class=''>&lt;button class=&quot;uniformButton green large uniformDropdown&quot; data-dropdown-target=&quot;#dropdown-example&quot;&gt;
+            <pre><code class=''>&lt;button class=&quot;uniformButton green large uniformDropdown&quot; data-dropdown-target=&quot;#dropdown-example&quot;&gt;
 Show Dropdown
 &lt;/button&gt;
 &lt;div class=&quot;hidden text-no-decoration&quot; id=&quot;dropdown-example&quot;&gt;
@@ -201,16 +202,16 @@ Show Dropdown
 &lt;a href=&quot;#&quot; class=&quot;block pad-less&quot;&gt;Link 2&lt;/a&gt;
 &lt;a href=&quot;#&quot; class=&quot;block pad-less&quot;&gt;Link 3&lt;/a&gt;
 &lt;a href=&quot;#&quot; class=&quot;block pad-less&quot;&gt;Link 4&lt;/a&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;</code></pre>
         </div>
     </div>
 </div>
 <div class="section">
     <h3>Programmatically</h3>
-    <pre class=''>new UniformDropdown({
+    <pre><code class=''>new UniformDropdown({
     el: $(this),
     content: &quot;This is your modal content&quot;,
-}).render()</pre>
+}).render()</code></pre>
     <table class="uniformTable margin-more">
         <tr>
             <th>
@@ -356,10 +357,10 @@ Show Dropdown
 </div>
 <div class="section">
     <h3>Using JQuery</h3>
-    <pre class=''>&lt;button class=&quot;uniformButton green large uniformDropdown&quot; data-dropdown-content=&quot;This is example dropdown&quot;&gt;
+    <pre><code class=''>&lt;button class=&quot;uniformButton green large uniformDropdown&quot; data-dropdown-content=&quot;This is example dropdown&quot;&gt;
     Show Dropdown
-&lt;/button&gt;</pre>
-    <pre class=''>$(&#39;.uniformDropdown&#39;).uniformDropdown();</pre>
+&lt;/button&gt;</code></pre>
+    <pre><code class=''>$(&#39;.uniformDropdown&#39;).uniformDropdown();</code></pre>
     <table class="uniformTable margin-more">
         <tr>
             <th>
@@ -475,4 +476,5 @@ Show Dropdown
   crossorigin="anonymous"></script>
 <script src="/site/assets/javascripts/uniform.js"></script>
 <script src="/site/assets/javascripts/preview.js"></script>
+<script src="/site/assets/javascripts/highlight.pack.js"></script>
 </body>

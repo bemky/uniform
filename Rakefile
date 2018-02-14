@@ -62,9 +62,9 @@ ensure
 end
 
 def html_block(**options, &block)
-  @output << "<pre class='#{options[:class]}'>"
+  @output << "<pre><code class='#{options[:class]}'>"
   @output << CGI::escapeHTML(capture(&block).strip)
-  @output << "</pre>"
+  @output << "</code></pre>"
 end
 
 def render_with_layout(template_path, context = self)

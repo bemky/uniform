@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/site/assets/stylesheets/uniform.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/site/assets/stylesheets/preview.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/site/assets/stylesheets/highlight/github.css" type="text/css" media="screen" title="no title" charset="utf-8">
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/site/favicons/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/site/favicons/apple-touch-icon-114x114.png" />
@@ -184,7 +185,7 @@
             </div>
         </div>
         <div class="col-6-md">
-            <pre class=''>&lt;button class=&quot;launchUniformModal uniformButton green large&quot; data-modal-target=&quot;#modal-content&quot; data-modal-klass=&quot;width-50-p&quot;&gt;
+            <pre><code class=''>&lt;button class=&quot;launchUniformModal uniformButton green large&quot; data-modal-target=&quot;#modal-content&quot; data-modal-klass=&quot;width-50-p&quot;&gt;
     Launch Modal
 &lt;/button&gt;
 &lt;div class=&quot;hidden&quot; id=&quot;modal-content&quot;&gt;
@@ -196,18 +197,18 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         &lt;/p&gt;
     &lt;/div&gt;
-&lt;/div&gt;</pre>
-            <pre class=''>$(&#39;.launchUniformModal&#39;).click(function(){
+&lt;/div&gt;</code></pre>
+            <pre><code class=''>$(&#39;.launchUniformModal&#39;).click(function(){
     $(this).uniformModal();
-});</pre>
+});</code></pre>
         </div>
     </div>
 </div>
 <div class="section">
     <h3>Programmatically</h3>
-    <pre class=''>new UniformModal({
+    <pre><code class=''>new UniformModal({
     content: &quot;This is your modal content&quot;,
-}).render()</pre>
+}).render()</code></pre>
     <table class="uniformTable margin-more">
         <tr>
             <th>
@@ -296,12 +297,12 @@
 </div>
 <div class="section">
     <h3>Using JQuery</h3>
-    <pre class=''>&lt;button class=&quot;launchUniformModal&quot; data-modal-target=&quot;#modal-content&quot;&gt;
+    <pre><code class=''>&lt;button class=&quot;launchUniformModal&quot; data-modal-target=&quot;#modal-content&quot;&gt;
     Launch Modal
-&lt;/button&gt;</pre>
-    <pre class=''>$(&#39;.launchUniformModal&#39;).click(function(){
+&lt;/button&gt;</code></pre>
+    <pre><code class=''>$(&#39;.launchUniformModal&#39;).click(function(){
     $(this).uniformModal();
-});</pre>
+});</code></pre>
     <table class="uniformTable margin-more">
         <tr>
             <th>Data Options</th>
@@ -366,4 +367,5 @@
   crossorigin="anonymous"></script>
 <script src="/site/assets/javascripts/uniform.js"></script>
 <script src="/site/assets/javascripts/preview.js"></script>
+<script src="/site/assets/javascripts/highlight.pack.js"></script>
 </body>

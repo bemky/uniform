@@ -8,4 +8,6 @@ $(document).ready(function(){
     $('.launchUniformModal').click(function(){
         $(this).uniformModal();
     });
+    
+    hljs.initHighlightingOnLoad();
 })
