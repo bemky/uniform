@@ -1,0 +1,1 @@
+exclude = '{$exclude,log,bin,tmp,node_modules,.tm_properties,public/system}'
