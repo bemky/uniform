@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
   s.add_development_dependency 'activesupport'
   s.add_development_dependency 'rubyzip'
+  s.add_development_dependency 'media_query_combiner'
   
   s.add_dependency 'sass'
   

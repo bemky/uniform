@@ -1,4 +1,4 @@
-.uniform-loader{
+.uniformLoader{
     line-height:1em;
     display:inline-block;
     white-space:nowrap;
@@ -6,7 +6,7 @@
     span{
         color:rgba(black, 1);
         text-shadow:-1px -1px 0 rgba(#FFFFFF, .2);
-        animation: uniform-loader-light 1s infinite linear;
+        animation: uniformLoader-light 1s infinite linear;
         animation-delay: 0.2s;
     }
     span:first-of-type{
@@ -15,14 +15,14 @@
     span:last-of-type{
         animation-delay: 0.4s;
     }
-    .uniform-loader-container{
+    .uniformLoader-container{
         white-space:nowrap;
     }
     &.light{
         span{
             color:rgba(white, 1);
             text-shadow:-1px -1px 0 rgba(black, .2);
-            animation: uniform-loader 1s infinite linear;
+            animation: uniformLoader 1s infinite linear;
             animation-delay: 0.2s;
         }
         span:first-of-type{
@@ -41,21 +41,21 @@
         width:100%;
         height:100%;
         z-index:999999999;
-        .uniform-loader-container{
+        .uniformLoader-container{
             position:absolute;
-            @include align-middle;
+            @include position-center;
         }
         &.light{
             background:rgba(black, .5);
         }
     }
     &.top{
-        .uniform-loader-container{
+        .uniformLoader-container{
             top: 20px;
         }
     }
 }
-@keyframes uniform-loader {
+@keyframes uniformLoader {
   0% {
     color: rgba(255, 255, 255, 0);
   }
@@ -67,7 +67,7 @@
   }
 }
 
-@keyframes uniform-loader-light {
+@keyframes uniformLoader-light {
   0% {
     color: black;
   }

@@ -31,229 +31,559 @@
 </head>
 <body>
 <div class="side-nav">
-    <div class="pad">
+    <div class="pad-2x">
         <a href="/">
-        <img src="/site/assets/images/logo.png" class="block">
+        <img src="/site/assets/images/logo.png" class="block width-100-p">
         </a>
     </div>
-    <div class="uniformNav vertical">
-        <div class="mobile-nav">
-            <button class="uniformButton">-</button>
-        </div>
-        <div class="non-mobile-nav">
-            <div class="nav">
+    <div class="uniformNav uniformNav-vertical">
+        
+            
+            <a href="/site/helpers.html" class="">
+                Helpers
                 
+            </a>
+        
+            
+            <a href="/site/colors.html" class="">
+                Colors
                 
-                    
-                    <a href="/site/helpers.html">
-                        Helpers
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/grid.html" class="">
+                Grid
                 
-                    
-                    <a href="/site/colors.html">
-                        Colors
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/buttons.html" class="">
+                Buttons
                 
-                    
-                    <a href="/site/grid.html">
-                        Grid
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/tables.html" class="">
+                Tables
                 
-                    
-                    <a href="/site/buttons.html">
-                        Buttons
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/thumb.html" class="">
+                Thumb
                 
-                    
-                    <a href="/site/tables.html">
-                        Tables
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/cards.html" class="">
+                Cards
                 
-                    
-                    <a href="/site/cards.html">
-                        Cards
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/rows.html" class="">
+                Rows
                 
-                    
-                    <a href="/site/rows.html">
-                        Rows
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/form.html" class="">
+                Form
                 
-                    
-                    <a href="/site/form.html">
-                        Form
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/loaders.html" class="">
+                Loaders
                 
-                    
-                    <a href="/site/loaders.html">
-                        Loaders
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/nav.html" class="">
+                Nav
                 
-                    
-                    <a href="/site/nav.html">
-                        Nav
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/labels.html" class="active">
+                Labels
                 
-                    
-                    <a href="/site/tabs.html">
-                        Tabs
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/alerts.html" class="">
+                Alerts
                 
-                    
-                    <a href="/site/tiles.html">
-                        Tiles
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/select.html" class="">
+                Select
                 
-                    
-                    <a href="/site/labels.html">
-                        Labels
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/alerts.html">
-                        Alerts
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/modal.html" class="">
+                Modal
                 
-                    
-                    <a href="/site/select.html">
-                        Select
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/modal.html">
-                        Modal
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/dropdown.html" class="">
+                Dropdown
                 
-                    
-                    <a href="/site/dropdown.html">
-                        Dropdown
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/tooltip.html">
-                        Tooltip
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/tooltip.html" class="">
+                Tooltip
                 
-            </div>
-        </div>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+                
+            </a>
+        
+            
+            <a href="/site/resizer.html" class="">
+                Resizer
+                
+                    <span class="uniformLabel -yellow-dark text-smaller">todo</span>
+                
+            </a>
         
     </div>
 </div>
 <div class="main-content overflow-hidden">
     <div class="section">
     <h1>UniformLabel</h1>
-    <table class="uniformTable">
-        <thead>
+    <div class="margin-v-2x">
+        <table class="uniformTable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th><code>-fill</code></th>
+                    <th><code>-round</code></th>
+                    <th><code>-round -fill</code></th>
+                </tr>
+            </thead>
+            
             <tr>
-                <th></th>
-                <th><code>.uniformLabel</code></th>
-                <th><code>.uniformLabel.fill</code></th>
-            </tr>
-        </thead>
-        
-        <tr>
-            <td>
-                <code>.</code>
-            </td>
-            <td>
-                <span class="uniformLabel ">label</span>
-            </td>
-            <td>
-                <span class="uniformLabel  fill">label</span>
-            </td>
-        </tr> 
-        
-        <tr>
-            <td>
-                <code>.pad-more</code>
-            </td>
-            <td>
-                <span class="uniformLabel pad-more">label</span>
-            </td>
-            <td>
-                <span class="uniformLabel pad-more fill">label</span>
-            </td>
-        </tr> 
-        
-        <tr>
-            <td>
-                <code>.green</code>
-            </td>
-            <td>
-                <span class="uniformLabel green">label</span>
-            </td>
-            <td>
-                <span class="uniformLabel green fill">label</span>
-            </td>
-        </tr> 
-        
-        <tr>
-            <td>
-                <code>.yellow</code>
-            </td>
-            <td>
-                <span class="uniformLabel yellow">label</span>
-            </td>
-            <td>
-                <span class="uniformLabel yellow fill">label</span>
-            </td>
-        </tr> 
-        
-        <tr>
-            <td>
-                <code>.muted</code>
-            </td>
-            <td>
-                <span class="uniformLabel muted">label</span>
-            </td>
-            <td>
-                <span class="uniformLabel muted fill">label</span>
-            </td>
-        </tr> 
-        
-        <tr>
-            <td>
-                <code>.blue</code>
-            </td>
-            <td>
-                <span class="uniformLabel blue">label</span>
-            </td>
-            <td>
-                <span class="uniformLabel blue fill">label</span>
-            </td>
-        </tr> 
-        
-    </table>
+                <td>
+                    <code>.</code>
+                </td>
+                
+                    <td class="">
+                        Lorem ipsum
+                        <span class="uniformLabel">label</span>
+                    </td>
+                    <td class="">
+                        <span class="uniformLabel -fill">label</span>
+                    </td>
+                    <td class="">
+                        <span class="uniformLabel -round">label</span>
+                    </td>
+                    <td class="">
+                        <span class="uniformLabel -fill -round">label</span>
+                    </td>
+                
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.pad-more</code>
+                </td>
+                
+                    <td>
+                        Lorem ipsum
+                        <span class="uniformLabel pad-more">label</span>
+                    </td>
+                    <td>
+                        <span class="uniformLabel pad-more -fill">label</span>
+                    </td>
+                    <td>
+                        <span class="uniformLabel pad-more -round">label</span>
+                    </td>
+
+                    <td>
+                        <span class="uniformLabel pad-more -fill -round">label</span>
+                    </td>
+                
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.text-smaller</code>
+                </td>
+                
+                    <td class="text-smaller">
+                        Lorem ipsum
+                        <span class="uniformLabel">label</span>
+                    </td>
+                    <td class="text-smaller">
+                        <span class="uniformLabel -fill">label</span>
+                    </td>
+                    <td class="text-smaller">
+                        <span class="uniformLabel -round">label</span>
+                    </td>
+                    <td class="text-smaller">
+                        <span class="uniformLabel -fill -round">label</span>
+                    </td>
+                
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.text-small</code>
+                </td>
+                
+                    <td class="text-small">
+                        Lorem ipsum
+                        <span class="uniformLabel">label</span>
+                    </td>
+                    <td class="text-small">
+                        <span class="uniformLabel -fill">label</span>
+                    </td>
+                    <td class="text-small">
+                        <span class="uniformLabel -round">label</span>
+                    </td>
+                    <td class="text-small">
+                        <span class="uniformLabel -fill -round">label</span>
+                    </td>
+                
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.text-large</code>
+                </td>
+                
+                    <td class="text-large">
+                        Lorem ipsum
+                        <span class="uniformLabel">label</span>
+                    </td>
+                    <td class="text-large">
+                        <span class="uniformLabel -fill">label</span>
+                    </td>
+                    <td class="text-large">
+                        <span class="uniformLabel -round">label</span>
+                    </td>
+                    <td class="text-large">
+                        <span class="uniformLabel -fill -round">label</span>
+                    </td>
+                
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.text-larger</code>
+                </td>
+                
+                    <td class="text-larger">
+                        Lorem ipsum
+                        <span class="uniformLabel">label</span>
+                    </td>
+                    <td class="text-larger">
+                        <span class="uniformLabel -fill">label</span>
+                    </td>
+                    <td class="text-larger">
+                        <span class="uniformLabel -round">label</span>
+                    </td>
+                    <td class="text-larger">
+                        <span class="uniformLabel -fill -round">label</span>
+                    </td>
+                
+            </tr> 
+            
+        </table>
+    </div>
+    
+    <div class="margin-v-2x">
+        <h3>Colors</h3>
+        <table class="uniformTable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th><code>-fill</code></th>
+                </tr>
+            </thead>
+            
+            <tr>
+                <td>
+                    <code>.-background</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -background">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -background -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-gray</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -gray">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -gray -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-gray-light</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -gray-light">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -gray-light -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-gray-dark</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -gray-dark">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -gray-dark -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-gray-background</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -gray-background">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -gray-background -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-green</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -green">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -green -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-green-light</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -green-light">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -green-light -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-green-dark</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -green-dark">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -green-dark -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-blue</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -blue">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -blue -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-blue-bright</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -blue-bright">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -blue-bright -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-blue-light</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -blue-light">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -blue-light -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-blue-dark</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -blue-dark">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -blue-dark -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-red</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -red">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -red -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-red-light</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -red-light">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -red-light -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-red-dark</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -red-dark">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -red-dark -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-red-bright</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -red-bright">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -red-bright -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-yellow</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -yellow">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -yellow -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-yellow-dark</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -yellow-dark">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -yellow-dark -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-yellow-light</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -yellow-light">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -yellow-light -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-black</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -black">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -black -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-white</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -white">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -white -fill">label</span>
+                </td>
+            </tr> 
+            
+            <tr>
+                <td>
+                    <code>.-muted</code>
+                </td>
+                <td>
+                    <span class="uniformLabel -muted">label</span>
+                </td>
+                <td>
+                    <span class="uniformLabel -muted -fill">label</span>
+                </td>
+            </tr> 
+            
+        </table>
+    </div>
 </div>
 </div>  
 
-
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
 <script
   src="https://code.jquery.com/jquery-1.11.3.min.js"

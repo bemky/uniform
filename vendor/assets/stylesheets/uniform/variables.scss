@@ -1,36 +1,71 @@
-// Colors
-
-$gray:#505153;
-$gray-light: #cccccc;
-$gray-dark:darken($gray, 10);
-
-$green:#97C848;
-$green-light:#BBFF00;
-$green-dark:#709239;
-
-$blue:#0994E2;
-$blue-light:#A7CDF2;
-$blue-dark:#167DBA;
-
-$red:#E1563E;
-$red-light:#E5766C;
-$red-dark:#971710;
-$red-bright:#ffab9b;
-
-$yellow: #D7E542;
-$yellow-dark: #BBC02C;
-$yellow-light: #E9F75A;
-
-$gray-background: rgb(238, 238, 238);
-$background: lighten($gray, 63);
-
+//----------------------------------------------------------------
+//             Text
+//----------------------------------------------------------------
 $text-inputs: "input:not([type=search]):not([type=submit]):not([type=checkbox]):not([type=radio])";
-
 $system-font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 
-// Responsive Breakpoints
-// breakpoints at 720, 1080, 1440
-$sm: "max-width: 719px";
-$md: "min-width: 720px";
-$lg: "min-width: 1080px";
-$xl: "min-width: 1440px";
+
+//----------------------------------------------------------------
+//             Colors
+//----------------------------------------------------------------
+$colors: (
+    'background':         #f2f2f2,
+    'gray':               #505153,
+    'gray-light':         #cccccc,
+    'gray-dark':          #373839,
+    'gray-background':    rgb(238, 238, 238),
+    'green':              #97C848,
+    'green-light':        #BBFF00,
+    'green-dark':         #709239,
+    'blue':               #0994E2,
+    'blue-bright':        #1fa9ff,
+    'blue-light':         #A7CDF2,
+    'blue-dark':          #167DBA,
+    'red':                #E1563E,
+    'red-light':          #E5766C,
+    'red-dark':           #971710,
+    'red-bright':         #ffab9b,
+    'yellow':             #D7E542,
+    'yellow-dark':        #BBC02C,
+    'yellow-light':       #E9F75A,
+    'black':              #000000,
+    'white':              #FFFFFF,
+    'muted':              #cccccc
+);
+
+
+//----------------------------------------------------------------
+//             Breakpoints
+//----------------------------------------------------------------
+// 720, 1080, 1440
+$breakpoints: (
+    sm: "max-width: 719px",
+    md: "min-width: 720px",
+    lg: "min-width: 1080px",
+    xl: "min-width: 1440px"
+);
+
+
+//----------------------------------------------------------------
+//             Sizes
+//----------------------------------------------------------------
+$sizes: (
+    quarter:   0.25em,
+    half:      0.5em,
+    smaller:   0.8em,
+    small:     0.9em,
+    base:      1em,
+    large:     1.2em,
+    larger:    1.4em,
+    2x:        2em,
+    4x:        4em
+);
+
+
+//----------------------------------------------------------------
+//             Grid
+//----------------------------------------------------------------
+$grid-columns: 12;
+$grid-gutter: 1em;
+
+

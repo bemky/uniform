@@ -1,5 +1,45 @@
 # Change Log
 
+## 2.0
+New naming structures
+
+### Added
+- Breakpoints now default to screen sizes using media queries, but you can also force a breakpoint by wrapping an element with `sm-size`, `md-size`, `lg-size`, `xl-size`
+- `uniformThumb`
+- `uniformCard-accordion` to uniformCard
+- `color('gray-dark')`
+- mixin `size-rule`. Make a rule for a specific size breakpoint
+- mixin `colors`. Declare selectors with color modification classes on certain attributes
+- mixin `sizes`. Declare selectors with color modification classes on certain attributes
+
+### Removed
+- `uniformTile` (replaced with `uniformCard-tile`)
+- color variables (`$gray`, `$yellow`, `$red-dark`...) changed to `color('gray-dark')`
+- `hidden` use `.hide` instead
+- `uniformTabs` use `uniformNav` with `border-bottom` instead
+- removed `position-fill`
+
+### Changed
+- `-tiny` to `-quarter`
+- `-less` to `-half`
+- `-more` to `-2x`
+- `-super` to `-4x`
+- `pointer` to `cursor-pointer`
+- Changed modifier classes to start with component name or dash (ex. `uniformButton green` => `uniformButton -green`)
+- Changed default grid .col so that starts with padding, add `.grid-nest` to bring first and last column to edge
+- removed `grid.no-wrap`, use `.grid.grid-nowrap`
+- changed `grid.no-gutter` to `grid.grid-gutter-none`
+- changed `grid.nest` to `grid.grid-nest`
+- changed `col.no-gutter` to `.col-gutter-none`
+- changed `uniform-loader` to `uniformLoader`
+- changed `uniformNav` to `uniformMainNav`
+- changed `uniformNavList` to `uniformNav`
+- changed mixin `horizontal-center` to `position-h-center`
+- changed mixin `align-middle` to `position-center`
+- changed mixin `vertical-middle` to `position-v-center`
+- changed mixin `apply-media-sizes` to `size-rules`
+
+
 ## 1.0
 This is the first really stable and usable release of Uniform. Many of the components were rewritten, removed, and added. In general, this release brings a shift in methodology. Building with Uniform now supplies and relies on more helpers to build things out.
 

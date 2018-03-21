@@ -1,19 +1,14 @@
-$text-inputs: "input:not([type=search]):not([type=submit]):not([type=checkbox]):not([type=radio])";
 
 @mixin text-overflow($inherit:false){
-    @if $inherit == false {
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    } @else {
+    @if $inherit {
         text-overflow: inherit;
         white-space: inherit;
         overflow: inherit;
+    } @else {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
-}
-@mixin flicker-fix(){
-    -webkit-backface-visibility: hidden; // Some weird safari bug involving hovering on li or a
-    -webkit-transform: translate3d(0, 0, 0); // Some weird safari bug involving hovering on li or a
 }
 @mixin grayscale($gray: 0.7, $opacity: 1){
     opacity: $opacity;
@@ -27,47 +22,26 @@ $text-inputs: "input:not([type=search]):not([type=submit]):not([type=checkbox]):
         -webkit-filter: grayscale(0);
     }
 }
-@mixin vertical-middle(){
+
+//----------------------------------------------------------------
+//             Position
+//----------------------------------------------------------------
+@mixin position-v-center(){
     position:absolute;
     top:50%;
     transform: translateY(-50%);
 }
-@mixin horizontal-center(){
+@mixin position-h-center(){
     position:absolute;
     left:50%;
     transform: translateX(-50%);
 }
-@mixin align-middle(){
+@mixin position-center(){
     position:absolute;
     left:50%;
     top:50%;
     transform: translate(-50%, -50%);
 }
-@mixin clean-icon(){
-    -webkit-backface-visibility: hidden; // Some weird safari bug involving hovering on li or a
-    -webkit-transform: translate3d(0, 0, 0); // Some weird safari bug involving hovering on li or a
-    -webkit-font-smoothing: antialiased;
-}
-
-@mixin media($query) {
-    @media only screen and (#{$query}){
-        @content;
-    }
-}
-
-@mixin apply-media-sizes($base-name){
-    #{$base-name}{
-        @content
-    }
-    @each $name, $size in ('sm', $sm) ('md', $md) ('lg', $lg) ('xl', $xl) {
-        @include media($size){
-            #{$base-name}-#{$name}{
-                @content
-            }
-        }
-    }
-}
-
 @mixin position-fill() {
     position: absolute;
     top: 0;
@@ -75,3 +49,68 @@ $text-inputs: "input:not([type=search]):not([type=submit]):not([type=checkbox]):
     left: 0;
     right: 0;
 }
+
+
+//----------------------------------------------------------------
+//             Sizes Media Queries
+//----------------------------------------------------------------
+@mixin media($query) {
+    @media only screen and (#{$query}){
+        @content;
+    }
+}
+
+@mixin size-rule($breakpoint) {
+    @include media(map-get($breakpoints, $breakpoint)){
+        @content
+    }
+    .#{$breakpoint}-size{
+        @content
+    }
+}
+
+@mixin size-rules($selector){
+    #{$selector}{
+        @content
+    }
+    @each $key, $value in $breakpoints {
+        @include media($value){
+            #{$selector}-#{$key}{
+                @content
+            }
+        }
+        .#{$key}-size #{$selector}-#{$key}{
+            @content
+        }
+    }
+}
+
+@mixin sizes($selector, $attributes){
+    @each $attribute in $attributes {
+        @include size-rules("#{$selector}"){
+            #{$attribute}: map-get($sizes, 'base');
+        }
+        @each $key, $value in $sizes {
+            @include size-rules("#{$selector}-#{$key}"){
+                #{$attribute}: $value;
+                @content
+            }
+        }
+        @include size-rules("#{$selector}-none"){
+            #{$attribute}: 0 !important;
+            @content
+        }
+    }
+}
+
+@mixin colors($selector, $attributes){
+    @each $attribute in $attributes {
+        @each $key, $value in $colors {
+            @include size-rules("#{$selector}-#{$key}"){
+                #{$attribute}: $value;
+                @content
+            }
+        }
+    }
+}
+

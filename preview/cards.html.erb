@@ -1,23 +1,215 @@
 <div class="section">
     <h1>Cards</h1>
-    <div class="grid">
+    <div class="grid grid-nest">
         <div class="col-6">
             <div class="uniformCard">
                 <div class="uniformCard-header">
-                    <span class="title">Sample Card</span>
+                    <h1 class="margin-none">Header</h1>
                 </div>
-                <div class="uniformCard-body">Put Content In Here</div>
+                <div class="uniformCard-body">
+                    Body
+                </div>
+                <div class="uniformCard-footer">
+                    <div class="text-subtle text-smaller">Footer</div>
+                </div>
             </div>
         </div>
         <div class="col-6">
             <% html_block do %>
-<div class="uniformCard">
-    <div class="uniformCard-header">
-        <span class="title">Sample Card</span>
-    </div>
-    <div class="uniformCard-body">Put Content In Here</div>
-</div>
+            <div class="uniformCard">
+                <div class="uniformCard-header">
+                    <h1 class="margin-none">Header</h1>
+                </div>
+                <div class="uniformCard-body">
+                    Body
+                </div>
+                <div class="uniformCard-footer">
+                    <div class="text-subtle text-smaller">Footer</div>
+                </div>
+            </div>
             <% end %>
+        </div>
+    </div>
+    
+    <div class="margin-v-2x border-top pad-top-2x">
+        <h3>Collapse/Expand</h3>
+        <p>
+            Use js to toggle <code>expanded</code> on <code>uniformCard</code>
+        </p>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformCard toggleExpanded">
+                    <div class="uniformCard-header cursor-pointer uniformCardToggle">
+                        <div class="grid grid-center grid-nest">
+                            <div class="col-fill">
+                                Header
+                            </div>
+                            <div class="uniformCard-icon">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                    <path d="M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z" fill="#000000"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uniformCard-collapse">
+                        <div class="uniformCard-body">
+                            Body
+                        </div>
+                        <div class="uniformCard-footer">
+                            Footer
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <% html_block class: "javascript" do %>
+                // Javascript
+                $('.uniformCardToggle').click(function(){
+                    $(this).parents('.uniformCard').toggleClass('expanded');
+                });
+                <% end %>
+                <% html_block do %>
+                <div class="uniformCard toggleExpanded">
+                    <div class="uniformCard-header cursor-pointer uniformCardToggle">
+                        <div class="grid grid-center grid-nest">
+                            <div class="col-fill">
+                                Header
+                            </div>
+                            <div class="uniformCard-icon">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                    <path d="M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z" fill="#000000"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uniformCard-collapse">
+                        <div class="uniformCard-body">
+                            Body
+                        </div>
+                        <div class="uniformCard-footer">
+                            Footer
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    
+    <div class="margin-v-2x border-top pad-top-2x">
+        <h3>Accordion</h3>
+        <p>
+            Use js to toggle <code>expanded</code> on <code>uniformCard</code>
+        </p>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <% (0..4).each do |i| %>
+                    <div class="uniformCard uniformCard-accordion toggleExpanded">
+                        <div class="uniformCard-header cursor-pointer uniformCardToggle">
+                            <div class="grid grid-center grid-nest">
+                                <div class="col-fill">
+                                    Header
+                                </div>
+                                <div class="uniformCard-icon">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                        <path d="M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z" fill="#000000"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uniformCard-collapse">
+                            <div class="uniformCard-body">
+                                Body
+                            </div>
+                            <div class="uniformCard-footer">
+                                Footer
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+            <div class="col-6">
+                <% html_block class: "javascript" do %>
+                // Javascript
+                $('.uniformCardToggle').click(function(){
+                    $(this).parents('.uniformCard').toggleClass('expanded');
+                });
+                <% end %>
+                <% html_block do %>
+                <div class="uniformCard uniformCard-accordion toggleExpanded">
+                    <div class="uniformCard-header cursor-pointer uniformCardToggle">
+                        <div class="grid grid-center grid-nest">
+                            <div class="col-fill">
+                                Header
+                            </div>
+                            <div class="uniformCard-icon">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                    <path d="M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z" fill="#000000"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uniformCard-collapse">
+                        <div class="uniformCard-body">
+                            Body
+                        </div>
+                        <div class="uniformCard-footer">
+                            Footer
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+                <p class="margin-v text-italic">
+                    Optionally, use js to animate toggle.
+                </p>
+                <% html_block class: "javascript" do %>
+                // Javascript
+                $(window).on('expand-toggle', function (e){
+                    var target = $(e.target).find('.uniformCard-collapse');
+                    target.toggle(target.parents('.expanded').length == 0);
+                    target.slideToggle(100);
+                })
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <div class="margin-v-2x border-top pad-top-2x">
+        <h3>Tile</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="grid grid-gutter-none">
+                    <% (0..5).each do |i| %>
+                        <div class="uniformCard uniformCard-tile col-6">
+                            <div class="uniformCard-body">
+                                <div class="uniformThumb width-100-p">
+                                    <div class="aspect-4x3">
+                                        <img src="<%= [
+                                            "http://mlb.mlb.com/documents/3/0/0/111209300/T_Red_3kf3eqmg.svg",
+                                            "http://mlb.mlb.com/documents/9/8/4/111241984/MIN_header_logo_jafcibrj.svg",
+                                            "http://mlb.mlb.com/documents/5/7/0/111220570/NYY_header_logo_jnivpoth.svg"
+                                        ][i % 3] %>">
+                                    </div>
+                                </div>
+                                Body
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <div class="col-6">
+                <% html_block do %>
+                <div class="uniformCard uniformCard-tile col-6">
+                    <div class="uniformCard-body">
+                        <div class="uniformThumb width-100-p">
+                            <div class="aspect-4x3">
+                                <img src="...">
+                            </div>
+                        </div>
+                        Body
+                    </div>
+                </div>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>

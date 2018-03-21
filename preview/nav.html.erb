@@ -1,98 +1,161 @@
 <div class="section">
     <h1>Nav</h1>
-    <div class="uniformNav margin-bottom">
-        <div class="mobile-nav">
-            <button type="button">
-                <img src="/site/assets/images/logo.png" height="31" width="137">
-            </button>
-        </div>
-        <div class="non-mobile-nav">
-            <div class="nav">
-                <a href="#" class="pad-none pad-right"><img src="/site/assets/images/logo.png" height="31" width="137"></a>
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+    
+    <div class="margin-v-2x">
+        <h3>uniformNav</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformNav margin-h-nest">
+                    <a href="#">Home</a>
+                    <a href="#" class="active">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Log In</a>
+                    <span>
+                        Just Text
+                    </span>
+                </div>
+            </div>
+            <div class="col-6">
+                <% html_block class: "html" do %>
+                <div class="uniformNav margin-h-nest">
+                    <a href="#">Home</a>
+                    <a href="#" class="active">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Log In</a>
+                    <span>
+                        Just Text
+                    </span>
+                </div>
+                <% end %>
             </div>
         </div>
     </div>
-    <% html_block do %>
-<div class="uniformNav">
-    <div class="mobile-nav">
-        <button type="button">
-            <img src="/site/assets/images/logo.png" height="31" width="137">
-        </button>
-    </div>
-    <div class="non-mobile-nav">
-        <div class="nav">
-            <a href="#" class="pad-none pad-right"><img src="/site/assets/images/logo.png" height="31" width="137"></a>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+    
+    <div class="margin-v-2x">
+        <h3>uniformNav-vertical</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformNav uniformNav-vertical">
+                    <a href="#">Home</a>
+                    <a href="#" class="active">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Log In</a>
+                    <span>
+                        Just Text
+                    </span>
+                </div>
+            </div>
+            <div class="col-6">
+                <% html_block class: "html" do %>
+                <div class="uniformNav uniformNav-vertical">
+                    <a href="#">Home</a>
+                    <a href="#" class="active">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Log In</a>
+                    <span>
+                        Just Text
+                    </span>
+                </div>
+                <% end %>
+            </div>
         </div>
     </div>
-</div>
-    <% end %>
-    <br><br>
-    <h3>Vertical</h3>
-    <div class="grid no-wrap">
-        <div class="col-4">
-            <div class="uniformNav vertical">
-                <div class="mobile-nav">
-                    <button type="button">
-                        <img src="/site/assets/images/logo.png" height="31" width="137">
-                    </button>
-                </div>
-                <div class="non-mobile-nav">
-                    <div class="nav">
-                        <a href="#" class="pad-none pad-right"><img src="/site/assets/images/logo.png" height="31" width="137"></a>
+    
+    <div class="margin-v-2x">
+        <h3>uniformMainNav</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformMainNav">
+                    <div class="uniformNav">
+                        <span class="margin-left-nest">
+                            <img src="/site/assets/images/logo.png" height="31" width="137">
+                        </span>
                         <a href="#">Home</a>
-                        <a href="#">About</a>
+                        <a href="#" class="active">About</a>
                         <a href="#">Contact</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-8">
-            <% html_block class: "width-100-p" do %>
-<div class="uniformNav vertical">
-    <div class="mobile-nav">
-        <button type="button">
-            <img src="/site/assets/images/logo.png" height="31" width="137">
-        </button>
-    </div>
-    <div class="non-mobile-nav">
-        <div class="nav">
-            <a href="#" class="pad-none pad-right"><img src="/site/assets/images/logo.png" height="31" width="137"></a>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </div>
-    </div>
-</div>
-            <% end %>
-        </div>
-    </div>
-    
-        <br><br>
-        <h3>UniformNavList</h3>
-        <div class="grid no-wrap">
-            <div class="col-4">
-                <div class="uniformNavList">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
+            <div class="col-6">
+                <% html_block class: "html" do %>
+                <div class="uniformMainNav">
+                    <div class="uniformNav">
+                        <span class="margin-left-nest">
+                            <img src="/site/assets/images/logo.png" height="31" width="137">
+                        </span>
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-8">
-                <% html_block class: "width-100-p" do %>
-<div class="uniformNavList">
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-</div>
                 <% end %>
             </div>
         </div>
+    </div>
     
-    <p>//TODO show more options</p>
+    <div class="margin-v-2x">
+        <h3>uniformMainNav-vertical</h3>
+        <div class="grid grid-nest">
+            <div class="col-3">
+                <div class="uniformMainNav uniformMainNav-vertical">
+                    <div class="uniformNav">
+                        <span class="margin-bottom-half">
+                            <img src="/site/assets/images/logo.png" height="31" width="137">
+                        </span>
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">&nbsp;</div>
+            <div class="col-6">
+                <% html_block class: "html" do %>
+                <div class="uniformMainNav uniformMainNav-vertical">
+                    <div class="uniformNav">
+                        <span class="margin-bottom-half">
+                            <img src="/site/assets/images/logo.png" height="31" width="137">
+                        </span>
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    
+    <div class="margin-v-2x">
+        <h3>uniformMainNav-invert</h3>
+        <div class="grid">
+            <div class="col-6 col-gutter-none bg-gray">
+                <div class="uniformMainNav uniformMainNav-invert">
+                    <div class="uniformNav">
+                        <span>
+                            <img src="/site/assets/images/logo-inv.png" height="31" width="137">
+                        </span>
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <% html_block class: "html" do %>
+                <div class="uniformMainNav uniformMainNav-invert">
+                    <div class="uniformNav">
+                        <span>
+                            <img src="/site/assets/images/logo-inv.png" height="31" width="137">
+                        </span>
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    
 </div>

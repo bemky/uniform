@@ -2,6 +2,7 @@ require 'active_support/core_ext/string'
 require 'fileutils'
 require 'sprockets'
 require "sprockets-sass"
+require 'sass-media_query_combiner'
 require 'bundler/setup'
 require 'zip'
 
@@ -38,6 +39,31 @@ task :compile do
 
   Dir.foreach(File.join('preview')).select{|file| file =~ /\.erb$/}.each do |file_name|
     File.open("./site/#{file_name.gsub('.erb', '')}", 'w') do |file|
+      @current_page = file_name.split('.')[0]
+      @colors = {
+        'background':         '#f2f2f2',
+        'gray':               '#505153',
+        'gray-light':         '#cccccc',
+        'gray-dark':          '#373839',
+        'gray-background':    'rgb(238, 238, 238)',
+        'green':              '#97C848',
+        'green-light':        '#BBFF00',
+        'green-dark':         '#709239',
+        'blue':               '#0994E2',
+        'blue-bright':        '#1fa9ff',
+        'blue-light':         '#A7CDF2',
+        'blue-dark':          '#167DBA',
+        'red':                '#E1563E',
+        'red-light':          '#E5766C',
+        'red-dark':           '#971710',
+        'red-bright':         '#ffab9b',
+        'yellow':             '#D7E542',
+        'yellow-dark':        '#BBC02C',
+        'yellow-light':       '#E9F75A',
+        'black':              '#000000',
+        'white':              '#FFFFFF',
+        'muted':              '#cccccc'
+      }
       file.write(
         render_with_layout("preview/#{file_name}")
       )
@@ -62,8 +88,15 @@ ensure
 end
 
 def html_block(**options, &block)
+  html = capture(&block)
+  spaces = html.match(/^ +/)
+  if spaces
+    spaces = spaces[0]
+    count = spaces.scan(/ /).count
+    html = html.gsub(/^ {#{count}}/, "")
+  end
   @output << "<pre><code class='#{options[:class]}'>"
-  @output << CGI::escapeHTML(capture(&block).strip)
+  @output << CGI::escapeHTML(html.strip)
   @output << "</code></pre>"
 end
 

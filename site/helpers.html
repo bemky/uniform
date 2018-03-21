@@ -31,312 +31,256 @@
 </head>
 <body>
 <div class="side-nav">
-    <div class="pad">
+    <div class="pad-2x">
         <a href="/">
-        <img src="/site/assets/images/logo.png" class="block">
+        <img src="/site/assets/images/logo.png" class="block width-100-p">
         </a>
     </div>
-    <div class="uniformNav vertical">
-        <div class="mobile-nav">
-            <button class="uniformButton">-</button>
-        </div>
-        <div class="non-mobile-nav">
-            <div class="nav">
+    <div class="uniformNav uniformNav-vertical">
+        
+            
+            <a href="/site/helpers.html" class="active">
+                Helpers
                 
+            </a>
+        
+            
+            <a href="/site/colors.html" class="">
+                Colors
                 
-                    
-                    <a href="/site/helpers.html">
-                        Helpers
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/grid.html" class="">
+                Grid
                 
-                    
-                    <a href="/site/colors.html">
-                        Colors
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/buttons.html" class="">
+                Buttons
                 
-                    
-                    <a href="/site/grid.html">
-                        Grid
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/tables.html" class="">
+                Tables
                 
-                    
-                    <a href="/site/buttons.html">
-                        Buttons
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/thumb.html" class="">
+                Thumb
                 
-                    
-                    <a href="/site/tables.html">
-                        Tables
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/cards.html" class="">
+                Cards
                 
-                    
-                    <a href="/site/cards.html">
-                        Cards
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/rows.html" class="">
+                Rows
                 
-                    
-                    <a href="/site/rows.html">
-                        Rows
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/form.html" class="">
+                Form
                 
-                    
-                    <a href="/site/form.html">
-                        Form
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/loaders.html" class="">
+                Loaders
                 
-                    
-                    <a href="/site/loaders.html">
-                        Loaders
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/nav.html" class="">
+                Nav
                 
-                    
-                    <a href="/site/nav.html">
-                        Nav
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/labels.html" class="">
+                Labels
                 
-                    
-                    <a href="/site/tabs.html">
-                        Tabs
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/alerts.html" class="">
+                Alerts
                 
-                    
-                    <a href="/site/tiles.html">
-                        Tiles
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/select.html" class="">
+                Select
                 
-                    
-                    <a href="/site/labels.html">
-                        Labels
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/alerts.html">
-                        Alerts
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/modal.html" class="">
+                Modal
                 
-                    
-                    <a href="/site/select.html">
-                        Select
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/modal.html">
-                        Modal
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/dropdown.html" class="">
+                Dropdown
                 
-                    
-                    <a href="/site/dropdown.html">
-                        Dropdown
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/tooltip.html">
-                        Tooltip
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/tooltip.html" class="">
+                Tooltip
                 
-            </div>
-        </div>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+                
+            </a>
+        
+            
+            <a href="/site/resizer.html" class="">
+                Resizer
+                
+                    <span class="uniformLabel -yellow-dark text-smaller">todo</span>
+                
+            </a>
         
     </div>
 </div>
 <div class="main-content overflow-hidden">
     <div class="section">
     <h1>Helpers</h1>
-    <p>These classes are mostly used as modifieres to base elements or compontents</p>
-    
-    <h3>Breakpoints</h3>
     <p>
-        Any helper can have <code>-sm</code>, <code>-md</code>, <code>-lg</code>,
-        or <code>-xl</code> added to cause helper to only go into effect for that
-        breakpoint.
+        Helper classes are very basic rules that modify usually apply 1 or 2 attributes to an element.
+        They are meant to make UI process fast and easy.
     </p>
     
-    <h3>Padding</h3>
-    <table class="uniformTable top">
+    <h2>Modifier Hierarchy</h2>
+    <code>.attribute[-direction][-size][-scope]</code>
+    <pre><code class='css'>@media max-width: 719px){
+    .pad-top-2x-sm{
+        padding-top: 2em;
+    }
+}</code></pre>
+    
+    <h3>Attributes</h3>
+    <p>
+        These attributes follow the same structure for the given attribute
+    </p>
+    <table class="uniformTable top tight">
         <tr>
-            <th></th>
-            <th></th>
+            <th><code>pad</code></th>
+            <td><code>padding</code></td>
         </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.pad-tiny</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>padding: 0.25em;</code></pre>
-            </td>
+        <tr>
+            <th><code>margin</code></th>
+            <td><code>margin</code></td>
         </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.pad-less</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>padding: 0.5em;</code></pre>
-            </td>
+        <tr>
+            <th><code>text</code></th>
+            <td><code>font-size</code></td>
         </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.pad</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>padding: 1em;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.pad-more</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>padding: 2em;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.pad-super</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>padding: 4em;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.pad-h</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>padding-left: 1em; padding-right: 1em;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.pad-h-less</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>padding-left: 0.5em; padding-right: 0.5em;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.pad-v</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>padding-top: 1em; padding-bottom: 1em;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.pad-v-less</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>padding-top: 0.5em; padding-bottom: 0.5em;</code></pre>
-            </td>
-        </tr>
-        
     </table>
     
-    <h3>Margin</h3>
-    <table class="uniformTable top">
+    
+    
+    <h3>Direction</h3>
+    <table class="uniformTable top tight">
         <tr>
-            <th></th>
-            <th></th>
+            <th><code>-left</code></th>
+            <td>left</td>
         </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.margin-tiny</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>margin-top: 0.25em; margin-bottom:0.25em</code></pre>
-            </td>
+        <tr>
+            <th><code>-right</code></th>
+            <td>right</td>
         </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.margin-less</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>margin-top: 0.5em; margin-bottom: 0.5em</code></pre>
-            </td>
+        <tr>
+            <th><code>-top</code></th>
+            <td>top</td>
         </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.margin</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>margin-top: 1em; margin-bottom: 1em;</code></pre>
-            </td>
+        <tr>
+            <th><code>-bottom</code></th>
+            <td>bottom</td>
         </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.margin-more</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>margin-top 2em; margin-bottom: 2em</code></pre>
-            </td>
+        <tr>
+            <th><code>-h</code></th>
+            <td>left and right</td>
         </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.margin-super</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>margin-top: 4em; margin-bottom: 2em</code></pre>
-            </td>
+        <tr>
+            <th><code>-v</code></th>
+            <td>top and bottom</td>
         </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.margin-h</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>margin-left: 1em; margin-right: 1em;</code></pre>
-            </td>
+    </table>
+    
+    <h3>Size</h3>
+    <table class="uniformTable top tight">
+        <tr>
+            <th><code>-quarter</code></th>
+            <td>0.25em</td>
         </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.margin-none</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>margin: 0 !important;</code></pre>
-            </td>
+        <tr>
+            <th><code>-half</code>   </th>
+            <td>0.5em</td>
         </tr>
-        
+        <tr>
+            <th><code>-smaller</code></th>
+            <td>0.8em</td>
+        </tr>
+        <tr>
+            <th><code>-small</code>  </th>
+            <td>0.9em</td>
+        </tr>
+        <tr>
+            <th><code>-base</code>   </th>
+            <td>1em</td>
+        </tr>
+        <tr>
+            <th><code>-large</code>  </th>
+            <td>1.2em</td>
+        </tr>
+        <tr>
+            <th><code>-larger</code> </th>
+            <td>1.4em</td>
+        </tr>
+        <tr>
+            <th><code>-2x</code> </th>
+            <td>2em</td>
+        </tr>
+        <tr>
+            <th><code>-4x</code>   </th>
+            <td>4em</td>
+        </tr>
+    </table>
+    
+    <h3>Scopes</h3>
+    <table class="uniformTable top tight">
+        <tr>
+            <th><code>-sm</code></th>
+            <td> < 720px</td>
+        </tr>
+        <tr>
+            <th><code>-md</code></th>
+            <td> 720px - 1080px</td>
+        </tr>
+        <tr>
+            <th><code>-lg</code></th>
+            <td> 1080px - 1440px</td>
+        </tr>
+        <tr>
+            <th><code>-xl</code></th>
+            <td> 1440px +</td>
+        </tr>
     </table>
     
     <h3>Colors</h3>
@@ -379,6 +323,15 @@
             </td>
             <td>
                 <pre><code class='margin-none css'>a:hover{ color: $green}</code></pre>
+            </td>
+        </tr>
+        
+        <tr class="middle">
+            <td>
+                <code>.border-green</code>
+            </td>
+            <td>
+                <pre><code class='margin-none css'>border-color: $green</code></pre>
             </td>
         </tr>
         
@@ -481,6 +434,15 @@
             </td>
         </tr>
         
+        <tr class="middle">
+            <td>
+                <code>.height-auto</code>
+            </td>
+            <td>
+                <pre><code class='margin-none css'>height: auto;</code></pre>
+            </td>
+        </tr>
+        
     </table>
     
     <h3>Text</h3>
@@ -501,55 +463,10 @@
         
         <tr class="middle">
             <td>
-                <code>.text-small-less</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-size: 0.9em</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.text-small</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-size: 0.8em</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.text-large</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-size: 1.2em</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
                 <code>.text-1rem</code>
             </td>
             <td>
                 <pre><code class='margin-none css'>font-size: 1rem</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.text-larger</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-size: 1.4em</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.text-super</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-size: 3em</code></pre>
             </td>
         </tr>
         
@@ -586,6 +503,15 @@
             </td>
             <td>
                 <pre><code class='margin-none css'>opacity: 0.6</code></pre>
+            </td>
+        </tr>
+        
+        <tr class="middle">
+            <td>
+                <code>.text-muted-less</code>
+            </td>
+            <td>
+                <pre><code class='margin-none css'>opacity: 0.85</code></pre>
             </td>
         </tr>
         
@@ -631,6 +557,15 @@
             </td>
             <td>
                 <pre><code class='margin-none css'>@include text-overflow</code></pre>
+            </td>
+        </tr>
+        
+        <tr class="middle">
+            <td>
+                <code>.text-italic</code>
+            </td>
+            <td>
+                <pre><code class='margin-none css'>font-style: italic</code></pre>
             </td>
         </tr>
         
@@ -699,24 +634,6 @@
         
         <tr class="middle">
             <td>
-                <code>.required</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>color:$red</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.warn:hover</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>color:$red</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
                 <code>p.large</code>
             </td>
             <td>
@@ -726,16 +643,7 @@
         
         <tr class="middle">
             <td>
-                <code>.text-italic</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-style: italic</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.text-no-wrap</code>
+                <code>.text-nowrap</code>
             </td>
             <td>
                 <pre><code class='margin-none css'>white-space: nowrap; overflow:hidden</code></pre>
@@ -766,6 +674,15 @@
             </td>
             <td>
                 <pre><code class='margin-none css'>&amp;:hover{color:$red !important;}</code></pre>
+            </td>
+        </tr>
+        
+        <tr class="middle">
+            <td>
+                <code>.text-col-2</code>
+            </td>
+            <td>
+                <pre><code class='margin-none css'>column-count: 2; column-gap: 5em;</code></pre>
             </td>
         </tr>
         
@@ -807,7 +724,7 @@
         
         <tr class="middle">
             <td>
-                <code>.pointer</code>
+                <code>.cursorpointer</code>
             </td>
             <td>
                 <pre><code class='margin-none css'>cursor: pointer !important;</code></pre>
@@ -825,7 +742,7 @@
         
         <tr class="middle">
             <td>
-                <code>.handle</code>
+                <code>.cursor-handle</code>
             </td>
             <td>
                 <pre><code class='margin-none css'>cursor: hand;</code></pre>
@@ -841,24 +758,6 @@
 left:-999999px !important;
 width:1px !important;
 display:block !important;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.border-#{$direction}</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>border-#{$direction}: 1px solid $gray-light;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.border-dark-#{$direction}</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>border-#{$direction}: 1px solid darken($gray-light, 20);</code></pre>
             </td>
         </tr>
         
@@ -936,51 +835,6 @@ display:block !important;</code></pre>
         
         <tr class="middle">
             <td>
-                <code>.align-middle</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>@include align-middle;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.relative</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>position:relative;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>ul.raw</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>margin: 0; padding: 0; list-style:none;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>.text-col-2</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>column-count: 2; column-gap: 5em;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
-                <code>button.raw</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>outline: none; appearance: none; border: none; background:none;</code></pre>
-            </td>
-        </tr>
-        
-        <tr class="middle">
-            <td>
                 <code>.overflow-hidden</code>
             </td>
             <td>
@@ -999,19 +853,62 @@ display:block !important;</code></pre>
         
         <tr class="middle">
             <td>
-                <code>img.block</code>
+                <code>.relative</code>
             </td>
             <td>
-                <pre><code class='margin-none css'>display:block; width: 100%;</code></pre>
+                <pre><code class='margin-none css'>position:relative;</code></pre>
             </td>
         </tr>
         
         <tr class="middle">
             <td>
-                <code>.height-auto</code>
+                <code>.position-center</code>
             </td>
             <td>
-                <pre><code class='margin-none css'>height: auto;</code></pre>
+                <pre><code class='margin-none css'>position:absolute;
+left:50%;
+top:50%;
+transform: translate(-50%, -50%);</code></pre>
+            </td>
+        </tr>
+        
+        <tr class="middle">
+            <td>
+                <code>.position-v-center</code>
+            </td>
+            <td>
+                <pre><code class='margin-none css'>position:absolute;
+left:50%;
+transform: translateX(-50%, -50%);</code></pre>
+            </td>
+        </tr>
+        
+        <tr class="middle">
+            <td>
+                <code>.position-h-center</code>
+            </td>
+            <td>
+                <pre><code class='margin-none css'>position:absolute;
+top:50%;
+transform: translateY(-50%, -50%);</code></pre>
+            </td>
+        </tr>
+        
+        <tr class="middle">
+            <td>
+                <code>ul.raw</code>
+            </td>
+            <td>
+                <pre><code class='margin-none css'>margin: 0; padding: 0; list-style:none;</code></pre>
+            </td>
+        </tr>
+        
+        <tr class="middle">
+            <td>
+                <code>button.raw</code>
+            </td>
+            <td>
+                <pre><code class='margin-none css'>outline: none; appearance: none; border: none; background:none;</code></pre>
             </td>
         </tr>
         
@@ -1020,7 +917,7 @@ display:block !important;</code></pre>
 </div>
 </div>  
 
-
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
 <script
   src="https://code.jquery.com/jquery-1.11.3.min.js"

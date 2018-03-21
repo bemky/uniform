@@ -1,55 +1,54 @@
-$padding: 0.5em;
 .uniformCard{
     background: white;
-    border: 1px solid $gray-light;
+    border: 1px solid color('gray-light');
     border-radius: 0.25em;
     margin-bottom: 1em;
-    &.width-auto{
-        display:inline-block;
-    }
-    &.clip{
-        overflow:hidden;
-    }
-    .un-pad{
+    
+    &.-nest{
         margin-left: -0.5em;
         margin-right: -0.5em;
     }
+    &.-clip{
+        overflow:hidden;
+    }
+    
     .uniformCard-header,
-    .uniformCard-footer{
-        padding: $padding;
-    }
-    .uniformCard-header{
-        border-bottom: 1px solid $gray-light;
-        .fortycon.arrow_down_large{
-            transition: all 0.2s;
-        }
-    }
-    .uniformCard-footer{
-        border-top: 1px solid $gray-light;
+    .uniformCard-footer,
+    .uniformCard-body{
+        padding: 1em;
         clear: both;
     }
-    .uniformCard-body{
-        padding: $padding;
+    .uniformCard-header{
+        border-bottom: 1px solid color('gray-light');
     }
+    .uniformCard-footer{
+        border-top: 1px solid color('gray-light');
+    }
+    
     .uniformCard-collapse{
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.2s;
+        display:none;
     }
+    
+    .uniformCard-icon{
+        transition: transform 0.2s;
+    }
+    
     &.expanded{
         .uniformCard-header {
-            .fortycon.arrow_down_large{
+            .uniformCard-icon{
                 transform: rotate(180deg);
             }
         }
         .uniformCard-collapse{
-            max-height: 9999px;
+            display:block;
         }
     }
+    
     &.uniformCard-accordion{
         margin: 0;
         margin-bottom:-1px;
         border-radius: 0;
+        transition: margin 0.5s;
         &:first-of-type{
             border-top-left-radius: 0.25em;
             border-top-right-radius: 0.25em;
@@ -62,7 +61,7 @@ $padding: 0.5em;
             cursor: pointer;
             border-bottom-style: none;
             &:hover{
-                background: lighten($blue, 50);
+                background: lighten(color('blue'), 50);
             }
         }
         &.expanded{
@@ -81,5 +80,12 @@ $padding: 0.5em;
                 }
             }
         }
+    }
+    
+    &.uniformCard-tile{
+        border-radius: 0;
+        margin: 0;
+        margin-bottom: -1px;
+        margin-right: -1px;
     }
 }

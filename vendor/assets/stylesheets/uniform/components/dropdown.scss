@@ -16,7 +16,7 @@
         padding: 0.5em;
         display: block;
         &:hover{
-            background: lighten($blue, 45);
+            background: lighten(color('blue'), 45);
         }
     }
     &.absolute{
@@ -26,7 +26,7 @@
         border-radius: 0;
     }
     .uniformDropdown-pointer{
-        @include media($md){
+        @include size-rule('md'){
             position:absolute;
             bottom: 100%;
             left: 50%;
@@ -48,13 +48,13 @@
         }
     }
     &.has-pointer{
-        @include media($md){
+        @include size-rule('md'){
             margin-top:1em;
         }
     }
 }
 
-@include media($sm){
+@include size-rule('sm'){
     .uniformOverlay{
         position: fixed;
         top:0;

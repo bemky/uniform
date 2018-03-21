@@ -1,47 +1,27 @@
-.margin{
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-.margin-h{
-    margin-left: 1em;
-    margin-right: 1em;
-}
-.margin-more{
-    margin-top: 2em !important;
-    margin-bottom: 2em !important;
-}
-.margin-super{
-    margin-top: 4em !important;
-    margin-bottom: 4em !important;
-}
-@include apply-media-sizes('.margin-less'){
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
-.margin-tiny{
-    margin-top: 0.25em;
-    margin-bottom: 0.25em;
-}
-.margin-none{
-    margin: 0 !important;
-}
+//----------------------------------------------------------------
+//             Margin
+//----------------------------------------------------------------
+
+@include sizes('.margin', 'margin');
+@include sizes('.margin-v', ('margin-top' 'margin-bottom'));
+@include sizes('.margin-h', ('margin-left' 'margin-right'));
 @each $direction in 'top' 'right' 'bottom' 'left' {
-    .margin-#{$direction}-none{
-        margin-#{$direction}: 0 !important;
+    @include sizes('.margin-#{$direction}', 'margin-#{$direction}');
+    .margin-#{$direction}-nest{
+        margin-#{$direction}: -1em;
     }
-    .margin-#{$direction}-tiny{
-        margin-#{$direction}: 0.25em !important;
-    }
-    .margin-#{$direction}-less{
-        margin-#{$direction}: 0.5em !important;
-    }
-    @include apply-media-sizes('.margin-#{$direction}'){
-        margin-#{$direction}: 1em !important;
-    }
-    @include apply-media-sizes('.margin-#{$direction}-more'){
-        margin-#{$direction}: 2em !important;
-    }
-    @include apply-media-sizes('.margin-#{$direction}-super'){
-        margin-#{$direction}: 4em !important;
-    }
+}
+@include size-rules('.margin-nest'){
+    margin: -1em;
+}
+@include size-rules('.margin-v-nest'){
+    margin-top: -1em;
+    margin-bottom: -1em;
+}
+@include size-rules('.margin-h-nest'){
+    margin-left: -1em;
+    margin-right: -1em;
+}
+@include size-rules('.margin-nest-half'){
+    margin: -0.5em;
 }

@@ -31,236 +31,288 @@
 </head>
 <body>
 <div class="side-nav">
-    <div class="pad">
+    <div class="pad-2x">
         <a href="/">
-        <img src="/site/assets/images/logo.png" class="block">
+        <img src="/site/assets/images/logo.png" class="block width-100-p">
         </a>
     </div>
-    <div class="uniformNav vertical">
-        <div class="mobile-nav">
-            <button class="uniformButton">-</button>
-        </div>
-        <div class="non-mobile-nav">
-            <div class="nav">
+    <div class="uniformNav uniformNav-vertical">
+        
+            
+            <a href="/site/helpers.html" class="">
+                Helpers
                 
+            </a>
+        
+            
+            <a href="/site/colors.html" class="">
+                Colors
                 
-                    
-                    <a href="/site/helpers.html">
-                        Helpers
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/grid.html" class="">
+                Grid
                 
-                    
-                    <a href="/site/colors.html">
-                        Colors
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/buttons.html" class="">
+                Buttons
                 
-                    
-                    <a href="/site/grid.html">
-                        Grid
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/tables.html" class="">
+                Tables
                 
-                    
-                    <a href="/site/buttons.html">
-                        Buttons
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/thumb.html" class="">
+                Thumb
                 
-                    
-                    <a href="/site/tables.html">
-                        Tables
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/cards.html" class="">
+                Cards
                 
-                    
-                    <a href="/site/cards.html">
-                        Cards
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/rows.html" class="">
+                Rows
                 
-                    
-                    <a href="/site/rows.html">
-                        Rows
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/form.html" class="">
+                Form
                 
-                    
-                    <a href="/site/form.html">
-                        Form
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/loaders.html" class="">
+                Loaders
                 
-                    
-                    <a href="/site/loaders.html">
-                        Loaders
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/nav.html" class="active">
+                Nav
                 
-                    
-                    <a href="/site/nav.html">
-                        Nav
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/labels.html" class="">
+                Labels
                 
-                    
-                    <a href="/site/tabs.html">
-                        Tabs
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/alerts.html" class="">
+                Alerts
                 
-                    
-                    <a href="/site/tiles.html">
-                        Tiles
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/select.html" class="">
+                Select
                 
-                    
-                    <a href="/site/labels.html">
-                        Labels
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/alerts.html">
-                        Alerts
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/modal.html" class="">
+                Modal
                 
-                    
-                    <a href="/site/select.html">
-                        Select
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/modal.html">
-                        Modal
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/dropdown.html" class="">
+                Dropdown
                 
-                    
-                    <a href="/site/dropdown.html">
-                        Dropdown
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/tooltip.html">
-                        Tooltip
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/tooltip.html" class="">
+                Tooltip
                 
-            </div>
-        </div>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+                
+            </a>
+        
+            
+            <a href="/site/resizer.html" class="">
+                Resizer
+                
+                    <span class="uniformLabel -yellow-dark text-smaller">todo</span>
+                
+            </a>
         
     </div>
 </div>
 <div class="main-content overflow-hidden">
     <div class="section">
     <h1>Nav</h1>
-    <div class="uniformNav margin-bottom">
-        <div class="mobile-nav">
-            <button type="button">
-                <img src="/site/assets/images/logo.png" height="31" width="137">
-            </button>
-        </div>
-        <div class="non-mobile-nav">
-            <div class="nav">
-                <a href="#" class="pad-none pad-right"><img src="/site/assets/images/logo.png" height="31" width="137"></a>
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+    
+    <div class="margin-v-2x">
+        <h3>uniformNav</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformNav margin-h-nest">
+                    <a href="#">Home</a>
+                    <a href="#" class="active">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Log In</a>
+                    <span>
+                        Just Text
+                    </span>
+                </div>
+            </div>
+            <div class="col-6">
+                <pre><code class='html'>&lt;div class=&quot;uniformNav margin-h-nest&quot;&gt;
+    &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
+    &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;About&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;Log In&lt;/a&gt;
+    &lt;span&gt;
+        Just Text
+    &lt;/span&gt;
+&lt;/div&gt;</code></pre>
             </div>
         </div>
     </div>
-    <pre><code class=''>&lt;div class=&quot;uniformNav&quot;&gt;
-    &lt;div class=&quot;mobile-nav&quot;&gt;
-        &lt;button type=&quot;button&quot;&gt;
-            &lt;img src=&quot;/site/assets/images/logo.png&quot; height=&quot;31&quot; width=&quot;137&quot;&gt;
-        &lt;/button&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;non-mobile-nav&quot;&gt;
-        &lt;div class=&quot;nav&quot;&gt;
-            &lt;a href=&quot;#&quot; class=&quot;pad-none pad-right&quot;&gt;&lt;img src=&quot;/site/assets/images/logo.png&quot; height=&quot;31&quot; width=&quot;137&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
-            &lt;a href=&quot;#&quot;&gt;About&lt;/a&gt;
-            &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-    <br><br>
-    <h3>Vertical</h3>
-    <div class="grid no-wrap">
-        <div class="col-4">
-            <div class="uniformNav vertical">
-                <div class="mobile-nav">
-                    <button type="button">
-                        <img src="/site/assets/images/logo.png" height="31" width="137">
-                    </button>
+    
+    <div class="margin-v-2x">
+        <h3>uniformNav-vertical</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformNav uniformNav-vertical">
+                    <a href="#">Home</a>
+                    <a href="#" class="active">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Log In</a>
+                    <span>
+                        Just Text
+                    </span>
                 </div>
-                <div class="non-mobile-nav">
-                    <div class="nav">
-                        <a href="#" class="pad-none pad-right"><img src="/site/assets/images/logo.png" height="31" width="137"></a>
+            </div>
+            <div class="col-6">
+                <pre><code class='html'>&lt;div class=&quot;uniformNav uniformNav-vertical&quot;&gt;
+    &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
+    &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;About&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+    &lt;a href=&quot;#&quot;&gt;Log In&lt;/a&gt;
+    &lt;span&gt;
+        Just Text
+    &lt;/span&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <div class="margin-v-2x">
+        <h3>uniformMainNav</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformMainNav">
+                    <div class="uniformNav">
+                        <span class="margin-left-nest">
+                            <img src="/site/assets/images/logo.png" height="31" width="137">
+                        </span>
                         <a href="#">Home</a>
-                        <a href="#">About</a>
+                        <a href="#" class="active">About</a>
                         <a href="#">Contact</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-8">
-            <pre><code class='width-100-p'>&lt;div class=&quot;uniformNav vertical&quot;&gt;
-    &lt;div class=&quot;mobile-nav&quot;&gt;
-        &lt;button type=&quot;button&quot;&gt;
+            <div class="col-6">
+                <pre><code class='html'>&lt;div class=&quot;uniformMainNav&quot;&gt;
+    &lt;div class=&quot;uniformNav&quot;&gt;
+        &lt;span class=&quot;margin-left-nest&quot;&gt;
             &lt;img src=&quot;/site/assets/images/logo.png&quot; height=&quot;31&quot; width=&quot;137&quot;&gt;
-        &lt;/button&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;non-mobile-nav&quot;&gt;
-        &lt;div class=&quot;nav&quot;&gt;
-            &lt;a href=&quot;#&quot; class=&quot;pad-none pad-right&quot;&gt;&lt;img src=&quot;/site/assets/images/logo.png&quot; height=&quot;31&quot; width=&quot;137&quot;&gt;&lt;/a&gt;
-            &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
-            &lt;a href=&quot;#&quot;&gt;About&lt;/a&gt;
-            &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
-        &lt;/div&gt;
+        &lt;/span&gt;
+        &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
+        &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;About&lt;/a&gt;
+        &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
+            </div>
         </div>
     </div>
     
-        <br><br>
-        <h3>UniformNavList</h3>
-        <div class="grid no-wrap">
-            <div class="col-4">
-                <div class="uniformNavList">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
+    <div class="margin-v-2x">
+        <h3>uniformMainNav-vertical</h3>
+        <div class="grid grid-nest">
+            <div class="col-3">
+                <div class="uniformMainNav uniformMainNav-vertical">
+                    <div class="uniformNav">
+                        <span class="margin-bottom-half">
+                            <img src="/site/assets/images/logo.png" height="31" width="137">
+                        </span>
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-8">
-                <pre><code class='width-100-p'>&lt;div class=&quot;uniformNavList&quot;&gt;
-    &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
-    &lt;a href=&quot;#&quot;&gt;About&lt;/a&gt;
-    &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+            <div class="col-3">&nbsp;</div>
+            <div class="col-6">
+                <pre><code class='html'>&lt;div class=&quot;uniformMainNav uniformMainNav-vertical&quot;&gt;
+    &lt;div class=&quot;uniformNav&quot;&gt;
+        &lt;span class=&quot;margin-bottom-half&quot;&gt;
+            &lt;img src=&quot;/site/assets/images/logo.png&quot; height=&quot;31&quot; width=&quot;137&quot;&gt;
+        &lt;/span&gt;
+        &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
+        &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;About&lt;/a&gt;
+        &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+    &lt;/div&gt;
 &lt;/div&gt;</code></pre>
             </div>
         </div>
+    </div>
     
-    <p>//TODO show more options</p>
+    <div class="margin-v-2x">
+        <h3>uniformMainNav-invert</h3>
+        <div class="grid">
+            <div class="col-6 col-gutter-none bg-gray">
+                <div class="uniformMainNav uniformMainNav-invert">
+                    <div class="uniformNav">
+                        <span>
+                            <img src="/site/assets/images/logo-inv.png" height="31" width="137">
+                        </span>
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <pre><code class='html'>&lt;div class=&quot;uniformMainNav uniformMainNav-invert&quot;&gt;
+    &lt;div class=&quot;uniformNav&quot;&gt;
+        &lt;span&gt;
+            &lt;img src=&quot;/site/assets/images/logo-inv.png&quot; height=&quot;31&quot; width=&quot;137&quot;&gt;
+        &lt;/span&gt;
+        &lt;a href=&quot;#&quot;&gt;Home&lt;/a&gt;
+        &lt;a href=&quot;#&quot; class=&quot;active&quot;&gt;About&lt;/a&gt;
+        &lt;a href=&quot;#&quot;&gt;Contact&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+    
 </div>
 </div>  
 
-
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
 <script
   src="https://code.jquery.com/jquery-1.11.3.min.js"

@@ -8,10 +8,10 @@ select.uniformSelect{
     text-align: left;
     
     &:after{
-        color:$gray;
+        color:color('gray');
         font-size:1em;
         content:'\25bc';
-        @include vertical-middle();
+        @include position-v-center();
         right:0.3em;
         z-index:0;
     }
@@ -32,21 +32,21 @@ select.uniformSelect{
         width: 100%;
         padding: 0.5em;
         &:hover{
-            background: lighten($blue, 45);
+            background: lighten(color('blue'), 45);
         }
     }
     
     .uniformSelect-options-actions{
-        border-top: 1px solid $gray-light;
-        border-bottom: 1px solid $gray-light;
-        background: $background;
+        border-top: 1px solid color('gray-light');
+        border-bottom: 1px solid color('gray-light');
+        background: color('background');
         padding: 0.5em;
         &:empty{
             display:none;
         }
     }
     .uniformSelect-show-all {
-        color: $blue;
+        color: color('blue');
         background: none;
         &:hover{
             background: none;
@@ -54,7 +54,7 @@ select.uniformSelect{
     }
     .uniformSelect-done{
         border-radius: 0.25em;
-        border: 1px solid $gray-light;
+        border: 1px solid color('gray-light');
         background: white;
     }
 }
@@ -64,9 +64,9 @@ select.uniformSelect{
     cursor: pointer;
     &.active{
         box-shadow:none;
-        color: $green-dark;
+        color: color('green-dark');
         &:after{
-            color: $green;
+            color: color('green');
             position: absolute;
             content: '\2714';
             top: 0.2em;
@@ -77,7 +77,7 @@ select.uniformSelect{
     }
 }
 
-@include media($sm){
+@include size-rule('sm'){
     .uniformSelect-options{
         top: 0 !important;
         left: 0 !important;
@@ -86,7 +86,7 @@ select.uniformSelect{
         padding: 1em;
         button{
             margin-bottom: 0.5em;
-            border: 1px solid lighten($gray, 40);
+            border: 1px solid lighten(color('gray'), 40);
             &.uniformSelect-done{
                 margin-bottom: 0;
             }

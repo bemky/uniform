@@ -15,6 +15,8 @@ GEM
     rake (11.3.0)
     rubyzip (1.2.1)
     sass (3.4.22)
+    sass-media_query_combiner (0.0.7)
+      sass (>= 3.2.0)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -36,7 +38,8 @@ DEPENDENCIES
   rake
   rubyzip
   sass
+  sass-media_query_combiner
   sprockets-sass
 
 BUNDLED WITH
-   1.15.4
+   1.16.1

@@ -1,21 +1,12 @@
-.relative{
-    position:relative;
-}
-.absolute{
-    position:absolute;
-}
-.position-top{
-    top: 0;
-}
-.position-left{
-    left: 0;
-}
-.position-right{
-    right: 0;
-}
-.position-bottom{
-    bottom: 0;
-}
+.relative{          position:relative;}
+.absolute{          position:absolute;}
+.position-top{      top: 0;}
+.position-left{     left: 0;}
+.position-right{    right: 0;}
+.position-bottom{   bottom: 0;}
+.position-center{   @include position-center;}
+.position-v-center{ @include position-v-center;}
+.position-h-center{ @include position-h-center;}
 @for $i from 1 through 100 {
     .z-#{$i}     { z-index: #{$i}; }
 }

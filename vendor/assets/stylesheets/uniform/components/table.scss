@@ -1,4 +1,4 @@
-@include apply-media-sizes('.table'){
+@include size-rules('.table'){
     display:table;
     width:100%;
     & > *,
@@ -23,7 +23,7 @@
     tr td,
     th {
         padding: 0.5em;
-        border-bottom: 1px solid $gray-light;
+        border-bottom: 1px solid color('gray-light');
     }
     
     &.tight{
@@ -53,13 +53,13 @@
     
     .head > *,
     thead th{
-        color: lighten($gray, 20);
-        border-bottom: 1px solid darken($gray-light, 20) !important;
+        color: lighten(color('gray'), 20);
+        border-bottom: 1px solid darken(color('gray-light'), 20) !important;
     }
     
     .head.dark > *,
     thead.dark th{
-        background: lighten($background, 2);
+        background: lighten(color('background'), 2);
     }
     
     tr.middle > td,
@@ -78,7 +78,7 @@
     
     &.hover{
         tr:hover td{
-            background: lighten($blue, 50);
+            background: lighten(color('blue'), 50);
         }
     }
     
@@ -91,7 +91,7 @@
     &.invert{
         .row > *,
         td, th{
-            border-bottom-color: $gray-dark;
+            border-bottom-color: color('gray-dark');
         }
     }
 }
@@ -107,7 +107,7 @@
         padding-left:0.5em;
     }
     th{
-        background: url("data:image/svg+xml; utf8,#{icon-circle(6, 8, 1, $gray)}");
+        background: url("data:image/svg+xml; utf8,#{icon-circle(6, 8, 1, color('gray'))}");
         background-repeat: repeat-x;
         background-position: left bottom;
         span{
@@ -118,9 +118,9 @@
     }
     &.bg-background{
         th{
-            background-image:radial-gradient(black 1px, $background 0px);
+            background-image:radial-gradient(black 1px, color('background') 0px);
             span{
-                background-color: $background;
+                background-color: color('background');
             }
         }
     }

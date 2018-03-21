@@ -31,52 +31,43 @@
 </head>
 <body>
 <div class="side-nav">
-    <div class="pad">
+    <div class="pad-2x">
         <a href="/">
-        <img src="/site/assets/images/logo.png" class="block">
+        <img src="/site/assets/images/logo.png" class="block width-100-p">
         </a>
     </div>
-    <div class="uniformNav vertical">
-        <div class="mobile-nav">
-            <button class="uniformButton">-</button>
-        </div>
-        <div class="non-mobile-nav">
-            <div class="nav">
-                <%  %>
-                <% [
-                    :helpers,
-                    :colors,
-                    :grid,
-                    :buttons,
-                    :tables,
-                    :cards,
-                    :rows,
-                    :form,
-                    :loaders,
-                    :nav,
-                    :tabs,
-                    :tiles,
-                    :labels,
-                    :alerts,
-                    [:select, 'js'],
-                    [:modal, 'js'],
-                    [:dropdown, 'js'],
-                    [:tooltip, 'js']
-                ].each do |page| %>
-                    <% if page.is_a?(Array)
-                        tag = page[1]
-                        page = page[0]
-                    end %>
-                    <a href="/site/<%= page %>.html">
-                        <%= page.to_s.titleize %>
-                        <% if tag %>
-                            <span class="uniformLabel yellow text-small"><%= tag %></span>
-                        <% end %>
-                    </a>
+    <div class="uniformNav uniformNav-vertical">
+        <% [
+            :helpers,
+            :colors,
+            :grid,
+            :buttons,
+            :tables,
+            :thumb,
+            :cards,
+            :rows,
+            :form,
+            :loaders,
+            :nav,
+            :labels,
+            :alerts,
+            [:select, 'js'],
+            [:modal, 'js'],
+            [:dropdown, 'js'],
+            [:tooltip, 'js'],
+            [:resizer, 'todo']
+        ].each do |page| %>
+            <% if page.is_a?(Array)
+                tag = page[1]
+                page = page[0]
+            end %>
+            <a href="/site/<%= page %>.html" class="<%= "active" if @current_page == page.to_s %>">
+                <%= page.to_s.titleize %>
+                <% if tag %>
+                    <span class="uniformLabel -yellow-dark text-smaller"><%= tag %></span>
                 <% end %>
-            </div>
-        </div>
-        
+            </a>
+        <% end %>
     </div>
 </div>
 <div class="main-content overflow-hidden">

@@ -1,20 +1,20 @@
-.square-icon{
-    display: inline-block;
-    height: 1em;
-    width: 1em;
-    border: 1px solid $gray;
-    border-radius: 0.1em;
-    vertical-align:middle;
-    &.gray-light{
-        border-color: lighten($gray, 40);
-    }
-}
+//----------------------------------------------------------------
+//             Overflow
+//----------------------------------------------------------------
 .overflow-hidden{
     overflow: hidden;
 }
-.hidden{
-    display:none !important;
+.overflow-hidden{
+    overflow:hidden;
 }
+.overflow-y{
+    overflow-y: auto;
+}
+
+
+//----------------------------------------------------------------
+//             Rounded
+//----------------------------------------------------------------
 .round{
     border-radius:50%;
 }
@@ -24,23 +24,95 @@
         overflow:hidden;
     }
 }
-@each $direction in 'top' 'bottom' {
-    .rounded-#{$direction}{
-        border-#{$direction}-right-radius: 0.25em;
-        border-#{$direction}-left-radius: 0.25em;
-    }
+
+.rounded-top{
+    border-top-right-radius: 0.25em;
+    border-top-left-radius: 0.25em;
 }
+.rounded-bottom{
+    border-bottom-right-radius: 0.25em;
+    border-bottom-left-radius: 0.25em;
+}
+
+
+//----------------------------------------------------------------
+//             Raw
+//----------------------------------------------------------------
+ul.raw{
+    margin: 0;
+    padding: 0;
+    list-style:none;
+}
+button.raw{
+    outline: none;
+    appearance: none;
+    border: none;
+    background:none;
+    padding: 0;
+}
+
+//----------------------------------------------------------------
+//             Cursors
+//----------------------------------------------------------------
 [data-href],
-.pointer{
+.cursor-pointer{
     cursor: pointer !important;
 }
 .cursor-help{
     cursor: help;
 }
-
-.handle{
+.cursor-handle{
     cursor: grab;
 }
+
+//----------------------------------------------------------------
+//             Layout
+//----------------------------------------------------------------
+@include size-rules('.float-right'){
+    float:right;
+    &.margin{
+        margin: 0 0 1rem 1rem;
+    }
+}
+@include size-rules('.float-left'){
+    float: left;
+    &.margin{
+        margin: 0 1rem 1rem 0;
+    }
+}
+@include size-rules('.hide'){
+    display:none !important;
+}
+@include size-rules('.show'){
+    display:inherit !important;
+    &.block{
+        display:block !important;
+    }
+}
+@include size-rules('.block') {
+    display: block !important;
+}
+@include size-rules('.inline-block') {
+    display:inline-block !important;
+}
+.bleed-fix{
+    position:static;
+    overflow:hidden;
+}
+.clear{
+    clear:both;
+}
+
+//----------------------------------------------------------------
+//             Transitions
+//----------------------------------------------------------------
+.transition-all{
+    transition: all 0.2s;
+}
+
+//----------------------------------------------------------------
+//             Misc
+//----------------------------------------------------------------
 .honeypot{
     position:absolute !important;
     left:-999999px !important;
@@ -52,70 +124,4 @@ img.disabled{
 }
 table.fixed{
     table-layout: fixed;
-}
-
-//----------------------------------------------------------------
-//             Layout
-//----------------------------------------------------------------
-@include apply-media-sizes('.float-right'){
-    float:right;
-    &.margin{
-        margin: 0 0 1rem 1rem;
-    }
-}
-.float-left{
-    float: left;
-    &.margin{
-        margin: 0 1rem 1rem 0;
-    }
-}
-.bleed-fix{
-    position:static;
-    overflow:hidden;
-}
-.clear{
-    clear:both;
-}
-@include apply-media-sizes('.block') {
-    display: block !important;
-}
-@include apply-media-sizes('.inline-block') {
-    display:inline-block !important;
-}
-.align-middle{
-    @include align-middle;
-}
-
-
-ul.raw{
-    margin: 0;
-    padding: 0;
-    list-style:none;
-}
-
-
-.text-col-2{
-    column-count: 2;
-    column-gap: 5em;
-}
-button.raw{
-    outline: none;
-    appearance: none;
-    border: none;
-    background:none;
-    padding: 0;
-}
-.overflow-hidden{
-    overflow:hidden;
-}
-.overflow-y{
-    overflow-y: auto;
-}
-
-img.block{
-    display:block;
-    width: 100%;
-}
-.height-auto{
-    height: auto;
 }

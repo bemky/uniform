@@ -16,18 +16,18 @@
     position:relative; // for adding loaders to buttons which have position:absolute
     transition: all 0.2s;
 
-    color:$gray;
+    color:color('gray');
     background-color: white;
     background-image: linear-gradient(white 33%, darken(white, 7));
     border-radius: 0.25em;
-    border:1px solid lighten($gray, 40);
+    border:1px solid lighten(color('gray'), 40);
     
     &.input-height{
         line-height: 1.4;
     }
 
     &:visited{
-        color:$gray;
+        color:color('gray');
     }
 
     &:hover,
@@ -39,17 +39,17 @@
     &.active{
     }
     
-    &.green,
-    &.blue,
-    &.red {
+    &.-green,
+    &.-blue,
+    &.-red {
         color: white;
     }
-    &.green { background: $green;}
-    &.blue  { background: $blue;}
-    &.red   { background: $red;}
-    &.green { background: $green;}
-    &.blue  { background: $blue;}
-    &.red   { background: $red;}
+    &.-green { background: color('green');}
+    &.-blue  { background: color('blue');}
+    &.-red   { background: color('red');}
+    &.-green { background: color('green');}
+    &.-blue  { background: color('blue');}
+    &.-red   { background: color('red');}
     
     
     //----------------------------------------------------------------
@@ -59,38 +59,38 @@
         background: none;
         border-color: transparent;
     }
-    &.outline{
-        border-color: $gray;
+    &.-outline{
+        border-color: color('gray');
         background:none !important;
         text-shadow:none !important;
-        &.dashed{
+        &.-dashed{
             border-style:dashed;
         }
     }
-    &.small{
+    &.-small{
         padding: 0.3em 0.5em;
         font-size: 0.8em;
     }
-    &.large{
+    &.-large{
         padding: 1em 2em;
         font-weight:bold;
     }
     
-    &.warn:hover{
-        border-color:$red;
-        background: $red;
+    &.-warn:hover{
+        border-color:color('red');
+        background: color('red');
         color: white;
         &.clear{
-            color: $red;
+            color: color('red');
             background: none;
         }
-        &.outline{
-            color: $red;
-            border-color: lighten($gray, 30);
+        &.-outline{
+            color: color('red');
+            border-color: lighten(color('gray'), 30);
         }
     }
     
-    &.block{
+    &.-block{
         padding-left:0.5em !important;
         padding-right:0.5em !important;
         display:block;
@@ -102,67 +102,67 @@
     //             colors
     //----------------------------------------------------------------
     
-    &.green{
-        background-color: darken($green, 3);
-        background-image: linear-gradient(lighten($green, 5), darken($green, 3));
-        border-color: darken($green, 3);
+    &.-green{
+        background-color: darken(color('green'), 3);
+        background-image: linear-gradient(lighten(color('green'), 5), darken(color('green'), 3));
+        border-color: darken(color('green'), 3);
         
-        &.outline{
-            border-color: $green-dark;
-            color:$green-dark;
+        &.-outline{
+            border-color: color('green-dark');
+            color:color('green-dark');
         }
     }
     
-    &.green,
-    &.red,
-    &.blue{
+    &.-green,
+    &.-red,
+    &.-blue{
         color:white;
         text-shadow:0 1px 2px rgba(black, 0.1);
     }
     
-    &.red{
-        background-color: darken($red, 3);
-        background-image: linear-gradient($red, darken($red, 3));
-        border-color: darken($red, 3);
-        &.outline{
-            color:$red-dark;
-            border-color:$red-dark;
+    &.-red{
+        background-color: darken(color('red'), 3);
+        background-image: linear-gradient(color('red'), darken(color('red'), 3));
+        border-color: darken(color('red'), 3);
+        &.-outline{
+            color:color('red-dark');
+            border-color:color('red-dark');
         }
     }
     
-    &.blue{
-        background-color: darken($blue, 3);
-        background-image: linear-gradient($blue, darken($blue, 3));
-        border-color:darken($blue, 3);
+    &.-blue{
+        background-color: darken(color('blue'), 3);
+        background-image: linear-gradient(color('blue'), darken(color('blue'), 3));
+        border-color:darken(color('blue'), 3);
         
-        &.outline{
-            color:$blue;
-            border-color: $blue;
+        &.-outline{
+            color:color('blue');
+            border-color: color('blue');
         }
     }
-    &.white{
-        &.outline{
+    &.-white{
+        &.-outline{
             color:white;
             border-color:white;
         }
     }
     
-    &.gray{
-        color: lighten($gray, 20);
-        &.outline{
-            color: lighten($gray, 20);
-            border-color: lighten($gray, 30);
+    &.-gray{
+        color: lighten(color('gray'), 20);
+        &.-outline{
+            color: lighten(color('gray'), 20);
+            border-color: lighten(color('gray'), 30);
         }
     }
     
-    &.gray-dark{
+    &.-gray-dark{
         color: white;
-        background-color: darken($gray-dark, 3);
-        background-image: linear-gradient($gray-dark, darken($gray-dark, 3));
-        border-color: darken($gray-dark, 3);
-        &.outline{
-            color: lighten($gray, 20);
-            border-color: lighten($gray, 30);
+        background-color: darken(color('gray-dark'), 3);
+        background-image: linear-gradient(color('gray-dark'), darken(color('gray-dark'), 3));
+        border-color: darken(color('gray-dark'), 3);
+        &.-outline{
+            color: lighten(color('gray'), 20);
+            border-color: lighten(color('gray'), 30);
         }
     }
     
@@ -171,15 +171,15 @@
     &:disabled:hover,
     &.disabled:hover{
         cursor: not-allowed;
-        color:lighten($gray, 40);
+        color:lighten(color('gray'), 40);
         background-image:none !important;
-        background-color: darken($background, 10);
-        border-color: lighten($gray, 40);
+        background-color: darken(color('background'), 10);
+        border-color: lighten(color('gray'), 40);
         text-shadow: none;
         &.disabled-dark{
-            background-color: $gray-dark;
-            color: lighten($gray-dark, 30);
-            border-color: darken($gray-dark, 5);
+            background-color: color('gray-dark');
+            color: lighten(color('gray-dark'), 30);
+            border-color: darken(color('gray-dark'), 5);
             opacity: 0.75;
         }
     }
@@ -206,9 +206,9 @@ a.uniformButton{
             border-radius: 0.25em 0 0 0.25em;
         }
         &.active{
-            background-color: darken($green, 3);
-            background-image: linear-gradient(lighten($green, 5), darken($green, 3));
-            border-color: darken($green, 3);
+            background-color: darken(color('green'), 3);
+            background-image: linear-gradient(lighten(color('green'), 5), darken(color('green'), 3));
+            border-color: darken(color('green'), 3);
             color: white;
         }
     }

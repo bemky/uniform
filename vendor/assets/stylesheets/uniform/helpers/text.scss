@@ -1,64 +1,24 @@
-.text-mono{
-    font-family: monospace, monospace;;
-}
-.text-caps{
-    text-transform: uppercase;
-}
-.text-small-less{
-    font-size: 0.9em;
-}
-@include apply-media-sizes('.text-small'){
-    font-size: 0.8em;
-}
-@include apply-media-sizes('.text-large'){
-    font-size: 1.2em;
+//----------------------------------------------------------------
+//             Size
+//----------------------------------------------------------------
+
+@include sizes('.text', 'font-size');
+@for $i from 1 through 20 {
+    .text-#{str-replace(str-replace('' + $i * 0.2, '.', '_'), '_0', '')}-em { font-size: #{$i * 0.2 +"em"}; }
 }
 .text-1rem{
     font-size: 1rem;
 }
-@for $i from 1 through 20 {
-    .text-#{str-replace(str-replace('' + $i * 0.2, '.', '_'), '_0', '')}-em { font-size: #{$i * 0.2 +"em"}; }
+
+//----------------------------------------------------------------
+//             Modifiers
+//----------------------------------------------------------------
+
+.text-mono{
+    font-family: monospace, monospace;
 }
-.text-larger{
-    font-size: 1.4em;
-}
-.text-super{
-    font-size: 3em;
-}
-.text-subtle{
-    font-size: 90%;
-    opacity: 0.8;
-}
-.text-subtle-more{
-    font-size: 80%;
-    opacity: 0.6;
-}
-.text-muted-less{
-    opacity: 0.85;
-}
-.text-muted{
-    opacity: 0.8;
-}
-.text-muted-more{
-    opacity: 0.6;
-}
-@include apply-media-sizes('.text-left'){
-    text-align: left !important;
-}
-@include apply-media-sizes('.text-right'){
-    text-align: right;
-}
-@include apply-media-sizes('.text-center'){
-    text-align: center;
-}
-.text-break{
-    word-break: break-all;
-}
-.text-justify{
-    text-align: justify;
-}
-.text-overflow{
-    @include text-overflow;
+.text-caps{
+    text-transform: uppercase;
 }
 .text-bold{
     font-weight: 700;
@@ -72,30 +32,8 @@
 .text-normal{
     font-weight: normal !important;
 }
-.text-middle{
-    vertical-align:middle;
-}
-.text-top{
-    vertical-align:top;
-}
-.text-tight{
-    line-height:1.3;
-}
-.required{
-    color:$red;
-}
-.warn:hover{
-    color:$red;
-}
-p.large{
-    font-size:1.5em;
-    font-weight:300;
-}
 .text-italic{
     font-style: italic;
-}
-.text-no-wrap{
-    white-space: nowrap;
 }
 .text-no-decoration{
     text-decoration: none;
@@ -103,15 +41,33 @@ p.large{
         text-decoration: none;
     }
 }
-.text-height-1{
-    line-height: 1;
+
+//----------------------------------------------------------------
+//             Styles
+//----------------------------------------------------------------
+.text-subtle{
+    font-size: 90%;
+    opacity: 0.8;
+}
+.text-subtle-more{
+    font-size: 80%;
+    opacity: 0.6;
 }
 
-.text-warn{
-    &:hover{
-        color:$red !important;
-    }
+.text-muted{
+    opacity: 0.8;
 }
+.text-muted-less{
+    opacity: 0.85;
+}
+.text-muted-more{
+    opacity: 0.6;
+}
+p.large{
+    font-size:1.5em;
+    font-weight:300;
+}
+
 blockquote.quote{
     font-style: italic;
     border:none;
@@ -129,4 +85,50 @@ blockquote.quote{
         color: rgba(black, 0.1);
         content: "“";
     }
+}
+
+//----------------------------------------------------------------
+//             Positioning
+//----------------------------------------------------------------
+
+@include size-rules('.text-left'){
+    text-align: left !important;
+}
+@include size-rules('.text-right'){
+    text-align: right;
+}
+@include size-rules('.text-center'){
+    text-align: center;
+}
+.text-middle{
+    vertical-align:middle;
+}
+.text-top{
+    vertical-align:top;
+}
+.text-tight{
+    line-height:1.3;
+}
+.text-height-1{
+    line-height: 1;
+}
+@include size-rules('.text-col-2'){
+    column-count: 2;
+    column-gap: 5em;
+}
+
+//----------------------------------------------------------------
+//             Breaking
+//----------------------------------------------------------------
+.text-break{
+    word-break: break-all;
+}
+.text-justify{
+    text-align: justify;
+}
+.text-overflow{
+    @include text-overflow;
+}
+.text-nowrap{
+    white-space: nowrap;
 }

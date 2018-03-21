@@ -1,33 +1,36 @@
 @for $i from 1 through 100 {
-    .col-#{$i * 5}-px               { flex: 0 0 #{$i * 5 +"px"}; max-width: #{$i * 5 + "px"}; }
-    .col-#{$i}-p                { flex: 0 0 #{$i+"%"}; max-width: #{$i + "%"}; }
-    .width-#{$i}-p              { width: #{$i + "%"}; max-width: #{$i + "%"}; }
     .width-#{$i * 5}-px         { width: #{$i * 5 + "px"}; }
-    .min-width-#{$i}-p          { min-width: #{$i + "%"}; }
+    .min-width-#{$i * 5}-px     { min-width: #{$i * 5 + "px"}; }
     .max-width-#{$i * 5}-px     { max-width: #{$i * 5 + "px"}; }
-    .max-width-#{$i}-p          { max-width: #{$i + "%"}; }
+    
     .height-#{$i * 5}-px        { height: #{$i * 5 + "px"}; }
-    .height-#{$i * 5}-p        { height: #{$i * 5 + "%"}; }
     .max-height-#{$i * 5}-px    { max-height: #{$i * 5 + "px"}; }
     .min-height-#{$i * 5}-px    { min-height: #{$i * 5 + "px"}; }
 }
 @for $i from 1 through 20 {
-    .width-#{$i * 5}-vw     { width: #{$i * 5 +"vw"}; }
-    .height-#{$i * 5}-vh    { height: #{$i * 5 +"vh"}; }
-    .min-height-#{$i * 5}-vh { min-height: #{$i * 5 +"vh"}; }
+    @include size-rules(".width-#{$i * 5}-p"){
+        width: #{$i * 5 + "%"};
+    }
+    .width-#{$i * 5}-vw         { width: #{$i * 5 +"vw"}; }
+    
+    .min-width-#{$i * 5}-vh     { min-width: #{$i * 5 +"vh"}; }
+    .min-width-#{$i * 5}-p      { min-width: #{$i * 5 +"%"}; }
+    
+    .max-width-#{$i * 5}-vh     { max-width: #{$i * 5 +"vh"}; }
+    .max-width-#{$i * 5}-p      { max-width: #{$i * 5 +"%"}; }
+    
+    @include size-rules(".height-#{$i * 5}-vh"){
+        height: #{$i * 5 + "vh"};
+    }
+    .height-#{$i * 5}-p         { height: #{$i * 5 +"%"}; }
+    
+    .min-height-#{$i * 5}-vh    { min-height: #{$i * 5 +"vh"}; }
+    .min-height-#{$i * 5}-p     { min-height: #{$i * 5 +"%"}; }
 }
 
-@each $name, $size in ('sm', $sm) ('md', $md) ('lg', $lg) ('xl', $xl) {
-    @include media($size){
-        @for $i from 1 through 100 {
-            .col-#{$i * 5}-px-#{$name}      { flex: 0 0 #{$i * 5 +"px"}; max-width: #{$i * 5 + "px"}; }
-            .col-#{$i}-p-#{$name}           { flex: 0 0 #{$i+"%"}; max-width: #{$i + "%"}; }
-            .width-#{$i}-p-#{$name}         { width: #{$i + "%"}; max-width: #{$i + "%"}; }
-            .width-#{$i * 5}-px-#{$name}    { width: #{$i * 5 + "px"}; }
-        }
-        @for $i from 1 through 20 {
-            .height-#{$i * 5}-vh-#{$name}       { height: #{$i * 5 +"vh"}; }
-            .min-height-#{$i * 5}-vh-#{$name}   { min-height: #{$i * 5 +"vh"}; }
-        }
-    }
+.height-auto{
+    height: auto;
+}
+.width-auto{
+    width:auto;
 }

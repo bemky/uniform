@@ -31,137 +31,130 @@
 </head>
 <body>
 <div class="side-nav">
-    <div class="pad">
+    <div class="pad-2x">
         <a href="/">
-        <img src="/site/assets/images/logo.png" class="block">
+        <img src="/site/assets/images/logo.png" class="block width-100-p">
         </a>
     </div>
-    <div class="uniformNav vertical">
-        <div class="mobile-nav">
-            <button class="uniformButton">-</button>
-        </div>
-        <div class="non-mobile-nav">
-            <div class="nav">
+    <div class="uniformNav uniformNav-vertical">
+        
+            
+            <a href="/site/helpers.html" class="">
+                Helpers
                 
+            </a>
+        
+            
+            <a href="/site/colors.html" class="">
+                Colors
                 
-                    
-                    <a href="/site/helpers.html">
-                        Helpers
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/grid.html" class="">
+                Grid
                 
-                    
-                    <a href="/site/colors.html">
-                        Colors
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/buttons.html" class="">
+                Buttons
                 
-                    
-                    <a href="/site/grid.html">
-                        Grid
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/tables.html" class="">
+                Tables
                 
-                    
-                    <a href="/site/buttons.html">
-                        Buttons
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/thumb.html" class="">
+                Thumb
                 
-                    
-                    <a href="/site/tables.html">
-                        Tables
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/cards.html" class="">
+                Cards
                 
-                    
-                    <a href="/site/cards.html">
-                        Cards
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/rows.html" class="">
+                Rows
                 
-                    
-                    <a href="/site/rows.html">
-                        Rows
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/form.html" class="">
+                Form
                 
-                    
-                    <a href="/site/form.html">
-                        Form
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/loaders.html" class="">
+                Loaders
                 
-                    
-                    <a href="/site/loaders.html">
-                        Loaders
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/nav.html" class="">
+                Nav
                 
-                    
-                    <a href="/site/nav.html">
-                        Nav
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/labels.html" class="">
+                Labels
                 
-                    
-                    <a href="/site/tabs.html">
-                        Tabs
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/alerts.html" class="">
+                Alerts
                 
-                    
-                    <a href="/site/tiles.html">
-                        Tiles
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/select.html" class="active">
+                Select
                 
-                    
-                    <a href="/site/labels.html">
-                        Labels
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/alerts.html">
-                        Alerts
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/modal.html" class="">
+                Modal
                 
-                    
-                    <a href="/site/select.html">
-                        Select
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/modal.html">
-                        Modal
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/dropdown.html" class="">
+                Dropdown
                 
-                    
-                    <a href="/site/dropdown.html">
-                        Dropdown
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
                 
-                    
-                    <a href="/site/tooltip.html">
-                        Tooltip
-                        
-                            <span class="uniformLabel yellow text-small">js</span>
-                        
-                    </a>
+            </a>
+        
+            
+            <a href="/site/tooltip.html" class="">
+                Tooltip
                 
-            </div>
-        </div>
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+                
+            </a>
+        
+            
+            <a href="/site/resizer.html" class="">
+                Resizer
+                
+                    <span class="uniformLabel -yellow-dark text-smaller">todo</span>
+                
+            </a>
         
     </div>
 </div>
@@ -174,9 +167,9 @@
     </p>
     <h3>Initialize</h3>
     <pre><code class=''>$(document).ready(function(){
-    $(&#39;.uniformSelect&#39;).uniformSelect(options);
+$(&#39;.uniformSelect&#39;).uniformSelect(options);
 })</code></pre>
-    <div class="grid-md nest margin-top-more">
+    <div class="grid-md grid-nest margin-top-2x">
         <div class="col-6-md margin-bottom">
             <select>
                 <option>An Option</option>
@@ -192,7 +185,7 @@
         </div>
         <div class="col-6-md">
             <pre><code class=''>&lt;select class=&#39;uniformSelect&#39;&gt;
-    &lt;option&gt;An Option&lt;/option&gt;
+&lt;option&gt;An Option&lt;/option&gt;
 &lt;/select&gt;</code></pre>
         </div>
         <div class="col-6-md">
@@ -205,7 +198,7 @@
         </div>
         <div class="col-6-md">
             <pre><code class=''>&lt;select class=&quot;uniformSelect&quot; multiple&gt;
-    &lt;option&gt;An Option&lt;/option&gt;
+&lt;option&gt;An Option&lt;/option&gt;
 &lt;/select&gt;</code></pre>
         </div>
         <div class="col-6-md">
@@ -234,25 +227,25 @@
         </div>
         <div class="col-6-md">
             <pre><code class=''>&lt;select class=&quot;uniformSelect&quot;&gt;
-    &lt;option&gt;Option 1&lt;/option&gt;
-    &lt;option&gt;Option 2&lt;/option&gt;
-    &lt;option&gt;Option 3&lt;/option&gt;
-    &lt;option&gt;Option 4&lt;/option&gt;
-    &lt;option&gt;Option 5&lt;/option&gt;
-    &lt;option&gt;Option 6&lt;/option&gt;
-    &lt;option&gt;Option 7&lt;/option&gt;
-    &lt;option&gt;Option 8&lt;/option&gt;
-    &lt;option&gt;Option 9&lt;/option&gt;
-    &lt;option&gt;Option 10&lt;/option&gt;
-    &lt;option&gt;Option 11&lt;/option&gt;
-    &lt;option&gt;Option 12&lt;/option&gt;
-    &lt;option&gt;Option 13&lt;/option&gt;
-    &lt;option&gt;Option 14&lt;/option&gt;
-    &lt;option&gt;Option 15&lt;/option&gt;
-    &lt;option&gt;Option 16&lt;/option&gt;
-    &lt;option&gt;Option 17&lt;/option&gt;
-    &lt;option&gt;Option 18&lt;/option&gt;
-    &lt;option&gt;Option 19&lt;/option&gt;
+&lt;option&gt;Option 1&lt;/option&gt;
+&lt;option&gt;Option 2&lt;/option&gt;
+&lt;option&gt;Option 3&lt;/option&gt;
+&lt;option&gt;Option 4&lt;/option&gt;
+&lt;option&gt;Option 5&lt;/option&gt;
+&lt;option&gt;Option 6&lt;/option&gt;
+&lt;option&gt;Option 7&lt;/option&gt;
+&lt;option&gt;Option 8&lt;/option&gt;
+&lt;option&gt;Option 9&lt;/option&gt;
+&lt;option&gt;Option 10&lt;/option&gt;
+&lt;option&gt;Option 11&lt;/option&gt;
+&lt;option&gt;Option 12&lt;/option&gt;
+&lt;option&gt;Option 13&lt;/option&gt;
+&lt;option&gt;Option 14&lt;/option&gt;
+&lt;option&gt;Option 15&lt;/option&gt;
+&lt;option&gt;Option 16&lt;/option&gt;
+&lt;option&gt;Option 17&lt;/option&gt;
+&lt;option&gt;Option 18&lt;/option&gt;
+&lt;option&gt;Option 19&lt;/option&gt;
 &lt;/select&gt;</code></pre>
         </div>
     </div>
@@ -264,11 +257,11 @@
     
     <h3>Options</h3>
     <pre><code class=''>$(document).ready(function(){
-    $(&#39;.uniformSelect&#39;).uniformSelect({
-        limit: 8,
-        class: &#39;uniformButton green&#39;,
-        showAll: function(select_options){...}
-    });
+$(&#39;.uniformSelect&#39;).uniformSelect({
+    limit: 8,
+    class: &#39;uniformButton green&#39;,
+    showAll: function(select_options){...}
+});
 })</code></pre>
     <table class="uniformTable">
         <tr>
@@ -323,7 +316,7 @@
 </div>
 </div>  
 
-
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
 <script
   src="https://code.jquery.com/jquery-1.11.3.min.js"
