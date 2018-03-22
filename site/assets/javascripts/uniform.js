@@ -249,6 +249,7 @@ UniformDropdown.prototype.toggle = function () {
 UniformDropdown.prototype.show = function () {
     if(this.options.hide_sm && $(window).width() < 720) return;
     if(!this.dropdown) this.render();
+    this.resize();
 
     this.dropdown.show();
     this.$el.addClass('active');
@@ -363,11 +364,11 @@ UniformDropdown.prototype.keyup = function (e) {
         };
         if (el.data('modal-target')) {
             options.content = $(el.data('modal-target')).clone();
-            options.content.removeClass('hidden');
+            options.content.removeClass('hide');
         }
         var modal = new UniformModal(options);
         modal.on('*', function (event_type, modal) {
-            el.trigger('modal-' + type, modal);
+            el.trigger('modal-' + event_type, modal);
         });
         modal.render();
     };

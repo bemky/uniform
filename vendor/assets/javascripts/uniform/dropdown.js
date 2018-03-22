@@ -113,6 +113,7 @@ UniformDropdown.prototype.toggle = function () {
 UniformDropdown.prototype.show = function () {
     if(this.options.hide_sm && $(window).width() < 720) return;
     if(!this.dropdown) this.render();
+    this.resize();
 
     this.dropdown.show();
     this.$el.addClass('active');

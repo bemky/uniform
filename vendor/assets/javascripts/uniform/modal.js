@@ -8,11 +8,11 @@
         };
         if (el.data('modal-target')) {
             options.content = $(el.data('modal-target')).clone();
-            options.content.removeClass('hidden');
+            options.content.removeClass('hide');
         }
         var modal = new UniformModal(options);
         modal.on('*', function (event_type, modal) {
-            el.trigger('modal-' + type, modal);
+            el.trigger('modal-' + event_type, modal);
         });
         modal.render();
     };
