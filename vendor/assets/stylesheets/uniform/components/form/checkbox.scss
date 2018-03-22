@@ -1,0 +1,58 @@
+.uniformCheckbox,
+.uniformRadio{
+    display:none;
+}
+.uniformRadio-indicator,
+.uniformCheckbox-indicator{
+    display:inline-block;
+    width: 1em;
+    height: 1em;
+    border: 0.1em solid rgba(black, 0.35);
+    vertical-align:middle;
+    margin-top: -0.15em;
+    border-radius: 0.25em;
+    position:relative;
+    transition: border-color 0.1s ease-in;
+    &::before{
+        @include position-center;
+        border-radius: 0.25em;
+        content:"";
+        width: 0em;
+        height: 0em;
+        transition: width 0.1s ease-in, height 0.1s ease-in;
+        background: color('green');
+    }
+    &.checked{
+        border-color: color('green');
+        &::before{
+            width: 1em;
+            height: 1em;
+        }
+    }
+}
+.uniformCheckbox-indicator{
+    &::before{
+        background-image: url("data:image/svg+xml; utf8,#{icon-check(#FFFFFF)}");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 80%;
+    } 
+}
+.uniformRadio-indicator{
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 0.1em white;
+    &::before{
+        border-radius: 50%;
+    }
+    &::after{
+        border-radius: 50%;
+        font-size:0;
+        content: "";
+    box-shadow: inset 0 0 0 1px white;
+        position:absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

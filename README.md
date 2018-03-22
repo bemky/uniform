@@ -44,6 +44,5 @@ To compile preview:
 #### TODO
 - Js for Collapse/Expand/Accordion
 - Organize helpers page
-- Clean up form page and form options
 - Add docs about breakpoints and media queries
 - Add docs for sizes and colors mixins

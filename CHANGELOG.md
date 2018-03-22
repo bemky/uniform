@@ -1,7 +1,7 @@
 # Change Log
 
 ## 2.0
-New naming structures
+New naming structures. Breaks a lot of class names and variables from 1.x.
 
 ### Added
 - Breakpoints now default to screen sizes using media queries, but you can also force a breakpoint by wrapping an element with `sm-size`, `md-size`, `lg-size`, `xl-size`
@@ -18,6 +18,7 @@ New naming structures
 - `hidden` use `.hide` instead
 - `uniformTabs` use `uniformNav` with `border-bottom` instead
 - removed `position-fill`
+- removed `uniformError` and `uniformErrorMessage` use `data-uniform-error`
 
 ### Changed
 - `-tiny` to `-quarter`
@@ -38,6 +39,8 @@ New naming structures
 - changed mixin `align-middle` to `position-center`
 - changed mixin `vertical-middle` to `position-v-center`
 - changed mixin `apply-media-sizes` to `size-rules`
+- changed `uniformForm-table` to `uniformForm -table`
+- changed `[data-error-message]` to `[data-uniform-error]`
 
 
 ## 1.0

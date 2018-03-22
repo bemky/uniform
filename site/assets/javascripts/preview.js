@@ -3,8 +3,8 @@ $(document).ready(function(){
     $('.uniformSelect').uniformSelect();
     $('.uniformDropdown').uniformDropdown();
     $('.uniformTooltip').uniformTooltip();
-    $('.uniformCheckbox').uniformCheckbox();
     $('.uniformResizer').uniformResizer();
+    $('.uniformCheckbox').uniformCheckbox();
     $('.uniformRadio').uniformRadio();
     $('.launchUniformModal').click(function(){
         $(this).uniformModal();
@@ -18,6 +18,13 @@ $(document).ready(function(){
         var target = $(e.target).find('.uniformCard-collapse');
         target.toggle(target.parents('.expanded').length == 0);
         target.slideToggle(100);
+    })
+    
+    $('.uniformInputGroup').on('focus', 'input', function (e) {
+        $(this).closest('.uniformInputGroup').addClass('focus');
+    })
+    $('.uniformInputGroup').on('blur', 'input', function (e) {
+        $(this).closest('.uniformInputGroup').removeClass('focus');
     })
     
     hljs.initHighlightingOnLoad();

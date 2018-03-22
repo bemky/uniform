@@ -161,191 +161,257 @@
 <div class="main-content overflow-hidden">
     <div class="section">
     <h1>Forms</h1>
-    <h3>UniformForm</h3>
-    <div class="grid">
-        <div class="col-6">
-            <form class="uniformForm">
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text">
-                </div>
-                <div class="form-group" data-error-message="example error message">
-                    <label>Phone</label>
-                    <input type="text">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="text">
-                </div>
-            </form>
+    
+    <div class="margin-v-2x">
+        <h3>uniformInput</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <p><input type="text" class="uniformInput" /></p>
+                <p><input type="text" class="uniformInput text-large" /></p>
+            </div>
+            <div class="col-6">
+                <pre><code class='html'>&lt;input type=&quot;text&quot; class=&quot;uniformInput&quot; /&gt;</code></pre>
+                <pre><code class='html'>&lt;input type=&quot;text&quot; class=&quot;uniformInput text-large&quot; /&gt;</code></pre>
+            </div>
         </div>
-        <div class="col-6">
-            <pre><code class=''>&lt;form class=&quot;uniformForm&quot;&gt;
-&lt;div class=&quot;form-group&quot;&gt;
-    &lt;label&gt;Name&lt;/label&gt;
-    &lt;input type=&quot;text&quot;&gt;
-&lt;/div&gt;
-&lt;div class=&quot;form-group&quot; data-error-message=&quot;example error message&quot;&gt;
-    &lt;label&gt;Phone&lt;/label&gt;
-    &lt;input type=&quot;text&quot;&gt;
-&lt;/div&gt;
-&lt;div class=&quot;form-group&quot;&gt;
-    &lt;label&gt;Email&lt;/label&gt;
-    &lt;input type=&quot;text&quot;&gt;
-&lt;/div&gt;
+    </div>
+    <div class="margin-v-2x">
+        <h3>uniformForm</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <form class="uniformForm">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-group" data-uniform-error="example error message">
+                        <label>Phone</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text">
+                    </div>
+                </form>
+            </div>
+            <div class="col-6">
+                <pre><code class=''>&lt;form class=&quot;uniformForm&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Name&lt;/label&gt;
+        &lt;input type=&quot;text&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot; data-uniform-error=&quot;example error message&quot;&gt;
+        &lt;label&gt;Phone&lt;/label&gt;
+        &lt;input type=&quot;text&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Email&lt;/label&gt;
+        &lt;input type=&quot;text&quot;&gt;
+    &lt;/div&gt;
 &lt;/form&gt;</code></pre>
+            </div>
         </div>
     </div>
     
-    <div class="grid">
-        <div class="col-6">
-            <form class="uniformForm uniformForm-table">
-                <div class="form-group">
-                    <label>Name</label>
-                    <div>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Phone</label>
-                    <div>
-                        <div data-error-message="example error message">
+    <div class="margin-v-2x">
+        <h3>uniformForm -table</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <form class="uniformForm -table">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <div>
                             <input type="text">
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <div>
-                        <input type="text">
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <div>
+                            <div data-uniform-error="example error message">
+                                <input type="text">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-6">
-            <pre><code class=''>&lt;form class=&quot;uniformForm uniformForm-table&quot;&gt;
-&lt;div class=&quot;form-group&quot;&gt;
-    &lt;label&gt;Name&lt;/label&gt;
-    &lt;input type=&quot;text&quot;&gt;
-&lt;/div&gt;
-&lt;div class=&quot;form-group&quot; data-error-message=&quot;example error message&quot;&gt;
-    &lt;label&gt;Phone&lt;/label&gt;
-    &lt;input type=&quot;text&quot;&gt;
-&lt;/div&gt;
-&lt;div class=&quot;form-group&quot;&gt;
-    &lt;label&gt;Email&lt;/label&gt;
-    &lt;input type=&quot;text&quot;&gt;
-&lt;/div&gt;
+                    <div class="form-group">
+                        <label>Email</label>
+                        <div>
+                            <input type="text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-6">
+                <pre><code class=''>&lt;form class=&quot;uniformForm -table&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Name&lt;/label&gt;
+        &lt;input type=&quot;text&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot; data-uniform-error=&quot;example error message&quot;&gt;
+        &lt;label&gt;Phone&lt;/label&gt;
+        &lt;input type=&quot;text&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;Email&lt;/label&gt;
+        &lt;input type=&quot;text&quot;&gt;
+    &lt;/div&gt;
 &lt;/form&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <div class="margin-v-2x">
+        <h3>uniformCheckboxCollection</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformCheckboxCollection">
+                    <label><input type="checkbox"> Option 1</label>
+                    <label><input type="checkbox"> Option 2</label>
+                    <label><input type="checkbox"> Option 3</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <pre><code class=''>&lt;div class=&quot;uniformCheckboxCollection&quot;&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 1&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 2&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 3&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <div class="margin-v-2x">
+        <h3>uniformCheckboxCollection -inline</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformCheckboxCollection -inline">
+                    <label><input type="checkbox"> Option 1</label>
+                    <label><input type="checkbox"> Option 2</label>
+                    <label><input type="checkbox"> Option 3</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <pre><code class=''>&lt;div class=&quot;uniformCheckboxCollection -inline&quot;&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 1&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 2&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 3&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <div class="margin-v-2x">
+        <h3>uniformCheckboxCollection -buttons</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformCheckboxCollection -buttons">
+                    <label><input type="checkbox"> Option 1</label>
+                    <label><input type="checkbox"> Option 2</label>
+                    <label><input type="checkbox"> Option 3</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <pre><code class=''>&lt;div class=&quot;uniformCheckboxCollection -buttons&quot;&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 1&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 2&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 3&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <div class="margin-v-2x">
+        <h3>uniformCheckboxCollection -invert -inline</h3>
+        <div class="grid">
+            <div class="col-6 bg-gray text-white pad-v">
+                <div class="uniformCheckboxCollection -invert -inline">
+                    <label><input type="checkbox"> Option 1</label>
+                    <label><input type="checkbox"> Option 2</label>
+                    <label><input type="checkbox"> Option 3</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <pre><code class=''>&lt;div class=&quot;uniformCheckboxCollection -invert -inline&quot;&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 1&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 2&lt;/label&gt;
+    &lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 3&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+            </div>
         </div>
     </div>
     
     
-    <h3>UniformInput</h3>
-    <div class="grid">
-        <div class="col-6">
-            <p><input type="text" class="uniformInput" /></p>
-            <p><input type="text" class="uniformInput large" /></p>
-        </div>
-        <div class="col-6">
-            <pre><code class=''>&lt;input type=&quot;text&quot; class=&quot;uniformInput&quot; /&gt;</code></pre>
-            <pre><code class=''>&lt;input type=&quot;text&quot; class=&quot;uniformInput large&quot; /&gt;</code></pre>
-        </div>
-    </div>
-
-    <h3>Custom Inputs</h3>
-    <div class="grid grid-nest">
-        <div class="col-6">
-            <p>uniformCheckboxCollection</p>
-            <div class="uniformCheckboxCollection">
-                <label><input type="checkbox"> Option 1</label>
-                <label><input type="checkbox"> Option 2</label>
-                <label><input type="checkbox"> Option 3</label>
+    <div class="margin-v-2x">
+        <h3>uniformCheckbox / uniformRadio <span class="uniformLabel text-smaller -yellow-dark text-normal">js required</span></h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="margin-v">
+                    <label><input type="checkbox" class="uniformCheckbox"> Option 1</label><br>
+                    <label><input type="checkbox" class="uniformCheckbox" checked> Option 1</label>
+                </div>
+                <div class="margin-v text-larger">
+                    <label><input type="checkbox" class="uniformCheckbox"> Option 1</label><br>
+                    <label><input type="checkbox" class="uniformCheckbox" checked> Option 1</label>
+                </div>
+                <div class="margin-v">
+                    <label><input type="checkbox" class="uniformRadio"> Option 1</label><br>
+                    <label><input type="checkbox" class="uniformRadio" checked> Option 1</label>
+                </div>
+                <div class="margin-v text-larger">
+                    <label><input type="checkbox" class="uniformRadio"> Option 1</label><br>
+                    <label><input type="checkbox" class="uniformRadio" checked> Option 1</label>
+                </div>
+            </div>
+            <div class="col-6">
+                <pre><code class=''>&lt;label&gt;&lt;input type=&quot;checkbox&quot; class=&quot;uniformCheckbox&quot;&gt; Option 1&lt;/label&gt;</code></pre>
+                <pre><code class=''>&lt;label&gt;&lt;input type=&quot;checkbox&quot; class=&quot;uniformRadio&quot;&gt; Option 1&lt;/label&gt;</code></pre>
+                <pre><code class='javascript'>$(&#39;.uniformCheckbox&#39;).uniformCheckbox();
+$(&#39;.uniformRadio&#39;).uniformRadio();</code></pre>
             </div>
         </div>
-        <div class="col-6">
-            <pre><code class=''>&lt;div class=&quot;uniformCheckboxCollection&quot;&gt;
-&lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 1&lt;/label&gt;
-&lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 2&lt;/label&gt;
-&lt;label&gt;&lt;input type=&quot;checkbox&quot;&gt; Option 3&lt;/label&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-        
-        <div class="col-6">
-            <p>uniformCheckboxCollection.inline</p>
-            <div class="uniformCheckboxCollection inline">
-                <label><input type="radio"> Option 1</label>
-                <label><input type="radio"> Option 2</label>
-                <label><input type="radio"> Option 3</label>
-            </div>
-        </div>
-        <div class="col-6">
-            <pre><code class=''>&lt;div class=&quot;uniformCheckboxCollection inline&quot;&gt; 
-&lt;label&gt;&lt;input type=&quot;radio&quot;&gt; Option 1&lt;/label&gt;
-&lt;label&gt;&lt;input type=&quot;radio&quot;&gt; Option 2&lt;/label&gt;
-&lt;label&gt;&lt;input type=&quot;radio&quot;&gt; Option 3&lt;/label&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-        
-        
-        <div class="col-6 margin-top-2x">
-            <p>uniformCheckbox <span class="uniformLabel yellow">js required</span></p>
-            <label><input type="checkbox" class="uniformCheckbox"> Option 1</label>
-        </div>
-        <div class="col-6 margin-top-2x">
-            <pre><code class=''>&lt;label&gt;&lt;input type=&quot;checkbox&quot; class=&quot;uniformCheckbox&quot;&gt; Option 1&lt;/label&gt;
-&lt;script&gt;$(&#39;.uniformCheckbox&#39;).uniformCheckbox()&lt;/script&gt;</code></pre>
-        </div>
-        
-        
-        <div class="col-6 margin-top-2x">
-            <p>uniformRadio <span class="uniformLabel yellow">js required</span></p>
-            <label><input type="checkbox" class="uniformRadio"> Option 1</label>
-        </div>
-        <div class="col-6 margin-top-2x">
-            <pre><code class=''>&lt;label&gt;&lt;input type=&quot;checkbox&quot; class=&quot;uniformRadio&quot;&gt; Option 1&lt;/label&gt;
-&lt;script&gt;$(&#39;.uniformRadio&#39;).uniformRadio()&lt;/script&gt;</code></pre>
-        </div>
-        
-        
     </div>
     
-    <h3>Floating Label</h3>
-    <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
-    <div class="grid">
-        <div class="col-6">
-            <div class="uniformFloatingLabel">
-                <label for="example-1">Name</label>
-                <input type="text" class="pad-2x" id="example-1">
+    
+    <div class="margin-v-2x">
+        <h3>uniformFloatingLabel <span class="uniformLabel text-smaller -yellow-dark text-normal">js required</span></h3>
+        <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformFloatingLabel">
+                    <label for="example-1">Name</label>
+                    <input type="text" class="pad-2x" id="example-1">
+                </div>
             </div>
-        </div>
-        <div class="col-6">
-            <pre><code class=''>&lt;div class=&quot;uniformFloatingLabel&quot;&gt;
-&lt;label for=&quot;example-1&quot;&gt;Name&lt;/label&gt;
-&lt;input type=&quot;text&quot; class=&quot;pad-2x&quot; id=&quot;example-1&quot;&gt;
+            <div class="col-6">
+                <pre><code class='html'>&lt;div class=&quot;uniformFloatingLabel&quot;&gt;
+    &lt;label for=&quot;example-1&quot;&gt;Name&lt;/label&gt;
+    &lt;input type=&quot;text&quot; class=&quot;pad-2x&quot; id=&quot;example-1&quot;&gt;
 &lt;/div&gt;</code></pre>
-            <pre><code class=''>$(&#39;.uniformFloatingLabel&#39;).uniformFloatingLabel()</code></pre>
+                <pre><code class='javascript'>$(&#39;.uniformFloatingLabel&#39;).uniformFloatingLabel()</code></pre>
+            </div>
         </div>
     </div>
-
-    <h3>Input Group</h3>
-    <p>Ever want to put in an input and it's label in line, and have it be 100% width responsive? Well, you can't, unless you use something like uniformInputGroup.</p>
-    <div class="grid">
-        <div class="col-6">
-            <div class="uniformInputGroup">
-                <span class="label">
-                    <label for="rate">$</label>
-                </span>
-                <span class="input">
-                    <input id="rate">
-                </span>
-                <span class="units">
-                    <label for="rate">/hour</label>
-                </span>
+    
+    
+    <div class="margin-v-2x">
+        <h3>uniformInputGroup</h3>
+        <p>Ever want to put in an input and it's label in line, and have it be 100% width responsive? Well, you can't, unless you use something like uniformInputGroup.</p>
+        <p>Requires js to make focus effect work.</p>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformInputGroup">
+                    <span class="label">
+                        <label for="rate">$</label>
+                    </span>
+                    <span class="input">
+                        <input id="rate">
+                    </span>
+                    <span class="units">
+                        <label for="rate">/hour</label>
+                    </span>
+                </div>
             </div>
-        </div>
-        <div class="col-6">
-            <pre><code class=''>&lt;div class=&quot;uniformInputGroup&quot;&gt;
+            <div class="col-6">
+                <pre><code class='html'>&lt;div class=&quot;uniformInputGroup&quot;&gt;
     &lt;span class=&quot;label&quot;&gt;
         &lt;label for=&quot;rate&quot;&gt;$&lt;/label&gt;
     &lt;/span&gt;
@@ -356,34 +422,17 @@
         &lt;label for=&quot;rate&quot;&gt;/hour&lt;/label&gt;
     &lt;/span&gt;
 &lt;/div&gt;</code></pre>
-        </div>
-    </div>
-    <div class="grid">
-        <div class="col-6">
-            <div class="uniformInputGroup">
-                <span class="label">
-                    <label for="car">Car Preference</label>
-                </span>
-                <span>
-                    <input id="name" value="Jonathan Doe" disabled>
-                </span>
+                <pre><code class='javascript'>$(&#39;.uniformInputGroup&#39;).on(&#39;focus&#39;, &#39;input&#39;, function (e) {
+    $(this).closest(&#39;.uniformInputGroup&#39;).addClass(&#39;focus&#39;);
+})
+$(&#39;.uniformInputGroup&#39;).on(&#39;blur&#39;, &#39;input&#39;, function (e) {
+    $(this).closest(&#39;.uniformInputGroup&#39;).removeClass(&#39;focus&#39;);
+})</code></pre>
             </div>
-        </div>
-        <div class="col-6">
-            <pre><code class=''>&lt;div class=&quot;uniformInputGroup&quot;&gt;
-&lt;span class=&quot;label&quot;&gt;
-    &lt;label for=&quot;car&quot;&gt;Car Preference&lt;/label&gt;
-&lt;/span&gt;
-&lt;span class=&quot;input&quot;&gt;
-    &lt;input id=&quot;name&quot; value=&quot;Jonathan Doe&quot; disabled&gt;
-&lt;/span&gt;
-&lt;/div&gt;</code></pre>
         </div>
     </div>
 </div>
 </div>  
-
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
 <script
   src="https://code.jquery.com/jquery-1.11.3.min.js"
