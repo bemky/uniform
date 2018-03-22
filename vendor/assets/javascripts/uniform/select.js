@@ -16,7 +16,7 @@
             class: "",
             showAll: function (select_options){
                 select_options.find('.'+UniformComponent.namespace+'uniformSelect-show-all').remove();
-                select_options.find('button.hidden').removeClass('hidden');
+                select_options.find('button.hide').removeClass('hide');
                 return false;
             },
             limit: 8
@@ -85,7 +85,7 @@
                     if($(el).prop('selected')){
                         button.addClass('active');
                     } else if (options.limit && index > options.limit) {
-                        button.addClass('hidden');
+                        button.addClass('hide');
                     }
                     select_options.append(button);
                     button.click(selectOption);
