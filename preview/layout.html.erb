@@ -2,10 +2,9 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Uniform</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.css" type="text/css" media="screen">
-    <link rel="stylesheet" href="/site/assets/stylesheets/uniform.css" type="text/css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="/site/assets/stylesheets/preview.css" type="text/css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="/site/assets/stylesheets/highlight/github.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    
+    <link rel="stylesheet" href="<%= asset_path("uniform.css") %>" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="<%= asset_path("preview.css") %>" type="text/css" media="screen" charset="utf-8">
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/site/favicons/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/site/favicons/apple-touch-icon-114x114.png" />
@@ -27,13 +26,13 @@
     <meta name="msapplication-square150x150logo" content="/site/favicons/mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="/site/favicons/mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="/site/favicons/mstile-310x310.png" />
-    
 </head>
+
 <body>
 <div class="side-nav">
     <div class="pad-2x">
         <a href="/">
-        <img src="/site/assets/images/logo.png" class="block width-100-p">
+        <img src="<%= asset_path("logo.png") %>" class="block width-100-p">
         </a>
     </div>
     <div class="uniformNav uniformNav-vertical">
@@ -74,11 +73,8 @@
     <%= yield %>
 </div>  
 
-<script
-  src="https://code.jquery.com/jquery-1.11.3.min.js"
-  integrity="sha256-7LkWEzqTdpEfELxcZZlS6wAx5Ff13zZ83lYO2/ujj7g="
-  crossorigin="anonymous"></script>
-<script src="/site/assets/javascripts/uniform.js"></script>
-<script src="/site/assets/javascripts/preview.js"></script>
-<script src="/site/assets/javascripts/highlight.pack.js"></script>
+<script src="/assets/jquery.js" ></script>
+<script src="<%= asset_path('uniform.js') %>"></script>
+<script src="<%= asset_path('preview.js') %>"></script>
+<script src="/assets/highlight.pack.js"></script>
 </body>
