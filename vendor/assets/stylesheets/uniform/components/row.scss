@@ -1,9 +1,17 @@
 .uniformRow{
     background: white;
     margin: 0.5em 0;
-    border: 1px solid color('gray-light');
     text-decoration:none;
     color: color('gray');
+    border: 1px solid color('gray-light');
+    &.border-none{
+        margin-bottom: 0;
+        border: none;
+        border-top: 1px solid color('gray-light');
+        &:first-of-type{
+            border-top:none;
+        }
+    }
     &:hover{
         background: lighten(color('blue'), 50);
     }
@@ -42,20 +50,14 @@
         flex-wrap: nowrap;
         display: flex;
         align-self: center;
-        & > * {
-            flex: 1 1 auto;
-        }
         .uniformThumb{
             align-self: stretch;
-            width: 100px;
-            max-width: 100px;
         }
         .uniformRow-body{
             display: flex;
             flex-wrap: nowrap;
             align-self: center;
             & > * {
-                flex: 1 1 auto;
                 padding: 0 1em;
             }
         }

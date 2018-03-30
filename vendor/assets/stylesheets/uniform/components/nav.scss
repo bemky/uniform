@@ -24,13 +24,16 @@
     align-items: center;
     align-content: space-stretch;
     
-    &.uniformNav-nowrap{
+    &.-nowrap{
         flex-wrap: nowrap;
     }
     
     & > * {
         flex: 0 0 auto;
         padding: 2px 1em;
+        &.col-fill{
+            flex: 1 1 auto;
+        }
     }
     & > a{
         text-decoration: none;
@@ -46,7 +49,7 @@
         }
     }
     
-    &.uniformNav-vertical{
+    &.-vertical{
         @include uniformNav-vertical();
     }
 }
@@ -68,7 +71,7 @@
     }
     
     &.bg-none{
-        box-shadow: none;
+        background: none;
     }
     
     &.border-bottom-none,
@@ -76,16 +79,16 @@
         box-shadow: none;
     }
     
-    &.uniformMainNav-vertical{
+    &.-vertical{
         box-shadow: none;
         .uniformNav{
             @include uniformNav-vertical();
         }
     }
     
-    &.uniformMainNav-invert{
+    &.-invert{
         box-shadow:0 1px 0 0 rgba(white, 0.15);
-        background: inherit;
+        background: none;
         color: rgba(white, 0.7);
         .uniformNav{
             & > a {
@@ -100,6 +103,10 @@
                     border-bottom-color: color('green-light');
                 }
             }
+        }
+        &.border-bottom-none,
+        &.border-none{
+            box-shadow: none;
         }
     }
 }

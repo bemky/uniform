@@ -7,7 +7,6 @@
     flex-wrap: wrap;
     
     & > *{
-        flex: 0 1 auto;
         position: relative;
         padding-left: $grid-gutter/2;
         padding-right: $grid-gutter/2;
@@ -110,7 +109,7 @@
 @include size-rules(".col-fill"){
     flex: 1 1 auto;
 }
-@for $i from 1 through $grid-columns {
+@for $i from 0 through $grid-columns {
     @include size-rules(".col-#{$i}"){
         flex: 0 0 #{($i / $grid-columns * 100) + "%"};
         max-width: #{($i / $grid-columns * 100) + "%"};
@@ -124,9 +123,15 @@
     }
     @include size-rules(".col-pull-#{$i}"){
         position:relative;
-        right: #{($i / $grid-columns * -100) + "%"};
+        right: #{($i / $grid-columns * 100) + "%"};
     }
     @include size-rules(".col-fill-#{$i}"){
-        flex: #{$i};
+        flex: #{$i}; 
+    }
+    @include size-rules(".col-grow-#{$i}"){
+        flex-grow: #{$i}; 
+    }
+    @include size-rules(".col-shrink-#{$i}"){
+        flex-shrink: #{$i}; 
     }
 }

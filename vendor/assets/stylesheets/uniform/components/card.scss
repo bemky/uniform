@@ -1,6 +1,8 @@
 .uniformCard{
     background: white;
-    border: 1px solid color('gray-light');
+    border-width: 1px;
+    border-style: solid;
+    border-color: color('gray-light');
     border-radius: 0.25em;
     margin-bottom: 1em;
     
@@ -10,6 +12,13 @@
     }
     &.-clip{
         overflow:hidden;
+    }
+    
+    &.-tile{
+        border-radius: 0;
+        margin: 0;
+        margin-bottom: -1px;
+        margin-right: -1px;
     }
     
     .uniformCard-header,
@@ -80,12 +89,5 @@
                 }
             }
         }
-    }
-    
-    &.uniformCard-tile{
-        border-radius: 0;
-        margin: 0;
-        margin-bottom: -1px;
-        margin-right: -1px;
     }
 }

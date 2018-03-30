@@ -7,8 +7,8 @@
 }
 
 @each $direction in 'top' 'right' 'bottom' 'left' {
-    .border-#{$direction} {
-        border-#{$direction}-color: color('gray-light');
+    @include size-rules('.border-#{$direction}'){
+        border-#{$direction}-color: color('gray-light') !important;
         border-#{$direction}-style: solid;
         border-#{$direction}-width: 1px;
     }
