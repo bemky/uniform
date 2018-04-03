@@ -1,4 +1,3 @@
-$LOAD_PATH << File.expand_path('/Users/malomalo/Code/condenser/lib', __FILE__)
 require 'condenser'
 require 'sass-media_query_combiner'
 require 'fileutils'
@@ -94,6 +93,7 @@ end
 $environment.context_class.class_eval do
   include Helpers
 end
+$environment.cache = Condenser::Cache::MemoryStore.new
 
 namespace :compile do
   
