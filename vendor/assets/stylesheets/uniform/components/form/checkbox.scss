@@ -12,14 +12,14 @@
     margin-top: -0.15em;
     border-radius: 0.25em;
     position:relative;
-    transition: border-color 0.1s ease-in;
+    transition: border-color 0.05s ease-in;
     &::before{
         @include position-center;
         border-radius: 0.25em;
         content:"";
         width: 0em;
         height: 0em;
-        transition: width 0.1s ease-in, height 0.1s ease-in;
+        transition: width 0.05s ease-in, height 0.05s ease-in;
         background: color('green');
     }
     &.checked{

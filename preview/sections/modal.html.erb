@@ -5,37 +5,41 @@
             <button class="launchUniformModal uniformButton green large" data-modal-target="#modal-content" data-modal-klass="width-50-p">
                 Launch Modal
             </button>
-            <div class="hidden" id="modal-content">
-                <div class="pad bg-background border-bottom rounded-top">
-                    <h1 class="margin-none">Modal H1</h1>
-                </div>
-                <div class="pad">
-                    <p class="margin-none">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
+            <div class="hide">
+                <div id="modal-content">
+                    <div class="pad bg-background border-bottom rounded-top">
+                        <h1 class="margin-none">Modal H1</h1>
+                    </div>
+                    <div class="pad">
+                        <p class="margin-none">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
                 </div>
             </div>
+            
         </div>
         <div class="col-6-md">
             <% html_block do %>
-<button class="launchUniformModal uniformButton green large" data-modal-target="#modal-content" data-modal-klass="width-50-p">
-    Launch Modal
-</button>
-<div class="hidden" id="modal-content">
-    <div class="pad bg-background border-bottom rounded-top">
-        <h1 class="margin-none">Modal H1</h1>
-    </div>
-    <div class="pad">
-        <p class="margin-none">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-    </div>
-</div>
+            <button class="launchUniformModal uniformButton green large" data-modal-target="#modal-content" data-modal-klass="width-50-p">
+                Launch Modal
+            </button>
+            
+            <div class="hide">
+                <div id="modal-content">
+                    <div class="pad bg-background border-bottom rounded-top">
+                        <h1 class="margin-none">Modal H1</h1>
+                    </div>
+                    <div class="pad">
+                        <p class="margin-none">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+            </div>
             <% end %>
             <% html_block do %>
-$('.launchUniformModal').click(function(){
-    $(this).uniformModal();
-});
+                $('.launchUniformModal').uniformModal();
             <% end %>
         </div>
     </div>
@@ -43,9 +47,9 @@ $('.launchUniformModal').click(function(){
 <div class="section">
     <h3>Programmatically</h3>
     <% html_block do %>
-new UniformModal({
-    content: "This is your modal content",
-}).render()
+    new UniformModal({
+        content: "This is your modal content",
+    }).render()
     <% end %>
     <table class="uniformTable margin-2x">
         <tr>
@@ -141,9 +145,9 @@ new UniformModal({
 </button>
     <% end %>
     <% html_block do %>
-$('.launchUniformModal').click(function(){
-    $(this).uniformModal();
-});
+    $('.launchUniformModal').click(function(){
+        $(this).uniformModal();
+    });
     <% end %>
     <table class="uniformTable margin-2x">
         <tr>

@@ -60,7 +60,7 @@
                 tag = page[1]
                 page = page[0]
             end %>
-            <a href="/site/<%= page %>.html" class="<%= "active" if @current_page == page.to_s %>">
+            <a href="/sections/<%= page %>.html" class="<%= "active" if @current_page == page.to_s %>">
                 <%= page.to_s.titleize %>
                 <% if tag %>
                     <span class="uniformLabel -yellow-dark text-smaller"><%= tag %></span>

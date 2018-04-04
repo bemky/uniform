@@ -1,63 +1,60 @@
-(function( $ ) {
- 
-    $.fn.uniformFloatingLabel = function() {
-        return this.each(function(){
-            var el = $(this);
-            var label = el.find('label');
-            var input = $("#" + label.prop('for'));
-            var startingHeight;
+import Component from 'uniform/component';
+
+export default class FloatingLabel extends Component {
     
-            function render(e) {
-                if(!input.is(":visible")) return;
-                if(el.hasClass('enabled')) return;
+    initialize(){
+        this.label = this.$el.find('label');
+        this.input = $("#" + this.label.prop('for'));
+        this.startingHeight;
         
-                var padding = parseInt(input.css('paddingBottom'));
-                startingHeight = input.outerHeight();
-                el.addClass('enabled');
-                el.addClass('inactive');
-        
-                input.css({
-                    paddingTop: padding + padding/2 + "px",
-                    paddingBottom: padding - padding/2 - 2 + "px"
-                });
-
-                label.css({
-                    position: 'absolute',
-                    top: 0,
-                    left: label.position().left,
-                    paddingLeft: input.css("paddingLeft"),
-                    height: startingHeight,
-                    lineHeight: startingHeight + "px"
-                });
-            }
-
-            function activate (e) {
-                if (typeof e !== "undefined") el.addClass('active');
-                if (el.hasClass('float')) return;
-                el.addClass('float');
-                el.removeClass('inactive');
-                label.css({
-                    lineHeight: startingHeight / 2 + "px"
-                });
-            }
-
-            function deactivate (e) {
-                if (typeof e !== "undefined") el.removeClass('active');
-                if (input.val() != "") return;
-                el.removeClass('float');
-                el.addClass('inactive');
-                label.css({
-                    lineHeight: startingHeight + "px"
-                });
-            }
+        this.input.focus(this.activate.bind(this));
+        this.input.blur(this.deactivate.bind(this));
+        this.input.on('revealed', this.render.bind(this));
+        if (typeof this.input.val() !== "undefined" && this.input.val() != "") this.activate();
+        if (this.input.is(":focus")) this.activate();
+    }
     
-            render();
-            input.focus(activate);
-            input.blur(deactivate);
-            input.on('revealed', render);
-            if (typeof input.val() !== "undefined" && input.val() != "") activate();
-            if (input.is(":focus")) activate();
+    render () {
+        if(!this.input.is(":visible")) return;
+        if(this.$el.hasClass('enabled')) return;
+
+        var padding = parseInt(this.input.css('paddingBottom'));
+        this.startingHeight = this.input.outerHeight();
+        this.$el.addClass('enabled');
+        this.$el.addClass('inactive');
+
+        this.input.css({
+            paddingTop: padding + padding/2 + "px",
+            paddingBottom: padding - padding/2 - 2 + "px"
         });
-    };
- 
-}( jQuery ));
+
+        this.label.css({
+            position: 'absolute',
+            top: 0,
+            left: this.label.position().left,
+            paddingLeft: this.input.css("paddingLeft"),
+            height: this.startingHeight,
+            lineHeight: this.startingHeight + "px"
+        });
+    }
+    
+    activate (e) {
+        if (typeof e !== "undefined") this.$el.addClass('active');
+        if (this.$el.hasClass('float')) return;
+        this.$el.addClass('float');
+        this.$el.removeClass('inactive');
+        this.label.css({
+            lineHeight: this.startingHeight / 2 + "px"
+        });
+    }
+    
+    deactivate (e) {
+        if (typeof e !== "undefined") this.$el.removeClass('active');
+        if (this.input.val() != "") return;
+        this.$el.removeClass('float');
+        this.$el.addClass('inactive');
+        this.label.css({
+            lineHeight: this.startingHeight + "px"
+        });
+    }
+}
