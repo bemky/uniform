@@ -5,7 +5,7 @@ require 'fileutils'
 module Helpers
   
   def asset_path(path, options = {})
-    "/assets/#{@environment.find!(path).path}"
+    "/assets/#{@environment.find_export(path).path}"
   end
   
   def capture
@@ -86,6 +86,8 @@ Dir.children('./preview/assets/').each do |path|
   $environment.append_path File.expand_path(File.join('./preview/assets/',path))
 end
 
+$environment.append_path File.expand_path('./node_modules/')
+
 $environment.writers.each do |mime_type, value|
   value.delete_if { |v| v[0].is_a?(Condenser::ZlibWriter) }
 end
@@ -107,9 +109,8 @@ namespace :compile do
     %w(uniform.css uniform.js preview.css preview.js *.png).each do |asset|
       $environment.resolve(asset).each do |asset|
         FileUtils.mkdir_p(File.dirname(File.join('docs', asset.path)))
-        asset.write('docs/assets')
+        asset.export.write('docs/assets')
       end
-
     end
     
     Dir.glob('preview/**/*').each do |filename|
