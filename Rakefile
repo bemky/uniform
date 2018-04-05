@@ -1,6 +1,7 @@
 require 'condenser'
 require 'sass-media_query_combiner'
 require 'fileutils'
+require 'zip'
 
 module Helpers
   
@@ -83,7 +84,7 @@ Dir.children('./vendor/assets/').each do |path|
 end
 $environment.append_path File.expand_path('./docs/src/')
 Dir.children('./docs/src/assets/').each do |path|
-  $environment.append_path File.expand_path(File.join('./docs/src/assets/',path))
+  $environment.append_path File.expand_path(File.join('./docs/src/assets/', path))
 end
 
 $environment.append_path File.expand_path('./node_modules/')
@@ -132,6 +133,19 @@ namespace :compile do
   end
   
   task :package => :preview do
+    %w(uniform.css uniform.js).each do |asset|
+      $environment.resolve(asset).each do |asset|
+        asset.export.write('dist')
+      end
+    end
+    
+    File.delete("./docs/uniform.zip")
+    files = Dir.children('./dist')
+    Zip::File.open("./docs/uniform.zip", Zip::File::CREATE) do |zipFile|
+      files.each do |file|
+        zipFile.add(file, File.expand_path(File.join('./dist/', file)))
+      end
+    end
   end
   
 end

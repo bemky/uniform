@@ -2,7 +2,7 @@
   "name": "uniform-ui",
   "version": "0.1.0",
   "description": "Sass components and helpers for building a UI.",
-  "main": "index.js",
+  "main": "vendor/assets/javascript/uniform.js",
   "directories": {
     "doc": "docs",
     "lib": "lib"
@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/bemky/uniform/issues"
   },
-  "homepage": "https://github.com/bemky/uniform#readme",
+  "homepage": "http://uniform-ui.com",
   "devDependencies": {},
   "dependencies": {}
 }

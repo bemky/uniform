@@ -401,7 +401,7 @@ var Select = function (_Component) {
                 class: "",
                 showAll: function showAll(select_options) {
                     select_options.find('.uniformSelect-show-all').remove();
-                    select_options.find('button.hidden').removeClass('hidden');
+                    select_options.find('button.hide').removeClass('hide');
                     return false;
                 },
                 limit: 8
@@ -454,7 +454,7 @@ var Select = function (_Component) {
         key: 'resize',
         value: function resize() {
             // to keep button from extending beyond available width
-            var text = edit_button.text();
+            var text = this.edit_button.text();
             this.edit_button.text('');
             this.edit_button.css({
                 width: 'auto'
@@ -493,11 +493,11 @@ var Select = function (_Component) {
                 if ($(el).prop('selected')) {
                     button.addClass('active');
                 } else if (this.options.limit && index > this.options.limit) {
-                    button.addClass('hidden');
+                    button.addClass('hide');
                 }
                 this.select_options.append(button);
                 button.click(this.selectOption.bind(this));
-            });
+            }.bind(this));
 
             var actions_el = $('<div class="uniformSelect-options-actions">');
             if (this.options.limit && this.$el.find('option').length > this.options.limit) {
@@ -505,7 +505,7 @@ var Select = function (_Component) {
                 show_all_button.click(function (e) {
                     this.options.showAll(this.select_options);
                     return false;
-                });
+                }.bind(this));
                 actions_el.append(show_all_button);
             }
             if (this.$el.prop('multiple')) {
@@ -543,7 +543,7 @@ var Select = function (_Component) {
             this.select_options.show();
 
             this.lastScrollPosition = $(window).scrollTop();
-            updatePosition();
+            this.updatePosition();
             $('body').addClass('uniformModal-hideBody');
         }
     }, {
@@ -572,15 +572,19 @@ var Select = function (_Component) {
         value: function updatePosition() {
             if (!this.select_options) return;
 
+            var fixedParents = this.container.parents().filter(function () {
+                return $(this).css('position') == 'fixed';
+            });
+
             if (this.select_options.hasClass('fixed')) {
-                if (this.container.fixedParents().length == 0) {
+                if (fixedParents.length == 0) {
                     this.select_options.css({
                         position: 'absolute',
                         top: this.container.offset().top + this.container.outerHeight()
                     });
                     this.select_options.removeClass('fixed');
                 }
-            } else if (this.container.fixedParents().length > 0) {
+            } else if (fixedParents.length > 0) {
                 this.lastScrollPosition = false;
                 this.select_options.css({
                     position: 'fixed'
