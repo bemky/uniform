@@ -69,7 +69,7 @@ method_source = <<-RUBY
     end
 
     context = $environment.context_class.new($environment)
-    p = proc { #{::Erubi::Engine.new(File.read('preview/layout.html.erb')).src } }
+    p = proc { #{::Erubi::Engine.new(File.read('docs/src/layout.html.erb')).src } }
     context.instance_eval(&p)
   end
 RUBY
@@ -81,9 +81,9 @@ $environment = Condenser.new('./vendor/assets')
 Dir.children('./vendor/assets/').each do |path|
   $environment.append_path path
 end
-$environment.append_path File.expand_path('./preview/')
-Dir.children('./preview/assets/').each do |path|
-  $environment.append_path File.expand_path(File.join('./preview/assets/',path))
+$environment.append_path File.expand_path('./docs/src/')
+Dir.children('./docs/src/assets/').each do |path|
+  $environment.append_path File.expand_path(File.join('./docs/src/assets/',path))
 end
 
 $environment.append_path File.expand_path('./node_modules/')
@@ -113,11 +113,11 @@ namespace :compile do
       end
     end
     
-    Dir.glob('preview/**/*').each do |filename|
+    Dir.glob('docs/src/**/*').each do |filename|
       next if File.directory?(filename)
-      next if filename =~ /^preview\/assets\/[^\/]+\//
-      next if filename == 'preview/layout.html.erb'
-      filename.delete_prefix!('preview/')
+      next if filename =~ /^docs\/src\/assets\/[^\/]+\//
+      next if filename == 'docs/src/layout.html.erb'
+      filename.delete_prefix!('docs/src/')
       
       FileUtils.mkdir_p(File.dirname(File.join('docs', filename)))
       if filename.end_with?('.erb')
