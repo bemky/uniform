@@ -70,7 +70,7 @@ method_source = <<-RUBY
     end
 
     context = $environment.context_class.new($environment)
-    p = proc { #{::Erubi::Engine.new(File.read('docs/src/layout.html.erb')).src } }
+    p = proc { #{::Erubi::Engine.new(File.read('docs-src/layout.html.erb')).src } }
     context.instance_eval(&p)
   end
 RUBY
@@ -82,9 +82,9 @@ $environment = Condenser.new('./vendor/assets')
 Dir.children('./vendor/assets/').each do |path|
   $environment.append_path path
 end
-$environment.append_path File.expand_path('./docs/src/')
-Dir.children('./docs/src/assets/').each do |path|
-  $environment.append_path File.expand_path(File.join('./docs/src/assets/', path))
+$environment.append_path File.expand_path('./docs-src/')
+Dir.children('./docs-src/assets/').each do |path|
+  $environment.append_path File.expand_path(File.join('./docs-src/assets/', path))
 end
 
 $environment.append_path File.expand_path('./node_modules/')
@@ -100,8 +100,6 @@ $environment.cache = Condenser::Cache::MemoryStore.new
 
 namespace :compile do
   
-  task :default => [:preview, :package]
-  
   task :preview do
 
     # manifest = Condenser::Manifest.new(environment, './site')
@@ -114,11 +112,11 @@ namespace :compile do
       end
     end
     
-    Dir.glob('docs/src/**/*').each do |filename|
+    Dir.glob('docs-src/**/*').each do |filename|
       next if File.directory?(filename)
       next if filename =~ /^docs\/src\/assets\/[^\/]+\//
-      next if filename == 'docs/src/layout.html.erb'
-      filename.delete_prefix!('docs/src/')
+      next if filename == 'docs-src/layout.html.erb'
+      filename.delete_prefix!('docs-src/')
       
       FileUtils.mkdir_p(File.dirname(File.join('docs', filename)))
       if filename.end_with?('.erb')
@@ -149,26 +147,6 @@ namespace :compile do
   end
   
 end
-__END__
 
-
-
-
-
-require 'active_support/core_ext/string'
-require 'fileutils'
-require 'zip'
-
-# environment.css_compressor = :scss
-
-desc "Compile page"
-task :compile do
-
-  File.delete("./uniform.zip")
-  Zip::File.open("./uniform.zip", Zip::File::CREATE) do |zipFile|
-      FileList['./site/assets/javascripts/uniform.js', './site/assets/stylesheets/uniform.css'].each do |filename|
-          zipFile.add(filename.split('/').last, filename)
-      end
-  end
-
-end
+task compile: ['compile:preview', 'compile:package']
+task default: :compile

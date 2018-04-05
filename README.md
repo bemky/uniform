@@ -86,3 +86,4 @@ To package:
 - Organize helpers page
 - Add docs about breakpoints and media queries
 - Add docs for sizes and colors mixins
+- docs on including scss in node module
