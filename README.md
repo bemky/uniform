@@ -1,6 +1,6 @@
 <p align="center">
-    <a href="http://uniform-ui.com/">
-        <img src="https://raw.githubusercontent.com/bemky/uniform/master/docs-src/assets/images/logo.png" style="max-width: 400px" alt="Uniform UI">
+    <a href="http://uniform-ui.com/" style="display:block; max-width:400px;">
+        <img src="https://raw.githubusercontent.com/bemky/uniform/master/docs-src/assets/images/logo.png" alt="Uniform UI">
     </a>
     <p align="center">
         A rails gem of sass components and helpers for building a UI.<br>
