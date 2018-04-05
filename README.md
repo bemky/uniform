@@ -1,6 +1,6 @@
 <p align="center">
     <a href="http://uniform-ui.com/">
-        <img src="https://raw.githubusercontent.com/bemky/uniform/master/assets/images/logo.png" style="max-width: 400px" alt="Uniform UI">
+        <img src="https://raw.githubusercontent.com/bemky/uniform/master/docs-src/assets/images/logo.png" style="max-width: 400px" alt="Uniform UI">
     </a>
     <p align="center">
         A rails gem of sass components and helpers for building a UI.<br>
@@ -16,7 +16,7 @@
 
 Requires JQuery be available in the global namespace.
 
-### Basic
+### Manual
 Download compiled CSS and JS: http://uniform-ui.com/uniform.zip
 
 Link to css and js in html document:
@@ -46,7 +46,7 @@ Include the javascript library in your asset pipeline.
 The utility classes produce quite a bit of media queries which can bloat the library by 15ish%... use https://github.com/aaronjensen/sass-media_query_combiner to combine media queries together.
 
 
-### NPM
+### Node Module
     npm install uniform-ui
 
 ```javascript
