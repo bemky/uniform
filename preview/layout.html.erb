@@ -35,7 +35,7 @@
         <img src="<%= asset_path("logo.png") %>" class="block width-100-p">
         </a>
     </div>
-    <div class="uniformNav uniformNav-vertical">
+    <div class="uniformNav -vertical">
         <% [
             :helpers,
             :colors,
@@ -63,7 +63,7 @@
             <a href="/sections/<%= page %>.html" class="<%= "active" if @current_page == page.to_s %>">
                 <%= page.to_s.titleize %>
                 <% if tag %>
-                    <span class="uniformLabel -yellow-dark text-smaller"><%= tag %></span>
+                    <span class="uniformLabel <%= @current_page == page.to_s ? "-white" : "-yellow-dark" %> text-smaller"><%= tag %></span>
                 <% end %>
             </a>
         <% end %>

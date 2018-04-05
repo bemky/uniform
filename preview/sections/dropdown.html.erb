@@ -7,13 +7,13 @@
             </button>
         </div>
         <div class="col-6-md">
-<% html_block do %>
-$('.uniformDropdown').uniformDropdown();
-<% end %>
+            <% html_block class:"javascript" do %>
+                $('.uniformDropdown').uniformDropdown();
+            <% end %>
             <% html_block do %>
-<button class="uniformButton green large uniformDropdown" data-dropdown-content="This is example dropdown">
-    Show Dropdown
-</button>
+            <button class="uniformButton green large uniformDropdown" data-dropdown-content="This is example dropdown">
+                Show Dropdown
+            </button>
             <% end %>
         </div>
     </div>
@@ -33,17 +33,17 @@ $('.uniformDropdown').uniformDropdown();
         </div>
         <div class="col-6-md">
             <% html_block do %>
-<button class="uniformButton green large uniformDropdown" data-dropdown-target="#dropdown-example">
-Show Dropdown
-</button>
-<div class="hide">
-    <div class="text-no-decoration" id="dropdown-example">
-    <a href="#" class="block pad-half">Link 1</a>
-    <a href="#" class="block pad-half">Link 2</a>
-    <a href="#" class="block pad-half">Link 3</a>
-    <a href="#" class="block pad-half">Link 4</a>
-    </div>
-</div>
+            <button class="uniformButton green large uniformDropdown" data-dropdown-target="#dropdown-example">
+            Show Dropdown
+            </button>
+            <div class="hide">
+                <div class="text-no-decoration" id="dropdown-example">
+                <a href="#" class="block pad-half">Link 1</a>
+                <a href="#" class="block pad-half">Link 2</a>
+                <a href="#" class="block pad-half">Link 3</a>
+                <a href="#" class="block pad-half">Link 4</a>
+                </div>
+            </div>
             <% end %>
         </div>
     </div>
@@ -51,10 +51,10 @@ Show Dropdown
 <div class="section">
     <h3>Programmatically</h3>
     <% html_block do %>
-new UniformDropdown({
-    el: $(this),
-    content: "This is your modal content",
-}).render()
+    new UniformDropdown({
+        el: $(this),
+        content: "This is your modal content",
+    }).render()
     <% end %>
     <table class="uniformTable margin-2x">
         <tr>
@@ -202,12 +202,12 @@ new UniformDropdown({
 <div class="section">
     <h3>Using JQuery</h3>
     <% html_block do %>
-<button class="uniformButton green large uniformDropdown" data-dropdown-content="This is example dropdown">
-    Show Dropdown
-</button>
+    <button class="uniformButton green large uniformDropdown" data-dropdown-content="This is example dropdown">
+        Show Dropdown
+    </button>
     <% end %>
     <% html_block do %>
-$('.uniformDropdown').uniformDropdown();
+    $('.uniformDropdown').uniformDropdown();
     <% end %>
     <table class="uniformTable margin-2x">
         <tr>

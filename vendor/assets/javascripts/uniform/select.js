@@ -27,7 +27,7 @@ export default class Select extends Component {
         this.$el.on('close', this.hideOptions.bind(this));
         this.$el.on('revealed', this.resize.bind(this));
         this.el.uniformSelect = this.container;
-
+        
         $(window).on('resize', this.resize.bind(this));
         $(window).on('scroll', this.updatePosition.bind(this));
         $(document).on('click', this.outsideClick.bind(this));

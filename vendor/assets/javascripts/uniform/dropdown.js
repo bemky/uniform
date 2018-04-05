@@ -86,7 +86,7 @@ export default class Dropdown extends Component {
     show () {
         if(this.options.hide_sm && $(window).width() < 720) return;
         if(!this.dropdown) this.render();
-
+        
         this.dropdown.show();
         this.$el.addClass('active');
 
