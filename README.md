@@ -10,8 +10,6 @@
 
 
 
-
-
 ## Installation
 
 Requires JQuery be available in the global namespace.
