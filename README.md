@@ -1,10 +1,12 @@
 <p align="center">
     <a href="http://uniform-ui.com/">
-        <img src="https://raw.githubusercontent.com/bemky/uniform/master/site/assets/images/logo.png" style="max-width: 400px" alt="Uniform UI">
+        <img src="https://raw.githubusercontent.com/bemky/uniform/master/assets/images/logo.png" style="max-width: 400px" alt="Uniform UI">
     </a>
     <p align="center">
         A rails gem of sass components and helpers for building a UI.<br>
-        [Demo and Documentation](http://uniform-ui.com)
+        <a href="http://uniform-ui.com/">
+            Demo and Documentation
+        </a>
     </p>
 </p>
 
