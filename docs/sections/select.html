@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Uniform</title>
+    
+    <link rel="stylesheet" href="/assets/uniform-0648d50aee18ff45bf6e246fa04bab71aa82c34c56e5e16f21c38854b099436f.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/assets/preview-2f404c0a65ef99ebb2790276e647dcd2956adb519d8413045ee53071ccac6087.css" type="text/css" media="screen" charset="utf-8">
+    
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/site/favicons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/site/favicons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/site/favicons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/site/favicons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/site/favicons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/site/favicons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/site/favicons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/site/favicons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/site/favicons/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/site/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/site/favicons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/site/favicons/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/site/favicons/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Uniform"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/site/favicons/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/site/favicons/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/site/favicons/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/site/favicons/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/site/favicons/mstile-310x310.png" />
+</head>
+
+<body>
+<div class="side-nav">
+    <div class="pad-2x">
+        <a href="/">
+        <img src="/assets/logo-c0d2f3798ea2b8c502eb9cc53a45c37e5d860362a49feb05ff033f2f582dd746.png" class="block width-100-p">
+        </a>
+    </div>
+    <div class="uniformNav -vertical">
+            <a href="/sections/helpers.html" class="">
+                Helpers
+            </a>
+            <a href="/sections/colors.html" class="">
+                Colors
+            </a>
+            <a href="/sections/grid.html" class="">
+                Grid
+            </a>
+            <a href="/sections/buttons.html" class="">
+                Buttons
+            </a>
+            <a href="/sections/tables.html" class="">
+                Tables
+            </a>
+            <a href="/sections/thumb.html" class="">
+                Thumb
+            </a>
+            <a href="/sections/cards.html" class="">
+                Cards
+            </a>
+            <a href="/sections/rows.html" class="">
+                Rows
+            </a>
+            <a href="/sections/form.html" class="">
+                Form
+            </a>
+            <a href="/sections/loaders.html" class="">
+                Loaders
+            </a>
+            <a href="/sections/nav.html" class="">
+                Nav
+            </a>
+            <a href="/sections/labels.html" class="">
+                Labels
+            </a>
+            <a href="/sections/alerts.html" class="">
+                Alerts
+            </a>
+            <a href="/sections/select.html" class="">
+                Select
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/sections/modal.html" class="">
+                Modal
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/sections/dropdown.html" class="">
+                Dropdown
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/sections/tooltip.html" class="">
+                Tooltip
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/sections/resizer.html" class="">
+                Resizer
+                    <span class="uniformLabel -yellow-dark text-smaller">todo</span>
+            </a>
+    </div>
+</div>
+<div class="main-content overflow-hidden">
+    <div class="section">
+    <h1>UniformSelect</h1>
+    <p>
+        Turn any select box into a more advanced full featured dropdown UI element,
+        while maintaining the html simplicity of a basic select element.
+    </p>
+    <h3>Initialize</h3>
+<pre><code class=''>$(document).ready(function(){
+$(&#39;.uniformSelect&#39;).uniformSelect(options);
+})</code></pre>    <div class="grid-md grid-nest margin-top-2x">
+        <div class="col-6-md margin-bottom">
+            <select>
+                <option>An Option</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+            </select>
+            <p class="margin">Becomes</p>
+            <select class="uniformSelect">
+                <option>An Option</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+            </select>
+        </div>
+        <div class="col-6-md">
+<pre><code class=''>&lt;select class=&#39;uniformSelect&#39;&gt;
+&lt;option&gt;An Option&lt;/option&gt;
+&lt;/select&gt;</code></pre>        </div>
+        <div class="col-6-md">
+            <code>multiple</code>
+            <select class="uniformSelect" multiple>
+                <option>An Option</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+            </select>
+        </div>
+        <div class="col-6-md">
+<pre><code class=''>&lt;select class=&quot;uniformSelect&quot; multiple&gt;
+&lt;option&gt;An Option&lt;/option&gt;
+&lt;/select&gt;</code></pre>        </div>
+        <div class="col-6-md">
+            <p>Limits dropdown to 8 options (optional)</p>
+            <select class="uniformSelect">
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+                <option>Option 4</option>
+                <option>Option 5</option>
+                <option>Option 6</option>
+                <option>Option 7</option>
+                <option>Option 8</option>
+                <option>Option 9</option>
+                <option>Option 10</option>
+                <option>Option 11</option>
+                <option>Option 12</option>
+                <option>Option 13</option>
+                <option>Option 14</option>
+                <option>Option 15</option>
+                <option>Option 16</option>
+                <option>Option 17</option>
+                <option>Option 18</option>
+                <option>Option 19</option>
+            </select>
+        </div>
+        <div class="col-6-md">
+<pre><code class=''>&lt;select class=&quot;uniformSelect&quot;&gt;
+&lt;option&gt;Option 1&lt;/option&gt;
+&lt;option&gt;Option 2&lt;/option&gt;
+&lt;option&gt;Option 3&lt;/option&gt;
+&lt;option&gt;Option 4&lt;/option&gt;
+&lt;option&gt;Option 5&lt;/option&gt;
+&lt;option&gt;Option 6&lt;/option&gt;
+&lt;option&gt;Option 7&lt;/option&gt;
+&lt;option&gt;Option 8&lt;/option&gt;
+&lt;option&gt;Option 9&lt;/option&gt;
+&lt;option&gt;Option 10&lt;/option&gt;
+&lt;option&gt;Option 11&lt;/option&gt;
+&lt;option&gt;Option 12&lt;/option&gt;
+&lt;option&gt;Option 13&lt;/option&gt;
+&lt;option&gt;Option 14&lt;/option&gt;
+&lt;option&gt;Option 15&lt;/option&gt;
+&lt;option&gt;Option 16&lt;/option&gt;
+&lt;option&gt;Option 17&lt;/option&gt;
+&lt;option&gt;Option 18&lt;/option&gt;
+&lt;option&gt;Option 19&lt;/option&gt;
+&lt;/select&gt;</code></pre>        </div>
+    </div>
+    
+    <h3>Responsive</h3>
+    <p>On mobile dropdown of options becomes full screen modal of options.</p>
+    <img src="/assets/select-view-mobile-eb9f25f5c636c8a7824c4deab39a004a38beb0045635190cf20b39767d8e3607.png" class="inline-block max-width-200-px border">
+    <img src="/assets/select-view-mobile-selected-e35952552d179248bee869c6c6e96afe778015c3b015f545e9a368b9e5156a75.png" class="inline-block max-width-200-px border">
+    
+    <h3>Options</h3>
+<pre><code class=''>$(document).ready(function(){
+$(&#39;.uniformSelect&#39;).uniformSelect({
+    limit: 8,
+    class: &#39;uniformButton green&#39;,
+    showAll: function(select_options){...}
+});
+})</code></pre>    <table class="uniformTable">
+        <tr>
+            <th>Option</th>
+            <th>Accepts</th>
+            <th>Description</th>
+            <th>Default</th>
+        </tr>
+        <tr>
+            <td>
+                showAll
+            </td>
+            <td>
+                <code>function(select_options)</code>
+            </td>
+            <td>
+                Function run called when "Show All is clicked"
+            </td>
+            <td>
+                Removes "Show All" and reveals all hidden options
+            </td>
+        </tr>
+        <tr>
+            <td>
+                limit
+            </td>
+            <td>
+                <code>int</code>, <code>false</code>
+            </td>
+            <td>
+                Limit number of visilbe options. Set to false to not limit.
+            </td>
+            <td>
+                8
+            </td>
+        </tr>
+        <tr>
+            <td>
+                class
+            </td>
+            <td>
+                <code>string</code>
+            </td>
+            <td>
+                Classes to append to uniformSelect-edit (main button)
+            </td>
+            <td>
+                <code>''</code>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>  
+
+<script src="/assets/jquery.js" ></script>
+<script src="/assets/preview-36274d8db57f2c20943835011af755580eaabf1c51ecef5f5ba777ddd8d311b8.js"></script>
+<script src="/assets/highlight.pack.js"></script>
+</body>

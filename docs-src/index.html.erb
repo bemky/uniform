@@ -1,0 +1,109 @@
+<div class="text-center margin-top-4x">
+    <img src="<%= asset_path("logo.png") %>" width="451" height="101">
+    <p class="large margin">Sass components and helpers for building a UI.</p>
+    <div class="margin-top-2x">
+        <a href="/uniform.zip" class="uniformButton -green -large" download>
+            Download
+        </a>
+        <a href="https://github.com/bemky/uniform" class="uniformButton -large">
+            GitHub
+        </a>
+    </div>
+</div>
+<div class="section">
+    <h1>Installation</h1>
+    <p>Add to your gem file<br/><code>gem 'uniform-ui'</code></p>
+    <p>Or, install it yourself:<br/><code>$ gem install uniform-ui</code></p>
+    <p>Include the css library in your asset pipeline.</p>
+    <% html_block class: "css" do %>
+    // css
+    @import 'uniform';
+    <% end %>
+    
+    <p>Alternatively, you can scope the components you want included in your assets</p>
+    <% html_block class: "css" do %>
+    // css
+    @import 'uniform/base'; // required<% (Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss mixins.scss base.scss).include?(x)}.to_a +
+        Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'helpers')).map{|x| "helpers/#{x}"}.to_a +
+        Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
+    @import 'uniform/<%= x.remove('.scss') %>';<% end %>
+    <% end %>
+    
+
+    <p>Include the javascript library in your asset pipeline.</p>
+    <% html_block class: "javascript" do %>
+    // javascript
+    //= require uniform
+    <% end %>
+    
+    <p>Alternatively, you can scope the components you want included in your assets</p>
+    <% html_block class: "javascript" do %>
+    // javascript
+    //= require uniform/base // required<% (Dir.foreach(File.join('vendor', 'assets', 'javascripts', 'uniform')).reject{|x| %w(base.js).include?(x)}.to_a).select{|x| x.split('.').last == "js"}.each do |x| %>
+    //= require uniform/<%= x.remove('.js') %><% end %>
+    <% end %>
+    
+    <h3>Dependencies</h3>
+    <p>Components requiring javascript depend on <strong>JQuery 1.11+</strong></p>
+</div>
+<div class="section">
+    <h1>Philosophy</h1>
+    <h3>Don't use ID's</h3>
+    <p>Unless you have to, and even then, think twice. HTML Id's make things not
+        reusable. There should only be one instance of an id in a document</p>
+
+    <h3>Use Semanitc Classes Presentationaly :)</h3>
+    <p>
+        Here's a decent post on OOCSS (Object Oriented CSS) as it relates to
+        semantic vs presentational classes:
+        <a href="http://blackfalcon.roughdraft.io/5255648-oocss-v-ooscss-sasscast-show-notes">OOCSS v OOSCSS</a>
+    <p>
+        <strong>TL;DR:</strong> Semantic classes explain what that element is.
+        Presentational classes explain what the shoud look like.
+    </p>
+    <p>
+        <code>class="property-list"</code> vs <code>class="ul-list col-sm-4"</code>
+    </p>
+    <p>
+        Some of us don't want to touch css files (preference: presentational),
+        and some of us live there (preference: semantic). Honestly, the art of
+        good ui development is balancing semantic and presentational classes.
+        Each taken to their extreme is bad.
+    </p>
+    <p>
+        Structure html so that the semantic class is first and presentational
+        classes follow.
+    </p>
+    <p><code>class="property-list ul-list col-sm-4"</code></p>
+
+    <h3>Save the Namespace, save the world</h3>
+    <p>Don't make presentational classes that will clash with elements that could mean something else. I'm looking at you Bootsrap!</p>
+    <p><code>class="label"</code> should be <code>class="text-label"</code></p>
+
+    <h3>camelCase vs train-case</h3>
+    <p>Use camelCase for class names for components, not train-case or snake_case.</p>
+    <p>Use tran-case for class names for helpers or modifiers.</p>
+
+    <h3>Wrappers and Containers</h3>
+    <p>
+        Both <code>wrapper</code> and <code>container</code> can be used as class names
+        for an element that goes around a component. The difference is nuanced.
+        <code>wrapper</code> should be used to wrap a <strong>single</strong> element for a formatting purpose.
+        A <code>container</code> should be used to wrap <strong>multiple</strong> elements.
+    </p>
+    
+</div>
+<div class="section">
+    <h1>Contributors</h1>
+    <p>Uniform is an open source tool created for use at <a href="https://42floors.com">42floors</a>. Please report bugs in <a href="https://github.com/bemky/uniform/issues">GitHub Issues</a></p>
+    <div class="margin">
+        <div class="grid">
+            <a class="text-center max-width-100-px" href="https://github.com/bemky">
+                <img src="https://avatars.githubusercontent.com/u/841033?v=3" class="round block width-100-p">
+                <span class="block">bemky</span>
+            </a>
+        </div>
+    </div>
+    <h3>Licensing</h3>
+    <p>Uniform is released under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>
+</div>

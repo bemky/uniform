@@ -80,6 +80,12 @@ button.raw{
         margin: 0 1rem 1rem 0;
     }
 }
+@include size-rules('.show'){
+    display:inherit !important;
+    &.block{
+        display:block !important;
+    }
+}
 @include size-rules('.block') {
     display: block !important;
 }
@@ -88,12 +94,6 @@ button.raw{
 }
 @include size-rules('.hide'){
     display:none !important;
-}
-@include size-rules('.show'){
-    display:inherit !important;
-    &.block{
-        display:block !important;
-    }
 }
 .bleed-fix{
     position:static;

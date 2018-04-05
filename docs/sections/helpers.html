@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Uniform</title>
+    
+    <link rel="stylesheet" href="/assets/uniform-0648d50aee18ff45bf6e246fa04bab71aa82c34c56e5e16f21c38854b099436f.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/assets/preview-2f404c0a65ef99ebb2790276e647dcd2956adb519d8413045ee53071ccac6087.css" type="text/css" media="screen" charset="utf-8">
+    
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/site/favicons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/site/favicons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/site/favicons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/site/favicons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/site/favicons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/site/favicons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/site/favicons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/site/favicons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/site/favicons/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/site/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/site/favicons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/site/favicons/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/site/favicons/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Uniform"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/site/favicons/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/site/favicons/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/site/favicons/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/site/favicons/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/site/favicons/mstile-310x310.png" />
+</head>
+
+<body>
+<div class="side-nav">
+    <div class="pad-2x">
+        <a href="/">
+        <img src="/assets/logo-c0d2f3798ea2b8c502eb9cc53a45c37e5d860362a49feb05ff033f2f582dd746.png" class="block width-100-p">
+        </a>
+    </div>
+    <div class="uniformNav -vertical">
+            <a href="/sections/helpers.html" class="">
+                Helpers
+            </a>
+            <a href="/sections/colors.html" class="">
+                Colors
+            </a>
+            <a href="/sections/grid.html" class="">
+                Grid
+            </a>
+            <a href="/sections/buttons.html" class="">
+                Buttons
+            </a>
+            <a href="/sections/tables.html" class="">
+                Tables
+            </a>
+            <a href="/sections/thumb.html" class="">
+                Thumb
+            </a>
+            <a href="/sections/cards.html" class="">
+                Cards
+            </a>
+            <a href="/sections/rows.html" class="">
+                Rows
+            </a>
+            <a href="/sections/form.html" class="">
+                Form
+            </a>
+            <a href="/sections/loaders.html" class="">
+                Loaders
+            </a>
+            <a href="/sections/nav.html" class="">
+                Nav
+            </a>
+            <a href="/sections/labels.html" class="">
+                Labels
+            </a>
+            <a href="/sections/alerts.html" class="">
+                Alerts
+            </a>
+            <a href="/sections/select.html" class="">
+                Select
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/sections/modal.html" class="">
+                Modal
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/sections/dropdown.html" class="">
+                Dropdown
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/sections/tooltip.html" class="">
+                Tooltip
+                    <span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/sections/resizer.html" class="">
+                Resizer
+                    <span class="uniformLabel -yellow-dark text-smaller">todo</span>
+            </a>
+    </div>
+</div>
+<div class="main-content overflow-hidden">
+    <div class="section">
+    <h1>Helpers</h1>
+    <p>
+        Helper classes are very basic rules that modify usually apply 1 or 2 attributes to an element.
+        They are meant to make UI process fast and easy.
+    </p>
+    
+    <h2>Modifier Hierarchy</h2>
+    <code>.attribute[-direction][-size][-scope]</code>
+<pre><code class='css'>@media max-width: 719px){
+    .pad-top-2x-sm{
+        padding-top: 2em;
+    }
+}</code></pre>    
+    <h3>Attributes</h3>
+    <p>
+        These attributes follow the same structure for the given attribute
+    </p>
+    <table class="uniformTable top tight">
+        <tr>
+            <th><code>pad</code></th>
+            <td><code>padding</code></td>
+        </tr>
+        <tr>
+            <th><code>margin</code></th>
+            <td><code>margin</code></td>
+        </tr>
+        <tr>
+            <th><code>text</code></th>
+            <td><code>font-size</code></td>
+        </tr>
+    </table>
+    
+    
+    
+    <h3>Direction</h3>
+    <table class="uniformTable top tight">
+        <tr>
+            <th><code>-left</code></th>
+            <td>left</td>
+        </tr>
+        <tr>
+            <th><code>-right</code></th>
+            <td>right</td>
+        </tr>
+        <tr>
+            <th><code>-top</code></th>
+            <td>top</td>
+        </tr>
+        <tr>
+            <th><code>-bottom</code></th>
+            <td>bottom</td>
+        </tr>
+        <tr>
+            <th><code>-h</code></th>
+            <td>left and right</td>
+        </tr>
+        <tr>
+            <th><code>-v</code></th>
+            <td>top and bottom</td>
+        </tr>
+    </table>
+    
+    <h3>Size</h3>
+    <table class="uniformTable top tight">
+        <tr>
+            <th><code>-quarter</code></th>
+            <td>0.25em</td>
+        </tr>
+        <tr>
+            <th><code>-half</code>   </th>
+            <td>0.5em</td>
+        </tr>
+        <tr>
+            <th><code>-smaller</code></th>
+            <td>0.8em</td>
+        </tr>
+        <tr>
+            <th><code>-small</code>  </th>
+            <td>0.9em</td>
+        </tr>
+        <tr>
+            <th><code>-base</code>   </th>
+            <td>1em</td>
+        </tr>
+        <tr>
+            <th><code>-large</code>  </th>
+            <td>1.2em</td>
+        </tr>
+        <tr>
+            <th><code>-larger</code> </th>
+            <td>1.4em</td>
+        </tr>
+        <tr>
+            <th><code>-2x</code> </th>
+            <td>2em</td>
+        </tr>
+        <tr>
+            <th><code>-4x</code>   </th>
+            <td>4em</td>
+        </tr>
+    </table>
+    
+    <h3>Scopes</h3>
+    <table class="uniformTable top tight">
+        <tr>
+            <th><code>-sm</code></th>
+            <td> < 720px</td>
+        </tr>
+        <tr>
+            <th><code>-md</code></th>
+            <td> 720px - 1080px</td>
+        </tr>
+        <tr>
+            <th><code>-lg</code></th>
+            <td> 1080px - 1440px</td>
+        </tr>
+        <tr>
+            <th><code>-xl</code></th>
+            <td> 1440px +</td>
+        </tr>
+    </table>
+    
+    <h3>Colors</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-green</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>color: $green</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.bg-green</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>background-color: $green</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.a-green</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>a{ color: $green}</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.a-hover-green</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>a:hover{ color: $green}</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.border-green</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>border-color: $green</code></pre>            </td>
+        </tr>
+    </table>
+    
+    <h3>Sizes</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.width-50-p</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>width: 50%</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.width-50-px</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>width: 50px</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.width-50-vw</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>width: 50vw</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.max-width-50-p</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>max-width: 50%</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.max-width-50-px</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>max-width: 50px</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.height-50-p</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>height: 50%</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.height-50-px</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>height: 50px</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.height-50-vh</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>height: 50vh</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.max-height-50-px</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>max-height: 50px</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.min-height-50-vh</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>min-height: 50vh</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.height-auto</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>height: auto;</code></pre>            </td>
+        </tr>
+    </table>
+    
+    <h3>Text</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-caps</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>text-transform: uppercase</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-1rem</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>font-size: 1rem</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-subtle</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>font-size: 90%; opacity: 0.8</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-subtle-more</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>font-size: 80%; opacity: 0.6</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-muted</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>opacity: 0.8</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-muted-more</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>opacity: 0.6</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-muted-less</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>opacity: 0.85</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-left</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>text-align: left !important</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-right</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>text-align: right</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-center</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>text-align: center</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-justify</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>text-align: justify</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-overflow</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>@include text-overflow</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-italic</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>font-style: italic</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-bold</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>font-weight: 700</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-light</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>font-weight: 300</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-lightest</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>font-weight: 100</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-normal</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>font-weight: normal !important</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-middle</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>vertical-align:middle</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-top</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>vertical-align:top</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-tight</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>line-height:1.3</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>p.large</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>font-size:1.5em; font-weight:300</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-nowrap</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>white-space: nowrap; overflow:hidden</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-no-decoration</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>text-decoration: none; a{text-decoration: none;}</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-height-1</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>line-height: 1</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-warn</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>&amp;:hover{color:$red !important;}</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.text-col-2</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>column-count: 2; column-gap: 5em;</code></pre>            </td>
+        </tr>
+    </table>
+    
+    <h3>Layout</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.hidden</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>display:none !important;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.round</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>border-radius:50%;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.rounded</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>border-radius: 0.25em;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.cursorpointer</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>cursor: pointer !important;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.cursor-help</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>cursor: help;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.cursor-handle</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>cursor: hand;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.honeypot</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>position:absolute !important;
+left:-999999px !important;
+width:1px !important;
+display:block !important;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>img.disabled</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>@include grayscale(1, 0.3)</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>table.fixed</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>table-layout: fixed;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.float-right</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>float:right;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.float-left</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>float: left;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.bleed-fix</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>position:static; overflow:hidden;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.clear</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>clear:both;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.block </code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>display: block;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.inline-block </code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>display:inline-block !important;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.overflow-hidden</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>overflow:hidden;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.overflow-y</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>overflow-y: auto;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.relative</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>position:relative;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.position-center</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>position:absolute;
+left:50%;
+top:50%;
+transform: translate(-50%, -50%);</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.position-v-center</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>position:absolute;
+left:50%;
+transform: translateX(-50%, -50%);</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>.position-h-center</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>position:absolute;
+top:50%;
+transform: translateY(-50%, -50%);</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>ul.raw</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>margin: 0; padding: 0; list-style:none;</code></pre>            </td>
+        </tr>
+        <tr class="middle">
+            <td>
+                <code>button.raw</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>outline: none; appearance: none; border: none; background:none;</code></pre>            </td>
+        </tr>
+    </table>
+    
+</div>
+</div>  
+
+<script src="/assets/jquery.js" ></script>
+<script src="/assets/preview-36274d8db57f2c20943835011af755580eaabf1c51ecef5f5ba777ddd8d311b8.js"></script>
+<script src="/assets/highlight.pack.js"></script>
+</body>

@@ -1,0 +1,28 @@
+{
+  "name": "uniform-ui",
+  "version": "0.1.0",
+  "description": "Sass components and helpers for building a UI.",
+  "main": "vendor/assets/javascript/uniform.js",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bemky/uniform.git"
+  },
+  "keywords": [
+    "sass"
+  ],
+  "author": "Ben Ehmke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bemky/uniform/issues"
+  },
+  "homepage": "http://uniform-ui.com",
+  "devDependencies": {},
+  "dependencies": {}
+}

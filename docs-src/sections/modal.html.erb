@@ -1,0 +1,205 @@
+<div class="section">
+    <h1>UniformModal</h1>
+    <div class="grid-md">
+        <div class="col-6-md">
+            <button class="launchUniformModal uniformButton green large" data-modal-target="#modal-content" data-modal-klass="width-50-p">
+                Launch Modal
+            </button>
+            <div class="hide">
+                <div id="modal-content">
+                    <div class="pad bg-background border-bottom rounded-top">
+                        <h1 class="margin-none">Modal H1</h1>
+                    </div>
+                    <div class="pad">
+                        <p class="margin-none">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-6-md">
+            <% html_block do %>
+            <button class="launchUniformModal uniformButton green large" data-modal-target="#modal-content" data-modal-klass="width-50-p">
+                Launch Modal
+            </button>
+            
+            <div class="hide">
+                <div id="modal-content">
+                    <div class="pad bg-background border-bottom rounded-top">
+                        <h1 class="margin-none">Modal H1</h1>
+                    </div>
+                    <div class="pad">
+                        <p class="margin-none">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+            <% html_block do %>
+                $('.launchUniformModal').uniformModal();
+            <% end %>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <h3>Programmatically</h3>
+    <% html_block do %>
+    new UniformModal({
+        content: "This is your modal content",
+    }).render()
+    <% end %>
+    <table class="uniformTable margin-2x">
+        <tr>
+            <th>
+                Options
+            </th>
+            <th>Accepts</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>
+                content
+            </td>
+            <td>
+                <code>string</code> |
+                <code>$(element)</code> |
+                <code>function</code>
+            </td>
+            <td>
+                Rendered as content, can be a function
+            </td>
+        </tr>
+        <tr>
+            <td>
+                klass
+            </td>
+            <td>
+                <code>string</code>
+            </td>
+            <td>
+                HTML class to append to modal container
+            </td>
+        </tr>
+    </table>
+
+    <table class="uniformTable margin-2x">
+        <tr>
+            <th>Events</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>
+                rendered
+            </td>
+            <td>
+                After modal is rendered and shown
+            </td>
+        </tr>
+        <tr>
+            <td>
+                closed
+            </td>
+            <td>
+                After modal is closed before being removed
+            </td>
+        </tr>
+    </table>
+    <table class="uniformTable margin-2x">
+        <tr>
+            <th>Methods</th>
+            <th>Description</th>
+            <th>Example</th>
+        </tr>
+        <tr>
+            <td>
+                on(event, handler)
+            </td>
+            <td>
+                Add event listener
+            </td>
+            <td>
+                <code>modal.on('closed', function(modal_instance){...})</code>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                close
+            </td>
+            <td>
+                Close modal
+            </td>
+            <td>
+                <code>modal.close()</code>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="section">
+    <h3>Using JQuery</h3>
+    <% html_block do %>
+<button class="launchUniformModal" data-modal-target="#modal-content">
+    Launch Modal
+</button>
+    <% end %>
+    <% html_block do %>
+    $('.launchUniformModal').click(function(){
+        $(this).uniformModal();
+    });
+    <% end %>
+    <table class="uniformTable margin-2x">
+        <tr>
+            <th>Data Options</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td class="text-overflow">
+                <code>data-modal-content</code>
+            </td>
+            <td>
+                String of html to render in modal
+            </td>
+        </tr>
+        <tr>
+            <td class="text-overflow">
+                <code>data-modal-target</code>
+            </td>
+            <td>
+                Instead of providing <code>data-modal-content</code> you can provide a jquery selector of target element. That will be used to render in modal.
+            </td>
+        <tr>
+            <td class="text-overflow">
+                <code>data-modal-klass</code>
+            </td>
+            <td>
+                HTML class to append to modal container
+            </td>
+        </tr>
+    </table>
+    <h3>Events</h3>
+    <p>Events fired on the <code>launchUniformModal</code> element.
+    <table class="uniformTable">
+        <tr>
+            <th>Events</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>
+                modal-rendered
+            </td>
+            <td>
+                After modal is rendered and shown
+            </td>
+        </tr>
+        <tr>
+            <td>
+                modal-closed
+            </td>
+            <td>
+                After modal is closed before being removed
+            </td>
+        </tr>
+    </table>
+</div>
