@@ -78,16 +78,18 @@ RUBY
 eval(method_source)
 
 # task :setup do
-$environment = Condenser.new('./vendor/assets')
+$environment = Condenser.new
 Dir.children('./vendor/assets/').each do |path|
-  $environment.append_path path
+  next unless File.directory?(File.expand_path(File.join('./vendor/assets/', path)))
+  $environment.append_path File.expand_path(File.join('./vendor/assets/', path))
 end
 $environment.append_path File.expand_path('./docs-src/')
 Dir.children('./docs-src/assets/').each do |path|
+  next unless File.directory?(File.expand_path(File.join('./docs-src/assets/', path)))
   $environment.append_path File.expand_path(File.join('./docs-src/assets/', path))
 end
 
-$environment.append_path File.expand_path('./node_modules/')
+#$environment.append_path File.expand_path('./node_modules/')
 
 $environment.writers.each do |mime_type, value|
   value.delete_if { |v| v[0].is_a?(Condenser::ZlibWriter) }
