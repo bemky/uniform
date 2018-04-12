@@ -1,4 +1,4 @@
-@for $i from 1 through 100 {
+@for $i from 0 through 100 {
     @include size-rules(".width-#{$i * 5}-px"){
         width: #{$i * 5 + "px"};
     }
@@ -9,7 +9,7 @@
     .max-height-#{$i * 5}-px    { max-height: #{$i * 5 + "px"}; }
     .min-height-#{$i * 5}-px    { min-height: #{$i * 5 + "px"}; }
 }
-@for $i from 1 through 20 {
+@for $i from 0 through 20 {
     @include size-rules(".width-#{$i * 5}-p"){
         width: #{$i * 5 + "%"};
     }

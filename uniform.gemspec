@@ -1,4 +1,6 @@
-require File.expand_path("../lib/uniform/version", __FILE__)
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'uniform/version'
 
 Gem::Specification.new do |s|
   s.name        = "uniform-ui"
@@ -12,10 +14,9 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 2.5.0"
 
-  s.files         = `git ls-files`.split("\n")
+  s.files         = Dir["vendor/**/*"].select { |fn| File.file?(fn) }
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
 
   s.add_runtime_dependency 'sass'
 
