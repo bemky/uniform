@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/malomalo/condenser.git
-  revision: 5290f693ecc1fab4767b34c37963138f93f2d960
+  revision: 4bbb32e5d232b7a700dd8ba0ee9f04a9c3d36319
   specs:
-    condenser (0.0.2)
+    condenser (0.0.3)
       erubi (~> 1.0)
       rack (> 1, < 3)
 
@@ -21,7 +21,7 @@ GEM
       concurrent-ruby (~> 1.0)
     minitest (5.11.3)
     rack (2.0.4)
-    rake (11.3.0)
+    rake (12.3.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)

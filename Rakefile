@@ -116,7 +116,7 @@ namespace :compile do
     
     Dir.glob('docs-src/**/*').each do |filename|
       next if File.directory?(filename)
-      next if filename =~ /^docs\/src\/assets\/[^\/]+\//
+      next if filename =~ /^docs-src\/assets\/[^\/]+\//
       next if filename == 'docs-src/layout.html.erb'
       filename.delete_prefix!('docs-src/')
       
@@ -127,7 +127,11 @@ namespace :compile do
 
         File.write(File.join('docs', filename), layout { $environment.find_export(filename).source })
       else
-        File.write(File.join('docs', filename), $environment.find_export(filename).source)
+        if filename.start_with?('assets/')
+          FileUtils.cp(File.join('docs-src', filename), File.join('docs', filename))
+        else
+          File.write(File.join('docs', filename), $environment.find_export(filename).source)
+        end
       end
     end
   end
