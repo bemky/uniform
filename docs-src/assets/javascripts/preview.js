@@ -16,7 +16,6 @@ $(document).ready(function(){
     $('.uniformRadio').uniformRadio();
     $('.uniformFloatingLabel').uniformFloatingLabel();
     $('.uniformSelect').uniformSelect();
-    $('.uniformDropdown').uniformDropdown();
     $('.uniformTooltip').uniformTooltip();
     $('.uniformResizer').uniformResizer();
     $('.launchUniformModal').uniformModal();

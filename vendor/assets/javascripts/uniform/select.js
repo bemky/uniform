@@ -32,6 +32,8 @@ export default class Select extends Component {
         $(window).on('scroll', this.updatePosition.bind(this));
         $(document).on('click', this.outsideClick.bind(this));
         $(document).on('keyup', this.keyup.bind(this));
+        
+        this.activeIcon = $(`<span class='uniformSelect-option-icon'>${}</span>`)
     }
     
     outsideClick (e) {
@@ -47,7 +49,7 @@ export default class Select extends Component {
     }
     
     render () {
-        this.container = $("<div class='uniformSelect-this.container'></div>");
+        this.container = $("<div class='uniformSelect-container'></div>");
         this.edit_button = $(`<button type='button' class='uniformSelect-edit uniformInput outline block ${this.options.class}'></button>`);
         this.container.append(this.edit_button);
         
@@ -78,8 +80,8 @@ export default class Select extends Component {
         this.select_options.css({
             position: 'absolute',
             top: this.container.offset().top + this.container.outerHeight(),
-            left: this.container.offset().left,
-            minWidth: this.container.outerWidth()
+            left: this.container.offset().left + 1,
+            minWidth: this.container.outerWidth() - 1
         });
     }
 
@@ -134,6 +136,7 @@ export default class Select extends Component {
         this.showing = false;
         this.select_options.hide();
         this.select_options.removeClass('fixed');
+        this.edit_button.removeClass('active');
         $('body').removeClass('uniformModal-hideBody');
         if(this.lastScrollPosition) $(window).scrollTop(this.lastScrollPosition);
         this.$el.trigger('hidden:options');
@@ -148,6 +151,7 @@ export default class Select extends Component {
         if(!this.select_options) this.renderOptions();
         this.resize();
         this.select_options.show();
+        this.edit_button.addClass('active');
 
         this.lastScrollPosition = $(window).scrollTop();
         this.updatePosition();
@@ -157,10 +161,14 @@ export default class Select extends Component {
     selectOption(e) {
         if (!this.$el.prop('multiple')) {
             this.$el.find("option:selected").prop('selected', false);
+            this.select_options.find('.uniformSelect-option.active .uniformSelect-option-icon').remove();
             this.select_options.find('.uniformSelect-option.active').removeClass('active');
         }
         $(e.currentTarget).toggleClass('active');
         e.currentTarget.option.prop('selected', $(e.currentTarget).hasClass('active'));
+        if ($(e.currentTarget).hasClass('active')) {
+            $(e.currentTarget).append(this.optionIcon.clone());
+        }
         this.$el.trigger('change');
     }
     

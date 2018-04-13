@@ -114,7 +114,7 @@ export default (($) => {
     $.fn.uniformTooltip = function() {
         return this.each(function(){
             var el = $(this);
-            var tooltip = new UniformTooltip({
+            var tooltip = new Tooltip({
                 message: el.data('tooltip-message'),
                 el: this
             });

@@ -1,6 +1,5 @@
-GIT
-  remote: git://github.com/malomalo/condenser.git
-  revision: 4bbb32e5d232b7a700dd8ba0ee9f04a9c3d36319
+PATH
+  remote: ../condenser
   specs:
     condenser (0.0.3)
       erubi (~> 1.0)

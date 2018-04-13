@@ -1,5 +1,8 @@
 import Component from 'uniform/component';
 
+/*
+    message: html
+*/
 export default class Tooltip extends Component {
     initialize (options) {
         this.enabled = true;
@@ -11,8 +14,8 @@ export default class Tooltip extends Component {
     }
     
     render () {
-        this.popup = $('<div class="'+UniformComponent.namespace+'uniformTooltip-popup">' + this.message + '</div>');
-        this.popup.prepend("<div class='"+UniformComponent.namespace+"uniformTooltip-pointer'></div>");
+        this.popup = $('<div class="uniformTooltip-popup">' + this.message + '</div>');
+        this.popup.prepend("<div class='uniformTooltip-pointer'></div>");
         this.$el.append(this.popup);
         if (this.message.length > 100) {
             this.popup.css({

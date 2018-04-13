@@ -6,7 +6,6 @@ select.uniformSelect{
     @include text-overflow;
     position:relative;
     text-align: left;
-    
     &:after{
         color:color('gray');
         font-size:1em;
@@ -15,6 +14,9 @@ select.uniformSelect{
         right:0.3em;
         z-index:0;
     }
+    &.active{
+        z-index: 10000;
+    }
 }
 
 .uniformSelect-options{
@@ -22,8 +24,7 @@ select.uniformSelect{
     position: absolute;
     background: white;
     z-index: 9999;
-    box-shadow: 0 0 3px 2px rgba(black, 0.2);
-    clip-path: inset(0px -10px -10px -10px);
+    box-shadow: 0 0 15px 1px rgba(black, 0.2), 0 0 2px 1px rgba(black, 0.1) ;
     button{
         appearance: none;
         outline: none;
@@ -60,20 +61,19 @@ select.uniformSelect{
 }
 .uniformSelect-option{
     position:relative;
-    padding-right: 2.5em !important;
     cursor: pointer;
     &.active{
         box-shadow:none;
         color: color('green-dark');
-        &:after{
-            color: color('green');
-            position: absolute;
-            content: '\2714';
-            top: 0.2em;
-            right: 0.2em;
-            font-size: 1.5em;
-            
-        }
+        padding-left: 2.5em !important;
+        font-weight: bold;
+    }
+    .uniformSelect-option-icon{
+        fill: color('green');
+        position: absolute;
+        top: 0.2em;
+        left: 0.2em;
+        font-size: 1.5em;
     }
 }
 

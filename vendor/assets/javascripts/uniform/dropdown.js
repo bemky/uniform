@@ -14,7 +14,7 @@ export default class Dropdown extends Component {
         options = options || {}
         this.options = {
             align: 'center',
-            trigger: 'click focus',
+            trigger: 'click',
             show_arrow: true,
             hide_sm: false,
             square: false
@@ -25,9 +25,26 @@ export default class Dropdown extends Component {
         this.$el[0].dropdown = this;
         
         this.$el.on(this.options.trigger, this.toggle.bind(this));
-        $(window).on('resize', this.resize.bind(this));
+        
+        this.$el.on('mousedown', function (){
+            this.mousedown = true;
+        }.bind(this));
+    
+        this.$el.on('mouseup', function (){
+            this.mousedown = false;
+        }.bind(this));
+        
+        this.$el.on('focus', function (){
+            if(this.mousedown) return;
+            this.show();
+        }.bind(this));
+        
+        $(document).on('focus', this.outsideClick.bind(this));
         $(document).on(this.options.trigger, this.outsideClick.bind(this));
+        
         $(document).on('keyup', this.keyup.bind(this));
+        
+        $(window).on('resize', this.resize.bind(this));
     }
     
     render () {
@@ -75,7 +92,7 @@ export default class Dropdown extends Component {
         $(document).off('keyup', this.keyup.bind(this));
     }
     
-    toggle () {
+    toggle (e) {
         if (this.$el.hasClass('active')) {
             this.hide();
         } else {
@@ -85,7 +102,11 @@ export default class Dropdown extends Component {
     
     show () {
         if(this.options.hide_sm && $(window).width() < 720) return;
-        if(!this.dropdown) this.render();
+        if(!this.dropdown){
+            this.render();
+        } else {
+            this.resize();
+        }
         
         this.dropdown.show();
         this.$el.addClass('active');
@@ -116,9 +137,9 @@ export default class Dropdown extends Component {
     
     outsideClick (e) {
         if (!this.dropdown || !this.dropdown.is(":visible")) return;
-        if (e.target === this.$el[0]) return;
+        if (e.target === this.el) return;
         if (e.target === this.overlay) return;
-        if ($.contains(this.$el[0], e.target)) return;
+        if ($.contains(this.el, e.target)) return;
         if ($.contains(this.dropdown[0], e.target)) return;
         this.hide();
     }
