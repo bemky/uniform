@@ -1,4 +1,5 @@
 import Component from 'uniform/component';
+import { check as checkIcon, arrow_down as arrowIcon } from 'uniform/icons';
 
 /*
     options
@@ -33,7 +34,7 @@ export default class Select extends Component {
         $(document).on('click', this.outsideClick.bind(this));
         $(document).on('keyup', this.keyup.bind(this));
         
-        this.activeIcon = $(`<span class='uniformSelect-option-icon'>${}</span>`)
+        this.activeIcon = $(`<span class='uniformSelect-option-icon'>${checkIcon}</span>`)
     }
     
     outsideClick (e) {
@@ -50,7 +51,8 @@ export default class Select extends Component {
     
     render () {
         this.container = $("<div class='uniformSelect-container'></div>");
-        this.edit_button = $(`<button type='button' class='uniformSelect-edit uniformInput outline block ${this.options.class}'></button>`);
+        this.edit_button = $(`<button type='button' class='uniformSelect-edit uniformInput outline block ${this.options.class}'><span class="text-js"></span></button>`);
+        this.edit_button.append(`<span class="uniformSelect-edit-icon">${arrowIcon}</span>`)
         this.container.append(this.edit_button);
         
         if (this.$el.attr('name')) {
@@ -66,15 +68,15 @@ export default class Select extends Component {
 
     resize () {
         // to keep button from extending beyond available width
-        var text = this.edit_button.text();
-        this.edit_button.text('');
+        var innerHTML = this.edit_button.html();
+        this.edit_button.html('');
         this.edit_button.css({
             width: 'auto'
         });
         this.edit_button.css({
             width: this.container.outerWidth()
         });
-        this.edit_button.text(text);
+        this.edit_button.html(innerHTML);
 
         if(typeof this.select_options === "undefined") return;
         this.select_options.css({
@@ -103,6 +105,7 @@ export default class Select extends Component {
             if (button.text() == "") button.html("<span class='text-italic text-muted'>None</span>");
             if($(el).prop('selected')){
                 button.addClass('active');
+                button.append(this.activeIcon.clone());
             } else if (this.options.limit && index > this.options.limit) {
                 button.addClass('hide');
             }
@@ -167,7 +170,9 @@ export default class Select extends Component {
         $(e.currentTarget).toggleClass('active');
         e.currentTarget.option.prop('selected', $(e.currentTarget).hasClass('active'));
         if ($(e.currentTarget).hasClass('active')) {
-            $(e.currentTarget).append(this.optionIcon.clone());
+            $(e.currentTarget).append(this.activeIcon.clone());
+        } else {
+            $(e.currentTarget).find('.uniformSelect-option-icon').remove()
         }
         this.$el.trigger('change');
     }
@@ -178,7 +183,7 @@ export default class Select extends Component {
             return $(el).text();
         }).join(", ");
         if (value == "") value = "&nbsp;";
-        this.edit_button.html(value);
+        this.edit_button.find('.text-js').html(value);
     }
 
     updatePosition () {

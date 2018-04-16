@@ -1,8 +1,7 @@
 # Specify your gem's dependencies in uniform.gemspec
 source 'https://rubygems.org'
 
-# gem 'condenser', github: 'malomalo/condenser'
-gem 'condenser', path: '~/code/condenser'
+gem 'condenser', github: 'malomalo/condenser'
 
 # Stylesheets
 gem 'sass'
