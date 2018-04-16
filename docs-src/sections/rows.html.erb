@@ -61,12 +61,12 @@
         ] %>
         <% rows.each do |row| %>
             <a class="uniformRow" href="#rows">
-                <span class="uniformThumb">
+                <span class="uniformThumb width-90-px-md">
                     <img src="<%= row[:logo] %>">
                 </span>
                 <div class="uniformRow-body">
                     <span>
-                        <%= row[:title] %>
+                        <span class="text-bold"><%= row[:title] %></span>
                         <span class="text-subtle block"><%= row[:subtitle] %></span>
                     </span>
                     <span>
@@ -84,12 +84,12 @@
         <h2>size-sm</h2>
         <% rows.each do |row| %>
             <a class="uniformRow" href="#rows">
-                <span class="uniformThumb">
+                <span class="uniformThumb width-90-px-md">
                     <img src="<%= row[:logo] %>">
                 </span>
                 <div class="uniformRow-body">
                     <span>
-                        <%= row[:title] %>
+                        <span class="text-bold"><%= row[:title] %></span>
                         <span class="text-subtle block"><%= row[:subtitle] %></span>
                     </span>
                     <span>

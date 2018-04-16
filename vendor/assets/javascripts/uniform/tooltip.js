@@ -2,9 +2,16 @@ import Component from 'uniform/component';
 
 /*
     message: html
+    align: top|bottom (default: top)
 */
 export default class Tooltip extends Component {
     initialize (options) {
+        options = options || {}
+        this.options = {
+            align: 'top',
+        };
+        Object.assign(this.options, this.pick(options, Object.keys(this.options)));
+        
         this.enabled = true;
         this.message = options.message;
         options.el.tooltip = this;
@@ -31,11 +38,19 @@ export default class Tooltip extends Component {
                 left: $(window).width() - this.popup.outerWidth(true) - this.popup.offset().left
             });
         }
+        
+        this.popup.css('display', 'block');
+        if (this.options.align == "bottom" || this.popup.offset().top < 0) {
+            this.popup.addClass('-align-bottom');
+        }
+        this.popup.css('display', 'none');
+        
         return this;
     }
     
     remove () {
         this.$el.remove();
+        
     }
     
     show () {
@@ -47,10 +62,22 @@ export default class Tooltip extends Component {
         this.popup.css('display', 'block');
         this.showing = true;
         this.hidden = false;
-        this.popup.animate({
+        
+        this.$el.addClass('active');
+        
+        var animation = {
             bottom: "100%",
             opacity: 1
-        }, 200, (function(){
+        }
+        
+        if(this.popup.hasClass('-align-bottom')){
+            animation = {
+                top: "100%",
+                opacity: 1
+            }
+        }
+        
+        this.popup.animate(animation, 200, (function(){
             this.showing = false;
             this.shown = true;
             if (this.hide_after_show) this.hide();
@@ -66,15 +93,26 @@ export default class Tooltip extends Component {
     }
     
     hide () {
-        if (this.showing) return this.show_after_hide = true;
+        if (this.showing) return this.hide_after_show = true;
         if (this.hiding || this.hidden) return;
         this.hiding = true;
         this.shown = false;
-        this.popup.animate({
-            bottom: 0,
+        
+        var animation = {
+            bottom: '200%',
             opacity: 0
-        }, 200, (function (){
+        }
+        
+        if(this.popup.hasClass('-align-bottom')){
+            animation = {
+                top: '200%',
+                opacity: 0
+            }
+        }
+        
+        this.popup.animate(animation, 200, (function (){
             this.popup.css('display', 'none');
+            this.$el.removeClass('active');
             this.hiding = false;
             this.hidden = true;
             this.trigger('hidden');
@@ -89,6 +127,11 @@ export default class Tooltip extends Component {
     
     enabled () {
         this.enabled = true;
+    }
+    
+    checkCursor () {
+        
+        setTimeout(this.checkCursor, 1000);
     }
 
 }

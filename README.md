@@ -95,6 +95,3 @@ To package:
 - Add docs for sizes and colors mixins
 - docs on including scss in node module
 - UniformMainNav for mobile
-- tooltip moving outside edge of browser
-- UniformDropdown should toggle on second click
-- Dropdown arrow for select

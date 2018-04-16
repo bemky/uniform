@@ -99,6 +99,7 @@ $environment.context_class.class_eval do
   include Helpers
 end
 $environment.cache = Condenser::Cache::MemoryStore.new
+# $environment.cache = Condenser::Cache::FileStore.new('./tmp/cache/')
 
 namespace :compile do
   

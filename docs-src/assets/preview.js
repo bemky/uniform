@@ -1,14 +1,3 @@
-import {
-    Dropdown,
-    Checkbox,
-    Modal,
-    Select,
-    FloatingLabel,
-    Resizer,
-    Tooltip,
-    Plugins
-} from 'uniform';
-
 $(document).ready(function(){
     hljs.initHighlightingOnLoad();
     $('.uniformDropdown').uniformDropdown();

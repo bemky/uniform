@@ -1,6 +1,9 @@
 .uniformTooltip{
     position:relative;
-    z-index:2;
+    cursor: pointer;
+    &.active{
+        z-index:2;
+    }
 }
 .uniformTooltip-popup{
     display:none;
@@ -9,7 +12,7 @@
     border: 1px solid color('gray-light');
     padding: 0.5em;
     opacity: 0;
-    bottom: 0;
+    bottom: 200%;
     left: -1.5em;
     margin: 0.5em;
     z-index: 1;
@@ -17,6 +20,16 @@
     font-size:0.9em;
     border-radius: 0.25em;
     max-width: 30vw;
+    &.-align-bottom{
+        top: 200%;
+        bottom: auto;
+        .uniformTooltip-pointer{
+            top: -1em;
+            &:after{
+                top: 85%;
+            }
+        }
+    }
     p:last-child{
         margin-bottom: 0;
     }
