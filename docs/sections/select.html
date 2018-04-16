@@ -3,7 +3,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Uniform</title>
     
-    <link rel="stylesheet" href="/assets/uniform-70e7ba81e9fe6c26c0575b1909af65932ba464f2056e77da9963c0e5f2d25840.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/assets/uniform-dde772afef37f8b13a9f2eebdfbb80b59b331b3c6876209edf439872c42085be.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/assets/preview-c54be5278938a2974fe8be9efd04d415439751302102133eb120ea38acc91b6c.css" type="text/css" media="screen" charset="utf-8">
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/site/favicons/apple-touch-icon-57x57.png" />
@@ -107,7 +107,7 @@
     </p>
     <h3>Initialize</h3>
 <pre><code class=''>$(document).ready(function(){
-$(&#39;.uniformSelect&#39;).uniformSelect(options);
+    $(&#39;.uniformSelect&#39;).uniformSelect(options);
 })</code></pre>    <div class="grid-md grid-nest margin-top-2x">
         <div class="col-6-md margin-bottom">
             <select>
@@ -124,7 +124,7 @@ $(&#39;.uniformSelect&#39;).uniformSelect(options);
         </div>
         <div class="col-6-md">
 <pre><code class='html'>&lt;select class=&#39;uniformSelect&#39;&gt;
-&lt;option&gt;An Option&lt;/option&gt;
+    &lt;option&gt;An Option&lt;/option&gt;
 &lt;/select&gt;</code></pre>        </div>
         <div class="col-6-md">
             <code>multiple</code>
@@ -136,7 +136,7 @@ $(&#39;.uniformSelect&#39;).uniformSelect(options);
         </div>
         <div class="col-6-md">
 <pre><code class='html'>&lt;select class=&quot;uniformSelect&quot; multiple&gt;
-&lt;option&gt;An Option&lt;/option&gt;
+    &lt;option&gt;An Option&lt;/option&gt;
 &lt;/select&gt;</code></pre>        </div>
         <div class="col-6-md">
             <p>Limits dropdown to 8 options (optional)</p>
@@ -164,25 +164,12 @@ $(&#39;.uniformSelect&#39;).uniformSelect(options);
         </div>
         <div class="col-6-md">
 <pre><code class='html'>&lt;select class=&quot;uniformSelect&quot;&gt;
-&lt;option&gt;Option 1&lt;/option&gt;
-&lt;option&gt;Option 2&lt;/option&gt;
-&lt;option&gt;Option 3&lt;/option&gt;
-&lt;option&gt;Option 4&lt;/option&gt;
-&lt;option&gt;Option 5&lt;/option&gt;
-&lt;option&gt;Option 6&lt;/option&gt;
-&lt;option&gt;Option 7&lt;/option&gt;
-&lt;option&gt;Option 8&lt;/option&gt;
-&lt;option&gt;Option 9&lt;/option&gt;
-&lt;option&gt;Option 10&lt;/option&gt;
-&lt;option&gt;Option 11&lt;/option&gt;
-&lt;option&gt;Option 12&lt;/option&gt;
-&lt;option&gt;Option 13&lt;/option&gt;
-&lt;option&gt;Option 14&lt;/option&gt;
-&lt;option&gt;Option 15&lt;/option&gt;
-&lt;option&gt;Option 16&lt;/option&gt;
-&lt;option&gt;Option 17&lt;/option&gt;
-&lt;option&gt;Option 18&lt;/option&gt;
-&lt;option&gt;Option 19&lt;/option&gt;
+    &lt;option&gt;Option 1&lt;/option&gt;
+    &lt;option&gt;Option 2&lt;/option&gt;
+    &lt;option&gt;Option 3&lt;/option&gt;
+    &lt;option&gt;Option 4&lt;/option&gt;
+    ...
+    &lt;option&gt;Option 19&lt;/option&gt;
 &lt;/select&gt;</code></pre>        </div>
     </div>
     
@@ -193,11 +180,11 @@ $(&#39;.uniformSelect&#39;).uniformSelect(options);
     
     <h3>Options</h3>
 <pre><code class=''>$(document).ready(function(){
-$(&#39;.uniformSelect&#39;).uniformSelect({
-    limit: 8,
-    class: &#39;uniformButton green&#39;,
-    showAll: function(select_options){...}
-});
+    $(&#39;.uniformSelect&#39;).uniformSelect({
+        limit: 8,
+        class: &#39;uniformButton green&#39;,
+        showAll: function(select_options){...}
+    });
 })</code></pre>    <table class="uniformTable">
         <tr>
             <th>Option</th>
@@ -252,6 +239,6 @@ $(&#39;.uniformSelect&#39;).uniformSelect({
 </div>  
 
 <script src="/assets/jquery.js" ></script>
-<script src="/assets/preview-6507aa6ad5fe67bc849ad9c9167cb8f2a2b362af7d516b4342ffebc4642964a4.js"></script>
+<script src="/assets/preview-057482abb82a9040976ce675ecb0ef381b828e089640fe5820afb4b2ffa79b52.js"></script>
 <script src="/assets/highlight.pack.js"></script>
 </body>

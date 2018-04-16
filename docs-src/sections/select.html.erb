@@ -6,9 +6,9 @@
     </p>
     <h3>Initialize</h3>
     <% html_block do %>
-$(document).ready(function(){
-    $('.uniformSelect').uniformSelect(options);
-})
+        $(document).ready(function(){
+            $('.uniformSelect').uniformSelect(options);
+        })
     <% end %>
     <div class="grid-md grid-nest margin-top-2x">
         <div class="col-6-md margin-bottom">
@@ -26,9 +26,9 @@ $(document).ready(function(){
         </div>
         <div class="col-6-md">
             <% html_block class:"html" do %>
-<select class='uniformSelect'>
-    <option>An Option</option>
-</select>
+                <select class='uniformSelect'>
+                    <option>An Option</option>
+                </select>
             <% end %>
         </div>
         <div class="col-6-md">
@@ -41,9 +41,9 @@ $(document).ready(function(){
         </div>
         <div class="col-6-md">
             <% html_block class:"html" do %>
-<select class="uniformSelect" multiple>
-    <option>An Option</option>
-</select>
+                <select class="uniformSelect" multiple>
+                    <option>An Option</option>
+                </select>
             <% end %>
         </div>
         <div class="col-6-md">
@@ -72,27 +72,14 @@ $(document).ready(function(){
         </div>
         <div class="col-6-md">
             <% html_block class:"html" do %>
-<select class="uniformSelect">
-    <option>Option 1</option>
-    <option>Option 2</option>
-    <option>Option 3</option>
-    <option>Option 4</option>
-    <option>Option 5</option>
-    <option>Option 6</option>
-    <option>Option 7</option>
-    <option>Option 8</option>
-    <option>Option 9</option>
-    <option>Option 10</option>
-    <option>Option 11</option>
-    <option>Option 12</option>
-    <option>Option 13</option>
-    <option>Option 14</option>
-    <option>Option 15</option>
-    <option>Option 16</option>
-    <option>Option 17</option>
-    <option>Option 18</option>
-    <option>Option 19</option>
-</select>
+                <select class="uniformSelect">
+                    <option>Option 1</option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                    <option>Option 4</option>
+                    ...
+                    <option>Option 19</option>
+                </select>
             <% end %>
         </div>
     </div>
@@ -104,13 +91,13 @@ $(document).ready(function(){
     
     <h3>Options</h3>
     <% html_block do %>
-$(document).ready(function(){
-    $('.uniformSelect').uniformSelect({
-        limit: 8,
-        class: 'uniformButton green',
-        showAll: function(select_options){...}
-    });
-})
+        $(document).ready(function(){
+            $('.uniformSelect').uniformSelect({
+                limit: 8,
+                class: 'uniformButton green',
+                showAll: function(select_options){...}
+            });
+        })
     <% end %>
     <table class="uniformTable">
         <tr>
