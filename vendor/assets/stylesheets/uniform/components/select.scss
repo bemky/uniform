@@ -6,6 +6,7 @@ select.uniformSelect{
     @include text-overflow;
     position:relative;
     text-align: left;
+    padding-right: 1.8em;
     &.active{
         z-index: 10000;
         .uniformSelect-edit-icon{

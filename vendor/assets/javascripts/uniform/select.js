@@ -27,7 +27,7 @@ export default class Select extends Component {
         this.$el.on('change', this.updateSelect.bind(this));
         this.$el.on('close', this.hideOptions.bind(this));
         this.$el.on('revealed', this.resize.bind(this));
-        this.el.uniformSelect = this.container;
+        this.el.uniformSelect = this;
         
         $(window).on('resize', this.resize.bind(this));
         $(window).on('scroll', this.updatePosition.bind(this));
@@ -68,7 +68,8 @@ export default class Select extends Component {
 
     resize () {
         // to keep button from extending beyond available width
-        var innerHTML = this.edit_button.html();
+        var children = this.edit_button.children();
+        children.detach()
         this.edit_button.html('');
         this.edit_button.css({
             width: 'auto'
@@ -76,7 +77,7 @@ export default class Select extends Component {
         this.edit_button.css({
             width: this.container.outerWidth()
         });
-        this.edit_button.html(innerHTML);
+        this.edit_button.append(children);
 
         if(typeof this.select_options === "undefined") return;
         this.select_options.css({

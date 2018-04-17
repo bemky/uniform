@@ -93,7 +93,7 @@ export default class Dropdown extends Component {
     }
     
     toggle (e) {
-        if (this.$el.hasClass('active')) {
+        if (this.$el.hasClass('active') && this.options.trigger != "mouseover") {
             this.hide();
         } else {
             this.show();

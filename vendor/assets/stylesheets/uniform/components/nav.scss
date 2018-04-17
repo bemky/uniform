@@ -94,7 +94,7 @@
             & > a {
                 color: rgba(white, 0.7);
                 &:hover{
-                    color: color('blue-bright');
+                    color: white;
                     border-bottom-color: color('blue-bright');
                 }
                 &.active{

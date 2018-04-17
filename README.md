@@ -95,3 +95,4 @@ To package:
 - docs on including scss in node module
 - UniformMainNav for mobile
 - Js for Collapse/Expand/Accordion
+- add sticky component

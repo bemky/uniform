@@ -144,6 +144,13 @@ namespace :compile do
       end
     end
     
+    $environment.resolve('uniform.js').each do |asset|
+      asset.export.write('vendor/assets/javascripts')
+      # Hack for lack of export with out digest.. remove when available
+      File.rename(File.expand_path('./vendor/assets/javascripts/uniform-' + asset.export.hexdigest + '.js'), File.expand_path('./vendor/assets/javascripts/uniform-es5.js'))
+    end
+    
+    
     File.delete("./docs/uniform.zip")
     files = Dir.children('./dist')
     Zip::File.open("./docs/uniform.zip", Zip::File::CREATE) do |zipFile|

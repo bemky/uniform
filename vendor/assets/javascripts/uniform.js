@@ -6,7 +6,7 @@ import FloatingLabel from 'uniform/floating-label';
 import Resizer from 'uniform/resizer';
 import Tooltip from 'uniform/tooltip';
 
-import Plugins from 'uniform/plugins';
+import 'uniform/plugins';
 
 export {
     Dropdown,
@@ -15,6 +15,5 @@ export {
     Select,
     FloatingLabel,
     Resizer,
-    Tooltip,
-    Plugins
+    Tooltip
 };
