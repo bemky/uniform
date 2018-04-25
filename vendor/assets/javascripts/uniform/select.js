@@ -1,16 +1,18 @@
-import Component from 'uniform/component';
-import { check as checkIcon, arrow_down as arrowIcon } from 'uniform/icons';
+import Component from './component';
+import { check as checkIcon, arrow_down as arrowIcon } from './icons';
 
 /*
     options
     class: String, appended to uniformSelect-edit button as class
     limit: int | false - number of options to limit to, or false to not limit
     showAll: function(select_options) to run if/when "Show All" is clicked
+    label: string, used for mobile menu
 */
 export default class Select extends Component {
 
     initialize (options = {}) {
         this.options = {
+            label: false,
             class: "",
             showAll: function (select_options){
                 select_options.find('.uniformSelect-show-all').remove();
@@ -80,6 +82,7 @@ export default class Select extends Component {
         this.edit_button.append(children);
 
         if(typeof this.select_options === "undefined") return;
+        if($(window).width() < 720) return;
         this.select_options.css({
             position: 'absolute',
             top: this.container.offset().top + this.container.outerHeight(),
@@ -90,6 +93,9 @@ export default class Select extends Component {
 
     renderOptions () {
         this.select_options = $("<div class='uniformSelect-options'>");
+        if (this.options.label) {
+            this.select_options.append(`<div class="uniformSelect-label hide show-sm margin-bottom text-bold">${this.options.label}</div>`)
+        }
         if (this.$el.attr('name')) {
             this.select_options.addClass(this.$el.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
         }
@@ -203,7 +209,9 @@ export default class Select extends Component {
                 this.select_options.removeClass('fixed');
             }
         } else if(fixedParents.length > 0) {
-            this.lastScrollPosition = false;
+            if ($(window).width() > 720) {
+                this.lastScrollPosition = false;
+            }
             this.select_options.css({
                 position: 'fixed',
             });

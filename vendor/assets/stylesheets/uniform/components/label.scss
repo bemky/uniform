@@ -5,6 +5,7 @@
     border: 0.1em solid color('gray');
     color: color('gray');
     border-radius: 0.3em;
+    line-height: 1.2;
     &.-fill{
         border: none;
         background: lighten(color('gray'), 20);

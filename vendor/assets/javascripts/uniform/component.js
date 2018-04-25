@@ -1,5 +1,6 @@
 export default class Component {
     constructor(options){
+        options = options || {};
         this.eventListeners = new Array();
         if (options.el) {
             this.$el = (options.el instanceof $) ? options.el : $(options.el);

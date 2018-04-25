@@ -1,4 +1,4 @@
-import Component from 'uniform/component';
+import Component from './component';
 
 /*. Dropdown.initialize
     content:    string|$el - content rendered in dropdown
@@ -69,7 +69,7 @@ export default class Dropdown extends Component {
     resize () {
         if(!this.dropdown) return;
         var position = {
-            top: this.$el.offset().top + this.$el.outerHeight()
+            top: this.$el.offset().top + this.el.offsetHeight
         }
         if (this.options.align == "center") {
             position.left = this.$el.offset().left + this.$el.outerWidth() / 2 - this.dropdown.outerWidth() / 2;
@@ -93,7 +93,7 @@ export default class Dropdown extends Component {
     }
     
     toggle (e) {
-        if (this.$el.hasClass('active') && this.options.trigger != "mouseover") {
+        if (this.$el.hasClass('active') && e.type == "click") {
             this.hide();
         } else {
             this.show();

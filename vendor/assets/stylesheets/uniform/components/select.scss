@@ -26,6 +26,16 @@ select.uniformSelect{
             transition: transform 0.2s;
         }
     }
+    &.-invert{
+        background: color('gray');
+        color: white;
+        border-color: color('gray-dark');
+        .uniformSelect-edit-icon{
+            svg {
+                fill: white;
+            }
+        }
+    }
 }
 
 .uniformSelect-options{
@@ -91,7 +101,7 @@ select.uniformSelect{
         top: 0 !important;
         left: 0 !important;
         min-height: 100vh;
-        width: 100%;
+        width: 100vw;
         padding: 1em;
         button{
             margin-bottom: 0.5em;
@@ -105,7 +115,7 @@ select.uniformSelect{
         }
     }
     body.uniformModal-hideBody{
-        & > *:not(.uniformSelect-options) {
+        & > *:not(.uniformSelect-options):not(.uniformDropdown-dropdown) {
             position: fixed;
         }
     }

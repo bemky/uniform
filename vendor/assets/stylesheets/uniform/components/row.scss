@@ -20,8 +20,11 @@
         text-decoration: none;
     }
     .uniformRow-body{
-        padding: 0.5em 0;
+        display: flex;
         min-width: 0;
+        & > * {
+            padding: 0 1em;
+        }
     }
 }
 
@@ -36,10 +39,9 @@
             max-width: 100%;
         }
         .uniformRow-body{
-            display: block;
+            flex-wrap: wrap;
             & > * {
-                display: block;
-                margin-bottom: 0.5em;
+                width: 100%;
             }
         }
     }
@@ -54,10 +56,11 @@
         .uniformThumb{
             align-self: stretch;
         }
+
         .uniformRow-body{
-            display: flex;
             flex-wrap: nowrap;
             align-self: center;
+            padding: 0.5em 0;
             & > * {
                 padding: 0 1em;
             }

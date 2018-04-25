@@ -1,4 +1,4 @@
-import Component from 'uniform/component';
+import Component from './component';
 
 export default class FloatingLabel extends Component {
     

@@ -1,10 +1,10 @@
-import Dropdown from 'uniform/dropdown';
-import Checkbox from 'uniform/checkbox';
-import Modal from 'uniform/modal';
-import Select from 'uniform/select';
-import FloatingLabel from 'uniform/floating-label';
-import Resizer from 'uniform/resizer';
-import Tooltip from 'uniform/tooltip';
+import Dropdown from './dropdown';
+import Checkbox from './checkbox';
+import Modal from './modal';
+import Select from './select';
+import FloatingLabel from './floating-label';
+import Resizer from './resizer';
+import Tooltip from './tooltip';
     
 /*
     Dropdown
@@ -99,9 +99,11 @@ $.fn.uniformResizer = function() {
 */
 $.fn.uniformSelect = function() {
     return this.each(function(){
-        new Select({
+        var options = {
             el: this
-        }).render();
+        };
+        Object.assign(options, $(this).data());
+        new Select(options).render();
     });
 };
 

@@ -73,7 +73,7 @@ button.uniformInput{
         max-width: 100%;
     }
     
-    &.invert{
+    &.-invert{
         #{$text-inputs},
         textarea,
         .uniformFloatingLabel{

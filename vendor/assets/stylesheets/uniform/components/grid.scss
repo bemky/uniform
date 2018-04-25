@@ -99,15 +99,15 @@
 .col-top          {align-self: flex-start;}
 .col-bottom       {align-self: flex-end;}
 .col-stretch      {align-self: stretch;}
-.col-gutter-none{
-    padding-left: 0 !important; // TODO remove !important
-    padding-right: 0 !important; // TODO remove !important
-}
 @include size-rules(".col"){
     flex: 0 1 auto;
 }
 @include size-rules(".col-fill"){
     flex: 1 1 auto;
+}
+@include size-rules(".col-gutter-none"){
+    padding-left: 0 !important; // TODO remove !important
+    padding-right: 0 !important; // TODO remove !important
 }
 @for $i from 0 through $grid-columns {
     @include size-rules(".col-#{$i}"){

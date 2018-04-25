@@ -21,7 +21,7 @@
 .uniformNav{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     align-content: space-stretch;
     
     &.-nowrap{
@@ -30,7 +30,13 @@
     
     & > * {
         flex: 0 0 auto;
-        padding: 2px 1em;
+        display: flex;
+        align-items: center;
+        padding: 0 1em;
+        border-style: solid none;
+        border-color: transparent;
+        border-top-width: 2px;
+        border-bottom-width: 2px;
         &.col-fill{
             flex: 1 1 auto;
         }
@@ -39,13 +45,23 @@
         text-decoration: none;
         &:hover{
             color: color('blue');
-            padding-bottom: 0;
-            border-bottom: 2px solid color('blue');
+            border-bottom-color: color('blue');
         }
         &.active{
             color: color('green-dark');
-            padding-bottom: 0;
-            border-bottom: 2px solid color('green-dark');
+            border-bottom-color: color('green-dark');
+        }
+    }
+    &.-pad{
+        & > * {
+            padding-top: 0.25em;
+            padding-bottom: 0.25em;
+        }
+    }
+    &.-pad-more{
+        & > * {
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
         }
     }
     
@@ -59,14 +75,10 @@
     background: white;
     box-shadow:0 1px 0 0 rgba(black, 0.15);
     color: color('gray');
-    min-height: 3em;
-    
     .uniformNav{
-        min-height: 3em;
-        align-items: stretch;
         & > * {
-            display: flex;
-            align-items: center;
+            padding-top: 0.25em;
+            padding-bottom: 0.25em;
         }
     }
     

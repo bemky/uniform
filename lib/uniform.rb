@@ -10,4 +10,7 @@ if defined?(::Rails)
       
     end
   end
+else
+  Sass.load_paths << File.expand_path("../../vendor/assets/stylesheets", __FILE__)
+  Sass.load_paths << File.expand_path("../../vendor/assets/stylesheets/uniform", __FILE__)
 end
