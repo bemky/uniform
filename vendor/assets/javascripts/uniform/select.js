@@ -124,7 +124,10 @@ export default class Select extends Component {
         if (this.options.limit && this.$el.find('option').length > this.options.limit) {
             var show_all_button = $("<button type='button' class='uniformSelect-show-all block outline blue' style='border: none'>Show All</button>");
             show_all_button.click(function(e){
-                this.options.showAll(this.select_options);
+                this.$el.trigger('show_all');
+                if (this.options.showAll) {
+                    this.options.showAll(this.select_options);
+                }
                 return false;
             }.bind(this));
             actions_el.append(show_all_button);
