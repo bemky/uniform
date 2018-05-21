@@ -33,7 +33,7 @@
     &.focus{
         box-shadow: inset 0 -2px 0 color('green');
         input{
-            box-shadow: none;
+            box-shadow: none !important;
         }
     }
     &.invert{
