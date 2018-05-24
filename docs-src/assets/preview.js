@@ -3,11 +3,11 @@ $(document).ready(function(){
     $('.uniformDropdown').uniformDropdown();
     $('.uniformCheckbox').uniformCheckbox();
     $('.uniformRadio').uniformRadio();
-    $('.uniformFloatingLabel').uniformFloatingLabel();
     $('.uniformSelect').uniformSelect();
     $('.uniformTooltip').uniformTooltip();
     $('.uniformResizer').uniformResizer();
     $('.launchUniformModal').uniformModal();
+    $('.uniformFloatingLabel').uniformFloatingLabel();
 
     $('.uniformCardToggle').click(function(){
         $(this).parents('.uniformCard').toggleClass('expanded').trigger('expand-toggle');
@@ -24,5 +24,5 @@ $(document).ready(function(){
     })
     $('.uniformInputGroup').on('blur', 'input', function (e) {
         $(this).closest('.uniformInputGroup').removeClass('focus');
-    })
+    });
 })

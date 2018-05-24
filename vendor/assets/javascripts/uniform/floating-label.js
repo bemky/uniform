@@ -10,7 +10,6 @@ export default class FloatingLabel extends Component {
         this.input.focus(this.activate.bind(this));
         this.input.blur(this.deactivate.bind(this));
         this.input.on('revealed', this.render.bind(this));
-        if (this.input.is(":focus")) this.activate();
     }
     
     render () {
@@ -36,6 +35,7 @@ export default class FloatingLabel extends Component {
             lineHeight: this.startingHeight + "px"
         });
 
+        if (this.input.is(":focus")) this.activate();
         if (typeof this.input.val() !== "undefined" && this.input.val() != "") this.activate();
     }
     
