@@ -75,6 +75,10 @@
         padding: 1em 2em;
         font-weight:bold;
     }
+    &.-input {
+        padding-top: 0.65em;
+        padding-bottom: 0.65em;
+    }
     
     &.-warn:hover{
         border-color:color('red');

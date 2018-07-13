@@ -13,6 +13,12 @@
     }
 
     &.grid-nowrap       {flex-wrap:nowrap;}
+    .grid-gutter-2x {
+        & > * {
+            padding-left:$grid-gutter;
+            padding-right: $grid-gutter;
+        }
+    }
 }
 @include size-rule('md'){
     .grid,
@@ -22,6 +28,13 @@
         & > * {
             padding-left:$grid-gutter;
             padding-right: $grid-gutter;
+        }
+    }
+    
+    .grid-gutter-2x {
+        & > * {
+            padding-left:$grid-gutter * 2;
+            padding-right: $grid-gutter * 2;
         }
     }
 }
@@ -70,6 +83,10 @@
 .grid-nest{
     margin-left: -$grid-gutter;
     margin-right: -$grid-gutter;
+    &.grid-gutter-2x{
+        margin-left: -$grid-gutter*2;
+        margin-right: -$grid-gutter*2;
+    }
 }
 .grid-nest-half{
     margin-left: -0.5em;
@@ -79,6 +96,10 @@
     .grid-nest{
         margin-left: -$grid-gutter/2;
         margin-right: -$grid-gutter/2;
+        &.grid-gutter-2x{
+            margin-left: -$grid-gutter;
+            margin-right: -$grid-gutter;
+        }
     }
 }
 

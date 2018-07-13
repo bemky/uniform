@@ -10,7 +10,11 @@ if defined?(::Rails)
       
     end
   end
-else
+elsif defined?(::Sass)
   Sass.load_paths << File.expand_path("../../vendor/assets/stylesheets", __FILE__)
   Sass.load_paths << File.expand_path("../../vendor/assets/stylesheets/uniform", __FILE__)
+else
+  module UniformUi
+    ASSET_PATH = File.expand_path("../vendor/assets", __dir__)
+  end
 end

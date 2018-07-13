@@ -42,6 +42,13 @@ Include the javascript library in your asset pipeline.
 //= require uniform
 ````
 
+### Other Ruby Apps
+Add uniform assets to load path
+
+Example for condenser:
+
+    condenser.path = Dir.each_child(UniformUi::ASSET_PATH).map { |a| File.join(UniformUi::ASSET_PATH, a) }
+
 ##### Sass Media Query Combiner
 The utility classes produce quite a bit of media queries which can bloat the library by 15ish%... use https://github.com/aaronjensen/sass-media_query_combiner to combine media queries together.
 
