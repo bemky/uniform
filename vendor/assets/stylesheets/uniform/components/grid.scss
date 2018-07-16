@@ -13,9 +13,9 @@
     }
 
     &.grid-nowrap       {flex-wrap:nowrap;}
-    .grid-gutter-2x {
+    &.grid-gutter-2x {
         & > * {
-            padding-left:$grid-gutter;
+            padding-left: $grid-gutter;
             padding-right: $grid-gutter;
         }
     }
