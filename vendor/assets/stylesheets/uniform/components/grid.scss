@@ -31,7 +31,7 @@
         }
     }
     
-    .grid-gutter-2x {
+    .grid.grid-gutter-2x {
         & > * {
             padding-left:$grid-gutter * 2;
             padding-right: $grid-gutter * 2;
