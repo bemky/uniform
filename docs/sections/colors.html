@@ -111,86 +111,126 @@
         </thead>
             <tr>
                 <td><span class='swatch bg-green-light'></span></td>
-                <td><code>$green-light</code></td>
+                <td><code>color('green-light')</code></td>
                 <td><code>[class]-green-light</code></td>
             </tr>
             <tr>
                 <td><span class='swatch bg-green'></span></td>
-                <td><code>$green</code></td>
+                <td><code>color('green')</code></td>
                 <td><code>[class]-green</code></td>
             </tr>
             <tr>
                 <td><span class='swatch bg-green-dark'></span></td>
-                <td><code>$green-dark</code></td>
+                <td><code>color('green-dark')</code></td>
                 <td><code>[class]-green-dark</code></td>
             </tr>
         <tr><td colspan='3'>&nbsp;</td></tr>
             <tr>
                 <td><span class='swatch bg-blue-light'></span></td>
-                <td><code>$blue-light</code></td>
+                <td><code>color('blue-light')</code></td>
                 <td><code>[class]-blue-light</code></td>
             </tr>
             <tr>
                 <td><span class='swatch bg-blue'></span></td>
-                <td><code>$blue</code></td>
+                <td><code>color('blue')</code></td>
                 <td><code>[class]-blue</code></td>
             </tr>
             <tr>
                 <td><span class='swatch bg-blue-dark'></span></td>
-                <td><code>$blue-dark</code></td>
+                <td><code>color('blue-dark')</code></td>
                 <td><code>[class]-blue-dark</code></td>
             </tr>
         <tr><td colspan='3'>&nbsp;</td></tr>
             <tr>
                 <td><span class='swatch bg-red-light'></span></td>
-                <td><code>$red-light</code></td>
+                <td><code>color('red-light')</code></td>
                 <td><code>[class]-red-light</code></td>
             </tr>
             <tr>
                 <td><span class='swatch bg-red'></span></td>
-                <td><code>$red</code></td>
+                <td><code>color('red')</code></td>
                 <td><code>[class]-red</code></td>
             </tr>
             <tr>
                 <td><span class='swatch bg-red-dark'></span></td>
-                <td><code>$red-dark</code></td>
+                <td><code>color('red-dark')</code></td>
                 <td><code>[class]-red-dark</code></td>
             </tr>
         <tr><td colspan='3'>&nbsp;</td></tr>
             <tr>
                 <td><span class='swatch bg-gray-light'></span></td>
-                <td><code>$gray-light</code></td>
+                <td><code>color('gray-light')</code></td>
                 <td><code>[class]-gray-light</code></td>
             </tr>
             <tr>
                 <td><span class='swatch bg-gray'></span></td>
-                <td><code>$gray</code></td>
+                <td><code>color('gray')</code></td>
                 <td><code>[class]-gray</code></td>
             </tr>
             <tr>
                 <td><span class='swatch bg-gray-dark'></span></td>
-                <td><code>$gray-dark</code></td>
+                <td><code>color('gray-dark')</code></td>
                 <td><code>[class]-gray-dark</code></td>
             </tr>
         <tr><td colspan='3'>&nbsp;</td></tr>
             <tr>
                 <td><span class='swatch bg-yellow-light'></span></td>
-                <td><code>$yellow-light</code></td>
+                <td><code>color('yellow-light')</code></td>
                 <td><code>[class]-yellow-light</code></td>
             </tr>
             <tr>
                 <td><span class='swatch bg-yellow'></span></td>
-                <td><code>$yellow</code></td>
+                <td><code>color('yellow')</code></td>
                 <td><code>[class]-yellow</code></td>
             </tr>
             <tr>
                 <td><span class='swatch bg-yellow-dark'></span></td>
-                <td><code>$yellow-dark</code></td>
+                <td><code>color('yellow-dark')</code></td>
                 <td><code>[class]-yellow-dark</code></td>
             </tr>
         <tr><td colspan='3'>&nbsp;</td></tr>
     </table>
 </div>
+
+<div class="section">
+    <h1>Custom Colors</h1>
+    <p>Define new colors or overwrite the defaults</p>
+<pre><code class='css'>@import &#39;uniform/base&#39;;
+
+@import &#39;ext/uniform&#39;; // &lt;-- overrides
+
+@import &#39;uniform/helpers&#39;;
+@import &#39;uniform/functions&#39;;
+@import &#39;uniform/components&#39;;
+@import &#39;uniform/defaults&#39;;
+@import &#39;uniform/helpers/border&#39;;
+@import &#39;uniform/helpers/text&#39;;
+@import &#39;uniform/helpers/colors&#39;;
+@import &#39;uniform/helpers/sizes&#39;;
+@import &#39;uniform/helpers/margin&#39;;
+@import &#39;uniform/helpers/padding&#39;;
+@import &#39;uniform/helpers/position&#39;;
+@import &#39;uniform/components/label&#39;;
+@import &#39;uniform/components/form&#39;;
+@import &#39;uniform/components/buttons&#39;;
+@import &#39;uniform/components/select&#39;;
+@import &#39;uniform/components/container&#39;;
+@import &#39;uniform/components/card&#39;;
+@import &#39;uniform/components/grid&#39;;
+@import &#39;uniform/components/table&#39;;
+@import &#39;uniform/components/row&#39;;
+@import &#39;uniform/components/tooltip&#39;;
+@import &#39;uniform/components/dropdown&#39;;
+@import &#39;uniform/components/alert&#39;;
+@import &#39;uniform/components/loaders&#39;;
+@import &#39;uniform/components/nav&#39;;
+@import &#39;uniform/components/thumb&#39;;
+@import &#39;uniform/components/modal&#39;;</code></pre>    
+    <p>Merge new values into <code>$colors</code>.
+    
+<pre><code class='css'>map-merge($colors, (
+    &#39;green&#39;: #cecece
+))</code></pre></div>
 
 </div>  
 

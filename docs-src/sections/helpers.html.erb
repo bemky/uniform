@@ -102,6 +102,10 @@
             <th><code>-4x</code>   </th>
             <td>4em</td>
         </tr>
+        <tr>
+            <th><code>-8x</code>   </th>
+            <td>8em</td>
+        </tr>
     </table>
     
     <h3>Scopes</h3>
@@ -236,15 +240,14 @@
             <th></th>
         </tr>
         <% [
-            ['.hidden', 'display:none !important;'],
+            ['.hide', 'display:none !important;'],
+            ['.show', 'display:inherit !important;'],
             ['.round', 'border-radius:50%;'],
             ['.rounded', 'border-radius: 0.25em;'],
-            ['.cursorpointer', 'cursor: pointer !important;'],
+            ['.cursor-pointer', 'cursor: pointer !important;'],
             ['.cursor-help', 'cursor: help;'],
             ['.cursor-handle', 'cursor: hand;'],
             ['.honeypot', "position:absolute !important;\nleft:-999999px !important;\nwidth:1px !important;\ndisplay:block !important;"],
-            ['img.disabled', '@include grayscale(1, 0.3)'],
-            ['table.fixed', 'table-layout: fixed;'],
             ['.float-right', 'float:right;'],
             ['.float-left', 'float: left;'],
             ['.bleed-fix', 'position:static; overflow:hidden;'],
@@ -253,14 +256,38 @@
             ['.inline-block ', 'display:inline-block !important;'],
             ['.overflow-hidden', 'overflow:hidden;'],
             ['.overflow-y', 'overflow-y: auto;'],
+            ['.absolute', 'position:absolute;'],
             ['.relative', 'position:relative;'],
             ['.position-center', "position:absolute;\nleft:50%;\ntop:50%;\ntransform: translate(-50%, -50%);"],
             ['.position-v-center', "position:absolute;\nleft:50%;\ntransform: translateX(-50%, -50%);"],
             ['.position-h-center', "position:absolute;\ntop:50%;\ntransform: translateY(-50%, -50%);"],
+        ].each do |klass| %>
+        <tr>
+            <td>
+                <code><%= klass[0] %></code>
+            </td>
+            <td>
+                <% html_block class: "margin-none css" do %>
+                    <%= klass[1] %>
+                <% end %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    
+    <h3>Element Helpers</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <% [
+            ['img.disabled', '@include grayscale(1, 0.3)'],
+            ['table.fixed', 'table-layout: fixed;'],
             ['ul.raw', 'margin: 0; padding: 0; list-style:none;'],
             ['button.raw', 'outline: none; appearance: none; border: none; background:none;'],
         ].each do |klass| %>
-        <tr class="middle">
+        <tr>
             <td>
                 <code><%= klass[0] %></code>
             </td>

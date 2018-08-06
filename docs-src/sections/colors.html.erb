@@ -12,11 +12,57 @@
         <% ["-light", "", "-dark"].each do |style| %>
             <tr>
                 <td><span class='swatch bg-<%= color %><%= style %>'></span></td>
-                <td><code>$<%= color %><%= style %></code></td>
+                <td><code>color('<%= color %><%= style %>')</code></td>
                 <td><code>[class]-<%= color %><%= style %></code></td>
             </tr>
         <% end %>
         <tr><td colspan='3'>&nbsp;</td></tr>
     <% end %>
     </table>
+</div>
+
+<div class="section">
+    <h1>Custom Colors</h1>
+    <p>Define new colors or overwrite the defaults</p>
+    <% html_block class:"css" do %>
+        @import 'uniform/base';
+        
+        @import 'ext/uniform'; // <-- overrides
+        
+        @import 'uniform/helpers';
+        @import 'uniform/functions';
+        @import 'uniform/components';
+        @import 'uniform/defaults';
+        @import 'uniform/helpers/border';
+        @import 'uniform/helpers/text';
+        @import 'uniform/helpers/colors';
+        @import 'uniform/helpers/sizes';
+        @import 'uniform/helpers/margin';
+        @import 'uniform/helpers/padding';
+        @import 'uniform/helpers/position';
+        @import 'uniform/components/label';
+        @import 'uniform/components/form';
+        @import 'uniform/components/buttons';
+        @import 'uniform/components/select';
+        @import 'uniform/components/container';
+        @import 'uniform/components/card';
+        @import 'uniform/components/grid';
+        @import 'uniform/components/table';
+        @import 'uniform/components/row';
+        @import 'uniform/components/tooltip';
+        @import 'uniform/components/dropdown';
+        @import 'uniform/components/alert';
+        @import 'uniform/components/loaders';
+        @import 'uniform/components/nav';
+        @import 'uniform/components/thumb';
+        @import 'uniform/components/modal';
+    <% end %>
+    
+    <p>Merge new values into <code>$colors</code>.
+    
+    <% html_block class:"css" do %>
+        map-merge($colors, (
+            'green': #cecece
+        ))
+    <% end %>
 </div>

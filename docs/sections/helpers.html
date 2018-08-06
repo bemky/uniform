@@ -200,6 +200,10 @@
             <th><code>-4x</code>   </th>
             <td>4em</td>
         </tr>
+        <tr>
+            <th><code>-8x</code>   </th>
+            <td>8em</td>
+        </tr>
     </table>
     
     <h3>Scopes</h3>
@@ -546,49 +550,56 @@
             <th></th>
             <th></th>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
-                <code>.hidden</code>
+                <code>.hide</code>
             </td>
             <td>
 <pre><code class='margin-none css'>display:none !important;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
+            <td>
+                <code>.show</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>display:inherit !important;</code></pre>            </td>
+        </tr>
+        <tr>
             <td>
                 <code>.round</code>
             </td>
             <td>
 <pre><code class='margin-none css'>border-radius:50%;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.rounded</code>
             </td>
             <td>
 <pre><code class='margin-none css'>border-radius: 0.25em;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
-                <code>.cursorpointer</code>
+                <code>.cursor-pointer</code>
             </td>
             <td>
 <pre><code class='margin-none css'>cursor: pointer !important;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.cursor-help</code>
             </td>
             <td>
 <pre><code class='margin-none css'>cursor: help;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.cursor-handle</code>
             </td>
             <td>
 <pre><code class='margin-none css'>cursor: hand;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.honeypot</code>
             </td>
@@ -598,84 +609,77 @@ left:-999999px !important;
 width:1px !important;
 display:block !important;</code></pre>            </td>
         </tr>
-        <tr class="middle">
-            <td>
-                <code>img.disabled</code>
-            </td>
-            <td>
-<pre><code class='margin-none css'>@include grayscale(1, 0.3)</code></pre>            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>table.fixed</code>
-            </td>
-            <td>
-<pre><code class='margin-none css'>table-layout: fixed;</code></pre>            </td>
-        </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.float-right</code>
             </td>
             <td>
 <pre><code class='margin-none css'>float:right;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.float-left</code>
             </td>
             <td>
 <pre><code class='margin-none css'>float: left;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.bleed-fix</code>
             </td>
             <td>
 <pre><code class='margin-none css'>position:static; overflow:hidden;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.clear</code>
             </td>
             <td>
 <pre><code class='margin-none css'>clear:both;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.block </code>
             </td>
             <td>
 <pre><code class='margin-none css'>display: block;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.inline-block </code>
             </td>
             <td>
 <pre><code class='margin-none css'>display:inline-block !important;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.overflow-hidden</code>
             </td>
             <td>
 <pre><code class='margin-none css'>overflow:hidden;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.overflow-y</code>
             </td>
             <td>
 <pre><code class='margin-none css'>overflow-y: auto;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
+            <td>
+                <code>.absolute</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>position:absolute;</code></pre>            </td>
+        </tr>
+        <tr>
             <td>
                 <code>.relative</code>
             </td>
             <td>
 <pre><code class='margin-none css'>position:relative;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.position-center</code>
             </td>
@@ -685,7 +689,7 @@ left:50%;
 top:50%;
 transform: translate(-50%, -50%);</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.position-v-center</code>
             </td>
@@ -694,7 +698,7 @@ transform: translate(-50%, -50%);</code></pre>            </td>
 left:50%;
 transform: translateX(-50%, -50%);</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>.position-h-center</code>
             </td>
@@ -703,14 +707,36 @@ transform: translateX(-50%, -50%);</code></pre>            </td>
 top:50%;
 transform: translateY(-50%, -50%);</code></pre>            </td>
         </tr>
-        <tr class="middle">
+    </table>
+    
+    <h3>Element Helpers</h3>
+    <table class="uniformTable top">
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>
+                <code>img.disabled</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>@include grayscale(1, 0.3)</code></pre>            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>table.fixed</code>
+            </td>
+            <td>
+<pre><code class='margin-none css'>table-layout: fixed;</code></pre>            </td>
+        </tr>
+        <tr>
             <td>
                 <code>ul.raw</code>
             </td>
             <td>
 <pre><code class='margin-none css'>margin: 0; padding: 0; list-style:none;</code></pre>            </td>
         </tr>
-        <tr class="middle">
+        <tr>
             <td>
                 <code>button.raw</code>
             </td>
