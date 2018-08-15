@@ -6,8 +6,6 @@ import FloatingLabel from 'uniform/floating-label';
 import Resizer from 'uniform/resizer';
 import Tooltip from 'uniform/tooltip';
 
-import 'uniform/plugins';
-
 export {
     Dropdown,
     Checkbox,

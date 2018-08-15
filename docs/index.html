@@ -3,8 +3,8 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Uniform</title>
     
-    <link rel="stylesheet" href="/assets/uniform-4c9fc4216178ccbbdd6c7d4957108a542b0050b775c565b765b09be9ba8a607e.css" type="text/css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="/assets/preview-c54be5278938a2974fe8be9efd04d415439751302102133eb120ea38acc91b6c.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/assets/uniform-483783aa8ad6d20aed7652c3a811140fd7034a95f2fb6df41a74ccfc3820fdbf.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/assets/preview-10fcc9f1ee97dd98265b2f9dc935882141e38bd9a72bd1610d7551a122d699b8.css" type="text/css" media="screen" charset="utf-8">
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/apple-touch-icon-114x114.png" />
@@ -113,8 +113,8 @@
 </div>
 <div class="section">
     <h1>Installation</h1>
+    <h3>Rails</h3>
     <p>Add to your gem file<br/><code>gem 'uniform-ui'</code></p>
-    <p>Or, install it yourself:<br/><code>$ gem install uniform-ui</code></p>
     <p>Include the css library in your asset pipeline.</p>
 <pre><code class='css'>// css
 @import &#39;uniform&#39;;</code></pre>    
@@ -158,13 +158,60 @@
 //= require uniform/icons
 //= require uniform/tooltip
 //= require uniform/floating-label
-//= require uniform/plugins
 //= require uniform/component
 //= require uniform/dropdown
 //= require uniform/select
 //= require uniform/checkbox
+//= require uniform/dom-helpers
 //= require uniform/modal
 //= require uniform/resizer</code></pre>    
+    <h3>Node</h3>
+    <code>npm install uniform-ui</code>
+<pre><code class='javascript'>import * as Uniform from &#39;uniform&#39;;
+// or
+import {Modal, Dropdown} as Uniform from &#39;uniform&#39;;
+
+new Uniform.Dropdown({
+    el: $(&#39;.example&#39;)
+})</code></pre>
+    <p>Import jquery plugins to enable automatic usage.</p>
+
+<pre><code class='javascript'>import {Plugins} as Uniform from &#39;uniform&#39;;
+
+$(&#39;.exampleDropdown&#39;).uniformDropdown();</code></pre>    
+    <p>Include the css library in your asset pipeline.</p>
+<pre><code class='css'>// css
+@import &#39;uniform&#39;;
+
+// or
+@import &#39;uniform/base&#39;; // required
+@import &#39;uniform/helpers&#39;;
+@import &#39;uniform/functions&#39;;
+@import &#39;uniform/components&#39;;
+@import &#39;uniform/defaults&#39;;
+@import &#39;uniform/helpers/border&#39;;
+@import &#39;uniform/helpers/text&#39;;
+@import &#39;uniform/helpers/colors&#39;;
+@import &#39;uniform/helpers/sizes&#39;;
+@import &#39;uniform/helpers/margin&#39;;
+@import &#39;uniform/helpers/padding&#39;;
+@import &#39;uniform/helpers/position&#39;;
+@import &#39;uniform/components/label&#39;;
+@import &#39;uniform/components/form&#39;;
+@import &#39;uniform/components/buttons&#39;;
+@import &#39;uniform/components/select&#39;;
+@import &#39;uniform/components/container&#39;;
+@import &#39;uniform/components/card&#39;;
+@import &#39;uniform/components/grid&#39;;
+@import &#39;uniform/components/table&#39;;
+@import &#39;uniform/components/row&#39;;
+@import &#39;uniform/components/tooltip&#39;;
+@import &#39;uniform/components/dropdown&#39;;
+@import &#39;uniform/components/alert&#39;;
+@import &#39;uniform/components/loaders&#39;;
+@import &#39;uniform/components/nav&#39;;
+@import &#39;uniform/components/thumb&#39;;
+@import &#39;uniform/components/modal&#39;;</code></pre>    
     <h3>Dependencies</h3>
     <p>Components requiring javascript depend on <strong>JQuery 1.11+</strong></p>
 </div>
@@ -232,7 +279,7 @@
 </div>  
 
 <script src="/assets/jquery.js" ></script>
-<script src="/assets/uniform-9239f1b3090602a23cbeaa37b43924fa8af48847cde79d08ccea737bc797f33f.js"></script>
+<script src="/assets/uniform-jquery-dc5888e3a7a43b8d31e1707793bf8e389ae465d33d203d6951c35216c6eac3b5.js"></script>
 <script src="/assets/highlight.pack.js"></script>
 <script src="/assets/preview.js" ></script>
 </body>

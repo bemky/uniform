@@ -2,12 +2,9 @@ export default class Component {
     constructor(options){
         options = options || {};
         this.eventListeners = new Array();
-        if (options.el) {
-            this.$el = (options.el instanceof $) ? options.el : $(options.el);
-        } else {
-            this.$el = $('<div>');
-        }
-        this.el = this.$el[0]
+        this.el = options.el || document.createElement('div')
+        
+        this.$el = $(this.el);//remove
     
         this.on = function (type, handler) {
             this.eventListeners.push({
@@ -34,6 +31,11 @@ export default class Component {
         });
         
         return newObject;
+    }
+    
+    extend (object, objectMaster) {
+        
+        return
     }
     
     initialize(){}

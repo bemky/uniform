@@ -1,8 +1,16 @@
 import Component from './component';
+import * as Helpers from './dom-helpers';
 
 /*
     message: html
     align: top|bottom (default: top)
+
+    methods
+    ------
+    enable
+    disable
+    hide
+    show
 */
 export default class Tooltip extends Component {
     initialize (options) {
@@ -16,41 +24,35 @@ export default class Tooltip extends Component {
         this.message = options.message;
         options.el.tooltip = this;
 
-        this.$el.on('mouseenter', this.show.bind(this));
-        this.$el.on('mouseleave', this.hide.bind(this));
+        this.el.addEventListener('mouseenter', this.show.bind(this));
+        this.el.addEventListener('mouseleave', this.hide.bind(this));
     }
     
     render () {
-        this.popup = $('<div class="uniformTooltip-popup">' + this.message + '</div>');
-        this.popup.prepend("<div class='uniformTooltip-pointer'></div>");
-        this.$el.append(this.popup);
+        this.popup = Helpers.createElement('<div class="uniformTooltip-popup">' + this.message + '</div>');
+        this.popup.insertBefore(Helpers.createElement("<div class='uniformTooltip-pointer'></div>"), this.popup.firstChild);
+        this.el.appendChild(this.popup);
         if (this.message.length > 100) {
-            this.popup.css({
-                minWidth: "200px"
-            });
+            this.popup.style.minWidth = "200px";
         } else {
-            this.popup.css({
-                whiteSpace: "nowrap"
-            })
-        }
-        if (this.popup.outerWidth(true) + this.popup.offset().left > $(window).width()) {
-            this.popup.css({
-                left: $(window).width() - this.popup.outerWidth(true) - this.popup.offset().left
-            });
+            this.popup.style.whiteSpace = "nowrap";
         }
         
-        this.popup.css('display', 'block');
-        if (this.options.align == "bottom" || this.popup.offset().top < 0) {
-            this.popup.addClass('-align-bottom');
+        if (this.popup.offsetWidth + Helpers.offset(this.popup).left > window.innerWidth) {
+            this.popup.style.left = window.innerWidth - this.popup.offsetWidth - Helpers.offset(this.popup).left + "px"
         }
-        this.popup.css('display', 'none');
+        
+        this.popup.style.display = "block";
+        if (this.options.align == "bottom" || Helpers.offset(this.popup).top < 0) {
+            Helpers.addClass(this.popup, '-align-bottom');
+        }
+        this.popup.style.display = 'none';
         
         return this;
     }
     
     remove () {
-        this.$el.remove();
-        
+        this.el.parentNode.removeChild(this.el);
     }
     
     show () {
@@ -59,66 +61,52 @@ export default class Tooltip extends Component {
 
         if (this.hiding) return this.show_after_hide = true;
         if (this.showing || this.shown) return;
-        this.popup.css('display', 'block');
+        this.popup.style.display = 'block';
         this.showing = true;
         this.hidden = false;
         
-        this.$el.addClass('active');
-        
-        var animation = {
-            bottom: "100%",
-            opacity: 1
-        }
-        
-        if(this.popup.hasClass('-align-bottom')){
-            animation = {
-                top: "100%",
-                opacity: 1
-            }
-        }
-        
-        this.popup.animate(animation, 200, (function(){
+        var endTransition = function (e) {
+            this.trigger('shown');
             this.showing = false;
             this.shown = true;
             if (this.hide_after_show) this.hide();
             this.hide_after_show = false;
-        }).bind(this));
-
-        if (this.popup.offset().left < 0) {
-            this.popup.css({
-                left: 0
-            })
-        }
-        this.trigger('shown');
+        }.bind(this);
+        
+        Helpers.once(this.popup, 'transitionend', endTransition);
+        Helpers.once(this.popup, 'msTransitionEnd', endTransition);
+        Helpers.once(this.popup, 'oTransitionEnd', endTransition);
+        
+        if (Helpers.offset(this.popup).left < 0) this.popup.style.left = "0";
+        Helpers.addClass(this.el, 'active');
+        
+        // TODO remove timeout usage... Not sure why this is necessary, but doesn't do css animation if not delayed.
+        setTimeout(function(){
+            Helpers.addClass(this.popup, '-reveal');
+        }.bind(this), 1);
     }
     
     hide () {
-        if (this.showing) return this.hide_after_show = true;
+        if (this.showing) return this.  hide_after_show = true;
         if (this.hiding || this.hidden) return;
         this.hiding = true;
         this.shown = false;
         
-        var animation = {
-            bottom: '200%',
-            opacity: 0
-        }
-        
-        if(this.popup.hasClass('-align-bottom')){
-            animation = {
-                top: '200%',
-                opacity: 0
-            }
-        }
-        
-        this.popup.animate(animation, 200, (function (){
-            this.popup.css('display', 'none');
-            this.$el.removeClass('active');
+        var endTransition = function (e) {
+            this.trigger('hidden');
+            Helpers.removeClass(this.el, 'active');
+            this.popup.style.display = 'none';
             this.hiding = false;
             this.hidden = true;
-            this.trigger('hidden');
             if (this.show_after_hide) this.show();
             this.show_after_hide = false;
-        }).bind(this))
+        }.bind(this);
+        
+        Helpers.once(this.popup, 'transitionend', endTransition);
+        Helpers.once(this.popup, 'msTransitionEnd', endTransition);
+        Helpers.once(this.popup, 'oTransitionEnd', endTransition);
+        
+        Helpers.removeClass(this.popup, '-reveal');
     }
     
     disable () {
@@ -127,11 +115,6 @@ export default class Tooltip extends Component {
     
     enabled () {
         this.enabled = true;
-    }
-    
-    checkCursor () {
-        
-        setTimeout(this.checkCursor, 1000);
     }
 
 }

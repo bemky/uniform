@@ -1,27 +1,31 @@
 import Component from './component';
+import * as Helpers from './dom-helpers';
 
 export default class Checkbox extends Component {
     initialize (options) {
-        this.$el.on('change', this.change.bind(this));
+        this.el.addEventListener('change', this.change.bind(this));
     }
     
     render () {
-        var type = this.$el.hasClass('uniformRadio') ? 'uniformRadio' : 'uniformCheckbox';
-        this.checkbox = $(`<div class="${type}-indicator">`);
-        this.checkbox.addClass(this.$el.attr('class').replace(type, ''));
-        this.checkbox.toggleClass('checked', this.$el.prop('checked'));
-        this.$el.after(this.checkbox);
-        this.checkbox.click(this.click.bind(this));
+        var type = Helpers.hasClass(this.el, 'uniformRadio') ? 'uniformRadio' : 'uniformCheckbox';
+        this.checkbox = document.createElement('div');
+        Helpers.addClass(this.checkbox, `${type}-indicator`);
+        
+        if (this.el.className && this.el.className.replace(type, '') != '')
+            Helpers.addClass(this.checkbox, this.el.className.replace(type, ''));
+        Helpers.toggleClass(this.checkbox, 'checked', this.el.checked);
+        this.el.parentNode.insertBefore(this.checkbox, this.el.nextSibling);
+        this.checkbox.addEventListener('click', this.click.bind(this));
         return this;
     }
     
-    click () {
-        if (this.$el.prop('disabled')) return;
-        this.$el.prop('checked', !this.$el.prop('checked'));
-        this.$el.trigger('change');
+    click (e) {
+        if (this.el.disabled) return;
+        this.el.checked = !this.el.checked
+        Helpers.trigger(this.el, 'change');
         e.preventDefault();
     }
     change () {
-        this.checkbox.toggleClass('checked', this.$el.prop('checked'));
+        Helpers.toggleClass(this.checkbox, 'checked', this.el.checked);
     }
 }

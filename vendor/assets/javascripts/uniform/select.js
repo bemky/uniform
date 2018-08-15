@@ -1,5 +1,6 @@
 import Component from './component';
 import { check as checkIcon, arrow_down as arrowIcon } from './icons';
+import * as Helpers from './dom-helpers';
 
 /*
     options
@@ -15,8 +16,10 @@ export default class Select extends Component {
             label: false,
             class: "",
             showAll: function (select_options){
-                select_options.find('.uniformSelect-show-all').remove();
-                select_options.find('button.hide').removeClass('hide');
+                Helpers.removeClass(select_options.querySelectorAll('button.hide'), 'hide');
+                var button = select_options.querySelector('.uniformSelect-show-all');
+                button.parentNode.removeChild(button);
+                
                 return false;
             },
             limit: 8
@@ -26,24 +29,26 @@ export default class Select extends Component {
 
         var showing, lastScrollPosition, select_options;
 
-        this.$el.on('change', this.updateSelect.bind(this));
-        this.$el.on('close', this.hideOptions.bind(this));
-        this.$el.on('revealed', this.resize.bind(this));
+        this.el.addEventListener('change', this.updateSelect.bind(this));
+        this.el.addEventListener('close', this.hideOptions.bind(this));
+        this.el.addEventListener('revealed', this.resize.bind(this));
         this.el.uniformSelect = this;
         
-        $(window).on('resize', this.resize.bind(this));
-        $(window).on('scroll', this.updatePosition.bind(this));
-        $(document).on('click', this.outsideClick.bind(this));
-        $(document).on('keyup', this.keyup.bind(this));
+        window.addEventListener('resize', this.resize.bind(this));
+        window.addEventListener('scroll', this.updatePosition.bind(this));
+        document.addEventListener('click', this.outsideClick.bind(this));
+        document.addEventListener('keyup', this.keyup.bind(this));
         
-        this.activeIcon = $(`<span class='uniformSelect-option-icon'>${checkIcon}</span>`)
+        this.activeIcon = document.createElement('span');
+        Helpers.addClass(this.activeIcon, 'uniformSelect-option-icon');
+        this.activeIcon.innerHTML = checkIcon;
     }
     
     outsideClick (e) {
         if (!this.showing) return;
-        if (e.target === this.select_options[0]) return;
-        if ($.contains(this.container[0], e.target)) return;
-        if ($.contains(this.select_options[0], e.target)) return;
+        if (e.target === this.select_options) return;
+        if (this.container.contains(e.target)) return;
+        if (this.select_options.contains(e.target)) return;
         this.hideOptions();
     }
     
@@ -52,107 +57,109 @@ export default class Select extends Component {
     }
     
     render () {
-        this.container = $("<div class='uniformSelect-container'></div>");
-        this.edit_button = $(`<button type='button' class='uniformSelect-edit uniformInput outline block ${this.options.class}'><span class="text-js"></span></button>`);
-        this.edit_button.append(`<span class="uniformSelect-edit-icon">${arrowIcon}</span>`)
-        this.container.append(this.edit_button);
+        this.container = document.createElement('div');
+        Helpers.addClass(this.container, 'uniformSelect-container');
         
-        if (this.$el.attr('name')) {
-            this.container.addClass(this.$el.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
+        this.edit_button = Helpers.createElement(`<button type='button' class='uniformSelect-edit uniformInput outline block ${this.options.class}'><span class="text-js"></span><span class="uniformSelect-edit-icon">${arrowIcon}</span></button>`);
+        this.container.appendChild(this.edit_button);
+        
+        if (this.el.name) {
+            Helpers.addClass(this.container, this.name.toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
         }
-        this.$el.hide()
-        this.$el.before(this.container);
+        this.el.style.display = "none";
+        this.el.insertAdjacentElement('beforebegin', this.container);
         this.updateSelect();
         this.resize();
         
-        this.edit_button.on('click', this.showOptions.bind(this));
+        this.edit_button.addEventListener('click', this.showOptions.bind(this));
     }
 
     resize () {
         // to keep button from extending beyond available width
-        var children = this.edit_button.children();
-        children.detach()
-        this.edit_button.html('');
-        this.edit_button.css({
-            width: 'auto'
-        });
-        this.edit_button.css({
-            width: this.container.outerWidth()
-        });
-        this.edit_button.append(children);
+        var children = [];
+        var childrenCount = this.edit_button.children.length;
+        for(var i = 0; i < childrenCount; i++){
+            children.push(this.edit_button.children[0]);
+            this.edit_button.children[0].parentNode.removeChild(this.edit_button.children[0]);
+        }
+        
+        this.edit_button.innerHTML = '';
+        this.edit_button.style.width = "auto";
+        this.edit_button.style.width = this.container.offsetWidth + "px";
+        
+        Helpers.each(children, function(child){
+            this.edit_button.appendChild(child);
+        }.bind(this));
 
         if(typeof this.select_options === "undefined") return;
-        if($(window).width() < 720) return;
-        this.select_options.css({
-            position: 'absolute',
-            top: this.container.offset().top + this.container.outerHeight(),
-            left: this.container.offset().left + 1,
-            minWidth: this.container.outerWidth() - 1
-        });
+        if(window.innerWidth < 720) return;
+
+        this.select_options.style.position = 'absolute';
+        this.select_options.style.top = Helpers.offset(this.container).top + this.container.offsetHeight + "px";
+        this.select_options.style.left = Helpers.offset(this.container).left + 1 + "px";
+        this.select_options.style.minWidth = this.container.offsetWidth - 1 + "px";
     }
 
     renderOptions () {
-        this.select_options = $("<div class='uniformSelect-options'>");
+        this.select_options = Helpers.createElement("<div class='uniformSelect-options'>");
         if (this.options.label) {
             this.select_options.append(`<div class="uniformSelect-label hide show-sm margin-bottom text-bold">${this.options.label}</div>`)
         }
-        if (this.$el.attr('name')) {
-            this.select_options.addClass(this.$el.attr('name').toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
+        if (this.el.name) {
+            Helpers.addClass(this.select_options, this.el.name.toLowerCase().replace(/[^a-z0-9\-_]+/g, '-'));
         }
-        this.select_options.css({
-            fontSize: this.$el.css('font-size')
-        });
-        this.select_options.hide();
-        this.select_options.appendTo('body');
-        this.$el.find('option').each(function(index, el){
-            var button = $("<button type='button' class='uniformSelect-option block outline text-left'>");
-            button[0].option = $(el);
-            button.text($(el).text());
-            button.attr('value', $(el).val());
-            if (button.text() == "") button.html("<span class='text-italic text-muted'>None</span>");
-            if($(el).prop('selected')){
-                button.addClass('active');
-                button.append(this.activeIcon.clone());
+        this.select_options.style.fontSize = Helpers.css(this.el, 'font-size');
+        this.select_options.style.display = 'none';
+        document.body.appendChild(this.select_options);
+        
+        Helpers.each(this.el.querySelectorAll('option'), function(el, index){
+            var button = Helpers.createElement("<button type='button' class='uniformSelect-option block outline text-left'>");
+            button.option = el;
+            button.textContent = el.textContent;
+            button.value = el.value;
+            if (button.textContent == "") button.innerHTML("<span class='text-italic text-muted'>None</span>");
+            if(el.selected){
+                Helpers.addClass(button, 'active');
+                button.append(this.activeIcon.cloneNode(true));
             } else if (this.options.limit && index > this.options.limit) {
-                button.addClass('hide');
+                Helpers.addClass(button, 'hide');
             }
             this.select_options.append(button);
-            button.click(this.selectOption.bind(this));
+            button.addEventListener('click', this.selectOption.bind(this));
         }.bind(this));
 
-        var actions_el = $('<div class="uniformSelect-options-actions">');
-        if (this.options.limit && this.$el.find('option').length > this.options.limit) {
-            var show_all_button = $("<button type='button' class='uniformSelect-show-all block outline blue' style='border: none'>Show All</button>");
-            show_all_button.click(function(e){
-                this.$el.trigger('show_all');
-                if (this.options.showAll) {
-                    this.options.showAll(this.select_options);
-                }
-                return false;
+        var actions_el = Helpers.createElement('<div class="uniformSelect-options-actions"></div>');
+        if (this.options.limit && this.el.querySelectorAll('option').length > this.options.limit) {
+            var show_all_button = Helpers.createElement("<button type='button' class='uniformSelect-show-all outline blue' style='display: block; border: none'>Show All</button>");
+            show_all_button.addEventListener('click', function(e){
+                Helpers.trigger(this.el, 'show_all');
+                if (this.options.showAll) this.options.showAll(this.select_options);
+                e.preventDefault();
+                e.stopPropagation();
             }.bind(this));
-            actions_el.append(show_all_button);
+            actions_el.appendChild(show_all_button);
         }
-        if (this.$el.prop('multiple')) {
-            var done_button = $("<button type='button' class='uniformSelect-done block outline blue'>Done</button>");
-            done_button.click(this.hideOptions.bind(this));
-            actions_el.append(done_button);
+        if (this.el.multiple) {
+            var done_button = Helpers.createElement("<button type='button' class='uniformSelect-done block outline blue'>Done</button>");
+            done_button.addEventListener('click', this.hideOptions.bind(this));
+            actions_el.appendChild(done_button);
         }
-        if (!actions_el.is(':empty')) {
-            this.select_options.append(actions_el);
+        if (!Helpers.is_empty(actions_el)) {
+            this.select_options.appendChild(actions_el);
         }
 
-        this.$el.trigger('rendered', this.select_options);
+        Helpers.trigger(this.el, 'rendered');
     }
 
     hideOptions () {
         if(typeof this.select_options === "undefined") return;
         this.showing = false;
-        this.select_options.hide();
-        this.select_options.removeClass('fixed');
-        this.edit_button.removeClass('active');
-        $('body').removeClass('uniformModal-hideBody');
-        if(this.lastScrollPosition) $(window).scrollTop(this.lastScrollPosition);
-        this.$el.trigger('hidden:options');
+        this.select_options.style.display = "none";
+        Helpers.removeClass(this.select_options, 'fixed');
+        Helpers.removeClass(this.edit_button, 'active');
+        Helpers.removeClass(document.body, 'uniformModal-hideBody');
+        if(this.lastScrollPosition && window.innerWidth < 720) window.scrollTo(0, this.lastScrollPosition);
+        Helpers.trigger(this.el, 'hidden:options');
     }
 
     showOptions() {
@@ -163,66 +170,66 @@ export default class Select extends Component {
         this.showing = true;
         if(!this.select_options) this.renderOptions();
         this.resize();
-        this.select_options.show();
-        this.edit_button.addClass('active');
-
-        this.lastScrollPosition = $(window).scrollTop();
+        this.select_options.style.display = "block";
+        Helpers.addClass(this.edit_button, 'active');
+        this.lastScrollPosition = window.scrollY;
         this.updatePosition();
-        $('body').addClass('uniformModal-hideBody');
+        Helpers.addClass(document.body, 'uniformModal-hideBody');
     }
 
     selectOption(e) {
-        if (!this.$el.prop('multiple')) {
-            this.$el.find("option:selected").prop('selected', false);
-            this.select_options.find('.uniformSelect-option.active .uniformSelect-option-icon').remove();
-            this.select_options.find('.uniformSelect-option.active').removeClass('active');
+        if (!this.el.multiple) {
+            Helpers.each(Helpers.filter(this.el.querySelectorAll("option"), function(el){
+                return el.selected;
+            }), function (child) {
+                child.selected = false;
+            });
+            Helpers.each(this.select_options.querySelectorAll('.uniformSelect-option.active .uniformSelect-option-icon'), Helpers.remove);
+            Helpers.removeClass(this.select_options.querySelectorAll('.uniformSelect-option.active'), 'active');
         }
-        $(e.currentTarget).toggleClass('active');
-        e.currentTarget.option.prop('selected', $(e.currentTarget).hasClass('active'));
-        if ($(e.currentTarget).hasClass('active')) {
-            $(e.currentTarget).append(this.activeIcon.clone());
+        Helpers.toggleClass(e.currentTarget, 'active');
+        e.currentTarget.option.selected = Helpers.hasClass(e.currentTarget, 'active');
+        if (Helpers.hasClass(e.currentTarget, 'active')) {
+            e.currentTarget.append(this.activeIcon.cloneNode(true));
         } else {
-            $(e.currentTarget).find('.uniformSelect-option-icon').remove()
+            Helpers.each(e.currentTarget.querySelectorAll('.uniformSelect-option-icon'), Helpers.remove);
         }
-        this.$el.trigger('change');
+        Helpers.trigger(this.el, 'change');
     }
     
     updateSelect () {
-        if (!this.$el.prop('multiple')) this.hideOptions();
-        var value = $.map(this.$el.find('option:selected'), function(el){
-            return $(el).text();
+        if (!this.el.multiple) this.hideOptions();
+        var value = Helpers.map(Helpers.filter(this.el.querySelectorAll("option"), function(el){
+            return el.selected;
+        }), function(el){
+            return el.textContent;
         }).join(", ");
+        
         if (value == "") value = "&nbsp;";
-        this.edit_button.find('.text-js').html(value);
+        this.edit_button.querySelector('.text-js').innerHTML = value;
     }
 
     updatePosition () {
         if(!this.select_options) return;
         
-        var fixedParents = this.container.parents().filter(function (){
-            return $(this).css('position') == 'fixed';
+        var fixedParents = Helpers.filter(Helpers.ancestors(this.container), function (el){
+            return Helpers.css(el, 'position') == 'fixed';
         });
 
-        if (this.select_options.hasClass('fixed')) {
+        if (Helpers.hasClass(this.select_options, 'fixed')) {
             if (fixedParents.length == 0) {
-                this.select_options.css({
-                    position: 'absolute',
-                    top: this.container.offset().top + this.container.outerHeight(),
-                });
-                this.select_options.removeClass('fixed');
+                this.select_options.style.position = 'absolute';
+                this.select_options.style.top = this.container.offset().top + this.container.offsetHeight + "px";
+                Helpers.removeClass(this.select_options, 'fixed');
             }
         } else if(fixedParents.length > 0) {
-            if ($(window).width() > 720) {
+            if (window.innerWidth > 720) {
                 this.lastScrollPosition = false;
             }
-            this.select_options.css({
-                position: 'fixed',
-            });
-            this.select_options.offset({
-                top: this.container.offset().top + this.container.outerHeight(),
-                left: this.container.offset().left
-            });
-            this.select_options.addClass('fixed');
+            this.select_options.style.position = 'fixed';
+            this.select_options.style.top = Helpers.offset(this.container).top + this.container.offsetHeight + "px";
+            this.select_options.style.left = Helpers.offset(this.container).left + "px";
+            Helpers.addClass(this.select_options, 'fixed');
         }
     }
 }

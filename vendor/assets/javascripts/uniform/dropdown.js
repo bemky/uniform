@@ -1,7 +1,8 @@
 import Component from './component';
+import * as Helpers from './dom-helpers';
 
 /*. Dropdown.initialize
-    content:    string|$el - content rendered in dropdown
+    content:    string|el - content rendered in dropdown
     align:      'center'|'left'|'right| - how dropdown aligns to trigger el
     trigger:    'click'|'focus'|'mouseover' - what triggers showDropdown
     show_arrow: true\false - show dropdown arrow
@@ -22,78 +23,76 @@ export default class Dropdown extends Component {
         
         Object.assign(this.options, this.pick(options, Object.keys(this.options)));
         this.content = options.content;
-        this.$el[0].dropdown = this;
+        this.el.dropdown = this;
         
-        this.$el.on(this.options.trigger, this.toggle.bind(this));
+        this.el.addEventListener(this.options.trigger, this.toggle.bind(this));
         
-        this.$el.on('mousedown', function (){
+        this.el.addEventListener('mousedown', function (){
             this.mousedown = true;
         }.bind(this));
     
-        this.$el.on('mouseup', function (){
+        this.el.addEventListener('mouseup', function (){
             this.mousedown = false;
         }.bind(this));
         
-        this.$el.on('focus', function (){
+        this.el.addEventListener('focus', function (){
             if(this.mousedown) return;
             this.show();
         }.bind(this));
         
-        $(document).on('focus', this.outsideClick.bind(this));
-        $(document).on(this.options.trigger, this.outsideClick.bind(this));
+        document.addEventListener('focus', this.outsideClick.bind(this));
+        document.addEventListener(this.options.trigger, this.outsideClick.bind(this));
+        document.addEventListener('keyup', this.keyup.bind(this));
         
-        $(document).on('keyup', this.keyup.bind(this));
-        
-        $(window).on('resize', this.resize.bind(this));
+        window.addEventListener('resize', this.resize.bind(this));
     }
     
     render () {
-        this.dropdown = $("<div class='uniformDropdown-dropdown absolute'>");
-        this.dropdown.css({
-            minWidth: this.$el.outerWidth()
-        })
+        this.dropdown = document.createElement('div');
+        Helpers.addClass(this.dropdown, 'uniformDropdown-dropdown');
+        Helpers.addClass(this.dropdown, 'absolute');
+        this.dropdown.style.minWidth = this.$el.outerWidth();
+        this.dropdown.innerHTML = this.content.innerHTML ? this.content.innerHTML : this.content;
         if (this.options.show_arrow) {
-            this.dropdown.addClass('has-pointer');
-            this.dropdown.append("<div class='uniformDropdown-pointer'></div>");
+            Helpers.addClass(this.dropdown, 'has-pointer');
+            var pointer = document.createElement('div');
+            Helpers.addClass(pointer, 'uniformDropdown-pointer')
+            this.dropdown.appendChild(pointer);
         }
-        this.dropdown.toggleClass('square', this.options.square);
-        this.dropdown.hide();
-        this.dropdown.append(this.content);
-        this.dropdown.appendTo($('body'));
-        this.dropdown.find('.hidden').removeClass('hidden');
-
-        this.resize();
+        Helpers.toggleClass(this.dropdown, 'square', this.options.square);
+        this.dropdown.style.display = 'none';
+        document.body.appendChild(this.dropdown);
+        Helpers.removeClass(this.dropdown.querySelectorAll('.hidden'), 'hidden');
         return this;
     }
     
     resize () {
         if(!this.dropdown) return;
-        var position = {
-            top: this.$el.offset().top + this.el.offsetHeight
-        }
+        var offset = Helpers.offset(this.el);
+        this.dropdown.style.top = offset.top + this.el.offsetHeight + "px";
+        
         if (this.options.align == "center") {
-            position.left = this.$el.offset().left + this.$el.outerWidth() / 2 - this.dropdown.outerWidth() / 2;
+            this.dropdown.style.left = offset.left + this.el.offsetWidth / 2 - this.dropdown.offsetWidth / 2 + "px";
         } else if(this.options.align == "right") {
-            position.right = $(window).width() - (this.$el.offset().left + this.$el.outerWidth());
+            this.dropdown.style.right = window.innerWidth - (offset.left + this.el.offsetWidth) + "px";
         } else {
-            position.left = this.$el.offset().left;
+            this.dropdown.style.left = offset.left + "px";
         }
-        if (position.left && position.left + this.dropdown.outerWidth() > $(window).width()) {
-            position.left = $(window).width() - this.dropdown.outerWidth();
+        if (this.dropdown.style.left && this.dropdown.style.left + this.dropdown.offsetWidth > window.innerWidth) {
+            this.dropdown.style.left = window.innerWidth - this.dropdown.offsetWidth + "px";
         }
-        this.dropdown.css(position);
     }
     
     remove () {
-        this.$el.remove();
-        this.$el.off(this.options.trigger);
-        $(window).off('resize', this.resize.bind(this));
-        $(document).off(this.options.trigger, this.outsideClick.bind(this));
-        $(document).off('keyup', this.keyup.bind(this));
+        this.el.parentNode.removeChild(this.el);
+        this.el.removeEventListener(this.options.trigger);
+        window.removeEventListener('resize', this.resize.bind(this));
+        document.removeEventListener(this.options.trigger, this.outsideClick.bind(this));
+        document.removeEventListener('keyup', this.keyup.bind(this));
     }
     
     toggle (e) {
-        if (this.$el.hasClass('active') && e.type == "click") {
+        if (Helpers.hasClass(this.el, 'active') && e.type == "click") {
             this.hide();
         } else {
             this.show();
@@ -101,46 +100,45 @@ export default class Dropdown extends Component {
     }
     
     show () {
-        if(this.options.hide_sm && $(window).width() < 720) return;
-        if(!this.dropdown){
-            this.render();
-        } else {
-            this.resize();
-        }
+        if(this.options.hide_sm && window.innerWidth < 720) return;
+        if(!this.dropdown) this.render();
         
-        this.dropdown.show();
-        this.$el.addClass('active');
+        this.dropdown.style.display = 'block';
+        Helpers.addClass(this.el, 'active');
+        
+        this.resize();
 
-        this.overlay = $("<div class='uniformOverlay'>");
-        $('body').append(this.overlay);
+        this.overlay = document.createElement('div');
+        Helpers.addClass(this.overlay, 'uniformOverlay');
+        document.body.appendChild(this.overlay);
 
-        if ($(window).width() < 720) {
-            this.lastScrollPosition = $(window).scrollTop();
-            $('body').addClass('uniformModal-hideBody');
+        if (window.innerWidth < 720) {
+            this.lastScrollPosition = window.scrollY;
+            Helpers.addClass(document.body, 'uniformModal-hideBody');
         }
 
-        this.overlay.click(this.hide.bind(this));
+        this.overlay.addEventListener('click', this.hide.bind(this));
         this.trigger('shown');
     }
     
     hide () {
         if(!this.dropdown) return;
-        this.dropdown.hide();
-        this.$el.removeClass('active');
-        if (this.overlay) this.overlay.remove();
-        if ($(window).width() < 720) {
-            $('body').removeClass('uniformModal-hideBody');
-            $(window).scrollTop(this.lastScrollPosition);
+        this.dropdown.style.display = 'none';
+        Helpers.removeClass(this.el, 'active');
+        if (this.overlay) this.overlay.parentNode.removeChild(this.overlay)
+        if (window.innerWidth < 720) {
+            Helpers.removeClass(document.body, 'uniformModal-hideBody');
+            window.scrollTo(0, this.lastScrollPosition);
         }
         this.trigger('hidden');
     }
     
     outsideClick (e) {
-        if (!this.dropdown || !this.dropdown.is(":visible")) return;
+        if (!this.dropdown || this.dropdown.offsetParent === null) return;
         if (e.target === this.el) return;
         if (e.target === this.overlay) return;
-        if ($.contains(this.el, e.target)) return;
-        if ($.contains(this.dropdown[0], e.target)) return;
+        if (this.el.contains(e.target)) return;
+        if (this.dropdown.contains(e.target)) return;
         this.hide();
     }
     

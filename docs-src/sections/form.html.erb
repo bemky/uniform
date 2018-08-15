@@ -201,28 +201,28 @@
         <div class="grid grid-nest">
             <div class="col-6">
                 <div class="margin-v">
-                    <label><input type="checkbox" class="uniformCheckbox"> Option 1</label><br>
-                    <label><input type="checkbox" class="uniformCheckbox" checked> Option 1</label>
+                    <label for="uniformCheckbox-1"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-1"> Option 1</label><br>
+                    <label for="uniformCheckbox-2"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-2" checked> Option 1</label>
                 </div>
                 <div class="margin-v text-larger">
-                    <label><input type="checkbox" class="uniformCheckbox"> Option 1</label><br>
-                    <label><input type="checkbox" class="uniformCheckbox" checked> Option 1</label>
+                    <label for="uniformCheckbox-3"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-3"> Option 1</label><br>
+                    <label for="uniformCheckbox-4"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-4" checked> Option 1</label>
                 </div>
                 <div class="margin-v">
-                    <label><input type="checkbox" class="uniformRadio"> Option 1</label><br>
-                    <label><input type="checkbox" class="uniformRadio" checked> Option 1</label>
+                    <label for="uniformCheckbox-5"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-5"> Option 1</label><br>
+                    <label for="uniformCheckbox-6"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-6" checked> Option 1</label>
                 </div>
                 <div class="margin-v text-larger">
-                    <label><input type="checkbox" class="uniformRadio"> Option 1</label><br>
-                    <label><input type="checkbox" class="uniformRadio" checked> Option 1</label>
+                    <label for="uniformCheckbox-7"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-7"> Option 1</label><br>
+                    <label for="uniformCheckbox-8"><input type="checkbox" class="uniformRadio"  id="uniformCheckbox-8" checked> Option 1</label>
                 </div>
             </div>
             <div class="col-6">
                 <% html_block do %>
-                <label><input type="checkbox" class="uniformCheckbox"> Option 1</label>
+                <label for="uniformCheckbox-1"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-1"> Option 1</label>
                 <% end %>
                 <% html_block do %>
-                    <label><input type="checkbox" class="uniformRadio"> Option 1</label>
+                    <label for="uniformCheckbox-1"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-2"> Option 1</label>
                 <% end %>
                 <% html_block class:"javascript" do %>
                 $('.uniformCheckbox').uniformCheckbox();

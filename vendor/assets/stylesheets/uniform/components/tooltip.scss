@@ -20,6 +20,14 @@
     font-size:0.9em;
     border-radius: 0.25em;
     max-width: 30vw;
+    transition: left 0.2s ease-in, top 0.2s ease-in, bottom 0.2s ease-in, opacity 0.2s ease-in;
+    &.-reveal{
+        bottom: 100%;
+        opacity: 1;
+        &.-align-bottom{
+            top: 100%;
+        }
+    }
     &.-align-bottom{
         top: 200%;
         bottom: auto;
@@ -32,11 +40,6 @@
     }
     p:last-child{
         margin-bottom: 0;
-    }
-    &.active{
-        z-index: 2;
-        bottom: 100%;
-        opacity: 1;
     }
     .uniformTooltip-pointer{
         position:absolute;

@@ -105,10 +105,15 @@ namespace :compile do
   
   task :preview do
 
+    Dir.children('./dist').each do |file|
+      next unless file =~ /\-\w{64}\..*$/
+      FileUtils.rm(File.join('./dist', file))
+    end
+    
     # manifest = Condenser::Manifest.new(environment, './site')
     # manifest.compile(%w(uniform.css uniform.js preview.css))
 
-    %w(uniform.css uniform.js preview.css preview.js *.png).each do |asset|
+    %w(uniform.css uniform.js uniform-jquery.js preview.css preview.js *.png).each do |asset|
       $environment.resolve(asset).each do |asset|
         FileUtils.mkdir_p(File.dirname(File.join('docs', asset.path)))
         asset.export.write('docs/assets')
@@ -138,7 +143,7 @@ namespace :compile do
   end
   
   task :package => :preview do
-    %w(uniform.css uniform.js).each do |asset|
+    %w(uniform.css uniform-jquery.js).each do |asset|
       $environment.resolve(asset).each do |asset|
         asset.export.write('dist')
       end
@@ -162,5 +167,5 @@ namespace :compile do
   
 end
 
-task compile: ['compile:preview', 'compile:package']
+task compile: ['compile:package']
 task default: :compile

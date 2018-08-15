@@ -12,8 +12,8 @@
 </div>
 <div class="section">
     <h1>Installation</h1>
+    <h3>Rails</h3>
     <p>Add to your gem file<br/><code>gem 'uniform-ui'</code></p>
-    <p>Or, install it yourself:<br/><code>$ gem install uniform-ui</code></p>
     <p>Include the css library in your asset pipeline.</p>
     <% html_block class: "css" do %>
     // css
@@ -41,6 +41,38 @@
     // javascript
     //= require uniform/base // required<% (Dir.foreach(File.join('vendor', 'assets', 'javascripts', 'uniform')).reject{|x| %w(base.js).include?(x)}.to_a).select{|x| x.split('.').last == "js"}.each do |x| %>
     //= require uniform/<%= x.remove('.js') %><% end %>
+    <% end %>
+    
+    <h3>Node</h3>
+    <code>npm install uniform-ui</code>
+    <% html_block class: "javascript" do %>
+    import * as Uniform from 'uniform';
+    // or
+    import {Modal, Dropdown} as Uniform from 'uniform';
+
+    new Uniform.Dropdown({
+        el: $('.example')
+    })
+    <% end %>
+
+    <p>Import jquery plugins to enable automatic usage.</p>
+
+    <% html_block class: "javascript" do %>
+    import {Plugins} as Uniform from 'uniform';
+
+    $('.exampleDropdown').uniformDropdown();
+    <% end %>
+    
+    <p>Include the css library in your asset pipeline.</p>
+    <% html_block class: "css" do %>
+    // css
+    @import 'uniform';
+
+    // or
+    @import 'uniform/base'; // required<% (Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss mixins.scss base.scss).include?(x)}.to_a +
+        Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'helpers')).map{|x| "helpers/#{x}"}.to_a +
+        Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
+    @import 'uniform/<%= x.remove('.scss') %>';<% end %>
     <% end %>
     
     <h3>Dependencies</h3>
