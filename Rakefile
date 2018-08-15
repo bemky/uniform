@@ -79,9 +79,9 @@ eval(method_source)
 
 # task :setup do
 $environment = Condenser.new
-Dir.children('./vendor/assets/').each do |path|
-  next unless File.directory?(File.expand_path(File.join('./vendor/assets/', path)))
-  $environment.append_path File.expand_path(File.join('./vendor/assets/', path))
+Dir.children('./lib/assets/').each do |path|
+  next unless File.directory?(File.expand_path(File.join('./lib/assets/', path)))
+  $environment.append_path File.expand_path(File.join('./lib/assets/', path))
 end
 $environment.append_path File.expand_path('./docs-src/')
 Dir.children('./docs-src/assets/').each do |path|
@@ -149,10 +149,10 @@ namespace :compile do
       end
     end
     
-    $environment.resolve('uniform.js').each do |asset|
-      asset.export.write('vendor/assets/javascripts')
+    $environment.resolve('uniform-jquery.js').each do |asset|
+      asset.export.write('lib/assets/javascripts')
       # Hack for lack of export with out digest.. remove when available
-      File.rename(File.expand_path('./vendor/assets/javascripts/uniform-' + asset.export.hexdigest + '.js'), File.expand_path('./vendor/assets/javascripts/uniform-es5.js'))
+      File.rename(File.expand_path('./lib/assets/javascripts/uniform-jquery-' + asset.export.hexdigest + '.js'), File.expand_path('./lib/assets/javascripts/uniform-es5.js'))
     end
     
     

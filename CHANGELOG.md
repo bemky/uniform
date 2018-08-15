@@ -1,5 +1,11 @@
 # Change Log
 
+##2.2.0
+- removed jquery dependency
+- changed jquery plugin inclusion, now include jquery plugins by importing uniform-jquery
+- moved lib files from vendor/assets to lib/assets
+
+
 ## 2.0
 New naming structures. Breaks a lot of class names and variables from 1.x.
 

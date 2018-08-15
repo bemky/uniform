@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description = %q{Sass components and helpers for building a UI.}
   s.license     = "MIT"
 
-  s.files         = Dir["vendor/**/*"].select { |fn| File.file?(fn) }
+  s.files         = Dir["lib/**/*"].select { |fn| File.file?(fn) }
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
 
