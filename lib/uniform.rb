@@ -8,9 +8,6 @@ if defined?(::Rails)
       
     end
   end
-elsif defined?(::Sass)
-  Sass.load_paths << File.expand_path("../../lib/assets/stylesheets", __FILE__)
-  Sass.load_paths << File.expand_path("../../lib/assets/stylesheets/uniform", __FILE__)
 else
   module UniformUi
     ASSET_PATH = File.expand_path("../lib/assets", __dir__)

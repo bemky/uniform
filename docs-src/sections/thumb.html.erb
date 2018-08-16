@@ -7,7 +7,7 @@
         Requires height of uniformThumb to be set or use responsive aspect ratio liner.
     </p>
     <h4>Aspect Ratio Liner</h4>
-    <% html_block class: "html" do %>
+    <% block = html_block class: "html" do %>
     <div class="uniformThumb">
         <!-- Aspect Ratio Liner -->
         <div class="aspect-4x3"> 
@@ -16,6 +16,7 @@
         <!-- END Aspect Ratio Liner -->
     </div>
     <% end %>
+    <%= block %>
     <div class="grid margin-v-2x grid-nest">
         <div class="col margin-bottom">
             <div class="uniformThumb width-100-px height-100-px">

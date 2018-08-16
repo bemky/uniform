@@ -9,12 +9,14 @@
                 <p><input type="text" class="uniformInput text-large" /></p>
             </div>
             <div class="col-6">
-                <% html_block class: "html" do %>
+                <% block = html_block class: "html" do %>
                     <input type="text" class="uniformInput" />
                 <% end %>
-                <% html_block class: "html" do %>
+                <%= block %>
+                <% block = html_block class: "html" do %>
                     <input type="text" class="uniformInput text-large" />
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -38,7 +40,7 @@
                 </form>
             </div>
             <div class="col-6">
-                <% html_block do %>
+                <% block = html_block do %>
                 <form class="uniformForm">
                     <div class="form-group">
                         <label>Name</label>
@@ -54,6 +56,7 @@
                     </div>
                 </form>
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -86,7 +89,7 @@
                 </form>
             </div>
             <div class="col-6">
-                <% html_block do %>
+                <% block = html_block do %>
                     <form class="uniformForm -table">
                         <div class="form-group">
                             <label>Name</label>
@@ -102,6 +105,7 @@
                         </div>
                     </form>
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -117,13 +121,14 @@
                 </div>
             </div>
             <div class="col-6">
-                <% html_block do %>
+                <% block = html_block do %>
                 <div class="uniformCheckboxCollection">
                     <label><input type="checkbox"> Option 1</label>
                     <label><input type="checkbox"> Option 2</label>
                     <label><input type="checkbox"> Option 3</label>
                 </div>
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -139,13 +144,14 @@
                 </div>
             </div>
             <div class="col-6">
-                <% html_block do %>
+                <% block = html_block do %>
                 <div class="uniformCheckboxCollection -inline">
                     <label><input type="checkbox"> Option 1</label>
                     <label><input type="checkbox"> Option 2</label>
                     <label><input type="checkbox"> Option 3</label>
                 </div>
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -161,13 +167,14 @@
                 </div>
             </div>
             <div class="col-6">
-                <% html_block do %>
+                <% block = html_block do %>
                 <div class="uniformCheckboxCollection -buttons">
                     <label><input type="checkbox"> Option 1</label>
                     <label><input type="checkbox"> Option 2</label>
                     <label><input type="checkbox"> Option 3</label>
                 </div>
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -183,13 +190,14 @@
                 </div>
             </div>
             <div class="col-6">
-                <% html_block do %>
+                <% block = html_block do %>
                 <div class="uniformCheckboxCollection -invert -inline">
                     <label><input type="checkbox"> Option 1</label>
                     <label><input type="checkbox"> Option 2</label>
                     <label><input type="checkbox"> Option 3</label>
                 </div>
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -218,16 +226,19 @@
                 </div>
             </div>
             <div class="col-6">
-                <% html_block do %>
+                <% block = html_block do %>
                 <label for="uniformCheckbox-1"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-1"> Option 1</label>
                 <% end %>
-                <% html_block do %>
+                <%= block %>
+                <% block = html_block do %>
                     <label for="uniformCheckbox-1"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-2"> Option 1</label>
                 <% end %>
-                <% html_block class:"javascript" do %>
+                <%= block %>
+                <% block = html_block class:"javascript" do %>
                 $('.uniformCheckbox').uniformCheckbox();
                 $('.uniformRadio').uniformRadio();
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -244,15 +255,17 @@
                 </div>
             </div>
             <div class="col-6">
-                <% html_block class:"html" do %>
+                <% block = html_block class:"html" do %>
                 <div class="uniformFloatingLabel">
                     <label for="example-1">Name</label>
                     <input type="text" class="pad-2x" id="example-1">
                 </div>
                 <% end %>
-                <% html_block class:"javascript" do %>
+                <%= block %>
+                <% block = html_block class:"javascript" do %>
                     $('.uniformFloatingLabel').uniformFloatingLabel()
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -277,7 +290,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <% html_block class:"html" do %>
+                <% block = html_block class:"html" do %>
                 <div class="uniformInputGroup">
                     <span class="label">
                         <label for="rate">$</label>
@@ -290,7 +303,8 @@
                     </span>
                 </div>
                 <% end %>
-                <% html_block class:"javascript" do %>
+                <%= block %>
+                <% block = html_block class:"javascript" do %>
                 $('.uniformInputGroup').on('focus', 'input', function (e) {
                     $(this).closest('.uniformInputGroup').addClass('focus');
                 })
@@ -298,6 +312,7 @@
                     $(this).closest('.uniformInputGroup').removeClass('focus');
                 })
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>

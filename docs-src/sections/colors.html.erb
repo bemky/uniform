@@ -1,30 +1,32 @@
 <div class="section">
     <h1>Colors</h1>
-    <table class="uniformTable">
-        <thead class="dark">
-            <tr>
-                <th></th>
-                <th>sass</th>
-                <th>class</th>
-            </tr>
-        </thead>
-    <% %w(green blue red gray yellow).each do |color| %>
-        <% ["-light", "", "-dark"].each do |style| %>
-            <tr>
-                <td><span class='swatch bg-<%= color %><%= style %>'></span></td>
-                <td><code>color('<%= color %><%= style %>')</code></td>
-                <td><code>[class]-<%= color %><%= style %></code></td>
-            </tr>
+    <div class="border rounded bg-white overflow-hidden">
+        <table class="uniformTable">
+            <thead class="dark">
+                <tr>
+                    <th></th>
+                    <th>sass</th>
+                    <th>class</th>
+                </tr>
+            </thead>
+        <% %w(green blue red gray yellow).each do |color| %>
+            <% ["-light", "", "-dark"].each do |style| %>
+                <tr>
+                    <td><span class='swatch bg-<%= color %><%= style %>'></span></td>
+                    <td><code>color('<%= color %><%= style %>')</code></td>
+                    <td><code>[class]-<%= color %><%= style %></code></td>
+                </tr>
+            <% end %>
+            <tr><td colspan='3'>&nbsp;</td></tr>
         <% end %>
-        <tr><td colspan='3'>&nbsp;</td></tr>
-    <% end %>
-    </table>
+        </table>
+    </div>
 </div>
 
 <div class="section">
     <h1>Custom Colors</h1>
     <p>Define new colors or overwrite the defaults</p>
-    <% html_block class:"css" do %>
+    <% block = html_block class:"css" do %>
         @import 'uniform/base';
         
         @import 'ext/uniform'; // <-- overrides
@@ -57,12 +59,14 @@
         @import 'uniform/components/thumb';
         @import 'uniform/components/modal';
     <% end %>
+    <%= block %>
     
     <p>Merge new values into <code>$colors</code>.
     
-    <% html_block class:"css" do %>
+    <% block = html_block class:"css" do %>
         map-merge($colors, (
             'green': #cecece
         ))
     <% end %>
+    <%= block %>
 </div>

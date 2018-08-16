@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="col-6">
-            <% html_block do %>
+            <% block = html_block do %>
 <div class="uniformLoader">
     <div class="uniformLoader-container">
         <span>&bull;</span>
@@ -20,6 +20,7 @@
     </div>
 </div>
             <% end %>
+            <%= block %>
         </div>
     </div>
     <div class="grid">
@@ -37,7 +38,7 @@
             </span>
         </div>
         <div class="col-6">
-            <% html_block do %>
+            <% block = html_block do %>
 <span style="position:relative; display:inline-block">
     <img src="https://unsplash.it/150/100/?random" style="display:block;">
     <div class="uniformLoader -cover">
@@ -49,6 +50,7 @@
     </div>
 </span>
             <% end %>
+            <%= block %>
         </div>
     </div>
     <div class="grid">
@@ -66,7 +68,7 @@
             </span>
         </div>
         <div class="col-6">
-            <% html_block do %>
+            <% block = html_block do %>
 <span style="position:relative; display:inline-block">
     <img src="https://unsplash.it/150/100/?random" style="display:block;">
     <div class="uniformLoader -cover -light">
@@ -78,6 +80,7 @@
     </div>
 </span>
             <% end %>
+            <%= block %>
         </div>
     </div>
 </div>

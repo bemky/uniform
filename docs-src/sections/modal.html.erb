@@ -20,7 +20,7 @@
             
         </div>
         <div class="col-6-md">
-            <% html_block do %>
+            <% block = html_block do %>
             <button class="launchUniformModal uniformButton green large" data-modal-target="#modal-content" data-modal-klass="width-50-p">
                 Launch Modal
             </button>
@@ -38,168 +38,183 @@
                 </div>
             </div>
             <% end %>
-            <% html_block do %>
+            <%= block %>
+            <% block = html_block do %>
                 $('.launchUniformModal').uniformModal();
             <% end %>
+            <%= block %>
         </div>
     </div>
 </div>
 <div class="section">
     <h3>Programmatically</h3>
-    <% html_block do %>
+    <% block = html_block do %>
     new UniformModal({
         content: "This is your modal content",
     }).render()
     <% end %>
-    <table class="uniformTable margin-2x">
-        <tr>
-            <th>
-                Options
-            </th>
-            <th>Accepts</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>
-                content
-            </td>
-            <td>
-                <code>string</code> |
-                <code>$(element)</code> |
-                <code>function</code>
-            </td>
-            <td>
-                Rendered as content, can be a function
-            </td>
-        </tr>
-        <tr>
-            <td>
-                klass
-            </td>
-            <td>
-                <code>string</code>
-            </td>
-            <td>
-                HTML class to append to modal container
-            </td>
-        </tr>
-    </table>
+    <%= block %>
+    <div class="bg-white border rounded overflow-hidden margin-v-2x">
+        <table class="uniformTable">
+            <tr>
+                <th>
+                    Options
+                </th>
+                <th>Accepts</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>
+                    content
+                </td>
+                <td>
+                    <code>string</code> |
+                    <code>$(element)</code> |
+                    <code>function</code>
+                </td>
+                <td>
+                    Rendered as content, can be a function
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    klass
+                </td>
+                <td>
+                    <code>string</code>
+                </td>
+                <td>
+                    HTML class to append to modal container
+                </td>
+            </tr>
+        </table>
+    </div>
 
-    <table class="uniformTable margin-2x">
-        <tr>
-            <th>Events</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>
-                rendered
-            </td>
-            <td>
-                After modal is rendered and shown
-            </td>
-        </tr>
-        <tr>
-            <td>
-                closed
-            </td>
-            <td>
-                After modal is closed before being removed
-            </td>
-        </tr>
-    </table>
-    <table class="uniformTable margin-2x">
-        <tr>
-            <th>Methods</th>
-            <th>Description</th>
-            <th>Example</th>
-        </tr>
-        <tr>
-            <td>
-                on(event, handler)
-            </td>
-            <td>
-                Add event listener
-            </td>
-            <td>
-                <code>modal.on('closed', function(modal_instance){...})</code>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                close
-            </td>
-            <td>
-                Close modal
-            </td>
-            <td>
-                <code>modal.close()</code>
-            </td>
-        </tr>
-    </table>
+    <div class="bg-white border rounded overflow-hidden margin-v-2x">
+        <table class="uniformTable">
+            <tr>
+                <th>Events</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>
+                    rendered
+                </td>
+                <td>
+                    After modal is rendered and shown
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    closed
+                </td>
+                <td>
+                    After modal is closed before being removed
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="bg-white border rounded overflow-hidden margin-v-2x">
+        <table class="uniformTable">
+            <tr>
+                <th>Methods</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td>
+                    on(event, handler)
+                </td>
+                <td>
+                    Add event listener
+                </td>
+                <td>
+                    <code>modal.on('closed', function(modal_instance){...})</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    close
+                </td>
+                <td>
+                    Close modal
+                </td>
+                <td>
+                    <code>modal.close()</code>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 <div class="section">
     <h3>Using JQuery</h3>
-    <% html_block do %>
+    <% block = html_block do %>
 <button class="launchUniformModal" data-modal-target="#modal-content">
     Launch Modal
 </button>
     <% end %>
-    <% html_block do %>
+    <%= block %>
+    <% block = html_block do %>
     $('.launchUniformModal').click(function(){
         $(this).uniformModal();
     });
     <% end %>
-    <table class="uniformTable margin-2x">
-        <tr>
-            <th>Data Options</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td class="text-overflow">
-                <code>data-modal-content</code>
-            </td>
-            <td>
-                String of html to render in modal
-            </td>
-        </tr>
-        <tr>
-            <td class="text-overflow">
-                <code>data-modal-target</code>
-            </td>
-            <td>
-                Instead of providing <code>data-modal-content</code> you can provide a jquery selector of target element. That will be used to render in modal.
-            </td>
-        <tr>
-            <td class="text-overflow">
-                <code>data-modal-klass</code>
-            </td>
-            <td>
-                HTML class to append to modal container
-            </td>
-        </tr>
-    </table>
+    <%= block %>
+    <div class="bg-white border rounded overflow-hidden margin-v-2x">
+        <table class="uniformTable">
+            <tr>
+                <th>Data Options</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td class="text-overflow">
+                    <code>data-modal-content</code>
+                </td>
+                <td>
+                    String of html to render in modal
+                </td>
+            </tr>
+            <tr>
+                <td class="text-overflow">
+                    <code>data-modal-target</code>
+                </td>
+                <td>
+                    Instead of providing <code>data-modal-content</code> you can provide a jquery selector of target element. That will be used to render in modal.
+                </td>
+            <tr>
+                <td class="text-overflow">
+                    <code>data-modal-klass</code>
+                </td>
+                <td>
+                    HTML class to append to modal container
+                </td>
+            </tr>
+        </table>
+    </div>
     <h3>Events</h3>
     <p>Events fired on the <code>launchUniformModal</code> element.
-    <table class="uniformTable">
-        <tr>
-            <th>Events</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>
-                modal-rendered
-            </td>
-            <td>
-                After modal is rendered and shown
-            </td>
-        </tr>
-        <tr>
-            <td>
-                modal-closed
-            </td>
-            <td>
-                After modal is closed before being removed
-            </td>
-        </tr>
-    </table>
+    <div class="bg-white border rounded overflow-hidden">
+        <table class="uniformTable">
+            <tr>
+                <th>Events</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>
+                    modal-rendered
+                </td>
+                <td>
+                    After modal is rendered and shown
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    modal-closed
+                </td>
+                <td>
+                    After modal is closed before being removed
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

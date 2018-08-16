@@ -1,6 +1,7 @@
 <div class="section">
     <h1>UniformLabel</h1>
     <div class="margin-v-2x">
+        <div class="bg-white border rounded overflow-hidden">
         <table class="uniformTable">
             <thead>
                 <tr>
@@ -49,31 +50,34 @@
             </tr> 
             <% end %>
         </table>
+        </div>
     </div>
     
     <div class="margin-v-2x">
         <h3>Colors</h3>
-        <table class="uniformTable">
-            <thead>
+        <div class="bg-white border rounded overflow-hidden">
+            <table class="uniformTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th><code>-fill</code></th>
+                    </tr>
+                </thead>
+                <% colors.each do |color, value| %>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th><code>-fill</code></th>
-                </tr>
-            </thead>
-            <% colors.each do |color, value| %>
-            <tr>
-                <td>
-                    <code>.-<%= color %></code>
-                </td>
-                <td>
-                    <span class="uniformLabel -<%= color %>">label</span>
-                </td>
-                <td>
-                    <span class="uniformLabel -<%= color %> -fill">label</span>
-                </td>
-            </tr> 
-            <% end %>
-        </table>
+                    <td>
+                        <code>.-<%= color %></code>
+                    </td>
+                    <td>
+                        <span class="uniformLabel -<%= color %>">label</span>
+                    </td>
+                    <td>
+                        <span class="uniformLabel -<%= color %> -fill">label</span>
+                    </td>
+                </tr> 
+                <% end %>
+            </table>
+        </div>
     </div>
 </div>

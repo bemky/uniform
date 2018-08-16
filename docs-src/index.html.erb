@@ -1,5 +1,5 @@
 <div class="text-center margin-top-4x">
-    <img src="<%= asset_path("logo.png") %>" width="451" height="101">
+    <%= image_tag 'logo.png', size: "451x101" %>
     <p class="large margin">Sass components and helpers for building a UI.</p>
     <div class="margin-top-2x">
         <a href="/uniform.zip" class="uniformButton -green -large" download>
@@ -13,39 +13,27 @@
 <div class="section">
     <h1>Installation</h1>
     <h3>Rails</h3>
-    <p>Add to your gem file<br/><code>gem 'uniform-ui'</code></p>
-    <p>Include the css library in your asset pipeline.</p>
-    <% html_block class: "css" do %>
-    // css
+    <p>Add to your Gemfile<br/><code>gem 'uniform-ui'</code></p>
+    <% block = html_block do %>
+    gem 'uniform-ui'
+    <% end %>
+    <%= block %>
+    
+    <p>Import css</p>
+    <% block = html_block class: "css" do %>
     @import 'uniform';
     <% end %>
-    
-    <p>Alternatively, you can scope the components you want included in your assets</p>
-    <% html_block class: "css" do %>
-    // css
-    @import 'uniform/base'; // required<% (Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss mixins.scss base.scss).include?(x)}.to_a +
-        Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'helpers')).map{|x| "helpers/#{x}"}.to_a +
-        Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
-    @import 'uniform/<%= x.remove('.scss') %>';<% end %>
-    <% end %>
-    
+    <%= block %>
 
-    <p>Include the javascript library in your asset pipeline.</p>
-    <% html_block class: "javascript" do %>
-    // javascript
+    <p>Include javascript</p>
+    <% block = html_block class: "javascript" do %>
     //= require uniform
     <% end %>
-    
-    <p>Alternatively, you can scope the components you want included in your assets</p>
-    <% html_block class: "javascript" do %>
-    // javascript
-    //= require uniform/base // required<% (Dir.foreach(File.join('vendor', 'assets', 'javascripts', 'uniform')).reject{|x| %w(base.js).include?(x)}.to_a).select{|x| x.split('.').last == "js"}.each do |x| %>
-    //= require uniform/<%= x.remove('.js') %><% end %>
-    <% end %>
+    <%= block %>
     
     <h3>Node</h3>
     <code>npm install uniform-ui</code>
-    <% html_block class: "javascript" do %>
+    <% block = html_block class: "javascript" do %>
     import * as Uniform from 'uniform';
     // or
     import {Modal, Dropdown} as Uniform from 'uniform';
@@ -54,76 +42,136 @@
         el: $('.example')
     })
     <% end %>
-
-    <p>Import jquery plugins to enable automatic usage.</p>
-
-    <% html_block class: "javascript" do %>
-    import {Plugins} as Uniform from 'uniform';
-
-    $('.exampleDropdown').uniformDropdown();
-    <% end %>
+    <%= block %>
     
-    <p>Include the css library in your asset pipeline.</p>
-    <% html_block class: "css" do %>
-    // css
+    <p>Import css</p>
+    <% block = html_block class: "css" do %>
     @import 'uniform';
-
-    // or
-    @import 'uniform/base'; // required<% (Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss mixins.scss base.scss).include?(x)}.to_a +
-        Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'helpers')).map{|x| "helpers/#{x}"}.to_a +
-        Dir.foreach(File.join('vendor', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
-    @import 'uniform/<%= x.remove('.scss') %>';<% end %>
     <% end %>
-    
-    <h3>Dependencies</h3>
-    <p>Components requiring javascript depend on <strong>JQuery 1.11+</strong></p>
+    <%= block %>
 </div>
 <div class="section">
-    <h1>Philosophy</h1>
-    <h3>Don't use ID's</h3>
-    <p>Unless you have to, and even then, think twice. HTML Id's make things not
-        reusable. There should only be one instance of an id in a document</p>
+    <h1>CSS Philosophy</h1>
+    <h3>Do not use ID's</h3>
+    <p>
+        Unless you have to, and even then, think twice. Theoretically, there should 
+        only be one instance of an id in a document
+    </p>
 
-    <h3>Use Semanitc Classes Presentationaly :)</h3>
+
+    <h3>Use Semantic Classes Presentationaly :)</h3>
     <p>
         Here's a decent post on OOCSS (Object Oriented CSS) as it relates to
         semantic vs presentational classes:
-        <a href="http://blackfalcon.roughdraft.io/5255648-oocss-v-ooscss-sasscast-show-notes">OOCSS v OOSCSS</a>
-    <p>
-        <strong>TL;DR:</strong> Semantic classes explain what that element is.
+        <a href="http://blackfalcon.roughdraft.io/5255648-oocss-v-ooscss-sasscast-show-notes">OOCSS v OOSCSS</a>. TL;DR: Semantic classes explain what that element is.
         Presentational classes explain what the shoud look like.
     </p>
+    <% block = html_block do %>
+    <div class="property-list"></div>
+    // -------  vs ---------
+    <div class="ul-list col-sm-4"></div>
+    <% end %>
+    <%= block %>
     <p>
-        <code>class="property-list"</code> vs <code>class="ul-list col-sm-4"</code>
+        Both semantic classes and presentational classes can be better/helpful
+        depending on the context. A good balance is needed. Structure html so
+        that the semantic class is first and presentational classes follow.
     </p>
-    <p>
-        Some of us don't want to touch css files (preference: presentational),
-        and some of us live there (preference: semantic). Honestly, the art of
-        good ui development is balancing semantic and presentational classes.
-        Each taken to their extreme is bad.
-    </p>
-    <p>
-        Structure html so that the semantic class is first and presentational
-        classes follow.
-    </p>
-    <p><code>class="property-list ul-list col-sm-4"</code></p>
+    <% block = html_block do %>
+    <div class="property-list ul-list col-sm-4"></div>
+    <% end %>
+    <%= block %>
+
 
     <h3>Save the Namespace, save the world</h3>
-    <p>Don't make presentational classes that will clash with elements that could mean something else. I'm looking at you Bootsrap!</p>
-    <p><code>class="label"</code> should be <code>class="text-label"</code></p>
-
+    <p>
+        Don't make presentational classes that will clash with elements that
+        could mean something else. I'm looking at you Bootsrap!
+    </p>
+    <% block = html_block do %>
+    // ------ Don't do this ------
+    <div class="label"></div>
+    
+    // ------ This is better
+    <div class="text-label"></div>
+    <% end %>
+    <%= block %>
+    
+    
+    
     <h3>camelCase vs train-case</h3>
-    <p>Use camelCase for class names for components, not train-case or snake_case.</p>
-    <p>Use tran-case for class names for helpers or modifiers.</p>
+    <p>Use camelCase for components, not train-case or snake_case.</p>
+    <p>Use tran-case for helpers or modifiers.</p>
+    <% block = html_block do %>
+    // ------ Component ------
+    <div class="uniformCard"></div>
+    
+    // ------ Modifier ------
+    <div class="uniformCard -border-red"></div>
+    
+    // ------ Helper ------
+    <div class="margin-top"></div>
+    <% end %>
+    <%= block %>
 
     <h3>Wrappers and Containers</h3>
     <p>
         Both <code>wrapper</code> and <code>container</code> can be used as class names
         for an element that goes around a component. The difference is nuanced.
-        <code>wrapper</code> should be used to wrap a <strong>single</strong> element for a formatting purpose.
-        A <code>container</code> should be used to wrap <strong>multiple</strong> elements.
+        A wrapper should be used to wrap <strong>a single element</strong> for a formatting purpose.
+        A <code>container</code> should be used to wrap <strong>multiple elements</strong>.
     </p>
+    <% block = html_block do %>
+    // ------ Wrapper ------
+    <div class="wrapper">
+        <div class="uniformCard">
+            ...
+        </div>
+    </div>
     
+    // ------ Container ------
+    <div class="container">
+        <div class="uniformCard">
+            ...
+        </div>
+        <div class="uniformCard">
+            ...
+        </div>
+        <div class="uniformCard">
+            ...
+        </div>
+        <div class="uniformCard">
+            ...
+        </div>
+    </div>
+    <% end %>
+    <%= block %>
+    
+</div>
+<div class="section">
+    <h1>Configuration</h1>
+    <h3>Scope Uniform Components</h3>
+    <p>You can scope the components you want included in your assets.</p>
+    
+    <h4>Sass</h4>
+    <% block = html_block class: "css" do %>
+    // css
+    @import 'uniform/base'; // required<% (Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss functions.scss mixins.scss base.scss).include?(x)}.to_a +
+        Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'helpers')).map{|x| "helpers/#{x}"}.to_a +
+        Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
+    @import 'uniform/<%= x.remove('.scss') %>';<% end %>
+    <% end %>
+    <%= block %>
+    
+    <h4>Javascript</h4>
+    <p>Alternatively, you can scope the components you want included in your assets</p>
+    <% block = html_block class: "javascript" do %>
+    // javascript
+    //= require uniform/base // required
+    //= require uniform/icons // required<% (Dir.foreach(File.join('lib', 'assets', 'javascripts', 'uniform')).reject{|x| %w(base.js icons.js).include?(x)}.to_a).select{|x| x.split('.').last == "js"}.each do |x| %>
+    //= require uniform/<%= x.remove('.js') %><% end %>
+    <% end %>
+    <%= block %>
 </div>
 <div class="section">
     <h1>Contributors</h1>

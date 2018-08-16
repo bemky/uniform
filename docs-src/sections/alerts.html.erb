@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="col-6-md margin-bottom">
-            <% html_block do %>
+            <% block = html_block class: "html" do %>
             <div class="uniformAlert">
                 <div class="uniformAlert-body">
                     <p>This is a an alert.</p>
@@ -19,6 +19,7 @@
                 </div>
             </div>
             <% end %>
+            <%= block %>
         </div>
         <% ["", "green", "red", "blue"].each do |color| %>
             <div class="col-6-md">
@@ -34,7 +35,7 @@
                 </div>
             </div>
             <div class="col-6-md margin-bottom">
-                <% html_block do %>
+                <% block = html_block class: "html" do %>
                 <div class="uniformAlert -<%= color %>">
                     <div class="uniformAlert-close"></div>
                     <div class="uniformAlert-icon">
@@ -46,6 +47,7 @@
                     </div>
                 </div>
                 <% end %>
+                <%= block %>
             </div>
         <% end %>
     </div>

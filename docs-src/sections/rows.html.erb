@@ -15,7 +15,7 @@
             </p>
         </div>
         <div class="">
-            <% html_block class: "html" do %>
+            <% block = html_block class: "html" do %>
             <a class="uniformRow" href="#rows">
                 <span class="uniformThumb">
                     <img src="https://unsplash.it/400/300/?random">
@@ -34,6 +34,7 @@
                 </div>
             </a>
             <% end %>
+            <%= block %>
         </div>
     </div>
     <div class="margin-v">

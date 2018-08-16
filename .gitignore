@@ -1,5 +1,7 @@
-.sass-cache/*
-*.gem
-node_modules/*
+.bundle
+.cache
 .DS_Store
-tmp/*
+.sass-cache
+tmp/
+node_modules/
+build/

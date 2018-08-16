@@ -42,18 +42,15 @@ Include the javascript library in your asset pipeline.
 //= require uniform
 ````
 
-### Other Ruby Apps
+### Ruby
 Add uniform assets to load path
 
 Example for condenser:
 
     condenser.path = Dir.each_child(UniformUi::ASSET_PATH).map { |a| File.join(UniformUi::ASSET_PATH, a) }
 
-##### Sass Media Query Combiner
-The utility classes produce quite a bit of media queries which can bloat the library by 15ish%... use https://github.com/aaronjensen/sass-media_query_combiner to combine media queries together.
 
-
-### Node Module
+### Node
     npm install uniform-ui
 
 ```javascript
@@ -66,14 +63,9 @@ new Uniform.Dropdown({
 })
 ```
 
-Import jquery plugins to enable automatic usage.
+##### Sass Media Query Combiner
+The utility classes produce quite a bit of media queries which can bloat the library by 30ish%... use https://github.com/aaronjensen/sass-media_query_combiner to combine media queries together.
 
-```javascript
-import {Plugins} as Uniform from 'uniform';
-
-$('.exampleDropdown').uniformDropdown();
-```
- 
 
 ## Usage
 
@@ -86,13 +78,15 @@ Checkout the [documentation](http://uniform-ui.com)
 
 ## Development
 
-To compile preview:
+Docs are generated using Middleman[https://middlemanapp.com/]
 
-    rake compile:preview
+To run server
+
+    middleman server
 
 To package:
 
-    rake compile:package
+    middleman build
 
 
 #### TODO

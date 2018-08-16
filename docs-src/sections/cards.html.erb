@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="col-6">
-            <% html_block do %>
+            <% block = html_block do %>
             <div class="uniformCard">
                 <div class="uniformCard-header">
                     <h1 class="margin-none">Header</h1>
@@ -28,6 +28,7 @@
                 </div>
             </div>
             <% end %>
+            <%= block %>
         </div>
     </div>
     
@@ -62,13 +63,14 @@
                 </div>
             </div>
             <div class="col-6">
-                <% html_block class: "javascript" do %>
+                <% block = html_block class: "javascript" do %>
                 // Javascript
                 $('.uniformCardToggle').click(function(){
                     $(this).parents('.uniformCard').toggleClass('expanded');
                 });
                 <% end %>
-                <% html_block do %>
+                <%= block %>
+                <% block = html_block do %>
                 <div class="uniformCard toggleExpanded">
                     <div class="uniformCard-header cursor-pointer uniformCardToggle">
                         <div class="grid grid-center grid-nest">
@@ -92,6 +94,7 @@
                     </div>
                 </div>
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -129,13 +132,14 @@
                 <% end %>
             </div>
             <div class="col-6">
-                <% html_block class: "javascript" do %>
+                <% block = html_block class: "javascript" do %>
                 // Javascript
                 $('.uniformCardToggle').click(function(){
                     $(this).parents('.uniformCard').toggleClass('expanded');
                 });
                 <% end %>
-                <% html_block do %>
+                <%= block %>
+                <% block = html_block do %>
                 <div class="uniformCard uniformCard-accordion toggleExpanded">
                     <div class="uniformCard-header cursor-pointer uniformCardToggle">
                         <div class="grid grid-center grid-nest">
@@ -159,10 +163,11 @@
                     </div>
                 </div>
                 <% end %>
+                <%= block %>
                 <p class="margin-v text-italic">
                     Optionally, use js to animate toggle.
                 </p>
-                <% html_block class: "javascript" do %>
+                <% block = html_block class: "javascript" do %>
                 // Javascript
                 $(window).on('expand-toggle', function (e){
                     var target = $(e.target).find('.uniformCard-collapse');
@@ -170,6 +175,7 @@
                     target.slideToggle(100);
                 })
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>
@@ -197,7 +203,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <% html_block do %>
+                <% block = html_block do %>
                 <div class="uniformCard -tile col-6">
                     <div class="uniformCard-body">
                         <div class="uniformThumb width-100-p">
@@ -209,6 +215,7 @@
                     </div>
                 </div>
                 <% end %>
+                <%= block %>
             </div>
         </div>
     </div>

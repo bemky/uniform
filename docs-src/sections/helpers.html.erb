@@ -7,13 +7,14 @@
     
     <h2>Modifier Hierarchy</h2>
     <code>.attribute[-direction][-size][-scope]</code>
-    <% html_block class:"css" do %>
+    <% block = html_block class:"css" do %>
     @media max-width: 719px){
         .pad-top-2x-sm{
             padding-top: 2em;
         }
     }
     <% end %>
+    <%= block %>
     
     <h3>Attributes</h3>
     <p>
@@ -146,9 +147,10 @@
                 <code><%= klass[0] %></code>
             </td>
             <td>
-                <% html_block class: "margin-none css" do %>
+                <% block = html_block class: "margin-none css" do %>
                     <%= klass[1] %>
                 <% end %>
+                <%= block %>
             </td>
         </tr>
         <% end %>
@@ -178,9 +180,10 @@
                 <code><%= klass[0] %></code>
             </td>
             <td>
-                <% html_block class: "margin-none css" do %>
+                <% block = html_block class: "margin-none css" do %>
                     <%= klass[1] %>
                 <% end %>
+                <%= block %>
             </td>
         </tr>
         <% end %>
@@ -225,9 +228,10 @@
                 <code><%= klass[0] %></code>
             </td>
             <td>
-                <% html_block class: "margin-none css" do %>
+                <% block = html_block class: "margin-none css" do %>
                     <%= klass[1] %>
                 <% end %>
+                <%= block %>
             </td>
         </tr>
         <% end %>
@@ -267,9 +271,10 @@
                 <code><%= klass[0] %></code>
             </td>
             <td>
-                <% html_block class: "margin-none css" do %>
+                <% block = html_block class: "margin-none css" do %>
                     <%= klass[1] %>
                 <% end %>
+                <%= block %>
             </td>
         </tr>
         <% end %>
@@ -292,9 +297,10 @@
                 <code><%= klass[0] %></code>
             </td>
             <td>
-                <% html_block class: "margin-none css" do %>
+                <% block = html_block class: "margin-none css" do %>
                     <%= klass[1] %>
                 <% end %>
+                <%= block %>
             </td>
         </tr>
         <% end %>
