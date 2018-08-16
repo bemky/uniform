@@ -114,6 +114,12 @@ configure :build do
       asset.export.write('dist')
     end
   end
+  
+  # Rename Dist files to remove sha ... Hack for lack of export_without_digest.. remove when available
+  Dir.children('./dist').each do |file|
+    next unless file =~ /\-\w{64}\..*$/
+    File.rename(File.join('./dist', file), File.join('./dist', file.gsub(/^(.*)\-\w{64}\.(.*)$/, '\1.\2')))
+  end
 
   # Export es5 version to lib
   app.condenser.resolve('uniform.jquery.js').each do |asset|
