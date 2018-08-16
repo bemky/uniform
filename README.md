@@ -14,8 +14,6 @@
 
 ## Installation
 
-Requires JQuery be available in the global namespace.
-
 ### Manual
 Download compiled CSS and JS: http://uniform-ui.com/uniform.zip
 
@@ -78,7 +76,7 @@ Checkout the [documentation](http://uniform-ui.com)
 
 ## Development
 
-Docs are generated using Middleman[https://middlemanapp.com/]
+Docs are generated using [Middleman](https://middlemanapp.com/)
 
 To run server
 

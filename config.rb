@@ -102,6 +102,11 @@ end
 
 configure :build do
   
+  Dir.children('./dist').each do |file|
+    next unless file =~ /\-\w{64}\..*$/
+    File.delete(File.join('./dist', file))
+  end
+  
   # Export to Dist
   %w(uniform.css uniform-jquery.js).each do |asset|
     app.condenser.resolve(asset).each do |asset|
