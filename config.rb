@@ -101,25 +101,25 @@ end
 # end
 
 configure :build do
+  app.condenser.unregister_writer(nil, nil, 'application/gzip')
   
   Dir.children('./dist').each do |file|
     next unless file =~ /\-\w{64}\..*$/
     File.delete(File.join('./dist', file))
   end
   
-  # Export to Dist
-  %w(uniform.css uniform-jquery.js).each do |asset|
+  # Export to Dist    
+  %w(uniform.css uniform.jquery.js uniform.js).each do |asset|
     app.condenser.resolve(asset).each do |asset|
       asset.export.write('dist')
     end
   end
 
   # Export es5 version to lib
-  app.condenser.resolve('uniform-jquery.js').each do |asset|
+  app.condenser.resolve('uniform.jquery.js').each do |asset|
     asset.export.write('lib/assets/javascripts')
     # Hack for lack of export_without_digest.. remove when available
-    File.rename(File.expand_path('./lib/assets/javascripts/uniform-jquery-' + asset.export.hexdigest + '.js'), File.expand_path('./lib/assets/javascripts/uniform-es5.js'))
-    File.delete(File.expand_path('./lib/assets/javascripts/uniform-jquery-' + asset.export.hexdigest + '.js.gz'))
+    File.rename(File.expand_path('./lib/assets/javascripts/uniform.jquery-' + asset.export.hexdigest + '.js'), File.expand_path('./lib/assets/javascripts/uniform.es5.js'))
   end
 
   # Build Zip File
