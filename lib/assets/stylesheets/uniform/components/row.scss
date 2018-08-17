@@ -1,69 +1,59 @@
 .uniformRow{
     background: white;
-    margin: 0.5em 0;
+    display: block;
     text-decoration:none;
     color: color('gray');
     border: 1px solid color('gray-light');
-    &.border-none{
-        margin-bottom: 0;
-        border: none;
-        border-top: 1px solid color('gray-light');
-        &:first-of-type{
-            border-top:none;
-        }
-    }
     &:hover{
         background: lighten(color('blue'), 50);
     }
-    a{
-        color: color('gray');
-        text-decoration: none;
-    }
-    .uniformRow-body{
-        display: flex;
-        min-width: 0;
-        & > * {
-            padding: 0 1em;
-        }
-    }
-}
-
-
-@include size-rule('sm') {
-    .uniformRow{
-        display: block;
-        margin: 0.5em 0;
-        .uniformThumb{
-            padding-top:50%;
-            width: 100%;
-            max-width: 100%;
-        }
-        .uniformRow-body{
-            flex-wrap: wrap;
-            & > * {
-                width: 100%;
-            }
-        }
-    }
 }
 @include size-rule('md') {
-    .uniformRow{
-        margin: 0;
-        margin-bottom: -1px;
-        flex-wrap: nowrap;
-        display: flex;
-        align-self: center;
-        .uniformThumb{
-            align-self: stretch;
+    .uniformRowContainer{
+        display: table;
+        width: 100%;
+        border-left: 1px solid color('gray-light');
+        border-right: 1px solid color('gray-light');
+        .uniformRow{
+            display: table-row;
         }
-
-        .uniformRow-body{
-            flex-wrap: nowrap;
-            align-self: center;
-            padding: 0.5em 0;
+    }
+    .uniformRow{
+        display: table;
+        width: 100%;
+        border-left: 1px solid color('gray-light');
+        border-right: 1px solid color('gray-light');
+        box-shadow: 0px 1px 0 color('gray-light');
+        &.-middle{
             & > * {
-                padding: 0 1em;
+                vertical-align: middle;
             }
+        }
+        & > * {
+            max-width: 0;
+            display: table-cell;
+            border-top: 1px solid color('gray-light');
+        }
+    }
+}
+
+@include size-rule('sm') {
+    .uniformRowContainer{
+        display: block;
+        border: none;
+        .uniformRow {
+            display: block;
+        }
+    }
+    .uniformRow {
+        margin: 0.5em 0;
+        display: block;
+        border: 1px solid color('gray-light');
+        box-shadow: none;
+        & > * {
+            max-width: inherit;
+            display: block;
+            border-top: none;
         }
     }
 }
