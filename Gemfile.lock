@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/malomalo/condenser.git
-  revision: cb6531c4691180b767ec394608f2fd8eb0693954
+  revision: 4b4ba79d568f81337e4393287245cc9530aedd6a
   specs:
     condenser (0.0.4)
       erubi (~> 1.0)
@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/malomalo/middleman-condenser.git
-  revision: f502c7f28558a118efc652929cfa7cff4b417e90
+  revision: 3c9be3a4b092710e5a15035cbca3c7746094e59c
   specs:
     middleman-condenser (0.0.3)
       condenser (~> 0.0.4)

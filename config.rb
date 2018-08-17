@@ -104,10 +104,13 @@ configure :build do
   app.condenser.unregister_writer(nil, nil, 'application/gzip')
   
   Dir.children('./dist').each do |file|
-    next unless file =~ /\-\w{64}\..*$/
-    File.delete(File.join('./dist', file))
+    if File.directory?(file)
+      FileUtils.rm_r(File.join('./dist', file))
+    elsif !(file =~ /\-\w{64}\..*$/)
+      File.delete(File.join('./dist', file))
+    end
   end
-  
+
   # Export to Dist    
   %w(uniform.css uniform.js uniform.jquery.js).each do |asset|
     app.condenser.resolve(asset).each do |asset|
