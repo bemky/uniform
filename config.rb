@@ -109,7 +109,7 @@ configure :build do
   end
   
   # Export to Dist    
-  %w(uniform.css uniform.jquery.js uniform.js).each do |asset|
+  %w(uniform.css uniform.js uniform.jquery.js).each do |asset|
     app.condenser.resolve(asset).each do |asset|
       asset.export.write('dist')
     end

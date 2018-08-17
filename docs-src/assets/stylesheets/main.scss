@@ -17,7 +17,7 @@ html, body{
 .section{
     width:100%;
     padding: 100px 50px;
-    border-bottom:1px solid darken(white, 20);
+    border-bottom:2px dashed darken(white, 20);
     pre:first-of-type{
         margin-top:0;
     }
@@ -73,8 +73,9 @@ html, body{
 }
 
 code{
-    background: #ecffb2;
-    color: #709239;
+    background: rgba(#a700e1, 0.1);
+    color: #a700e1;
+    border-radius: 0.25em;
 }
 pre{
     code{

@@ -8,7 +8,7 @@
         <code>-sm</code>, <code>-md</code>, <code>-lg</code>, or <code>-xl</code>
         to designate when table should be active.
     </p>
-    <div class="grid-md">
+    <div class="grid-md grid-nest">
         <div class="col-6-md">
             <div class="table-md bg-white border rounded overflow-hidden">
                 <div class="row">
@@ -25,34 +25,34 @@
         </div>
         <div class="col-6-md">
             <% block = html_block do %>
-<div class="table-md">
-    <div class="row">
-        <div>Cell 1</div>
-        <div>Cell 2</div>
-        <div>Cell 3</div>
-    </div>
-    <div class="row">
-        <div>Cell 4</div>
-        <div>Cell 5</div>
-        <div>Cell 6</div>
-    </div>
-</div>
+            <div class="table-md">
+                <div class="row">
+                    <div>Cell 1</div>
+                    <div>Cell 2</div>
+                    <div>Cell 3</div>
+                </div>
+                <div class="row">
+                    <div>Cell 4</div>
+                    <div>Cell 5</div>
+                    <div>Cell 6</div>
+                </div>
+            </div>
             <% end %>
             <%= block %>
         </div>
     </div>
     
     <h3>UniformTable</h3>
-    <div class="grid-md">
+    <div class="grid-md grid-nest">
         <div class="col-6-md">
             <div class=" bg-white border rounded overflow-hidden">
                 <table class="uniformTable">
                     <thead>
-                    <tr>
-                        <th>Header 1</th>
-                        <th>Header 2</th>
-                        <th>Header 3</th>
-                    </tr>
+                        <tr>
+                            <th>Header 1</th>
+                            <th>Header 2</th>
+                            <th>Header 3</th>
+                        </tr>
                     </thead>
                     <tr>
                         <td>Cell 1</td>
@@ -70,25 +70,25 @@
         </div>
         <div class="col-6-md">
             <% block = html_block do %>
-<table class="uniformTable">
-    <thead>
-    <tr>
-        <th>Header 1</th>
-        <th>Header 2</th>
-        <th>Header 3</th>
-    </tr>
-    </thead>
-    <tr>
-        <td>Cell 1</td>
-        <td>Cell 2</td>
-        <td>Cell 3</td>
-    </tr>
-    <tr>
-        <td>Cell 4</td>
-        <td>Cell 5</td>
-        <td>Cell 6</td>
-    </tr>
-</table>
+            <table class="uniformTable">
+                <thead>
+                    <tr>
+                        <th>Header 1</th>
+                        <th>Header 2</th>
+                        <th>Header 3</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Cell 1</td>
+                    <td>Cell 2</td>
+                    <td>Cell 3</td>
+                </tr>
+                <tr>
+                    <td>Cell 4</td>
+                    <td>Cell 5</td>
+                    <td>Cell 6</td>
+                </tr>
+            </table>
             <% end %>
             <%= block %>
         </div>
@@ -96,11 +96,11 @@
             <div class="bg-white border rounded overflow-hidden">
                 <table class="uniformTable">
                     <thead class="dark">
-                    <tr>
-                        <th>Header 1</th>
-                        <th>Header 2</th>
-                        <th>Header 3</th>
-                    </tr>
+                        <tr>
+                            <th>Header 1</th>
+                            <th>Header 2</th>
+                            <th>Header 3</th>
+                        </tr>
                     </thead>
                     <tr>
                         <td>Cell 1</td>
@@ -118,25 +118,25 @@
         </div>
         <div class="col-6-md">
             <% block = html_block do %>
-<table class="uniformTable">
-    <thead class="dark">
-    <tr>
-        <th>Header 1</th>
-        <th>Header 2</th>
-        <th>Header 3</th>
-    </tr>
-    </thead>
-    <tr>
-        <td>Cell 1</td>
-        <td>Cell 2</td>
-        <td>Cell 3</td>
-    </tr>
-    <tr>
-        <td>Cell 4</td>
-        <td>Cell 5</td>
-        <td>Cell 6</td>
-    </tr>
-</table>
+            <table class="uniformTable">
+                <thead class="dark">
+                    <tr>
+                        <th>Header 1</th>
+                        <th>Header 2</th>
+                        <th>Header 3</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Cell 1</td>
+                    <td>Cell 2</td>
+                    <td>Cell 3</td>
+                </tr>
+                <tr>
+                    <td>Cell 4</td>
+                    <td>Cell 5</td>
+                    <td>Cell 6</td>
+                </tr>
+            </table>
             <% end %>
             <%= block %>
         </div>

@@ -5,6 +5,7 @@
 .position-left{     left: 0;}
 .position-right{    right: 0;}
 .position-bottom{   bottom: 0;}
+.position-fill{   @include position-fill;}
 .position-center{   @include position-center;}
 .position-v-center{ @include position-v-center;}
 .position-h-center{ @include position-h-center;}

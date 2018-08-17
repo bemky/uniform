@@ -3,7 +3,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Uniform</title>
     
-    <link href="/assets/main-c4d53a939808b8a4e8f71810b4d7d4343fbed17f4f1050f4790fd6feb31cd8c7.css" rel="stylesheet" />
+    <link href="/assets/main-bd37d21e137471ac7f08b71f36188851b979709b514f0d93cac47ead68247c09.css" rel="stylesheet" />
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static-assets/favicons/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static-assets/favicons/apple-touch-icon-114x114.png" />
@@ -49,35 +49,35 @@
                 Grid
             </a>
             <div class="border-top pad-none"></div>
-            <a href="/sections/buttons" class="">
-                Buttons
+            <a href="/sections/button" class="">
+                Button
             </a>
-            <a href="/sections/tables" class="">
-                Tables
+            <a href="/sections/table" class="">
+                Table
             </a>
             <a href="/sections/thumb" class="">
                 Thumb
             </a>
-            <a href="/sections/cards" class="">
-                Cards
+            <a href="/sections/card" class="">
+                Card
             </a>
-            <a href="/sections/rows" class="">
-                Rows
+            <a href="/sections/row" class="">
+                Row
             </a>
             <a href="/sections/form" class="">
                 Form
             </a>
-            <a href="/sections/loaders" class="">
-                Loaders
+            <a href="/sections/loader" class="">
+                Loader
             </a>
             <a href="/sections/nav" class="">
                 Nav
             </a>
-            <a href="/sections/labels" class="">
-                Labels
+            <a href="/sections/label" class="">
+                Label
             </a>
-            <a href="/sections/alerts" class="">
-                Alerts
+            <a href="/sections/alert" class="">
+                Alert
             </a>
             <a href="/sections/select" class="">
                 Select
@@ -97,7 +97,7 @@
             </a>
             <a href="/sections/resizer" class="">
                 Resizer
-                    &nbsp;<span class="uniformLabel -yellow-dark text-smaller">todo</span>
+                    &nbsp;<span class="uniformLabel -yellow-dark text-smaller">js</span>
             </a>
     </div>
 </div>
@@ -111,7 +111,9 @@
     
     <h2>Modifier Hierarchy</h2>
     <code>.attribute[-direction][-size][-scope]</code>
-    <pre><code class='css'>@media max-width: 719px){
+    <pre><code class='css'>.pad-top-2x-sm
+
+@media max-width: 719px){
     .pad-top-2x-sm{
         padding-top: 2em;
     }
@@ -121,700 +123,457 @@
     <p>
         These attributes follow the same structure for the given attribute
     </p>
-    <table class="uniformTable top tight">
-        <tr>
-            <th><code>pad</code></th>
-            <td><code>padding</code></td>
-        </tr>
-        <tr>
-            <th><code>margin</code></th>
-            <td><code>margin</code></td>
-        </tr>
-        <tr>
-            <th><code>text</code></th>
-            <td><code>font-size</code></td>
-        </tr>
-    </table>
-    
-    
+    <div class="text-col-3 text-mono">
+        <div class="margin-bottom">
+            .pad
+            <div class="text-muted text-smaller">padding: 1em</div>
+        </div>
+        <div class="margin-bottom">
+            .margin
+            <div class="text-muted text-smaller">margin: 1em</div>
+        </div>
+        <div class="margin-bottom">
+            .text
+            <div class="text-muted text-smaller">font-size: 1em</div>
+        </div>
+    </div>
     
     <h3>Direction</h3>
-    <table class="uniformTable top tight">
-        <tr>
-            <th><code>-left</code></th>
-            <td>left</td>
-        </tr>
-        <tr>
-            <th><code>-right</code></th>
-            <td>right</td>
-        </tr>
-        <tr>
-            <th><code>-top</code></th>
-            <td>top</td>
-        </tr>
-        <tr>
-            <th><code>-bottom</code></th>
-            <td>bottom</td>
-        </tr>
-        <tr>
-            <th><code>-h</code></th>
-            <td>left and right</td>
-        </tr>
-        <tr>
-            <th><code>-v</code></th>
-            <td>top and bottom</td>
-        </tr>
-    </table>
+    <div class="text-col-2 text-mono">
+        <div class="margin-bottom text-col-no-break">
+            .margin-left
+            <div class="text-muted text-smaller">margin-left: 1em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-right
+            <div class="text-muted text-smaller">margin-right: 1em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-bottom
+            <div class="text-muted text-smaller">margin-bottom: 1em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-top
+            <div class="text-muted text-smaller">margin-top: 1em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-v
+            <div class="text-muted text-smaller">margin-top: 1em;<br/>margin-bottom: 1em;</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-h
+            <div class="text-muted text-smaller">margin-left: 1em;<br/>margin-right: 1em;</div>
+        </div>
+    </div>
     
     <h3>Size</h3>
-    <table class="uniformTable top tight">
-        <tr>
-            <th><code>-quarter</code></th>
-            <td>0.25em</td>
-        </tr>
-        <tr>
-            <th><code>-half</code>   </th>
-            <td>0.5em</td>
-        </tr>
-        <tr>
-            <th><code>-smaller</code></th>
-            <td>0.8em</td>
-        </tr>
-        <tr>
-            <th><code>-small</code>  </th>
-            <td>0.9em</td>
-        </tr>
-        <tr>
-            <th><code>-base</code>   </th>
-            <td>1em</td>
-        </tr>
-        <tr>
-            <th><code>-large</code>  </th>
-            <td>1.2em</td>
-        </tr>
-        <tr>
-            <th><code>-larger</code> </th>
-            <td>1.4em</td>
-        </tr>
-        <tr>
-            <th><code>-2x</code> </th>
-            <td>2em</td>
-        </tr>
-        <tr>
-            <th><code>-4x</code>   </th>
-            <td>4em</td>
-        </tr>
-        <tr>
-            <th><code>-8x</code>   </th>
-            <td>8em</td>
-        </tr>
-    </table>
+    <div class="text-col-2 text-mono">
+        <div class="margin-bottom text-col-no-break">
+            .margin-quarter
+            <div class="text-muted text-smaller">margin: 0.25em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-half
+            <div class="text-muted text-smaller">margin: 0.5em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-smaller
+            <div class="text-muted text-smaller">margin: 0.8em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-small
+            <div class="text-muted text-smaller">margin: 0.9em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin
+            <div class="text-muted text-smaller">margin: 1em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-large
+            <div class="text-muted text-smaller">margin: 1.2em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-larger
+            <div class="text-muted text-smaller">margin: 1.4em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-2x
+            <div class="text-muted text-smaller">margin: 2em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-4x
+            <div class="text-muted text-smaller">margin: 4em</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-8x
+            <div class="text-muted text-smaller">margin: 8em</div>
+        </div>
+    </div>
+    
     
     <h3>Scopes</h3>
-    <table class="uniformTable top tight">
-        <tr>
-            <th><code>-sm</code></th>
-            <td> < 720px</td>
-        </tr>
-        <tr>
-            <th><code>-md</code></th>
-            <td> 720px - 1080px</td>
-        </tr>
-        <tr>
-            <th><code>-lg</code></th>
-            <td> 1080px - 1440px</td>
-        </tr>
-        <tr>
-            <th><code>-xl</code></th>
-            <td> 1440px +</td>
-        </tr>
-    </table>
-    
+    <div class="text-col-2 text-mono">
+        <div class="margin-bottom text-col-no-break">
+            .margin-sm
+            <div class="text-muted text-smaller">@media (max-width: 719px){ margin: 1em; }</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-md
+            <div class="text-muted text-smaller">@media (min-width: 720px){ margin: 1em; }</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-lg
+            <div class="text-muted text-smaller">@media (max-width: 1080px){ margin: 1em; }</div>
+        </div>
+        <div class="margin-bottom text-col-no-break">
+            .margin-xl
+            <div class="text-muted text-smaller">@media (max-width: 1440px){ margin: 1em; }</div>
+        </div>
+    </div>
+</div>
+<div class="section">
     <h3>Colors</h3>
-    <table class="uniformTable top">
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-green</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>color: $green</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.bg-green</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>background-color: $green</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.a-green</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>a{ color: $green}</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.a-hover-green</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>a:hover{ color: $green}</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.border-green</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>border-color: $green</code></pre>
-            </td>
-        </tr>
-    </table>
-    
+    <div class="text-col-2 text-mono">
+        <div class="margin-bottom">
+            .text-green
+            <div class="text-muted text-smaller">color: $green</div>
+        </div>
+        <div class="margin-bottom">
+            .bg-green
+            <div class="text-muted text-smaller">background-color: $green</div>
+        </div>
+        <div class="margin-bottom">
+            .a-green
+            <div class="text-muted text-smaller">a{ color: $green}</div>
+        </div>
+        <div class="margin-bottom">
+            .a-hover-green
+            <div class="text-muted text-smaller">a:hover{ color: $green}</div>
+        </div>
+        <div class="margin-bottom">
+            .border-green
+            <div class="text-muted text-smaller">border-color: $green</div>
+        </div>
+    </div>
+</div>
+<div class="section">    
     <h3>Sizes</h3>
-    <table class="uniformTable top">
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.width-50-p</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>width: 50%</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.width-50-px</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>width: 50px</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.width-50-vw</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>width: 50vw</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.max-width-50-p</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>max-width: 50%</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.max-width-50-px</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>max-width: 50px</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.height-50-p</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>height: 50%</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.height-50-px</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>height: 50px</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.height-50-vh</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>height: 50vh</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.max-height-50-px</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>max-height: 50px</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.min-height-50-vh</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>min-height: 50vh</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.height-auto</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>height: auto;</code></pre>
-            </td>
-        </tr>
-    </table>
-    
+    <div class="text-col-2 text-mono">
+            
+        <div class="margin-bottom">
+            .width-50-p
+            <div class="text-muted text-smaller">width: 50%</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .width-50-px
+            <div class="text-muted text-smaller">width: 50px</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .width-50-vw
+            <div class="text-muted text-smaller">width: 50vw</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .max-width-50-p
+            <div class="text-muted text-smaller">max-width: 50%</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .max-width-50-px
+            <div class="text-muted text-smaller">max-width: 50px</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .height-50-p
+            <div class="text-muted text-smaller">height: 50%</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .height-50-px
+            <div class="text-muted text-smaller">height: 50px</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .height-50-vh
+            <div class="text-muted text-smaller">height: 50vh</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .max-height-50-px
+            <div class="text-muted text-smaller">max-height: 50px</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .min-height-50-vh
+            <div class="text-muted text-smaller">min-height: 50vh</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .height-auto
+            <div class="text-muted text-smaller">height: auto;</div>
+        </div>
+    </div>
+</div>
+<div class="section">   
     <h3>Text</h3>
-    <table class="uniformTable top">
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-caps</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>text-transform: uppercase</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-1rem</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-size: 1rem</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-subtle</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-size: 90%; opacity: 0.8</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-subtle-more</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-size: 80%; opacity: 0.6</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-muted</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>opacity: 0.8</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-muted-more</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>opacity: 0.6</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-muted-less</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>opacity: 0.85</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-left</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>text-align: left !important</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-right</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>text-align: right</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-center</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>text-align: center</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-justify</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>text-align: justify</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-overflow</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>@include text-overflow</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-italic</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-style: italic</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-bold</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-weight: 700</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-light</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-weight: 300</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-lightest</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-weight: 100</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-normal</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-weight: normal !important</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-middle</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>vertical-align:middle</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-top</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>vertical-align:top</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-tight</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>line-height:1.3</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>p.large</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>font-size:1.5em; font-weight:300</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-nowrap</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>white-space: nowrap; overflow:hidden</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-no-decoration</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>text-decoration: none; a{text-decoration: none;}</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-height-1</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>line-height: 1</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-warn</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>&amp;:hover{color:$red !important;}</code></pre>
-            </td>
-        </tr>
-        <tr class="middle">
-            <td>
-                <code>.text-col-2</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>column-count: 2; column-gap: 5em;</code></pre>
-            </td>
-        </tr>
-    </table>
-    
+    <div class="text-col-2 text-mono">
+            
+        <div class="margin-bottom">
+            .text-caps
+            <div class="text-muted text-smaller">text-transform: uppercase</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-1rem
+            <div class="text-muted text-smaller">font-size: 1rem</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-subtle
+            <div class="text-muted text-smaller">font-size: 90%; opacity: 0.8</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-subtle-more
+            <div class="text-muted text-smaller">font-size: 80%; opacity: 0.6</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-muted
+            <div class="text-muted text-smaller">opacity: 0.8</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-muted-more
+            <div class="text-muted text-smaller">opacity: 0.6</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-muted-less
+            <div class="text-muted text-smaller">opacity: 0.85</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-left
+            <div class="text-muted text-smaller">text-align: left !important</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-right
+            <div class="text-muted text-smaller">text-align: right</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-center
+            <div class="text-muted text-smaller">text-align: center</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-justify
+            <div class="text-muted text-smaller">text-align: justify</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-overflow
+            <div class="text-muted text-smaller">@include text-overflow</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-italic
+            <div class="text-muted text-smaller">font-style: italic</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-bold
+            <div class="text-muted text-smaller">font-weight: 700</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-light
+            <div class="text-muted text-smaller">font-weight: 300</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-lightest
+            <div class="text-muted text-smaller">font-weight: 100</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-normal
+            <div class="text-muted text-smaller">font-weight: normal !important</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-middle
+            <div class="text-muted text-smaller">vertical-align:middle</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-top
+            <div class="text-muted text-smaller">vertical-align:top</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-tight
+            <div class="text-muted text-smaller">line-height:1.3</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-nowrap
+            <div class="text-muted text-smaller">white-space: nowrap; overflow:hidden</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-no-decoration
+            <div class="text-muted text-smaller">text-decoration: none; a{text-decoration: none;}</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-height-1
+            <div class="text-muted text-smaller">line-height: 1</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-warn
+            <div class="text-muted text-smaller">&:hover{color:$red !important;}</div>
+        </div>
+            
+        <div class="margin-bottom">
+            .text-col-2
+            <div class="text-muted text-smaller">column-count: 2; column-gap: 5em;</div>
+        </div>
+    </div>
+</div>
+<div class="section">    
     <h3>Layout</h3>
-    <table class="uniformTable top">
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>
-                <code>.hide</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>display:none !important;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.show</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>display:inherit !important;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.round</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>border-radius:50%;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.rounded</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>border-radius: 0.25em;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.cursor-pointer</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>cursor: pointer !important;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.cursor-help</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>cursor: help;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.cursor-handle</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>cursor: hand;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.honeypot</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>position:absolute !important;
+    <div class="text-col-2 text-mono">
+        <div class="margin-bottom">
+            .hide
+            <div class="text-muted text-smaller">display:none !important;</div>
+        </div>
+        <div class="margin-bottom">
+            .show
+            <div class="text-muted text-smaller">display:inherit !important;</div>
+        </div>
+        <div class="margin-bottom">
+            .round
+            <div class="text-muted text-smaller">border-radius:50%;</div>
+        </div>
+        <div class="margin-bottom">
+            .rounded
+            <div class="text-muted text-smaller">border-radius: 0.25em;</div>
+        </div>
+        <div class="margin-bottom">
+            .cursor-pointer
+            <div class="text-muted text-smaller">cursor: pointer !important;</div>
+        </div>
+        <div class="margin-bottom">
+            .cursor-help
+            <div class="text-muted text-smaller">cursor: help;</div>
+        </div>
+        <div class="margin-bottom">
+            .cursor-handle
+            <div class="text-muted text-smaller">cursor: hand;</div>
+        </div>
+        <div class="margin-bottom">
+            .honeypot
+            <div class="text-muted text-smaller">position:absolute !important;
 left:-999999px !important;
 width:1px !important;
-display:block !important;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.float-right</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>float:right;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.float-left</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>float: left;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.bleed-fix</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>position:static; overflow:hidden;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.clear</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>clear:both;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.block </code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>display: block;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.inline-block </code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>display:inline-block !important;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.overflow-hidden</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>overflow:hidden;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.overflow-y</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>overflow-y: auto;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.absolute</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>position:absolute;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.relative</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>position:relative;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.position-center</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>position:absolute;
+display:block !important;</div>
+        </div>
+        <div class="margin-bottom">
+            .float-right
+            <div class="text-muted text-smaller">float:right;</div>
+        </div>
+        <div class="margin-bottom">
+            .float-left
+            <div class="text-muted text-smaller">float: left;</div>
+        </div>
+        <div class="margin-bottom">
+            .bleed-fix
+            <div class="text-muted text-smaller">position:static; overflow:hidden;</div>
+        </div>
+        <div class="margin-bottom">
+            .clear
+            <div class="text-muted text-smaller">clear:both;</div>
+        </div>
+        <div class="margin-bottom">
+            .block 
+            <div class="text-muted text-smaller">display: block;</div>
+        </div>
+        <div class="margin-bottom">
+            .inline-block 
+            <div class="text-muted text-smaller">display:inline-block !important;</div>
+        </div>
+        <div class="margin-bottom">
+            .overflow-hidden
+            <div class="text-muted text-smaller">overflow:hidden;</div>
+        </div>
+        <div class="margin-bottom">
+            .overflow-y
+            <div class="text-muted text-smaller">overflow-y: auto;</div>
+        </div>
+        <div class="margin-bottom">
+            .absolute
+            <div class="text-muted text-smaller">position:absolute;</div>
+        </div>
+        <div class="margin-bottom">
+            .relative
+            <div class="text-muted text-smaller">position:relative;</div>
+        </div>
+        <div class="margin-bottom">
+            .position-center
+            <div class="text-muted text-smaller">position:absolute;
 left:50%;
 top:50%;
-transform: translate(-50%, -50%);</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.position-v-center</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>position:absolute;
+transform: translate(-50%, -50%);</div>
+        </div>
+        <div class="margin-bottom">
+            .position-v-center
+            <div class="text-muted text-smaller">position:absolute;
 left:50%;
-transform: translateX(-50%, -50%);</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>.position-h-center</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>position:absolute;
+transform: translateX(-50%, -50%);</div>
+        </div>
+        <div class="margin-bottom">
+            .position-h-center
+            <div class="text-muted text-smaller">position:absolute;
 top:50%;
-transform: translateY(-50%, -50%);</code></pre>
-            </td>
-        </tr>
-    </table>
-    
+transform: translateY(-50%, -50%);</div>
+        </div>
+    </div>
+</div>
+<div class="section">    
     <h3>Element Helpers</h3>
-    <table class="uniformTable top">
-        <tr>
-            <th></th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>
-                <code>img.disabled</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>@include grayscale(1, 0.3)</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>table.fixed</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>table-layout: fixed;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>ul.raw</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>margin: 0; padding: 0; list-style:none;</code></pre>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>button.raw</code>
-            </td>
-            <td>
-                <pre><code class='margin-none css'>outline: none; appearance: none; border: none; background:none;</code></pre>
-            </td>
-        </tr>
-    </table>
+    <div class="text-col-2 text-mono">
+            
+        <div class="margin-bottom">
+            p.large
+            <div class="text-muted text-smaller">font-size:1.5em; font-weight:300</div>
+        </div>
+            
+        <div class="margin-bottom">
+            img.disabled
+            <div class="text-muted text-smaller">@include grayscale(1, 0.3)</div>
+        </div>
+            
+        <div class="margin-bottom">
+            table.fixed
+            <div class="text-muted text-smaller">table-layout: fixed;</div>
+        </div>
+            
+        <div class="margin-bottom">
+            ul.raw
+            <div class="text-muted text-smaller">margin: 0; padding: 0; list-style:none;</div>
+        </div>
+            
+        <div class="margin-bottom">
+            button.raw
+            <div class="text-muted text-smaller">outline: none; appearance: none; border: none; background:none;</div>
+        </div>
+    </div>
     
 </div>
 </div>  

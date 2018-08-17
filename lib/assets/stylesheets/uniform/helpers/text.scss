@@ -116,6 +116,13 @@ blockquote.quote{
     column-count: 2;
     column-gap: 5em;
 }
+@include size-rules('.text-col-3'){
+    column-count: 3;
+    column-gap: 5em;
+}
+.text-col-no-break{
+    break-inside: avoid-column;
+}
 
 //----------------------------------------------------------------
 //             Breaking

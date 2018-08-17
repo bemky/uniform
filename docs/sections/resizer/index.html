@@ -103,27 +103,130 @@
 </div>
 <div class="main-content overflow-hidden">
     <div class="section">
-    <h1>UniformTooltip</h1>
-    <div class="grid-md">
-        <div class="col-6-md">
-            <p>
-                The Infield Fly Rule
-                <span class="uniformLabel -fill uniformTooltip pointer" data-tooltip-message="The umpire's declaration of an infield fly means that the batter is out (and all force plays are removed) regardless of whether the ball is caught. The rule exists to prevent the defense from achieving a double play or triple play by failing to catch a ball that an infielder could catch with ordinary effort.">?</span>
-                is not called in a consistent manner. Just ask the St Louis Cardinals.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p>
-                The Ground Rule Double
-                <span class="uniformLabel -fill uniformTooltip pointer" data-tooltip-message="Trust me this is real.">?</span>
-                is different for every stadium in MLB.
-            </p>
+    <h1>UniformResizer</h1>
+    <p>
+        Responsive layouts are great when the window is the container you care about.
+        UniformResizer brings responsive helpers to elements that window gets.
+        Initialize any element and it will toggle size classes:
+        <code>sm-size</code>,
+        <code>md-size</code>,
+        <code>lg-size</code>, and
+        <code>xl-size</code>.
+        All Uniform classes that can be scoped to size also adhere to these classes.
+    </p>
+    <pre><code class=''>// javascript
+new Uniform.Resizer({
+    el: document.querySelectorAll(&quot;#target&quot;)
+})</code></pre>
+    
+    <p>
+        If an object is 1200px wide, it will have both <code>md-size</code> and
+        <code>lg-size</code>, because it is both larget than 720px and 1080px.
+    </p>
+    <p>
+        The small class, <code>sm-size</code> is treated differently. It can
+        only have <code>sm-size</code> if it is <strong>under</strong> 720px.
+    </p>
+    <p>
+        The media queries for Uniform are setup the same exact way with min-width
+        for sm and max-width for the other sizes
+    </p>
+    <div class="relative pad-top margin-v-2x">
+        <div class="grid grid-gutter-none text-mono position-fill z-2">
+            <div class="col width-40-p text-right border-right-gray" style="border-right-style: dashed">
+                720px
+            </div>
+            <div class="col width-20-p text-right border-right-gray" style="border-right-style: dashed">
+                1080px
+            </div>
+            <div class="col width-20-p text-right border-right-gray" style="border-right-style: dashed">
+                1440px
+            </div>
         </div>
-        <div class="col-6-md">
-            <pre><code class=''>The Infield Fly Rule &lt;span class=&quot;uniformLabel -fill uniformTooltip pointer&quot; data-tooltip-message=&quot;Trust me this is real.&quot;&gt;?&lt;/span&gt;</code></pre>
+        <div class="grid grid-gutter-none text-mono text-white rounded overflow-hidden margin-top">
+            <div class="col width-40-p bg-red">
+                <div class="pad-h">
+                    sm-size
+                    <div class="text-smaller opacity-80">
+                        class="sm-size"
+                    </div>
+                </div>
+            </div>
+            <div class="col width-60-p bg-blue pad-right-none">
+                <div class="pad-h">
+                    md-size
+                    <div class="text-smaller opacity-80">
+                        class="md-size"
+                    </div>
+                </div>
+                <div class="grid margin-bottom grid-gutter-none">
+                    <div class="col-8 col-push-4 bg-green pad-right-none rounded">
+                        <div class="pad-h">
+                            lg-size
+
+                            <div class="text-smaller opacity-80">
+                                class="lg-size md-size"
+                            </div>
+                        </div>
+                        <div class="grid margin-bottom grid-gutter-none">
+                            <div class="col-6 col-push-6 bg-gray pad-right-none height-100-px rounded">
+                                <div class="pad-h">
+                                    xl-size
+
+                                    <div class="text-smaller opacity-80">
+                                        class="xl-size lg-size md-size"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    
+    <h3>Example</h3>
+    <div class="grid grid-nest">
+        <div class="col-6 margin-bottom-2x">
+            <code>.sm-size</code>
+            <div class="sm-size">
+                <div class="bg-blue overflow-hidden">
+                    <div class="bg-white border margin-sm" style="border-style: dashed;">
+                        <code>.margin-sm</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 margin-bottom-2x">
+            <pre><code class=''>&lt;div class=&quot;sm-size&quot;&gt;
+    &lt;div class=&quot;bg-blue overflow-hidden&quot;&gt;
+        &lt;div class=&quot;bg-white margin-sm&quot;&gt;
+            &lt;code&gt;.margin-sm&lt;/code&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+        <div class="col-6">
+            <code>.md-size</code>
+            <div class="md-size">
+                <div class="bg-blue">
+                    <div class="bg-white border margin-sm" style="border-style: dashed;">
+                        <code>.margin-sm</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <pre><code class=''>&lt;div class=&quot;md-size&quot;&gt;
+    &lt;div class=&quot;bg-blue&quot;&gt;
+        &lt;div class=&quot;bg-white margin-sm&quot;&gt;
+            &lt;code&gt;.margin-sm&lt;/code&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+    </div>
+    
 </div>
 </div>  
 

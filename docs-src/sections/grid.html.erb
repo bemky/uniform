@@ -1,24 +1,16 @@
 <div class="section">
     <h1>Grid</h1>
-    <p>Similar to Bootstrap 4 with some modifications. Uses flexbox with a host of helper options.</p>
-    <h3>Breakpoints</h3>
-    <p>
-        Any helper can have <code>-sm</code>, <code>-md</code>, <code>-lg</code>,
-        or <code>-xl</code> added to cause helper to only go into effect for that
-        breakpoint.
-    </p>
-    <p><code>xs</code> = 480px</p>
-    <p><code>sm</code> = 768px</p>
-    <p><code>md</code> = 992px</p>
-    <p><code>lg</code> = 1200px</p>
+    <p>Uses flexbox with a host of helper options.</p>
     <% block = html_block do %>
-<div class="grid">
-    <div class="col">content</div>
-    <div class="col">content</div>
-    <div class="col">content</div>
-</div>
+    <div class="grid">
+        <div class="col">content</div>
+        <div class="col">content</div>
+        <div class="col">content</div>
+    </div>
     <% end %>
     <%= block %>
+</div>
+<div class="section">
     <h3>Grid Options</h3>
     <% [
         'grid-center',
@@ -183,11 +175,8 @@
         </div>
     </div>
     </div>
-    
-
-    
-    
-    
+</div>
+<div class="section">
     <h3>Col Options</h3>
     <div class="rounded margin-bottom bg-white border overflow-hidden">
     <div class="pad-half text-mono bg-gray text-white">
@@ -286,6 +275,18 @@
         </div>
     </div>
     </div>
-    
-    
+</div>
+<div class="section">
+    <h3>Breakpoints</h3>
+    <p>
+        Any helper can have <code>-sm</code>, <code>-md</code>, <code>-lg</code>,
+        or <code>-xl</code> added to cause helper to only go into effect for that
+        breakpoint.
+    </p>
+    <div class="text-mono">
+        <p><code>-sm</code> = 0 - 719px</p>
+        <p><code>-md</code> = 720px - 1079px</p>
+        <p><code>-lg</code> = 1080px - 1439px</p>
+        <p><code>-xl</code> = 1440px +</p>
+    </div>
 </div>

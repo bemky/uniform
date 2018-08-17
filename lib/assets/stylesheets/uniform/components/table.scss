@@ -5,10 +5,10 @@
     .row > *{
         display:table-cell;
         float:none;
-        &.top{
+        &.-top{
             vertical-align:top;
         }
-        &.middle > *{
+        &.-middle > *{
             vertical-align:middle;
         }
     }
