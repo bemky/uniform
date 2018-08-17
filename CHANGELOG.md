@@ -1,5 +1,9 @@
 # Change Log
 
+##2.2.2
+- changed uniformRow to be less opinionated
+- remove uniformRow-body and uniformThumb from uniformRow
+
 ##2.2.0
 - removed jquery dependency
 - changed jquery plugin inclusion, now include jquery plugins by importing uniform-jquery
