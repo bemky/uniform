@@ -45,7 +45,7 @@
             position:absolute;
             @include position-center;
         }
-        &.light{
+        &.-light{
             background:rgba(black, .5);
         }
     }

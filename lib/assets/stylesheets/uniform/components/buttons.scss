@@ -100,6 +100,14 @@
         display:block;
         width:100%;
     }
+
+    &.-raw{
+        background: none;
+        border: none;
+        text-shadow: none;
+        font-weight: normal;
+        box-shadow: none;
+    }
     
     
     //----------------------------------------------------------------
@@ -197,7 +205,10 @@ a.uniformButton{
 
 .uniformButtonGroup {
     font-size: 0;
-    a{
+    a, button{
+        outline: none;
+        appearance: none;
+        cursor: pointer;
         font-size: 1rem;
         position:relative;
         z-index: 1;
@@ -214,6 +225,11 @@ a.uniformButton{
             background-image: linear-gradient(lighten(color('green'), 5), darken(color('green'), 3));
             border-color: darken(color('green'), 3);
             color: white;
+        }
+        &:disabled{
+            background: color('background');
+            color: color('gray-light');
+            cursor: not-allowed;
         }
     }
 }
