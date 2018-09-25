@@ -30,9 +30,11 @@
             }
         }
         & > * {
-            max-width: 0;
             display: table-cell;
             border-top: 1px solid color('gray-light');
+            &.fix-overflow{
+                max-width: 0;
+            }
         }
     }
 }
