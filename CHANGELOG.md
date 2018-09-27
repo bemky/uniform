@@ -1,5 +1,8 @@
 # Change Log
 
+##2.3
+- new gray spectrum: lightest, lighter, light, gray, dark, darker, darkest
+
 ##2.2.2
 - changed uniformRow to be less opinionated
 - remove uniformRow-body and uniformThumb from uniformRow

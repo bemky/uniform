@@ -67,9 +67,13 @@ helpers do
   def colors
       {
         'background':         '#f2f2f2',
-        'gray':               '#505153',
-        'gray-light':         '#cccccc',
-        'gray-dark':          '#373839',
+        'gray-lightest':      '#F8FAFC',
+        'gray-lighter':       '#F1F5F8',
+        'gray-light':         '#DAE1E7',
+        'gray':               '#B8C2CC',
+        'gray-dark':          '#8795A1',
+        'gray-darker':        '#606F7B',
+        'gray-darkest':       '#3D4852',
         'gray-background':    'rgb(238, 238, 238)',
         'green':              '#97C848',
         'green-light':        '#BBFF00',
@@ -87,7 +91,6 @@ helpers do
         'yellow-light':       '#E9F75A',
         'black':              '#000000',
         'white':              '#FFFFFF',
-        'muted':              '#cccccc'
       }
     end
 end

@@ -3,7 +3,7 @@
     display: block;
     text-decoration:none;
     color: color('gray');
-    border: 1px solid color('gray-light');
+    border: 1px solid color('gray');
     &:hover{
         background: lighten(color('blue'), 50);
     }
@@ -12,8 +12,8 @@
     .uniformRowContainer{
         display: table;
         width: 100%;
-        border-left: 1px solid color('gray-light');
-        border-right: 1px solid color('gray-light');
+        border-left: 1px solid color('gray');
+        border-right: 1px solid color('gray');
         .uniformRow{
             display: table-row;
         }
@@ -21,9 +21,9 @@
     .uniformRow{
         display: table;
         width: 100%;
-        border-left: 1px solid color('gray-light');
-        border-right: 1px solid color('gray-light');
-        box-shadow: 0px 1px 0 color('gray-light');
+        border-left: 1px solid color('gray');
+        border-right: 1px solid color('gray');
+        box-shadow: 0px 1px 0 color('gray');
         &.-middle{
             & > * {
                 vertical-align: middle;
@@ -31,7 +31,7 @@
         }
         & > * {
             display: table-cell;
-            border-top: 1px solid color('gray-light');
+            border-top: 1px solid color('gray');
             &.fix-overflow{
                 max-width: 0;
             }
@@ -50,7 +50,7 @@
     .uniformRow {
         margin: 0.5em 0;
         display: block;
-        border: 1px solid color('gray-light');
+        border: 1px solid color('gray');
         box-shadow: none;
         & > * {
             max-width: inherit;

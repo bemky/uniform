@@ -9,7 +9,16 @@
                     <th>class</th>
                 </tr>
             </thead>
-        <% %w(green blue red gray yellow).each do |color| %>
+        <% ["-lightest", "-lighter", "-light", "", "-dark", "-darker", "-darkest"].each do |style| %>
+            <tr>
+                <td><span class='swatch bg-gray<%= style %>'></span></td>
+                <td><code>color('gray<%= style %>')</code></td>
+                <td><code>[class]-gray<%= style %></code></td>
+            </tr>
+        <% end %>
+
+        <tr><td colspan='3'>&nbsp;</td></tr>
+        <% %w(green blue red yellow).each do |color| %>
             <% ["-light", "", "-dark"].each do |style| %>
                 <tr>
                     <td><span class='swatch bg-<%= color %><%= style %>'></span></td>

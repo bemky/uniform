@@ -53,8 +53,8 @@
     
     .head > *,
     thead th{
-        color: lighten(color('gray'), 20);
-        border-bottom: 1px solid darken(color('gray-light'), 20) !important;
+        color: color('gray-dark');
+        border-bottom: 1px solid color('gray') !important;
     }
     
     .head.dark > *,

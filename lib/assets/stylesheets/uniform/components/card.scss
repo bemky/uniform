@@ -2,7 +2,7 @@
     background: white;
     border-width: 1px;
     border-style: solid;
-    border-color: color('gray-light');
+    border-color: color('gray');
     border-radius: 0.25em;
     margin-bottom: 1em;
     
@@ -28,10 +28,10 @@
         clear: both;
     }
     .uniformCard-header{
-        border-bottom: 1px solid color('gray-light');
+        border-bottom: 1px solid color('gray');
     }
     .uniformCard-footer{
-        border-top: 1px solid color('gray-light');
+        border-top: 1px solid color('gray');
     }
     
     .uniformCard-collapse{

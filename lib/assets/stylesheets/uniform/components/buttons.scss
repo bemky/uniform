@@ -16,18 +16,18 @@
     position:relative; // for adding loaders to buttons which have position:absolute
     transition: all 0.2s;
 
-    color:color('gray');
+    color:color('gray-darkest');
     background-color: white;
     background-image: linear-gradient(white 33%, darken(white, 7));
     border-radius: 0.25em;
-    border:1px solid lighten(color('gray'), 40);
+    border:1px solid lighten(color('gray-darkest'), 40);
     
     &.input-height{
         line-height: 1.4;
     }
 
     &:visited{
-        color:color('gray');
+        color:color('gray-darkest');
     }
 
     &:hover,
@@ -60,7 +60,7 @@
         border-color: transparent;
     }
     &.-outline{
-        border-color: color('gray');
+        border-color: color('gray-darkest');
         background:none !important;
         text-shadow:none !important;
         &.-dashed{
@@ -90,7 +90,7 @@
         }
         &.-outline{
             color: color('red');
-            border-color: lighten(color('gray'), 30);
+            border-color: lighten(color('gray-darkest'), 30);
         }
     }
     
@@ -160,10 +160,10 @@
     }
     
     &.-gray{
-        color: lighten(color('gray'), 20);
+        color: color('gray-darker');
         &.-outline{
-            color: lighten(color('gray'), 20);
-            border-color: lighten(color('gray'), 30);
+            color: color('gray-darker');
+            border-color: color('gray-dark');
         }
     }
     
@@ -183,15 +183,15 @@
     &:disabled:hover,
     &.disabled:hover{
         cursor: not-allowed;
-        color:lighten(color('gray'), 40);
+        color: color('gray');
         background-image:none !important;
-        background-color: darken(color('background'), 10);
-        border-color: lighten(color('gray'), 40);
+        background-color: color('gray-light');
+        border-color: color('gray');
         text-shadow: none;
         &.disabled-dark{
-            background-color: color('gray-dark');
-            color: lighten(color('gray-dark'), 30);
-            border-color: darken(color('gray-dark'), 5);
+            background-color: color('gray-darker');
+            color: color('gray-darkest');
+            border-color: color('gray-darkest');
             opacity: 0.75;
         }
     }

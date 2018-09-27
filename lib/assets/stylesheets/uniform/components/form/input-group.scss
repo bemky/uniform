@@ -1,6 +1,6 @@
 .uniformInputGroup{
     background: white;
-    border: 1px solid lighten(color('gray'), 40);
+    border: 1px solid color('gray');
     display: flex;
     align-items: center;
     transition: box-shadow 0.1s ease-in;
@@ -42,7 +42,7 @@
         overflow:hidden;
     }
     .label{
-        color: lighten(color('gray'), 20);
+        color: color('gray-dark');
     }
     @include size-rule('sm'){
         input{

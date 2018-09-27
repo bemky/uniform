@@ -2,13 +2,13 @@
     display:inline-block;
     vertical-align:baseline;
     padding: 0.0714em 0.357em 0.0714em;
-    border: 0.1em solid color('gray');
-    color: color('gray');
+    border: 0.1em solid color('gray-darker');
+    color: color('gray-darker');
     border-radius: 0.3em;
     line-height: 1.2;
     &.-fill{
         border: none;
-        background: lighten(color('gray'), 20);
+        background: color('gray-darker');
         color: white;
         padding: 0.1714em 0.457em 0.1714em;
     }

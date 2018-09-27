@@ -8,14 +8,14 @@ Style with support for rainbow parens
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #777b7b;
+  background: #606f7b;
   color: #ebebeb;
 }
 
 
 .hljs-comment,
 .hljs-quote {
-  color: #b2b4b2;
+  color: #b8c2cc;
   font-style: italic;
 }
 

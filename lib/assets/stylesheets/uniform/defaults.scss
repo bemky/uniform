@@ -81,7 +81,7 @@ button{
 
 #{$text-inputs},
 textarea{
-    border:1px solid lighten(color('gray'), 40);
+    border:1px solid color('gray');
 }
 
 [hidden] {
@@ -94,6 +94,6 @@ time{
 
 button{
     font-family: $system-font;
-    color: color('gray');
+    color: color('gray-darkest');
     cursor: pointer;
 }

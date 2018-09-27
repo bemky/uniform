@@ -22,7 +22,7 @@ select.uniformSelect{
         z-index:0;
         line-height: 0;
         svg{
-            fill: color('gray');
+            fill: color('gray-darker');
             transition: transform 0.2s;
         }
     }
@@ -57,8 +57,8 @@ select.uniformSelect{
     }
     
     .uniformSelect-options-actions{
-        border-top: 1px solid color('gray-light');
-        border-bottom: 1px solid color('gray-light');
+        border-top: 1px solid color('gray');
+        border-bottom: 1px solid color('gray');
         background: color('background');
         padding: 0.5em;
         &:empty{
@@ -74,7 +74,7 @@ select.uniformSelect{
     }
     .uniformSelect-done{
         border-radius: 0.25em;
-        border: 1px solid color('gray-light');
+        border: 1px solid color('gray');
         background: white;
     }
 }
@@ -105,7 +105,7 @@ select.uniformSelect{
         padding: 1em;
         button{
             margin-bottom: 0.5em;
-            border: 1px solid lighten(color('gray'), 40);
+            border: 1px solid color('gray');
             &.uniformSelect-done{
                 margin-bottom: 0;
             }
