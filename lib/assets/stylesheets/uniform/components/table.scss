@@ -100,10 +100,11 @@
     line-height: 1;
     table-layout: fixed;
     td, th{
-        padding: 0.3em 0;
+        padding-top:0.3em;
+        padding-bottom: 0.3em;
+        vertical-align:bottom;
     }
     td{
-        vertical-align:bottom;
         padding-left:0.5em;
     }
     th{

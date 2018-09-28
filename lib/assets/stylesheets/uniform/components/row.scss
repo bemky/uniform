@@ -2,7 +2,7 @@
     background: white;
     display: block;
     text-decoration:none;
-    color: color('gray');
+    color: color('gray-darker');
     border: 1px solid color('gray');
     &:hover{
         background: lighten(color('blue'), 50);
