@@ -117,6 +117,11 @@
             position: relative;
         }
     }
+    thead{
+        th{
+            background:none;
+        }
+    }
     &.bg-background{
         th{
             background-image:radial-gradient(black 1px, color('background') 0px);
