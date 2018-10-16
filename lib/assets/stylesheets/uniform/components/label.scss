@@ -8,8 +8,8 @@
     line-height: 1.2;
     &.-fill{
         border: none;
-        background: color('gray-darker');
-        color: white;
+        background: rgba(color('gray-darker'), 0.15);
+        color: color('gray-darker');
         padding: 0.1714em 0.457em 0.1714em;
     }
     &.-round{
@@ -21,6 +21,8 @@
 }
 
 @include colors('.uniformLabel.', ('border-color' 'color'));
-@include colors('.uniformLabel.-fill.', 'background-color'){
-    color: white;
-};
+@each $key, $value in $colors {
+    @include size-rules(".uniformLabel.-fill.-#{$key}"){
+        background-color: rgba($value, 0.15);
+    }
+}
