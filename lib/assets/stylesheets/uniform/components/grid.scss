@@ -19,6 +19,12 @@
             padding-right: $grid-gutter;
         }
     }
+    &.grid-gutter-half {
+        & > * {
+            padding-left: $grid-gutter/4;
+            padding-right: $grid-gutter/4;
+        }
+    }
 }
 @include size-rule('md'){
     .grid,
@@ -35,6 +41,13 @@
         & > * {
             padding-left:$grid-gutter * 2;
             padding-right: $grid-gutter * 2;
+        }
+    }
+    
+    .grid.grid-gutter-half {
+        & > * {
+            padding-left:$grid-gutter / 2;
+            padding-right: $grid-gutter / 2;
         }
     }
 }
@@ -87,6 +100,10 @@
         margin-left: -$grid-gutter*2;
         margin-right: -$grid-gutter*2;
     }
+    &.grid-gutter-half{
+        margin-left: -$grid-gutter/2;
+        margin-right: -$grid-gutter/2;
+    }
 }
 .grid-nest-half{
     margin-left: -0.5em;
@@ -99,6 +116,10 @@
         &.grid-gutter-2x{
             margin-left: -$grid-gutter;
             margin-right: -$grid-gutter;
+        }
+        &.grid-gutter-half{
+            margin-left: -$grid-gutter/4;
+            margin-right: -$grid-gutter/4;
         }
     }
 }
