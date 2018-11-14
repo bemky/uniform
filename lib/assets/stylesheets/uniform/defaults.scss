@@ -79,11 +79,6 @@ button{
     line-height: inherit;
 }
 
-#{$text-inputs},
-textarea{
-    border:1px solid color('gray');
-}
-
 [hidden] {
     display: none !important;
 }
