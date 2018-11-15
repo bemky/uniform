@@ -25,6 +25,7 @@
     <meta name="msapplication-square150x150logo" content="/static-assets/favicons/mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="/static-assets/favicons/mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="/static-assets/favicons/mstile-310x310.png" />
+    <script type="text/javascript" src="/static-assets/jquery.js"></script>
 </head>
 
 <body>
@@ -52,6 +53,7 @@
             :nav,
             :label,
             :alert,
+            [:popover, 'js'],
             [:select, 'js'],
             [:modal, 'js'],
             [:dropdown, 'js'],
@@ -63,7 +65,7 @@
                 url = page[2]
                 page = page[0]
             end %>
-            <% url ||= "/sections/#{page}" %>
+            <% url ||= "/#{page}" %>
             <% if page == "" %>
             <div class="border-top pad-none"></div>
             <% else %>
@@ -81,7 +83,6 @@
     <%= yield %>
 </div>  
 
-<script type="text/javascript" src="/static-assets/jquery.js"></script>
 <%= javascript_include_tag "uniform.jquery" %>
 <%= javascript_include_tag "highlight.pack" %>
 <%= javascript_include_tag "main" %>

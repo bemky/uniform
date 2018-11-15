@@ -107,135 +107,131 @@
     </div>
 </div>
 <div class="main-content overflow-hidden">
-    <div class="text-center margin-top-4x">
-    <img src="/assets/logo-c0d2f3798ea2b8c502eb9cc53a45c37e5d860362a49feb05ff033f2f582dd746.png" width="451" height="101" />
-    <p class="large margin">Sass components and helpers for building a UI.</p>
-    <div class="margin-top-2x">
-        <a href="/uniform.zip" class="uniformButton -green -large" download>
-            Download
-        </a>
-        <a href="https://github.com/bemky/uniform" class="uniformButton -large">
-            GitHub
-        </a>
+    <div class="section">
+    <h1>Colors</h1>
+    <div class="border rounded bg-white overflow-hidden">
+        <table class="uniformTable">
+            <thead class="dark">
+                <tr>
+                    <th></th>
+                    <th>sass</th>
+                    <th>class</th>
+                </tr>
+            </thead>
+            <tr>
+                <td><span class='swatch bg-gray-lightest'></span></td>
+                <td><code>color('gray-lightest')</code></td>
+                <td><code>[class]-gray-lightest</code></td>
+            </tr>
+            <tr>
+                <td><span class='swatch bg-gray-lighter'></span></td>
+                <td><code>color('gray-lighter')</code></td>
+                <td><code>[class]-gray-lighter</code></td>
+            </tr>
+            <tr>
+                <td><span class='swatch bg-gray-light'></span></td>
+                <td><code>color('gray-light')</code></td>
+                <td><code>[class]-gray-light</code></td>
+            </tr>
+            <tr>
+                <td><span class='swatch bg-gray'></span></td>
+                <td><code>color('gray')</code></td>
+                <td><code>[class]-gray</code></td>
+            </tr>
+            <tr>
+                <td><span class='swatch bg-gray-dark'></span></td>
+                <td><code>color('gray-dark')</code></td>
+                <td><code>[class]-gray-dark</code></td>
+            </tr>
+            <tr>
+                <td><span class='swatch bg-gray-darker'></span></td>
+                <td><code>color('gray-darker')</code></td>
+                <td><code>[class]-gray-darker</code></td>
+            </tr>
+            <tr>
+                <td><span class='swatch bg-gray-darkest'></span></td>
+                <td><code>color('gray-darkest')</code></td>
+                <td><code>[class]-gray-darkest</code></td>
+            </tr>
+
+        <tr><td colspan='3'>&nbsp;</td></tr>
+                <tr>
+                    <td><span class='swatch bg-green-light'></span></td>
+                    <td><code>color('green-light')</code></td>
+                    <td><code>[class]-green-light</code></td>
+                </tr>
+                <tr>
+                    <td><span class='swatch bg-green'></span></td>
+                    <td><code>color('green')</code></td>
+                    <td><code>[class]-green</code></td>
+                </tr>
+                <tr>
+                    <td><span class='swatch bg-green-dark'></span></td>
+                    <td><code>color('green-dark')</code></td>
+                    <td><code>[class]-green-dark</code></td>
+                </tr>
+            <tr><td colspan='3'>&nbsp;</td></tr>
+                <tr>
+                    <td><span class='swatch bg-blue-light'></span></td>
+                    <td><code>color('blue-light')</code></td>
+                    <td><code>[class]-blue-light</code></td>
+                </tr>
+                <tr>
+                    <td><span class='swatch bg-blue'></span></td>
+                    <td><code>color('blue')</code></td>
+                    <td><code>[class]-blue</code></td>
+                </tr>
+                <tr>
+                    <td><span class='swatch bg-blue-dark'></span></td>
+                    <td><code>color('blue-dark')</code></td>
+                    <td><code>[class]-blue-dark</code></td>
+                </tr>
+            <tr><td colspan='3'>&nbsp;</td></tr>
+                <tr>
+                    <td><span class='swatch bg-red-light'></span></td>
+                    <td><code>color('red-light')</code></td>
+                    <td><code>[class]-red-light</code></td>
+                </tr>
+                <tr>
+                    <td><span class='swatch bg-red'></span></td>
+                    <td><code>color('red')</code></td>
+                    <td><code>[class]-red</code></td>
+                </tr>
+                <tr>
+                    <td><span class='swatch bg-red-dark'></span></td>
+                    <td><code>color('red-dark')</code></td>
+                    <td><code>[class]-red-dark</code></td>
+                </tr>
+            <tr><td colspan='3'>&nbsp;</td></tr>
+                <tr>
+                    <td><span class='swatch bg-yellow-light'></span></td>
+                    <td><code>color('yellow-light')</code></td>
+                    <td><code>[class]-yellow-light</code></td>
+                </tr>
+                <tr>
+                    <td><span class='swatch bg-yellow'></span></td>
+                    <td><code>color('yellow')</code></td>
+                    <td><code>[class]-yellow</code></td>
+                </tr>
+                <tr>
+                    <td><span class='swatch bg-yellow-dark'></span></td>
+                    <td><code>color('yellow-dark')</code></td>
+                    <td><code>[class]-yellow-dark</code></td>
+                </tr>
+            <tr><td colspan='3'>&nbsp;</td></tr>
+        </table>
     </div>
 </div>
+
 <div class="section">
-    <h1>Installation</h1>
-    <h3>Rails</h3>
-    <p>Add to your Gemfile<br/><code>gem 'uniform-ui'</code></p>
-    <pre><code class=''>gem &#39;uniform-ui&#39;</code></pre>
-    
-    <p>Import css</p>
-    <pre><code class='css'>@import &#39;uniform&#39;;</code></pre>
+    <h1>Custom Colors</h1>
+    <p>Define new colors or overwrite the defaults</p>
+    <pre><code class='css'>@import &#39;uniform/base&#39;;
 
-    <p>Include javascript</p>
-    <pre><code class='javascript'>//= require uniform</code></pre>
-    
-    <h3>Node</h3>
-    <code>npm install uniform-ui</code>
-    <pre><code class='javascript'>import * as Uniform from &#39;uniform&#39;;
-// or
-import {Modal, Dropdown} as Uniform from &#39;uniform&#39;;
+@import &#39;ext/uniform&#39;; // &lt;-- overrides
 
-new Uniform.Dropdown({
-    el: $(&#39;.example&#39;)
-})</code></pre>
-    
-    <p>Import css</p>
-    <pre><code class='css'>@import &#39;uniform&#39;;</code></pre>
-</div>
-<div class="section">
-    <h1>CSS Philosophy</h1>
-    <h3>Do not use ID's</h3>
-    <p>
-        Unless you have to, and even then, think twice. Theoretically, there should 
-        only be one instance of an id in a document
-    </p>
-
-
-    <h3>Use Semantic Classes Presentationaly :)</h3>
-    <p>
-        Here's a decent post on OOCSS (Object Oriented CSS) as it relates to
-        semantic vs presentational classes:
-        <a href="http://blackfalcon.roughdraft.io/5255648-oocss-v-ooscss-sasscast-show-notes">OOCSS v OOSCSS</a>. TL;DR: Semantic classes explain what that element is.
-        Presentational classes explain what the shoud look like.
-    </p>
-    <pre><code class=''>&lt;div class=&quot;property-list&quot;&gt;&lt;/div&gt;
-// -------  vs ---------
-&lt;div class=&quot;ul-list col-sm-4&quot;&gt;&lt;/div&gt;</code></pre>
-    <p>
-        Both semantic classes and presentational classes can be better/helpful
-        depending on the context. A good balance is needed. Structure html so
-        that the semantic class is first and presentational classes follow.
-    </p>
-    <pre><code class=''>&lt;div class=&quot;property-list ul-list col-sm-4&quot;&gt;&lt;/div&gt;</code></pre>
-
-
-    <h3>Save the Namespace, save the world</h3>
-    <p>
-        Don't make presentational classes that will clash with elements that
-        could mean something else. I'm looking at you Bootsrap!
-    </p>
-    <pre><code class=''>// ------ Don&#39;t do this ------
-&lt;div class=&quot;label&quot;&gt;&lt;/div&gt;
-
-// ------ This is better
-&lt;div class=&quot;text-label&quot;&gt;&lt;/div&gt;</code></pre>
-    
-    
-    
-    <h3>camelCase vs train-case</h3>
-    <p>Use camelCase for components, not train-case or snake_case.</p>
-    <p>Use tran-case for helpers or modifiers.</p>
-    <pre><code class=''>// ------ Component ------
-&lt;div class=&quot;uniformCard&quot;&gt;&lt;/div&gt;
-
-// ------ Modifier ------
-&lt;div class=&quot;uniformCard -border-red&quot;&gt;&lt;/div&gt;
-
-// ------ Helper ------
-&lt;div class=&quot;margin-top&quot;&gt;&lt;/div&gt;</code></pre>
-
-    <h3>Wrappers and Containers</h3>
-    <p>
-        Both <code>wrapper</code> and <code>container</code> can be used as class names
-        for an element that goes around a component. The difference is nuanced.
-        A wrapper should be used to wrap <strong>a single element</strong> for a formatting purpose.
-        A <code>container</code> should be used to wrap <strong>multiple elements</strong>.
-    </p>
-    <pre><code class=''>// ------ Wrapper ------
-&lt;div class=&quot;wrapper&quot;&gt;
-    &lt;div class=&quot;uniformCard&quot;&gt;
-        ...
-    &lt;/div&gt;
-&lt;/div&gt;
-
-// ------ Container ------
-&lt;div class=&quot;container&quot;&gt;
-    &lt;div class=&quot;uniformCard&quot;&gt;
-        ...
-    &lt;/div&gt;
-    &lt;div class=&quot;uniformCard&quot;&gt;
-        ...
-    &lt;/div&gt;
-    &lt;div class=&quot;uniformCard&quot;&gt;
-        ...
-    &lt;/div&gt;
-    &lt;div class=&quot;uniformCard&quot;&gt;
-        ...
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-    
-</div>
-<div class="section">
-    <h1>Configuration</h1>
-    <h3>Scope Uniform Components</h3>
-    <p>You can scope the components you want included in your assets.</p>
-    
-    <h4>Sass</h4>
-    <pre><code class='css'>// css
-@import &#39;uniform/base&#39;; // required
 @import &#39;uniform/helpers&#39;;
+@import &#39;uniform/functions&#39;;
 @import &#39;uniform/components&#39;;
 @import &#39;uniform/defaults&#39;;
 @import &#39;uniform/helpers/border&#39;;
@@ -262,36 +258,13 @@ new Uniform.Dropdown({
 @import &#39;uniform/components/thumb&#39;;
 @import &#39;uniform/components/modal&#39;;</code></pre>
     
-    <h4>Javascript</h4>
-    <p>Alternatively, you can scope the components you want included in your assets</p>
-    <pre><code class='javascript'>// javascript
-//= require uniform/base // required
-//= require uniform/icons // required
-//= require uniform/tooltip
-//= require uniform/floating-label
-//= require uniform/component
-//= require uniform/dropdown
-//= require uniform/popover
-//= require uniform/select
-//= require uniform/checkbox
-//= require uniform/dom-helpers
-//= require uniform/modal
-//= require uniform/resizer</code></pre>
+    <p>Merge new values into <code>$colors</code>.
+    
+    <pre><code class='css'>map-merge($colors, (
+    &#39;green&#39;: #cecece
+))</code></pre>
 </div>
-<div class="section">
-    <h1>Contributors</h1>
-    <p>Uniform is an open source tool created for use at <a href="https://42floors.com">42floors</a>. Please report bugs in <a href="https://github.com/bemky/uniform/issues">GitHub Issues</a></p>
-    <div class="margin">
-        <div class="grid">
-            <a class="text-center max-width-100-px" href="https://github.com/bemky">
-                <img src="https://avatars.githubusercontent.com/u/841033?v=3" class="round block width-100-p">
-                <span class="block">bemky</span>
-            </a>
-        </div>
-    </div>
-    <h3>Licensing</h3>
-    <p>Uniform is released under the <a href="http://en.wikipedia.org/wiki/MIT_License">MIT License</a>
-</div>
+
 </div>  
 
 <script src="/assets/uniform.jquery-1ced2a8c4a0ef8525e9a8610eaf72675b17970617e546a5d3d7385b76538de72.js"></script>

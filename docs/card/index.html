@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Uniform</title>
+    
+    <link href="/assets/main-7c1d95a6299859b695e5590dfcafac8cd85b8c7fca971ef42c5191901e6702f9.css" rel="stylesheet" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static-assets/favicons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static-assets/favicons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static-assets/favicons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/static-assets/favicons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/static-assets/favicons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/static-assets/favicons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/static-assets/favicons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/static-assets/favicons/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/static-assets/favicons/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/static-assets/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/static-assets/favicons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/static-assets/favicons/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/static-assets/favicons/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Uniform"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/static-assets/favicons/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/static-assets/favicons/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/static-assets/favicons/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/static-assets/favicons/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/static-assets/favicons/mstile-310x310.png" />
+    <script type="text/javascript" src="/static-assets/jquery.js"></script>
+</head>
+
+<body>
+<div class="side-nav">
+    <div class="pad-2x">
+        <a href="/">
+            <img class="block width-100-p" src="/assets/logo-c0d2f3798ea2b8c502eb9cc53a45c37e5d860362a49feb05ff033f2f582dd746.png" />
+        </a>
+    </div>
+    <div class="uniformNav -vertical">
+            <a href="/" class="">
+                Introduction
+            </a>
+            <div class="border-top pad-none"></div>
+            <a href="/helpers" class="">
+                Helpers
+            </a>
+            <a href="/colors" class="">
+                Colors
+            </a>
+            <a href="/grid" class="">
+                Grid
+            </a>
+            <div class="border-top pad-none"></div>
+            <a href="/button" class="">
+                Button
+            </a>
+            <a href="/table" class="">
+                Table
+            </a>
+            <a href="/thumb" class="">
+                Thumb
+            </a>
+            <a href="/card" class="">
+                Card
+            </a>
+            <a href="/row" class="">
+                Row
+            </a>
+            <a href="/form" class="">
+                Form
+            </a>
+            <a href="/loader" class="">
+                Loader
+            </a>
+            <a href="/nav" class="">
+                Nav
+            </a>
+            <a href="/label" class="">
+                Label
+            </a>
+            <a href="/alert" class="">
+                Alert
+            </a>
+            <a href="/popover" class="">
+                Popover
+                    &nbsp;<span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/select" class="">
+                Select
+                    &nbsp;<span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/modal" class="">
+                Modal
+                    &nbsp;<span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/dropdown" class="">
+                Dropdown
+                    &nbsp;<span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/tooltip" class="">
+                Tooltip
+                    &nbsp;<span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+            <a href="/resizer" class="">
+                Resizer
+                    &nbsp;<span class="uniformLabel -yellow-dark text-smaller">js</span>
+            </a>
+    </div>
+</div>
+<div class="main-content overflow-hidden">
+    <div class="section">
+    <h1>UniformCard</h1>
+    <div class="grid grid-nest">
+        <div class="col-6">
+            <div class="uniformCard">
+                <div class="uniformCard-header">
+                    <h1 class="margin-none">Header</h1>
+                </div>
+                <div class="uniformCard-body">
+                    Body
+                </div>
+                <div class="uniformCard-footer">
+                    <div class="text-subtle text-smaller">Footer</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <pre><code class=''>&lt;div class=&quot;uniformCard&quot;&gt;
+    &lt;div class=&quot;uniformCard-header&quot;&gt;
+        &lt;h1 class=&quot;margin-none&quot;&gt;Header&lt;/h1&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;uniformCard-body&quot;&gt;
+        Body
+    &lt;/div&gt;
+    &lt;div class=&quot;uniformCard-footer&quot;&gt;
+        &lt;div class=&quot;text-subtle text-smaller&quot;&gt;Footer&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+    </div>
+    
+    <div class="margin-v-2x border-top pad-top-2x">
+        <h3>Collapse/Expand</h3>
+        <p>
+            Use js to toggle <code>.expanded</code> on <code>uniformCard</code>
+        </p>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformCard toggleExpanded">
+                    <div class="uniformCard-header cursor-pointer uniformCardToggle">
+                        <div class="grid grid-center grid-nest">
+                            <div class="col-fill">
+                                Header
+                            </div>
+                            <div class="uniformCard-icon">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                    <path d="M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z" fill="#000000"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uniformCard-collapse">
+                        <div class="uniformCard-body">
+                            Body
+                        </div>
+                        <div class="uniformCard-footer">
+                            Footer
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <pre><code class='javascript'>// Javascript
+$(&#39;.uniformCardToggle&#39;).click(function(){
+    $(this).parents(&#39;.uniformCard&#39;).toggleClass(&#39;expanded&#39;);
+});</code></pre>
+                <pre><code class=''>&lt;div class=&quot;uniformCard toggleExpanded&quot;&gt;
+    &lt;div class=&quot;uniformCard-header cursor-pointer uniformCardToggle&quot;&gt;
+        &lt;div class=&quot;grid grid-center grid-nest&quot;&gt;
+            &lt;div class=&quot;col-fill&quot;&gt;
+                Header
+            &lt;/div&gt;
+            &lt;div class=&quot;uniformCard-icon&quot;&gt;
+                &lt;svg version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 20 20&quot;&gt;
+                    &lt;path d=&quot;M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z&quot; fill=&quot;#000000&quot;&gt;&lt;/path&gt;
+                &lt;/svg&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;uniformCard-collapse&quot;&gt;
+        &lt;div class=&quot;uniformCard-body&quot;&gt;
+            Body
+        &lt;/div&gt;
+        &lt;div class=&quot;uniformCard-footer&quot;&gt;
+            Footer
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    <div class="margin-v-2x border-top pad-top-2x">
+        <h3>Accordion</h3>
+        <p>
+            Use js to toggle <code>.expanded</code> on <code>uniformCard</code>
+        </p>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                    <div class="uniformCard uniformCard-accordion toggleExpanded">
+                        <div class="uniformCard-header cursor-pointer uniformCardToggle">
+                            <div class="grid grid-center grid-nest">
+                                <div class="col-fill">
+                                    Header
+                                </div>
+                                <div class="uniformCard-icon">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                        <path d="M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z" fill="#000000"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uniformCard-collapse">
+                            <div class="uniformCard-body">
+                                Body
+                            </div>
+                            <div class="uniformCard-footer">
+                                Footer
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uniformCard uniformCard-accordion toggleExpanded">
+                        <div class="uniformCard-header cursor-pointer uniformCardToggle">
+                            <div class="grid grid-center grid-nest">
+                                <div class="col-fill">
+                                    Header
+                                </div>
+                                <div class="uniformCard-icon">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                        <path d="M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z" fill="#000000"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uniformCard-collapse">
+                            <div class="uniformCard-body">
+                                Body
+                            </div>
+                            <div class="uniformCard-footer">
+                                Footer
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uniformCard uniformCard-accordion toggleExpanded">
+                        <div class="uniformCard-header cursor-pointer uniformCardToggle">
+                            <div class="grid grid-center grid-nest">
+                                <div class="col-fill">
+                                    Header
+                                </div>
+                                <div class="uniformCard-icon">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                        <path d="M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z" fill="#000000"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uniformCard-collapse">
+                            <div class="uniformCard-body">
+                                Body
+                            </div>
+                            <div class="uniformCard-footer">
+                                Footer
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uniformCard uniformCard-accordion toggleExpanded">
+                        <div class="uniformCard-header cursor-pointer uniformCardToggle">
+                            <div class="grid grid-center grid-nest">
+                                <div class="col-fill">
+                                    Header
+                                </div>
+                                <div class="uniformCard-icon">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                        <path d="M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z" fill="#000000"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uniformCard-collapse">
+                            <div class="uniformCard-body">
+                                Body
+                            </div>
+                            <div class="uniformCard-footer">
+                                Footer
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uniformCard uniformCard-accordion toggleExpanded">
+                        <div class="uniformCard-header cursor-pointer uniformCardToggle">
+                            <div class="grid grid-center grid-nest">
+                                <div class="col-fill">
+                                    Header
+                                </div>
+                                <div class="uniformCard-icon">
+                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+                                        <path d="M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z" fill="#000000"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uniformCard-collapse">
+                            <div class="uniformCard-body">
+                                Body
+                            </div>
+                            <div class="uniformCard-footer">
+                                Footer
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-6">
+                <pre><code class='javascript'>// Javascript
+$(&#39;.uniformCardToggle&#39;).click(function(){
+    $(this).parents(&#39;.uniformCard&#39;).toggleClass(&#39;expanded&#39;);
+});</code></pre>
+                <pre><code class=''>&lt;div class=&quot;uniformCard uniformCard-accordion toggleExpanded&quot;&gt;
+    &lt;div class=&quot;uniformCard-header cursor-pointer uniformCardToggle&quot;&gt;
+        &lt;div class=&quot;grid grid-center grid-nest&quot;&gt;
+            &lt;div class=&quot;col-fill&quot;&gt;
+                Header
+            &lt;/div&gt;
+            &lt;div class=&quot;uniformCard-icon&quot;&gt;
+                &lt;svg version=&quot;1.1&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot; width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 20 20&quot;&gt;
+                    &lt;path d=&quot;M2.582 5.601c-0.271-0.268-0.709-0.268-0.979 0-0.27 0.267-0.27 0.701 0 0.969l7.908 7.83c0.271 0.268 0.708 0.268 0.979 0l7.908-7.83c0.27-0.268 0.271-0.701 0-0.969s-0.71-0.268-0.979-0.001l-7.419 7.141-7.418-7.14z&quot; fill=&quot;#000000&quot;&gt;&lt;/path&gt;
+                &lt;/svg&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;uniformCard-collapse&quot;&gt;
+        &lt;div class=&quot;uniformCard-body&quot;&gt;
+            Body
+        &lt;/div&gt;
+        &lt;div class=&quot;uniformCard-footer&quot;&gt;
+            Footer
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                <p class="margin-v text-italic">
+                    Optionally, use js to animate toggle.
+                </p>
+                <pre><code class='javascript'>// Javascript
+$(window).on(&#39;expand-toggle&#39;, function (e){
+    var target = $(e.target).find(&#39;.uniformCard-collapse&#39;);
+    target.toggle(target.parents(&#39;.expanded&#39;).length == 0);
+    target.slideToggle(100);
+})</code></pre>
+            </div>
+        </div>
+    </div>
+    <div class="margin-v-2x border-top pad-top-2x">
+        <h3>Tile</h3>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="grid grid-gutter-none">
+                        <div class="uniformCard -tile col-6">
+                            <div class="uniformCard-body">
+                                <div class="uniformThumb width-100-p">
+                                    <div class="aspect-4x3">
+                                        <img src="http://mlb.mlb.com/documents/3/0/0/111209300/T_Red_3kf3eqmg.svg">
+                                    </div>
+                                </div>
+                                Body
+                            </div>
+                        </div>
+                        <div class="uniformCard -tile col-6">
+                            <div class="uniformCard-body">
+                                <div class="uniformThumb width-100-p">
+                                    <div class="aspect-4x3">
+                                        <img src="http://mlb.mlb.com/documents/9/8/4/111241984/MIN_header_logo_jafcibrj.svg">
+                                    </div>
+                                </div>
+                                Body
+                            </div>
+                        </div>
+                        <div class="uniformCard -tile col-6">
+                            <div class="uniformCard-body">
+                                <div class="uniformThumb width-100-p">
+                                    <div class="aspect-4x3">
+                                        <img src="http://mlb.mlb.com/documents/5/7/0/111220570/NYY_header_logo_jnivpoth.svg">
+                                    </div>
+                                </div>
+                                Body
+                            </div>
+                        </div>
+                        <div class="uniformCard -tile col-6">
+                            <div class="uniformCard-body">
+                                <div class="uniformThumb width-100-p">
+                                    <div class="aspect-4x3">
+                                        <img src="http://mlb.mlb.com/documents/3/0/0/111209300/T_Red_3kf3eqmg.svg">
+                                    </div>
+                                </div>
+                                Body
+                            </div>
+                        </div>
+                        <div class="uniformCard -tile col-6">
+                            <div class="uniformCard-body">
+                                <div class="uniformThumb width-100-p">
+                                    <div class="aspect-4x3">
+                                        <img src="http://mlb.mlb.com/documents/9/8/4/111241984/MIN_header_logo_jafcibrj.svg">
+                                    </div>
+                                </div>
+                                Body
+                            </div>
+                        </div>
+                        <div class="uniformCard -tile col-6">
+                            <div class="uniformCard-body">
+                                <div class="uniformThumb width-100-p">
+                                    <div class="aspect-4x3">
+                                        <img src="http://mlb.mlb.com/documents/5/7/0/111220570/NYY_header_logo_jnivpoth.svg">
+                                    </div>
+                                </div>
+                                Body
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <pre><code class=''>&lt;div class=&quot;uniformCard -tile col-6&quot;&gt;
+    &lt;div class=&quot;uniformCard-body&quot;&gt;
+        &lt;div class=&quot;uniformThumb width-100-p&quot;&gt;
+            &lt;div class=&quot;aspect-4x3&quot;&gt;
+                &lt;img src=&quot;...&quot;&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        Body
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+</div>  
+
+<script src="/assets/uniform.jquery-1ced2a8c4a0ef8525e9a8610eaf72675b17970617e546a5d3d7385b76538de72.js"></script>
+<script src="/assets/highlight.pack-3e49a73b616865fbdac2d7fd17c216bb591c07f493072d2759c6e4496653dcf6.js"></script>
+<script src="/assets/main-2e37b5e73ed2f65837fc2d4a61fd6c219ad6f9b72839d3ca9f8ea01704920f5e.js"></script>
+</body>
