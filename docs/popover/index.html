@@ -3,7 +3,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Uniform</title>
     
-    <link href="/assets/main-7c1d95a6299859b695e5590dfcafac8cd85b8c7fca971ef42c5191901e6702f9.css" rel="stylesheet" />
+    <link href="/assets/main-5a989462d0c822d7273bb7f4a323f880aadef7a85ef5549e76d46f95f0c523e2.css" rel="stylesheet" />
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static-assets/favicons/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static-assets/favicons/apple-touch-icon-114x114.png" />
@@ -117,12 +117,11 @@
         <button class="uniformButton js-toggle">Toggle Popovers</button>
         <script>
             var popovers = [];
-            $('.js-toggle').click(function(){
-                setTimeout(function(){
-                    popovers.forEach(function(popover){
-                        popover.toggle();
-                    });
-                }, 50)
+            $('.js-toggle').click(function(e){
+                e.preventDefault();
+                popovers.forEach(function(popover){
+                    popover.toggle();
+                });
             });
         </script>
     </p>
@@ -134,11 +133,13 @@
                     <script>
                         $(document).ready(function(){
                             setTimeout(function(){
-                                popovers.push(new Uniform.Popover({
+                                var popover = new Uniform.Popover({
                                     align: 'left top',
                                     anchor: document.getElementById('popover-0'),
                                     content: '<div class="bg-white pad border" id="p-0">content...</div>'
-                                }).render());
+                                }).render()
+                                popover.show();
+                                popovers.push(popover);
                             }, 200)
                         })
                     </script>
@@ -161,11 +162,13 @@
                     <script>
                         $(document).ready(function(){
                             setTimeout(function(){
-                                popovers.push(new Uniform.Popover({
+                                var popover = new Uniform.Popover({
                                     align: 'left center',
                                     anchor: document.getElementById('popover-1'),
                                     content: '<div class="bg-white pad border" id="p-1">content...</div>'
-                                }).render());
+                                }).render()
+                                popover.show();
+                                popovers.push(popover);
                             }, 200)
                         })
                     </script>
@@ -188,11 +191,13 @@
                     <script>
                         $(document).ready(function(){
                             setTimeout(function(){
-                                popovers.push(new Uniform.Popover({
+                                var popover = new Uniform.Popover({
                                     align: 'left bottom',
                                     anchor: document.getElementById('popover-2'),
                                     content: '<div class="bg-white pad border" id="p-2">content...</div>'
-                                }).render());
+                                }).render()
+                                popover.show();
+                                popovers.push(popover);
                             }, 200)
                         })
                     </script>
@@ -215,11 +220,13 @@
                     <script>
                         $(document).ready(function(){
                             setTimeout(function(){
-                                popovers.push(new Uniform.Popover({
+                                var popover = new Uniform.Popover({
                                     align: 'center top',
                                     anchor: document.getElementById('popover-3'),
                                     content: '<div class="bg-white pad border" id="p-3">content...</div>'
-                                }).render());
+                                }).render()
+                                popover.show();
+                                popovers.push(popover);
                             }, 200)
                         })
                     </script>
@@ -242,11 +249,13 @@
                     <script>
                         $(document).ready(function(){
                             setTimeout(function(){
-                                popovers.push(new Uniform.Popover({
+                                var popover = new Uniform.Popover({
                                     align: 'center center',
                                     anchor: document.getElementById('popover-4'),
                                     content: '<div class="bg-white pad border" id="p-4">content...</div>'
-                                }).render());
+                                }).render()
+                                popover.show();
+                                popovers.push(popover);
                             }, 200)
                         })
                     </script>
@@ -269,11 +278,13 @@
                     <script>
                         $(document).ready(function(){
                             setTimeout(function(){
-                                popovers.push(new Uniform.Popover({
+                                var popover = new Uniform.Popover({
                                     align: 'center bottom',
                                     anchor: document.getElementById('popover-5'),
                                     content: '<div class="bg-white pad border" id="p-5">content...</div>'
-                                }).render());
+                                }).render()
+                                popover.show();
+                                popovers.push(popover);
                             }, 200)
                         })
                     </script>
@@ -296,11 +307,13 @@
                     <script>
                         $(document).ready(function(){
                             setTimeout(function(){
-                                popovers.push(new Uniform.Popover({
+                                var popover = new Uniform.Popover({
                                     align: 'right top',
                                     anchor: document.getElementById('popover-6'),
                                     content: '<div class="bg-white pad border" id="p-6">content...</div>'
-                                }).render());
+                                }).render()
+                                popover.show();
+                                popovers.push(popover);
                             }, 200)
                         })
                     </script>
@@ -323,11 +336,13 @@
                     <script>
                         $(document).ready(function(){
                             setTimeout(function(){
-                                popovers.push(new Uniform.Popover({
+                                var popover = new Uniform.Popover({
                                     align: 'right center',
                                     anchor: document.getElementById('popover-7'),
                                     content: '<div class="bg-white pad border" id="p-7">content...</div>'
-                                }).render());
+                                }).render()
+                                popover.show();
+                                popovers.push(popover);
                             }, 200)
                         })
                     </script>
@@ -350,11 +365,13 @@
                     <script>
                         $(document).ready(function(){
                             setTimeout(function(){
-                                popovers.push(new Uniform.Popover({
+                                var popover = new Uniform.Popover({
                                     align: 'right bottom',
                                     anchor: document.getElementById('popover-8'),
                                     content: '<div class="bg-white pad border" id="p-8">content...</div>'
-                                }).render());
+                                }).render()
+                                popover.show();
+                                popovers.push(popover);
                             }, 200)
                         })
                     </script>
@@ -388,11 +405,13 @@
             <script>
                 $(document).ready(function(){
                     setTimeout(function(){
-                        popovers.push(new Uniform.Popover({
+                        var popover = new Uniform.Popover({
                             align: 'right bottom',
                             anchor: document.getElementById('popover-asd'),
                             content: '<div class="bg-white pad border" id="p-asd">content...</div>'
-                        }).render());
+                        }).render()
+                        popover.show();
+                        popovers.push(popover);
                     }, 200)
                 })
             </script>
@@ -401,7 +420,7 @@
 </div>
 </div>  
 
-<script src="/assets/uniform.jquery-1ced2a8c4a0ef8525e9a8610eaf72675b17970617e546a5d3d7385b76538de72.js"></script>
+<script src="/assets/uniform.jquery-d74036b8fb84a4eafc42ae349ba9686cdf42c65550dc23e5cd4ad8d9b5a39f8e.js"></script>
 <script src="/assets/highlight.pack-3e49a73b616865fbdac2d7fd17c216bb591c07f493072d2759c6e4496653dcf6.js"></script>
 <script src="/assets/main-2e37b5e73ed2f65837fc2d4a61fd6c219ad6f9b72839d3ca9f8ea01704920f5e.js"></script>
 </body>

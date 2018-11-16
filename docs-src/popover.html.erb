@@ -8,12 +8,11 @@
         <button class="uniformButton js-toggle">Toggle Popovers</button>
         <script>
             var popovers = [];
-            $('.js-toggle').click(function(){
-                setTimeout(function(){
-                    popovers.forEach(function(popover){
-                        popover.toggle();
-                    });
-                }, 50)
+            $('.js-toggle').click(function(e){
+                e.preventDefault();
+                popovers.forEach(function(popover){
+                    popover.toggle();
+                });
             });
         </script>
     </p>
@@ -28,11 +27,12 @@
                     <script>
                         $(document).ready(function(){
                             setTimeout(function(){
-                                popovers.push(new Uniform.Popover({
+                                var popover = new Uniform.Popover({
                                     align: '<%= horizontal %> <%= vertical %>',
                                     anchor: document.getElementById('popover-<%= i %>'),
                                     content: '<div class="bg-white pad border" id="p-<%= i %>">content...</div>'
-                                }).render());
+                                }).render()
+                                popovers.push(popover);
                             }, 200)
                         })
                     </script>
@@ -81,11 +81,12 @@
             <script>
                 $(document).ready(function(){
                     setTimeout(function(){
-                        popovers.push(new Uniform.Popover({
+                        var popover = new Uniform.Popover({
                             align: 'right bottom',
                             anchor: document.getElementById('popover-asd'),
                             content: '<div class="bg-white pad border" id="p-asd">content...</div>'
-                        }).render());
+                        }).render()
+                        popovers.push(popover);
                     }, 200)
                 })
             </script>
