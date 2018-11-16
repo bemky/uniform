@@ -25,31 +25,32 @@
     &.square{
         border-radius: 0;
     }
-    .uniformDropdown-pointer{
-        @include size-rule('md'){
-            position:absolute;
-            bottom: 100%;
-            left: 50%;
-            margin-left: -1em;
-            width: 2em;
-            height: 2em;
-            overflow: hidden;
-            &:after{
-                content: "";
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                background: white;
-                transform: rotate(-45deg);
-                top: 85%;
-                left: 0;
-                box-shadow: 0 1px 3px 2px rgba(black, 0.2);
-            }
-        }
-    }
     &.has-pointer{
         @include size-rule('md'){
             margin-top:1em;
+        }
+    }
+}
+
+.uniformDropdown-pointer{
+    @include size-rule('md'){
+        position:absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -1em;
+        width: 2em;
+        height: 2em;
+        overflow: hidden;
+        &:after{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            transform: rotate(-45deg);
+            top: 85%;
+            left: 0;
+            box-shadow: 0 1px 3px 2px rgba(black, 0.2);
         }
     }
 }
