@@ -1,5 +1,8 @@
 # Change Log
 
+##2.3.1
+- new loader animation and template
+
 ##2.3
 - new gray spectrum: lightest, lighter, light, gray, dark, darker, darkest
 

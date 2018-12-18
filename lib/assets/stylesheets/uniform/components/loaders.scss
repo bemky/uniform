@@ -4,32 +4,34 @@
     white-space:nowrap;
     letter-spacing:-.05em;
     span{
-        color:rgba(black, 1);
-        text-shadow:-1px -1px 0 rgba(#FFFFFF, .2);
-        animation: uniformLoader-light 1s infinite linear;
-        animation-delay: 0.2s;
+        width: 1em;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        &:before{
+            animation: uniformLoader 1.4s infinite ease-in-out both;
+            animation-delay: 0.3s;
+            line-height: 0;
+            vertical-align: middle;
+            display: inline-block;
+            width: 80%;
+            content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104 104'><circle cx='52' cy='52' r='52' fill='white'/><circle cx='50' cy='50' r='50' fill='black'/></svg>")
+        }
     }
-    span:first-of-type{
+    span:first-of-type:before{
         animation-delay: 0s;
     }
-    span:last-of-type{
-        animation-delay: 0.4s;
+    span:last-of-type:before{
+        animation-delay: 0.6s;
     }
     .uniformLoader-container{
         white-space:nowrap;
     }
     &.-light{
         span{
-            color:rgba(white, 1);
-            text-shadow:-1px -1px 0 rgba(black, .2);
-            animation: uniformLoader 1s infinite linear;
-            animation-delay: 0.2s;
-        }
-        span:first-of-type{
-            animation-delay: 0s;
-        }
-        span:last-of-type{
-            animation-delay: 0.4s;
+            &:before{
+                content: url("data:image/svg+xml; utf8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 104 104'><circle cx='52' cy='52' r='52' fill='black'/><circle cx='54' cy='54' r='50' fill='white'/></svg>")
+            }
         }
     }
     &.-cover{
@@ -55,26 +57,21 @@
         }
     }
 }
-@keyframes uniformLoader {
-  0% {
-    color: rgba(255, 255, 255, 0);
-  }
-  25% {
-    color: white;
-  }
-  100% {
-    color: white;
-  }
-}
 
-@keyframes uniformLoader-light {
-  0% {
-    color: black;
-  }
-  25% {
-    color: rgba(0, 0, 0, 0.2);
-  }
-  100% {
-    color: rgba(0, 0, 0, 0.2);
-  }
+@keyframes uniformLoader {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+    35%{
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100%{
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
 }
