@@ -1,7 +1,8 @@
 @each $key, $value in $colors {
     .text-#{$key} {               color: $value !important;}
     .a-hover-#{$key} a:hover {    color: $value !important;}
-    .hover-#{$key} :hover {       color: $value !important;}
+    .hover-#{$key}:hover {       color: $value !important;}
+    .bg-hover-#{$key}:hover {       background-color: $value !important;}
     .bg-#{$key} {                 background-color: $value !important;}
     .a-#{$key} a {
         color: $value;
