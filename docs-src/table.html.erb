@@ -140,5 +140,35 @@
             <% end %>
             <%= block %>
         </div>
+        <div class="col-6-md">
+            <div class="bg-white border rounded overflow-hidden">
+                <table class="uniformTableDotLeaders width-100-p">
+                    <tr>
+                        <th>Cell 1</th>
+                        <td>Cell 2</td>
+                    </tr>
+                    <tr>
+                        <th>Cell 4</th>
+                        <td>Cell 5</td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+        <div class="col-6-md">
+            <% block = html_block do %>
+            <table class="uniformTableDotLeaders width-100-p">
+                <tr>
+                    <th>Cell 1</th>
+                    <td>Cell 2</td>
+                </tr>
+                <tr>
+                    <th>Cell 4</th>
+                    <td>Cell 5</td>
+                </tr>
+            </table>
+            <% end %>
+            <%= block %>
+        </div>
     </div>
 </div>

@@ -32,7 +32,7 @@
 }
 .uniformCheckbox-indicator{
     &::before{
-        background-image: url("data:image/svg+xml; utf8,#{icon-check(#FFFFFF)}");
+        background-image: icon-check(#FFFFFF);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: 80%;

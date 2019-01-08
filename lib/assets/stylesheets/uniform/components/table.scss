@@ -108,7 +108,7 @@
         padding-left:0.5em;
     }
     th{
-        background: url("data:image/svg+xml; utf8,#{icon-circle(6, 8, 1, color('gray'))}");
+        background: icon-circle(6, 8, 1, color('gray'));
         background-repeat: repeat-x;
         background-position: left bottom;
         span{
