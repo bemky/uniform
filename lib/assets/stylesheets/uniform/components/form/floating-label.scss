@@ -33,6 +33,7 @@
     
     &.enabled{
         label{
+            white-space: nowrap;
             transition: font-size 0.1s, line-height 0.1s, opacity 0.1s;
         }
     }
