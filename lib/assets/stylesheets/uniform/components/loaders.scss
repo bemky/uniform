@@ -50,6 +50,9 @@
         &.-light{
             background:rgba(black, .5);
         }
+        &.transparent{
+            background: none;
+        }
     }
     &.-top{
         .uniformLoader-container{
