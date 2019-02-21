@@ -20,6 +20,9 @@
 .text-caps{
     text-transform: uppercase;
 }
+.text-boldest{
+    font-weight: 900;
+}
 .text-bold{
     font-weight: 700;
 }
@@ -39,6 +42,14 @@
     text-decoration: none;
     a{
         text-decoration: none;
+    }
+}
+.text-underline{
+    text-decoration: underline;
+}
+.hover-underline{
+    &:hover{
+        text-decoration: underline;
     }
 }
 
