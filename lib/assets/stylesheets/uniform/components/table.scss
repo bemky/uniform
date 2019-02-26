@@ -54,7 +54,7 @@
     .head > *,
     thead th{
         color: color('gray-dark');
-        border-bottom: 1px solid color('gray') !important;
+        border-bottom: 1px solid color('gray');
     }
     
     .head.dark > *,
@@ -67,6 +67,13 @@
     &.middle > *,
     .middle{
         vertical-align:middle;
+    }
+    
+    tr.bottom > td,
+    td.bottom,
+    &.bottom > *,
+    .bottom{
+        vertical-align:bottom;
     }
 
     tr.top > td,
