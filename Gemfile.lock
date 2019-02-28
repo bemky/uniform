@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/malomalo/condenser.git
-  revision: 1b3809fdd098a912f49d4a7c7dd8ddb83bc994d6
+  revision: f227cab60cefd63b9f2b50df412ca9016b179f40
   specs:
     condenser (0.0.4)
       erubi (~> 1.0)
@@ -37,7 +37,7 @@ GEM
     concurrent-ruby (1.0.5)
     contracts (0.13.0)
     dotenv (2.5.0)
-    erubi (1.7.1)
+    erubi (1.8.0)
     erubis (2.7.0)
     execjs (2.7.0)
     fast_blank (1.0.0)
@@ -100,7 +100,7 @@ GEM
       activesupport (>= 3.1)
     parallel (1.12.1)
     public_suffix (3.0.3)
-    rack (2.0.5)
+    rack (2.0.6)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
