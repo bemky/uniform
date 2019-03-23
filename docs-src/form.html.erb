@@ -245,15 +245,37 @@
     
     
     <div class="margin-v-2x">
-        <h3>uniforTristate <span class="uniformLabel text-smaller -yellow-dark text-normal">js required</span></h3>
+        <h3>uniformTristate <span class="uniformLabel text-smaller -yellow-dark text-normal">js required</span></h3>
         <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
         <div class="grid grid-nest">
             <div class="col-6">
+                <label for="group-name">
                 <div class="uniformTristate">
-                    <input type="radio" name="group-name" value="true">
-                    <input type="radio" name="group-name" value="null">
-                    <input type="radio" name="group-name" value="false">
+                    <input type="radio" name="group-name" id="group-name" value="true">
+                    <input type="radio" name="group-name" id="group-name" value="null">
+                    <input type="radio" name="group-name" id="group-name" value="false">
                 </div>
+                Should this be true?
+                </label>
+                <br><br>
+                <label for="group-name-1" class="text-large">
+                <div class="uniformTristate">
+                    <input type="radio" name="group-name-1" id="group-name-1" value="true">
+                    <input type="radio" name="group-name-1" id="group-name-1" value="null">
+                    <input type="radio" name="group-name-1" id="group-name-1" value="false">
+                </div>
+                Should this be true?
+                </label>
+                <br><br>
+                <label for="group-name-2" class="text-larger">
+                <div class="uniformTristate">
+                    <input type="radio" name="group-name-2" id="group-name-2" value="true">
+                    <input type="radio" name="group-name-2" id="group-name-2" value="null">
+                    <input type="radio" name="group-name-2" id="group-name-2" value="false">
+                </div>
+                Should this be true?
+                </label>
+                
             </div>
             <div class="col-6">
                 <% block = html_block class:"html" do %>
