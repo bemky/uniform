@@ -56,3 +56,7 @@
     @return map-get($colors, $key);
 }
 
+@function icon-x-block($size: 32, $color: #000000){
+    
+    @return svg-encode('<svg width="#{$size}px" height="#{$size}px"  fill="#{$color}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.48 10.49"><path d="M10.53,2.05a1,1,0,0,1,1.42,0,1,1,0,0,1,0,1.41L3.46,12a1,1,0,0,1-1.41-1.42Z" transform="translate(-1.76 -1.75)"/><path d="M11.94,10.54A1,1,0,0,1,12,12h0a1,1,0,0,1-1.41,0L2.05,3.47a1,1,0,0,1,0-1.42h0a1,1,0,0,1,1.41,0Z" transform="translate(-1.76 -1.75)"/></svg>');
+}

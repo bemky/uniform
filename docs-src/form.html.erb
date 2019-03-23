@@ -245,6 +245,35 @@
     
     
     <div class="margin-v-2x">
+        <h3>uniforTristate <span class="uniformLabel text-smaller -yellow-dark text-normal">js required</span></h3>
+        <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <div class="uniformTristate">
+                    <input type="radio" name="group-name" value="true">
+                    <input type="radio" name="group-name" value="null">
+                    <input type="radio" name="group-name" value="false">
+                </div>
+            </div>
+            <div class="col-6">
+                <% block = html_block class:"html" do %>
+                <div class="uniformTristate">
+                    <input type="radio" name="group-name" value="true">
+                    <input type="radio" name="group-name" value="null">
+                    <input type="radio" name="group-name" value="false">
+                </div>
+                <% end %>
+                <%= block %>
+                <% block = html_block class:"javascript" do %>
+                    $('.uniformTristate').uniformTristate()
+                <% end %>
+                <%= block %>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="margin-v-2x">
         <h3>uniformFloatingLabel <span class="uniformLabel text-smaller -yellow-dark text-normal">js required</span></h3>
         <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
         <div class="grid grid-nest">

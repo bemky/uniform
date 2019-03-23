@@ -8,6 +8,7 @@ $(document).ready(function(){
     $('.uniformResizer').uniformResizer();
     $('.launchUniformModal').uniformModal();
     $('.uniformFloatingLabel').uniformFloatingLabel();
+    $('.uniformTristate').uniformTristate()
 
     $('.uniformCardToggle').click(function(){
         $(this).parents('.uniformCard').toggleClass('expanded').trigger('expand-toggle');
