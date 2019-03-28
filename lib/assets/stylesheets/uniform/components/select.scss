@@ -36,6 +36,43 @@ select.uniformSelect{
             }
         }
     }
+    .uniformSelect-selection{
+        font-size: 0.8em;
+        padding: 0.1em;
+        padding-left: 0.2em;
+        border: 1px solid color('gray');
+        background: color('gray-lighter');
+        display:inline-block;
+        border-radius: 0.25em;
+    }
+    .uniformSelect-remove{
+        display: inline-block;
+        width: 1em;
+        height: 0.8em;
+        margin-left: 0.25em;
+        position: relative;
+        &:after,
+        &:before{
+            content: "";
+            width: 1px;
+            height: 1em;
+            transform-origin: 50% 50%;
+            transform: rotate(-45deg);
+            background: color('gray');
+            position:absolute;
+            left: 50%;
+            top: 0;
+        }
+        &:before{
+            transform: rotate(45deg);
+        }
+        &:hover{
+            &:after,
+            &:before{
+                background: color('red');
+            }
+        }
+    }
 }
 
 .uniformSelect-options{

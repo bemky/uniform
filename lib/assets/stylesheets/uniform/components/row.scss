@@ -18,6 +18,11 @@
         .uniformRow{
             display: table-row;
         }
+        &.-nest{
+            border-left: none;
+            border-right: none;
+            border-bottom: none;
+        }
     }
     .uniformRow{
         display: table;
