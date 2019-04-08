@@ -16,6 +16,19 @@
         display:table-row;
     }
 }
+.cell-top{
+    vertical-align: top;
+    td, th{
+        vertical-align: top;
+    }
+}
+
+.cell-middle{
+    vertical-align: middle;
+    td, th{
+        vertical-align: middle;
+    }
+}
 
 .uniformTable{
     width:100%;
@@ -106,15 +119,22 @@
 .uniformTableDotLeaders{
     line-height: 1;
     table-layout: fixed;
-    td, th{
+    & > * > td,
+    & > * > * > td,
+    & > * > th,
+    & > * > * > th{
         padding-top:0.3em;
         padding-bottom: 0.3em;
         vertical-align:bottom;
     }
-    td{
+
+    & > * > td,
+    & > * > * > td{
         padding-left:0.5em;
     }
-    th{
+
+    & > * > th,
+    & > * > * > th{
         background: icon-circle(6, 8, 1, color('gray'));
         background-repeat: repeat-x;
         background-position: left bottom;
@@ -124,13 +144,14 @@
             position: relative;
         }
     }
-    thead{
-        th{
+    & > thead{
+        & > * > th{
             background:none;
         }
     }
     &.bg-background{
-        th{
+        & > * > th,
+        & > * > * > th{
             background-image:radial-gradient(black 1px, color('background') 0px);
             span{
                 background-color: color('background');

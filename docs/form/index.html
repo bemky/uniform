@@ -3,7 +3,7 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Uniform</title>
     
-    <link href="/assets/main-b0b9e2cdb525ae2bc2ba2a418f261c2dca02cb50eeb2185c5a6b6d151a4139db.css" rel="stylesheet" />
+    <link href="/assets/main-c94372db06aabbfdad2bfe629e0e2c2f3ae61f871d4b5e329e34fe9e8f968437.css" rel="stylesheet" />
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static-assets/favicons/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static-assets/favicons/apple-touch-icon-114x114.png" />
@@ -321,6 +321,51 @@ $(&#39;.uniformRadio&#39;).uniformRadio();</code></pre>
     
     
     <div class="margin-v-2x">
+        <h3>uniformTristate <span class="uniformLabel text-smaller -yellow-dark text-normal">js required</span></h3>
+        <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
+        <div class="grid grid-nest">
+            <div class="col-6">
+                <label for="group-name">
+                <div class="uniformTristate">
+                    <input type="radio" name="group-name" id="group-name" value="true">
+                    <input type="radio" name="group-name" id="group-name" value="null">
+                    <input type="radio" name="group-name" id="group-name" value="false">
+                </div>
+                Should this be true?
+                </label>
+                <br><br>
+                <label for="group-name-1" class="text-large">
+                <div class="uniformTristate">
+                    <input type="radio" name="group-name-1" id="group-name-1" value="true">
+                    <input type="radio" name="group-name-1" id="group-name-1" value="null">
+                    <input type="radio" name="group-name-1" id="group-name-1" value="false">
+                </div>
+                Should this be true?
+                </label>
+                <br><br>
+                <label for="group-name-2" class="text-larger">
+                <div class="uniformTristate">
+                    <input type="radio" name="group-name-2" id="group-name-2" value="true">
+                    <input type="radio" name="group-name-2" id="group-name-2" value="null">
+                    <input type="radio" name="group-name-2" id="group-name-2" value="false">
+                </div>
+                Should this be true?
+                </label>
+                
+            </div>
+            <div class="col-6">
+                <pre><code class='html'>&lt;div class=&quot;uniformTristate&quot;&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;group-name&quot; value=&quot;true&quot;&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;group-name&quot; value=&quot;null&quot;&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;group-name&quot; value=&quot;false&quot;&gt;
+&lt;/div&gt;</code></pre>
+                <pre><code class='javascript'>$(&#39;.uniformTristate&#39;).uniformTristate()</code></pre>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="margin-v-2x">
         <h3>uniformFloatingLabel <span class="uniformLabel text-smaller -yellow-dark text-normal">js required</span></h3>
         <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
         <div class="grid grid-nest">
@@ -383,7 +428,7 @@ $(&#39;.uniformInputGroup&#39;).on(&#39;blur&#39;, &#39;input&#39;, function (e)
 </div>
 </div>  
 
-<script src="/assets/uniform.jquery-bf52923634309b2243e2269fb5dd7e27868d6ed060bfa7be63c2a2e53f29d863.js"></script>
+<script src="/assets/uniform.jquery-b2435702bc4bc1e19f94227d9b528383ce54dd58383171e4e5cc1a556155bcb5.js"></script>
 <script src="/assets/highlight.pack-3e49a73b616865fbdac2d7fd17c216bb591c07f493072d2759c6e4496653dcf6.js"></script>
-<script src="/assets/main-2e37b5e73ed2f65837fc2d4a61fd6c219ad6f9b72839d3ca9f8ea01704920f5e.js"></script>
+<script src="/assets/main-c60146c2e283ad35e2e0bb5b1dc4321432b4b84dcc675fa3d1e4b4dc154fb2b2.js"></script>
 </body>
