@@ -104,7 +104,7 @@
     
     .row:last-of-type,
     tr:last-of-type{
-        td{
+        td, th{
             border-bottom: none;
         }
     }
