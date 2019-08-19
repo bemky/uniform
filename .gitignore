@@ -2,6 +2,7 @@
 .cache
 .DS_Store
 .sass-cache
+.gem
 tmp/
 node_modules/
 build/
