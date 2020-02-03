@@ -15,7 +15,7 @@
     }
 }
 
-@for $i from 1 through 20 {
+@for $i from 0 through 20 {
     .opacity-#{$i * 5}     { opacity: #{$i * 5 / 100.0}; }
 }
 
