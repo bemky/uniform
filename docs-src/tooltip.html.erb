@@ -22,5 +22,19 @@ The Infield Fly Rule <span class="uniformLabel -fill uniformTooltip pointer" dat
             <% end %>
             <%= block %>
         </div>
+        
+    </div>
+    <div class="grid-md margin-top-4x">
+        <div class="col-6-md">
+            <h3>With Container Option</h3>
+            The Infield Fly Rule <span class="uniformLabel -fill uniformTooltip pointer" data-tooltip-container=".section" data-tooltip-message="Trust me this is real.">?</span>
+            
+        </div>
+        <div class="col-6-md">
+            <% block = html_block do %>
+The Infield Fly Rule <span class="uniformLabel -fill uniformTooltip pointer" data-tooltip-container=".section" data-tooltip-message="Trust me this is real.">?</span>
+            <% end %>
+            <%= block %>
+        </div>
     </div>
 </div>
