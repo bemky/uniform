@@ -30,7 +30,7 @@
                                 var popover = new Uniform.Popover({
                                     align: '<%= horizontal %> <%= vertical %>',
                                     anchor: document.getElementById('popover-<%= i %>'),
-                                    content: '<div class="bg-white pad border" id="p-<%= i %>">content...</div>'
+                                    content: '<div class="bg-white pad border" id="p-<%= i %>">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
                                 }).render()
                                 popovers.push(popover);
                             }, 200)
@@ -92,4 +92,46 @@
             </script>
         </div>
     </div>
+    <div id="popover-container">
+    <div class="grid-md grid-nest">
+        <div class="col-6-md margin-bottom-4x">
+            <div class="pad border-dashed" id="popover-001">
+                Target with container <code>container: document.getElementById('popover-container')</code>
+            </div>
+            <script>
+                $(document).ready(function(){
+                    setTimeout(function(){
+                        var popover = new Uniform.Popover({
+                            align: 'center top',
+                            container: document.getElementById('popover-container'),
+                            anchor: document.getElementById('popover-001'),
+                            content: '<div class="bg-white pad border" id="p-001">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
+                        }).render()
+                        popovers.push(popover);
+                    }, 200)
+                })
+            </script>
+        </div>
+        <div class="col-6-md margin-bottom-4x">
+            <% block = html_block do %>
+                <div class="pad border-dashed" id="popover-001">
+                    Target
+                </div>
+            <% end %>
+            <%= block %>
+
+            <% block = html_block class: 'javascript' do %>
+            new Uniform.Popover({
+                align: 'center top',
+                container: document.getElementById('popover-container'),
+                anchor: document.getElementById('popover-001'),
+                content: '<div class="bg-white pad border" id="p-001">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
+            }).render()
+            popovers.push(popover);
+            <% end %>
+            <%= block %>
+        </div>
+    </div>
+    </div>
+    
 </div>
