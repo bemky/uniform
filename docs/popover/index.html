@@ -138,7 +138,7 @@
                                 var popover = new Uniform.Popover({
                                     align: 'left top',
                                     anchor: document.getElementById('popover-0'),
-                                    content: '<div class="bg-white pad border" id="p-0">content...</div>'
+                                    content: '<div class="bg-white pad border" id="p-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
                                 }).render()
                                 popovers.push(popover);
                             }, 200)
@@ -166,7 +166,7 @@
                                 var popover = new Uniform.Popover({
                                     align: 'left center',
                                     anchor: document.getElementById('popover-1'),
-                                    content: '<div class="bg-white pad border" id="p-1">content...</div>'
+                                    content: '<div class="bg-white pad border" id="p-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
                                 }).render()
                                 popovers.push(popover);
                             }, 200)
@@ -194,7 +194,7 @@
                                 var popover = new Uniform.Popover({
                                     align: 'left bottom',
                                     anchor: document.getElementById('popover-2'),
-                                    content: '<div class="bg-white pad border" id="p-2">content...</div>'
+                                    content: '<div class="bg-white pad border" id="p-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
                                 }).render()
                                 popovers.push(popover);
                             }, 200)
@@ -222,7 +222,7 @@
                                 var popover = new Uniform.Popover({
                                     align: 'center top',
                                     anchor: document.getElementById('popover-3'),
-                                    content: '<div class="bg-white pad border" id="p-3">content...</div>'
+                                    content: '<div class="bg-white pad border" id="p-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
                                 }).render()
                                 popovers.push(popover);
                             }, 200)
@@ -250,7 +250,7 @@
                                 var popover = new Uniform.Popover({
                                     align: 'center center',
                                     anchor: document.getElementById('popover-4'),
-                                    content: '<div class="bg-white pad border" id="p-4">content...</div>'
+                                    content: '<div class="bg-white pad border" id="p-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
                                 }).render()
                                 popovers.push(popover);
                             }, 200)
@@ -278,7 +278,7 @@
                                 var popover = new Uniform.Popover({
                                     align: 'center bottom',
                                     anchor: document.getElementById('popover-5'),
-                                    content: '<div class="bg-white pad border" id="p-5">content...</div>'
+                                    content: '<div class="bg-white pad border" id="p-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
                                 }).render()
                                 popovers.push(popover);
                             }, 200)
@@ -306,7 +306,7 @@
                                 var popover = new Uniform.Popover({
                                     align: 'right top',
                                     anchor: document.getElementById('popover-6'),
-                                    content: '<div class="bg-white pad border" id="p-6">content...</div>'
+                                    content: '<div class="bg-white pad border" id="p-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
                                 }).render()
                                 popovers.push(popover);
                             }, 200)
@@ -334,7 +334,7 @@
                                 var popover = new Uniform.Popover({
                                     align: 'right center',
                                     anchor: document.getElementById('popover-7'),
-                                    content: '<div class="bg-white pad border" id="p-7">content...</div>'
+                                    content: '<div class="bg-white pad border" id="p-7">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
                                 }).render()
                                 popovers.push(popover);
                             }, 200)
@@ -362,7 +362,7 @@
                                 var popover = new Uniform.Popover({
                                     align: 'right bottom',
                                     anchor: document.getElementById('popover-8'),
-                                    content: '<div class="bg-white pad border" id="p-8">content...</div>'
+                                    content: '<div class="bg-white pad border" id="p-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
                                 }).render()
                                 popovers.push(popover);
                             }, 200)
@@ -409,10 +409,46 @@
             </script>
         </div>
     </div>
+    <div id="popover-container">
+    <div class="grid-md grid-nest">
+        <div class="col-6-md margin-bottom-4x">
+            <div class="pad border-dashed" id="popover-001">
+                Target with container <code>container: document.getElementById('popover-container')</code>
+            </div>
+            <script>
+                $(document).ready(function(){
+                    setTimeout(function(){
+                        var popover = new Uniform.Popover({
+                            align: 'center top',
+                            container: document.getElementById('popover-container'),
+                            anchor: document.getElementById('popover-001'),
+                            content: '<div class="bg-white pad border" id="p-001">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
+                        }).render()
+                        popovers.push(popover);
+                    }, 200)
+                })
+            </script>
+        </div>
+        <div class="col-6-md margin-bottom-4x">
+            <pre><code class=''>&lt;div class=&quot;pad border-dashed&quot; id=&quot;popover-001&quot;&gt;
+    Target
+&lt;/div&gt;</code></pre>
+
+            <pre><code class='javascript'>new Uniform.Popover({
+    align: &#39;center top&#39;,
+    container: document.getElementById(&#39;popover-container&#39;),
+    anchor: document.getElementById(&#39;popover-001&#39;),
+    content: &#39;&lt;div class=&quot;bg-white pad border&quot; id=&quot;p-001&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.&lt;/div&gt;&#39;
+}).render()
+popovers.push(popover);</code></pre>
+        </div>
+    </div>
+    </div>
+    
 </div>
 </div>  
 
-<script src="/assets/uniform.jquery-358a75080195adf544db7957c84637bc5933eb7438c36cb06a92938c35990bb5.js"></script>
+<script src="/assets/uniform.jquery-25bc556403a0b0b7ae2caf4a17b7b10a13da66c35f02a19f994eb500dbb22e6a.js"></script>
 <script src="/assets/highlight.pack-3e49a73b616865fbdac2d7fd17c216bb591c07f493072d2759c6e4496653dcf6.js"></script>
 <script src="/assets/main-c60146c2e283ad35e2e0bb5b1dc4321432b4b84dcc675fa3d1e4b4dc154fb2b2.js"></script>
 </body>
