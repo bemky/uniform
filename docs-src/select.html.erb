@@ -119,6 +119,24 @@
         </div>
     </div>
     
+    <div class="margin-v">
+        <button class="modal-example uniformButton">
+            Launch Modal with Select
+        </button>
+    </div>
+    <script>
+        $('.modal-example').on('click', function () {
+            var modal = new Uniform.Modal({
+                content: "<div class='pad'><select><option>1</option><option>2</option><option>3</option></select></div>"
+            }).render();
+            
+            var select = new Uniform.Select({
+                el: $(modal.el).find('select')[0],
+                container: modal.el
+            }).render();
+        })
+    </script>
+    
     <h3>Responsive</h3>
     <p>On mobile dropdown of options becomes full screen modal of options.</p>
     <img src="<%= asset_path("select-view-mobile.png") %>" class="inline-block max-width-200-px border">

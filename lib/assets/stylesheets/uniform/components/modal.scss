@@ -29,13 +29,22 @@
     &.-fill{
         width: 90%;
     }
+    &.-reset{
+        margin: -2em;
+        max-width: none;
+        border-radius: 0;
+        &.-fill{
+            width: 100%;
+        }
+    }
 }
 
 .uniformModal-close{
+    z-index: 2;
     position: absolute;
     padding: 0.3em;
-    top: -2rem;
-    right: -2rem;
+    top: 0;
+    right: 0;
     font-size:1.5em;
     color: white;
     opacity: 0.5;
