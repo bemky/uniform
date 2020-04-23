@@ -33,6 +33,23 @@
             <% end %>
             <%= block %>
         </div>
+        <div class="col-6-md margin-bottom">
+            <select class="uniformSelect">
+                <option></option>
+                <option>Option 2 adsa asdf asd asdf asdfsafd </option>
+                <option>Option 3</option>
+            </select>
+        </div>
+        <div class="col-6-md">
+            <% block = html_block class:"html" do %>
+                <select class='uniformSelect'>
+                    <option></option>
+                    <option>Option 2</option>
+                    <option>Option 3</option>
+                </select>
+            <% end %>
+            <%= block %>
+        </div>
         <div class="col-6-md">
             <code>multiple</code>
             <select class="uniformSelect" multiple>
