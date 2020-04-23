@@ -1,6 +1,6 @@
 {
   "name": "uniform-ui",
-  "version": "2.3.6",
+  "version": "2.3.7",
   "description": "Sass components and helpers for building a UI.",
   "main": "lib/assets/javascript/uniform.js",
   "directories": {
