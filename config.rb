@@ -92,7 +92,7 @@ helpers do
         'black':              '#000000',
         'white':              '#FFFFFF',
       }
-    end
+  end
 end
 
 # Build-specific configuration
