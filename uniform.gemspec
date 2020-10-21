@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["benehmke@gmail.com"]
   s.homepage    = "http://bemky.github.io/uniform/"
   s.summary     = %q{Sass UI}
-  s.description = %q{Sass components and helpers for building a UI.}
+  s.description = %q{Sass components and utilities for building a UI.}
   s.license     = "MIT"
 
   s.files         = Dir["lib/**/*"].select { |fn| File.file?(fn) }

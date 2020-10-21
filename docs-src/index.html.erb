@@ -84,7 +84,7 @@
     // - or -
     // ------
     @import 'uniform/base'; // required<% (Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss functions.scss mixins.scss base.scss).include?(x)}.to_a +
-        Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'helpers')).map{|x| "helpers/#{x}"}.to_a +
+        Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'utilities')).map{|x| "utilities/#{x}"}.to_a +
         Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
     @import 'uniform/<%= x.remove('.scss') %>';<% end %>
     <% end %>
