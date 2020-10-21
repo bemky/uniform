@@ -1,10 +1,6 @@
-@import 'uniform/functions';
-@import 'uniform/variables';
-
-@import 'uniform/mixins';
+@import 'uniform/base';
 @import 'uniform/defaults';
 
-@import 'uniform/components';
 @import 'uniform/components/*';
 
 @import 'uniform/utilities';
