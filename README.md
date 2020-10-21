@@ -3,7 +3,7 @@
         <img src="https://raw.githubusercontent.com/bemky/uniform/master/docs-src/assets/images/logo.png" width="400" alt="Uniform UI">
     </a>
     <p align="center">
-        A rails gem of sass components and helpers for building a UI.<br>
+        A rails gem of sass components and utilities for building a UI.<br>
         <a href="http://uniform-ui.com/">
             Demo and Documentation
         </a>
@@ -24,37 +24,23 @@ Link to css and js in html document:
 <script src="/uniform.js"></script>
 ```
 
-### Rails
+### Ruby
 Add this line to your application's Gemfile:
 
     gem 'uniform-ui'
 
-Include the css library in your asset pipeline.
+Add Uniform assets to asset paths
 
-```scss
-@import 'uniform';
-```
-
-Include the javascript library in your asset pipeline.
-```javascript
-//= require uniform
-````
-
-### Ruby
-Add uniform assets to load path
-
-Example for condenser:
+Example for [Condenser](https://github.com/malomalo/condenser):
 
     condenser.path = Dir.each_child(UniformUi::ASSET_PATH).map { |a| File.join(UniformUi::ASSET_PATH, a) }
 
 
-### Node
+### NPM
     npm install uniform-ui
 
 ```javascript
-import * as Uniform from 'uniform';
-// or
-import {Modal, Dropdown} as Uniform from 'uniform';
+import {Dropdown} as Uniform from 'uniform';
 
 new Uniform.Dropdown({
     el: $('.example')
