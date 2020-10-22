@@ -2,7 +2,7 @@
 //             Grid
 //----------------------------------------------------------------
 
-@include size-rules('.grid'){
+@include responsive-rule('.grid'){
     display: flex;
     flex-wrap: wrap;
     
@@ -26,7 +26,7 @@
         }
     }
 }
-@include size-rule('md'){
+@include breakpoint('md'){
     .grid,
     .grid-md,
     .grid-lg,
@@ -109,7 +109,7 @@
     margin-left: -0.5em;
     margin-right: -0.5em;
 }
-@include size-rule('sm'){
+@include breakpoint('sm'){
     .grid-nest{
         margin-left: -$grid-gutter/2;
         margin-right: -$grid-gutter/2;
@@ -141,39 +141,39 @@
 .col-top          {align-self: flex-start;}
 .col-bottom       {align-self: flex-end;}
 .col-stretch      {align-self: stretch;}
-@include size-rules(".col"){
+@include responsive-rule(".col"){
     flex: 0 1 auto;
 }
-@include size-rules(".col-fill"){
+@include responsive-rule(".col-fill"){
     flex: 1 1 auto;
 }
-@include size-rules(".col-gutter-none"){
+@include responsive-rule(".col-gutter-none"){
     padding-left: 0 !important; // TODO remove !important
     padding-right: 0 !important; // TODO remove !important
 }
 @for $i from 0 through $grid-columns {
-    @include size-rules(".col-#{$i}"){
+    @include responsive-rule(".col-#{$i}"){
         flex: 0 0 #{($i / $grid-columns * 100) + "%"};
         max-width: #{($i / $grid-columns * 100) + "%"};
     }
-    @include size-rules(".col-offset-#{$i}"){
+    @include responsive-rule(".col-offset-#{$i}"){
         margin-left: #{($i / $grid-columns * 100) + "%"};
     }
-    @include size-rules(".col-push-#{$i}"){
+    @include responsive-rule(".col-push-#{$i}"){
         position:relative;
         left: #{($i / $grid-columns * 100) + "%"};
     }
-    @include size-rules(".col-pull-#{$i}"){
+    @include responsive-rule(".col-pull-#{$i}"){
         position:relative;
         right: #{($i / $grid-columns * 100) + "%"};
     }
-    @include size-rules(".col-fill-#{$i}"){
+    @include responsive-rule(".col-fill-#{$i}"){
         flex: #{$i}; 
     }
-    @include size-rules(".col-grow-#{$i}"){
+    @include responsive-rule(".col-grow-#{$i}"){
         flex-grow: #{$i}; 
     }
-    @include size-rules(".col-shrink-#{$i}"){
+    @include responsive-rule(".col-shrink-#{$i}"){
         flex-shrink: #{$i}; 
     }
 }

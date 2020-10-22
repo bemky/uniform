@@ -19,13 +19,13 @@
         text-align:center;
     }
 }
-@include size-rules(".aspect-4x3"){
+@include responsive-rule(".aspect-4x3"){
     padding-top: 75%;
 }
-@include size-rules(".aspect-2x1"){
+@include responsive-rule(".aspect-2x1"){
     padding-top: 50%;
 }
-@include size-rules(".aspect-square"){
+@include responsive-rule(".aspect-square"){
     padding-top:100%;
 }
 

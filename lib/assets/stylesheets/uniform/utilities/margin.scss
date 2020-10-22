@@ -2,26 +2,33 @@
 //             Margin
 //----------------------------------------------------------------
 
-@include sizes('.margin', 'margin');
-@include sizes('.margin-v', ('margin-top' 'margin-bottom'));
-@include sizes('.margin-h', ('margin-left' 'margin-right'));
+@include size-rule('.margin') using $size {
+    margin-top: $size;
+    margin-bottom: $size;
+}
+@include size-rule('.margin-h') using $size {
+    margin-left: $size;
+    margin-right: $size;
+}
 @each $direction in 'top' 'right' 'bottom' 'left' {
-    @include sizes('.margin-#{$direction}', 'margin-#{$direction}');
+    @include sizes('.margin-#{$direction}') using $size {
+        margin-#{$direction}: $size;
+    };
     .margin-#{$direction}-nest{
         margin-#{$direction}: -1em;
     }
 }
-@include size-rules('.margin-nest'){
+@include responsive-rule('.margin-nest'){
     margin: -1em;
 }
-@include size-rules('.margin-v-nest'){
+@include responsive-rule('.margin-v-nest'){
     margin-top: -1em;
     margin-bottom: -1em;
 }
-@include size-rules('.margin-h-nest'){
+@include responsive-rule('.margin-h-nest'){
     margin-left: -1em;
     margin-right: -1em;
 }
-@include size-rules('.margin-nest-half'){
+@include responsive-rule('.margin-nest-half'){
     margin: -0.5em;
 }

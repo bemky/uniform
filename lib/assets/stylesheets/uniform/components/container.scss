@@ -7,12 +7,13 @@
     padding-right: 1em;
 }
 
-@include size-rule('lg'){
+@include breakpoint('lg'){
     .container{
         max-width: 1080px;
     }
 }
-@include size-rule('xl'){
+
+@include breakpoint('xl'){
     .container{
         max-width: 1440px;
     }

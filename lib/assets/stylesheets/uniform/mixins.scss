@@ -23,94 +23,47 @@
     }
 }
 
-//----------------------------------------------------------------
-//             Position
-//----------------------------------------------------------------
-@mixin position-v-center(){
-    position:absolute;
-    top:50%;
-    transform: translateY(-50%);
-}
-@mixin position-h-center(){
-    position:absolute;
-    left:50%;
-    transform: translateX(-50%);
-}
-@mixin position-center(){
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform: translate(-50%, -50%);
-}
-@mixin position-fill() {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
 
-
-//----------------------------------------------------------------
-//             Sizes Media Queries
-//----------------------------------------------------------------
 @mixin media($query) {
     @media only screen and (#{$query}){
         @content;
     }
 }
 
-@mixin size-rule($breakpoint) {
-    @include media(map-get($breakpoints, $breakpoint)){
-        @content
-    }
-    .#{$breakpoint}-size{
-        @content
+@mixin breakpoint($breakpoint){
+    @media only screen and (map-get($breakpoints, $breakpoint)){
+        @content;
     }
 }
 
-@mixin size-rules($selector){
+@mixin responsive-rule($selector) {
     #{$selector}{
         @content
     }
-    @each $key, $value in $breakpoints {
-        @include media($value){
-            #{$selector}-#{$key}{
+    @each $breakpoint, $breakpoint_query in $breakpoints {
+        @include media($breakpoint_query){
+            #{$breakpoint}:#{$selector}{
                 @content
             }
         }
-        .#{$key}-size #{$selector}-#{$key}{
+        .#{$breakpoint}-container #{$breakpoint}:#{$selector}{
             @content
         }
     }
 }
 
-@mixin sizes($selector, $attributes){
-    @each $attribute in $attributes {
-        @include size-rules("#{$selector}"){
-            #{$attribute}: map-get($sizes, 'base');
-        }
-        @each $key, $value in $sizes {
-            @include size-rules("#{$selector}-#{$key}"){
-                #{$attribute}: $value;
-                @content
-            }
-        }
-        @include size-rules("#{$selector}-none"){
-            #{$attribute}: 0 !important;
-            @content
+@mixin color-rule($selector) {
+    @each $name, $value in $colors {
+        @include responsive-rule("#{$selector}-#{$name}"){
+            @content($value)
         }
     }
 }
 
-@mixin colors($selector, $attributes){
-    @each $attribute in $attributes {
-        @each $key, $value in $colors {
-            @include size-rules("#{$selector}-#{$key}"){
-                #{$attribute}: $value;
-                @content
-            }
+@mixin size-rule($selector){
+    @each $size, $value in $sizes {
+        @include responsive-rule("#{$selector}-#{$size}"){
+            @content($value)
         }
     }
 }
-

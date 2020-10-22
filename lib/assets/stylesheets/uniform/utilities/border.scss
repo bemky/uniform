@@ -5,18 +5,19 @@
 .border-dashed{
     border: 1px dashed color('gray');
 }
-@include colors('.border', 'border-color'){
+
+@include color-rule('.border') using $color { border-color: $color;}
+.border{
     border-width: 1px;
     border-style: solid;
 }
 
-@include colors('.border-dashed', 'border-color'){
-    border-width: 1px;
+.border-dashed{
     border-style: dashed;
 }
 
 @each $direction in 'top' 'right' 'bottom' 'left' {
-    @include size-rules('.border-#{$direction}'){
+    @include responsive-rule('.border-#{$direction}'){
         border-#{$direction}-color: color('gray-light') !important;
         border-#{$direction}-style: solid;
         border-#{$direction}-width: 1px;

@@ -8,44 +8,41 @@ $system-font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubu
 //----------------------------------------------------------------
 //             Colors
 //----------------------------------------------------------------
-$colors: (
-    'background':         #f2f2f2,
-    'gray-lightest':      #F8FAFC,
-    'gray-lighter':       #F1F5F8,
-    'gray-light':         #DAE1E7,
-    'gray':               #B8C2CC,
-    'gray-dark':          #8795A1,
-    'gray-darker':        #606F7B,
-    'gray-darkest':       #3D4852,
-    'green':              #97C848,
-    'green-light':        #BBFF00,
-    'green-dark':         #709239,
-    'blue':               #0994E2,
-    'blue-bright':        #1fa9ff,
-    'blue-light':         #A7CDF2,
-    'blue-dark':          #167DBA,
-    'red':                #E1563E,
-    'red-light':          #E5766C,
-    'red-dark':           #971710,
-    'red-bright':         #ffab9b,
-    'yellow':             #D7E542,
-    'yellow-dark':        #BBC02C,
-    'yellow-light':       #E9F75A,
-    'black':              #000000,
-    'white':              #FFFFFF
+@if !$colors {
+    $colors: (
+        'gray':               #B8C2CC,
+        'green':              #97C848,
+        'blue':               #0994E2,
+        'red':                #E1563E,
+        'yellow':             #D7E542
+    );
+}
+
+$color_spectrum = (
+    white: #FFFFFF;
+    black: #000000;
 );
+@each $color in $colors {
+    @each $lightness in (10, 20, 30, 40, 50, 60, 70, 80, 90) {
+        map-set($color_spectrum, "#{color}-#{$lightness}", $color.lightness($lightness))
+    }
+}
+
+
 
 
 //----------------------------------------------------------------
 //             Breakpoints
 //----------------------------------------------------------------
 // 720, 1080, 1440
-$breakpoints: (
-    sm: "max-width: 719px",
-    md: "min-width: 720px",
-    lg: "min-width: 1080px",
-    xl: "min-width: 1440px"
-);
+@if !$breakpoints {
+    $breakpoints: (
+        sm: "max-width: 719px",
+        md: "min-width: 720px",
+        lg: "min-width: 1080px",
+        xl: "min-width: 1440px"
+    );
+}
 
 
 //----------------------------------------------------------------

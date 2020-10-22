@@ -2,7 +2,8 @@
 //             Size
 //----------------------------------------------------------------
 
-@include sizes('.text', 'font-size');
+@include size-rule('.text') using $size {font-size: $size;}
+
 @for $i from 1 through 20 {
     .text-#{str-replace(str-replace('' + $i * 0.2, '.', '_'), '_0', '')}-em { font-size: #{$i * 0.2 +"em"}; }
 }
@@ -102,13 +103,13 @@ blockquote.quote{
 //             Positioning
 //----------------------------------------------------------------
 
-@include size-rules('.text-left'){
+@include responsive-rule('.text-left'){
     text-align: left !important;
 }
-@include size-rules('.text-right'){
+@include responsive-rule('.text-right'){
     text-align: right;
 }
-@include size-rules('.text-center'){
+@include responsive-rule('.text-center'){
     text-align: center;
 }
 .text-middle{
@@ -123,11 +124,11 @@ blockquote.quote{
 .text-height-1{
     line-height: 1;
 }
-@include size-rules('.text-col-2'){
+@include responsive-rule('.text-col-2'){
     column-count: 2;
     column-gap: 5em;
 }
-@include size-rules('.text-col-3'){
+@include responsive-rule('.text-col-3'){
     column-count: 3;
     column-gap: 5em;
 }

@@ -1,4 +1,4 @@
-@include size-rules('.uniformCheckboxCollection'){
+@include responsive-rule('.uniformCheckboxCollection'){
     label{
         display:block;
         margin-right: 1em;

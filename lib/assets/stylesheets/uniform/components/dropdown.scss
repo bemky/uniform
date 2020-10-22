@@ -25,15 +25,18 @@
     &.square{
         border-radius: 0;
     }
-    &.has-pointer{
-        @include size-rule('md'){
+}
+
+@include breakpoint('md'){
+    .uniformDropdown-dropdown{
+        &.has-pointer{
             margin-top:1em;
         }
     }
 }
 
-.uniformDropdown-pointer{
-    @include size-rule('md'){
+@include breakpoint('md'){
+    .uniformDropdown-pointer{
         position:absolute;
         bottom: 100%;
         left: 50%;
@@ -55,7 +58,7 @@
     }
 }
 
-@include size-rule('sm'){
+@include breakpoint('sm'){
     .uniformOverlay{
         position: fixed;
         top:0;

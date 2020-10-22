@@ -1,5 +1,5 @@
 @for $i from 0 through 100 {
-    @include size-rules(".width-#{$i * 5}-px"){
+    @include responsive-rule(".width-#{$i * 5}-px"){
         width: #{$i * 5 + "px"};
     }
     .min-width-#{$i * 5}-px     { min-width: #{$i * 5 + "px"}; }
@@ -10,7 +10,7 @@
     .min-height-#{$i * 5}-px    { min-height: #{$i * 5 + "px"}; }
 }
 @for $i from 0 through 20 {
-    @include size-rules(".width-#{$i * 5}-p"){
+    @include responsive-rule(".width-#{$i * 5}-p"){
         width: #{$i * 5 + "%"};
     }
     .width-#{$i * 5}-vw         { width: #{$i * 5 +"vw"}; }
@@ -21,7 +21,7 @@
     .max-width-#{$i * 5}-vh     { max-width: #{$i * 5 +"vh"}; }
     .max-width-#{$i * 5}-p      { max-width: #{$i * 5 +"%"}; }
     
-    @include size-rules(".height-#{$i * 5}-vh"){
+    @include responsive-rule(".height-#{$i * 5}-vh"){
         height: #{$i * 5 + "vh"};
     }
     .height-#{$i * 5}-p         { height: #{$i * 5 +"%"}; }

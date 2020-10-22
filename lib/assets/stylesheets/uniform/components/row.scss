@@ -8,7 +8,7 @@
         background: lighten(color('blue'), 50);
     }
 }
-@include size-rule('md') {
+@include breakpoint('md') {
     .uniformRowContainer{
         display: table;
         width: 100%;
@@ -45,7 +45,7 @@
     }
 }
 
-@include size-rule('sm') {
+@include breakpoint('sm') {
     .uniformRowContainer{
         display: block;
         border: none;

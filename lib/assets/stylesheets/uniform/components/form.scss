@@ -122,7 +122,7 @@ button.uniformInput{
     }
 }
 
-@include size-rules('.uniformForm.-table'){
+@include responsive-rule('.uniformForm.-table'){
     display: table;
     width: 100%;
     .form-group{

@@ -5,10 +5,29 @@
 .position-left{     left: 0;}
 .position-right{    right: 0;}
 .position-bottom{   bottom: 0;}
-.position-fill{   @include position-fill;}
-.position-center{   @include position-center;}
-.position-v-center{ @include position-v-center;}
-.position-h-center{ @include position-h-center;}
+.position-fill{   
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.position-center{ 
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+}
+.position-v-center{ 
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+}
+.position-h-center{
+    position:absolute;
+    left:50%;
+    transform: translateX(-50%);
+}
 @for $i from 1 through 100 {
     .z-#{$i}     { z-index: #{$i}; }
 }

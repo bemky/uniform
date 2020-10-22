@@ -1,4 +1,4 @@
-@include size-rules('.table'){
+@include responsive-rule('.table'){
     display:table;
     width:100%;
     & > *,

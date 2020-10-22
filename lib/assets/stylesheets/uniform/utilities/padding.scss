@@ -1,9 +1,9 @@
 //----------------------------------------------------------------
 //             Pad
 //----------------------------------------------------------------
-@include sizes('.pad', 'padding');
-@include sizes('.pad-v', ('padding-top' 'padding-bottom'));
-@include sizes('.pad-h', ('padding-left' 'padding-right'));
+@include size-rule('pad') using $size { padding: $size;}
+@include size-rule('pad-v') using $size { padding-top: $size; padding-bottom: $size;}
+@include size-rule('pad-h') using $size { padding-left: $size; padding-right: $size;}
 @each $direction in 'top' 'right' 'bottom' 'left' {
-    @include sizes('.pad-#{$direction}', 'padding-#{$direction}');
+    @include size-rule('.pad-#{$direction}') using $size {padding-#{$direction}: $size;};
 }

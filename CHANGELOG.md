@@ -1,5 +1,21 @@
 # Change Log
 
+## 3.0
+- responsive modifier from `[rule]-[size]` to `[size]:rule`
+- changed color spectrum from `[color]-dark` to `[color]-80`
+
+### Added
+- `@include responsive-rule('.text-bold') { font-weight: bold; }`
+- `@include size-rule('.margin') using $size { margin: $size }`
+- `@include color-rule('.border') using $color { border-color: $color }`
+- `@include breakpoint('lg'){}`
+
+### Removed
+- `@include position-fill|position-center|position-h-center|position-v-center` in favor of utility classes
+- `@include sizes`
+- `@include size-rule`
+- `@include colors`
+
 ##2.3.1
 - new loader animation and template
 

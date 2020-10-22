@@ -44,7 +44,7 @@
     .label{
         color: color('gray-dark');
     }
-    @include size-rule('sm'){
+    @include breakpoint('sm'){
         input{
             padding-top: 0.5em;
             padding-bottom: 0.5em;
