@@ -1,7 +1,7 @@
 <div class="section">
     <h1>Colors</h1>
-    <div class="border rounded bg-white overflow-hidden">
-        <table class="uniformTable">
+    <div class="border border-gray-30 rounded bg-white overflow-hidden">
+        <table class="uniformTable tight-more">
             <thead class="dark">
                 <tr>
                     <th></th>
@@ -9,25 +9,15 @@
                     <th>class</th>
                 </tr>
             </thead>
-        <% ["-10", "-20", "-30", "", "-60", "-80", "-90"].each do |style| %>
-            <tr>
-                <td><span class='swatch bg-gray<%= style %>'></span></td>
-                <td><code>color('gray<%= style %>')</code></td>
-                <td><code>[class]-gray<%= style %></code></td>
-            </tr>
-        <% end %>
-
-        <tr><td colspan='3'>&nbsp;</td></tr>
-        <% %w(green blue red yellow).each do |color| %>
-            <% ["-10", "", "-60"].each do |style| %>
-                <tr>
-                    <td><span class='swatch bg-<%= color %><%= style %>'></span></td>
-                    <td><code>color('<%= color %><%= style %>')</code></td>
-                    <td><code>[class]-<%= color %><%= style %></code></td>
-                </tr>
+            <% colors.each do |color| %>
+                <% (1..9).each do |i| %>
+                    <tr>
+                        <td><span class='swatch bg-<%= color %>-<%= i * 10 %>'></span></td>
+                        <td><code>color('<%= color %>-<%= i * 10 %>')</code></td>
+                        <td><code>[class]-<%= color %>-<%= i * 10 %></code></td>
+                    </tr>
+                <% end %>
             <% end %>
-            <tr><td colspan='3'>&nbsp;</td></tr>
-        <% end %>
         </table>
     </div>
 </div>

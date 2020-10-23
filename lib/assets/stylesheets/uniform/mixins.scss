@@ -24,6 +24,10 @@
 }
 
 
+//----------------------------------------------------------------
+//             Responsive
+//----------------------------------------------------------------
+
 @mixin media($query) {
     @media only screen and (#{$query}){
         @content;
@@ -35,23 +39,42 @@
         @content;
     }
 }
-
 @mixin responsive-rule($selector) {
-    #{$selector}{
+    @if str-index($selector, '.') == 1 {
+        $selector: str-slice($selector, 2, -1);
+    }
+    
+    .#{$selector}{
         @content
     }
     @each $breakpoint, $breakpoint_query in $breakpoints {
         @include media($breakpoint_query){
-            #{$breakpoint}:#{$selector}{
+            .#{$breakpoint}\:#{$selector}{
                 @content
             }
         }
-        .#{$breakpoint}-container #{$breakpoint}:#{$selector}{
-            @content
+        .#{$breakpoint}-container{
+            .#{$breakpoint}\:#{$selector}{
+                @content
+            }
         }
     }
 }
 
+//----------------------------------------------------------------
+//             Color
+//----------------------------------------------------------------
+
+$color_spectrum: (
+    white: #FFFFFF,
+    black: #000000
+);
+@each $name, $color in $colors {
+    $color_spectrum: map-merge($color_spectrum, ("#{$name}": $color));
+    @for $index from 1 through 9 {
+       $color_spectrum: map-merge($color_spectrum, ("#{$name}-#{(10 - $index) * 10}": change-color($color, $lightness: $index * 10)));
+    }
+}
 @mixin color-rule($selector) {
     @each $name, $value in $color_spectrum {
         @include responsive-rule("#{$selector}-#{$name}"){
@@ -59,6 +82,11 @@
         }
     }
 }
+
+
+//----------------------------------------------------------------
+//             Size
+//----------------------------------------------------------------
 
 @mixin size-rule($selector){
     @each $size, $value in $sizes {

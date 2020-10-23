@@ -14,23 +14,12 @@ $system-font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubu
 //
 //}
 $colors: (
-    'gray':               #B8C2CC,
+    'gray':               #515253,
     'green':              #97C848,
     'blue':               #0994E2,
     'red':                #E1563E,
     'yellow':             #D7E542
 );
-
-$color_spectrum: (
-    white: #FFFFFF,
-    black: #000000
-);
-@each $name, $color in $colors {
-    $color_spectrum: map-merge($color_spectrum, ("#{$name}": $color));
-    @for $index from 1 through 9 {
-       $color_spectrum: map-merge($color_spectrum, ("#{$name}-#{(10 - $index) * 10}": change-color($color, $lightness: $index * 10)));
-    }
-}
 
 //----------------------------------------------------------------
 //             Breakpoints

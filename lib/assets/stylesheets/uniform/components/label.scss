@@ -20,9 +20,8 @@
     }
 }
 
-@include color-rule('.uniformLabel') using ($color) { border-color: $color;}
-@each $key, $value in $colors {
-    @include responsive-rule(".uniformLabel.-fill.-#{$key}"){
-        background-color: rgba($value, 0.15);
-    }
+@include color-rule('.uniformLabel.') using ($color) {
+    border-color: $color;
+    color: $color;
 }
+@include color-rule('.uniformLabel.-fill.') using ($color) { background-color: rgba($color, 0.15); }
