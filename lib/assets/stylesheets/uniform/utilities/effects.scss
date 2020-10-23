@@ -1,0 +1,29 @@
+.shadow,
+.shadow-xs,
+.shadow-sm,
+.shadow-md,
+.shadow-lg,
+.shadow-outline,
+.shadow-inset,
+.shadow-inline{
+    --shadow-opacity: 0.1;
+}
+
+@include responsive-rule('shadow-xs') { box-shadow: 0 1px 0 1px rgba(0,0,0, --shadow-opacity); }
+@include responsive-rule('shadow-sm') { box-shadow: 0 1px 2px rgba(0,0,0, --shadow-opacity); }
+@include responsive-rule('shadow') { box-shadow: 0 1px 3px rgba(0,0,0, --shadow-opacity); }
+@include responsive-rule('shadow-md') { box-shadow: 0 2px 6px rgba(0,0,0, --shadow-opacity); }
+@include responsive-rule('shadow-lg') { box-shadow: 0 2px 12px rgba(0,0,0, --shadow-opacity); }
+@include responsive-rule('shadow-outline') { box-shadow: 0 0 0 1px rgba(0,0,0, --shadow-opacity); }
+
+@include responsive-rule('shadow-inset') { box-shadow: inset 0 2px 4px rgba(0,0,0, --shadow-opacity); }
+@include responsive-rule('shadow-inline') { box-shadow: inset 0 0 0 1px rgba(0,0,0, --shadow-opacity); }
+
+@for $i from 0 through 10 {
+    @include responsive-rule('shadow-opacity-#{$i * 10}'){
+        --shadow-opacity: $i / 10;
+    }
+    @include responsive-rule('opacity-#{$i * 10}'){
+        opacity: $i / 10;
+    }
+}

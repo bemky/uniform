@@ -20,6 +20,8 @@
 - `.col-[span|start|end]-#`
 - `.row-[span|start|end]-#`
 - `.gap-[v|h]-#`
+- `.shadow-[sm|md|lg|xl]`
+- `.opacity-[0,10,20...100]`
 
 ### Removed
 - remove `text-2_0 text-1_2...`
