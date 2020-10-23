@@ -6,7 +6,7 @@
         <div class="grid grid-nest">
             <div class="col-6">
                 <p><input type="text" class="uniformInput" /></p>
-                <p><input type="text" class="uniformInput text-large" /></p>
+                <p><input type="text" class="uniformInput text-lg" /></p>
             </div>
             <div class="col-6">
                 <% block = html_block class: "html" do %>
@@ -14,7 +14,7 @@
                 <% end %>
                 <%= block %>
                 <% block = html_block class: "html" do %>
-                    <input type="text" class="uniformInput text-large" />
+                    <input type="text" class="uniformInput text-lg" />
                 <% end %>
                 <%= block %>
             </div>
@@ -204,7 +204,7 @@
     
     
     <div class="margin-v-2x">
-        <h3>uniformCheckbox / uniformRadio <span class="uniformLabel text-smaller -yellow-60 text-normal">js required</span></h3>
+        <h3>uniformCheckbox / uniformRadio <span class="uniformLabel text-xs -yellow-60 text-normal">js required</span></h3>
         <p>Custom color, animation, and icon</p>
         <div class="grid grid-nest">
             <div class="col-6">
@@ -212,7 +212,7 @@
                     <label for="uniformCheckbox-1"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-1"> Option 1</label><br>
                     <label for="uniformCheckbox-2"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-2" checked> Option 1</label>
                 </div>
-                <div class="margin-v text-larger">
+                <div class="margin-v text-xl">
                     <label for="uniformCheckbox-3"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-3"> Option 1</label><br>
                     <label for="uniformCheckbox-4"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-4" checked> Option 1</label>
                 </div>
@@ -220,7 +220,7 @@
                     <label for="uniformCheckbox-5"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-5"> Option 1</label><br>
                     <label for="uniformCheckbox-6"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-6" checked> Option 1</label>
                 </div>
-                <div class="margin-v text-larger">
+                <div class="margin-v text-xl">
                     <label for="uniformCheckbox-7"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-7"> Option 1</label><br>
                     <label for="uniformCheckbox-8"><input type="checkbox" class="uniformRadio"  id="uniformCheckbox-8" checked> Option 1</label>
                 </div>
@@ -245,7 +245,7 @@
     
     
     <div class="margin-v-2x">
-        <h3>uniformTristate <span class="uniformLabel text-smaller -yellow-60 text-normal">js required</span></h3>
+        <h3>uniformTristate <span class="uniformLabel text-xs -yellow-60 text-normal">js required</span></h3>
         <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
         <div class="grid grid-nest">
             <div class="col-6">
@@ -258,7 +258,7 @@
                 Should this be true?
                 </label>
                 <br><br>
-                <label for="group-name-1" class="text-large">
+                <label for="group-name-1" class="text-lg">
                 <div class="uniformTristate">
                     <input type="radio" name="group-name-1" id="group-name-1" value="true">
                     <input type="radio" name="group-name-1" id="group-name-1" value="null">
@@ -267,7 +267,7 @@
                 Should this be true?
                 </label>
                 <br><br>
-                <label for="group-name-2" class="text-larger">
+                <label for="group-name-2" class="text-xl">
                 <div class="uniformTristate">
                     <input type="radio" name="group-name-2" id="group-name-2" value="true">
                     <input type="radio" name="group-name-2" id="group-name-2" value="null">
@@ -296,7 +296,7 @@
     
     
     <div class="margin-v-2x">
-        <h3>uniformFloatingLabel <span class="uniformLabel text-smaller -yellow-60 text-normal">js required</span></h3>
+        <h3>uniformFloatingLabel <span class="uniformLabel text-xs -yellow-60 text-normal">js required</span></h3>
         <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
         <div class="grid grid-nest">
             <div class="col-6">

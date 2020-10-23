@@ -1,16 +1,20 @@
 # Change Log
 
 ## 3.0
-- responsive modifier from `[rule]-[size]` to `[size]:rule`
+- responsive modifier from `[rule]-[size]` to `[size]:[rule]`
 - changed color spectrum from `[color]-dark` to `[color]-80`
+- changed size from `small smaller large larger` to `xs sm lg xl`
+- changed size from `quarter half` to `1/4 1/2`
 
 ### Added
+- `text-3/4`
 - `@include responsive-rule('.text-bold') { font-weight: bold; }`
 - `@include size-rule('.margin') using $size { margin: $size }`
 - `@include color-rule('.border') using $color { border-color: $color }`
 - `@include breakpoint('lg'){}`
 
 ### Removed
+- remove `text-2_0 text-1_2...`
 - `@include position-fill|position-center|position-h-center|position-v-center` in favor of utility classes
 - `@include sizes`
 - `@include size-rule`
