@@ -1,38 +1,43 @@
-@for $i from 0 through 100 {
-    @include responsive-rule(".width-#{$i * 5}-px"){
-        width: #{$i * 5 + "px"};
+//----------------------------------------------------------------
+//             Fractionals
+//----------------------------------------------------------------
+@for $denominator from 1 through 12 {
+    @for $numerator from 1 through $denominator {
+        @include responsive-rule(".width-#{$numerator}\\\/#{$denominator}"){ width: $numerator/$denominator * 100% };
+        @include responsive-rule(".min-width-#{$numerator}\\\/#{$denominator}"){ min-width: $numerator/$denominator * 100% };
+        @include responsive-rule(".max-width-#{$numerator}\\\/#{$denominator}"){ max-width: $numerator/$denominator * 100% };
     }
-    .min-width-#{$i * 5}-px     { min-width: #{$i * 5 + "px"}; }
-    .max-width-#{$i * 5}-px     { max-width: #{$i * 5 + "px"}; }
-    
-    .height-#{$i * 5}-px        { height: #{$i * 5 + "px"}; }
-    .max-height-#{$i * 5}-px    { max-height: #{$i * 5 + "px"}; }
-    .min-height-#{$i * 5}-px    { min-height: #{$i * 5 + "px"}; }
-}
-@for $i from 0 through 20 {
-    @include responsive-rule(".width-#{$i * 5}-p"){
-        width: #{$i * 5 + "%"};
-    }
-    .width-#{$i * 5}-vw         { width: #{$i * 5 +"vw"}; }
-    
-    .min-width-#{$i * 5}-vh     { min-width: #{$i * 5 +"vh"}; }
-    .min-width-#{$i * 5}-p      { min-width: #{$i * 5 +"%"}; }
-    
-    .max-width-#{$i * 5}-vh     { max-width: #{$i * 5 +"vh"}; }
-    .max-width-#{$i * 5}-p      { max-width: #{$i * 5 +"%"}; }
-    
-    @include responsive-rule(".height-#{$i * 5}-vh"){
-        height: #{$i * 5 + "vh"};
-    }
-    .height-#{$i * 5}-p         { height: #{$i * 5 +"%"}; }
-    
-    .min-height-#{$i * 5}-vh    { min-height: #{$i * 5 +"vh"}; }
-    .min-height-#{$i * 5}-p     { min-height: #{$i * 5 +"%"}; }
 }
 
-.height-auto{
-    height: auto;
+//----------------------------------------------------------------
+//             Pixels
+//----------------------------------------------------------------
+@for $i from 0 through 100 {
+    @include responsive-rule(".width-#{$i * 5}-px"){ width: $i * 5px };
+    @include responsive-rule(".max-width-#{$i * 5}-px"){ max-width: $i * 5px };
+    @include responsive-rule(".min-max-width-#{$i * 5}-px"){ min-width: $i * 5px };
+    
+    @include responsive-rule(".height-#{$i * 5}-px"){ height: $i * 5px };
+    @include responsive-rule(".min-height-#{$i * 5}-px"){ min-height: $i * 5px };
+    @include responsive-rule(".max-height-#{$i * 5}-px"){ max-height: $i * 5px };
 }
-.width-auto{
-    width:auto;
+
+//----------------------------------------------------------------
+//             Viewport
+//----------------------------------------------------------------
+@for $i from 0 through 20 {
+    @include responsive-rule(".width-#{$i * 5}-vw"){ width: $i * 5vw };
+    @include responsive-rule(".min-width-#{$i * 5}-vw"){ min-width: $i * 5vw };
+    @include responsive-rule(".max-width-#{$i * 5}-vw"){ max-width: $i * 5vw };
 }
+@include responsive-rule(".height-100-vh"){ height: 100vh; };
+@include responsive-rule(".min-height-100-vh"){ min-height: 100vh; };
+@include responsive-rule(".max-height-100-vh"){ max-height: 100vh; };
+
+//----------------------------------------------------------------
+//             Full
+//----------------------------------------------------------------
+@include responsive-rule(".height-auto"){ height: auto; };
+@include responsive-rule(".height-full"){ height: 100%; };
+@include responsive-rule(".width-auto"){ width: auto; };
+@include responsive-rule(".width-full"){ width: 100%; };

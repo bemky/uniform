@@ -12,6 +12,7 @@
 - `@include size-rule('.margin') using $size { margin: $size }`
 - `@include color-rule('.border') using $color { border-color: $color }`
 - `@include breakpoint('lg'){}`
+- `width-1/2 width-1/4 width-3/4 width-full`
 
 ### Removed
 - remove `text-2_0 text-1_2...`
@@ -19,6 +20,8 @@
 - `@include sizes`
 - `@include size-rule`
 - `@include colors`
+- `width-###-p`
+- `height-###-vh max-height-###-vh min-height-###-vh`
 
 ##2.3.1
 - new loader animation and template
