@@ -1,6 +1,6 @@
 .uniformThumb{
     display:inline-block;
-    background: color('gray-darker');
+    background: color('gray-80');
     position:relative;
     color: white;
     img{
@@ -13,7 +13,7 @@
     }
     .text{
         display:block;
-        @include position-v-center;
+        @extend %position-v-center;
         left: 0;
         width: 100%;
         text-align:center;
@@ -27,15 +27,4 @@
 }
 @include responsive-rule(".aspect-square"){
     padding-top:100%;
-}
-
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    .uniformThumb {
-        overflow: hidden;
-        img {
-            @include position-center;
-            width: auto;
-            height: 100%;
-        }
-    }
 }

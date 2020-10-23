@@ -12,18 +12,21 @@
     left: 0;
     right: 0;
 }
-.position-center{ 
+.position-center,
+%position-center{ 
     position:absolute;
     left:50%;
     top:50%;
     transform: translate(-50%, -50%);
 }
-.position-v-center{ 
+.position-v-center,
+%position-v-center{ 
     position:absolute;
     top:50%;
     transform: translateY(-50%);
 }
-.position-h-center{
+.position-h-center,
+%position-h-center{
     position:absolute;
     left:50%;
     transform: translateX(-50%);

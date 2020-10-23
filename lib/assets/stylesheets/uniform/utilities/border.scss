@@ -6,7 +6,7 @@
     border: 1px dashed color('gray');
 }
 
-@include color-rule('.border') using $color { border-color: $color;}
+@include color-rule('.border') using ($color) { border-color: $color;}
 .border{
     border-width: 1px;
     border-style: solid;
@@ -18,12 +18,11 @@
 
 @each $direction in 'top' 'right' 'bottom' 'left' {
     @include responsive-rule('.border-#{$direction}'){
-        border-#{$direction}-color: color('gray-light') !important;
+        border-#{$direction}-color: color('gray-30') !important;
         border-#{$direction}-style: solid;
         border-#{$direction}-width: 1px;
     }
-    @include colors('.border-#{$direction}', 'border-#{$direction}-color'){
-        border-#{$direction}-width: 1px;
-        border-#{$direction}-style: solid;
+    @include color-rule('.border-#{$direction}') using ($color) {
+        border-#{$direction}-color: $color;
     }
 }

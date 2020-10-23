@@ -42,7 +42,7 @@
         overflow:hidden;
     }
     .label{
-        color: color('gray-dark');
+        color: color('gray-60');
     }
     @include breakpoint('sm'){
         input{

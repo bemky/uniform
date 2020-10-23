@@ -48,8 +48,8 @@
             border-bottom-color: color('blue');
         }
         &.active{
-            color: color('green-dark');
-            border-bottom-color: color('green-dark');
+            color: color('green-60');
+            border-bottom-color: color('green-60');
         }
     }
     &.-pad{
@@ -79,9 +79,9 @@
         & > * {
             padding-top: 0.25em;
             padding-bottom: 0.25em;
-            color: color('gray-dark');
+            color: color('gray-60');
             &.active{
-                color: color('gray-darkest');
+                color: color('gray-90');
             }
         }
     }
@@ -116,7 +116,7 @@
                 &.active{
                     color: white;
                     background: rgba(black, 0.15);
-                    border-bottom-color: color('green-light');
+                    border-bottom-color: color('green-30');
                 }
             }
         }

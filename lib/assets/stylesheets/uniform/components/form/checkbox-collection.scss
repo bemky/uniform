@@ -49,8 +49,8 @@
             label{
                 border-color: lighten(color('gray'), 20);
                 &.active{
-                    border-color: color('gray-dark');
-                    background: color('gray-dark');
+                    border-color: color('gray-60');
+                    background: color('gray-60');
                 }
             }
         }
@@ -89,12 +89,12 @@
         &.invert{
             label{
                 &::before{
-                    border-color: darken(color('gray-dark'), 5);
+                    border-color: darken(color('gray-60'), 5);
                 }
                 &.active{
                     &::before{
                         border-color: black;
-                        color: color('green-light');
+                        color: color('green-30');
                     }
                 }
             }

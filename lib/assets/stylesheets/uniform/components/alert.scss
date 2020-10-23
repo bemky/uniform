@@ -1,9 +1,9 @@
 .uniformAlert{
     border-radius: 0.2em;
-    border: 1px solid color('gray-darker');
+    border: 1px solid color('gray-80');
     background: white;
     position:relative;
-    color: color('gray-darker');
+    color: color('gray-80');
     
     p:last-of-type{
         margin-bottom: 0 !important;
@@ -11,8 +11,8 @@
     
     &.-green{
         border-color: color('green');
-        color: color('green-dark');
-        background: lighten(color('green'), 40);
+        color: color('green-70');
+        background: color('green-10');
         .uniformAlert-icon svg {
             fill: color('green');
             color: color('green');
@@ -21,7 +21,7 @@
     &.-red{
         border-color: color('red');
         color: color('red');
-        background: lighten(color('red'), 40);
+        background: color('red-10');
         .uniformAlert-icon svg {
             fill: color('red');
             color: color('red');
@@ -29,8 +29,8 @@
     }
     &.-blue{
         border-color: color('blue');
-        color: color('blue-dark');
-        background: lighten(color('blue'), 50);
+        color: color('blue-60');
+        background: color('blue-10');
         .uniformAlert-icon svg {
             fill: color('blue');
             color: color('blue');

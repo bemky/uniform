@@ -1,17 +1,29 @@
-@each $key, $value in $colors {
-    .text-#{$key} {               color: $value !important;}
-    .a-hover-#{$key} a:hover {    color: $value !important;}
-    .hover-#{$key}:hover {       color: $value !important;}
-    .bg-hover-#{$key}:hover {       background-color: $value !important;}
-    .bg-#{$key} {                 background-color: $value !important;}
-    .a-#{$key} a {
-        color: $value;
-        &:hover{
-            color: lighten($value, 20);
-        }
-        &:visited{
-            color: $value;
-        }
+@include color-rule('.text') using ($color){ color: $color; }
+@include color-rule('.bg') using ($color){ background-color: $color; }
+@include color-rule('.a') using ($color){
+    a{
+        color: $color;
+    }
+    &:hover{
+        color: lighten($color, 20);
+    }
+    &:visited{
+        color: $color;
+    }
+}
+@include color-rule('.a-hover') using ($color){
+    a:hover{
+        color: $color;
+    }
+}
+@include color-rule('.hover') using ($color){
+    &:hover{
+        color: $color;
+    }
+}
+@include color-rule('.bg-hover') using ($color){
+    &:hover{
+        background-color: $color;
     }
 }
 

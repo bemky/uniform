@@ -36,7 +36,7 @@
     tr td,
     th {
         padding: 0.5em;
-        border-bottom: 1px solid color('gray-light');
+        border-bottom: 1px solid color('gray-30');
     }
     
     &.tight{
@@ -66,13 +66,13 @@
     
     .head > *,
     thead th{
-        color: color('gray-dark');
+        color: color('gray-60');
         border-bottom: 1px solid color('gray');
     }
     
     .head.dark > *,
     thead.dark th{
-        background: lighten(color('background'), 2);
+        background: lighten(color('gray-10'), 2);
     }
     
     tr.middle > td,
@@ -111,7 +111,7 @@
     &.invert{
         .row > *,
         td, th{
-            border-bottom-color: color('gray-dark');
+            border-bottom-color: color('gray-60');
         }
     }
 }

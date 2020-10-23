@@ -2,14 +2,14 @@
     display:inline-block;
     vertical-align:baseline;
     padding: 0.0714em 0.357em 0.0714em;
-    border: 0.1em solid color('gray-darker');
-    color: color('gray-darker');
+    border: 0.1em solid color('gray-80');
+    color: color('gray-80');
     border-radius: 0.3em;
     line-height: 1.2;
     &.-fill{
         border: none;
-        background: rgba(color('gray-darker'), 0.15);
-        color: color('gray-darker');
+        background: rgba(color('gray-80'), 0.15);
+        color: color('gray-80');
         padding: 0.1714em 0.457em 0.1714em;
     }
     &.-round{
@@ -20,7 +20,7 @@
     }
 }
 
-@include color-rule('.uniformLabel') using $color { border-color: $color;}
+@include color-rule('.uniformLabel') using ($color) { border-color: $color;}
 @each $key, $value in $colors {
     @include responsive-rule(".uniformLabel.-fill.-#{$key}"){
         background-color: rgba($value, 0.15);

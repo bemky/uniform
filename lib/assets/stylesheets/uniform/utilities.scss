@@ -70,31 +70,31 @@
 //----------------------------------------------------------------
 //             Layout
 //----------------------------------------------------------------
-@include size-rules('.float-right'){
+@include responsive-rule('.float-right'){
     float:right;
     &.margin{
         margin: 0 0 1rem 1rem;
     }
 }
-@include size-rules('.float-left'){
+@include responsive-rule('.float-left'){
     float: left;
     &.margin{
         margin: 0 1rem 1rem 0;
     }
 }
-@include size-rules('.show'){
+@include responsive-rule('.show'){
     display:inherit !important;
     &.block{
         display:block !important;
     }
 }
-@include size-rules('.block') {
+@include responsive-rule('.block') {
     display: block !important;
 }
-@include size-rules('.inline-block') {
+@include responsive-rule('.inline-block') {
     display:inline-block !important;
 }
-@include size-rules('.hide'){
+@include responsive-rule('.hide'){
     display:none !important;
 }
 .bleed-fix{

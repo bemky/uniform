@@ -2,16 +2,16 @@
 //             Margin
 //----------------------------------------------------------------
 
-@include size-rule('.margin') using $size {
+@include size-rule('.margin') using ($size) {
     margin-top: $size;
     margin-bottom: $size;
 }
-@include size-rule('.margin-h') using $size {
+@include size-rule('.margin-h') using ($size) {
     margin-left: $size;
     margin-right: $size;
 }
 @each $direction in 'top' 'right' 'bottom' 'left' {
-    @include sizes('.margin-#{$direction}') using $size {
+    @include size-rule('.margin-#{$direction}') using ($size) {
         margin-#{$direction}: $size;
     };
     .margin-#{$direction}-nest{

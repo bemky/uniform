@@ -74,7 +74,7 @@
             <a href="<%= url %>" class="<%= "active" if @current_page == page.to_s %>">
                 <%= page.to_s.titleize %>
                 <% if tag %>
-                    &nbsp;<span class="uniformLabel <%= @current_page == page.to_s ? "-white" : "-yellow-dark" %> text-smaller"><%= tag %></span>
+                    &nbsp;<span class="uniformLabel <%= @current_page == page.to_s ? "-white" : "-yellow-60" %> text-smaller"><%= tag %></span>
                 <% end %>
             </a>
             <% end %>

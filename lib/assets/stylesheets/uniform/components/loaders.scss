@@ -45,7 +45,7 @@
         z-index:999999999;
         .uniformLoader-container{
             position:absolute;
-            @include position-center;
+            @extend %position-center;
         }
         &.-light{
             background:rgba(black, .5);

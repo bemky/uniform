@@ -1,3 +1,4 @@
+
 //----------------------------------------------------------------
 //             Buttons
 //----------------------------------------------------------------
@@ -16,18 +17,18 @@
     position:relative; // for adding loaders to buttons which have position:absolute
     transition: all 0.2s;
 
-    color:color('gray-darkest');
+    color:color('gray-90');
     background-color: white;
     background-image: linear-gradient(white 33%, darken(white, 7));
     border-radius: 0.25em;
-    border:1px solid lighten(color('gray-darkest'), 40);
+    border:1px solid color('gray-50');
     
     &.input-height{
         line-height: 1.4;
     }
 
     &:visited{
-        color:color('gray-darkest');
+        color:color('gray-90');
     }
 
     &:hover,
@@ -60,7 +61,7 @@
         border-color: transparent;
     }
     &.-outline{
-        border-color: color('gray-darkest');
+        border-color: color('gray-90');
         background:none !important;
         text-shadow:none !important;
         &.-dashed{
@@ -90,7 +91,7 @@
         }
         &.-outline{
             color: color('red');
-            border-color: lighten(color('gray-darkest'), 30);
+            border-color: color('gray-60');
         }
     }
     
@@ -120,8 +121,8 @@
         border-color: darken(color('green'), 3);
         
         &.-outline{
-            border-color: color('green-dark');
-            color:color('green-dark');
+            border-color: color('green-60');
+            color:color('green-60');
         }
     }
     
@@ -137,8 +138,8 @@
         background-image: linear-gradient(color('red'), darken(color('red'), 3));
         border-color: darken(color('red'), 3);
         &.-outline{
-            color:color('red-dark');
-            border-color:color('red-dark');
+            color:color('red-60');
+            border-color:color('red-60');
         }
     }
     
@@ -160,21 +161,21 @@
     }
     
     &.-gray{
-        color: color('gray-darker');
+        color: color('gray-80');
         &.-outline{
-            color: color('gray-darker');
-            border-color: color('gray-dark');
+            color: color('gray-80');
+            border-color: color('gray-60');
         }
     }
     
-    &.-gray-dark{
+    &.-gray-60{
         color: white;
-        background-color: darken(color('gray-dark'), 3);
-        background-image: linear-gradient(color('gray-dark'), darken(color('gray-dark'), 3));
-        border-color: darken(color('gray-dark'), 3);
+        background-color: darken(color('gray-60'), 3);
+        background-image: linear-gradient(color('gray-60'), darken(color('gray-60'), 3));
+        border-color: darken(color('gray-60'), 3);
         &.-outline{
-            color: lighten(color('gray'), 20);
-            border-color: lighten(color('gray'), 30);
+            color: color('gray-30');
+            border-color: color('gray-20');
         }
     }
     
@@ -185,13 +186,13 @@
         cursor: not-allowed;
         color: color('gray');
         background-image:none !important;
-        background-color: color('gray-light');
+        background-color: color('gray-30');
         border-color: color('gray');
         text-shadow: none;
-        &.disabled-dark{
-            background-color: color('gray-darker');
-            color: color('gray-darkest');
-            border-color: color('gray-darkest');
+        &.disabled-60{
+            background-color: color('gray-80');
+            color: color('gray-90');
+            border-color: color('gray-90');
             opacity: 0.75;
         }
     }
@@ -228,7 +229,7 @@ a.uniformButton{
         }
         &:disabled{
             background: color('background');
-            color: color('gray-light');
+            color: color('gray-30');
             cursor: not-allowed;
         }
     }

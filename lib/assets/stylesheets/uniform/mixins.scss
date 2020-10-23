@@ -53,7 +53,7 @@
 }
 
 @mixin color-rule($selector) {
-    @each $name, $value in $colors {
+    @each $name, $value in $color_spectrum {
         @include responsive-rule("#{$selector}-#{$name}"){
             @content($value)
         }

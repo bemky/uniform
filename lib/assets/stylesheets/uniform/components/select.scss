@@ -16,19 +16,19 @@ select.uniformSelect{
     }
     .uniformSelect-edit-icon{
         font-size:2em;
-        @include position-v-center();
+        @extend %position-v-center;
         right:0;
         z-index:0;
         line-height: 0;
         svg{
-            fill: color('gray-darker');
+            fill: color('gray-80');
             transition: transform 0.2s;
         }
     }
     &.-invert{
         background: color('gray');
         color: white;
-        border-color: color('gray-dark');
+        border-color: color('gray-60');
         .uniformSelect-edit-icon{
             svg {
                 fill: white;
@@ -40,7 +40,7 @@ select.uniformSelect{
         padding: 0.1em;
         padding-left: 0.2em;
         border: 1px solid color('gray');
-        background: color('gray-lighter');
+        background: color('gray-20');
         display:inline-block;
         border-radius: 0.25em;
     }
@@ -117,7 +117,7 @@ select.uniformSelect{
     cursor: pointer;
     &.active{
         box-shadow:none;
-        color: color('green-dark');
+        color: color('green-60');
         padding-left: 2.5em !important;
         font-weight: bold;
     }

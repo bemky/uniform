@@ -14,7 +14,7 @@
     position:relative;
     transition: border-color 0.05s ease-in;
     &::before{
-        @include position-center;
+        @extend %position-center;
         border-radius: 0.25em;
         content:"";
         width: 0em;
