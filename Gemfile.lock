@@ -104,15 +104,10 @@ GEM
       ffi (~> 1.0)
     rexml (3.2.4)
     rubyzip (2.3.0)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-    sass-media_query_combiner (0.0.7)
-      sass (>= 3.2.0)
     sassc (2.4.0)
       ffi (~> 1.9)
+    sassc-media_query_combiner (0.0.1)
+      sassc (>= 2.2.0)
     servolux (0.13.0)
     temple (0.8.2)
     thor (1.0.1)
@@ -132,7 +127,7 @@ DEPENDENCIES
   middleman-autoprefixer (~> 2.7)
   middleman-condenser!
   rubyzip
-  sass-media_query_combiner
+  sassc-media_query_combiner
   tzinfo-data
   wdm (~> 0.1)
 

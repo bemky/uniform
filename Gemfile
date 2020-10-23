@@ -7,4 +7,4 @@ gem 'condenser', github: 'malomalo/condenser'
 gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]
 gem 'wdm', '~> 0.1', platforms: [:mswin, :mingw]
 gem 'rubyzip'
-gem 'sass-media_query_combiner'
+gem 'sassc-media_query_combiner'

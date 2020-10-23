@@ -1,6 +1,6 @@
 require 'lib/uniform'
 require 'zip'
-require 'sass-media_query_combiner'
+require 'sassc-media_query_combiner'
 
 # Activate and configure extensions
 # https://middlemanapp.com/advanced/configuration/#configuring-extensions
