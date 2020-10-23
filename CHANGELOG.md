@@ -13,6 +13,13 @@
 - `@include color-rule('.border') using $color { border-color: $color }`
 - `@include breakpoint('lg'){}`
 - `width-1/2 width-1/4 width-3/4 width-full`
+- `.flex .grid .inline-grid .inline-flex`
+- `.flex-[shrink|fill|auto|none]`
+- `.order-#`
+- `.grid-[cols|rows]-#`
+- `.col-[span|start|end]-#`
+- `.row-[span|start|end]-#`
+- `.gap-[v|h]-#`
 
 ### Removed
 - remove `text-2_0 text-1_2...`
