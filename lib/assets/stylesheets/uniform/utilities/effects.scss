@@ -1,3 +1,7 @@
+//----------------------------------------------------------------
+//             Shadow
+//----------------------------------------------------------------
+
 .shadow,
 .shadow-xs,
 .shadow-sm,
@@ -19,7 +23,14 @@
 @include responsive-rule('shadow-inset') { box-shadow: inset 0 2px 4px rgba(black, var(--shadow-opacity)); }
 @include responsive-rule('shadow-inline') { box-shadow: inset 0 0 0 1px rgba(black, var(--shadow-opacity)); }
 
+//----------------------------------------------------------------
+//             Opacity
+//----------------------------------------------------------------
 @for $i from 0 through 10 {
+
+    @include responsive-rule('opacity-#{$i * 10}'){
+        opacity: $i / 10;
+    }
     @include responsive-rule('shadow-opacity-#{$i * 10}'){
         --shadow-opacity: $i / 10;
     }
@@ -34,8 +45,5 @@
     }
     @include responsive-rule('placeholder-opacity-#{$i * 10}'){
         --placeholder-opacity: $i / 10;
-    }
-    @include responsive-rule('opacity-#{$i * 10}'){
-        opacity: $i / 10;
     }
 }

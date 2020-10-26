@@ -54,17 +54,22 @@
 }
 
 //----------------------------------------------------------------
-//             Cursors
+//             Cursor
 //----------------------------------------------------------------
-[data-href],
-.cursor-pointer{
-    cursor: pointer !important;
-}
-.cursor-help{
-    cursor: help;
-}
-.cursor-handle{
-    cursor: grab;
+@each $type in (
+auto
+default
+pointer
+wait
+text
+move
+not-allowed
+help
+grab
+) {
+    .cursor-#{$type}{
+        cursor: $type;
+    }
 }
 
 //----------------------------------------------------------------
