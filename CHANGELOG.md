@@ -37,6 +37,7 @@
 - `.text-list-[style]`
 - `.bg-opacity-[#]`
 - `.text-opacity-[#]`
+- `.border-opacity-[#]`
 
 ### Removed
 - remove `text-2_0 text-1_2...`
