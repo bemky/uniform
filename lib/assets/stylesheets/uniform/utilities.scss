@@ -136,3 +136,9 @@ table.layout-fixed{
 .shadow{
     box-shadow: 0 1px 3px 2px rgba(black, 0.2);
 }
+
+//----------------------------------------------------------------
+//             SVG
+//----------------------------------------------------------------
+@include responsive-rule('fill-current'){ fill: currentColor;}
+@include responsive-rule('stroke-current'){ stroke: currentColor;}
