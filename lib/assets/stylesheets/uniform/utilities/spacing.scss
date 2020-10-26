@@ -1,0 +1,52 @@
+//----------------------------------------------------------------
+//             Margin
+//----------------------------------------------------------------
+
+@include size-rule('.margin') using ($size) {
+    margin: $size;
+}
+@include size-rule('.margin-v') using ($size) {
+    margin-top: $size;
+    margin-bottom: $size;
+}
+@include size-rule('.margin-h') using ($size) {
+    margin-left: $size;
+    margin-right: $size;
+}
+@include size-rule('.margin-nest') using ($size) {
+    margin: -$size;
+}
+@include size-rule('.margin-v-nest') using ($size) {
+    margin-top: -$size;
+    margin-bottom: -$size;
+}
+@include size-rule('.margin-h-nest') using ($size) {
+    margin-left: -$size;
+    margin-right: -$size;
+}
+@each $direction in 'top' 'right' 'bottom' 'left' {
+    @include size-rule('.margin-#{$direction}') using ($size) {
+        margin-#{$direction}: $size;
+    };
+    @include size-rule('.margin-#{$direction}-nest') using ($size) {
+        margin-#{$direction}: -$size;
+    };
+}
+
+
+//----------------------------------------------------------------
+//             Spacing
+//----------------------------------------------------------------
+@include size-rule('.space-h > * + *') using ($size) { margin-left: $size;}
+@include size-rule('.space-v > * + *') using ($size) { margin-top: $size;}
+
+
+//----------------------------------------------------------------
+//             Pad
+//----------------------------------------------------------------
+@include size-rule('.pad') using ($size) { padding: $size;}
+@include size-rule('.pad-v') using ($size) { padding-top: $size; padding-bottom: $size;}
+@include size-rule('.pad-h') using ($size) { padding-left: $size; padding-right: $size;}
+@each $direction in 'top' 'right' 'bottom' 'left' {
+    @include size-rule('.pad-#{$direction}') using ($size) {padding-#{$direction}: $size;};
+}
