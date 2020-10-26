@@ -35,6 +35,8 @@
 - `.text-uppercase .text-lowercase .text-capitalize`
 - `.text-100 .text-200 ... .text-900`
 - `.text-list-[style]`
+- `.bg-opacity-[#]`
+- `.text-opacity-[#]`
 
 ### Removed
 - remove `text-2_0 text-1_2...`

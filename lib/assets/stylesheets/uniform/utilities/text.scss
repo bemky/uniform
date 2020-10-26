@@ -3,7 +3,7 @@
 //----------------------------------------------------------------
 
 @include color-rule('.text') using ($color){
-    color: $color;
+    color: rgba($color, var(--text-opacity));
 }
 
 

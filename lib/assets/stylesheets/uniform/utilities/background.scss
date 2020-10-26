@@ -1,5 +1,5 @@
 @include color-rule('.bg') using ($color){ 
-    background-color: $color;
+    background-color: rgba($color, var(--bg-opacity));
 }
 
 @include responsive-rule('bg-none') {
