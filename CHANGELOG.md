@@ -41,6 +41,8 @@
 - `.divide-[v|h]-[size]`
 - `.select-[all|text|none|auto]`
 - `.rotate-[0,1,3,180]`
+- `.transition-[100-1000]`
+- `.transition-[all|border|background...]`
 
 
 ### Removed

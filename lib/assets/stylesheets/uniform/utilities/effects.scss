@@ -51,8 +51,23 @@
 //----------------------------------------------------------------
 //             Transitions
 //----------------------------------------------------------------
-.transition-all{
-    transition: all 0.2s;
+@each $selector, $properties in (
+    none: none,
+    all: all,
+    colors: "background-color, border-color, color, fill, stroke",
+    opacity: opacity,
+    shadow: box-shadow,
+    transform: transform
+) {
+    .transition-#{$selector}{
+        transition-property: $properties;
+    }
+}
+
+@for $i from 0 through 10 {
+    .transition-#{$i*100}{
+        transition-duration: $i * 100ms;
+    }
 }
 
 
