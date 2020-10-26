@@ -1,3 +1,4 @@
+@include responsive-rule('.layout-fixed'){ table-layout: fixed;}
 @include responsive-rule('.table'){
     display:table;
     width:100%;

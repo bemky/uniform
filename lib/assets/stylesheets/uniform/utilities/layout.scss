@@ -15,6 +15,7 @@
     }
 }
 
+
 //----------------------------------------------------------------
 //             Display
 //----------------------------------------------------------------
@@ -37,6 +38,21 @@
 @include responsive-rule('show'){ display: inherit; }
 @include responsive-rule('hide-empty:empty'){ display: none; }
 
+
+//----------------------------------------------------------------
+//             Float
+//----------------------------------------------------------------
+@include responsive-rule('.float-right'){
+    float:right;
+}
+@include responsive-rule('.float-left'){
+    float: left;
+}
+@include responsive-rule('.clear'){
+    clear:both;
+}
+
+
 //----------------------------------------------------------------
 //             Flex
 //----------------------------------------------------------------
@@ -52,6 +68,7 @@
 @for $i from 1 through 12 {
     @include responsive-rule('order-#{$i}'){ order: $i; }
 }
+
 
 //----------------------------------------------------------------
 //             Grid
@@ -76,6 +93,42 @@
 @include size-rule('gap') using ($size) { gap: $size;}
 @include size-rule('gap-h') using ($size) { column-gap: $size;}
 @include size-rule('gap-v') using ($size) { row-gap: $size;}
+
+
+//----------------------------------------------------------------
+//             Alignment
+//----------------------------------------------------------------
+@each $selector, $value in (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-around,
+    evenly: space-evenly
+) {
+    @include responsive-rule('content-#{$selector}') {
+        justify-content: $selector;
+    }
+    @include responsive-rule('content-cross-#{$selector}') {
+        align-content: $selector;
+    }
+}
+@each $selector, $value in (
+    auto
+    start
+    end
+    center
+    stretch
+    baseline
+) {
+    @include responsive-rule('items-#{$selector}') {
+        justify-items: $selector;
+    }
+    @include responsive-rule('items-cross-#{$selector}') {
+        align-items: $selector;
+    }
+}
+
 
 //----------------------------------------------------------------
 //             Object
