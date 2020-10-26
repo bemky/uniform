@@ -38,6 +38,7 @@
 - `.bg-opacity-[#]`
 - `.text-opacity-[#]`
 - `.border-opacity-[#]`
+- `.divide-[v|h]-[size]`
 
 ### Removed
 - remove `text-2_0 text-1_2...`

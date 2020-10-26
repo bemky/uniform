@@ -37,8 +37,16 @@
 //----------------------------------------------------------------
 //             Spacing
 //----------------------------------------------------------------
-@include size-rule('.space-h > * + *') using ($size) { margin-left: $size;}
-@include size-rule('.space-v > * + *') using ($size) { margin-top: $size;}
+@include size-rule('.space-h') using ($size) {
+    &  > * + * {
+        margin-left: $size;
+    }
+}
+@include size-rule('.space-v') using ($size) {
+    &  > * + * {
+        margin-top: $size
+    }
+}
 
 
 //----------------------------------------------------------------

@@ -20,3 +20,28 @@
 //----------------------------------------------------------------
 @include responsive-rule('.rounded') { border-width: 0.25em;}
 @include size-rule('.rounded') using ($size){ border-radius: $size;}
+
+
+//----------------------------------------------------------------
+//             Divide
+//----------------------------------------------------------------
+@include responsive-rule('.divide-h') {
+    & > * + * {
+        border-left-width: 1px;
+    }
+}
+@include size-rule('.divide-h') using ($size) {
+    & > * + * {
+        border-left-width: $size;
+    }
+}
+@include responsive-rule('.divide-v') {
+    & > * + * {
+        border-top-width: 1px;
+    }
+}
+@include size-rule('.divide-v') using ($size) {
+    & > * + * {
+        border-top-width: $size;
+    }
+}
