@@ -43,6 +43,8 @@
 - `.rotate-[0,1,3,180]`
 - `.transition-[100-1000]`
 - `.transition-[all|border|background...]`
+- `.animate-[spin bounce blink ping pulse]`
+- `.animate-[200 400 600... 2000]`
 
 
 ### Removed
