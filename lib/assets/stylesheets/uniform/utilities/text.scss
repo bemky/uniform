@@ -3,8 +3,16 @@
 //----------------------------------------------------------------
 
 @include color-rule('.text') using ($color){
+    --text-opacity: 1.0;
     color: rgba($color, var(--text-opacity));
 }
+@include color-rule('.placeholder') using ($color){
+    --placeholder-opacity: 1.0;
+    &::placeholder{
+        color: rgba($color, var(--placeholder-opacity));
+    }
+}
+
 
 
 //----------------------------------------------------------------

@@ -29,8 +29,11 @@
     @include responsive-rule('bg-opacity-#{$i * 10}'){
         --bg-opacity: $i / 10;
     }
-    @include responsive-rule('bg-border-#{$i * 10}'){
+    @include responsive-rule('border-opacity-#{$i * 10}'){
         --border-opacity: $i / 10;
+    }
+    @include responsive-rule('placeholder-opacity-#{$i * 10}'){
+        --placeholder-opacity: $i / 10;
     }
     @include responsive-rule('opacity-#{$i * 10}'){
         opacity: $i / 10;
