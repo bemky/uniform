@@ -5,6 +5,7 @@
 - changed color spectrum from `[color]-dark` to `[color]-80`
 - changed size from `small smaller large larger` to `xs sm lg xl`
 - changed size from `quarter half` to `1/4 1/2`
+- changed `margin` to both vertical and horizontal margin
 
 ### Added
 - `text-3/4`
@@ -12,6 +13,7 @@
 - `@include size-rule('.margin') using $size { margin: $size }`
 - `@include color-rule('.border') using $color { border-color: $color }`
 - `@include breakpoint('lg'){}`
+- `@include pseudo-class-rule()`
 - `width-1/2 width-1/4 width-3/4 width-full`
 - `.flex .grid .inline-grid .inline-flex`
 - `.flex-[shrink|fill|auto|none]`
@@ -22,6 +24,13 @@
 - `.gap-[v|h]-#`
 - `.shadow-[sm|md|lg|xl]`
 - `.opacity-[0,10,20...100]`
+- `.object-cover` and `.object-contain`
+- `.sticky` and `.fixed`
+- `.contents` as `display: contents`
+- `.group:hover group-hover:bg-blue`
+- `rounded-[size]`
+- `.space-v-[size]` as space between children
+- `.space-h-[size]` as space between children
 
 ### Removed
 - remove `text-2_0 text-1_2...`
