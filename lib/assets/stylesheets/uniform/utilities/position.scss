@@ -1,42 +1,40 @@
-.relative{          position:relative;}
-.absolute{          position:absolute;}
-.fixed{          position:fixed;}
-.position-top{      top: 0;}
-.position-left{     left: 0;}
-.position-right{    right: 0;}
-.position-bottom{   bottom: 0;}
-.position-fill{   
-    position: absolute;
+@each $type in (
+relative
+absolute
+sticky
+fixed
+static
+){
+    @include responsive-rule($type){ position: $type; }
+}
+
+@each $direction in 'top' 'right' 'bottom' 'left' {
+    @include responsive-rule('.#{$direction}-0'){ #{$direction}: 0; }
+    @include responsive-rule('.#{$direction}-auto'){ #{$direction}: auto; }
+}
+@include responsive-rule('position-fill'){
+    position:absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
 }
-.position-center,
-%position-center{ 
+@include responsive-rule('position-center'){
     position:absolute;
     left:50%;
     top:50%;
     transform: translate(-50%, -50%);
 }
-.position-v-center,
-%position-v-center{ 
+@include responsive-rule('position-v-center'){
     position:absolute;
     top:50%;
     transform: translateY(-50%);
 }
-.position-h-center,
-%position-h-center{
+@include responsive-rule('position-h-center'){
     position:absolute;
     left:50%;
     transform: translateX(-50%);
 }
 @for $i from 1 through 100 {
     .z-#{$i}     { z-index: #{$i}; }
-}
-
-.hide-empty{
-    &:empty{
-        display: none;
-    }
 }

@@ -44,6 +44,9 @@
         $selector: str-slice($selector, 2, -1);
     }
     
+    %#{$selector}{
+        @content
+    }
     .#{$selector}{
         @content
     }

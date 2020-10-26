@@ -35,6 +35,7 @@
 }
 @include responsive-rule('hide'){ display: none; }
 @include responsive-rule('show'){ display: inherit; }
+@include responsive-rule('hide-empty:empty'){ display: none; }
 
 //----------------------------------------------------------------
 //             Flex
