@@ -5,21 +5,20 @@ $text-inputs: "input:not([type=search]):not([type=submit]):not([type=checkbox]):
 $system-font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 $base-font: $system-font;
 
+$base-font: if(variable-exists('base-font'), $base-font, $system-font);
+
 //----------------------------------------------------------------
 //             Colors
 //----------------------------------------------------------------
-//@if variable-exists("colors") {
-//
-//} @else {
-//
-//}
-$colors: (
+
+$colors: if(variable-exists('colors'), $colors, (
     'gray':               #515253,
     'green':              #97C848,
     'blue':               #0994E2,
     'red':                #E1563E,
     'yellow':             #D7E542
-);
+));
+
 
 //----------------------------------------------------------------
 //             Breakpoints
@@ -30,17 +29,17 @@ $colors: (
 //} @else {
 //
 //}
-$breakpoints: (
+$breakpoints: if(variable-exists('breakpoints'), $breakpoints, (
     sm: "max-width: 719px",
     md: "min-width: 720px",
     lg: "min-width: 1080px",
     xl: "min-width: 1440px"
-);
+));
 
 //----------------------------------------------------------------
 //             Sizes
 //----------------------------------------------------------------
-$sizes: (
+$sizes: if(variable-exists('sizes'), $sizes, (
     "1px":         1px,
     "2px":         2px,
     "4px":         4px,
@@ -54,13 +53,6 @@ $sizes: (
     "2x":        2rem,
     "4x":        4rem,
     "8x":        8rem
-);
-
-
-//----------------------------------------------------------------
-//             Grid
-//----------------------------------------------------------------
-$grid-columns: 12;
-$grid-gutter: 1em;
+));
 
 
