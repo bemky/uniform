@@ -1,3 +1,8 @@
 @import 'uniform/functions';
 @import 'uniform/variables';
 @import 'uniform/mixins';
+*{
+    border-width: 0;
+    border-style: solid;
+    border-color: color('gray');
+}

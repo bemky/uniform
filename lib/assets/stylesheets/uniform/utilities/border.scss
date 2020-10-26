@@ -1,28 +1,22 @@
-.border{
-    border: 1px solid color('gray');
-}
-
-.border-dashed{
-    border: 1px dashed color('gray');
-}
-
+//----------------------------------------------------------------
+//             Border
+//----------------------------------------------------------------
+@include responsive-rule('.border') { border-width: 1px;}
 @include color-rule('.border') using ($color) { border-color: $color;}
-.border{
-    border-width: 1px;
-    border-style: solid;
-}
-
-.border-dashed{
-    border-style: dashed;
-}
+@include size-rule('.border') using ($size) { border-width: $size;}
+@include responsive-rule('.border-dashed') { border-style: dashed;}
 
 @each $direction in 'top' 'right' 'bottom' 'left' {
     @include responsive-rule('.border-#{$direction}'){
-        border-#{$direction}-color: color('gray-30') !important;
-        border-#{$direction}-style: solid;
         border-#{$direction}-width: 1px;
     }
     @include color-rule('.border-#{$direction}') using ($color) {
         border-#{$direction}-color: $color;
     }
 }
+
+//----------------------------------------------------------------
+//             Border Radius
+//----------------------------------------------------------------
+@include responsive-rule('.rounded') { border-width: 0.25em;}
+@include size-rule('.rounded') using ($size){ border-radius: $size;}
