@@ -83,3 +83,20 @@
 @include responsive-rule('object-cover') { object-fit: cover;}
 @include responsive-rule('object-contain') { object-fit: contain;}
 @include responsive-rule('object-center') { object-position: center;}
+
+
+//----------------------------------------------------------------
+//             Alignment
+//----------------------------------------------------------------
+@each $position in (
+baseline
+middle
+top
+bottom
+text-top
+text-bottom
+) {
+    @include responsive-rule('align-#{$position}') {
+        vertical-align: $position;
+    }
+}

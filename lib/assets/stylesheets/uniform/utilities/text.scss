@@ -60,18 +60,6 @@ black: 900
     text-align: justify;
 }
 
-@each $position in (
-baseline
-middle
-top
-bottom
-text-top
-text-bottom
-) {
-    @include responsive-rule('align-#{$position}') {
-        vertical-align: $position;
-    }
-}
 
 //----------------------------------------------------------------
 //             Leading
