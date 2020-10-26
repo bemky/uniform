@@ -136,3 +136,12 @@ widest: 0.05em
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+//----------------------------------------------------------------
+//             Lists
+//----------------------------------------------------------------
+@include responsive-rule('text-list-none'){ list-style-type: none; }
+@include responsive-rule('text-list-disc'){ list-style-type: disc; }
+@include responsive-rule('text-list-decimal'){ list-style-type: decimal; }
+@include responsive-rule('text-list-inside'){ list-style-position: inside; }
+@include responsive-rule('text-list-outside'){ list-style-position: outside; }

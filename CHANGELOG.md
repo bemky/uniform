@@ -34,6 +34,7 @@
 - `.space-h-[size]` as space between children
 - `.text-uppercase .text-lowercase .text-capitalize`
 - `.text-100 .text-200 ... .text-900`
+- `.text-list-[style]`
 
 ### Removed
 - remove `text-2_0 text-1_2...`
