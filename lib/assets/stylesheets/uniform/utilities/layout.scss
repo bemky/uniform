@@ -20,16 +20,21 @@
 //----------------------------------------------------------------
 @each $type in (
     inline
-    none
     block
     inline-block
     grid
     inline-grid
     flex
     inline-flex
+    table
+    table-cell
+    table-row
+    contents
 ){
     @include responsive-rule($type){ display: $type; }
 }
+@include responsive-rule('hide'){ display: none; }
+@include responsive-rule('show'){ display: inherit; }
 
 //----------------------------------------------------------------
 //             Flex
