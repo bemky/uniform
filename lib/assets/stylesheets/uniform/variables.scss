@@ -7,6 +7,7 @@ $base-font: $system-font;
 
 $base-font: if(variable-exists('base-font'), $base-font, $system-font);
 
+
 //----------------------------------------------------------------
 //             Colors
 //----------------------------------------------------------------
@@ -24,17 +25,13 @@ $colors: if(variable-exists('colors'), $colors, (
 //             Breakpoints
 //----------------------------------------------------------------
 // 720, 1080, 1440
-//@if variable-exists("breakpoints") {
-//
-//} @else {
-//
-//}
 $breakpoints: if(variable-exists('breakpoints'), $breakpoints, (
     sm: "max-width: 719px",
     md: "min-width: 720px",
     lg: "min-width: 1080px",
     xl: "min-width: 1440px"
 ));
+
 
 //----------------------------------------------------------------
 //             Sizes
@@ -54,5 +51,3 @@ $sizes: if(variable-exists('sizes'), $sizes, (
     "4x":        4rem,
     "8x":        8rem
 ));
-
-
