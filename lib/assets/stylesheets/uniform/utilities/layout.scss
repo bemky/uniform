@@ -75,3 +75,10 @@
 @include size-rule('gap') using ($size) { gap: $size;}
 @include size-rule('gap-h') using ($size) { column-gap: $size;}
 @include size-rule('gap-v') using ($size) { row-gap: $size;}
+
+//----------------------------------------------------------------
+//             Object
+//----------------------------------------------------------------
+@include responsive-rule('object-cover') { object-fit: cover;}
+@include responsive-rule('object-contain') { object-fit: contain;}
+@include responsive-rule('object-center') { object-position: center;}
