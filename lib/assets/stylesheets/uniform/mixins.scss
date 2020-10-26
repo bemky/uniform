@@ -121,4 +121,9 @@ $color_spectrum: (
             @content
         }
     }
+    .group:hover{
+        @include responsive-rule("group-hover\\:#{$selector}"){
+            @content
+        }
+    }
 }
