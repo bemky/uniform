@@ -141,3 +141,18 @@ widest: 0.05em
 @include responsive-rule('text-list-decimal'){ list-style-type: decimal; }
 @include responsive-rule('text-list-inside'){ list-style-position: inside; }
 @include responsive-rule('text-list-outside'){ list-style-position: outside; }
+
+
+//----------------------------------------------------------------
+//             Select
+//----------------------------------------------------------------
+@each $type in (
+none
+text
+all
+auto
+) {
+    .select-#{$type}{
+        user-select: $type;
+    }
+}
