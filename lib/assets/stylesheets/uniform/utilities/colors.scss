@@ -1,36 +1,3 @@
-@include color-rule('.text') using ($color){ color: $color; }
-@include color-rule('.bg') using ($color){ background-color: $color; }
-@include color-rule('.a') using ($color){
-    a{
-        color: $color;
-    }
-    &:hover{
-        color: lighten($color, 20);
-    }
-    &:visited{
-        color: $color;
-    }
-}
-@include color-rule('.a-hover') using ($color){
-    a:hover{
-        color: $color;
-    }
-}
-@include color-rule('.hover') using ($color){
-    &:hover{
-        color: $color;
-    }
-}
-@include color-rule('.bg-hover') using ($color){
-    &:hover{
-        background-color: $color;
-    }
-}
-
-@for $i from 0 through 20 {
-    .opacity-#{$i * 5}     { opacity: #{$i * 5 / 100.0}; }
-}
-
-.bg-none{
-    background: transparent;
+@include color-rule('.text') using ($color){
+    color: $color;
 }

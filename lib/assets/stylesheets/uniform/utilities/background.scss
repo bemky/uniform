@@ -1,0 +1,7 @@
+@include color-rule('.bg') using ($color){ 
+    background-color: $color;
+}
+
+@include responsive-rule('bg-none') {
+    background: transparent;
+}

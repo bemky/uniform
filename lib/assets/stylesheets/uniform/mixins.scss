@@ -76,8 +76,14 @@ $color_spectrum: (
     }
 }
 @mixin color-rule($selector) {
+    @if str-index($selector, '.') == 1 {
+        $selector: str-slice($selector, 2, -1);
+    }
     @each $name, $value in $color_spectrum {
         @include responsive-rule("#{$selector}-#{$name}"){
+            @content($value)
+        }
+        @include pseudo-class-rule("#{$selector}-#{$name}"){
             @content($value)
         }
     }
@@ -92,6 +98,27 @@ $color_spectrum: (
     @each $size, $value in $sizes {
         @include responsive-rule("#{$selector}-#{$size}"){
             @content($value)
+        }
+    }
+}
+
+
+//----------------------------------------------------------------
+//             Pseudo Classes
+//----------------------------------------------------------------
+
+@mixin pseudo-class-rule($selector){
+    @each $pseudo-selector, $pseudo-class in (
+        active: active,
+        focus: focus,
+        hover: hover,
+        checked: checked,
+        focus-within: focus-within,
+        first: first-child,
+        last: last-child
+    ) {
+        @include responsive-rule("#{$pseudo-selector}\:#{$selector}:#{$pseudo-class}"){
+            @content
         }
     }
 }
