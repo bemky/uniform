@@ -47,3 +47,39 @@
         --placeholder-opacity: $i / 10;
     }
 }
+
+//----------------------------------------------------------------
+//             Transitions
+//----------------------------------------------------------------
+.transition-all{
+    transition: all 0.2s;
+}
+
+
+//----------------------------------------------------------------
+//             Transforms
+//----------------------------------------------------------------
+@include responsive-rule('.transform') {
+    --transform-translate-x: 0 !important;
+    --transform-translate-y: 0 !important;
+    --transform-rotate: 0 !important;
+    --transform-skew-x: 0 !important;
+    --transform-skew-y: 0 !important;
+    --transform-scale-x: 1 !important;
+    --transform-scale-y: 1 !important;
+    transform: translateX(var(--transform-translate-x))
+    translateY(var(--transform-translate-y))
+    rotate(var(--transform-rotate))
+    skewX(var(--transform-skew-x))
+    skewY(var(--transform-skew-y))
+    scaleX(var(--transform-scale-x))
+    scaleY(var(--transform-scale-y)) !important;
+}
+@each $deg in (0 1 2 3 6 12 45 90 180) {
+    @include responsive-rule('.rotate-#{$deg}') {
+        --transform-rotate: "#{$deg}deg";
+    }
+    @include responsive-rule('.-rotate-#{$deg}') {
+        --transform-rotate: "-#{$deg}deg";
+    }
+}

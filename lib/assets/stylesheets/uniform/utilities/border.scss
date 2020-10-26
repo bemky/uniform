@@ -18,8 +18,26 @@
 //----------------------------------------------------------------
 //             Border Radius
 //----------------------------------------------------------------
-@include responsive-rule('.rounded') { border-width: 0.25em;}
 @include size-rule('.rounded') using ($size){ border-radius: $size;}
+@include responsive-rule('.rounded') { border-radius: 0.25em;}
+@include responsive-rule('.rounded-top') {
+    border-top-right-radius: 0.25em;
+    border-top-left-radius: 0.25em;
+}
+@include responsive-rule('.rounded-bottom') {
+    border-bottom-right-radius: 0.25em;
+    border-bottom-left-radius: 0.25em;
+}
+@include responsive-rule('.rounded-left') {
+    border-top-left-radius: 0.25em;
+    border-bottom-left-radius: 0.25em;
+}
+@include responsive-rule('.rounded-right') {
+    border-top-right-radius: 0.25em;
+    border-bottom-right-radius: 0.25em;
+}
+
+@include responsive-rule('.round') { border-radius: 50%;}
 
 
 //----------------------------------------------------------------
