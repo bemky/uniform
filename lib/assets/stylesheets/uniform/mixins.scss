@@ -111,6 +111,9 @@ $color_spectrum: (
 //----------------------------------------------------------------
 
 @mixin pseudo-class-rule($selector){
+    @if str-index($selector, '.') == 1 {
+        $selector: str-slice($selector, 2, -1);
+    }
     @each $pseudo-selector, $pseudo-class in (
         active: active,
         focus: focus,

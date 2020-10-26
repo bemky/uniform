@@ -1,107 +1,51 @@
 //----------------------------------------------------------------
+//             Color
+//----------------------------------------------------------------
+
+@include color-rule('.text') using ($color){
+    color: $color;
+}
+
+
+//----------------------------------------------------------------
 //             Size
 //----------------------------------------------------------------
-
 @include size-rule('.text') using ($size) {font-size: $size;}
 
-.text-1rem{
-    font-size: 1rem;
-}
 
 //----------------------------------------------------------------
-//             Modifiers
+//             Style
 //----------------------------------------------------------------
+@include responsive-rule('.text-mono') { font-family: monospace, monospace; }
+@include responsive-rule('.text-uppercase') { text-transform: uppercase; }
+@include responsive-rule('.text-lowercase') { text-transform: lowercase; }
+@include responsive-rule('.text-capitalize') { text-transform: capitalize; }
+@include responsive-rule('.text-normal-case') { text-transform: none; }
+@include responsive-rule('.text-italic') { font-style: italic; }
+@include pseudo-class-rule('text-underline') { text-decoration: underline; }
+@include responsive-rule('.text-no-underline') { text-decoration: none; }
+@include responsive-rule('.text-line-through') { text-decoration: line-through; }
 
-.text-mono{
-    font-family: monospace, monospace;
-}
-.text-caps{
-    text-transform: uppercase;
-}
-.text-boldest{
-    font-weight: 900;
-}
-.text-bold{
-    font-weight: 700;
-}
-.text-light{
-    font-weight: 300;
-}
-.text-lightest{
-    font-weight: 100;
-}
-.text-normal{
-    font-weight: normal !important;
-}
-.text-italic{
-    font-style: italic;
-}
-.text-no-decoration{
-    text-decoration: none;
-    a{
-        text-decoration: none;
-    }
-}
-.text-underline{
-    text-decoration: underline;
-}
-.hover-underline{
-    &:hover{
-        text-decoration: underline;
-    }
-}
-
-//----------------------------------------------------------------
-//             Styles
-//----------------------------------------------------------------
-.text-subtle{
-    font-size: 90%;
-    opacity: 0.8;
-}
-.text-subtle-more{
-    font-size: 80%;
-    opacity: 0.6;
-}
-
-.text-muted{
-    opacity: 0.8;
-}
-.text-muted-less{
-    opacity: 0.85;
-}
-.text-muted-more{
-    opacity: 0.6;
-}
-p.large{
-    font-size:1.5em;
-    font-weight:300;
-}
-
-blockquote.quote{
-    font-style: italic;
-    border:none;
-    position:relative;
-    z-index: 2;
-    padding-left: 2em;
-    &::before{
-        font-family: $system-font;
-        z-index: -1;
-        position:absolute;
-        top: 0;
-        left: -1rem;
-        line-height: 0.7;
-        font-size:8em;
-        color: rgba(black, 0.1);
-        content: "“";
-    }
+@each $class, $weight in (
+hairline: 100,
+thin: 200,
+light: 300,
+normal: 400,
+medium: 500,
+semibold: 600,
+bold: 700,
+extrabold: 800,
+black: 900
+) {
+    @include responsive-rule('.text-#{$weight}') { font-weight: $weight; }
+    @include responsive-rule('.text-#{$class}') { font-weight: $weight; }
 }
 
 //----------------------------------------------------------------
 //             Positioning
 //----------------------------------------------------------------
-
 @include responsive-rule('.text-left'){
-    text-align: left !important;
+    text-align: left;
 }
 @include responsive-rule('.text-right'){
     text-align: right;
@@ -109,18 +53,62 @@ blockquote.quote{
 @include responsive-rule('.text-center'){
     text-align: center;
 }
-.text-middle{
-    vertical-align:middle;
+@include responsive-rule('.text-center'){
+    text-align: center;
 }
-.text-top{
-    vertical-align:top;
+@include responsive-rule('.text-justify'){
+    text-align: justify;
 }
-.text-tight{
-    line-height:1.3;
+
+@each $position in (
+baseline
+middle
+top
+bottom
+text-top
+text-bottom
+) {
+    @include responsive-rule('align-#{$position}') {
+        vertical-align: $position;
+    }
 }
-.text-height-1{
-    line-height: 1;
+
+//----------------------------------------------------------------
+//             Leading
+//----------------------------------------------------------------
+@each $style, $height in (
+none: 1,
+tight: 1.25,
+snug: 1.375,
+normal: 1.5,
+relaxed: 1.625,
+loose: 2
+) {
+    @include responsive-rule('leading-#{$style}') {
+        line-height: $height;
+    }
 }
+
+//----------------------------------------------------------------
+//             Tracking
+//----------------------------------------------------------------
+@each $style, $height in (
+tighter: -0.05em,
+tight: -0.025em,
+normal: 0,
+wide: 0.025em,
+wider: 0.05em,
+widest: 0.05em
+) {
+    @include responsive-rule('leading-#{$style}') {
+        line-height: $height;
+    }
+}
+
+//----------------------------------------------------------------
+//             Columns
+//----------------------------------------------------------------
+
 @include responsive-rule('.text-col-2'){
     column-count: 2;
     column-gap: 5em;
@@ -129,22 +117,22 @@ blockquote.quote{
     column-count: 3;
     column-gap: 5em;
 }
-.text-col-no-break{
-    break-inside: avoid-column;
-}
+
 
 //----------------------------------------------------------------
 //             Breaking
 //----------------------------------------------------------------
+.text-no-break{
+    break-inside: avoid-column;
+}
 .text-break{
     word-break: break-all;
 }
-.text-justify{
-    text-align: justify;
-}
-.text-overflow{
-    @include text-overflow;
-}
-.text-nowrap{
+.text-nowrap,
+.text-no-wrap{
     white-space: nowrap;
+}
+.text-overflow-hidden{
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

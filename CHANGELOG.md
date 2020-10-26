@@ -6,6 +6,7 @@
 - changed size from `small smaller large larger` to `xs sm lg xl`
 - changed size from `quarter half` to `1/4 1/2`
 - changed `margin` to both vertical and horizontal margin
+- changed `text-overflow` to `text-overflow-hidden`
 
 ### Added
 - `text-3/4`
@@ -31,6 +32,8 @@
 - `rounded-[size]`
 - `.space-v-[size]` as space between children
 - `.space-h-[size]` as space between children
+- `.text-uppercase .text-lowercase .text-capitalize`
+- `.text-100 .text-200 ... .text-900`
 
 ### Removed
 - remove `text-2_0 text-1_2...`
@@ -40,6 +43,11 @@
 - `@include colors`
 - `width-###-p`
 - `height-###-vh max-height-###-vh min-height-###-vh`
+- `.hover-text-underline`
+- `.text-subtle .text-subtle-more`
+- `.text-muted .text-muted-less`
+- `p.large`
+- `blockquote.quote`
 
 ##2.3.1
 - new loader animation and template
