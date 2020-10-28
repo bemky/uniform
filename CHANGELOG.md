@@ -63,6 +63,7 @@
 - `.grid-[align type]` for `.items-cross-[align type]`
 - `.grid-h-[align type]` for `.content-cross-[align type]`
 - `.grid-v-[align type]` for `.content-[align type]`
+- `.uniformTableDotLeaders`
 
 ##2.3.1
 - new loader animation and template
