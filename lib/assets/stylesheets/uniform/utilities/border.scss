@@ -1,9 +1,10 @@
 //----------------------------------------------------------------
 //             Border
 //----------------------------------------------------------------
-@include responsive-rule('.border') { border-width: 1px;}
-@include color-rule('.border') using ($color) { border-color: rgba($color, var(--border-opacity));}
 @include size-rule('.border') using ($size) { border-width: $size;}
+@include responsive-rule('.border') { border-width: 1px;}
+
+@include color-rule('.border') using ($color) { border-color: rgba($color, var(--border-opacity));}
 @include responsive-rule('.border-dashed') { border-style: dashed;}
 
 @each $direction in 'top' 'right' 'bottom' 'left' {

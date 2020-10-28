@@ -50,6 +50,11 @@
     .#{$selector}{
         @content
     }
+    .#{$selector}-\*{
+        * {
+            @content
+        }
+    }
     @each $breakpoint, $breakpoint_query in $breakpoints {
         @include media($breakpoint_query){
             .#{$breakpoint}\:#{$selector}{
@@ -102,6 +107,9 @@ $color_spectrum: (
         @include responsive-rule("#{$selector}-#{$size}"){
             @content($value)
         }
+    }
+    @include responsive-rule("#{$selector}"){
+        @content(1rem)
     }
 }
 
