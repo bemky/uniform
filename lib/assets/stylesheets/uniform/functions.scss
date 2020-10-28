@@ -1,6 +1,9 @@
 @function color($key) {
     @return map-get($color_spectrum, $key);
 }
+@function size($key) {
+    @return map-get($sizes, $key);
+}
 
 //----------------------------------------------------------------
 //             Icons
