@@ -1,8 +1,9 @@
+@import 'uniform/mixins';
+
 //----------------------------------------------------------------
 //             Border
 //----------------------------------------------------------------
-@include size-rule('.border') using ($size) { border-width: $size;}
-@include responsive-rule('.border') { border-width: 1px;}
+@include size-rule('.border', 'px', false) using ($size) { border-width: $size;}
 
 @include color-rule('.border') using ($color) { border-color: rgba($color, var(--border-opacity));}
 @include responsive-rule('.border-dashed') { border-style: dashed;}
@@ -10,6 +11,9 @@
 @each $direction in 'top' 'right' 'bottom' 'left' {
     @include responsive-rule('.border-#{$direction}'){
         border-#{$direction}-width: 1px;
+    }
+    @include size-rule('.border-#{$direction}', 'px', false) using ($size){
+        border-#{$direction}-width: $size;
     }
     @include color-rule('.border-#{$direction}') using ($color) {
         border-#{$direction}-color: $color;
@@ -44,22 +48,12 @@
 //----------------------------------------------------------------
 //             Divide
 //----------------------------------------------------------------
-@include responsive-rule('.divide-h') {
-    & > * + * {
-        border-left-width: 1px;
-    }
-}
-@include size-rule('.divide-h') using ($size) {
+@include size-rule('.divide-h', 'px', false) using ($size) {
     & > * + * {
         border-left-width: $size;
     }
 }
-@include responsive-rule('.divide-v') {
-    & > * + * {
-        border-top-width: 1px;
-    }
-}
-@include size-rule('.divide-v') using ($size) {
+@include size-rule('.divide-v', 'px', false) using ($size) {
     & > * + * {
         border-top-width: $size;
     }
