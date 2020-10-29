@@ -1,0 +1,62 @@
+<div class="section">
+    <h1>Borders</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/borders.css'),
+        content: "<div class=\":selector margin-top-1/2x width-100-px height-20-px bg-yellow bg-opacity-50\"></div>",
+        whitelist: [/border$/, /border\-(top|bottom|right|left)$/]
+    } %>
+</div>
+<div class="section">
+    <h3>Color</h3>
+    <p class="margin-v">
+        Color can also be modified directionally <code>.border-[left|right|top|bottom]-[color]</code>.
+    </p>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/borders.css'),
+        content: "<div class=\":selector border-bottom-4px margin-top-1/2x width-50-px\"></div>",
+        whitelist: /border\-(white|gray|red|green|blue|yellow|purple)/
+    } %>
+</div>
+
+<div class="section">
+    <h3>Size</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/borders.css'),
+        content: "<div class=\":selector margin-1/2x width-50-px height-20-px bg-yellow bg-opacity-50\"></div>",
+        whitelist: /border\-.*px$/
+    } %>
+</div>
+
+<div class="section">
+    <h3>Border Radius</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/borders.css'),
+        content: "<div class=\":selector margin-1/2x width-100-px height-50-px bg-yellow border bg-opacity-50\"></div>",
+        whitelist: /(rounded|round)/
+    } %>
+</div>
+
+<div class="section">
+    <h3>Dividers</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/borders.css'),
+        content: Proc.new{|selector| <<-HTML},
+            <div class=\"#{selector} margin-top-1/2x width-200-px bg-yellow bg-opacity-50 flex #{selector.include?("-v") ? "flex-col" : ""}\">
+                <div class="flex-fill">Cell 1</div>
+                <div class="flex-fill">Cell 1</div>
+                <div class="flex-fill">Cell 1</div>
+            </div>
+        HTML
+        whitelist: /divide/
+    } %>
+</div>
+
+<div class="section">    
+    <h3>Miscellaneous</h3>
+    <%= partial :css_rule_table, locals: {
+        content: "<div class=\":selector border margin-top-1/2x width-100-px height-20-px bg-yellow bg-opacity-50\"></div>",
+        css: css_rules('uniform/utilities/borders.css'),
+        blacklist: [/\d\d$/, /border\-.*(white|gray|red|green|blue|yellow|purple)/]
+    } %>
+</div>

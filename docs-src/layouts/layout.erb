@@ -38,45 +38,59 @@
         </a>
     </div>
     <div class="uniformNav -vertical">
-        <% [
-            [:introduction, false, '/'],
-            '',
-            :utilities,
-            :colors,
-            :grid,
-            '',
-            :button,
-            :table,
-            :thumb,
-            :card,
-            :row,
-            :form,
-            :loader,
-            :nav,
-            :label,
-            :alert,
-            [:popover, 'js'],
-            [:select, 'js'],
-            [:modal, 'js'],
-            [:dropdown, 'js'],
-            [:tooltip, 'js'],
-            [:resizer, 'js']
-        ].each do |page| %>
-            <% if page.is_a?(Array)
-                tag = page[1]
-                url = page[2]
-                page = page[0]
-            end %>
-            <% url ||= "/#{page}" %>
-            <% if page == "" %>
-            <div class="border-top pad-none"></div>
-            <% else %>
-            <a href="<%= url %>" class="<%= "active" if @current_page == page.to_s %>">
-                <%= page.to_s.titleize %>
-                <% if tag %>
-                    &nbsp;<span class="uniformLabel <%= @current_page == page.to_s ? "-white" : "-yellow-60" %> text-xs"><%= tag %></span>
+        <% {
+            introduction: {
+                url: '/'
+            },
+            utilities: {
+                children: {
+                    text: {},
+                    borders: {}
+                }
+            },
+            commponents: {
+                children: {
+                    button: {},
+                    table: {},
+                    thumb: {},
+                    card: {},
+                    row: {},
+                    form: {},
+                    loader: {},
+                    nav: {},
+                    label: {},
+                    alert: {},
+                    popover: { tag: 'js' },
+                    select: { tag: 'js' },
+                    modal: { tag: 'js' },
+                    dropdown: { tag: 'js' },
+                    tooltip: { tag: 'js' },
+                    resizer: { tag: 'js'}
+                }
+            }
+        }.each do |nav_item, options| %>
+            <a href="<%= options[:url] || "/#{nav_item}" %>" class="<%= "active" if @current_page == nav_item.to_s %> text-bold">
+                <%= options[:title] || nav_item.to_s.titleize %>
+                <% if options[:tag] %>
+                    &nbsp;<span class="uniformLabel <%= @current_page == nav_item.to_s ? "-white" : "-yellow-60" %> text-xs">
+                        <%= options[:tag] %>
+                    </span>
                 <% end %>
             </a>
+            <% if options[:children] %>
+            <div class="uniformNav -vertical pad-left text">
+                <% path = options[:url] || "/#{nav_item}" %>
+                <% options[:children].each do |nav_item, options| %>
+                    <a href="<%= path %><%= options[:url] || "/#{nav_item}" %>" class="<%= "active" if @current_page == nav_item.to_s %>">
+                        <%= options[:title] || nav_item.to_s.titleize %>
+                        <% if options[:tag] %>
+                            &nbsp;<span class="uniformLabel <%= @current_page == nav_item.to_s ? "-white" : "-yellow-60" %> text-xs">
+                                <%= options[:tag] %>
+                            </span>
+                        <% end %>
+                    </a>
+                <% end %>
+            </div>
             <% end %>
         <% end %>
     </div>
