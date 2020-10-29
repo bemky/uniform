@@ -40,7 +40,7 @@
         @content;
     }
 }
-@mixin responsive-rule($selector) {
+@mixin responsive-rule($selector, $include_child_utility: true) {
     @if str-index($selector, '.') == 1 {
         $selector: str-slice($selector, 2, -1);
     }
@@ -51,11 +51,14 @@
     .#{$selector}{
         @content
     }
-    .#{$selector}-\*{
-        * {
-            @content
+    @if $include_child_utility {
+        .#{$selector}-\*{
+            * {
+                @content
+            }
         }
     }
+    
     @each $breakpoint, $breakpoint_query in $breakpoints {
         @include media($breakpoint_query){
             .#{$breakpoint}\:#{$selector}{
@@ -102,14 +105,19 @@ $color_spectrum: (
 //             Size
 //----------------------------------------------------------------
 
-@mixin size-rule($selector){
-    @each $size, $value in $sizes {
-        @include responsive-rule("#{$selector}-#{$size}"){
+@mixin size-rule($selector, $size_type:'rem', $include_child_utility: true){
+    $size_spectrum: if($size_type == 'rem', $sizes, (
+        '2px': 2px,
+        '3px': 3px,
+        '4px': 4px
+    ));
+    @each $size, $value in $size_spectrum {
+        @include responsive-rule("#{$selector}-#{$size}", $include_child_utility){
             @content($value)
         }
     }
-    @include responsive-rule("#{$selector}"){
-        @content(1rem)
+    @include responsive-rule("#{$selector}", $include_child_utility){
+        @content(if($size_type == 'rem', 1rem, 1px))
     }
 }
 
