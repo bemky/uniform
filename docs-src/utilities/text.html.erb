@@ -1,0 +1,88 @@
+<div class="section">
+    <h1>Text</h1>
+</div>
+<div class="section">
+    <h3>Color</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/text.css'),
+        blacklist: /placeholder/,
+        whitelist: /text\-(white|gray|red|green|blue|yellow|purple)/
+    } %>
+</div>
+<div class="section">
+    <h3>Size</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/text.css'),
+        content: '<span class="text-black :selector">A</span>',
+        blacklist: /placeholder/,
+        whitelist: /(xs|sm|lg|xl|\dx)$/
+    } %>
+
+</div>
+<div class="section">    
+    <h3>Leading</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/text.css'),
+        content: '<div class=":selector">Lorem Ipsum <br/> dolor sit</div>',
+        whitelist: /leading/
+    } %>
+
+</div>
+<div class="section">    
+    <h3>Tracking</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/text.css'),
+        whitelist: /tracking/
+    } %>
+
+</div>
+<div class="section">    
+    <h3>Positioning</h3>
+    <%= partial :css_rule_table, locals: {
+        content: "<div class=\":selector\">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>",
+        css: css_rules('uniform/utilities/text.css'),
+        whitelist: /(left|right|center|justify)/
+    } %>
+
+</div>
+<div class="section">    
+    <h3>Weight</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/text.css'),
+        whitelist: /text\-(hairline|thin|light|normal|medium|semibold|bold|extrabold|black)$/
+    } %>
+
+</div>
+<div class="section">    
+    <h3>Style</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/text.css'),
+        whitelist: /(mono|uppercase|lowercase|capitalize|normal\-case|italic|underline|no\-underline|line\-through)/
+    } %>
+
+</div>
+<div class="section">
+    <h3>Lists</h3>
+    <%= partial :css_rule_table, locals: {
+        content: "<div class=\"pad-h-2x\"><ul class=':selector'><li>First Point</li></ul></div>",
+        css: css_rules('uniform/utilities/text.css'),
+        whitelist: /\-list/
+    } %>
+
+</div>
+<div class="section">    
+    <h3>Placeholder</h3>
+    <%= partial :css_rule_table, locals: {
+        content: "<input type=\"text\" class=\"uniformInput :selector\" placeholder=\"Lorem Ipsum\">",
+        css: css_rules('uniform/utilities/text.css'),
+        whitelist: /placeholder/
+    } %>
+
+</div>
+<div class="section">    
+    <h3>Miscellaneous</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/text.css'),
+        blacklist: [/text\-\d\d\d$/, /px$/]
+    } %>
+</div>

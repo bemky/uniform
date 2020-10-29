@@ -1,10 +1,9 @@
-@import "normalize";
 @import "uniform";
-@import "highlight/uniform";
+@import "highlight";
 
 *{
     box-sizing:border-box;
-}
+} 
 
 html, body{
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;;
@@ -28,8 +27,8 @@ html, body{
     h4,
     h5,
     h6{
-        margin-top:2em;
-        margin-bottom:0.5em;
+        margin-top:2rem;
+        margin-bottom:0.5rem;
         &:first-of-type{
             margin-top: 0;
         }
@@ -38,7 +37,7 @@ html, body{
 
 .side-nav{
     background: white;
-    font-size: 1.2em; 
+    font-size: 1.2em;
     position:fixed;
     overflow-y:scroll;
     width:250px;
@@ -72,18 +71,21 @@ html, body{
     vertical-align:middle;
 }
 
-code{
-    background: rgba(#a700e1, 0.1);
-    color: #a700e1;
+.highlight{
     border-radius: 0.25em;
-}
-pre{
-    code{
+    overflow: auto;
+    background: #e8eaec;
+    overflow-x: auto;
+    box-shadow: inset 0 0 0 1px color('gray-20');
+    pre{
         padding: 2em;
-        border-radius: 0.25em;
-        background: #505152;
-        overflow: auto;
+        &.tight{
+            padding: 0.5em;
+        }
     }
+}
+code{
+    border-radius: 0.25em;
 }
 
 h1,
@@ -92,6 +94,12 @@ h3,
 h4,
 h5,
 h6{
-    margin-top:2em;
-    margin-bottom:0.5em;
+    font-weight: bold;
+    margin-top: size('2x');
+    margin-bottom: size('1\\/2x');
 }
+
+h1{ font-size: size('4x');}
+h2{ font-size: size('2x');}
+h3{ font-size: size('xl');}
+h4{ font-size: size('lg');}

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    hljs.initHighlightingOnLoad();
     $('.uniformDropdown').uniformDropdown();
     $('.uniformCheckbox').uniformCheckbox();
     $('.uniformRadio').uniformRadio();

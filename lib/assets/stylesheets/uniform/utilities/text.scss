@@ -1,3 +1,5 @@
+@import 'uniform/mixins';
+
 //----------------------------------------------------------------
 //             Color
 //----------------------------------------------------------------
@@ -7,8 +9,8 @@
     color: rgba($color, var(--text-opacity));
 }
 @include color-rule('.placeholder') using ($color){
-    --placeholder-opacity: 1.0;
     &::placeholder{
+        --placeholder-opacity: 1.0;
         color: rgba($color, var(--placeholder-opacity));
     }
 }
@@ -61,9 +63,6 @@ black: 900
 @include responsive-rule('.text-center'){
     text-align: center;
 }
-@include responsive-rule('.text-center'){
-    text-align: center;
-}
 @include responsive-rule('.text-justify'){
     text-align: justify;
 }
@@ -94,10 +93,10 @@ tight: -0.025em,
 normal: 0,
 wide: 0.025em,
 wider: 0.05em,
-widest: 0.05em
+widest: 0.1em
 ) {
-    @include responsive-rule('leading-#{$style}') {
-        line-height: $height;
+    @include responsive-rule('tracking-#{$style}') {
+        letter-spacing: $height;
     }
 }
 

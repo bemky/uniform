@@ -3,6 +3,8 @@
     align-items: stretch;
     & > * {
         padding: 0.5em 0.5em;
+        border-width: 0;
+        border-color: inherit;
     }
     & > a{
         border: none !important; // TODO remove !important

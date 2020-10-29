@@ -38,12 +38,6 @@ page '/*.txt', layout: false
 # Methods defined in the helpers block are available in templates
 # https://middlemanapp.com/basics/helper-methods/
 
-# helpers do
-#   def some_helper
-#     'Helping'
-#   end
-# end
-
 helpers do
   def html_block(**args, &block)
     html = if handler = auto_find_proper_handler(&block)
@@ -64,8 +58,50 @@ helpers do
     ::ActiveSupport::SafeBuffer.new.safe_concat(html)
   end
   
+  def code(language=nil, options={}, &block)
+    raise 'The code helper requires a block to be provided.' unless block_given?
+    @_out_buf, _buf_was = "", @_out_buf
+    
+    begin
+      content = capture_html(&block)
+    ensure
+      # Reset stored buffer
+      @_out_buf = _buf_was
+    end
+    
+    spaces = content.match(/^ +/)
+    if spaces
+      spaces = spaces[0]
+      count = spaces.scan(/ /).count
+      content = content.gsub(/^ {#{count}}/, "")
+    end
+    
+    content = content.encode(Encoding::UTF_8)
+    concat_content Middleman::Syntax::Highlighter.highlight(content, language, options).html_safe
+  end
+  
   def colors
     %w(gray green blue red yellow)
+  end
+  
+  def css_rules(file='uniform.css')
+    @parsers = {} unless @parsers
+    if !@parsers[file]
+      @parsers[file] = {
+        printed_selectors: [],
+        parser: CssParser::Parser.new
+      }
+      @parsers[file][:parser].load_string!(app.condenser.find(file).to_s)
+    end
+    @parsers[file]
+  end
+  
+  def css_rule(rule, file='uniform.css')
+    if !@parsers[file]
+      @parsers[file] = parser = CssParser::Parser.new
+      @parsers[file].load_string!(app.condenser.find(file).to_s)
+    end
+    css_rules(file).find_rule_sets([rule]).map(&:declarations_to_s)
   end
 end
 

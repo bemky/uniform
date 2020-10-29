@@ -1,6 +1,6 @@
 <div class="text-center margin-top-4x">
-    <%= image_tag 'logo.png', size: "451x101" %>
-    <p class="large margin">Sass components and utilities for building a UI.</p>
+    <%= image_tag 'logo.png', size: "451x101", class: 'inline-block' %>
+    <p class="text-xl text-light margin-v-2x">Sass components and utilities for building a UI.</p>
     <div class="margin-top-2x">
         <a href="/uniform.zip" class="uniformButton -green -large" download>
             Download
@@ -13,40 +13,41 @@
 <div class="section">
     <h1>Installation</h1>
     <h3>Ruby</h3>
-    <p>Add to your Gemfile<br/></p>
-    <% block = html_block do %>
-    gem 'uniform-ui'
+    <p class="margin-v">Add to your Gemfile<br/></p>
+    <% code('ruby') do %>
+        gem 'uniform-ui'
     <% end %>
-    <%= block %>
     
-    <p>Add to asset paths (example for <a href="https://github.com/malomalo/condenser">Condenser</a>)</p>
-    <% block = html_block do %>
+    <p class="margin-v">Add to asset paths (example for <a href="https://github.com/malomalo/condenser">Condenser</a>)</p>
+    <% code('ruby') do %>
     condenser.path = Dir.each_child(UniformUi::ASSET_PATH).map { |a| File.join(UniformUi::ASSET_PATH, a) }
     <% end %>
-    <%= block %>
     
     <h3>NPM</h3>
-    <% block = html_block class: "javascript" do %>
-        npm install uniform-ui
-    <% end %>
-    <%= block %>
+    <div class="margin-v">
+        <% code('js') do %>
+            npm install uniform-ui
+        <% end %>
+    </div>
     
     <h3>Importing</h3>
-    <% block = html_block class: "css" do %>
-    // CSS
-    @import 'uniform';
-    <% end %>
-    <%= block %>
+    <div class="margin-v">
+        <% code('css') do %>
+        /* CSS */
+        @import 'uniform';
+        <% end %>
+    </div>
     
-    <% block = html_block class: "javascript" do %>
-    // Javascript
-    import {Dropdown} as Uniform from 'uniform';
+    <div class="margin-v">
+        <% code('js') do %>
+        // Javascript
+        import {Dropdown} as Uniform from 'uniform';
 
-    new Dropdown({
-        el: $('.example')
-    })
-    <% end %>
-    <%= block %>
+        new Dropdown({
+            el: $('.example')
+        })
+        <% end %>
+    </div>
 </div>
 <div class="section">
     <h1>CSS Philosophy</h1>
@@ -57,56 +58,59 @@
     </p>
     
     <h3>camelCase vs train-case</h3>
-    <p>Use camelCase for components, not train-case or snake_case.</p>
-    <p>Use tran-case for utilities or modifiers.</p>
-    <% block = html_block do %>
-    // ------ Component ------
-    <div class="uniformCard"></div>
-    
-    // ------ Modifier ------
-    <div class="uniformCard -border-red"></div>
-    
-    // ------ Utility ------
-    <div class="margin-top"></div>
-    <% end %>
-    <%= block %>
+    <p class="margin-v">Use camelCase for components, not train-case or snake_case.</p>
+    <p class="margin-v">Use tran-case for utilities or modifiers.</p>
+    <div class="margin-v">
+        <% code('html') do %>
+        <!--      Component     -->
+        <div class="uniformCard"></div>
+
+        <!--      Modifier     -->
+        <div class="uniformCard -border-red"></div>
+
+        <!--      Utility     -->
+        <div class="margin-top"></div>
+        <% end %>
+    </div>
     
 </div>
 <div class="section">
     <h1>Configuration</h1>
     <h3>Scope Uniform Components</h3>
-    <p>You can scope the components you want included in your assets.</p>
+    <p class="margin-v">You can scope the components you want included in your assets.</p>
     
     <h4>Sass</h4>
-    <% block = html_block class: "css" do %>
-    @import 'uniform';
-    // ------
-    // - or -
-    // ------
-    @import 'uniform/base'; // required<% (Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss functions.scss mixins.scss base.scss).include?(x)}.to_a +
-        Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'utilities')).map{|x| "utilities/#{x}"}.to_a +
-        Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
-    @import 'uniform/<%= x.remove('.scss') %>';<% end %>
-    <% end %>
-    <%= block %>
+    <div class="margin-v">
+        <% code('css') do %>
+        @import 'uniform';
+        /* ------ */
+        /* - or - */
+        /* ------ */
+        @import 'uniform/base'; // required<% (Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss functions.scss mixins.scss base.scss).include?(x)}.to_a +
+            Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'utilities')).map{|x| "utilities/#{x}"}.to_a +
+            Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
+        @import 'uniform/<%= x.remove('.scss') %>';<% end %>
+        <% end %>
+    </div>
     
     <h4>Javascript</h4>
-    <% block = html_block class: "javascript" do %>
-    // javascript
-    import {Dropdown} as Uniform from 'uniform';
+    <div class="margin-v">
+        <% code('js') do %>
+        // javascript
+        import {Dropdown} as Uniform from 'uniform';
 
-    new Dropdown({
-        el: $('.example')
-    })
-    <% end %>
-    <%= block %>
+        new Dropdown({
+            el: $('.example')
+        })
+        <% end %>
+    </div>
 </div>
 <div class="section">
     <h1>Contributors</h1>
     <p>Uniform is an open source tool created for use at <a href="https://42floors.com">42floors</a>. Please report bugs in <a href="https://github.com/bemky/uniform/issues">GitHub Issues</a></p>
-    <div class="margin">
-        <div class="grid">
-            <a class="text-center max-width-full-px" href="https://github.com/bemky">
+    <div class="margin-v margin-bottom-4x">
+        <div class="flex">
+            <a class="text-center max-width-60-px text-no-underline" href="https://github.com/bemky">
                 <img src="https://avatars.githubusercontent.com/u/841033?v=3" class="round block width-full">
                 <span class="block">bemky</span>
             </a>

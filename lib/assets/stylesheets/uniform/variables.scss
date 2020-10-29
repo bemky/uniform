@@ -13,11 +13,12 @@ $base-font: if(variable-exists('base-font'), $base-font, $system-font);
 //----------------------------------------------------------------
 
 $colors: if(variable-exists('colors'), $colors, (
-    'gray':               #515253,
+    'gray':               #505152,
     'green':              #97C848,
     'blue':               #0994E2,
     'red':                #E1563E,
-    'yellow':             #D7E542
+    'yellow':             #D7E542,
+    'purple':             #9461b9
 ));
 
 

@@ -1,3 +1,4 @@
+@import 'uniform/variables';
 
 @mixin text-overflow($inherit:false){
     @if $inherit {
@@ -74,8 +75,7 @@
 //----------------------------------------------------------------
 
 $color_spectrum: (
-    white: #FFFFFF,
-    black: #000000
+    white: #FFFFFF
 );
 @each $name, $color in $colors {
     $color_spectrum: map-merge($color_spectrum, ("#{$name}": $color));
@@ -131,7 +131,7 @@ $color_spectrum: (
         first: first-child,
         last: last-child
     ) {
-        @include responsive-rule("#{$pseudo-selector}\:#{$selector}:#{$pseudo-class}"){
+        @include responsive-rule("#{$pseudo-selector}\\:#{$selector}:#{$pseudo-class}"){
             @content
         }
     }

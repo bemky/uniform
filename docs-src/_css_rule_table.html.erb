@@ -1,0 +1,35 @@
+<div class="max-height-300-px overflow-y-scroll">
+    <table class="uniformTable align-top-*">
+        <% css[:parser].each_selector do |selector, declarations| %>
+            <% next if css[:printed_selectors].include?(selector) %>
+            <% next if defined?(blacklist) && (blacklist.is_a?(Array) ?
+                blacklist.any?{|x| selector =~ x} : selector =~ blacklist
+            ) %>
+            <% next if defined?(whitelist) && !(whitelist.is_a?(Array) ? 
+                whitelist.any?{|x| selector =~ x} : selector =~ whitelist
+            ) %>
+            <% next if selector =~ /\\\* \*/ %>
+            <% next if selector =~ /\\:/ %>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    <%= selector.gsub("\\", "").split("::")[0] %>
+                </td>
+                <td class="">
+                    <% if defined?(content) %>
+                        <%= content.gsub(":selector", selector.gsub(".", "").gsub("\\", "").split("::")[0]) %>
+                    <% else %>
+                        <div class="<%= selector.gsub(".", "").gsub("\\", "").split("::")[0] %>">
+                            Lorem ipsum
+                        </div>
+                    <% end %>
+                </td>
+                <td>
+                    <% code 'css', css_class: 'tight' do %>
+                        { <%= declarations.split(";").join(";\n") %> }
+                    <% end %>
+                </td>
+            </tr>
+            <% css[:printed_selectors] << selector %>
+        <% end %>
+    </table>
+</div>
