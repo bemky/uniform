@@ -32,19 +32,19 @@
         opacity: $i / 10;
     }
     @include responsive-rule('shadow-opacity-#{$i * 10}'){
-        --shadow-opacity: $i / 10;
+        --shadow-opacity: #{$i / 10};
     }
     @include responsive-rule('text-opacity-#{$i * 10}'){
-        --text-opacity: $i / 10;
+        --text-opacity: #{$i / 10};
     }
     @include responsive-rule('bg-opacity-#{$i * 10}'){
-        --bg-opacity: $i / 10;
+        --bg-opacity: #{$i / 10};
     }
     @include responsive-rule('border-opacity-#{$i * 10}'){
-        --border-opacity: $i / 10;
+        --border-opacity: #{$i / 10};
     }
     @include responsive-rule('placeholder-opacity-#{$i * 10}'){
-        --placeholder-opacity: $i / 10;
+        --placeholder-opacity: #{$i / 10};
     }
 }
 
