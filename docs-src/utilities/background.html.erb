@@ -1,0 +1,16 @@
+<div class="section">
+    <h1>Background</h1>
+    
+    <h3>Color</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/background.css'),
+        content: "<div class=':selector height-20-px'></div>"
+    } %>
+    
+    <h3>Color Opacity</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform.css'),
+        content: "<div class=':selector bg-gray height-20-px'></div>",
+        whitelist: [/bg-opacity/],
+    } %>
+</div>

@@ -1,3 +1,5 @@
+@import 'uniform/mixins';
+
 @include color-rule('.bg') using ($color){ 
     --bg-opacity: 1.0;
     background-color: rgba($color, var(--bg-opacity));
