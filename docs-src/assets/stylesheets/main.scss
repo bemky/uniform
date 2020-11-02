@@ -17,7 +17,9 @@ html, body{
 .section{
     width:100%;
     padding: 100px 50px;
-    border-bottom:2px dashed darken(white, 20);
+    & + & {
+        border-top:2px dashed darken(white, 20);
+    }
     pre:first-of-type{
         margin-top:0;
     }

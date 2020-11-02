@@ -1,3 +1,5 @@
+@import 'uniform/mixins';
+
 //----------------------------------------------------------------
 //             Fractionals
 //----------------------------------------------------------------
@@ -15,7 +17,7 @@
 @for $i from 0 through 100 {
     @include responsive-rule(".width-#{$i * 5}-px"){ width: $i * 5px };
     @include responsive-rule(".max-width-#{$i * 5}-px"){ max-width: $i * 5px };
-    @include responsive-rule(".min-max-width-#{$i * 5}-px"){ min-width: $i * 5px };
+    @include responsive-rule(".min-width-#{$i * 5}-px"){ min-width: $i * 5px };
     
     @include responsive-rule(".height-#{$i * 5}-px"){ height: $i * 5px };
     @include responsive-rule(".min-height-#{$i * 5}-px"){ min-height: $i * 5px };

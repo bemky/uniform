@@ -14,3 +14,11 @@
         whitelist: [/bg-opacity/],
     } %>
 </div>
+
+<div class="section">
+    <h3>Miscellaneous</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/background.css'),
+        content: "<div class=':selector height-20-px'></div>"
+    } %>
+</div>

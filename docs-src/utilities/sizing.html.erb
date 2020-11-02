@@ -1,0 +1,46 @@
+<div class="section">
+    <h1>Sizing</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/sizing.css'),
+        content: "<div class=':selector bg-green bg-opacity-50 min-height-10-px min-width-10-px inline-block'></div>",
+        whitelist: [/(auto|full)/]
+    } %>
+</div>
+<div class="section">
+    <h1>Fractional</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/sizing.css'),
+        content: "<div class=':selector bg-green bg-opacity-50 inline-block height-20-px'></div>",
+        whitelist: [/\//]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Pixels</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/sizing.css'),
+        content: "<div class=':selector bg-green bg-opacity-50 inline-block height-20-px'></div>",
+        whitelist: [/px$/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Viewport</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/sizing.css'),
+        content: "<div class=':selector bg-green bg-opacity-50 inline-block height-20-px'></div>",
+        whitelist: [/(vw|vh)$/]
+    } %>
+</div>
+
+<div class="section">
+    <h3>Miscellaneous</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/sizing.css'),
+        content: "<div class=':selector bg-green bg-opacity-50 inline-block height-20-px'></div>"
+    } %>
+</div>
