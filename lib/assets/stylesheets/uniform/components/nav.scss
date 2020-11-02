@@ -14,8 +14,8 @@
             background: rgba(black, 0.05);
         }
         &.active{
-            color: white;
-            background: color('green');
+            color: color('green-60');
+            background: rgba(color('green'), 0.15);
         }
     }
 }

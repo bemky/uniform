@@ -97,11 +97,12 @@ helpers do
   end
   
   def css_rule(rule, file='uniform.css')
+    @parsers = {} unless @parsers
     if !@parsers[file]
       @parsers[file] = parser = CssParser::Parser.new
       @parsers[file].load_string!(app.condenser.find(file).to_s)
     end
-    css_rules(file).find_rule_sets([rule]).map(&:declarations_to_s)
+    css_rules(file).find_by_selector(rule)
   end
 end
 

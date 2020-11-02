@@ -1,0 +1,188 @@
+<div class="section">
+    <h1>Flex</h1>
+
+    <table class="uniformTable align-top-*">
+        <%= partial :css_rule_row, locals: {
+            selector: 'flex',
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="flex leading-tight-* pad-* bg-green-* bg-opacity-30-* space-h">
+                    <div class="">1</div>
+                    <div class="">2</div>
+                    <div class="">3</div>
+                </div>
+            </div>
+            HTML
+        } %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'flex-nowrap',
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs overflow-hidden">
+                <div class="flex flex-nowrap leading-tight-* pad-* bg-green-* bg-opacity-30-* margin-h space-h">
+                    <div class="min-width-2/5">1</div>
+                    <div class="min-width-2/5">2</div>
+                    <div class="min-width-2/5">3</div>
+                </div>
+            </div>
+            HTML
+        } %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'flex-wrap',
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs">
+                <div class="flex flex-wrap leading-tight-* pad-* bg-green-* bg-opacity-30-* ">
+                    <div class="min-width-2/5 margin">1</div>
+                    <div class="min-width-2/5 margin">2</div>
+                    <div class="min-width-2/5 margin">3</div>
+                </div>
+            </div>
+            HTML
+        } %>
+    </table>
+</div>
+<div class="section">
+    <h3>Items</h3>
+
+    <table class="uniformTable align-top-*">
+        <%= partial :css_rule_row, locals: {
+            selector: 'flex-fill',
+            content: <<-HTML
+            <div class="width-full overflow-x bg-blue bg-opacity-10 text-xs">
+                <div class="flex margin-*">
+                    <div class="bg-green bg-opacity-30 flex-fill">
+                        <code>.flex-fill</code> #{(1..20).to_a.join(" ")}
+                    </div>
+                    <div class="bg-green bg-opacity-30 flex-initial">
+                        <code>.flex-initial</code> 1 2 4
+                    </div>
+                    <div class="bg-green bg-opacity-30 flex-initial">
+                        <code>.flex-initial</code>
+                    </div>
+                </div>
+            </div>
+            HTML
+        } %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'flex-initial',
+            content: <<-HTML
+            <div class="width-full overflow-x bg-blue bg-opacity-10 text-xs">
+                <div class="flex margin-*">
+                    <div class="bg-green bg-opacity-30 flex-initial">
+                        <code>.flex-initial</code> #{(1..10).to_a.join(" ")}
+                    </div>
+                    <div class="bg-green bg-opacity-30 flex-initial">
+                        <code>.flex-initial</code> #{(1..10).to_a.join(" ")}
+                    </div>
+                    <div class="bg-green bg-opacity-30 flex-initial">
+                        <code>.flex-initial</code> #{(1..10).to_a.join(" ")}
+                    </div>
+                </div>
+            </div>
+            HTML
+        } %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'flex-none',
+            content: <<-HTML
+            <div class="width-full overflow-x bg-blue bg-opacity-10 text-xs">
+                <div class="flex margin-*">
+                    <div class="bg-green bg-opacity-30 flex-none">
+                        <code>.flex-none</code> #{(1..20).to_a.join(" ")}
+                    </div>
+                    <div class="bg-green bg-opacity-30 flex-none">
+                        <code>.flex-none</code> #{(1..20).to_a.join(" ")}
+                    </div>
+                    <div class="bg-green bg-opacity-30 flex-none">
+                        <code>.flex-none</code> #{(1..20).to_a.join(" ")}
+                    </div>
+                </div>
+            </div>
+            HTML
+        } %>
+    </table>
+</div>
+
+<div class="section">
+    <h3>Flex Alignment</h3>
+
+    <h5 class="text-gray-60">Content Along Main Axes</h5>
+    <table class="uniformTable align-top-*">
+        <% %w(start end center between around evenly).each do |modifier| %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'justify-content-' + modifier,
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="flex justify-content-#{modifier} leading-tight-* pad-* bg-green-* bg-opacity-30-* space-h">
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                </div>
+            </div>
+            HTML
+        } %>
+        <% end %>
+    </table>
+
+    <h5 class="text-gray-60">Content Along Cross Axes</h5>
+    <table class="uniformTable align-top-*">
+        <% %w(start end center between around evenly).each do |modifier| %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'align-content-' + modifier,
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs">
+                <div class="flex flex-wrap align-content-#{modifier} pad-left pad-top-1/2x margin-bottom-1/2x-* margin-right-* leading-tight-* pad-h-* bg-green-* bg-opacity-30-* height-100-px">
+                    <div class="width-1/4">1</div>
+                    <div class="width-1/4">2</div>
+                    <div class="width-1/4">3</div>
+                    <div class="width-1/4">4</div>
+                    <div class="width-1/4">5</div>
+                    <div class="width-1/4">6</div>
+                </div>
+            </div>
+            HTML
+        } %>
+        <% end %>
+    </table>
+    
+    <h5 class="text-gray-60">Items Along Cross Axes</h5>
+    <table class="uniformTable align-top-*">
+        <% %w(auto start end center stretch baseline).each do |modifier| %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'align-' + modifier,
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="flex align-#{modifier} leading-tight-* pad-* bg-green-* bg-opacity-30-* space-h">
+                    <div>1</div>
+                    <div>2<br>2<br>2</div>
+                    <div>3<br>3</div>
+                </div>
+            </div>
+            HTML
+        } %>
+        <% end %>
+    </table>
+        
+</div>
+
+<div class="section">
+    <h3>Item Alignment</h3>
+    <table class="uniformTable align-top-*">
+        <% %w(auto start end center stretch).each do |modifier| %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'flex .align-' + modifier,
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="flex leading-tight-* pad-* bg-green-* bg-opacity-30-* space-h">
+                    <div class="">1</div>
+                    <div class="align-#{modifier} bg-opacity-70"><code>.align-#{modifier}</code></div>
+                    <div class="">3<br>3</div>
+                </div>
+            </div>
+            HTML
+        } %>
+        <% end %>
+    </table>
+        
+</div>
+
+
+        

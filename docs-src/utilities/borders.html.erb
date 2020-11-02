@@ -3,7 +3,7 @@
     
     <%= partial :css_rule_table, locals: {
         css: css_rules('uniform/utilities/borders.css'),
-        content: "<div class=\":selector margin-top-1/2x width-100-px height-20-px bg-yellow bg-opacity-50\"></div>",
+        content: "<div class=\":selector border-green-70 bg-green bg-opacity-30 margin-top-1/2x width-100-px height-20-px \"></div>",
         whitelist: [/border$/, /border\-(top|bottom|right|left)$/]
     } %>
 </div>
@@ -23,7 +23,7 @@
     <h3>Size</h3>
     <%= partial :css_rule_table, locals: {
         css: css_rules('uniform/utilities/borders.css'),
-        content: "<div class=\":selector margin-1/2x width-50-px height-20-px bg-yellow bg-opacity-50\"></div>",
+        content: "<div class=\":selector border-green-70 bg-green bg-opacity-30 margin-1/2x width-50-px height-20-px \"></div>",
         whitelist: /border\-.*px$/
     } %>
 </div>
@@ -32,7 +32,7 @@
     <h3>Border Radius</h3>
     <%= partial :css_rule_table, locals: {
         css: css_rules('uniform/utilities/borders.css'),
-        content: "<div class=\":selector margin-1/2x width-100-px height-50-px bg-yellow border bg-opacity-50\"></div>",
+        content: "<div class=\":selector border-green-70 margin-1/2x width-100-px height-50-px bg-green bg-opacity-30 border \"></div>",
         whitelist: /(rounded|round)/
     } %>
 </div>
@@ -42,7 +42,7 @@
     <%= partial :css_rule_table, locals: {
         css: css_rules('uniform/utilities/borders.css'),
         content: Proc.new{|selector| <<-HTML},
-            <div class=\"#{selector} margin-top-1/2x width-200-px bg-yellow bg-opacity-50 flex #{selector.include?("-v") ? "flex-col" : ""}\">
+            <div class=\"#{selector} border-green-70 margin-top-1/2x width-200-px bg-green bg-opacity-30 flex #{selector.include?("-v") ? "flex-col" : ""}\">
                 <div class="flex-fill">Cell 1</div>
                 <div class="flex-fill">Cell 1</div>
                 <div class="flex-fill">Cell 1</div>
@@ -55,7 +55,7 @@
 <div class="section">    
     <h3>Miscellaneous</h3>
     <%= partial :css_rule_table, locals: {
-        content: "<div class=\":selector border margin-top-1/2x width-100-px height-20-px bg-yellow bg-opacity-50\"></div>",
+        content: "<div class=\":selector border-green-70 border margin-top-1/2x width-100-px height-20-px bg-green bg-opacity-30\"></div>",
         css: css_rules('uniform/utilities/borders.css'),
         blacklist: [/\d\d$/, /border\-.*(white|gray|red|green|blue|yellow|purple)/]
     } %>

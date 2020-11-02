@@ -16,7 +16,7 @@
                 <td class="text-mono text-nowrap text-bold text-purple">
                     <%= selector %>
                 </td>
-                <td class="">
+                <td class="width-full">
                     <% if defined?(content) %>
                         <% if content.is_a?(Proc) %>
                             <%= content.call(selector.gsub(".", "")) %>

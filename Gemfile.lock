@@ -1,18 +1,19 @@
 GIT
+  remote: https://github.com/malomalo/condenser.git
+  revision: 53ba7969d0409ce357b5d7c2cb2478fbf77873c5
+  specs:
+    condenser (1.0.rc1)
+      erubi (~> 1.0)
+      listen
+      rack (> 1, < 3)
+
+GIT
   remote: https://github.com/malomalo/middleman-condenser.git
   revision: 3664bffe88a14f5629f7d7aac90455603b4caee2
   specs:
     middleman-condenser (0.0.3)
       condenser (>= 0.1)
       middleman-core (>= 4.2.1)
-
-PATH
-  remote: ../condenser
-  specs:
-    condenser (1.0.rc1)
-      erubi (~> 1.0)
-      listen
-      rack (> 1, < 3)
 
 GEM
   remote: https://rubygems.org/

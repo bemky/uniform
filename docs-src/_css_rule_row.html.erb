@@ -1,0 +1,13 @@
+<tr>
+    <td class="text-mono text-nowrap text-bold text-purple">
+        .<%= selector %>
+    </td>
+    <td class="">
+        <%= content %>
+    </td>
+    <td class="text-xs">
+        <% code 'css', css_class: 'tight' do %>
+            { <%= css_rule(".#{selector}").join(";\n") %> }
+        <% end %>
+    </td>
+</tr>

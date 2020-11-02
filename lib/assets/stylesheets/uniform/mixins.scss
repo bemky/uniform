@@ -53,7 +53,7 @@
     }
     @if $include_child_utility {
         .#{$selector}-\*{
-            * {
+            & > * {
                 @content
             }
         }

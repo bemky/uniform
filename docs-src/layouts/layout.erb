@@ -1,3 +1,4 @@
+<% current_path = "/#{current_page.path.gsub('.html', '')}" %>
 <!DOCTYPE html>
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -44,8 +45,10 @@
             },
             utilities: {
                 children: {
+                    colors: {},
                     text: {},
-                    borders: {}
+                    borders: {},
+                    flex: {},
                 }
             },
             commponents: {
@@ -69,22 +72,24 @@
                 }
             }
         }.each do |nav_item, options| %>
-            <a href="<%= options[:url] || "/#{nav_item}" %>" class="<%= "active" if @current_page == nav_item.to_s %> text-bold">
+            <% path = options[:url] || "/#{nav_item}" %>
+            <a href="<%= path %>" class="<%= "active" if current_path == path %> text-bold">
                 <%= options[:title] || nav_item.to_s.titleize %>
                 <% if options[:tag] %>
-                    &nbsp;<span class="uniformLabel <%= @current_page == nav_item.to_s ? "-white" : "-yellow-60" %> text-xs">
+                    &nbsp;<span class="uniformLabel <%= current_path== path ? "-white" : "-yellow-60" %> text-xs">
                         <%= options[:tag] %>
                     </span>
                 <% end %>
             </a>
             <% if options[:children] %>
             <div class="uniformNav -vertical pad-left text">
-                <% path = options[:url] || "/#{nav_item}" %>
+                <% parent_path = options[:url] || "/#{nav_item}" %>
                 <% options[:children].each do |nav_item, options| %>
-                    <a href="<%= path %><%= options[:url] || "/#{nav_item}" %>" class="<%= "active" if @current_page == nav_item.to_s %>">
+                    <% path = parent_path + (options[:url] || "/#{nav_item}") %>
+                    <a href="<%= path %>" class="<%= "active" if current_path == path %>">
                         <%= options[:title] || nav_item.to_s.titleize %>
                         <% if options[:tag] %>
-                            &nbsp;<span class="uniformLabel <%= @current_page == nav_item.to_s ? "-white" : "-yellow-60" %> text-xs">
+                            &nbsp;<span class="uniformLabel <%= current_path == path ? "-white" : "-yellow-60" %> text-xs">
                                 <%= options[:tag] %>
                             </span>
                         <% end %>

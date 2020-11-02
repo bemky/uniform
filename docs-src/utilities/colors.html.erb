@@ -1,0 +1,21 @@
+<div class="section">
+    <h1>Colors</h1>
+    <table class="width-full">
+    <% %w(gray green blue red yellow purple).each do |color| %>
+        <tr class="">
+            <td class="width-1/10 bg-<%= color %>">
+                <div class="uniformThumb aspect-4x3">
+                    <div class="text text-mono text-center"><%= color %></div>
+                </div>
+            </td>
+            <% (1..9).each do |i| %>
+                <td class="height-40-px bg-<%= color %>-<%= i*10 %>">
+                    <div class="uniformThumb aspect-4x3">
+                        <div class="text text-mono text-center"><%= color %>-<%= i*10 %></div>
+                    </div>
+                </td>
+            <% end %>
+        </tr>
+    <% end %>
+    </table>
+</div>
