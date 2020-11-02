@@ -1,0 +1,78 @@
+<div class="section">
+    <h1>Margin</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/spacing.css'),
+        content: "<div class='bg-green bg-opacity-30 inline-block'><div class=':selector width-40-px height-30-px bg-blue bg-opacity-50'></div></div>",
+        whitelist: [/margin/],
+        blacklist: [/nest/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Padding</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/spacing.css'),
+        content: <<-HTML,
+            <div class=':selector bg-green bg-opacity-30 inline-block'>
+                <div class='width-40-px height-30-px bg-blue bg-opacity-50'></div>
+            </div>
+        HTML
+        whitelist: [/pad/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Spacing</h1>
+    
+    <h3>Horizontal</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/spacing.css'),
+        content: <<-HTML,
+            <div class='bg-green bg-opacity-30 pad :selector flex'>
+                <div class='width-40-px height-30-px bg-blue bg-opacity-50'></div>
+                <div class='width-40-px height-30-px bg-blue bg-opacity-50'></div>
+                <div class='width-40-px height-30-px bg-blue bg-opacity-50'></div>
+            </div>
+        HTML
+        whitelist: [/space-h/]
+    } %>
+    
+    <h3>Vertical</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/spacing.css'),
+        content: <<-HTML,
+            <div class='bg-green bg-opacity-30 pad :selector'>
+                <div class='width-40-px height-30-px bg-blue bg-opacity-50'></div>
+                <div class='width-40-px height-30-px bg-blue bg-opacity-50'></div>
+                <div class='width-40-px height-30-px bg-blue bg-opacity-50'></div>
+            </div>
+        HTML
+        whitelist: [/space-v/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Nesting</h1>
+    <p class="margin-bottom">Inverted Margin, which is useful for reversing parent padding.</p>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/spacing.css'),
+        content: <<-HTML,
+            <div class='bg-green bg-opacity-30 height-200-px relative'>
+                <div class=':selector width-40-px height-30-px bg-blue bg-opacity-50 absolute position-center'></div>
+                <div class='width-40-px height-30-px bg-blue bg-opacity-20 absolute position-center'></div>
+            </div>
+        HTML
+        whitelist: [/margin.*\-nest/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Miscellaneous</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/spacing.css'),
+        content: "<div class='bg-green bg-opacity-30 inline-block'><div class=':selector width-40-px height-30-px bg-blue bg-opacity-50'></div></div>",
+    } %>
+</div>

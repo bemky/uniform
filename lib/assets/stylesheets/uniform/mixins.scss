@@ -111,13 +111,14 @@ $color_spectrum: (
         '3px': 3px,
         '4px': 4px
     ));
+
+    @include responsive-rule("#{$selector}", $include_child_utility){
+        @content(if($size_type == 'rem', 1rem, 1px))
+    }
     @each $size, $value in $size_spectrum {
         @include responsive-rule("#{$selector}-#{$size}", $include_child_utility){
             @content($value)
         }
-    }
-    @include responsive-rule("#{$selector}", $include_child_utility){
-        @content(if($size_type == 'rem', 1rem, 1px))
     }
 }
 
