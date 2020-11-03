@@ -6,217 +6,42 @@
     </p>
     
     <h2>Modifier Hierarchy</h2>
-    <code>.attribute[-direction][-size][-scope]</code>
-    <% block = html_block class:"css" do %>
-    .pad-top-2x-sm
-    
-    @media max-width: 719px){
-        .pad-top-2x-sm{
-            padding-top: 2em;
-        }
-    }
+    <p>Most utility classess have modifying attributes that follow this pattern:</p>
+    <% code 'html' do %>
+        <div class="[scope]:[attribute][-direction][-size/color]"></div>
     <% end %>
-    <%= block %>
     
-    <h3>Attributes</h3>
-    <p>
-        These attributes follow the same structure for the given attribute
-    </p>
-    <div class="text-col-3 text-mono">
-        <% [
-            ['.pad', 'padding: 1em'],
-            ['.margin', 'margin: 1em'],
-            ['.text', 'font-size: 1em']
-        ].each do |klass| %>
-        <div class="margin-bottom">
-            <%= klass[0] %>
-            <div class="text-muted text-xs"><%= klass[1] %></div>
-        </div>
-        <% end %>
+    <h3>Examples</h3>
+    <table class="flex space-h align-top-*">
+        <tr class="">
+            <td class="pad-right-2x">
+                <code class="text-purple">
+                    sm:pad-top-2x
+                </code>
+            </td>
+            <td class="">
+                <% code 'css', css_class: 'tight text-xs' do %>
+                    @media max-width: 719px){
+                        .pad-top-2x{
+                            padding-top: 2rem;
+                        }
+                    }
+                <% end %>
+            </td>
+        </tr>
+        <tr class="">
+            <td class="pad-right-2x pad-top">
+                <code class="text-purple">
+                    hover:bg-blue-dark
+                </code>
+            </td>
+            <td class="pad-top">
+                <% code 'css', css_class: 'tight text-xs' do %>
+                    .hover:bg-blue-dark:hover{
+                        background: #0994E2
+                    }
+                <% end %>
+            </td>
+        </tr>
     </div>
-    
-    <h3>Direction</h3>
-    <div class="text-col-2 text-mono">
-        <% [
-            ['.margin-left', 'margin-left: 1em'],
-            ['.margin-right', 'margin-right: 1em'],
-            ['.margin-bottom', 'margin-bottom: 1em'],
-            ['.margin-top', 'margin-top: 1em'],
-            ['.margin-v', 'margin-top: 1em;<br/>margin-bottom: 1em;'],
-            ['.margin-h', 'margin-left: 1em;<br/>margin-right: 1em;'],
-        ].each do |klass| %>
-        <div class="margin-bottom text-col-no-break">
-            <%= klass[0] %>
-            <div class="text-muted text-xs"><%= klass[1] %></div>
-        </div>
-        <% end %>
-    </div>
-    
-    <h3>Size</h3>
-    <div class="text-col-2 text-mono">
-        <% [
-            ['.margin-quarter', 'margin: 0.25em'],
-            ['.margin-half', 'margin: 0.5em'],
-            ['.margin-smaller', 'margin: 0.8em'],
-            ['.margin-small', 'margin: 0.9em'],
-            ['.margin', 'margin: 1em'],
-            ['.margin-large', 'margin: 1.2em'],
-            ['.margin-larger', 'margin: 1.4em'],
-            ['.margin-2x', 'margin: 2em'],
-            ['.margin-4x', 'margin: 4em'],
-            ['.margin-8x', 'margin: 8em'],
-        ].each do |klass| %>
-        <div class="margin-bottom text-col-no-break">
-            <%= klass[0] %>
-            <div class="text-muted text-xs"><%= klass[1] %></div>
-        </div>
-        <% end %>
-    </div>
-    
-    
-    <h3>Scopes</h3>
-    <div class="text-col-2 text-mono">
-        <% [
-            ['.margin-sm', '@media (max-width: 719px){ margin: 1em; }'],
-            ['.margin-md', '@media (min-width: 720px){ margin: 1em; }'],
-            ['.margin-lg', '@media (max-width: 1080px){ margin: 1em; }'],
-            ['.margin-xl', '@media (max-width: 1440px){ margin: 1em; }'],
-        ].each do |klass| %>
-        <div class="margin-bottom text-col-no-break">
-            <%= klass[0] %>
-            <div class="text-muted text-xs"><%= klass[1] %></div>
-        </div>
-        <% end %>
-    </div>
-</div>
-<div class="section">
-    <h3>Colors</h3>
-    <div class="text-col-2 text-mono">
-        <% [
-            ['.text-green', 'color: $green'],
-            ['.bg-green', 'background-color: $green'],
-            ['.a-green', 'a{ color: $green}'],
-            ['.a-hover-green', 'a:hover{ color: $green}'],
-            ['.border-green', 'border-color: $green'],
-        ].each do |klass| %>
-        <div class="margin-bottom">
-            <%= klass[0] %>
-            <div class="text-muted text-xs"><%= klass[1] %></div>
-        </div>
-        <% end %>
-    </div>
-</div>
-<div class="section">    
-    <h3>Sizes</h3>
-    <div class="text-col-2 text-mono">
-        <% [
-            ['.width-50-p', 'width: 50%'],
-            ['.width-50-px', 'width: 50px'],
-            ['.width-50-vw', 'width: 50vw'],
-            ['.max-width-50-p', 'max-width: 50%'],
-            ['.max-width-50-px', 'max-width: 50px'],
-            ['.height-50-p', 'height: 50%'],
-            ['.height-50-px', 'height: 50px'],
-            ['.height-50-vh', 'height: 50vh'],
-            ['.max-height-50-px', 'max-height: 50px'],
-            ['.min-height-50-vh', 'min-height: 50vh'],
-            ['.height-auto', 'height: auto;'],
-        ].each do |klass| %>
-            
-        <div class="margin-bottom">
-            <%= klass[0] %>
-            <div class="text-muted text-xs"><%= klass[1] %></div>
-        </div>
-        <% end %>
-    </div>
-</div>
-<div class="section">   
-    <h3>Text</h3>
-    <div class="text-col-2 text-mono">
-        <% [
-            ['.text-caps', 'text-transform: uppercase'],
-            ['.text-1rem', 'font-size: 1rem'],
-            ['.text-subtle', 'font-size: 90%; opacity: 0.8'],
-            ['.text-subtle-more', 'font-size: 80%; opacity: 0.6'],
-            ['.text-muted', 'opacity: 0.8'],
-            ['.text-muted-more', 'opacity: 0.6'],
-            ['.text-muted-less', 'opacity: 0.85'],
-            ['.text-left', 'text-align: left !important'],
-            ['.text-right', 'text-align: right'],
-            ['.text-center', 'text-align: center'],
-            ['.text-justify', 'text-align: justify'],
-            ['.text-overflow', '@include text-overflow'],
-            ['.text-italic', 'font-style: italic'],
-            ['.text-bold', 'font-weight: 700'],
-            ['.text-light', 'font-weight: 300'],
-            ['.text-lightest', 'font-weight: 100'],
-            ['.text-normal', 'font-weight: normal !important'],
-            ['.text-middle', 'vertical-align:middle'],
-            ['.text-top', 'vertical-align:top'],
-            ['.text-tight', 'line-height:1.3'],
-            ['.text-nowrap', 'white-space: nowrap; overflow:hidden'],
-            ['.text-no-decoration', 'text-decoration: none; a{text-decoration: none;}'],
-            ['.text-height-1', 'line-height: 1'],
-            ['.text-warn', '&:hover{color:$red !important;}'],
-            ['.text-col-2', 'column-count: 2; column-gap: 5em;']
-        ].each do |klass| %>
-            
-        <div class="margin-bottom">
-            <%= klass[0] %>
-            <div class="text-muted text-xs"><%= klass[1] %></div>
-        </div>
-        <% end %>
-    </div>
-</div>
-<div class="section">    
-    <h3>Layout</h3>
-    <div class="text-col-2 text-mono">
-        <% [
-            ['.hide', 'display:none !important;'],
-            ['.show', 'display:inherit !important;'],
-            ['.round', 'border-radius:50%;'],
-            ['.rounded', 'border-radius: 0.25em;'],
-            ['.cursor-pointer', 'cursor: pointer !important;'],
-            ['.cursor-help', 'cursor: help;'],
-            ['.cursor-handle', 'cursor: hand;'],
-            ['.honeypot', "position:absolute !important;\nleft:-999999px !important;\nwidth:1px !important;\ndisplay:block !important;"],
-            ['.float-right', 'float:right;'],
-            ['.float-left', 'float: left;'],
-            ['.bleed-fix', 'position:static; overflow:hidden;'],
-            ['.clear', 'clear:both;'],
-            ['.block ', 'display: block;'],
-            ['.inline-block ', 'display:inline-block !important;'],
-            ['.overflow-hidden', 'overflow:hidden;'],
-            ['.overflow-y', 'overflow-y: auto;'],
-            ['.absolute', 'position:absolute;'],
-            ['.relative', 'position:relative;'],
-            ['.position-center', "position:absolute;\nleft:50%;\ntop:50%;\ntransform: translate(-50%, -50%);"],
-            ['.position-v-center', "position:absolute;\nleft:50%;\ntransform: translateX(-50%, -50%);"],
-            ['.position-h-center', "position:absolute;\ntop:50%;\ntransform: translateY(-50%, -50%);"],
-        ].each do |klass| %>
-        <div class="margin-bottom">
-            <%= klass[0] %>
-            <div class="text-muted text-xs"><%= klass[1] %></div>
-        </div>
-        <% end %>
-    </div>
-</div>
-<div class="section">    
-    <h3>Element Utilities</h3>
-    <div class="text-col-2 text-mono">
-        <% [
-            ['p.large', 'font-size:1.5em; font-weight:300'],
-            ['img.disabled', '@include grayscale(1, 0.3)'],
-            ['table.fixed', 'table-layout: fixed;'],
-            ['ul.raw', 'margin: 0; padding: 0; list-style:none;'],
-            ['button.raw', 'outline: none; appearance: none; border: none; background:none;'],
-        ].each do |klass| %>
-            
-        <div class="margin-bottom">
-            <%= klass[0] %>
-            <div class="text-muted text-xs"><%= klass[1] %></div>
-        </div>
-        <% end %>
-    </div>
-    
-</div>
+ </div>
