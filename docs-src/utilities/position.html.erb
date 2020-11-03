@@ -1,0 +1,45 @@
+<div class="section">
+    <h1>Position</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/position.css'),
+        content: <<-HTML,
+        <div></div>
+        HTML
+        whitelist: [/(relative|static|absolute|sticky|fixed)/]
+    } %>
+    
+    <h3>Location</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/position.css'),
+        content: <<-HTML,
+        <div class="relative bg-blue bg-opacity-10 height-20-px width-full">
+            <div class=":selector absolute bg-green bg-opacity-50 height-10-px width-20-px"></div>
+        </div>
+        HTML
+        whitelist: [/(top|bottom|left|right|position)/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Z-Index</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/position.css'),
+        content: <<-HTML,
+        <div></div>
+        HTML
+        whitelist: [/z\-/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Miscellaneous</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/position.css'),
+        content: <<-HTML,
+        <div></div>
+        HTML
+    } %>
+</div>

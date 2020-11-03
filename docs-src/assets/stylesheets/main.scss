@@ -20,7 +20,7 @@ html, body{
     & + & {
         border-top:2px dashed darken(white, 20);
     }
-    pre:first-of-type{
+    pre:first-child{
         margin-top:0;
     }
     h1,
@@ -31,7 +31,7 @@ html, body{
     h6{
         margin-top:2rem;
         margin-bottom:0.5rem;
-        &:first-of-type{
+        &:first-child{
             margin-top: 0;
         }
     }
