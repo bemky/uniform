@@ -1,0 +1,281 @@
+<div class="section">
+    <h1>Grid</h1>
+    
+    
+    <table class="uniformTable align-top-*">
+        <%= partial :css_rule_row, locals: {
+            selector: 'grid',
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="grid gap cols-3 leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                    <div class="">1</div>
+                    <div class="">2</div>
+                    <div class="">3</div>
+                </div>
+            </div>
+            HTML
+        } %>
+    </table>
+</div>
+
+<div class="section">
+    <h1>Templates</h1>
+    
+    <h3>Columns</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/layout.css'),
+        content: <<-HTML,
+        <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+            <div class="grid gap :selector leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                #{(1..12).to_a.map{|x| "<div>#{x}</div>" }.join("")}
+            </div>
+        </div>
+        HTML
+        whitelist: [/cols/]
+    } %>
+    
+    <h3>Rows</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/layout.css'),
+        content: <<-HTML,
+        <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+            <div class="grid grid-flow-col gap :selector leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                #{(1..12).to_a.map{|x| "<div>#{x}</div>" }.join("")}
+            </div>
+        </div>
+        HTML
+        whitelist: [/rows/]
+    } %>
+</div>
+
+
+<div class="section">
+    <h1>Positioning</h1>
+    
+    <h3>Column Span</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/layout.css'),
+        content: <<-HTML,
+        <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+            <div class="grid gap cols-12 leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                <div class=":selector">:selector</div>
+            </div>
+        </div>
+        HTML
+        whitelist: [/col-span/]
+    } %>
+    
+    <h3>Column Start</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/layout.css'),
+        content: <<-HTML,
+        <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+            <div class="grid cols-12 gap leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                <div class=":selector">:selector</div>
+            </div>
+        </div>
+        HTML
+        whitelist: [/col-start/]
+    } %>
+    
+    <h3>Column End</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/layout.css'),
+        content: <<-HTML,
+        <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+            <div class="grid cols-12 gap leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                <div class=":selector">:selector</div>
+            </div>
+        </div>
+        HTML
+        whitelist: [/col-end/]
+    } %>
+    
+    <h3>Row Span</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/layout.css'),
+        content: <<-HTML,
+        <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+            <div class="grid gap grid-flow-col rows-6 leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                <div class=":selector">:selector</div>
+            </div>
+        </div>
+        HTML
+        whitelist: [/row-span/]
+    } %>
+    
+    <h3>Row Start</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/layout.css'),
+        content: <<-HTML,
+        <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+            <div class="grid rows-6 gap grid-flow-col leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                <div class=":selector">:selector</div>
+            </div>
+        </div>
+        HTML
+        whitelist: [/row-start/]
+    } %>
+    
+    <h3>Row End</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/layout.css'),
+        content: <<-HTML,
+        <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+            <div class="grid rows-6 gap grid-flow-col leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                <div class=":selector">:selector</div>
+            </div>
+        </div>
+        HTML
+        whitelist: [/row-end/]
+    } %>
+    
+    <h3>Flow</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/layout.css'),
+        content: <<-HTML,
+        <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+            <div class="grid rows-3 cols-4 gap :selector leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                #{(1..4).to_a.map{|x| "<div>#{x}</div>" }.join("")}
+            </div>
+        </div>
+        HTML
+        whitelist: [/flow/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Gap</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/layout.css'),
+        content: <<-HTML,
+        <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+            <div class="grid cols-2 :selector leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                #{(1..4).to_a.map{|x| "<div>#{x}</div>" }.join("")}
+            </div>
+        </div>
+        HTML
+        whitelist: [/gap/]
+    } %>
+</div>
+
+<div class="section">
+    <h3>Alignment</h3>
+
+    <h5 class="text-gray-60">Content Along Main Axes</h5>
+    <div class="max-height-350-px overflow-y-scroll">
+    <table class="uniformTable align-top-*">
+        <% %w(start end center between around evenly).each do |modifier| %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'justify-content-' + modifier,
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="grid cols-2 justify-content-#{modifier} leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                    #{(1..4).to_a.map{|x| "<div>#{x}</div>" }.join("")}
+                </div>
+            </div>
+            HTML
+        } %>
+        <% end %>
+    </table>
+    </div>
+    
+    <h5 class="text-gray-60">Content Along Cross Axes</h5>
+    <div class="max-height-350-px overflow-y-scroll">
+    <table class="uniformTable align-top-*">
+        <% %w(start end center between around evenly).each do |modifier| %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'align-content-' + modifier,
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="grid cols-2 align-content-#{modifier} leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                    #{(1..4).to_a.map{|x| "<div>#{x}</div>" }.join("")}
+                </div>
+            </div>
+            HTML
+        } %>
+        <% end %>
+    </table>
+    </div>
+    
+    <h5 class="text-gray-60">Items Along Main Axes</h5>
+
+    <div class="max-height-350-px overflow-y-scroll">
+    <table class="uniformTable align-top-*">
+        <% %w(auto start end center stretch baseline).each do |modifier| %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'justify-' + modifier,
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="grid cols-2 justify-#{modifier} leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                    #{(1..4).to_a.map{|x| "<div>#{x}</div>" }.join("")}
+                </div>
+            </div>
+            HTML
+        } %>
+        <% end %>
+    </table>
+    </div>
+    
+    <h5 class="text-gray-60">Items Along Cross Axes</h5>
+
+    <div class="max-height-350-px overflow-y-scroll">
+    <table class="uniformTable align-top-*">
+        <% %w(auto start end center stretch baseline).each do |modifier| %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'align-' + modifier,
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="grid cols-2 leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                    #{(1..4).to_a.map{|x| "<div>#{x}</div>" }.join("")}
+                </div>
+            </div>
+            HTML
+        } %>
+        <% end %>
+    </table>
+    </div>
+    
+    <h3>Individual Item</h3>
+    <h5 class="text-gray-60">Item Along Main Axes</h5>
+
+    <div class="max-height-350-px overflow-y-scroll">
+    <table class="uniformTable align-top-*">
+        <% %w(auto start end center stretch).each do |modifier| %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'grid .justify-' + modifier,
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="grid cols-2 leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                    <div class="">1</div>
+                    <div class="justify-#{modifier} bg-opacity-70"><code>.justify-#{modifier}</code></div>
+                    <div class="">3</div>
+                </div>
+            </div>
+            HTML
+        } %>
+        <% end %>
+    </table>
+    </div>
+    
+    <h5 class="text-gray-60">Item Along Cross Axes</h5>
+    <div class="max-height-350-px overflow-y-scroll">
+    <table class="uniformTable align-top-*">
+        <% %w(auto start end center stretch).each do |modifier| %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'grid .align-' + modifier,
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="grid cols-2 leading-tight-* pad-* bg-green-* bg-opacity-30-*">
+                    <div class="">1<br>1</div>
+                    <div class="align-#{modifier} bg-opacity-70"><code>.align-#{modifier}</code></div>
+                    <div class="">3</div>
+                </div>
+            </div>
+            HTML
+        } %>
+        <% end %>
+    </table>
+    </div>
+</div>

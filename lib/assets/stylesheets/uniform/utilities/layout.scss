@@ -1,3 +1,5 @@
+@import 'uniform/mixins';
+
 //----------------------------------------------------------------
 //             Container
 //----------------------------------------------------------------
@@ -73,13 +75,13 @@
 //             Grid
 //----------------------------------------------------------------
 @for $i from 1 through 12 {
-    @include responsive-rule('grid-cols-#{$i}'){ grid-template-columns: repeat($i, minmax(0, 1fr)); }
+    @include responsive-rule('cols-#{$i}'){ grid-template-columns: repeat($i, minmax(0, 1fr)); }
     @include responsive-rule('col-span-#{$i}'){ grid-column: span $i / span $i; }
     @include responsive-rule('col-start-#{$i}'){ grid-column-start: $i; }
     @include responsive-rule('col-end-#{$i}'){ grid-column-end: $i; }
 }
 @for $i from 1 through 6 {
-    @include responsive-rule('grid-rows-#{$i}'){ grid-template-rows: repeat($i, minmax(0, 1fr)); }
+    @include responsive-rule('rows-#{$i}'){ grid-template-rows: repeat($i, minmax(0, 1fr)); }
     @include responsive-rule('row-span-#{$i}'){ grid-row: span $i / span $i; }
     @include responsive-rule('row-start-#{$i}'){ grid-row-start: $i; }
     @include responsive-rule('row-end-#{$i}'){ grid-row-end: $i; }

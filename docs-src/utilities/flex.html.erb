@@ -184,5 +184,24 @@
         
 </div>
 
+<div class="section">
+    <h3>Order</h3>
+    <table class="uniformTable align-top-*">
+        <%= partial :css_rule_row, locals: {
+            selector: 'order-1',
+            content: <<-HTML
+            <div class="width-full bg-blue bg-opacity-10 text-xs pad-h">
+                <div class="flex leading-tight-* pad-* bg-green-* bg-opacity-30-* space-h">
+                    <div class="order-3">1 <code>.order-3</code></div>
+                    <div class="order-1">2 <code>.order-1</code></div>
+                    <div class="order-2">3 <code>.order-2</code></div>
+                </div>
+            </div>
+            HTML
+        } %>
+    </table>
+        
+</div>
+
 
         
