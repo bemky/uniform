@@ -1,23 +1,14 @@
+@import 'uniform/mixins';
+
 //----------------------------------------------------------------
 //             Shadow
 //----------------------------------------------------------------
 
-.shadow,
-.shadow-xs,
-.shadow-sm,
-.shadow-md,
-.shadow-lg,
-.shadow-outline,
-.shadow-inset,
-.shadow-inline{
-    --shadow-opacity: 0.1;
-}
-
-@include responsive-rule('shadow-xs') {box-shadow: 0 1px 0 1px rgba(black, var(--shadow-opacity)); }
-@include responsive-rule('shadow-sm') { box-shadow: 0 1px 2px rgba(black, var(--shadow-opacity)); }
-@include responsive-rule('shadow') { box-shadow: 0 1px 3px rgba(black, var(--shadow-opacity)); }
-@include responsive-rule('shadow-md') { box-shadow: 0 2px 6px rgba(black, var(--shadow-opacity)); }
-@include responsive-rule('shadow-lg') { box-shadow: 0 2px 12px rgba(black, var(--shadow-opacity)); }
+@include responsive-rule('shadow-xs') { box-shadow:      0 1px 0 1px rgba(black, var(--shadow-opacity)); }
+@include responsive-rule('shadow-sm') { box-shadow:      0 1px 2px rgba(black, var(--shadow-opacity)); }
+@include responsive-rule('shadow') {    box-shadow:      0 1px 3px rgba(black, var(--shadow-opacity)); }
+@include responsive-rule('shadow-md') { box-shadow:      0 2px 6px rgba(black, var(--shadow-opacity)); }
+@include responsive-rule('shadow-lg') { box-shadow:      0 2px 12px rgba(black, var(--shadow-opacity)); }
 @include responsive-rule('shadow-outline') { box-shadow: 0 0 0 1px rgba(black, var(--shadow-opacity)); }
 
 @include responsive-rule('shadow-inset') { box-shadow: inset 0 2px 4px rgba(black, var(--shadow-opacity)); }
@@ -75,13 +66,13 @@
 //             Transforms
 //----------------------------------------------------------------
 @include responsive-rule('.transform') {
-    --transform-translate-x: 0 !important;
-    --transform-translate-y: 0 !important;
-    --transform-rotate: 0 !important;
-    --transform-skew-x: 0 !important;
-    --transform-skew-y: 0 !important;
-    --transform-scale-x: 1 !important;
-    --transform-scale-y: 1 !important;
+    --transform-translate-x: 0;
+    --transform-translate-y: 0;
+    --transform-rotate: 0;
+    --transform-skew-x: 0;
+    --transform-skew-y: 0;
+    --transform-scale-x: 1;
+    --transform-scale-y: 1;
     transform: translateX(var(--transform-translate-x))
     translateY(var(--transform-translate-y))
     rotate(var(--transform-rotate))
@@ -92,10 +83,10 @@
 }
 @each $deg in (0 1 2 3 6 12 45 90 180) {
     @include responsive-rule('.rotate-#{$deg}') {
-        --transform-rotate: "#{$deg}deg";
+        --transform-rotate: #{$deg}deg;
     }
     @include responsive-rule('.-rotate-#{$deg}') {
-        --transform-rotate: "-#{$deg}deg";
+        --transform-rotate: -#{$deg}deg;
     }
 }
 
@@ -114,7 +105,7 @@ blink
 ) {
     .animate-#{$animation} {
         --animation-duration: 1s;
-        animation: $animation --animation-duration linear inifite;
+        animation: $animation var(--animation-duration) linear infinite;
     }
 }
 @for $i from 0 through 20 {
@@ -123,10 +114,10 @@ blink
     }
 }
 @keyframes spin {
-  from {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }

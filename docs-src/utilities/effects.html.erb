@@ -1,0 +1,87 @@
+<div class="section">
+    <h1>Effects</h1>
+</div>
+
+<div class="section">
+    <h1>Shadow</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class="bg-white pad">
+            <div class=":selector bg-white height-20-px width-full"></div>
+        </div>
+        HTML
+        whitelist: [/^\.shadow$/, /shadow\-[a-z]+$/]
+    } %>
+    
+    <h3>Opacity</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class="bg-white pad">
+            <div class="shadow-md :selector bg-white height-20-px width-full"></div>
+        </div>
+        HTML
+        whitelist: [/shadow\-opacity/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Transition</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class=""></div>
+        HTML
+        whitelist: [/transition/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Transform</h1>
+    
+    <p class="margin">Requires class <code>.transform</code></p>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class="transform :selector inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+        HTML
+        whitelist: [/rotate/]
+    } %>
+</div>
+
+
+<div class="section">
+    <h1>Animate</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class=":selector inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+        HTML
+        whitelist: [/animate/]
+    } %>
+    
+    <h3>Duration</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class="animate-bounce :selector inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+        HTML
+        whitelist: [/animation/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Miscellaneous</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class="transform :selector inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+        HTML
+        blacklist: [/opacity/, /^\.transform$/]
+    } %>
+</div>
