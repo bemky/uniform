@@ -1,0 +1,111 @@
+<div class="section">
+    <h1>Scopes</h1>
+</div>
+<div class="section">
+    <h1>Responsive</h1>
+    <p>
+        Append the responsive scope to the front of any utlity to make
+        that utility apply to <strong>that size and larger</strong> (with the exception of <code>sm</code> which makes that utility <strong>only apply to <code>sm</code> size</strong>).
+    </p>
+    
+    <h3>Responsive Container</h3>
+    <p>
+        A class is also generated to allow the responsive nature to be defined by the container. To simulate the size of the browser on a container add <code>[size]-container</code> (ex. <code>sm-container</code>).
+    </p>
+    
+    <div class="flex margin-v-2x">
+        <div class="width-1/2 pad-right-2x">
+            <div class="md-container bg-blue bg-opacity-10 pad margin-bottom">
+                <code>.md-container</code>
+                <div class="width-full sm:width-1/2 height-50-px bg-green bg-opacity-50">
+                    <code>sm:width-1/2</code>
+                </div>
+            </div>
+            <div class="sm-container bg-blue bg-opacity-10 pad">
+                <code>.sm-container</code>
+                <div class="width-full sm:width-1/2 height-50-px bg-green bg-opacity-50">
+                    <code>sm:width-1/2</code>
+                </div>
+            </div>
+        </div>
+        <div class="width-1/2">
+            <% code 'html' do %>
+                <div class="sm-container bg-blue bg-opacity-10 pad">
+                    <code>.sm-container</code>
+                    <div class="width-full sm:width-1/2 height-50-px bg-green bg-opacity-50">
+                        <code>sm:width-1/2</code>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    
+    <h3>Default Responsive Breakpoints</h3>
+    <table>
+        <% {
+            sm: "< 719px",
+            md: "> 720px",
+            lg: "> 1080px",
+            xl: "> 1440px"
+        }.each do |size, value| %>
+        <tr>
+            <td>
+                <code><%= size %></code>
+            </td>
+            <td>
+                <%= value %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+</div>
+
+<div class="section">
+    <h1>Psuedo Classes</h1>
+    
+    <p class="margin-v">Append a psuedo class to confine utility to that scope.</p>
+    <table>
+        <% {
+            active: "active",
+            focus: "focus",
+            hover: "hover",
+            checked: "checked",
+            "focus-within": "focus-within",
+            first: "first-child",
+            last: "last-child"
+        }.each do |modifier, psuedo_class| %>
+            <tr class="align-top-*">
+                <td class="pad-right-2x">
+                    <code><%= modifier %>:</code>
+                </td>
+                <td>
+                    <% code 'css', css_class:'tight' do %>
+                        <%= psuedo_class %>:[utility]:<%= psuedo_class %> {
+                            /* [utility-attributes] */
+                        }
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+</div>
+
+<div class="section">
+    <h1>Hover Group</h1>
+    
+    <p>Set a utility based on a the hovering of a parent element (<code>group</code>)
+    <table>
+        <tr class="align-top-*">
+            <td class="pad-right-2x">
+                <code>group-hover:</code>
+            </td>
+            <td>
+                <% code 'css', css_class:'tight' do %>
+                    .group:hover group-hover:[utility]{
+                        /* [utility-attributes] */
+                    }
+                <% end %>
+            </td>
+        </tr>
+    </table>
+</div>

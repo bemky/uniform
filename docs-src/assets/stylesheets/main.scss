@@ -88,6 +88,16 @@ html, body{
 }
 code{
     border-radius: 0.25em;
+    color: color('purple');
+    background-color: rgba(color('purple'), 0.1);
+    padding: .15em 0.1em;
+}
+pre {
+    code {
+        color: inherit;
+        background: none;
+        padding: initial;
+    }
 }
 
 h1,
