@@ -11,7 +11,7 @@
         padding-bottom: 0.5em !important; // TODO remove !important
         &:hover{
             color: color('blue');
-            background: rgba(black, 0.05);
+            background: rgba(color('blue'), 0.1);
         }
         &.active{
             color: color('green-60');

@@ -1,0 +1,164 @@
+<div class="section">
+    <h1>UniformButton</h1>
+    <p>Mix and match styles to make the right button, all colors are available as well.</p>
+    <button class="uniformButton -xl -green margin-top-2x text-bold">
+        Uniform Button
+    </button>
+</div>
+<div class="section">
+    <h1>State</h1>
+
+    <table class="uniformTable align-top-*">
+        <%= partial :css_rule_row, locals: {
+            selector: 'uniformButton' ,
+            content: <<-HTML
+            <button class="uniformButton">
+                Button
+            </button>
+            HTML
+        } %>
+        <% %w(hover active focus disabled).each do |state| %>
+            <%= partial :css_rule_row, locals: {
+                selector: 'uniformButton.-' + state,
+                content: <<-HTML
+                <button class="uniformButton -#{state}">
+                    Button
+                </button>
+                HTML
+            } %>
+        <% end %>
+    </table>
+</div>
+<div class="section">
+    <h1>Style</h1>
+
+    <table class="uniformTable align-top-*">
+        <% %w(clear outline block).each do |state| %>
+            <%= partial :css_rule_row, locals: {
+                selector: 'uniformButton.-' + state,
+                content: <<-HTML
+                <button class="uniformButton -#{state}">
+                    Button
+                </button>
+                HTML
+            } %>
+        <% end %>
+    </table>
+</div>
+<div class="section">
+    <h1>Size</h1>
+
+    <table class="uniformTable align-top-*">
+        <% %w(xs sm lg xl).each do |state| %>
+            <%= partial :css_rule_row, locals: {
+                selector: 'uniformButton.-' + state,
+                content: <<-HTML
+                <button class="uniformButton -#{state}">
+                    Button
+                </button>
+                HTML
+            } %>
+        <% end %>
+    </table>
+</div>
+
+<div class="section">
+    <h1>Color</h1>
+
+    <div class="max-height-350-px overflow-y-scroll">
+        <table class="uniformTable align-top-*">
+            <% %w(gray green red blue yellow purple).each do |color| %>
+                <%= partial :css_rule_row, locals: {
+                    selector: "uniformButton.-#{color}",
+                    content: <<-HTML
+                    <div class="flex justify-content-between space-h-1/2x">
+                        <button class="uniformButton -#{color}">
+                            Button
+                        </button>
+                        <button class="uniformButton -#{color} -hover">
+                            Button
+                        </button>
+                        <button class="uniformButton -#{color} -active">
+                            Button
+                        </button>
+                        <button class="uniformButton -#{color} -focus">
+                            Button
+                        </button>
+                        <button class="uniformButton -#{color} -disabled">
+                            Button
+                        </button>
+                        <button class="uniformButton -#{color} -outline">
+                            Button
+                        </button>
+                    </div>
+                    HTML
+                } %>
+                <% (1..9).each do |i| %>
+                    <%= partial :css_rule_row, locals: {
+                        selector: "uniformButton.-#{color}-#{i*10}",
+                        content: <<-HTML
+                        <div class="flex justify-content-between space-h-1/2x">
+                            <button class="uniformButton -#{color}-#{i*10}">
+                                Button
+                            </button>
+                            <button class="uniformButton -#{color}-#{i*10} -hover">
+                                Button
+                            </button>
+                            <button class="uniformButton -#{color}-#{i*10} -active">
+                                Button
+                            </button>
+                            <button class="uniformButton -#{color}-#{i*10} -focus">
+                                Button
+                            </button>
+                            <button class="uniformButton -#{color}-#{i*10} -disabled">
+                                Button
+                            </button>
+                            <button class="uniformButton -#{color}-#{i*10} -outline">
+                                Button
+                            </button>
+                        </div>
+                        HTML
+                    } %>
+                <% end %>
+            <% end %>
+        </table>
+    </div>
+</div>
+
+<div class="section">
+    <h1>Button Group</h1>
+
+    <% buttons = Proc.new {|selector| <<-HTML
+        <tr>
+            <td>
+                <code>.uniformButtonGroup#{selector ? ".#{selector}" : ""}</code>
+            </td>
+            <td>
+                <div class="uniformButtonGroup #{selector}">
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                </div>
+            </td>
+            <td>
+                <div class="uniformButtonGroup #{selector} -outline">
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                </div>
+            </td>
+        </tr>
+    HTML
+    }%>
+    <div class="max-height-350-px overflow-y-scroll">
+        <table class="uniformTable align-top-*">
+            <%= buttons.call("") %>
+            <% %w(gray green red blue yellow purple).each do |color| %>
+                <%= buttons.call("-#{color}") %>
+                <% (1..9).each do |i| %>
+                    <%= buttons.call("-#{color}-#{i*10}") %>
+                <% end %>
+            <% end %>
+        </table>
+    </div>
+</div>
