@@ -1,236 +1,218 @@
+@import 'uniform/functions';
+@import 'uniform/mixins';
 
 //----------------------------------------------------------------
 //             Buttons
 //----------------------------------------------------------------
-.uniformButtonGroup a,
-.uniformButton{
+.uniformButton,
+.uniformButtonGroup > *{
+    --bg-opacity: 1;
+    --text-opacity: 1;
+    --border-opacity: 0.6;
+    --active-opacity: 0.2;
+    --border-radius: 0.35em;
+    --pad-v: 0.5em;
+    --pad-h: 0.85em;
+    
+    position:relative; // for adding loaders to buttons which have position:absolute
+    z-index: 1;
     outline: none;
     appearance: none;
-    cursor: pointer;
     display: inline-block;
     text-decoration: none;
+    user-select: none;
 
-    padding: 0.5em 0.75em;
+    padding: var(--pad-v) var(--pad-h);
     vertical-align: middle;
     text-align: center;
     line-height:1;
-    position:relative; // for adding loaders to buttons which have position:absolute
-    transition: all 0.2s;
+    border-radius: var(--border-radius);
+    border-style: solid;
+    border-width: 1px;
+    
+    color: rgba(color('gray-80'), var(--text-opacity));
+    background-color: rgba(white, var(--bg-opacity));
+    background-image: linear-gradient(rgba(black, 0) 33%, rgba(black, 0.1));
+    background-blend-mode: multiply;
+    border-color: rgba(color('gray-50'), var(--border-opacity));
+    
+    transition: color 100ms, box-shadow 100ms, background 100ms, padding 100ms;
+    box-shadow: var(--box-shadow);
+}
 
-    color:color('gray-90');
-    background-color: white;
-    background-image: linear-gradient(white 33%, darken(white, 7));
-    border-radius: 0.25em;
-    border:1px solid color('gray-50');
-    
-    &.input-height{
-        line-height: 1.4;
-    }
 
-    &:visited{
-        color:color('gray-90');
+//----------------------------------------------------------------
+//             Color
+//----------------------------------------------------------------
+@each $name, $color in $color_spectrum {
+    .uniformButton.-#{$name},
+    .uniformButtonGroup.-#{$name} > *{
+        background-color: rgba($color, var(--bg-opacity));
+        background-image: linear-gradient(rgba(black, 0) 33%, rgba(black, 0.3));
+        background-blend-mode: overlay;
+        border-color: rgba(darken($color, 30), var(--border-opacity));
+        @if lightness($color) > 65% {
+            color: rgba(change-color($color, $lightness: 30), var(--text-opacity));
+        } @else {
+            color: rgba(white, var(--text-opacity));
+        }
+        @if lightness($color) < 35% {
+            --active-opacity: 0.5;
+        }
     }
+    .uniformButton.-#{$name}.-outline{
+        border-color: rgba($color, var(--border-opacity));
+        color: rgba($color, var(--text-opacity));
+    }
+    .uniformButtonGroup.-outline.-#{$name} > * {
+        border-color: rgba($color, var(--border-opacity));
+        color: rgba($color, var(--text-opacity));
+    }
+}
 
-    &:hover,
-    &:focus,
-    &.hover{
-        box-shadow: inset 0 0 10px rgba(black, 0.1);
-    }
-    &:active,
-    &.active{
-    }
-    
-    &.-green,
-    &.-blue,
-    &.-red {
-        color: white;
-    }
-    &.-green { background: color('green');}
-    &.-blue  { background: color('blue');}
-    &.-red   { background: color('red');}
-    &.-green { background: color('green');}
-    &.-blue  { background: color('blue');}
-    &.-red   { background: color('red');}
-    
-    
+.uniformButton,
+.uniformButtonGroup > *{
     //----------------------------------------------------------------
-    //             styles
+    //             States
+    //----------------------------------------------------------------
+    &:hover,
+    &.-hover{
+        --bg-opacity: 1;
+        --border-opacity: 1;
+        background-image: linear-gradient(rgba(white, 0.2) 33%, rgba(white, 0));
+    }
+
+    &:focus,
+    &.-focus{
+        box-shadow: 0 0 0 2px rgba(color('blue'), 0.7);
+        z-index: 2;
+        &.active,
+        &:active{
+            box-shadow: 0 0 0 2px rgba(color('blue'), 0.7), inset 1px 1px 3px rgba(black, 0.2);
+        }
+    }
+
+    &:active,
+    &.-active{
+        box-shadow: inset 1px 1px 3px rgba(black, var(--active-opacity));
+        padding-top: calc(var(--pad-v) + 1px);
+        padding-bottom: calc(var(--pad-v) - 1px);
+    }
+    
+    &:disabled,
+    &.-disabled{
+        --text-opacity: 0.5;
+        cursor: not-allowed;
+        background-image:
+            linear-gradient(rgba(black, .5), rgba(black, 0.5)),
+            linear-gradient(hsla(0,0%,50%, .5), hsla(0,0%,50%, .5));
+        background-blend-mode: saturation, luminosity;
+    }
+}
+
+.uniformButton{
+    //----------------------------------------------------------------
+    //             Styles
     //----------------------------------------------------------------
     &.-clear{
         background: none;
         border-color: transparent;
     }
     &.-outline{
-        border-color: color('gray-90');
-        background:none !important;
-        text-shadow:none !important;
-        &.-dashed{
-            border-style:dashed;
-        }
-    }
-    &.-small{
-        padding: 0.3em 0.5em;
-        font-size: 0.8em;
-    }
-    &.-large{
-        padding: 1em 2em;
-        font-weight:bold;
-    }
-    &.-input {
-        padding-top: 0.65em;
-        padding-bottom: 0.65em;
-    }
-    
-    &.-warn:hover{
-        border-color:color('red');
-        background: color('red');
-        color: white;
-        &.clear{
-            color: color('red');
-            background: none;
-        }
-        &.-outline{
-            color: color('red');
-            border-color: color('gray-60');
-        }
+        --bg-opacity: 0;
+        --border-opacity: 1;
+        border-width: 0.1429em;
+        background-image: none;
     }
     
     &.-block{
-        padding-left:0.5em !important;
-        padding-right:0.5em !important;
         display:block;
         width:100%;
     }
+    
+    
+    //----------------------------------------------------------------
+    //             Size
+    //----------------------------------------------------------------
+    &.-xs{
+        --pad-v: 0.1em;
+        --pad-h: 0.3em;
+    }
+    &.-sm{
+        --pad-v: 0.25em;
+        --pad-h: 0.5em;
+    }
+    &.-lg{
+        --pad-v: 1em;
+        --pad-h: 2em;
+    }
+    &.-xl{
+        --pad-v: 1.5em;
+        --pad-h: 3em;
+        --border-radius: 0.5em;
+    }
+}
 
-    &.-raw{
-        background: none;
-        border: none;
-        text-shadow: none;
-        font-weight: normal;
-        box-shadow: none;
-    }
-    
-    
-    //----------------------------------------------------------------
-    //             colors
-    //----------------------------------------------------------------
-    
-    &.-green{
-        background-color: darken(color('green'), 3);
-        background-image: linear-gradient(lighten(color('green'), 5), darken(color('green'), 3));
-        border-color: darken(color('green'), 3);
-        
-        &.-outline{
-            border-color: color('green-60');
-            color:color('green-60');
-        }
-    }
-    
-    &.-green,
-    &.-red,
-    &.-blue{
-        color:white;
-        text-shadow:0 1px 2px rgba(black, 0.1);
-    }
-    
-    &.-red{
-        background-color: darken(color('red'), 3);
-        background-image: linear-gradient(color('red'), darken(color('red'), 3));
-        border-color: darken(color('red'), 3);
-        &.-outline{
-            color:color('red-60');
-            border-color:color('red-60');
-        }
-    }
-    
-    &.-blue{
-        background-color: darken(color('blue'), 3);
-        background-image: linear-gradient(color('blue'), darken(color('blue'), 3));
-        border-color:darken(color('blue'), 3);
-        
-        &.-outline{
-            color:color('blue');
-            border-color: color('blue');
-        }
-    }
-    &.-white{
-        &.-outline{
-            color:white;
-            border-color:white;
-        }
-    }
-    
-    &.-gray{
-        color: color('gray-80');
-        &.-outline{
-            color: color('gray-80');
-            border-color: color('gray-60');
-        }
-    }
-    
-    &.-gray-60{
-        color: white;
-        background-color: darken(color('gray-60'), 3);
-        background-image: linear-gradient(color('gray-60'), darken(color('gray-60'), 3));
-        border-color: darken(color('gray-60'), 3);
-        &.-outline{
-            color: color('gray-30');
-            border-color: color('gray-20');
-        }
-    }
-    
-    &:disabled,
-    &.disabled,
-    &:disabled:hover,
-    &.disabled:hover{
-        cursor: not-allowed;
-        color: color('gray');
-        background-image:none !important;
-        background-color: color('gray-30');
-        border-color: color('gray');
-        text-shadow: none;
-        &.disabled-60{
-            background-color: color('gray-80');
-            color: color('gray-90');
-            border-color: color('gray-90');
-            opacity: 0.75;
-        }
-    }
-}
-span.uniformButton{
-    cursor: auto;
-}
-a.uniformButton{
-    user-select: none;
-}
+
+
+//----------------------------------------------------------------
+//             Button Group
+//----------------------------------------------------------------
 
 .uniformButtonGroup {
-    font-size: 0;
-    a, button{
-        outline: none;
-        appearance: none;
-        cursor: pointer;
-        font-size: 1rem;
-        position:relative;
-        z-index: 1;
-        margin-right: -1px;
+    display: inline-flex;
+    & > * {
         border-radius: 0;
-        &:last-of-type{
-            border-radius: 0 0.25em 0.25em 0;
+        margin-right: -1px;
+        &:first-child{
+            border-top-left-radius: var(--border-radius);
+            border-bottom-left-radius: var(--border-radius);
         }
-        &:first-of-type{
-            border-radius: 0.25em 0 0 0.25em;
+        &:last-child{
+            border-top-right-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
         }
-        &.active{
-            background-color: darken(color('green'), 3);
-            background-image: linear-gradient(lighten(color('green'), 5), darken(color('green'), 3));
-            border-color: darken(color('green'), 3);
-            color: white;
-        }
-        &:disabled{
-            background: color('background');
-            color: color('gray-30');
-            cursor: not-allowed;
-        }
+    }
+    
+    
+    //----------------------------------------------------------------
+    //             Styles
+    //----------------------------------------------------------------
+    &.-clear > * {
+        background: none;
+        border-color: transparent;
+    }
+    &.-outline > *{
+        --bg-opacity: 0;
+        --border-opacity: 1;
+        border-width: 0.1429em;
+        margin-right: -0.1429em;
+        background-image: none;
+    }
+    &.block,
+    &.-block{
+        display: flex;
+    }
+    
+    
+    //----------------------------------------------------------------
+    //             Size
+    //----------------------------------------------------------------
+    &.-xs > *{
+        --pad-v: 0.1em;
+        --pad-h: 0.3em;
+    }
+    &.-sm > *{
+        --pad-v: 0.25em;
+        --pad-h: 0.5em;
+    }
+    &.-lg > *{
+        --pad-v: 1em;
+        --pad-h: 2em;
+    }
+    &.-xl > *{
+        --pad-v: 1.5em;
+        --pad-h: 3em;
+        --border-radius: 0.5em;
     }
 }

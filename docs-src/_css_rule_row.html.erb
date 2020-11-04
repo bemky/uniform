@@ -7,7 +7,7 @@
     </td>
     <td class="text-xs">
         <% code 'css', css_class: 'tight' do %>
-            { <%= css_rule(".#{selector}").join(";\n") %> }
+            { <%= css_rule(".#{selector}").join().split(";").join(";\n") %> }
         <% end %>
     </td>
 </tr>

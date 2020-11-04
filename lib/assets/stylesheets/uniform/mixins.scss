@@ -83,21 +83,33 @@ $color_spectrum: (
 @each $name, $color in $colors {
     $color_spectrum: map-merge($color_spectrum, ("#{$name}": $color));
     @for $index from 1 through 9 {
-       $color_spectrum: map-merge($color_spectrum, ("#{$name}-#{(10 - $index) * 10}": change-color($color, $lightness: $index * 10)));
+        $saturation_adjustment: 0;
+        @if saturation($color) > 20% {
+            $saturation_adjustment: ((100 - saturation($color)) / 4) * abs(5 - $index);
+        }
+        $color_spectrum: map-merge($color_spectrum, ("#{$name}-#{(10 - $index) * 10}": change-color($color, $lightness: $index * 10, $saturation: saturation($color) + $saturation_adjustment)));
     }
 }
-@mixin color-rule($selector) {
+@mixin color-rule($selector, $include_scope_rules: true) {
     @if str-index($selector, '.') == 1 {
         $selector: str-slice($selector, 2, -1);
     }
+    
     @each $name, $value in $color_spectrum {
-        @include responsive-rule("#{$selector}-#{$name}"){
-            @content($value)
-        }
-        @include pseudo-class-rule("#{$selector}-#{$name}"){
-            @content($value)
+        @if $include_scope_rules {
+            @include responsive-rule("#{$selector}-#{$name}"){
+                @content($value)
+            }
+            @include pseudo-class-rule("#{$selector}-#{$name}"){
+                @content($value)
+            }
+        } @else {
+            .#{$selector}-#{$name}{
+                @content($value)
+            }
         }
     }
+    
 }
 
 
@@ -114,6 +126,9 @@ $color_spectrum: (
 
     @include responsive-rule("#{$selector}", $include_child_utility){
         @content(if($size_type == 'rem', 1rem, 1px))
+    }
+    @include responsive-rule("#{$selector}-none", $include_child_utility){
+        @content(0)
     }
     @each $size, $value in $size_spectrum {
         @include responsive-rule("#{$selector}-#{$size}", $include_child_utility){
