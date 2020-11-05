@@ -1,174 +1,58 @@
 <div class="section">
-    <h1>Tables</h1>
-    <h3>.table</h3>
-    <p>
-        Add <code>.table</code> to make a <code>div</code> behave like a
-        <code>table</code> element. This is helpful when you want a table to
-        not be a table anymore in a different screensize. Use size modifiers
-        <code>-sm</code>, <code>-md</code>, <code>-lg</code>, or <code>-xl</code>
-        to designate when table should be active.
-    </p>
-    <div class="grid-md grid-nest">
-        <div class="col-6-md">
-            <div class="table-md bg-white border rounded overflow-hidden">
-                <div class="row">
-                    <div>Cell 1</div>
-                    <div>Cell 2</div>
-                    <div>Cell 3</div>
-                </div>
-                <div class="row">
-                    <div>Cell 4</div>
-                    <div>Cell 5</div>
-                    <div>Cell 6</div>
-                </div>
-            </div>
+    <h1>uniformTable</h1>
+    
+<% table = capture_html do %>
+<table class="uniformTable :selecor">
+    <thead>
+        <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+            <th>Header 3</th>
+        </tr>
+    </thead>
+    <% (0..6).each do |i| %>
+        <tr>
+            <td>Cell <%= i * 3 + 1 %></td>
+            <td class="pad-2x">Cell <%= i * 3 + 2 %></td>
+            <td>Cell <%= i * 3 + 3 %></td>
+        </tr>
+    <% end %>
+</table>
+<% end %>
+    
+    <h3><code>.uniformTable</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <%= table.gsub(":selecor", "") %>
         </div>
-        <div class="col-6-md">
-            <% block = html_block do %>
-            <div class="table-md">
-                <div class="row">
-                    <div>Cell 1</div>
-                    <div>Cell 2</div>
-                    <div>Cell 3</div>
-                </div>
-                <div class="row">
-                    <div>Cell 4</div>
-                    <div>Cell 5</div>
-                    <div>Cell 6</div>
-                </div>
-            </div>
+        <div class="width-1/2">
+            <% code 'html', css_class: 'max-height-200-px overflow-y' do %>
+                <%= table.gsub(":selecor", "") %>
             <% end %>
-            <%= block %>
         </div>
     </div>
     
-    <h3>UniformTable</h3>
-    <div class="grid-md grid-nest">
-        <div class="col-6-md">
-            <div class=" bg-white border rounded overflow-hidden">
-                <table class="uniformTable">
-                    <thead>
-                        <tr>
-                            <th>Header 1</th>
-                            <th>Header 2</th>
-                            <th>Header 3</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 3</td>
-                    </tr>
-                    <tr>
-                        <td>Cell 4</td>
-                        <td>Cell 5</td>
-                        <td>Cell 6</td>
-                    </tr>
-                </table>
-            </div>
-            
+    <h3><code>.uniformTable.-snug</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <%= table.gsub(":selecor", "-snug") %>
         </div>
-        <div class="col-6-md">
-            <% block = html_block do %>
-            <table class="uniformTable">
-                <thead>
-                    <tr>
-                        <th>Header 1</th>
-                        <th>Header 2</th>
-                        <th>Header 3</th>
-                    </tr>
-                </thead>
-                <tr>
-                    <td>Cell 1</td>
-                    <td>Cell 2</td>
-                    <td>Cell 3</td>
-                </tr>
-                <tr>
-                    <td>Cell 4</td>
-                    <td>Cell 5</td>
-                    <td>Cell 6</td>
-                </tr>
-            </table>
+        <div class="width-1/2">
+            <% code 'html', css_class: 'max-height-200-px overflow-y' do %>
+                <%= table.gsub(":selecor", "-snug") %>
             <% end %>
-            <%= block %>
         </div>
-        <div class="col-6-md">
-            <div class="bg-white border rounded overflow-hidden">
-                <table class="uniformTable">
-                    <thead class="dark">
-                        <tr>
-                            <th>Header 1</th>
-                            <th>Header 2</th>
-                            <th>Header 3</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>Cell 1</td>
-                        <td>Cell 2</td>
-                        <td>Cell 3</td>
-                    </tr>
-                    <tr>
-                        <td>Cell 4</td>
-                        <td>Cell 5</td>
-                        <td>Cell 6</td>
-                    </tr>
-                </table>
-            </div>
-            
+    </div>
+    
+    <h3><code>.uniformTable.-tight</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <%= table.gsub(":selecor", "-tight") %>
         </div>
-        <div class="col-6-md">
-            <% block = html_block do %>
-            <table class="uniformTable">
-                <thead class="dark">
-                    <tr>
-                        <th>Header 1</th>
-                        <th>Header 2</th>
-                        <th>Header 3</th>
-                    </tr>
-                </thead>
-                <tr>
-                    <td>Cell 1</td>
-                    <td>Cell 2</td>
-                    <td>Cell 3</td>
-                </tr>
-                <tr>
-                    <td>Cell 4</td>
-                    <td>Cell 5</td>
-                    <td>Cell 6</td>
-                </tr>
-            </table>
+        <div class="width-1/2">
+            <% code 'html', css_class: 'max-height-200-px overflow-y' do %>
+                <%= table.gsub(":selecor", "-tight") %>
             <% end %>
-            <%= block %>
-        </div>
-        <div class="col-6-md">
-            <div class="bg-white border rounded overflow-hidden">
-                <table class="uniformTableDotLeaders width-full">
-                    <tr>
-                        <th>Cell 1</th>
-                        <td>Cell 2</td>
-                    </tr>
-                    <tr>
-                        <th>Cell 4</th>
-                        <td>Cell 5</td>
-                    </tr>
-                </table>
-            </div>
-            
-        </div>
-        <div class="col-6-md">
-            <% block = html_block do %>
-            <table class="uniformTableDotLeaders width-full">
-                <tr>
-                    <th>Cell 1</th>
-                    <td>Cell 2</td>
-                </tr>
-                <tr>
-                    <th>Cell 4</th>
-                    <td>Cell 5</td>
-                </tr>
-            </table>
-            <% end %>
-            <%= block %>
         </div>
     </div>
 </div>

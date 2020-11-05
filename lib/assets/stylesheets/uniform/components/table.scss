@@ -1,67 +1,29 @@
 @include responsive-rule('.layout-fixed'){ table-layout: fixed;}
-@include responsive-rule('.table'){
-    display:table;
-    width:100%;
-    & > *,
-    .row > *{
-        display:table-cell;
-        float:none;
-        &.-top{
-            vertical-align:top;
-        }
-        &.-middle > *{
-            vertical-align:middle;
-        }
-    }
-    .row{
-        display:table-row;
-    }
-}
-.cell-top{
-    vertical-align: top;
-    td, th{
-        vertical-align: top;
-    }
-}
 
-.cell-middle{
-    vertical-align: middle;
-    td, th{
-        vertical-align: middle;
-    }
-}
+
 
 .uniformTable{
     width:100%;
-    .row > *,
-    tr td,
-    th {
+    td,
+    th,
+    .table-cell {
         padding: 0.5em;
         border-bottom: 1px solid color('gray-20');
     }
     
-    &.tight{
-        .row > *,
-        tr td,
-        th {
+    &.-snug{
+        td,
+        th,
+        .table-cell {
             padding: 0.2em 0.5em;
         }
     }
     
-    &.tight-more{
-        .row > *,
-        tr td,
-        th {
+    &.-tight{
+        td,
+        th,
+        .table-cell {
             padding: 0 0.5em;
-        }
-    }
-    
-    &.no-pad{
-        .row > *,
-        tr td,
-        th {
-            padding-left: 0;
-            padding-right: 0;
         }
     }
     
