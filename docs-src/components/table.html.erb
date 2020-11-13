@@ -3,13 +3,11 @@
     
 <% table = capture_html do %>
 <table class="uniformTable :selecor">
-    <thead>
         <tr>
             <th>Header 1</th>
             <th>Header 2</th>
             <th>Header 3</th>
         </tr>
-    </thead>
     <% (0..6).each do |i| %>
         <tr>
             <td>Cell <%= i * 3 + 1 %></td>
@@ -52,6 +50,18 @@
         <div class="width-1/2">
             <% code 'html', css_class: 'max-height-200-px overflow-y' do %>
                 <%= table.gsub(":selecor", "-tight") %>
+            <% end %>
+        </div>
+    </div>
+    
+    <h3><code>.uniformTable.-striped</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <%= table.gsub(":selecor", "-striped").gsub('<tr>', '<tr class="bg-blue bg-opacity-10">') %>
+        </div>
+        <div class="width-1/2">
+            <% code 'html', css_class: 'max-height-200-px overflow-y' do %>
+                <%= table.gsub(":selecor", "-striped").gsub('<tr>', '<tr class="bg-blue bg-opacity-10">') %>
             <% end %>
         </div>
     </div>

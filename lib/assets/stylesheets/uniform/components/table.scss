@@ -1,14 +1,27 @@
 @include responsive-rule('.layout-fixed'){ table-layout: fixed;}
 
-
-
 .uniformTable{
     width:100%;
+    
     td,
     th,
     .table-cell {
         padding: 0.5em;
-        border-bottom: 1px solid color('gray-20');
+        border-bottom-width: 1px;
+    }
+    
+    tr:last-of-type{
+        td,
+        th,
+        .table-cell{
+            border-bottom: none;
+        }
+    }
+    
+    th{
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.8em;
     }
     
     &.-snug{
@@ -27,54 +40,9 @@
         }
     }
     
-    .head > *,
-    thead th{
-        color: color('gray-60');
-        border-bottom: 1px solid color('gray');
-    }
-    
-    .head.dark > *,
-    thead.dark th{
-        background: lighten(color('gray-10'), 2);
-    }
-    
-    tr.middle > td,
-    td.middle,
-    &.middle > *,
-    .middle{
-        vertical-align:middle;
-    }
-    
-    tr.bottom > td,
-    td.bottom,
-    &.bottom > *,
-    .bottom{
-        vertical-align:bottom;
-    }
-
-    tr.top > td,
-    td.top,
-    &.top > *,
-    .top{
-        vertical-align:top;
-    }
-    
-    &.hover{
-        tr:hover td{
-            background: lighten(color('blue'), 50);
-        }
-    }
-    
-    .row:last-of-type,
-    tr:last-of-type{
-        td, th{
-            border-bottom: none;
-        }
-    }
-    &.invert{
-        .row > *,
-        td, th{
-            border-bottom-color: color('gray-60');
+    &.-striped{
+        tr:nth-child(2n+1){
+            background-color: transparent;
         }
     }
 }
