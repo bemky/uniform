@@ -1,27 +1,33 @@
+@include color-rule('.uniformLabel.') using ($color) {
+    color: $color;
+    background-color: rgba($color, 0.2);
+}
+
 .uniformLabel{
+    --pad-v: 0.1428em;
+    --pad-h: 0.357em;
     display:inline-block;
     vertical-align:baseline;
-    padding: 0.0714em 0.357em 0.0714em;
-    border: 0.1em solid color('gray-80');
-    color: color('gray-80');
+    padding: var(--pad-v) var(--pad-h);
     border-radius: 0.3em;
     line-height: 1.2;
-    &.-fill{
-        border: none;
-        background: rgba(color('gray-80'), 0.15);
-        color: color('gray-80');
-        padding: 0.1714em 0.457em 0.1714em;
+    background: rgba(color('gray-80'), 0.15);
+    &.-outline{
+        border: 0.1em solid currentColor;
+        background: transparent;
     }
     &.-round{
         border-radius: 1em;
+        padding-left: calc(var(--pad-h) * 1.5);
+        padding-right: calc(var(--pad-h) * 1.5);
     }
-    &.pad-more{
-        padding: 0.0714em 0.5em;
+    &.-lg{
+        --pad-v: 0.5em;
+        --pad-h: 0.8em;
+    }
+    &.-xl{
+        --pad-v: 1em;
+        --pad-h: 2em;
     }
 }
 
-@include color-rule('.uniformLabel.') using ($color) {
-    border-color: $color;
-    color: $color;
-}
-@include color-rule('.uniformLabel.-fill.') using ($color) { background-color: rgba($color, 0.15); }

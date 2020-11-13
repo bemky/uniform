@@ -1,83 +1,91 @@
 <div class="section">
-    <h1>UniformLabel</h1>
-    <div class="margin-v-2x">
-        <div class="bg-white border rounded overflow-hidden">
-        <table class="uniformTable">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th><code>-fill</code></th>
-                    <th><code>-round</code></th>
-                    <th><code>-round -fill</code></th>
-                </tr>
-            </thead>
-            <% ["", "pad-more", 'text-xs', 'text-sm', 'text-lg', 'text-xl'].each do |lbl| %>
-            <tr>
-                <td>
-                    <code>.<%= lbl %></code>
-                </td>
-                <% if lbl == "pad-more" %>
-                    <td>
-                        Lorem ipsum
-                        <span class="uniformLabel <%= lbl %>">label</span>
-                    </td>
-                    <td>
-                        <span class="uniformLabel <%= lbl %> -fill">label</span>
-                    </td>
-                    <td>
-                        <span class="uniformLabel <%= lbl %> -round">label</span>
-                    </td>
+    <h1>uniformLabel</h1>
+    
+    <table class="uniformTable align-top-*">
+        <%= partial :css_rule_row, locals: {
+            selector: 'uniformLabel',
+            content: <<-HTML
+            <span class="uniformLabel">
+                Label
+            </span>
+            HTML
+        } %>
+        <% ["-outline", "-round"].each do |state| %>
+            <%= partial :css_rule_row, locals: {
+                selector: 'uniformLabel.' + state,
+                content: <<-HTML
+                <span class="uniformLabel #{state}">
+                    Label
+                </span>
+                HTML
+            } %>
+        <% end %>
+    </table>
+</div>
+<div class="section">
+    <h1>Size</h1>
 
-                    <td>
-                        <span class="uniformLabel <%= lbl %> -fill -round">label</span>
-                    </td>
-                <% else %>
-                    <td class="<%= lbl %>">
-                        Lorem ipsum
-                        <span class="uniformLabel">label</span>
-                    </td>
-                    <td class="<%= lbl %>">
-                        <span class="uniformLabel -fill">label</span>
-                    </td>
-                    <td class="<%= lbl %>">
-                        <span class="uniformLabel -round">label</span>
-                    </td>
-                    <td class="<%= lbl %>">
-                        <span class="uniformLabel -fill -round">label</span>
-                    </td>
+    <table class="uniformTable align-top-*">
+        <%= partial :css_rule_row, locals: {
+            selector: 'uniformLabel',
+            content: <<-HTML
+            <span class="uniformLabel">
+                Label
+            </span>
+            HTML
+        } %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'uniformLabel.-lg',
+            content: <<-HTML
+            <span class="uniformLabel -lg">
+                Label
+            </span>
+            HTML
+        } %>
+    </table>
+</div>
+
+<div class="section">
+    <h1>Color</h1>
+
+    <div class="max-height-350-px overflow-y-scroll">
+        <table class="uniformTable align-top-*">
+            <% %w(gray green red blue yellow purple).each do |color| %>
+                <%= partial :css_rule_row, locals: {
+                    selector: "uniformLabel.-#{color}",
+                    content: <<-HTML
+                    <div class="flex justify-content-between space-h-1/2x">
+                        <span class="uniformLabel -#{color}-#{i*10}">
+                            Label
+                        </span>
+                        <span class="uniformLabel -#{color}-#{i*10} -round">
+                            Label
+                        </span>
+                        <span class="uniformLabel -#{color}-#{i*10} -outline">
+                            Label
+                        </span>
+                    </div>
+                    HTML
+                } %>
+                <% (1..9).each do |i| %>
+                    <%= partial :css_rule_row, locals: {
+                        selector: "uniformLabel.-#{color}-#{i*10}",
+                        content: <<-HTML
+                        <div class="flex justify-content-between space-h-1/2x">
+                            <span class="uniformLabel -#{color}-#{i*10}">
+                                Label
+                            </span>
+                            <span class="uniformLabel -#{color}-#{i*10} -round">
+                                Label
+                            </span>
+                            <span class="uniformLabel -#{color}-#{i*10} -outline">
+                                Label
+                            </span>
+                        </div>
+                        HTML
+                    } %>
                 <% end %>
-            </tr> 
             <% end %>
         </table>
-        </div>
-    </div>
-    
-    <div class="margin-v-2x">
-        <h3>Colors</h3>
-        <div class="bg-white border rounded overflow-hidden">
-            <table class="uniformTable">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th><code>-fill</code></th>
-                    </tr>
-                </thead>
-                <% colors.each do |color, value| %>
-                <tr>
-                    <td>
-                        <code>.-<%= color %></code>
-                    </td>
-                    <td>
-                        <span class="uniformLabel -<%= color %>">label</span>
-                    </td>
-                    <td>
-                        <span class="uniformLabel -<%= color %> -fill">label</span>
-                    </td>
-                </tr> 
-                <% end %>
-            </table>
-        </div>
     </div>
 </div>
