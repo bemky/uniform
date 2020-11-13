@@ -49,6 +49,8 @@
 
 
 ### Removed
+- removed `uniformCard`
+- removed `uniformRow`
 - remove `text-2_0 text-1_2...`
 - `@include position-fill|position-center|position-h-center|position-v-center` in favor of utility classes
 - `@include sizes`
