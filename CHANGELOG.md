@@ -8,6 +8,7 @@
 - changed `margin` to both vertical and horizontal margin
 - changed `text-overflow` to `text-overflow-hidden`
 - changed `aspect-[..]` to be on target element, not child of that element
+- changed html footprint of `uniformLoader` to basically nothing
 
 ### Added
 - `text-3/4`

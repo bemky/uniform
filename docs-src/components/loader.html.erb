@@ -1,86 +1,50 @@
 <div class="section">
-    <h1>UniformLoader</h1>
-    <div class="grid">
-        <div class="col-6">
-            <div class="uniformLoader">
-                <div class="uniformLoader-container">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
+    <h1>uniformLoader</h1>
+    
+    <% html = capture_html do %>
+    <div class="uniformLoader"></div>
+    <% end %>
+    <h3><code>.uniformLoader</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <%= html %>
         </div>
-        <div class="col-6">
-            <% block = html_block do %>
-<div class="uniformLoader">
-    <div class="uniformLoader-container">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-</div>
+        <div class="width-1/2">
+            <% code 'html' do %>
+            <%= html %>
             <% end %>
-            <%= block %>
         </div>
     </div>
-    <div class="grid">
-        <div class="col-6">
-            <code>.-cover</code><br>
-            <span style="position:relative; display:inline-block">
-                <img src="https://unsplash.it/150/100/?random" style="display:block;" width="150" height="100">
-                <div class="uniformLoader -cover">
-                    <div class="uniformLoader-container">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </span>
-        </div>
-        <div class="col-6">
-            <% block = html_block do %>
-<span style="position:relative; display:inline-block">
-    <img src="https://unsplash.it/150/100/?random" style="display:block;">
-    <div class="uniformLoader -cover">
-        <div class="uniformLoader-container">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+    
+    <% html = capture_html do %>
+    <div class="width-100-p height-50-px bg-green bg-opacity-20 relative">
+        <div class="uniformLoader -cover"></div>
     </div>
-</span>
+    <% end %>
+    <h3><code>.uniformLoader.-cover</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <%= html %>
+        </div>
+        <div class="width-1/2">
+            <% code 'html' do %>
+            <%= html %>
             <% end %>
-            <%= block %>
         </div>
     </div>
-    <div class="grid">
-        <div class="col-6">
-            <code>.-cover.-light</code><br>
-            <span style="position:relative; display:inline-block">
-                <img src="https://unsplash.it/150/100/?random" style="display:block;" width="150" height="100">
-                <div class="uniformLoader -cover -light">
-                    <div class="uniformLoader-container">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </span>
+    
+    <% html = capture_html do %>
+    <div class="uniformLoader text-red"></div>
+    <% end %>
+    <h3><code>.uniformLoader.text-red</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <%= html %>
         </div>
-        <div class="col-6">
-            <% block = html_block do %>
-<span style="position:relative; display:inline-block">
-    <img src="https://unsplash.it/150/100/?random" style="display:block;">
-    <div class="uniformLoader -cover -light">
-        <div class="uniformLoader-container">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
-</span>
+        <div class="width-1/2">
+            <% code 'html' do %>
+            <%= html %>
             <% end %>
-            <%= block %>
         </div>
     </div>
 </div>
