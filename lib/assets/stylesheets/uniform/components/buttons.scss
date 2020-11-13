@@ -108,6 +108,10 @@
             linear-gradient(hsla(0,0%,50%, .5), hsla(0,0%,50%, .5));
         background-blend-mode: saturation, luminosity;
     }
+    
+    &:visited{
+        color: currentColor;
+    }
 }
 
 .uniformButton{
