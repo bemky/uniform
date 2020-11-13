@@ -3,28 +3,52 @@
     background: color('gray-80');
     position:relative;
     color: white;
-    img{
+    text-align:center;
+    & > * {
+        display: block;
         position:absolute;
-        top:0;
-        left: 0;
+        @extend %position-v-center;
         width: 100%;
+    }
+    & > img {
         height: 100%;
         object-fit: cover;
     }
-    .text{
-        display:block;
-        @extend %position-v-center;
-        left: 0;
-        width: 100%;
-        text-align:center;
+    &.-contain {
+        & > img {
+            object-fit: contain;
+        }
     }
 }
 @include responsive-rule(".aspect-4x3"){
-    padding-top: 75%;
+    &::before{
+        content: "";
+        display: block;
+        padding-top: 75%;
+        padding-left: 75%;
+    }
 }
 @include responsive-rule(".aspect-2x1"){
-    padding-top: 50%;
+    &::before{
+        content: "";
+        display: block;
+        padding-top: 50%;
+        padding-left: 50%;
+    }
+}
+@include responsive-rule(".aspect-16x9"){
+    &::before{
+        content: "";
+        display: block;
+        padding-top: 56.25%;
+        padding-left: 56.25%;
+    }
 }
 @include responsive-rule(".aspect-square"){
-    padding-top:100%;
+    &::before{
+        content: "";
+        display: block;
+        padding-top:100%;
+        padding-left:100%;
+    }
 }

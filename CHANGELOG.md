@@ -7,6 +7,7 @@
 - changed size from `quarter half` to `1/4 1/2`
 - changed `margin` to both vertical and horizontal margin
 - changed `text-overflow` to `text-overflow-hidden`
+- changed `aspect-[..]` to be on target element, not child of that element
 
 ### Added
 - `text-3/4`
