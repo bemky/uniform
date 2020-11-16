@@ -42,6 +42,14 @@
             </span>
             HTML
         } %>
+        <%= partial :css_rule_row, locals: {
+            selector: 'uniformLabel.-xl',
+            content: <<-HTML
+            <span class="uniformLabel -xl">
+                Label
+            </span>
+            HTML
+        } %>
     </table>
 </div>
 
@@ -55,13 +63,13 @@
                     selector: "uniformLabel.-#{color}",
                     content: <<-HTML
                     <div class="flex justify-content-between space-h-1/2x">
-                        <span class="uniformLabel -#{color}-#{i*10}">
+                        <span class="uniformLabel -#{color}">
                             Label
                         </span>
-                        <span class="uniformLabel -#{color}-#{i*10} -round">
+                        <span class="uniformLabel -#{color} -round">
                             Label
                         </span>
-                        <span class="uniformLabel -#{color}-#{i*10} -outline">
+                        <span class="uniformLabel -#{color} -outline">
                             Label
                         </span>
                     </div>
