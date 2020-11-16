@@ -11,7 +11,6 @@ activate :condenser do |config|
   config.path = Dir.each_child(UniformUi::ASSET_PATH).map { |a| File.join(UniformUi::ASSET_PATH, a) }
 end
 
-
 # Layouts
 # https://middlemanapp.com/basics/layouts/
 
@@ -39,7 +38,7 @@ page '/*.txt', layout: false
 # https://middlemanapp.com/basics/helper-methods/
 
 helpers do
-  def html_block(**args, &block)
+  def capture_html(**args, &block)
     html = if handler = auto_find_proper_handler(&block)
       handler.capture_from_template(**args, &block)
     else
@@ -52,8 +51,7 @@ helpers do
       count = spaces.scan(/ /).count
       html = html.gsub(/^ {#{count}}/, "")
     end
-    html = "<pre><code class='#{args[:class]}'>" + CGI::escapeHTML(html.strip)
-    html = html + "</code></pre>"
+    html = html.strip
     
     ::ActiveSupport::SafeBuffer.new.safe_concat(html)
   end
@@ -67,13 +65,6 @@ helpers do
     ensure
       # Reset stored buffer
       @_out_buf = _buf_was
-    end
-    
-    spaces = content.match(/^ +/)
-    if spaces
-      spaces = spaces[0]
-      count = spaces.scan(/ /).count
-      content = content.gsub(/^ {#{count}}/, "")
     end
     
     content = content.encode(Encoding::UTF_8)
@@ -115,7 +106,12 @@ end
 # end
 
 configure :build do
+  
   app.condenser.unregister_writer(nil, nil, 'application/gzip')
+  # app.condenser.register_postprocessor('text/css', ::Condenser::PurgeCSSProcessor.new(File.expand_path('./'),
+  #   content: [File.expand_path('./docs-src/**/*.erb'), File.expand_path('./docs-src/assets/javascripts/**/*.js')],
+  #   safelist: ["/hljs*/"]
+  # ))
   
   Dir.children('./dist').each do |file|
     if File.directory?(file)

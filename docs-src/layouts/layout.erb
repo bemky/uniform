@@ -38,7 +38,7 @@
             <%= image_tag 'logo.png', class: 'block width-full' %>
         </a>
     </div>
-    <div class="uniformNav -vertical">
+    <div class="uniformNav -vertical -gray">
         <% {
             introduction: {
                 url: '/'
@@ -74,7 +74,9 @@
                     loader: {
                         title: 'uniformLoader'
                     },
-                    nav: {},
+                    nav: {
+                        title: 'uniformNav'
+                    },
                     label: {
                         title: 'uniformLabel'
                     },
@@ -103,7 +105,7 @@
               </span>
             <% end %>
             <% if options[:children] %>
-            <div class="uniformNav -vertical pad-left text margin-v-nest-1/2x">
+            <div class="uniformNav -vertical -gray -pills pad-left text margin-v-nest-1/2x">
                 <% parent_path = options[:url] || "/#{nav_item}" %>
                 <% options[:children].each do |nav_item, options| %>
                     <% path = parent_path + (options[:url] || "/#{nav_item}") %>

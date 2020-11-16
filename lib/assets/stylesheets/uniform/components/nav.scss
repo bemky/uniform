@@ -1,26 +1,11 @@
-@mixin uniformNav-vertical(){
-    flex-direction: column;
-    align-items: stretch;
-    & > * {
-        padding: 0.5em 0.5em;
-        border-width: 0;
-        border-color: inherit;
-    }
-    & > a{
-        border: none !important; // TODO remove !important
-        padding-bottom: 0.5em !important; // TODO remove !important
-        &:hover{
-            color: color('blue');
-            background: rgba(color('blue'), 0.1);
-        }
-        &.active{
-            color: color('green-60');
-            background: rgba(color('green'), 0.15);
-        }
-    }
-}
-
 .uniformNav{
+    --border-opacity: 1;
+    --text-opacity: 1;
+    --bg-opacity: 0;
+    
+    --hover-color: #{toRGB(color('blue'))};
+    --active-color: #{toRGB(color('green-60'))};
+    --color: #{toRGB(color('blue'))};
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
@@ -31,100 +16,76 @@
     }
     
     & > * {
+        --text-opacity: 1;
         flex: 0 0 auto;
         display: flex;
         align-items: center;
         padding: 0 1em;
-        border-style: solid none;
         border-color: transparent;
         border-top-width: 2px;
         border-bottom-width: 2px;
-        &.col-fill{
+        &.flex-fill{
             flex: 1 1 auto;
         }
     }
     & > a{
         text-decoration: none;
+        color: rgba(var(--color), var(--text-opacity));
         &:hover{
-            color: color('blue');
-            border-bottom-color: color('blue');
+            color: rgba(var(--hover-color), 1);
+            border-left-color: rgba(var(--hover-color), var(--border-opacity));
+            border-bottom-color: rgba(var(--hover-color), var(--border-opacity));
         }
         &.active{
-            color: color('green-60');
-            border-bottom-color: color('green-60');
-        }
-    }
-    &.-pad{
-        & > * {
-            padding-top: 0.25em;
-            padding-bottom: 0.25em;
-        }
-    }
-    &.-pad-more{
-        & > * {
-            padding-top: 0.5em;
-            padding-bottom: 0.5em;
+            color: rgba(var(--active-color), 1);
+            border-left-color: rgba(var(--active-color), 1);
+            border-bottom-color: rgba(var(--active-color), 1);
         }
     }
     
+    &.-pills{
+        & > * {
+            border: none;
+            border-radius: 0.25em;
+            padding: 0.25em 0.5em;
+        }
+        & > * + * {
+            margin-left: 0.25em;
+        }
+        & > a {
+            &:hover,
+            &.active{
+                --bg-opacity: 0.15;
+                background-color: rgba(var(--hover-color), var(--bg-opacity));
+            }
+            &.active{
+                background-color: rgba(var(--active-color), var(--bg-opacity));
+            }
+        }
+    }
+
     &.-vertical{
-        @include uniformNav-vertical();
+        flex-direction: column;
+        align-items: stretch;
+        & > * {
+            padding: 0.5em;
+            border-top-width: 0;
+            border-bottom-width: 0;
+            border-left-width: 2px;
+            border-right-width: 2px;
+        }
+        &.-pills{
+            & > * + * {
+                margin-left: 0;
+                margin-top: 0.1em;
+            }
+        }
     }
 }
 
-.uniformMainNav{
-    position: relative;
-    background: white;
-    box-shadow:inset 0 -1px 0 0 rgba(black, 0.10);
-    color: color('gray');
-    .uniformNav{
-        & > * {
-            padding-top: 0.25em;
-            padding-bottom: 0.25em;
-            color: color('gray-60');
-            &.active{
-                color: color('gray-90');
-            }
-        }
-    }
-    
-    &.bg-none{
-        background: none;
-    }
-    
-    &.border-bottom-none,
-    &.border-none{
-        box-shadow: none;
-    }
-    
-    &.-vertical{
-        box-shadow: none;
-        .uniformNav{
-            @include uniformNav-vertical();
-        }
-    }
-    
-    &.-invert{
-        box-shadow:inset 0 -1px 0 0 rgba(white, 0.10);
-        background: none;
-        color: rgba(white, 0.7);
-        .uniformNav{
-            & > a {
-                color: rgba(white, 0.6);
-                &:hover{
-                    color: white;
-                    border-bottom-color: color('blue-bright');
-                }
-                &.active{
-                    color: white;
-                    background: rgba(black, 0.15);
-                    border-bottom-color: color('green-30');
-                }
-            }
-        }
-        &.border-bottom-none,
-        &.border-none{
-            box-shadow: none;
-        }
-    }
+@include color-rule('.uniformNav.-active') using ($color) {
+    --active-color: #{toRGB($color)};
+}
+@include color-rule('.uniformNav.') using ($color) {
+    --color: #{toRGB($color)};
 }

@@ -1,166 +1,224 @@
 <div class="section">
-    <h1>UniformNav</h1>
+    <h1>uniformNav</h1>
+    <table class="uniformTable">
+        <tr>
+            <td><code>-vertical</code></td>
+            <td>vertical orientation</td>
+        </tr>
+        <tr>
+            <td><code>-pills</code></td>
+            <td>renders items in pill form</td>
+        </tr>
+        <tr>
+            <td><code>-[color]</code></td>
+            <td>color of links and backgrounds/borders</td>
+        </tr>
+        <tr>
+            <td><code>-active-[color]</code></td>
+            <td>color of active link</td>
+        </tr>
+    </table>
+</div>
+
+<div class="section">
+    <h1>Style</h1>
+    <% html = capture_html do %>
+    <div class="uniformNav">
+        <a href="#">Home</a>
+        <a href="#" class="active">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Log In</a>
+        <span>
+            Just Text
+        </span>
+    </div>
+    <% end %>
     
-    <div class="margin-v-2x">
-        <h3>uniformNav</h3>
-        <div class="grid grid-nest">
-            <div class="col-6">
-                <div class="uniformNav margin-h-nest">
-                    <a href="#">Home</a>
-                    <a href="#" class="active">About</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Log In</a>
-                    <span>
-                        Just Text
-                    </span>
-                </div>
-            </div>
-            <div class="col-6">
-                <% block = html_block class: "html" do %>
-                <div class="uniformNav margin-h-nest">
-                    <a href="#">Home</a>
-                    <a href="#" class="active">About</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Log In</a>
-                    <span>
-                        Just Text
-                    </span>
-                </div>
-                <% end %>
-                <%= block %>
-            </div>
+    <h3><code>.uniformNav</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <%= html %>
+        </div>
+        <div class="width-1/2">
+            <% code 'html' do %>
+                <%= html %>
+            <% end %>
         </div>
     </div>
     
-    <div class="margin-v-2x">
-        <h3>uniformNav -vertical</h3>
-        <div class="grid grid-nest">
-            <div class="col-6">
-                <div class="uniformNav -vertical">
-                    <a href="#">Home</a>
-                    <a href="#" class="active">About</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Log In</a>
-                    <span>
-                        Just Text
-                    </span>
-                </div>
-            </div>
-            <div class="col-6">
-                <% block = html_block class: "html" do %>
-                <div class="uniformNav -vertical">
-                    <a href="#">Home</a>
-                    <a href="#" class="active">About</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Log In</a>
-                    <span>
-                        Just Text
-                    </span>
-                </div>
-                <% end %>
-                <%= block %>
-            </div>
+    <% html = capture_html do %>
+    <div class="uniformNav -vertical">
+        <a href="#">Home</a>
+        <a href="#" class="active">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Log In</a>
+        <span>
+            Just Text
+        </span>
+    </div>
+    <% end %>
+    
+    <h3><code>.uniformNav.-vertical</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <%= html %>
+        </div>
+        <div class="width-1/2">
+            <% code 'html' do %>
+                <%= html %>
+            <% end %>
         </div>
     </div>
     
-    <div class="margin-v-2x">
-        <h3>uniformMainNav</h3>
-        <div class="grid grid-nest">
-            <div class="col-6">
-                <div class="uniformMainNav">
-                    <div class="uniformNav">
-                        <span class="margin-left-nest">
-                            <img src="<%= asset_path("logo.png") %>" height="31" width="137">
-                        </span>
-                        <a href="#">Home</a>
-                        <a href="#" class="active">About</a>
-                        <a href="#">Contact</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <% block = html_block class: "html" do %>
-                <div class="uniformMainNav">
-                    <div class="uniformNav">
-                        <span class="margin-left-nest">
-                            <img src="/<%= asset_path("logo.png") %>" height="31" width="137">
-                        </span>
-                        <a href="#">Home</a>
-                        <a href="#" class="active">About</a>
-                        <a href="#">Contact</a>
-                    </div>
-                </div>
-                <% end %>
-                <%= block %>
-            </div>
-        </div>
+    <% html = capture_html do %>
+    <div class="uniformNav -pills">
+        <a href="#">Home</a>
+        <a href="#" class="active">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Log In</a>
+        <span>
+            Just Text
+        </span>
     </div>
     
-    <div class="margin-v-2x">
-        <h3>uniformMainNav-vertical</h3>
-        <div class="grid grid-nest">
-            <div class="col-3">
-                <div class="uniformMainNav -vertical">
-                    <div class="uniformNav">
-                        <span class="margin-bottom-half">
-                            <img src="<%= asset_path("logo.png") %>" height="31" width="137">
-                        </span>
-                        <a href="#">Home</a>
-                        <a href="#" class="active">About</a>
-                        <a href="#">Contact</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">&nbsp;</div>
-            <div class="col-6">
-                <% block = html_block class: "html" do %>
-                <div class="uniformMainNav -vertical">
-                    <div class="uniformNav">
-                        <span class="margin-bottom-half">
-                            <img src="<%= asset_path("logo.png") %>" height="31" width="137">
-                        </span>
-                        <a href="#">Home</a>
-                        <a href="#" class="active">About</a>
-                        <a href="#">Contact</a>
-                    </div>
-                </div>
-                <% end %>
-                <%= block %>
-            </div>
+    <div class="uniformNav -pills -vertical margin-top-2x">
+        <a href="#">Home</a>
+        <a href="#" class="active">About</a>
+        <a href="#">Contact</a>
+        <a href="#">Log In</a>
+        <span>
+            Just Text
+        </span>
+    </div>
+    <% end %>
+    
+    <h3><code>.uniformNav.-pills</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <%= html %>
+        </div>
+        <div class="width-1/2">
+            <% code 'html' do %>
+                <%= html %>
+            <% end %>
         </div>
     </div>
-    
-    <div class="margin-v-2x">
-        <h3>uniformMainNav-invert</h3>
-        <div class="grid">
-            <div class="col-6 col-gutter-none bg-gray-90">
-                <div class="uniformMainNav -invert">
-                    <div class="uniformNav">
+</div>
+
+<div class="section">
+    <h1>Color</h1>
+    <h3><code>.uniformNav.-color</code></h3>
+    <div class="max-height-350-px overflow-y-scroll">
+        <table class="uniformTable align-top-*">
+            <% %w(gray green red blue yellow purple).each do |color| %>
+                <%= partial :css_rule_row, locals: {
+                    selector: "uniformNav.-#{color}",
+                    content: <<-HTML
+                    <div class="uniformNav -#{color} -nowrap">
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Log In</a>
                         <span>
-                            <img src="<%= asset_path("logo-inv.png") %>" height="31" width="137">
+                            Just Text
                         </span>
-                        <a href="#">Home</a>
-                        <a href="#" class="active">About</a>
-                        <a href="#">Contact</a>
                     </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <% block = html_block class: "html" do %>
-                <div class="uniformMainNav -invert">
-                    <div class="uniformNav">
-                        <span>
-                            <img src="<%= asset_path("logo-inv.png") %>" height="31" width="137">
-                        </span>
-                        <a href="#">Home</a>
-                        <a href="#" class="active">About</a>
-                        <a href="#">Contact</a>
-                    </div>
-                </div>
-                <% end %>
-                <%= block %>
-            </div>
-        </div>
-    </div>
     
+                    <div class="uniformNav -pills -#{color} margin-top-2x -nowrap">
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Log In</a>
+                        <span>
+                            Just Text
+                        </span>
+                    </div>
+                    HTML
+                } %>
+                <% (1..9).each do |i| %>
+                    <%= partial :css_rule_row, locals: {
+                        selector: "uniformNav.-#{color}-#{i*10}",
+                        content: <<-HTML
+                        <div class="uniformNav -#{color}-#{i*10} -nowrap">
+                            <a href="#">Home</a>
+                            <a href="#" class="active">About</a>
+                            <a href="#">Contact</a>
+                            <a href="#">Log In</a>
+                            <span>
+                                Just Text
+                            </span>
+                        </div>
+    
+                        <div class="uniformNav -pills -#{color}-#{i*10} margin-top-2x -nowrap">
+                            <a href="#">Home</a>
+                            <a href="#" class="active">About</a>
+                            <a href="#">Contact</a>
+                            <a href="#">Log In</a>
+                            <span>
+                                Just Text
+                            </span>
+                        </div>
+                        HTML
+                    } %>
+                <% end %>
+            <% end %>
+        </table>
+    </div>
+    <h3><code>.uniformNav.-active-color</code></h3>
+    <div class="max-height-350-px overflow-y-scroll">
+        <table class="uniformTable align-top-*">
+            <% %w(gray green red blue yellow purple).each do |color| %>
+                <%= partial :css_rule_row, locals: {
+                    selector: "uniformNav.-active-#{color}",
+                    content: <<-HTML
+                    <div class="uniformNav -active-#{color} -nowrap">
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Log In</a>
+                        <span>
+                            Just Text
+                        </span>
+                    </div>
+    
+                    <div class="uniformNav -pills -active-#{color} margin-top-2x -nowrap">
+                        <a href="#">Home</a>
+                        <a href="#" class="active">About</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Log In</a>
+                        <span>
+                            Just Text
+                        </span>
+                    </div>
+                    HTML
+                } %>
+                <% (1..9).each do |i| %>
+                    <%= partial :css_rule_row, locals: {
+                        selector: "uniformNav.-active-#{color}-#{i*10}",
+                        content: <<-HTML
+                        <div class="uniformNav -active-#{color}-#{i*10} -nowrap">
+                            <a href="#">Home</a>
+                            <a href="#" class="active">About</a>
+                            <a href="#">Contact</a>
+                            <a href="#">Log In</a>
+                            <span>
+                                Just Text
+                            </span>
+                        </div>
+    
+                        <div class="uniformNav -pills -active-#{color}-#{i*10} margin-top-2x -nowrap">
+                            <a href="#">Home</a>
+                            <a href="#" class="active">About</a>
+                            <a href="#">Contact</a>
+                            <a href="#">Log In</a>
+                            <span>
+                                Just Text
+                            </span>
+                        </div>
+                        HTML
+                    } %>
+                <% end %>
+            <% end %>
+        </table>
+    </div>
 </div>

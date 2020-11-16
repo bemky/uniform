@@ -48,16 +48,6 @@ html, body{
     top:0;
     left: 0;
     border-right:1px solid color('gray-40');
-    .uniformNav{
-        .uniformNav{
-            & > * {
-                border-radius: 0.25em;
-            }
-        }
-    }
-    a{
-        color: color('gray');
-    }
     @media only screen and (max-width: 700px) {
         width: auto;
         img{
