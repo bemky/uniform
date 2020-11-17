@@ -53,8 +53,9 @@
 - removed `uniformCard`
 - removed `uniformRow`
 - removed `uniformAlert`
-- remove `uniforMainNav`
-- remove `text-2_0 text-1_2...`
+- removed `uniforMainNav`
+- removed `text-2_0 text-1_2...`
+- removed `uniformCheckboxCollection`
 - `@include position-fill|position-center|position-h-center|position-v-center` in favor of utility classes
 - `@include sizes`
 - `@include size-rule`
