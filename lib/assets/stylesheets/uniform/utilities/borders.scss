@@ -3,7 +3,7 @@
 //----------------------------------------------------------------
 //             Border
 //----------------------------------------------------------------
-@include size-rule('.border', 'px', false) using ($size) { border-width: $size;}
+@include size-rule('.border', 'px') using ($size) { border-width: $size;}
 
 @include color-rule('.border') using ($color) { border-color: rgba($color, var(--border-opacity));}
 @include responsive-rule('.border-dashed') { border-style: dashed;}

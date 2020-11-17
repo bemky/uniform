@@ -1,6 +1,7 @@
 <div class="section">
     <h1>Forms</h1>
-    
+</div>
+<div class="section">
     <div class="margin-v-2x">
         <h3>uniformInput</h3>
         <div class="grid grid-nest">
@@ -104,99 +105,6 @@
                             <input type="text">
                         </div>
                     </form>
-                <% end %>
-                <%= block %>
-            </div>
-        </div>
-    </div>
-    
-    
-    
-    <div class="margin-v-2x">
-        <h3>uniformCheckbox / uniformRadio <span class="uniformLabel text-xs -yellow-60 text-normal">js required</span></h3>
-        <p>Custom color, animation, and icon</p>
-        <div class="grid grid-nest">
-            <div class="col-6">
-                <div class="margin-v">
-                    <label for="uniformCheckbox-1"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-1"> Option 1</label><br>
-                    <label for="uniformCheckbox-2"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-2" checked> Option 1</label>
-                </div>
-                <div class="margin-v text-xl">
-                    <label for="uniformCheckbox-3"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-3"> Option 1</label><br>
-                    <label for="uniformCheckbox-4"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-4" checked> Option 1</label>
-                </div>
-                <div class="margin-v">
-                    <label for="uniformCheckbox-5"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-5"> Option 1</label><br>
-                    <label for="uniformCheckbox-6"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-6" checked> Option 1</label>
-                </div>
-                <div class="margin-v text-xl">
-                    <label for="uniformCheckbox-7"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-7"> Option 1</label><br>
-                    <label for="uniformCheckbox-8"><input type="checkbox" class="uniformRadio"  id="uniformCheckbox-8" checked> Option 1</label>
-                </div>
-            </div>
-            <div class="col-6">
-                <% block = html_block do %>
-                <label for="uniformCheckbox-1"><input type="checkbox" class="uniformCheckbox" id="uniformCheckbox-1"> Option 1</label>
-                <% end %>
-                <%= block %>
-                <% block = html_block do %>
-                    <label for="uniformCheckbox-1"><input type="checkbox" class="uniformRadio" id="uniformCheckbox-2"> Option 1</label>
-                <% end %>
-                <%= block %>
-                <% block = html_block class:"javascript" do %>
-                $('.uniformCheckbox').uniformCheckbox();
-                $('.uniformRadio').uniformRadio();
-                <% end %>
-                <%= block %>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="margin-v-2x">
-        <h3>uniformTristate <span class="uniformLabel text-xs -yellow-60 text-normal">js required</span></h3>
-        <p>Requires Javascript to fully work, but fails gracefully when not applied.</p>
-        <div class="grid grid-nest">
-            <div class="col-6">
-                <label for="group-name">
-                <div class="uniformTristate">
-                    <input type="radio" name="group-name" id="group-name" value="true">
-                    <input type="radio" name="group-name" id="group-name" value="null">
-                    <input type="radio" name="group-name" id="group-name" value="false">
-                </div>
-                Should this be true?
-                </label>
-                <br><br>
-                <label for="group-name-1" class="text-lg">
-                <div class="uniformTristate">
-                    <input type="radio" name="group-name-1" id="group-name-1" value="true">
-                    <input type="radio" name="group-name-1" id="group-name-1" value="null">
-                    <input type="radio" name="group-name-1" id="group-name-1" value="false">
-                </div>
-                Should this be true?
-                </label>
-                <br><br>
-                <label for="group-name-2" class="text-xl">
-                <div class="uniformTristate">
-                    <input type="radio" name="group-name-2" id="group-name-2" value="true">
-                    <input type="radio" name="group-name-2" id="group-name-2" value="null">
-                    <input type="radio" name="group-name-2" id="group-name-2" value="false">
-                </div>
-                Should this be true?
-                </label>
-                
-            </div>
-            <div class="col-6">
-                <% block = html_block class:"html" do %>
-                <div class="uniformTristate">
-                    <input type="radio" name="group-name" value="true">
-                    <input type="radio" name="group-name" value="null">
-                    <input type="radio" name="group-name" value="false">
-                </div>
-                <% end %>
-                <%= block %>
-                <% block = html_block class:"javascript" do %>
-                    $('.uniformTristate').uniformTristate()
                 <% end %>
                 <%= block %>
             </div>

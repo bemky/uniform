@@ -1,0 +1,164 @@
+<div class="section">
+    <h1>
+        uniformCheckbox
+        <span class="uniformLabel -yellow-60">JS</span>
+    </h1>
+    
+    <p class="text-xl text-light margin-v-2x">
+        UniformCheckbox can be applied to a checkbox or radio, it renders a new object that is stylable, and syncs updates to either the original html object or the rendered one.
+    </p>
+    
+    <h3><code>uniformCheckbox</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <label><input type="checkbox" class="example-1"> Checkbox</label><br>
+            <label class="text-xl"><input type="checkbox" class="example-1"> Checkbox</label><br>
+            <label class="text-2x"><input type="checkbox" class="example-1" checked> Checkbox</label>
+            <script>
+                document.addEventListener('DOMContentLoaded', function(){
+                    document.querySelectorAll('.example-1').forEach(el => {
+                        new window.Uniform.Checkbox({
+                            el: el
+                        }).render()
+                    })
+                })
+            </script>
+        </div>
+        <div class="width-1/2">
+            <% code 'javascript' do %>
+                // <input type="checkbox" id="example">
+                
+                import {Checkbox} from 'uniform';
+                new Checkbox({
+                    el: document.getElementById('example')
+                }).render()
+            <% end %>
+        </div>
+    </div>
+    
+    <h3><code>uniformToggle</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <label><input type="checkbox" class="example-2"> Toggle</label><br>
+            <label class="text-xl"><input type="checkbox" class="example-2"> Toggle</label><br>
+            <label class="text-2x"><input type="checkbox" class="example-2" checked> Toggle</label>
+            <script>
+                document.addEventListener('DOMContentLoaded', function(){
+                    document.querySelectorAll('.example-2').forEach(el => {
+                        new window.Uniform.Toggle({
+                            el: el
+                        }).render()
+                    })
+                })
+            </script>
+        </div>
+        <div class="width-1/2">
+            <% code 'javascript' do %>
+                // <input type="checkbox" id="example">
+                
+                import {Toggle} from 'uniform';
+                new Toggle({
+                    el: document.getElementById('example')
+                }).render()
+            <% end %>
+        </div>
+    </div>
+    
+    <h3><code>uniformRadio</code></h3>
+    <div class="flex space-h">
+        <div class="width-1/2">
+            <label><input type="radio" class="example-3" name="example-3"> Radio</label><br>
+            <label class="text-xl"><input type="radio" class="example-3" name="example-3"> Radio</label><br>
+            <label class="text-2x"><input type="radio" class="example-3" name="example-3" checked> Radio</label>
+            <script>
+                document.addEventListener('DOMContentLoaded', function(){
+                    document.querySelectorAll('.example-3').forEach(el => {
+                        new window.Uniform.Radio({
+                            el: el
+                        }).render()
+                    })
+                })
+            </script>
+        </div>
+        <div class="width-1/2">
+            <% code 'javascript' do %>
+                // <input type="checkbox" id="example">
+                
+                import {Radio} from 'uniform';
+                new Radio({
+                    el: document.getElementById('example')
+                }).render()
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h1>Color</h1>
+
+    <div class="max-height-350-px overflow-y-scroll">
+        <table class="uniformTable align-top-*">
+            <% %w(gray green red blue yellow purple).each do |color| %>
+                <%= partial :css_rule_row, locals: {
+                    selector: "text-#{color}",
+                    content: <<-HTML
+                    <div class="flex justify-content-between space-h-1/2x">
+                        <label>
+                            <input type="checkbox" class="example-checkbox text-#{color}"> Checkbox<br>
+                            <input type="checkbox" class="example-checkbox text-#{color}" checked> Checkbox
+                        </label>
+                        <label>
+                            <input type="checkbox" class="example-toggle text-#{color}"> Toggle<br>
+                            <input type="checkbox" class="example-toggle text-#{color}" checked> Toggle
+                        </label>
+                        <label>
+                            <input type="radio" class="example-radio text-#{color}"> Radio<br>
+                            <input type="radio" class="example-radio text-#{color}" checked> Radio
+                        </label>
+                    </div>
+                    HTML
+                } %>
+                <% (1..9).each do |i| %>
+                    <%= partial :css_rule_row, locals: {
+                        selector: "text-#{color}-#{i*10}",
+                        content: <<-HTML
+                        <div class="flex justify-content-between space-h-1/2x">
+                            <label>
+                                <input type="checkbox" class="example-checkbox text-#{color}-#{i*10}"> Checkbox<br>
+                                <input type="checkbox" class="example-checkbox text-#{color}-#{i*10}" checked> Checkbox
+                            </label>
+                            <label >
+                                <input type="checkbox" class="example-toggle text-#{color}-#{i*10}"> Toggle<br>
+                                <input type="checkbox" class="example-toggle text-#{color}-#{i*10}" checked> Toggle
+                            </label>
+                            <label>
+                                <input type="radio" class="example-radio text-#{color}-#{i*10}"> Radio<br>
+                                <input type="radio" class="example-radio text-#{color}-#{i*10}" checked> Radio
+                            </label>
+                        </div>
+                        HTML
+                    } %>
+                <% end %>
+            <% end %>
+        </table>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            document.querySelectorAll('.example-checkbox').forEach(el => {
+                new window.Uniform.Checkbox({
+                    el: el
+                }).render()
+            })
+            document.querySelectorAll('.example-toggle').forEach(el => {
+                new window.Uniform.Toggle({
+                    el: el
+                }).render()
+            })
+            document.querySelectorAll('.example-radio').forEach(el => {
+                new window.Uniform.Radio({
+                    el: el
+                }).render()
+            })
+        })
+    </script>
+</div>

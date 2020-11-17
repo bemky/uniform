@@ -1,3 +1,7 @@
+import * as Uniform from 'uniform';
+
+window.Uniform = Uniform;
+ 
 $(document).ready(function(){
     $('.uniformDropdown').uniformDropdown();
     $('.uniformCheckbox').uniformCheckbox();
