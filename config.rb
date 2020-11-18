@@ -10,6 +10,23 @@ set :build_dir, 'docs'
 activate :condenser do |config|
   config.path = Dir.each_child(UniformUi::ASSET_PATH).map { |a| File.join(UniformUi::ASSET_PATH, a) }
 end
+app.condenser.unregister_preprocessor('application/javascript')
+app.condenser.register_preprocessor('application/javascript', ::Condenser::JSAnalyzer)
+app.condenser.register_preprocessor('application/javascript', ::Condenser::BabelProcessor.new(File.expand_path('./'),  {
+  plugins: [
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-optional-chaining',
+    ["@babel/plugin-transform-runtime", { corejs: 3, useESModules: true }]
+  ],
+  presets: [
+    ['@babel/preset-env', {
+      modules: false,
+      targets: { browsers: '> 1% and not dead' }
+    }]
+  ]
+}))
+
+app.condenser.unregister_minifier('application/javascript')
 
 # Layouts
 # https://middlemanapp.com/basics/layouts/
@@ -55,6 +72,7 @@ helpers do
     
     ::ActiveSupport::SafeBuffer.new.safe_concat(html)
   end
+  alias html_block capture_html
   
   def code(language=nil, options={}, &block)
     raise 'The code helper requires a block to be provided.' unless block_given?

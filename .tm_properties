@@ -1,4 +1,4 @@
 exclude = '{$exclude,log,bin,tmp,node_modules,.tm_properties,public/system}'
-excludeInFolderSearch = "{$excludeInFolderSearch,$extraExcludes,docs,dist}" 
-excludeInFileChooser = "{$excludeInFileChooser,docs}"
-excludeDirectoriesInFileChooser = "{$excludeDirectoriesInFileChooser,docs}"
+excludeInFolderSearch = "{$excludeInFolderSearch,$extraExcludes,docs,dist,node_modules}" 
+excludeInFileChooser = "{$excludeInFileChooser,docs,node_modules}"
+excludeDirectoriesInFileChooser = "{$excludeDirectoriesInFileChooser,docs,node_modules}"
