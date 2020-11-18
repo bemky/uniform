@@ -17,7 +17,6 @@
     & > textarea,
     & > select,
     & > .uniformInputGroup{
-        @include uniformInput;
         position:relative;
         display:block;
         width: 100%;
