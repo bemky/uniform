@@ -8,6 +8,22 @@
         UniformCheckbox can be applied to a checkbox or radio, it renders a new object that is stylable, and syncs updates to either the original html object or the rendered one.
     </p>
     
+    <h3 class="margin-none">Options</h3>
+    <table class="uniformTable margin-bottom-4x align-top-*">
+        <tr>
+            <td class="text-nowrap"><code>input</code></td>
+            <td class="text-nowrap"><code>Object || Element</code></td>
+            <td>What to use for the input. If element, then checkbox/radio/toggle is appended next to it. If Object, then input is created using attributes to create element.</td>
+            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>class: "text-red", ...</code></td>
+            <td></td>
+            <td class="text-nowrap">Accepts any html attribute that is then rendered on checkbox/radio/toggle.</td>
+            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+        </tr>
+    </table>
+    
     <h3><code>uniformCheckbox</code></h3>
     <div class="flex space-h">
         <div class="width-1/2">
@@ -18,7 +34,7 @@
                 document.addEventListener('DOMContentLoaded', function(){
                     document.querySelectorAll('.example-1').forEach(el => {
                         new window.Uniform.Checkbox({
-                            el: el
+                            input: el
                         }).render()
                     })
                 })
@@ -26,12 +42,9 @@
         </div>
         <div class="width-1/2">
             <% code 'javascript' do %>
-                // <input type="checkbox" id="example">
-                
                 import {Checkbox} from 'uniform';
-                new Checkbox({
-                    el: document.getElementById('example')
-                }).render()
+                const checkbox = new Checkbox().render()
+                document.append(checkbox.el)
             <% end %>
         </div>
     </div>
@@ -46,7 +59,7 @@
                 document.addEventListener('DOMContentLoaded', function(){
                     document.querySelectorAll('.example-2').forEach(el => {
                         new window.Uniform.Toggle({
-                            el: el
+                            input: el
                         }).render()
                     })
                 })
@@ -54,12 +67,9 @@
         </div>
         <div class="width-1/2">
             <% code 'javascript' do %>
-                // <input type="checkbox" id="example">
-                
                 import {Toggle} from 'uniform';
-                new Toggle({
-                    el: document.getElementById('example')
-                }).render()
+                const toggle = new Toggle().render()
+                document.append(toggle.el)
             <% end %>
         </div>
     </div>
@@ -74,7 +84,7 @@
                 document.addEventListener('DOMContentLoaded', function(){
                     document.querySelectorAll('.example-3').forEach(el => {
                         new window.Uniform.Radio({
-                            el: el
+                            input: el
                         }).render()
                     })
                 })
@@ -82,12 +92,9 @@
         </div>
         <div class="width-1/2">
             <% code 'javascript' do %>
-                // <input type="checkbox" id="example">
-                
                 import {Radio} from 'uniform';
-                new Radio({
-                    el: document.getElementById('example')
-                }).render()
+                const radio = new Radio().render()
+                document.append(radio.el)
             <% end %>
         </div>
     </div>
@@ -146,17 +153,17 @@
         document.addEventListener('DOMContentLoaded', function(){
             document.querySelectorAll('.example-checkbox').forEach(el => {
                 new window.Uniform.Checkbox({
-                    el: el
+                    input: el
                 }).render()
             })
             document.querySelectorAll('.example-toggle').forEach(el => {
                 new window.Uniform.Toggle({
-                    el: el
+                    input: el
                 }).render()
             })
             document.querySelectorAll('.example-radio').forEach(el => {
                 new window.Uniform.Radio({
-                    el: el
+                    input: el
                 }).render()
             })
         })
