@@ -1,64 +1,29 @@
 .uniformFloatingLabel{
-    display: flex;
-    align-items: center;
-    border: 1px solid color('gray');
     position:relative;
-    background:white;
-    &>*{
-        flex: 0 1 auto;
-    }
-    label{
-        z-index: 1;
-        padding: 0 1em;
-        font-weight:normal !important;
-        cursor: text;
-    }
-    & > input,
-    & > textarea,
-    & > select,
-    & > .uniformInputGroup{
-        position:relative;
-        display:block;
-        width: 100%;
-        border:none !important;
-        background:none;
-    }
-    & > select {
-        z-index: 2;
-    }
-    & > .uniformInputGroup{
-        display: flex;
-    }
     
-    &.enabled{
-        label{
-            white-space: nowrap;
-            transition: font-size 0.1s, line-height 0.1s, opacity 0.1s;
-        }
+    label {
+        --font-size: 1em;
+        font-size: var(--font-size);
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        transition: font-size 100ms, top 100ms, transform 100ms;
     }
-    
-    &.inactive{
-        input,
-        textarea,
-        select{
-            &::placeholder{
-                color: transparent;
-            }
-        }
-    }
-    &.float{
-        label{
-            font-size: 80%;
+    &.present {
+        label {
             opacity: 0.8;
+            font-size: calc(var(--font-size) * 0.7);
+            top: 0;
+            transform: none;
         }
     }
-    &.active{
-        label{
-            color: color('green-60');
+    
+    &:focus-within{
+        color: color('green-60');
+        label {
             opacity: 1;
         }
-    }
-    input.pad-2x{
-        padding: 1em;
     }
 }
