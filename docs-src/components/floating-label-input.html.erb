@@ -1,11 +1,11 @@
 <div class="section">
     <h1>
-        uniformFloatingLabel
+        Floating Label Input
         <span class="uniformLabel -yellow-60">JS</span>
     </h1>
     
     <p class="text-xl text-light margin-v-2x">
-        UniformFloatingLabel can be applied to any input. It appends a label on top of an input, and adds <code class="text-nowrap">aria-label</code> for accessibility.
+        FloatingLabelInput can be applied to any input. It appends a label on top of an input, and adds <code class="text-nowrap">aria-label</code> for accessibility.
     </p>
     
     <div class="flex space-h">
@@ -29,11 +29,11 @@
         </div>
         <div class="flex-fill">
             <% code 'javascript' do %>
-                import {FloatingLabel} from 'uniform';
-                const toggle = new FloatingLabel({
-                    label: 'Name',
-                    input: document.getByElementId('example')
+                import {FloatingLabelInput} from 'uniform';
+                const input = new FloatingLabelInput({
+                    label: 'Name'
                 }).render()
+                document.append(input.el)
             <% end %>
         </div>
     </div>
@@ -41,7 +41,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function(){
             document.querySelectorAll('.example').forEach(el => {
-                new window.Uniform.FloatingLabel({
+                new window.Uniform.FloatingLabelInput({
                     label: 'Name',
                     input: el
                 }).render()
