@@ -1,40 +1,65 @@
 <div class="section">
-    <h1>UniformTooltip</h1>
-    <div class="grid-md">
-        <div class="col-6-md">
+    <h1>
+        Tooltip
+        <span class="uniformLabel -yellow-60">JS</span>
+    </h1>
+    <p class="text-xl text-light margin-v-2x">
+        Assign a message to show on hover.
+    </p>
+    
+    
+    <div class="flex space-h margin-v-2x">
+        <div class="">
             <p>
                 The Infield Fly Rule
-                <span class="uniformLabel -fill uniformTooltip pointer" data-tooltip-message="The umpire's declaration of an infield fly means that the batter is out (and all force plays are removed) regardless of whether the ball is caught. The rule exists to prevent the defense from achieving a double play or triple play by failing to catch a ball that an infielder could catch with ordinary effort.">?</span>
+                <span class="uniformLabel -fill cursor-help" id="example-1">?</span>
                 is not called in a consistent manner. Just ask the St Louis Cardinals.
             </p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p>
-                The Ground Rule Double
-                <span class="uniformLabel -fill uniformTooltip pointer" data-tooltip-message="Trust me this is real.">?</span>
-                is different for every stadium in MLB.
-            </p>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    new window.Uniform.Tooltip({
+                        anchor: document.getElementById('example-1'),
+                        content: "The umpire's declaration of an infield fly means that the batter is out (and all force plays are removed) regardless of whether the ball is caught. The rule exists to prevent the defense from achieving a double play or triple play by failing to catch a ball that an infielder could catch with ordinary effort."
+                    }).render()
+                })
+            </script>
         </div>
-        <div class="col-6-md">
-            <% block = html_block do %>
-The Infield Fly Rule <span class="uniformLabel -fill uniformTooltip pointer" data-tooltip-message="Trust me this is real.">?</span>
+        <div class="flex-fill width-fill overflow-hidden">
+            <% code 'javascript', {css_class: 'overflow-y-scroll width-fill'} do %>
+                import {Tooltip} from 'uniform';
+                new Tooltip({
+                    anchor: document.getElementById('example-1'),
+                    content: "The umpire's declaration of an infield fly means..."
+                })
             <% end %>
-            <%= block %>
-        </div>
-        
-    </div>
-    <div class="grid-md margin-top-4x">
-        <div class="col-6-md">
-            <h3>With Container Option</h3>
-            The Infield Fly Rule <span class="uniformLabel -fill uniformTooltip pointer" data-tooltip-container=".section" data-tooltip-message="Trust me this is real.">?</span>
-            
-        </div>
-        <div class="col-6-md">
-            <% block = html_block do %>
-The Infield Fly Rule <span class="uniformLabel -fill uniformTooltip pointer" data-tooltip-container=".section" data-tooltip-message="Trust me this is real.">?</span>
-            <% end %>
-            <%= block %>
         </div>
     </div>
+    
+    <h3 class="margin-none">Options</h3>
+    <table class="uniformTable margin-bottom-4x align-top-*">
+        <tr>
+            <td class="text-nowrap"><code>anchor</code></td>
+            <td class="text-nowrap"><code>Element</code></td>
+            <td>Element to anchor content to.</td>
+            <td class="text-nowrap"><span class="uniformLabel -red">REQUIRED</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>content</code></td>
+            <td>HTML</td>
+            <td>HTML to render into popover.</td>
+            <td class="text-nowrap"><span class="uniformLabel -red">REQUIRED</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>align</code></td>
+            <td>String</td>
+            <td><code>[left|right|center|#px] [top|center|bottom|#px]</code>. default: <code>'center bottom'</code></td>
+            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>container</code></td>
+            <td><code>Element</code></td>
+            <td>Element to append popover to. default: <code>document</code></td>
+            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+        </tr>
+    </table>
 </div>
