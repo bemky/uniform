@@ -1,137 +1,108 @@
 <div class="section">
-    <h1>Popover</h1>
-    <p>
-        Popover is a raw component used by Dropdown and Select.
-        It's a piece of content in that is rendered on the page ("pop") on top of other content ("over").
+    <h1>
+        Popover
+        <span class="uniformLabel -yellow-60">JS</span>
+    </h1>
+    <p class="text-xl text-light margin-v-2x">
+        Popover is a component used by Dropdown and Select to render content anchored to an element in the document.
     </p>
-    <p>
-        <button class="uniformButton js-toggle">Toggle Popovers</button>
-        <script>
-            var popovers = [];
-            $('.js-toggle').click(function(e){
-                e.preventDefault();
-                popovers.forEach(function(popover){
-                    popover.toggle();
-                });
-            });
-        </script>
-    </p>
-    <div class="grid-md grid-nest">
-        <% i = 0 %>
+    
+    <div class="flex margin-v-2x space-h">
+        <div class="flex-auto">
+            <button class="uniformButton text-nowrap" id="example-1">Toggle Example</button>
+            
+            <script>
+                document.getElementById('example-1').addEventListener('click', function (e) {
+                    e.currentTarget.popover.toggle()
+                })
+                document.addEventListener('DOMContentLoaded', function () {
+                    new window.Uniform.Popover({
+                        anchor: document.getElementById('example-1'),
+                        content: '<div class="bg-green-20 border border-green text-green-80 pad rounded">Example Content</div>'
+                    }).render()
+                })
+            </script>
+        </div>
+        <div class="flex-fill width-fill overflow-hidden">
+            <% code 'javascript', {css_class: 'width-fill overflow-x-scroll'} do %>
+                import {Popover} from 'uniform';
+                new Popover({
+                    anchor: document.getElementById('button'),
+                    content: '<div class="bg-green-20 border border-green text-green-80 pad rounded">Example Content</div>'
+                }).render()
+            <% end %>
+        </div>
+    </div>
+    
+    <h3 class="margin-none">Options</h3>
+    <table class="uniformTable margin-bottom-4x align-top-*">
+        <tr>
+            <td class="text-nowrap"><code>anchor</code></td>
+            <td class="text-nowrap"><code>Element</code></td>
+            <td>Element to anchor content to.</td>
+            <td class="text-nowrap"><span class="uniformLabel -red">REQUIRED</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>content</code></td>
+            <td>HTML</td>
+            <td>HTML to render into popover.</td>
+            <td class="text-nowrap"><span class="uniformLabel -red">REQUIRED</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>align</code></td>
+            <td>String</td>
+            <td><code>[left|right|center|#px] [top|center|bottom|#px]</code>. default: <code>'center bottom'</code></td>
+            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>zIndex</code></td>
+            <td>Int</td>
+            <td>Adjust the default zIndex</td>
+            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>offset</code></td>
+            <td>String</td>
+            <td>Number of pixels to alter location after alignment. <code>{left: #px, top: #px}</code>. default: <code>{left: 0, top: 0}</code></td>
+            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>container</code></td>
+            <td><code>Element</code></td>
+            <td>Element to append popover to. default: <code>document</code></td>
+            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+        </tr>
+    </table>
+</div>
+<div class="section">
+    <h1>Alignment</h1>
+    <table class="uniformTable">
         <% ['left', 'center', 'right'].each do |horizontal| %>
             <% ['top', 'center', 'bottom'].each do |vertical| %>
-                <div class="col-6-md margin-bottom-4x">
-                    <div class="pad border-dashed width-50-p" id="popover-<%= i %>">
-                        Target &nbsp;&nbsp;<code>align: <%= horizontal %> <%= vertical %></code>
-                    </div>
-                    <script>
-                        $(document).ready(function(){
-                            setTimeout(function(){
-                                var popover = new Uniform.Popover({
-                                    align: '<%= horizontal %> <%= vertical %>',
-                                    anchor: document.getElementById('popover-<%= i %>'),
-                                    content: '<div class="bg-white pad border" id="p-<%= i %>">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
-                                }).render()
-                                popovers.push(popover);
-                            }, 200)
-                        })
-                    </script>
-                </div>
-                <div class="col-6-md margin-bottom-4x">
-                    <% block = html_block do %>
-                        <div class="pad border-dashed" id="popover-<%= i %>">
-                            Target
-                        </div>
-                    <% end %>
-                    <%= block %>
-            
-                    <% block = html_block class: 'javascript' do %>
-                    new Uniform.Popover({
-                        align: '<%= horizontal %> <%= vertical %>',
-                        anchor: document.getElementById('popover-<%= i %>'),
-                        content: '<div class="bg-white pad border">content...</div>'
-                    }).render();
-                    <% end %>
-                    <%= block %>
-                </div>
-                <% i += 1 %>
+            <tr>
+                <td>
+                    <button class="js-example uniformButton" data-align="<%= horizontal %> <%= vertical %>"><%= horizontal %> <%= vertical %></button>
+                </td>
+                <td>
+                    <code>align: '<%= horizontal %> <%= vertical %>'</code>
+                </td>
+            </tr>
             <% end %>
         <% end %>
-        <div class="col-6-md margin-bottom-4x">
-            <% block = html_block do %>
-                <div class="pad border-dashed" id="popover-asd">
-                    Target
-                </div>
-            <% end %>
-            <%= block %>
-    
-            <% block = html_block class: 'javascript' do %>
-            new Uniform.Popover({
-                align: 'right bottom',
-                anchor: document.getElementById('popover-asd'),
-                content: '<div class="bg-white pad border">content...</div>'
-            }).render();
-            <% end %>
-            <%= block %>
-        </div>
-        <div class="col-6-md margin-bottom-4x">
-            <div class="pad border-dashed margin-left-4x" id="popover-asd">
-                Target Goes too far right <code>align: right bottom</code>
-            </div>
-            <script>
-                $(document).ready(function(){
-                    setTimeout(function(){
-                        var popover = new Uniform.Popover({
-                            align: 'right bottom',
-                            anchor: document.getElementById('popover-asd'),
-                            content: '<div class="bg-white pad border" id="p-asd">content...</div>'
-                        }).render()
-                        popovers.push(popover);
-                    }, 200)
-                })
-            </script>
-        </div>
-    </div>
-    <div id="popover-container">
-    <div class="grid-md grid-nest">
-        <div class="col-6-md margin-bottom-4x">
-            <div class="pad border-dashed" id="popover-001">
-                Target with container <code>container: document.getElementById('popover-container')</code>
-            </div>
-            <script>
-                $(document).ready(function(){
-                    setTimeout(function(){
-                        var popover = new Uniform.Popover({
-                            align: 'center top',
-                            container: document.getElementById('popover-container'),
-                            anchor: document.getElementById('popover-001'),
-                            content: '<div class="bg-white pad border" id="p-001">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
-                        }).render()
-                        popovers.push(popover);
-                    }, 200)
-                })
-            </script>
-        </div>
-        <div class="col-6-md margin-bottom-4x">
-            <% block = html_block do %>
-                <div class="pad border-dashed" id="popover-001">
-                    Target
-                </div>
-            <% end %>
-            <%= block %>
-
-            <% block = html_block class: 'javascript' do %>
-            new Uniform.Popover({
-                align: 'center top',
-                container: document.getElementById('popover-container'),
-                anchor: document.getElementById('popover-001'),
-                content: '<div class="bg-white pad border" id="p-001">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>'
-            }).render()
-            popovers.push(popover);
-            <% end %>
-            <%= block %>
-        </div>
-    </div>
-    </div>
-    
+    </table>
+    <script>
+        document.querySelectorAll('.js-example').forEach(el => {
+            el.addEventListener('click', function (e) {
+                if(e.currentTarget.popover) {
+                    e.currentTarget.popover.toggle()
+                } else {
+                    new window.Uniform.Popover({
+                        anchor: el,
+                        align: el.dataset.align,
+                        content: '<div class="bg-green-20 border border-green text-green-80 pad rounded">' + el.dataset.align + '</div>'
+                    }).render()
+                }
+            })
+        })
+    </script>
 </div>
