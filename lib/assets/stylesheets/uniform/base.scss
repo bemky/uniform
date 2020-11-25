@@ -2,8 +2,9 @@
 @import 'uniform/variables';
 @import 'uniform/mixins';
 *{
+    --shadow-opacity: 0.1;
+    --border-opacity: 1.0;
     border-width: 0;
     border-style: solid;
-    --border-opacity: 1.0;
-    --shadow-opacity: 0.1;
+    border-color: color('gray');
 }

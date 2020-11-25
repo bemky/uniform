@@ -3,10 +3,16 @@
 //----------------------------------------------------------------
 //             Border
 //----------------------------------------------------------------
-@include size-rule('.border', 'px') using ($size) { border-width: $size;}
+@include size-rule('.border', 'px') using ($size) {
+    border-width: $size;
+}
 
-@include color-rule('.border') using ($color) { border-color: rgba($color, var(--border-opacity));}
-@include responsive-rule('.border-dashed') { border-style: dashed;}
+@include color-rule('.border') using ($color) {
+    border-color: rgba(#{red($color)}, #{green($color)}, #{blue($color)}, var(--border-opacity));
+}
+@include responsive-rule('.border-dashed') {
+    border-style: dashed;
+}
 
 @each $direction in 'top' 'right' 'bottom' 'left' {
     @include responsive-rule('.border-#{$direction}'){
@@ -16,7 +22,7 @@
         border-#{$direction}-width: $size;
     }
     @include color-rule('.border-#{$direction}') using ($color) {
-        border-#{$direction}-color: $color;
+        border-#{$direction}-color: rgba(#{red($color)}, #{green($color)}, #{blue($color)}, var(--border-opacity));
     }
 }
 

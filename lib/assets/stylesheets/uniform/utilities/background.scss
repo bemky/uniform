@@ -2,7 +2,7 @@
 
 @include color-rule('.bg') using ($color){ 
     --bg-opacity: 1.0;
-    background-color: rgba($color, var(--bg-opacity));
+    background-color: rgba(#{red($color)}, #{green($color)}, #{blue($color)}, var(--bg-opacity));
 }
 
 @include responsive-rule('bg-none') {

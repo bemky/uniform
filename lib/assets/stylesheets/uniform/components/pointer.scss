@@ -1,0 +1,82 @@
+.uniformPointer{
+    margin: 7px 0 0 0;
+    &:after{
+        clip-path: polygon(-45% -45%, 145% -45%, 145% 145%);
+        z-index: 1;
+        position:absolute;
+        top: 0;
+        left: 50%;
+        margin: -6px 0 0 -7px;
+        transform: rotate(-45deg);
+        width: 14px;
+        height: 14px;
+        overflow: hidden;
+        content: "";
+        border-style: solid;
+        border-width: inherit;
+        box-shadow: inherit;
+        background: inherit;
+        border: inherit;
+    }
+    // covers overlap with container
+    &:before {
+        content: '';
+        position: absolute;
+        background: inherit;
+        z-index: 2;
+        height: 2px;
+        width: 40px;
+        margin-left: -20px;
+        top: 0;
+        left: 50%;
+    }
+    &.-right{
+        margin: 0 7px 0 0;
+        &:after{
+            left: auto;
+            top: 50%;
+            right: 0;
+            margin: -7px -6px 0 0;
+            transform: rotate(45deg);
+        }
+        &:before {
+            margin-left: 0;
+            margin-top: -20px;
+            height: 40px;
+            width: 2px;
+            top: 50%;
+            right: 0;
+            left: auto;
+        }
+    }
+    &.-left{
+        margin: 0 0 0 7px;
+        &:after{
+            left: 0;
+            top: 50%;
+            margin: -7px 0 0 -6px;
+            transform: rotate(-135deg);
+        }
+        &:before {
+            margin-left: 0;
+            margin-top: -20px;
+            height: 40px;
+            width: 2px;
+            left: 0;
+            top: 50%;
+        }
+    }
+    &.-bottom{
+        margin: 0 0 7px 0;
+        &:after{
+            top: auto;
+            bottom: 0;
+            margin: 0 0 -6px -7px;
+            transform: rotate(-225deg);
+        }
+        &:before{
+            top: auto;
+            bottom: 0;
+        }
+    }
+}

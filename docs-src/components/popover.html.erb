@@ -106,3 +106,44 @@
         })
     </script>
 </div>
+
+<div class="section">
+    <h1>uniformPointer</h1>
+    <p class="margin-v-2x text-xl text-light">
+        Add class <code>-pointer</code> and/or <code>-pointer-[top|bottom|right|left]</code> to show a pointer that uses background and border of Popover
+    </p>
+    <table class="uniformTable">
+        <% [
+            ['top', 'center bottom'],
+            ['bottom', 'center top'],
+            ['right', 'left center'],
+            ['left', 'right center']
+        ].each do |example| %>
+            <% direction, align = example %>
+            <tr>
+                <td>
+                    <button class="js-example-2 uniformButton" data-align="<%= align %>" data-direction="<%= direction %>"><%= direction %></button>
+                </td>
+                <td>
+                    <code>class: 'uniformPointer -<%= direction %>'</code>
+                </td>
+            </tr>
+        <% end %>
+    </table>
+    <script>
+        document.querySelectorAll('.js-example-2').forEach(el => {
+            el.addEventListener('click', function (e) {
+                if(e.currentTarget.popover) {
+                    e.currentTarget.popover.toggle()
+                } else {
+                    new window.Uniform.Popover({
+                        anchor: el,
+                        class: 'uniformPointer -' + el.dataset.direction + ' bg-green bg-opacity-80 border border-green-90 pad',
+                        align: el.dataset.align,
+                        content: 'Example Content'
+                    }).render()
+                }
+            })
+        })
+    </script>
+</div>
