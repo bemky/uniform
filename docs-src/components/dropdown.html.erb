@@ -1,334 +1,78 @@
 <div class="section">
-    <h1>UniformDropdown</h1>
-    <div class="grid-md">
-        <div class="col-6-md">
-            <button class="uniformButton green large uniformDropdown" data-dropdown-content="This is example dropdown">
-                Show Dropdown
+    <h1>
+        Dropdown
+        <span class="uniformLabel -yellow-60">JS</span>
+    </h1>
+    
+    <p class="text-xl text-light margin-v-2x">
+        Toggle a dropdown on an anchor.
+    </p>
+    
+    <div class="flex space-h margin-v-2x">
+        <div class="">
+            <button class="uniformButton" id="example-1">
+                Toggle Dropdown
             </button>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    new window.Uniform.Dropdown({
+                        anchor: document.getElementById('example-1'),
+                        content: "<div class='uniformPointer shadow shadow-opacity-40 bg-white pad'>Here's Content</div>"
+                    }).render()
+                })
+            </script>
         </div>
-        <div class="col-6-md">
-            <% block = html_block class:"javascript" do %>
-                $('.uniformDropdown').uniformDropdown();
+        <div class="flex-fill width-fill overflow-hidden">
+            <% code 'javascript', {css_class: 'overflow-y-scroll width-fill'} do %>
+                import {Dropdown} from 'uniform';
+                new Dropdown({
+                    anchor: document.getElementById('example-1'),
+                    content: "Here's content"
+                })
             <% end %>
-            <%= block %>
-            <% block = html_block do %>
-            <button class="uniformButton green large uniformDropdown" data-dropdown-content="This is example dropdown">
-                Show Dropdown
-            </button>
-            <% end %>
-            <%= block %>
         </div>
-    </div>
-    <div class="grid-md">
-        <div class="col-6-md">
-            <button class="uniformButton green large uniformDropdown" data-dropdown-target="#dropdown-example">
-                Show Dropdown
-            </button>
-            <div class="hide">
-                <div class="text-no-decoration" id="dropdown-example">
-                    <a href="#" class="block pad-half">Link 1</a>
-                    <a href="#" class="block pad-half">Link 2</a>
-                    <a href="#" class="block pad-half">Link 3</a>
-                    <a href="#" class="block pad-half">Link 4</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-6-md">
-            <% block = html_block do %>
-            <button class="uniformButton green large uniformDropdown" data-dropdown-target="#dropdown-example">
-            Show Dropdown
-            </button>
-            <div class="hide">
-                <div class="text-no-decoration" id="dropdown-example">
-                <a href="#" class="block pad-half">Link 1</a>
-                <a href="#" class="block pad-half">Link 2</a>
-                <a href="#" class="block pad-half">Link 3</a>
-                <a href="#" class="block pad-half">Link 4</a>
-                </div>
-            </div>
-            <% end %>
-            <%= block %>
-        </div>
-    </div>
-</div>
-<div class="section">
-    <h3>Programmatically</h3>
-    <% block = html_block do %>
-    new UniformDropdown({
-        el: $(this),
-        content: "This is your modal content",
-    }).render()
-    <% end %>
-    <%= block %>
-    <div class="bg-white rounded border overflow-hidden margin-v-2x">
-        <table class="uniformTable">
-            <tr>
-                <th>
-                    Options
-                </th>
-                <th>Accepts</th>
-                <th>Description</th>
-                <th>Default</th>
-            </tr>
-            <tr>
-                <td>
-                    content
-                </td>
-                <td>
-                    <code>string</code> |
-                    <code>$(element)</code>
-                </td>
-                <td>
-                    Rendered as content
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    align
-                </td>
-                <td>
-                    <code>left</code>, <code>center</code>, <code>right</code>
-                </td>
-                <td>
-                    Align dropdown to trigger element
-                </td>
-                <td>
-                    <code>center</code>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    trigger
-                </td>
-                <td>
-                    <code>click</code>, <code>focus</code>, <code>mouseover</code>...
-                </td>
-                <td>
-                    Trigger to show dropdown. Space separated.
-                </td>
-                <td>
-                    <code>click focus</code>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    show_arrow
-                </td>
-                <td>
-                    <code>true</code> | <code>false</code>
-                </td>
-                <td>
-                    Toggle showing arrow/triangle outside of dropdown
-                </td>
-                <td>
-                    <code>true</code>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    hide_sm
-                </td>
-                <td>
-                    <code>true</code> | <code>false</code>
-                </td>
-                <td>
-                    Toggle showing dropdown in 'sm' browsers (&lt; 720px)
-                </td>
-                <td>
-                    <code>false</code>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="bg-white rounded border overflow-hidden margin-v-2x">
-        <table class="uniformTable">
-            <tr>
-                <th>Events</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td>
-                    shown
-                </td>
-                <td>
-                    After dropdown is shown
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    hidden
-                </td>
-                <td>
-                    After dropdown is hidden
-                </td>
-            </tr>
-        </table>
     </div>
     
+    <h3 class="margin-none">Options</h3>
+    <table class="uniformTable margin-bottom-4x align-top-*">
+        <thead>
+        <tr>
+            <th>Option</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default</th>
+            <th></th>
+        </tr>
+        <thead>
+        <tr>
+            <td class="text-nowrap"><code>anchor</code></td>
+            <td class="text-nowrap">Element</td>
+            <td>Element to anchor content to.</td>
+            <td></td>
+            <td class="text-nowrap"><span class="uniformLabel -red">REQUIRED</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>content</code></td>
+            <td>HTML</td>
+            <td>HTML to render into popover.</td>
+            <td></td>
+            <td class="text-nowrap"><span class="uniformLabel -red">REQUIRED</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>align</code></td>
+            <td>String</td>
+            <td>How to align the popover to the anchor <code>left|right|center|#px top|center|bottom|#px</code></td>
+            <td class="text-nowrap"> <code>'center bottom'</code></td>
+            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+        </tr>
+        <tr>
+            <td class="text-nowrap"><code>container</code></td>
+            <td>Element</td>
+            <td>Element to append popover to.</td>
+            <td class="text-nowrap"><code>document</code></td>
+            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+        </tr>
+    </table>
     
-    <div class="bg-white rounded border overflow-hidden margin-v-2x">
-        <table class="uniformTable">
-            <tr>
-                <th>Methods</th>
-                <th>Description</th>
-                <th>Example</th>
-            </tr>
-            <tr>
-                <td>
-                    on(event, handler)
-                </td>
-                <td>
-                    Add event listener
-                </td>
-                <td>
-                    <code>dropdown.on('hidden', function(modal_instance){...})</code>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    show
-                </td>
-                <td>
-                    Close modal
-                </td>
-                <td>
-                    <code>dropdown.close()</code>
-                </td>
-            </tr><tr>
-                <td>
-                    hide
-                </td>
-                <td>
-                    Hide dropdown
-                </td>
-                <td>
-                    <code>dropdown.close()</code>
-                </td>
-            </tr>
-        </table>
-    </div>
     
-</div>
-<div class="section">
-    <h3>Using JQuery</h3>
-    <% block = html_block do %>
-    <button class="uniformButton green large uniformDropdown" data-dropdown-content="This is example dropdown">
-        Show Dropdown
-    </button>
-    <% end %>
-    <%= block %>
-    <% block = html_block do %>
-    $('.uniformDropdown').uniformDropdown();
-    <% end %>
-    <%= block %>
-    <div class="bg-white border rounded overflow-hidden margin-v-2x">
-        <table class="uniformTable">
-            <tr>
-                <th>
-                    Options
-                </th>
-                <th>Accepts</th>
-                <th>Description</th>
-                <th>Default</th>
-            </tr>
-            <tr>
-                <td>
-                    data-dropdown-content
-                </td>
-                <td>
-                    <code>string</code> |
-                    <code>$(element)</code>
-                </td>
-                <td>
-                    Rendered as content
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    data-dropdown-align
-                </td>
-                <td>
-                    <code>left</code>, <code>center</code>, <code>right</code>
-                </td>
-                <td>
-                    Align dropdown to trigger element
-                </td>
-                <td>
-                    <code>center</code>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    data-dropdown-trigger
-                </td>
-                <td>
-                    <code>click</code>, <code>focus</code>, <code>mouseover</code>...
-                </td>
-                <td>
-                    Trigger to show dropdown. Space separated.
-                </td>
-                <td>
-                    <code>click focus</code>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    data-dropdown-show_arrow
-                </td>
-                <td>
-                    <code>true</code> | <code>false</code>
-                </td>
-                <td>
-                    Toggle showing arrow/triangle outside of dropdown
-                </td>
-                <td>
-                    <code>true</code>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    data-dropdown-hide_sm
-                </td>
-                <td>
-                    <code>true</code> | <code>false</code>
-                </td>
-                <td>
-                    Toggle showing dropdown in 'sm' browsers (&lt; 720px)
-                </td>
-                <td>
-                    <code>false</code>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <h3>Events</h3>
-    <p>Events fired on the <code>launchUniformModal</code> element.
-    <div class="bg-white border rounded overflow-hidden">
-        <table class="uniformTable">
-            <tr>
-                <th>Events</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td>
-                    dropdown-shown
-                </td>
-                <td>
-                    After dropdown is shown
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    dropdown-hidden
-                </td>
-                <td>
-                    After dropdown is hidden
-                </td>
-            </tr>
-        </table>
-    </div>
 </div>

@@ -86,7 +86,7 @@
     &.-focus{
         box-shadow: 0 0 0 2px rgba(color('blue'), 0.7);
         z-index: 2;
-        &.active,
+        &.-active,
         &:active{
             box-shadow: 0 0 0 2px rgba(color('blue'), 0.7), inset 1px 1px 3px rgba(black, 0.2);
         }
