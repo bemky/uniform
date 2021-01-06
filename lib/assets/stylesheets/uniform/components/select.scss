@@ -1,147 +1,137 @@
-select.uniformSelect{
-    display:none;
-}
-
-.uniformSelect-edit{
-    @include text-overflow;
-    position:relative;
-    text-align: left;
-    padding-right: 1.8em;
+.uniformSelect{
+    --border-color: #{red(color('gray-40'))}, #{green(color('gray-40'))}, #{blue(color('gray-40'))};
+    appearance: none;
+    outline: none;
+    vertical-align: middle;
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    grid-template-areas: "value indicator";
+    align-items: center;
+    padding: 0 0.25em;
+    background: white;
+    select{
+        display: none;
+    }
     &.active{
-        .uniformSelect-edit-icon{
+        box-shadow: 0 0 0 3px rgba(color('blue'), 0.5), inset 2px 2px 3px rgba(black, 0.2);
+        .uniformSelect-indicator{
             svg{
                 transform: rotate(180deg);
             }
         }
     }
-    .uniformSelect-edit-icon{
-        font-size:2em;
-        @extend %position-v-center;
-        right:0;
-        z-index:0;
-        line-height: 0;
-        svg{
-            fill: color('gray-80');
-            transition: transform 0.2s;
-        }
-    }
-    &.-invert{
-        background: color('gray');
-        color: white;
-        border-color: color('gray-60');
-        .uniformSelect-edit-icon{
-            svg {
-                fill: white;
-            }
-        }
-    }
-    .uniformSelect-selection{
-        font-size: 0.8em;
-        padding: 0.1em;
-        padding-left: 0.2em;
-        border: 1px solid color('gray');
-        background: color('gray-20');
-        display:inline-block;
-        border-radius: 0.25em;
-    }
-    .uniformSelect-remove{
-        display: inline-block;
-        width: 1em;
-        height: 0.8em;
-        margin-left: 0.25em;
-        position: relative;
-        &:after,
-        &:before{
-            content: "";
-            width: 1px;
-            height: 1em;
-            transform-origin: 50% 50%;
-            transform: rotate(-45deg);
-            background: color('gray');
-            position:absolute;
-            left: 50%;
-            top: 0;
-        }
-        &:before{
-            transform: rotate(45deg);
-        }
-        &:hover{
-            &:after,
-            &:before{
-                background: color('red');
-            }
-        }
+    &:focus{
+        box-shadow: 0 0 0 3px rgba(color('blue'), 0.5);
     }
 }
 
+.uniformSelect-placeholder,
+.uniformSelect-value {
+    grid-area: value;
+    white-space: nowrap;
+}
+.uniformSelect-placeholder{
+    opacity: 0;
+    user-select: none;
+}
+.uniformSelect-value{
+    z-index: 2;
+    text-align: left;
+}
+.uniformSelect-indicator{
+    padding-left: 0.25em;
+    grid-area: indicator;
+    svg{
+        width: 1.4em;
+        transition: transform 0.2s;
+    }
+}
 .uniformSelect-options{
-
-    box-shadow: 0 0 15px 1px rgba(black, 0.2), 0 0 2px 1px rgba(black, 0.1) ;
     background: white;
+    box-shadow: 0 0 15px 1px rgba(black, 0.2), 0 0 2px 1px rgba(black, 0.1);
     button{
         appearance: none;
         outline: none;
         border: none;
         background: none;
-        width: 100%;
-        padding: 0.5em;
+        display: block;
+        min-width: 100%;
+        padding: 0.5em 1.5em;
+        text-align: left;
+        position: relative;
+        &.hide{
+            display: none;
+        }
         &:hover{
             background: lighten(color('blue'), 45);
         }
+        &.active{
+            color: color('blue-60');
+            font-weight: bold;
+            &:after{
+                position: absolute;
+                left: 0.25em;
+                top: 50%;
+                transform: translateY(-50%);
+                background-image: icon-check(#{color('blue-40')});
+                background-size: contain;
+                content: '';
+                width: 1em;
+                height: 1em;
+            }
+        }
     }
-    
-    .uniformSelect-options-actions{
-        border-top: 1px solid color('gray');
-        border-bottom: 1px solid color('gray');
-        background: color('background');
+    .uniformSelect-actions{
+        border-top: 1px solid color('gray-20');
+        border-bottom: 1px solid color('gray-20');
+        background: darken(white, 5);
         padding: 0.5em;
         &:empty{
-            display:none;
+            display: none;
         }
     }
     .uniformSelect-show-all {
         color: color('blue');
         background: none;
+        text-align:center;
         &:hover{
             background: none;
         }
     }
     .uniformSelect-done{
         border-radius: 0.25em;
-        border: 1px solid color('gray');
+        border: 1px solid color('gray-20');
+        background: white;
+        text-align:center;
         background: white;
     }
 }
-.uniformSelect-option{
-    position:relative;
-    cursor: pointer;
-    &.active{
-        box-shadow:none;
-        color: color('green-60');
-        padding-left: 2.5em !important;
-        font-weight: bold;
-    }
-    .uniformSelect-option-icon{
-        fill: color('green');
-        position: absolute;
-        top: 0.2em;
-        left: 0.2em;
-        font-size: 1.5em;
-    }
-}
 
-.uniformSelect-modal{
-    width: 100vw;
-    min-height: 100vh;
-    padding: 1em;
-    button{
-        margin-bottom: 0.5em;
-        border: 1px solid color('gray');
-        &.uniformSelect-done{
-            margin-bottom: 0;
-        }
+
+
+.uniformSelect-selection{
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8em;
+    margin: 0.2em 0;
+    padding: 0;
+    line-height: 1;
+    padding-left:0.5em;
+    background: darken(color('gray-10'), 5);
+    border-radius: 0.25em;
+    span{
+        flex: 1 1 auto;
     }
-    .uniformSelect-options-actions{
-        margin: 0 -1em;
+    .uniformSelect-remove{
+        padding: 0.2em;
+        flex: 0 1 auto;
+        svg {
+            width: 0.8em;
+            height: auto;
+        }
+        &:hover{
+            fill: color('red');
+        }
     }
 }

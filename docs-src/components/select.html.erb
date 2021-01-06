@@ -1,203 +1,155 @@
 <div class="section">
-    <h1>UniformSelect</h1>
-    <p>
-        Turn any select box into a more advanced full featured dropdown UI element,
+    <h1>
+        Select
+        <span class="uniformLabel -yellow-60">JS</span>
+    </h1>
+    <p class="text-xl text-light margin-v-2x">
+        Render an element that mimics a select box but is more full featured in design abilities,
         while maintaining the html simplicity of a basic select element.
     </p>
-    <h3>Initialize</h3>
-    <% block = html_block do %>
-        $(document).ready(function(){
-            $('.uniformSelect').uniformSelect(options);
-        })
-    <% end %>
-    <%= block %>
-    <div class="grid-md grid-nest margin-top-2x">
-        <div class="col-6-md margin-bottom">
-            <select>
-                <option>An Option</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-            </select>
-            <p class="margin">Becomes</p>
-            <select class="uniformSelect">
-                <option>An Option</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-            </select>
+    
+    <div class="flex space-h margin-v-2x">
+        <div class="text-nowrap">
+            <div id="example"></div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function(){
+                    const el = document.getElementById('example')
+                    const select = new window.Uniform.Select({
+                        name: 'account_type',
+                        options: [
+                            "Employee",
+                            "Manager",
+                            "General Manager"
+                        ]
+                    })
+                    el.append(select.el)
+                    select.render()
+                })
+            </script>
         </div>
-        <div class="col-6-md">
-            <% block = html_block class:"html" do %>
-                <select class='uniformSelect'>
-                    <option>An Option</option>
-                </select>
+        <div class="flex-fill width-fill overflow-hidden">
+            <% code 'javascript', {css_class: 'overflow-y-scroll width-fill'} do %>
+                import {Select} from 'uniform';
+                const select = new Select({
+                    name: 'account_type',
+                    options: [
+                        "Employee",
+                        "Manager",
+                        "General Manager"
+                    ]
+                })
+                document.append(select.el)
+                select.render()
             <% end %>
-            <%= block %>
-        </div>
-        <div class="col-6-md margin-bottom">
-            <select class="uniformSelect">
-                <option></option>
-                <option>Option 2 adsa asdf asd asdf asdfsafd </option>
-                <option>Option 3</option>
-            </select>
-        </div>
-        <div class="col-6-md">
-            <% block = html_block class:"html" do %>
-                <select class='uniformSelect'>
-                    <option></option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                </select>
-            <% end %>
-            <%= block %>
-        </div>
-        <div class="col-6-md">
-            <code>multiple</code>
-            <select class="uniformSelect" multiple>
-                <option>An Option</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-            </select>
-        </div>
-        <div class="col-6-md">
-            <% block = html_block class:"html" do %>
-                <select class="uniformSelect" multiple>
-                    <option>An Option</option>
-                </select>
-            <% end %>
-            <%= block %>
-        </div>
-        <div class="col-6-md">
-            <p>Limits dropdown to 8 options (optional)</p>
-            <select class="uniformSelect">
-                <option>Option 1</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
-                <option>Option 4</option>
-                <option>Option 5</option>
-                <option>Option 6</option>
-                <option>Option 7</option>
-                <option>Option 8</option>
-                <option>Option 9</option>
-                <option>Option 10</option>
-                <option>Option 11</option>
-                <option>Option 12</option>
-                <option>Option 13</option>
-                <option>Option 14</option>
-                <option>Option 15</option>
-                <option>Option 16</option>
-                <option>Option 17</option>
-                <option>Option 18</option>
-                <option>Option 19</option>
-            </select>
-        </div>
-        <div class="col-6-md">
-            <% block = html_block class:"html" do %>
-                <select class="uniformSelect">
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                    <option>Option 3</option>
-                    <option>Option 4</option>
-                    ...
-                    <option>Option 19</option>
-                </select>
-            <% end %>
-            <%= block %>
-        </div>
-        <div class="col-6-md">
-            <p>Select example in variable width container</p>
-            <div class="grid grid-nest grid-nowrap">
-                <div class="col">
-                    <select class="uniformSelect">
-                        <option>Option 1</option>
-                        <option>Option 2</option>
-                        <option>Option Option Option Option Option Option Option 3</option>
-                        <option>Option 4</option>
-                        <option>Option 5</option>
-                        <option>Option 6</option>
-                        <option>Option 7</option>
-                        <option>Option 8</option>
-                        <option>Option 9</option>
-                        <option>Option 10</option>
-                        <option>Option 11</option>
-                        <option>Option 12</option>
-                        <option>Option 13</option>
-                        <option>Option 14</option>
-                        <option>Option 15</option>
-                        <option>Option 16</option>
-                        <option>Option 17</option>
-                        <option>Option 18</option>
-                        <option>Option 19</option>
-                    </select>
-                </div>
-                <div class="col">
-                    <input class="uniformInput" placeholder="Test Input">
-                </div>
-            </div>
         </div>
     </div>
-    
-    <div class="margin-v">
-        <button class="modal-example uniformButton">
-            Launch Modal with Select
-        </button>
-    </div>
-    <script>
-        $('.modal-example').on('click', function () {
-            var modal = new Uniform.Modal({
-                content: "<div class='pad'><select><option>1</option><option>2</option><option>3</option></select></div>"
-            }).render();
-            
-            var select = new Uniform.Select({
-                el: $(modal.el).find('select')[0],
-                container: modal.el
-            }).render();
-        })
-    </script>
-    
-    <h3>Responsive</h3>
-    <p>On mobile dropdown of options becomes full screen modal of options.</p>
-    <img src="<%= asset_path("select-view-mobile.png") %>" class="inline-block max-width-200-px border">
-    <img src="<%= asset_path("select-view-mobile-selected.png") %>" class="inline-block max-width-200-px border">
     
     <h3>Options</h3>
-    <% block = html_block do %>
-        $(document).ready(function(){
-            $('.uniformSelect').uniformSelect({
-                limit: 8,
-                class: 'uniformButton green',
-                showAll: function(select_options){...}
-            });
-        })
-    <% end %>
-    <%= block %>
-    <div class="bg-white rounded overflow-hidden border">
-        <table class="uniformTable">
+    <div class="border border-gray-30 bg-white rounded">
+        <table class="uniformTable align-top-*">
             <tr>
+                <th></th>
                 <th>Option</th>
-                <th>Accepts</th>
+                <th>Type</th>
                 <th>Description</th>
                 <th>Default</th>
             </tr>
             <tr>
                 <td>
-                    showAll
                 </td>
                 <td>
-                    <code>function(select_options)</code>
+                    <code>options</code>
                 </td>
                 <td>
-                    Function run called when "Show All is clicked"
+                    Array
                 </td>
                 <td>
-                    Removes "Show All" and reveals all hidden options
+                    Options for selection. Each item in array can be string, array, or object
+                    <% code 'javascript', {css_class: 'width-100-px text-xs tight'} do %>
+                        ["Employee", "Manager", "General Manager"]
+                        // - or -
+                        [
+                          ["Employee", "employee", false],
+                          ["Manager", "manager", false],
+                          ["General Manager", "general_manager", true],
+                        ]
+                        // - or -
+                        [
+                          {value: "employee", text: 'Employee', selected: false},
+                          {value: "manager", text: 'Manager', selected: false},
+                          {value: "general_manager", text: 'General Manager', selected: true}
+                        ]
+                    <% end %>
+                </td>
+                <td>
+                    <code>false</code>
                 </td>
             </tr>
             <tr>
                 <td>
-                    limit
+                    <div id="example-2"></div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function(){
+                            const el = document.getElementById('example-2')
+                            const select = new window.Uniform.Select({
+                                name: 'account_type_2',
+                                multiple: true,
+                                value: 'Manager',
+                                options: [
+                                    "Employee",
+                                    {text: "Manager", selected: true},
+                                    "General Manager"
+                                ]
+                            })
+                            el.append(select.el)
+                            select.render()
+                        })
+                    </script>
                 </td>
                 <td>
-                    <code>int</code>, <code>false</code>
+                    <code>multiple</code>
+                </td>
+                <td>
+                    Boolean
+                </td>
+                <td>
+                    Make the select a multiple select
+                </td>
+                <td>
+                    <code>false</code>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    <div id="example-3"></div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function(){
+                            const el = document.getElementById('example-3')
+                            const select = new window.Uniform.Select({
+                                name: 'account_type_3',
+                                limit: 3,
+                                options: [
+                                    "Employee",
+                                    "Manager",
+                                    "General Manager",
+                                    "Boss Man",
+                                    "Contractor",
+                                    "Counsel",
+                                    "Angel",
+                                    "Guardian"
+                                ]
+                            })
+                            el.append(select.el)
+                            select.render()
+                        })
+                    </script>
+                </td>
+                <td>
+                    <code>limit</code>
+                </td>
+                <td class="text-nowrap">
+                    Integer, Boolean
                 </td>
                 <td>
                     Limit number of visilbe options. Set to false to not limit.
@@ -207,18 +159,11 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    class
-                </td>
-                <td>
-                    <code>string</code>
-                </td>
-                <td>
-                    Classes to append to uniformSelect-edit (main button)
-                </td>
-                <td>
-                    <code>''</code>
-                </td>
+                <td></td>
+                <td class="text-nowrap"><code>class, name, id, value</code></td>
+                <td>String</td>
+                <td>Accepts any html attribute that is then rendered on the select element and rendered element.</td>
+                <td></td>
             </tr>
         </table>
     </div>
