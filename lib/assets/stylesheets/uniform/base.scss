@@ -6,5 +6,5 @@
     --border-opacity: 1.0;
     border-width: 0;
     border-style: solid;
-    border-color: color('gray');
+    border-color: rgba(var(--border-color), var(--border-opacity));
 }

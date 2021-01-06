@@ -8,8 +8,9 @@
 }
 
 @include color-rule('.border') using ($color) {
-    border-color: rgba(#{red($color)}, #{green($color)}, #{blue($color)}, var(--border-opacity));
+    --border-color: #{red($color)}, #{green($color)}, #{blue($color)};
 }
+
 @include responsive-rule('.border-dashed') {
     border-style: dashed;
 }
