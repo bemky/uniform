@@ -4,24 +4,15 @@
     width:100%;
     
     td,
-    th,
-    .table-cell {
+    th {
         padding: 0.5em;
-        border-bottom-width: 1px;
     }
     
-    tr:last-of-type{
+    tr + tr {
         td,
-        th,
-        .table-cell{
-            border-bottom: none;
+        th{
+            border-top-width: 1px;
         }
-    }
-    
-    th{
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 0.8em;
     }
     
     &.-snug{
@@ -44,5 +35,20 @@
         tr:nth-child(2n+1){
             background-color: transparent;
         }
+    }
+    
+    //----------------------------------------------------------------
+    //             Head
+    //----------------------------------------------------------------
+    thead{
+        tr:last-child{
+            border-bottom-width: 1px;
+        }
+    }
+    
+    th{
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 0.8em;
     }
 }

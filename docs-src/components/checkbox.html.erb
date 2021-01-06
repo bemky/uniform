@@ -7,22 +7,31 @@
     <p class="text-xl text-light margin-v-2x">
         Checkbox can be applied to a checkbox or radio, it renders a new object that is stylable, and syncs updates to either the original html object or the rendered one.
     </p>
-    
-    <h3 class="margin-none">Options</h3>
-    <table class="uniformTable margin-bottom-4x align-top-*">
-        <tr>
-            <td class="text-nowrap"><code>input</code></td>
-            <td class="text-nowrap"><code>Object || Element</code></td>
-            <td>What to use for the input. If element, then checkbox/radio/toggle is appended next to it. If Object, then input is created using attributes to create element.</td>
-            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
-        </tr>
-        <tr>
-            <td class="text-nowrap"><code>class: "text-red", ...</code></td>
-            <td></td>
-            <td class="text-nowrap">Accepts any html attribute that is then rendered on checkbox/radio/toggle.</td>
-            <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
-        </tr>
-    </table>
+
+    <div class="border border-gray-30 bg-white rounded">
+        <table class="uniformTable align-top-*">
+            <thead>
+            <tr>
+                <th>Option</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tr>
+                <td class="text-nowrap"><code>input</code></td>
+                <td class="text-nowrap"><code>Object || Element</code></td>
+                <td>What to use for the input. If element, then checkbox/radio/toggle is appended next to it. If Object, then input is created using attributes to create element.</td>
+                <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+            </tr>
+            <tr>
+                <td class="text-nowrap"><code>class, name, id, value</code></td>
+                <td>String</td>
+                <td class="">Accepts any html attribute that is then rendered on checkbox/radio/toggle.</td>
+                <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
+            </tr>
+        </table>
+    </div>
     
     <h3><code>uniformCheckbox</code></h3>
     <div class="flex space-h">
