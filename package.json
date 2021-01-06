@@ -3,6 +3,8 @@
   "version": "2.4.1",
   "description": "Sass components and utilities for building a UI.",
   "main": "lib/assets/javascripts/uniform.js",
+  "style": "dist/uniform.css",
+  "sass": "lib/assets/stylesheets/uniform.scss",
   "directories": {
     "doc": "docs",
     "lib": "lib"
