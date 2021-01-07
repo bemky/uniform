@@ -22,11 +22,4 @@ $(document).ready(function(){
         target.toggle(target.parents('.expanded').length == 0);
         target.slideToggle(100);
     })
-
-    $('.uniformInputGroup').on('focus', 'input', function (e) {
-        $(this).closest('.uniformInputGroup').addClass('focus');
-    })
-    $('.uniformInputGroup').on('blur', 'input', function (e) {
-        $(this).closest('.uniformInputGroup').removeClass('focus');
-    });
 })

@@ -1,0 +1,118 @@
+<div class="section">
+    <h1>
+        Input
+    </h1>
+    <p class="text-xl text-light margin-v-2x">
+        An easily repeated style for input elements.
+    </p>
+    
+    <div class="flex space-h">
+        <div class="">
+            <input type="text" class="uniformInput">
+        </div>
+        <div class="flex-fill">
+            <% code 'html', {css_class: 'tight'} do %>
+                <input type="text" class="uniformInput">
+            <% end %>
+        </div>
+    </div>
+    
+    <h4 class="margin-top">Focus</h4>
+    <div class="flex space-h">
+        <div class="">
+            <input type="text" class="uniformInput" value="Rod Kimbal" focus>
+        </div>
+        <div class="flex-fill">
+            <% code 'html', {css_class: 'tight'} do %>
+                <input type="text" class="uniformInput" value="Rod Kimbal" focus>
+            <% end %>
+        </div>
+    </div>
+    
+    <h4 class="margin-top">Placeholder</h4>
+    <div class="flex space-h">
+        <div class="">
+            <input type="text" class="uniformInput" placeholder="Name">
+        </div>
+        <div class="flex-fill">
+            <% code 'html', {css_class: 'tight'} do %>
+                <input type="text" class="uniformInput" placeholder="Name">
+            <% end %>
+        </div>
+    </div>
+    
+    <h4 class="margin-top">Textarea</h4>
+    <div class="flex space-h">
+        <div class="">
+            <textarea class="uniformInput">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
+        </div>
+        <div class="flex-fill">
+            <% code 'html', {css_class: 'tight'} do %>
+                <textarea class="uniformInput">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
+            <% end %>
+        </div>
+    </div>
+    
+    <h4 class="margin-top">UniformSelect</h4>
+    <div class="flex space-h">
+        <div class="text-nowrap">
+            <div id="example"></div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function(){
+                    const el = document.getElementById('example')
+                    const select = new window.Uniform.Select({
+                        name: 'account_type',
+                        class: 'uniformInput',
+                        options: [
+                            "Employee",
+                            "Manager",
+                            "General Manager"
+                        ]
+                    })
+                    el.append(select.el)
+                    select.render()
+                })
+            </script>
+        </div>
+        <div class="flex-fill width-fill overflow-hidden">
+            <% code 'javascript', {css_css_class: 'overflow-y-scroll width-fill'} do %>
+                import {Select} from 'uniform';
+                const select = new Select({
+                    name: 'account_type',
+                    class: 'uniformInput',
+                    options: [
+                        "Employee",
+                        "Manager",
+                        "General Manager"
+                    ]
+                })
+                document.append(select.el)
+                select.render()
+            <% end %>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <h1>
+        Input Group
+    </h1>
+    
+    <div class="flex space-h">
+        <div class="">
+            <div class="uniformInputGroup">
+                <label for="amount">$</label>
+                <input type="text" id="amount" placeholder="Amount">
+                <label for="amount">/mo</label>
+            </div>
+        </div>
+        <div class="flex-fill">
+            <% code 'html', {css_class: 'tight'} do %>
+                <div class="uniformInputGroup">
+                    <label for="amount">$</label>
+                    <input type="text" id="amount" placeholder="Amount">
+                    <label for="amount">/mo</label>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>

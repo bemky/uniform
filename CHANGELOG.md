@@ -53,7 +53,8 @@
 - removed `uniformCard`
 - removed `uniformRow`
 - removed `uniformAlert`
-- removed `uniforMainNav`
+- removed `uniformMainNav`
+- removed `uniformForm`
 - removed `text-2_0 text-1_2...`
 - removed `uniformCheckboxCollection`
 - removed `uniformTristate`
@@ -74,6 +75,7 @@
 - `.uniformTableDotLeaders`
 - `.row` for `.table-row`
 - `.cell-[top|middle]` for `.align-[top|middle]`
+- `[data-uniform-error]`
 
 ##2.3.1
 - new loader animation and template

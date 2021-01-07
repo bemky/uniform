@@ -4,7 +4,14 @@
 *{
     --shadow-opacity: 0.1;
     --border-opacity: 1.0;
+    --border-color: #{red(color('gray'))}, #{green(color('gray'))}, #{blue(color('gray'))};
     border-width: 0;
     border-style: solid;
     border-color: rgba(var(--border-color), var(--border-opacity));
+}
+
+.uniformInput,
+.uniformInputGroup,
+.uniformSelect{
+    --focus-color: #{red(color('blue'))}, #{green(color('blue'))}, #{blue(color('blue'))};
 }
