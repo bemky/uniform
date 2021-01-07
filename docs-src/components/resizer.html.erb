@@ -1,135 +1,55 @@
 <div class="section">
-    <h1>UniformResizer</h1>
-    <p>
-        Responsive layouts are great when the window is the container you care about.
-        UniformResizer brings responsive helpers to elements that window gets.
-        Initialize any element and it will toggle size classes:
-        <code>sm-size</code>,
-        <code>md-size</code>,
-        <code>lg-size</code>, and
-        <code>xl-size</code>.
-        All Uniform classes that can be scoped to size also adhere to these classes.
+    <h1>
+        Resizer
+        <span class="uniformLabel -yellow-60">JS</span>
+    </h1>
+    <p class="text-xl text-light margin-v-2x">
+        Uniform's Resizer takes an element, and toggles classes that trigger Uniform's breakpoint scope utility based on that elements size instead of the window size.
     </p>
-    <% block = html_block type: "javascript" do %>
-    // javascript
-    new Uniform.Resizer({
-        el: document.querySelectorAll("#target")
-    })
-    <% end %>
-    <%= block %>
     
-    <p>
-        If an object is 1200px wide, it will have both <code>md-size</code> and
-        <code>lg-size</code>, because it is both larget than 720px and 1080px.
-    </p>
-    <p>
-        The small class, <code>sm-size</code> is treated differently. It can
-        only have <code>sm-size</code> if it is <strong>under</strong> 720px.
-    </p>
-    <p>
-        The media queries for Uniform are setup the same exact way with min-width
-        for sm and max-width for the other sizes
-    </p>
-    <div class="relative pad-top margin-v-2x">
-        <div class="grid grid-gutter-none text-mono position-fill z-2">
-            <div class="col width-40-p text-right border-right-gray" style="border-right-style: dashed">
-                720px
-            </div>
-            <div class="col width-20-p text-right border-right-gray" style="border-right-style: dashed">
-                1080px
-            </div>
-            <div class="col width-20-p text-right border-right-gray" style="border-right-style: dashed">
-                1440px
-            </div>
-        </div>
-        <div class="grid grid-gutter-none text-mono text-white rounded overflow-hidden margin-top">
-            <div class="col width-40-p bg-red">
-                <div class="pad-h">
-                    sm-size
-                    <div class="text-xs opacity-80">
-                        class="sm-size"
-                    </div>
+    <div class="flex space-h margin-v-2x">
+        <% code 'html', {css_class: 'overflow-y-scroll width-fill'} do %>
+            <div id="example">
+                <div class="sm:bg-green">
+                    stuff
                 </div>
             </div>
-            <div class="col width-60-p bg-blue pad-right-none">
-                <div class="pad-h">
-                    md-size
-                    <div class="text-xs opacity-80">
-                        class="md-size"
-                    </div>
-                </div>
-                <div class="grid margin-bottom grid-gutter-none">
-                    <div class="col-8 col-push-4 bg-green pad-right-none rounded">
-                        <div class="pad-h">
-                            lg-size
-
-                            <div class="text-xs opacity-80">
-                                class="lg-size md-size"
-                            </div>
-                        </div>
-                        <div class="grid margin-bottom grid-gutter-none">
-                            <div class="col-6 col-push-6 bg-gray pad-right-none height-100-px rounded">
-                                <div class="pad-h">
-                                    xl-size
-
-                                    <div class="text-xs opacity-80">
-                                        class="xl-size lg-size md-size"
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <% end %>
+        <% code 'javascript', {css_class: 'overflow-y-scroll width-fill'} do %>
+            import {Resizer} from 'uniform';
+            new Resizer({
+                el: document.getElementById('example')
+            })
+        <% end %>
     </div>
     
-    <h3>Example</h3>
-    <div class="grid grid-nest">
-        <div class="col-6 margin-bottom-2x">
-            <code>.sm-size</code>
-            <div class="sm-size">
-                <div class="bg-blue overflow-hidden">
-                    <div class="bg-white border margin-sm" style="border-style: dashed;">
-                        <code>.margin-sm</code>
-                    </div>
-                </div>
+    <h3 class="margin-top">
+        Example
+    </h3>
+    <div class="">
+        <div class="example margin-v" style="width: 730px">
+            <div class="sm:bg-blue bg-yellow bg-opacity-50 rounded pad">
+                <% code 'html', {css_class: 'tight text-sm'} do %>
+                    <div style="width: 730px" class="sm:bg-blue bg-yellow"></div>
+                <% end %>
             </div>
         </div>
-        <div class="col-6 margin-bottom-2x">
-            <% block = html_block type:"html" do %>
-            <div class="sm-size">
-                <div class="bg-blue overflow-hidden">
-                    <div class="bg-white margin-sm">
-                        <code>.margin-sm</code>
-                    </div>
-                </div>
-            </div>
-            <% end %>
-            <%= block %>
-        </div>
-        <div class="col-6">
-            <code>.md-size</code>
-            <div class="md-size">
-                <div class="bg-blue">
-                    <div class="bg-white border margin-sm" style="border-style: dashed;">
-                        <code>.margin-sm</code>
-                    </div>
-                </div>
+        
+        <div class="example margin-v" style="width: 400px">
+            <div class="sm:bg-blue bg-yellow bg-opacity-50 rounded pad">
+                <% code 'html', {css_class: 'tight text-sm'} do %>
+                    <div style="width: 400px" class="sm:bg-blue bg-yellow"></div>
+                <% end %>
             </div>
         </div>
-        <div class="col-6">
-            <% block = html_block type:"html" do %>
-            <div class="md-size">
-                <div class="bg-blue">
-                    <div class="bg-white margin-sm">
-                        <code>.margin-sm</code>
-                    </div>
-                </div>
-            </div>
-            <% end %>
-            <%= block %>
-        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                document.querySelectorAll('.example').forEach(el => {
+                    new window.Uniform.Resizer({
+                        el: el
+                    })
+                })
+            })
+        </script>
     </div>
-    
 </div>

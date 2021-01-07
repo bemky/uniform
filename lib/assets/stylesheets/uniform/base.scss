@@ -2,6 +2,7 @@
 @import 'uniform/variables';
 @import 'uniform/mixins';
 *{
+    --bg-opacity: 1.0;
     --shadow-opacity: 0.1;
     --border-opacity: 1.0;
     --border-color: #{red(color('gray'))}, #{green(color('gray'))}, #{blue(color('gray'))};
@@ -14,4 +15,8 @@
 .uniformInputGroup,
 .uniformSelect{
     --focus-color: #{red(color('blue'))}, #{green(color('blue'))}, #{blue(color('blue'))};
+}
+
+body{
+    --breakpoints: #{mapToString($breakpoints)}
 }
