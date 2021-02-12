@@ -27,15 +27,18 @@
   "homepage": "http://uniform-ui.com",
   "devDependencies": {
     "@babel/core": "^7.12.3",
+    "@babel/plugin-syntax-export-default-from": "^7.12.13",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/runtime-corejs3": "^7.12.5",
     "purgecss": "^3.0.0",
     "rollup": "^2.33.2",
     "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "uglify-js": "^3.12.7"
   },
   "dependencies": {
+    "@babel/plugin-proposal-export-default-from": "^7.12.13",
     "dolla": "^0.3.6"
   }
 }

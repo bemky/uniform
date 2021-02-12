@@ -28,7 +28,6 @@
     <meta name="msapplication-square150x150logo" content="/static-assets/favicons/mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="/static-assets/favicons/mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="/static-assets/favicons/mstile-310x310.png" />
-    <script type="text/javascript" src="/static-assets/jquery.js"></script>
 </head>
 
 <body>
@@ -115,12 +114,12 @@
             <% end %>
         <% end %>
     </div>
+    <div class="margin-h pad-v border-top text-gray-30 text-sm text-center">
+      Copyright 2021 Ben Ehmke
+    </div>
 </div>
 <div class="main-content overflow-hidden">
     <%= yield %>
-</div>  
-
-<%= javascript_include_tag "uniform.jquery" %>
-<%= javascript_include_tag "highlight.pack" %>
+</div>
 <%= javascript_include_tag "main" %>
 </body>

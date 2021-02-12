@@ -16,6 +16,7 @@ app.condenser.register_preprocessor('application/javascript', ::Condenser::Babel
   plugins: [
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-proposal-export-default-from',
     ["@babel/plugin-transform-runtime", { corejs: 3, useESModules: true }]
   ],
   presets: [
@@ -25,7 +26,6 @@ app.condenser.register_preprocessor('application/javascript', ::Condenser::Babel
     }]
   ]
 }))
-
 app.condenser.unregister_minifier('application/javascript')
 
 # Layouts
@@ -124,13 +124,14 @@ end
 # end
 
 configure :build do
+  app.condenser.unregister_writer('application/gzip')
+  # Can't purge because it messes up templates ability to read css
+  # app.condenser.register_postprocessor('text/css', ::Condenser::PurgeCSSProcessor.new(app.condenser.npm_path, {
+  #   content: [File.expand_path('./docs/**/*.html'), File.expand_path('./docs-src/assets/javascripts/**/*.js')],
+  #   safelist: ["/hljs*/", "/.*code.*/"]
+  # }))
   
-  app.condenser.unregister_writer(nil, nil, 'application/gzip')
-  # app.condenser.register_postprocessor('text/css', ::Condenser::PurgeCSSProcessor.new(File.expand_path('./'),
-  #   content: [File.expand_path('./docs-src/**/*.erb'), File.expand_path('./docs-src/assets/javascripts/**/*.js')],
-  #   safelist: ["/hljs*/"]
-  # ))
-  
+  # Clear Dist
   Dir.children('./dist').each do |file|
     if File.directory?(file)
       FileUtils.rm_r(File.join('./dist', file))
@@ -140,7 +141,7 @@ configure :build do
   end
 
   # Export to Dist    
-  %w(uniform.css uniform.jquery.js uniform.js).each do |asset|
+  %w(uniform.css uniform.js).each do |asset|
     app.condenser.resolve(asset).each do |asset|
       asset.export.write('dist')
     end
@@ -150,13 +151,6 @@ configure :build do
   Dir.children('./dist').each do |file|
     next unless file =~ /\-\w{64}\..*$/
     File.rename(File.join('./dist', file), File.join('./dist', file.gsub(/^(.*)\-\w{64}\.(.*)$/, '\1.\2')))
-  end
-
-  # Export es5 version to lib
-  app.condenser.resolve('uniform.jquery.js').each do |asset|
-    asset.export.write('lib/assets/javascripts')
-    # Hack for lack of export_without_digest.. remove when available
-    File.rename(File.expand_path('./lib/assets/javascripts/uniform.jquery-' + asset.export.hexdigest + '.js'), File.expand_path('./lib/assets/javascripts/uniform.es5.js'))
   end
 
   # Build Zip File

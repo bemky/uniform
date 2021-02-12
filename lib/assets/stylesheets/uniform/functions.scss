@@ -9,7 +9,7 @@
 }
 
 @function mapToString($map) {
-    $string: '';
+    $string: '"';
     
     @each $key, $value in $map {
         $string: str-insert($string, $key, -1);
@@ -17,8 +17,10 @@
         $string: str-insert($string, $value, -1);
         $string: str-insert($string, ",", -1);
     }
+    $string: str-slice($string, 1, -2);
+    $string: str-insert($string, '"', -1);
     
-    @return str-slice($string, 1, -2);
+    @return $string;
 }
 
 //----------------------------------------------------------------
