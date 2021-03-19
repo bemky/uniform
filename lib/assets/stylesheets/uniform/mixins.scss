@@ -40,22 +40,18 @@
         @content;
     }
 }
-@mixin responsive-rule($selector, $include_child_utility: true) {
+
+@mixin responsive-rule($selector) {
     @if str-index($selector, '.') == 1 {
         $selector: str-slice($selector, 2, -1);
     }
     
-    %#{$selector}{
-        @content
-    }
     .#{$selector}{
         @content
     }
-    @if $include_child_utility {
-        .#{$selector}-\*{
-            & > * {
-                @content
-            }
+    @if $include_child_utilities {
+        @include child-rule($selector) {
+            @content
         }
     }
     
@@ -65,10 +61,20 @@
                 @content
             }
         }
-        .#{$breakpoint}-container{
-            .#{$breakpoint}\:#{$selector}{
-                @content
+        @if $include_breakpoint_container {
+            .#{$breakpoint}-container{
+                .#{$breakpoint}\:#{$selector}{
+                    @content
+                }
             }
+        }
+    }
+}
+
+@mixin child-rule ($selector) {
+    .#{$selector}-\>{
+        & > * {
+            @content
         }
     }
 }
@@ -76,40 +82,26 @@
 //----------------------------------------------------------------
 //             Color
 //----------------------------------------------------------------
-
-$color_spectrum: (
-    white: #FFFFFF
-);
-@each $name, $color in $colors {
-    $color_spectrum: map-merge($color_spectrum, ("#{$name}": $color));
-    @for $index from 1 through 9 {
-        $saturation_adjustment: 0;
-        @if saturation($color) > 20% {
-            $saturation_adjustment: ((100 - saturation($color)) / 4) * abs(5 - $index);
-        }
-        $color_spectrum: map-merge($color_spectrum, ("#{$name}-#{(10 - $index) * 10}": change-color($color, $lightness: $index * 10, $saturation: saturation($color) + $saturation_adjustment)));
-    }
-}
-@mixin color-rule($selector, $include_scope_rules: true) {
+@mixin color-rule($selector) {
     @if str-index($selector, '.') == 1 {
         $selector: str-slice($selector, 2, -1);
     }
     
     @each $name, $value in $color_spectrum {
-        @if $include_scope_rules {
-            @include responsive-rule("#{$selector}-#{$name}"){
-                @content($value)
-            }
-            @include pseudo-class-rule("#{$selector}-#{$name}"){
-                @content($value)
-            }
-        } @else {
-            .#{$selector}-#{$name}{
+        .#{$selector}-#{$name}{
+            @content($value)
+        }
+        
+        @include pseudo-class-rule("#{$selector}-#{$name}", false){
+            @content($value)
+        }
+        
+        @if $include_child_utilities {
+            @include child-rule($selector) {
                 @content($value)
             }
         }
     }
-    
 }
 
 
@@ -117,35 +109,41 @@ $color_spectrum: (
 //             Size
 //----------------------------------------------------------------
 
-@mixin size-rule($selector, $size_type:'rem', $include_child_utility: true){
-    $size_spectrum: if($size_type == 'rem', $sizes, (
-        '2px': 2px,
-        '3px': 3px,
-        '4px': 4px
-    ));
-
-    @include responsive-rule("#{$selector}", $include_child_utility){
-        @content(if($size_type == 'rem', 1rem, 1px))
+@mixin size-rule($selector){
+    @if str-index($selector, '.') == 1 {
+        $selector: str-slice($selector, 2, -1);
     }
-    @include responsive-rule("#{$selector}-none", $include_child_utility){
-        @content(0)
+    
+    $key: $selector;
+    @if str-index($key, '-') {
+        $key: str-slice($key, 1, str-index($key, '-') - 1);
     }
-    @each $size, $value in $size_spectrum {
-        @include responsive-rule("#{$selector}-#{$size}", $include_child_utility){
+    
+    @each $size, $value in map-get($sizes, $key) {
+        $class: "#{$selector}-#{$size}";
+        @if $size == '' {
+            $class: $selector;
+        }
+        @include responsive-rule($class){
             @content($value)
         }
     }
 }
 
-
 //----------------------------------------------------------------
 //             Pseudo Classes
 //----------------------------------------------------------------
 
-@mixin pseudo-class-rule($selector){
+@mixin pseudo-class-rule($selector, $declare_self: true){
     @if str-index($selector, '.') == 1 {
         $selector: str-slice($selector, 2, -1);
     }
+    @if $declare_self {
+       .#{$selector} {
+           @content
+       } 
+    }
+
     @each $pseudo-selector, $pseudo-class in (
         active: active,
         focus: focus,
@@ -155,13 +153,17 @@ $color_spectrum: (
         first: first-child,
         last: last-child
     ) {
-        @include responsive-rule("#{$pseudo-selector}\\:#{$selector}:#{$pseudo-class}"){
-            @content
+        @if index($include_pseudo_utilities, $pseudo-class) {
+            .#{$pseudo-selector}\:#{$selector}:#{$pseudo-class} {
+                @content
+            }
         }
     }
-    .group:hover{
-        @include responsive-rule("group-hover\\:#{$selector}"){
-            @content
+    @if index($include_pseudo_utilities, group-hover) {
+        .group:hover{
+            .group-hover\:#{$selector} {
+                @content
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/malomalo/condenser.git
-  revision: 06f02bd4ee2f88f1f73760fe6f9e73b87ca2cbc5
+  revision: c2287d6930ff89d8880d409b0f1d4df70e5990e8
+  branch: media_combiner
   specs:
     condenser (1.2)
       erubi (~> 1.0)
@@ -15,132 +16,150 @@ GIT
       condenser (>= 0.1)
       middleman-core (>= 4.2.1)
 
+GIT
+  remote: https://github.com/middleman/middleman.git
+  revision: 35a52af5284cb1b7164ba0ead734cbdb8a1322f7
+  specs:
+    middleman (5.0.0.rc.2)
+      coffee-script (~> 2.2)
+      haml (>= 4.0.5)
+      kramdown (~> 2.3)
+      middleman-cli (= 5.0.0.rc.2)
+      middleman-core (= 5.0.0.rc.2)
+      webrick (~> 1.7)
+    middleman-cli (5.0.0.rc.2)
+      thor (>= 0.17.0, < 2.0)
+    middleman-core (5.0.0.rc.2)
+      activesupport (>= 5.0.0)
+      addressable (~> 2.3)
+      bundler
+      contracts (~> 0.16.0)
+      dotenv
+      erubis
+      execjs (~> 2.0)
+      fastimage (~> 2.0)
+      hamster (~> 3.0)
+      hashie (~> 4.0)
+      i18n (~> 0.9.0)
+      listen (~> 3.0)
+      memoist (~> 0.14)
+      oj (~> 3.7)
+      padrino-helpers (~> 0.14.4)
+      parallel
+      rack (>= 1.4.5, < 3)
+      rgl (~> 0.5.3)
+      sassc (~> 2.0)
+      servolux
+      tilt (~> 2.0.9)
+      toml
+      uglifier (~> 4.1)
+      webrick
+
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.2.4.5)
+    activesupport (6.0.3.5)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+      zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (9.8.6.5)
       execjs
-    backports (3.20.2)
+    brotli (0.2.3)
     byebug (11.1.3)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.8)
-    contracts (0.13.0)
-    css_parser (1.7.1)
+    contracts (0.16.0)
+    css_parser (1.9.0)
       addressable
     dotenv (2.7.6)
     erubi (1.10.0)
     erubis (2.7.0)
     execjs (2.7.0)
-    fast_blank (1.0.0)
-    fastimage (2.2.2)
-    ffi (1.14.2)
-    haml (5.2.0)
+    fastimage (2.2.3)
+    ffi (1.15.0)
+    generator (0.0.1)
+    haml (5.2.1)
       temple (>= 0.8.0)
       tilt
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
-    hashie (3.6.0)
+    hashie (4.1.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
-    kramdown (2.3.0)
+    kramdown (2.3.1)
       rexml
+    lazy_priority_queue (0.1.1)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     memoist (0.16.2)
-    middleman (4.3.11)
-      coffee-script (~> 2.2)
-      haml (>= 4.0.5)
-      kramdown (>= 2.3.0)
-      middleman-cli (= 4.3.11)
-      middleman-core (= 4.3.11)
     middleman-autoprefixer (2.10.1)
       autoprefixer-rails (~> 9.1)
       middleman-core (>= 3.3.3)
-    middleman-cli (4.3.11)
-      thor (>= 0.17.0, < 2.0)
-    middleman-core (4.3.11)
-      activesupport (>= 4.2, < 6.0)
-      addressable (~> 2.3)
-      backports (~> 3.6)
-      bundler
-      contracts (~> 0.13.0)
-      dotenv
-      erubis
-      execjs (~> 2.0)
-      fast_blank
-      fastimage (~> 2.0)
-      hamster (~> 3.0)
-      hashie (~> 3.4)
-      i18n (~> 0.9.0)
-      listen (~> 3.0.0)
-      memoist (~> 0.14)
-      padrino-helpers (~> 0.13.0)
-      parallel
-      rack (>= 1.4.5, < 3)
-      sassc (~> 2.0)
-      servolux
-      tilt (~> 2.0.9)
-      uglifier (~> 3.0)
     middleman-syntax (3.2.0)
       middleman-core (>= 3.2)
       rouge (~> 3.2)
-    minitest (5.14.3)
-    padrino-helpers (0.13.3.4)
+    minitest (5.14.4)
+    oj (3.11.3)
+    padrino-helpers (0.14.4)
       i18n (~> 0.6, >= 0.6.7)
-      padrino-support (= 0.13.3.4)
+      padrino-support (= 0.14.4)
       tilt (>= 1.4.1, < 3)
-    padrino-support (0.13.3.4)
-      activesupport (>= 3.1)
+    padrino-support (0.14.4)
     parallel (1.20.1)
+    parslet (1.8.2)
     public_suffix (4.0.6)
     rack (2.2.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rexml (3.2.4)
-    rouge (3.24.0)
+    rgl (0.5.7)
+      lazy_priority_queue (~> 0.1.0)
+      stream (~> 0.5.3)
+    rouge (3.26.0)
     rubyzip (2.3.0)
     sassc (2.4.0)
       ffi (~> 1.9)
-    sassc-media_query_combiner (0.0.1)
-      sassc (>= 2.2.0)
     servolux (0.13.0)
+    stream (0.5.3)
+      generator
     temple (0.8.2)
-    thor (1.0.1)
+    thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    toml (0.2.0)
+      parslet (~> 1.8.0)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
-    uglifier (3.2.0)
+    uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    webrick (1.7.0)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  brotli
   byebug
   condenser!
   css_parser
-  ffi (~> 1.14.1)
-  middleman (~> 4.2)
-  middleman-autoprefixer (~> 2.7)
+  ffi
+  middleman!
+  middleman-autoprefixer
   middleman-condenser!
   middleman-syntax
   rubyzip
-  sassc-media_query_combiner
   tzinfo-data
   wdm (~> 0.1)
 
 BUNDLED WITH
-   2.1.4
+   2.2.3

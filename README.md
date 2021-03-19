@@ -55,6 +55,57 @@ The utility classes produce quite a bit of media queries which can bloat the lib
 
 Checkout the [documentation](http://uniform-ui.com)
 
+### Configuration
+Set these variables before `@import uniform` in sass to configure how uniform generates utility classes
+```scss
+$sizes: (
+  border: (
+    '': 1px,
+    'none': 0,
+    '2px': 2px
+    ...
+  ),
+  divide: (
+    ...
+  ),
+  rounded: (
+    ...
+  ),
+  margin: (
+    ...
+  ),
+  gap: (
+    ...
+  ),
+  space: (
+    ...
+  ),
+  pad: (
+    ...
+  ),
+  text: (
+    ...
+  )
+);
+
+$colors: (
+    'gray':               #505152,
+    'green':              #97C848,
+    ...
+);
+
+$breakpoints: (
+    sm: "max-width: 719px",
+    md: "min-width: 720px",
+    lg: "min-width: 1080px",
+    xl: "min-width: 1440px"
+);
+
+$$include_pseudo_utilities: (hover focus active ...);
+$include_breakpoint_container: true; // Include responsive classes .xl-container .xl:margin-top
+$include_child_utilities: true; // Include responsive classes .text-red-* & > * {...}
+```
+
 ## Browser Support
 | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/edge.png" alt="IE / Edge" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/firefox.png" alt="Firefox" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/chrome.png" alt="Chrome" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/safari.png" alt="Safari" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Safari|
 | --------- | --------- | --------- | --------- |

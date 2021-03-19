@@ -3,7 +3,7 @@
 //----------------------------------------------------------------
 //             Border
 //----------------------------------------------------------------
-@include size-rule('.border', 'px') using ($size) {
+@include size-rule('.border') using ($size) {
     border-width: $size;
 }
 
@@ -19,7 +19,7 @@
     @include responsive-rule('.border-#{$direction}'){
         border-#{$direction}-width: 1px;
     }
-    @include size-rule('.border-#{$direction}', 'px', false) using ($size){
+    @include size-rule('.border-#{$direction}') using ($size){
         border-#{$direction}-width: $size;
     }
     @include color-rule('.border-#{$direction}') using ($color) {
@@ -73,12 +73,12 @@
 //----------------------------------------------------------------
 //             Divide
 //----------------------------------------------------------------
-@include size-rule('.divide-h', 'px', false) using ($size) {
+@include size-rule('.divide-h') using ($size) {
     & > * + * {
         border-left-width: $size;
     }
 }
-@include size-rule('.divide-v', 'px', false) using ($size) {
+@include size-rule('.divide-v') using ($size) {
     & > * + * {
         border-top-width: $size;
     }

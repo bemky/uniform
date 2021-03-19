@@ -9,6 +9,13 @@ $base-font: if(variable-exists('base-font'), $base-font, $system-font);
 
 
 //----------------------------------------------------------------
+//             Includes
+//----------------------------------------------------------------
+$include_child_utilities: if(variable-exists('include_child_utilities'), $include_child_utilities, false);
+$include_breakpoint_container: if(variable-exists('include_breakpoint_container'), $include_breakpoint_container, false);
+$include_pseudo_utilities: if(variable-exists('include_pseudo_utilities'), $include_pseudo_utilities, [hover]);
+
+//----------------------------------------------------------------
 //             Colors
 //----------------------------------------------------------------
 
@@ -20,12 +27,26 @@ $colors: if(variable-exists('colors'), $colors, (
     'yellow':             #D7E542,
     'purple':             #9461b9
 ));
+$color_spectrum: (
+    'white':              #FFFFFF,
+);
+@each $name, $color in $colors {
+    $color_spectrum: map-merge($color_spectrum, ("#{$name}": $color));
+    @for $index from 1 through 9 {
+        $saturation_adjustment: 0;
+        @if saturation($color) > 20% {
+            $saturation_adjustment: ((100 - saturation($color)) / 4) * abs(5 - $index);
+        }
+        $color_spectrum: map-merge($color_spectrum, ("#{$name}-#{(10 - $index) * 10}": change-color($color, $lightness: $index * 10, $saturation: saturation($color) + $saturation_adjustment)));
+    }
+}
 
 
 //----------------------------------------------------------------
 //             Breakpoints
 //----------------------------------------------------------------
 // 720, 1080, 1440
+$include_breakpoint_container: if(variable-exists('include_breakpoint_container'), $include_breakpoint_container, false);
 $breakpoints: if(variable-exists('breakpoints'), $breakpoints, (
     sm: "max-width: 719px",
     md: "min-width: 720px",
@@ -37,7 +58,32 @@ $breakpoints: if(variable-exists('breakpoints'), $breakpoints, (
 //----------------------------------------------------------------
 //             Sizes
 //----------------------------------------------------------------
-$sizes: if(variable-exists('sizes'), $sizes, (
+$sizes: map-merge((
+  border: (
+    '': 1px,
+    'none': 0,
+    '2px': 2px,
+    '3px': 3px,
+    '4px': 4px
+  ),
+  divide: (
+    '': 1px,
+    'none': 0,
+    '2px': 2px,
+    '3px': 3px,
+    '4px': 4px
+  ),
+  rounded: (
+    '':  1rem,
+    'none': 0,
+    "xs":        0.8rem,
+    "sm":        0.9rem,
+    "lg":        1.2rem,
+    "xl":        1.4rem,
+  ),
+  margin: (
+    '':  1rem,
+    'none': 0,
     "1\\/4x":      0.25rem,
     "1\\/2x":      0.5rem,
     "3\\/4x":      0.75rem,
@@ -46,6 +92,43 @@ $sizes: if(variable-exists('sizes'), $sizes, (
     "lg":        1.2rem,
     "xl":        1.4rem,
     "2x":        2rem,
+  ),
+  gap: (
+    '':  1rem,
+    'none': 0,
+    "xs":        0.8rem,
+    "sm":        0.9rem,
+    "lg":        1.2rem,
+    "xl":        1.4rem,
+  ),
+  space: (
+    '':  1rem,
+    'none': 0,
+    "xs":        0.8rem,
+    "sm":        0.9rem,
+    "lg":        1.2rem,
+    "xl":        1.4rem,
+  ),
+  pad: (
+    '':  1rem,
+    'none': 0,
+    "1\\/4x":      0.25rem,
+    "1\\/2x":      0.5rem,
+    "3\\/4x":      0.75rem,
+    "xs":        0.8rem,
+    "sm":        0.9rem,
+    "lg":        1.2rem,
+    "xl":        1.4rem,
+    "2x":        2rem,
+  ),
+  text: (
+    '':  1rem,
+    "xs":        0.8rem,
+    "sm":        0.9rem,
+    "lg":        1.2rem,
+    "xl":        1.4rem,
+    "2x":        2rem,
     "4x":        4rem,
     "8x":        8rem
-));
+  )
+), if(variable-exists('sizes'), $sizes, ()));

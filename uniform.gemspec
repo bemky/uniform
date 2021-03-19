@@ -19,5 +19,4 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'sass'
 
   s.add_development_dependency 'rubyzip'
-  s.add_development_dependency 'sass-media_query_combiner'
 end

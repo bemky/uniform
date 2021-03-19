@@ -1,6 +1,6 @@
 @import 'uniform/mixins';
 
-@include color-rule('.bg') using ($color){ 
+@include color-rule('.bg') using ($color){
     background-color: rgba(#{red($color)}, #{green($color)}, #{blue($color)}, var(--bg-opacity));
 }
 
