@@ -31,22 +31,21 @@
 //             Border Radius
 //----------------------------------------------------------------
 @include size-rule('.rounded') using ($size){ border-radius: $size;}
-@include responsive-rule('.rounded') { border-radius: 0.25em;}
-@include responsive-rule('.rounded-top') {
-    border-top-right-radius: 0.25em;
-    border-top-left-radius: 0.25em;
+@include size-rule('.rounded-top') using ($size){
+    border-top-right-radius: $size;
+    border-top-left-radius: $size;
 }
-@include responsive-rule('.rounded-bottom') {
-    border-bottom-right-radius: 0.25em;
-    border-bottom-left-radius: 0.25em;
+@include size-rule('.rounded-bottom') using ($size){
+    border-bottom-right-radius: $size;
+    border-bottom-left-radius: $size;
 }
-@include responsive-rule('.rounded-left') {
-    border-top-left-radius: 0.25em;
-    border-bottom-left-radius: 0.25em;
+@include size-rule('.rounded-left') using ($size){
+    border-top-left-radius: $size;
+    border-bottom-left-radius: $size;
 }
-@include responsive-rule('.rounded-right') {
-    border-top-right-radius: 0.25em;
-    border-bottom-right-radius: 0.25em;
+@include size-rule('.rounded-right') using ($size){
+    border-top-right-radius: $size;
+    border-bottom-right-radius: $size;
 }
 
 @include responsive-rule('.square') { border-radius: 0;}
