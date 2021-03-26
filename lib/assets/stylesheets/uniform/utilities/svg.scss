@@ -1,0 +1,5 @@
+@import 'uniform/mixins';
+ 
+@include size-rule('.stroke') using ($size) {stroke-width: $size;}
+@include color-rule('.stroke') using ($color) {stroke: $color;}
+@include color-rule('.fill') using ($color) {fill: $color;}

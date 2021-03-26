@@ -130,5 +130,12 @@ $sizes: map-merge((
     "2x":        2rem,
     "4x":        4rem,
     "8x":        8rem
+  ),
+  stroke: (
+      "sm": 0.5px,
+      "md": 1px,
+      "lg": 1.5px,
+      "2x": 2px,
+      "3x": 3px
   )
 ), if(variable-exists('sizes'), $sizes, ()));
