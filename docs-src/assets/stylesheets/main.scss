@@ -39,20 +39,26 @@ html, body{
 }
 
 .side-nav{
+    display: flex;
+    flex-direction: column;
+    align: center;
     background: white;
     font-size: 1.2em;
     position:fixed;
     overflow-y:scroll;
     width:250px;
-    height:100%;
+    height: 100vh;
     top:0;
     left: 0;
-    border-right:1px solid color('gray-40');
+    border-right:1px solid color('gray-10');
     @media only screen and (max-width: 700px) {
         width: auto;
         img{
             display:none;
         }
+    }
+    .footer {
+        background: rgba(color('gray-10'), 0.5);
     }
 }
 
