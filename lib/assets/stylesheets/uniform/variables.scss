@@ -110,32 +110,34 @@ $sizes: map-merge((
     "xl":        1.4rem,
   ),
   pad: (
-    '':  1rem,
-    'none': 0,
-    "1\\/4x":      0.25rem,
-    "1\\/2x":      0.5rem,
-    "3\\/4x":      0.75rem,
-    "xs":        0.8rem,
-    "sm":        0.9rem,
-    "lg":        1.2rem,
-    "xl":        1.4rem,
-    "2x":        2rem,
+    ''       : 1rem,
+    'none'   : 0,
+    "1\\/4x" : 0.25rem,
+    "1\\/2x" : 0.5rem,
+    "3\\/4x" : 0.75rem,
+    "xs"     : 0.8rem,
+    "sm"     : 0.9rem,
+    "lg"     : 1.2rem,
+    "xl"     : 1.4rem,
+    "2x"     : 2rem,
+
   ),
   text: (
     '':  1rem,
-    "xs":        0.8rem,
-    "sm":        0.9rem,
-    "lg":        1.2rem,
-    "xl":        1.4rem,
-    "2x":        2rem,
-    "4x":        4rem,
-    "8x":        8rem
+    "xs" : 0.8rem,
+    "sm" : 0.9rem,
+    "lg" : 1.2rem,
+    "xl" : 1.4rem,
+    "2x" : 2rem,
+    "4x" : 4rem,
+    "8x" : 8rem
+
   ),
   stroke: (
-      "sm": 0.5px,
-      "md": 1px,
-      "lg": 1.5px,
-      "2x": 2px,
-      "3x": 3px
+      "sm" : 0.5px,
+      "md" : 1px,
+      "lg" : 1.5px,
+      "2x" : 2px,
+      "3x" : 3px
   )
 ), if(variable-exists('sizes'), $sizes, ()));
