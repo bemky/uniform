@@ -5,7 +5,7 @@ gem 'ffi'
 gem 'middleman', github: 'middleman/middleman'
 gem 'middleman-autoprefixer'
 gem 'middleman-condenser', github: 'malomalo/middleman-condenser'
-gem 'condenser', github: 'malomalo/condenser', branch: 'media_combiner' # TODO remove branch when PR accepted
+gem 'condenser', github: 'malomalo/condenser'
 gem 'css_parser'
 gem 'middleman-syntax'
 gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]

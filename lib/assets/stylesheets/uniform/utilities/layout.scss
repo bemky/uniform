@@ -37,8 +37,11 @@
     @include responsive-rule($type){ display: $type; }
 }
 @include responsive-rule('hide'){ display: none; }
+@include pseudo-class-rule('hide', false){ display: none;}
 @include responsive-rule('show'){ display: inherit; }
+@include pseudo-class-rule('show', false){ display: inherit;}
 @include responsive-rule('hide-empty:empty'){ display: none; }
+@include pseudo-class-rule('hide-empty:empty', false){ display: none;}
 
 
 //----------------------------------------------------------------

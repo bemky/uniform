@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/malomalo/condenser.git
-  revision: c2287d6930ff89d8880d409b0f1d4df70e5990e8
-  branch: media_combiner
+  revision: 75401436dd1bb7b427908882abfa9167521d9827
   specs:
     condenser (1.2)
       erubi (~> 1.0)
