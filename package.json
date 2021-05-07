@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
-    "dolla": "^0.6.1"
+    "dolla": "^0.6.2"
   }
 }
