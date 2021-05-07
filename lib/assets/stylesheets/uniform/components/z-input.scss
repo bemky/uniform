@@ -15,6 +15,12 @@
         box-shadow: 0 0 0 2px rgba(var(--focus-color), 1);
     }
 }
+
+select.uniformInput {
+    padding-right: 1em;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>') no-repeat center right;
+}
+
 @include color-rule('.focus') using ($color) {
     --focus-color: #{red($color)}, #{green($color)}, #{blue($color)};
 }

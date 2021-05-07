@@ -17,6 +17,11 @@
             padding-right: 0.5em;
         }
     }
+    
+    *:focus {
+        box-shadow: none;
+    }
+    
     input,
     .input{
         flex: 1 1 auto;
@@ -26,5 +31,9 @@
         outline: none;
         padding: 0.5em;
         box-shadow: none;
+    }
+    
+    .uniformInput {
+        border: none !important;
     }
 }
