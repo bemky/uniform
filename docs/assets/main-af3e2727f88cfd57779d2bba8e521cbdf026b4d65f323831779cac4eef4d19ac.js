@@ -2031,48 +2031,6 @@
 
 	var bind$2 = bind$1;
 
-	function append(el, item, escape, context) {
-	  if (Array.isArray(item)) {
-	    item.forEach(i => append(el, i, escape, context));
-	  } else if (escape instanceof Element) {
-	    const items = Array.from(arguments).slice(1).filter(x => x instanceof Element);
-	    items.forEach(i => append(el, i));
-	  } else {
-	    if (typeof escape != "boolean") {
-	      context = escape;
-	      escape = undefined;
-	    }
-
-	    if (item instanceof Promise) {
-	      const holder = document.createElement('span');
-	      el.append(holder);
-	      return item.then(resolvedItem => {
-	        append(holder, resolvedItem, escape, context);
-	        Array.from(holder.childNodes).forEach(child => {
-	          if (child instanceof Element) {
-	            holder.insertAdjacentElement('beforebegin', child);
-	          } else {
-	            holder.insertAdjacentText('beforebegin', child.textContent);
-	          }
-	        });
-	        holder.parentNode.removeChild(holder);
-	      });
-	    } else if (typeof item == "function") {
-	      return append(el, item.bind(context)(el), escape, context);
-	    } else if (typeof item == "string") {
-	      if (escape) {
-	        return el.append(item);
-	      } else {
-	        const container = document.createElement('div');
-	        container.innerHTML = item;
-	        return el.append(...container.childNodes);
-	      }
-	    } else if (item !== null && item !== undefined) {
-	      return el.append(item);
-	    }
-	  }
-	}
-
 	const HTML_ATTRIBUTES = ['accept', 'accept-charset', 'accesskey', 'action', 'align', 'allow', 'alt', 'async', 'autocapitalize', 'autocomplete', 'autofocus', 'autoplay', 'background', 'bgcolor', 'border', 'buffered', 'capture', 'challenge', 'charset', 'checked', 'cite', 'class', 'code', 'codebase', 'color', 'cols', 'colspan', 'content', 'contenteditable', 'contextmenu', 'controls', 'coords', 'crossorigin', 'csp', 'data', 'data-*', 'datetime', 'decoding', 'default', 'defer', 'dir', 'dirname', 'disabled', 'download', 'draggable', 'dropzone', 'enctype', 'enterkeyhint', 'for', 'form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'http-equiv', 'icon', 'id', 'importance', 'integrity', 'intrinsicsize', 'inputmode', 'ismap', 'itemprop', 'keytype', 'kind', 'label', 'lang', 'language', 'loading', 'list', 'loop', 'low', 'manifest', 'max', 'maxlength', 'minlength', 'media', 'method', 'min', 'multiple', 'muted', 'name', 'novalidate', 'open', 'optimum', 'pattern', 'ping', 'placeholder', 'poster', 'preload', 'radiogroup', 'readonly', 'referrerpolicy', 'rel', 'required', 'reversed', 'rows', 'rowspan', 'sandbox', 'scope', 'scoped', 'selected', 'shape', 'size', 'sizes', 'slot', 'span', 'spellcheck', 'src', 'srcdoc', 'srclang', 'srcset', 'start', 'step', 'style', 'summary', 'tabindex', 'target', 'title', 'translate', 'type', 'usemap', 'value', 'width', 'wrap', 'aria', 'aria-*'];
 	const BOOLEAN_ATTRIBUTES = ['disabled', 'readonly', 'multiple', 'checked', 'autobuffer', 'autoplay', 'controls', 'loop', 'selected', 'hidden', 'scoped', 'async', 'defer', 'reversed', 'ismap', 'seemless', 'muted', 'required', 'autofocus', 'novalidate', 'formnovalidate', 'open', 'pubdate', 'itemscope'];
 
@@ -2122,30 +2080,59 @@
 	        break;
 
 	      case 'children':
-	        if (typeof value == "string") {
-	          const tmp = document.createElement('div');
-	          tmp.innerHTML = value;
-	          tmp.childNodes.forEach(node => el.append(node.cloneNode(true)));
-	        } else {
-	          value.forEach(child => {
-	            if (child instanceof Element) {
-	              el.appendChild(child);
-	            } else if (typeof child == "object" && child !== null && !Array.isArray(child)) {
-	              el.append(createElement(child));
-	            } else {
-	              const tmp = document.createElement('div');
-	              tmp.innerHTML = child;
-	              tmp.childNodes.forEach(node => el.append(node.cloneNode(true)));
-	            }
-	          });
-	        }
-
+	        append(el, value);
 	        return;
 	    }
 
 	    el.setAttribute(key, value);
 	  });
 	  return el;
+	}
+
+	function append(el, item, escape, context) {
+	  if (Array.isArray(item) || item instanceof NodeList || item instanceof HTMLCollection) {
+	    Array.from(item).forEach(i => append(el, i, escape, context));
+	  } else if (escape instanceof Element) {
+	    const items = Array.from(arguments).slice(1).filter(x => x instanceof Element);
+	    items.forEach(i => append(el, i));
+	  } else {
+	    if (typeof escape != "boolean") {
+	      context = escape;
+	      escape = undefined;
+	    }
+
+	    if (item instanceof Promise) {
+	      const holder = document.createElement('span');
+	      el.append(holder);
+	      return item.then(resolvedItem => {
+	        append(holder, resolvedItem, escape, context);
+	        Array.from(holder.childNodes).forEach(child => {
+	          if (child instanceof Element) {
+	            holder.insertAdjacentElement('beforebegin', child);
+	          } else {
+	            holder.insertAdjacentText('beforebegin', child.textContent);
+	          }
+	        });
+	        holder.parentNode.removeChild(holder);
+	      });
+	    } else if (item instanceof Element || item instanceof Node) {
+	      return el.append(item);
+	    } else if (item === null || item === undefined) ; else if (typeof item == "function") {
+	      return append(el, item.bind(context)(el), escape, context);
+	    } else if (typeof item == "object") {
+	      return el.append(createElement(item));
+	    } else if (typeof item == "string") {
+	      if (escape) {
+	        return el.append(item);
+	      } else {
+	        const container = document.createElement('div');
+	        container.innerHTML = item;
+	        return el.append(...container.childNodes);
+	      }
+	    } else {
+	      throw 'item to append is unsupported';
+	    }
+	  }
 	}
 
 	function css(el, rule) {
@@ -2871,7 +2858,8 @@
 	      if (leftAlign == 'left') {
 	        position.right = outerWidth(container) - anchorOffset.left;
 	      } else if (leftAlign == 'center') {
-	        position.left = anchorOffset.left + outerWidth(this.options.anchor) / 2 - outerWidth(this.el) / 2;
+	        position.left = anchorOffset.left + outerWidth(this.options.anchor) / 2;
+	        position.transform = "translateX(-50%)";
 	      } else if (leftAlign == 'right') {
 	        position.left = anchorOffset.left + outerWidth(this.options.anchor);
 	      } else if (includes$4(leftAlign).call(leftAlign, "px")) {
