@@ -41,14 +41,14 @@
 //----------------------------------------------------------------
 @include responsive-rule(".height-auto"){ height: auto; };
 @include responsive-rule(".height-full"){ height: 100%; };
-@include responsive-rule(".max-height-auto"){ height: auto; };
-@include responsive-rule(".max-height-full"){ height: 100%; };
-@include responsive-rule(".min-height-auto"){ height: auto; };
-@include responsive-rule(".min-height-full"){ height: 100%; };
+@include responsive-rule(".max-height-auto"){ max-height: auto; };
+@include responsive-rule(".max-height-full"){ max-height: 100%; };
+@include responsive-rule(".min-height-auto"){ min-height: auto; };
+@include responsive-rule(".min-height-full"){ min-height: 100%; };
 
 @include responsive-rule(".width-auto"){ width: auto; };
 @include responsive-rule(".width-full"){ width: 100%; };
-@include responsive-rule(".max-width-auto"){ width: auto; };
-@include responsive-rule(".max-width-full"){ width: 100%; };
-@include responsive-rule(".min-width-auto"){ width: auto; };
-@include responsive-rule(".min-width-full"){ width: 100%; };
+@include responsive-rule(".max-width-auto"){ max-width: auto; };
+@include responsive-rule(".max-width-full"){ max-width: 100%; };
+@include responsive-rule(".min-width-auto"){ min-width: auto; };
+@include responsive-rule(".min-width-full"){ min-width: 100%; };
