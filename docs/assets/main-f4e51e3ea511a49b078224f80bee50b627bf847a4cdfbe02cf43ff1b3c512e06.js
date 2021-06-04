@@ -3150,10 +3150,12 @@
 	    key: "render",
 	    value: function render() {
 	      this.highest_z_index = 0;
-	      this.overlay = document.createElement('div');
-	      this.overlay.classList.add('uniformModal-overlay');
-	      this.blur = document.createElement('div');
-	      this.blur.classList.add('uniformModal-blur');
+	      this.overlay = createElement('div', {
+	        class: 'uniformModal-overlay'
+	      });
+	      this.blur = createElement('div', {
+	        class: 'uniformModal-blur'
+	      });
 	      this.original_scroll = window.scrollY;
 	      this.blur.style.top = 0 - this.original_scroll + "px";
 
@@ -3164,7 +3166,6 @@
 	        this.el.style.zIndex = this.highest_z_index + 2;
 	      }
 
-	      this.el.appendChild(this.overlay);
 	      var next_element = document.body.children[0];
 
 	      while (next_element) {
@@ -3179,15 +3180,21 @@
 	      document.body.classList.add('uniformModal-active');
 	      document.body.appendChild(this.blur);
 	      document.body.appendChild(this.el);
-	      var container = document.createElement('div');
-	      container.classList.add('uniformModal-container');
-	      append(container, this.content);
-	      var closeButton = document.createElement('div');
-	      closeButton.classList.add('uniformModal-close');
-	      this.el.appendChild(closeButton);
 	      this.el.style.top = window.scrollY;
 	      this.listenTo(this.overlay, 'click', this.close);
-	      this.el.appendChild(container);
+	      var container = createElement('div', {
+	        class: 'uniformModal-container',
+	        children: this.content
+	      });
+	      var closeButton = createElement('div', {
+	        class: 'uniformModal-close-container',
+	        children: {
+	          class: 'uniformModal-close'
+	        }
+	      });
+	      this.el.append(this.overlay);
+	      this.el.append(container);
+	      this.el.append(closeButton);
 	      if (this.options.klass) container.classList.add(this.options.klass);
 	      if (this.content.innerHTML) trigger(this.content, 'rendered');
 	      this.trigger('rendered');
@@ -3196,7 +3203,9 @@
 	  }, {
 	    key: "checkCloseButton",
 	    value: function checkCloseButton(e) {
-	      if (e.target.classList.contains('uniformModal-close')) this.close();
+	      if (e.target.classList.contains('uniformModal-close')) {
+	        this.close();
+	      }
 	    }
 	  }, {
 	    key: "close",
