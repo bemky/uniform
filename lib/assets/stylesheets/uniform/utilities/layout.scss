@@ -124,6 +124,8 @@
     center
     stretch
     baseline
+    flex-start
+    flex-end
 ) {
     @include responsive-rule('justify-#{$selector}') {
         justify-items: $selector;
@@ -139,6 +141,8 @@
     end
     center
     stretch
+    flex-start
+    flex-end
 ) {
     .flex,
     .grid{
