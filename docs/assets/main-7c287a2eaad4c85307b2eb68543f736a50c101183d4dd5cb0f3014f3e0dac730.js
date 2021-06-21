@@ -3685,6 +3685,8 @@
 	      if (this.input.value != "") {
 	        this.focus();
 	      }
+
+	      return this;
 	    }
 	  }, {
 	    key: "focus",
