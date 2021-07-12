@@ -1907,14 +1907,6 @@
 	  return _getPrototypeOf(o);
 	}
 
-	var arrayMethodIsStrict = function (METHOD_NAME, argument) {
-	  var method = [][METHOD_NAME];
-	  return !!method && fails(function () {
-	    // eslint-disable-next-line no-useless-call,no-throw-literal
-	    method.call(null, argument || function () { throw 1; }, 1);
-	  });
-	};
-
 	var defineProperty$5 = Object.defineProperty;
 	var cache = {};
 
@@ -1939,73 +1931,34 @@
 	  });
 	};
 
-	var $forEach$1 = arrayIteration.forEach;
-
-
-
-	var STRICT_METHOD = arrayMethodIsStrict('forEach');
-	var USES_TO_LENGTH = arrayMethodUsesToLength('forEach');
-
-	// `Array.prototype.forEach` method implementation
-	// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
-	var arrayForEach = (!STRICT_METHOD || !USES_TO_LENGTH) ? function forEach(callbackfn /* , thisArg */) {
-	  return $forEach$1(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-	} : [].forEach;
-
-	// `Array.prototype.forEach` method
-	// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
-	_export({ target: 'Array', proto: true, forced: [].forEach != arrayForEach }, {
-	  forEach: arrayForEach
-	});
-
-	var entryVirtual = function (CONSTRUCTOR) {
-	  return path[CONSTRUCTOR + 'Prototype'];
-	};
-
-	var forEach = entryVirtual('Array').forEach;
-
-	var forEach$1 = forEach;
-
-	var ArrayPrototype = Array.prototype;
-
-	var DOMIterables = {
-	  DOMTokenList: true,
-	  NodeList: true
-	};
-
-	var forEach_1 = function (it) {
-	  var own = it.forEach;
-	  return it === ArrayPrototype || (it instanceof Array && own === ArrayPrototype.forEach)
-	    // eslint-disable-next-line no-prototype-builtins
-	    || DOMIterables.hasOwnProperty(classof(it)) ? forEach$1 : own;
-	};
-
-	var forEach$2 = forEach_1;
-
 	var $filter = arrayIteration.filter;
 
 
 
 	var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('filter');
 	// Edge 14- issue
-	var USES_TO_LENGTH$1 = arrayMethodUsesToLength('filter');
+	var USES_TO_LENGTH = arrayMethodUsesToLength('filter');
 
 	// `Array.prototype.filter` method
 	// https://tc39.github.io/ecma262/#sec-array.prototype.filter
 	// with adding support of @@species
-	_export({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH$1 }, {
+	_export({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH }, {
 	  filter: function filter(callbackfn /* , thisArg */) {
 	    return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
 	  }
 	});
 
+	var entryVirtual = function (CONSTRUCTOR) {
+	  return path[CONSTRUCTOR + 'Prototype'];
+	};
+
 	var filter = entryVirtual('Array').filter;
 
-	var ArrayPrototype$1 = Array.prototype;
+	var ArrayPrototype = Array.prototype;
 
 	var filter_1 = function (it) {
 	  var own = it.filter;
-	  return it === ArrayPrototype$1 || (it instanceof Array && own === ArrayPrototype$1.filter) ? filter : own;
+	  return it === ArrayPrototype || (it instanceof Array && own === ArrayPrototype.filter) ? filter : own;
 	};
 
 	var filter$1 = filter_1;
@@ -2030,6 +1983,124 @@
 	var bind$1 = bind_1;
 
 	var bind$2 = bind$1;
+
+	var $includes = arrayIncludes.includes;
+
+
+
+	var USES_TO_LENGTH$1 = arrayMethodUsesToLength('indexOf', { ACCESSORS: true, 1: 0 });
+
+	// `Array.prototype.includes` method
+	// https://tc39.github.io/ecma262/#sec-array.prototype.includes
+	_export({ target: 'Array', proto: true, forced: !USES_TO_LENGTH$1 }, {
+	  includes: function includes(el /* , fromIndex = 0 */) {
+	    return $includes(this, el, arguments.length > 1 ? arguments[1] : undefined);
+	  }
+	});
+
+	var includes = entryVirtual('Array').includes;
+
+	var MATCH = wellKnownSymbol('match');
+
+	// `IsRegExp` abstract operation
+	// https://tc39.github.io/ecma262/#sec-isregexp
+	var isRegexp = function (it) {
+	  var isRegExp;
+	  return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : classofRaw(it) == 'RegExp');
+	};
+
+	var notARegexp = function (it) {
+	  if (isRegexp(it)) {
+	    throw TypeError("The method doesn't accept regular expressions");
+	  } return it;
+	};
+
+	var MATCH$1 = wellKnownSymbol('match');
+
+	var correctIsRegexpLogic = function (METHOD_NAME) {
+	  var regexp = /./;
+	  try {
+	    '/./'[METHOD_NAME](regexp);
+	  } catch (e) {
+	    try {
+	      regexp[MATCH$1] = false;
+	      return '/./'[METHOD_NAME](regexp);
+	    } catch (f) { /* empty */ }
+	  } return false;
+	};
+
+	// `String.prototype.includes` method
+	// https://tc39.github.io/ecma262/#sec-string.prototype.includes
+	_export({ target: 'String', proto: true, forced: !correctIsRegexpLogic('includes') }, {
+	  includes: function includes(searchString /* , position = 0 */) {
+	    return !!~String(requireObjectCoercible(this))
+	      .indexOf(notARegexp(searchString), arguments.length > 1 ? arguments[1] : undefined);
+	  }
+	});
+
+	var includes$1 = entryVirtual('String').includes;
+
+	var ArrayPrototype$1 = Array.prototype;
+	var StringPrototype = String.prototype;
+
+	var includes$2 = function (it) {
+	  var own = it.includes;
+	  if (it === ArrayPrototype$1 || (it instanceof Array && own === ArrayPrototype$1.includes)) return includes;
+	  if (typeof it === 'string' || it === StringPrototype || (it instanceof String && own === StringPrototype.includes)) {
+	    return includes$1;
+	  } return own;
+	};
+
+	var includes$3 = includes$2;
+
+	var includes$4 = includes$3;
+
+	var arrayMethodIsStrict = function (METHOD_NAME, argument) {
+	  var method = [][METHOD_NAME];
+	  return !!method && fails(function () {
+	    // eslint-disable-next-line no-useless-call,no-throw-literal
+	    method.call(null, argument || function () { throw 1; }, 1);
+	  });
+	};
+
+	var $forEach$1 = arrayIteration.forEach;
+
+
+
+	var STRICT_METHOD = arrayMethodIsStrict('forEach');
+	var USES_TO_LENGTH$2 = arrayMethodUsesToLength('forEach');
+
+	// `Array.prototype.forEach` method implementation
+	// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
+	var arrayForEach = (!STRICT_METHOD || !USES_TO_LENGTH$2) ? function forEach(callbackfn /* , thisArg */) {
+	  return $forEach$1(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+	} : [].forEach;
+
+	// `Array.prototype.forEach` method
+	// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
+	_export({ target: 'Array', proto: true, forced: [].forEach != arrayForEach }, {
+	  forEach: arrayForEach
+	});
+
+	var forEach = entryVirtual('Array').forEach;
+
+	var forEach$1 = forEach;
+
+	var ArrayPrototype$2 = Array.prototype;
+
+	var DOMIterables = {
+	  DOMTokenList: true,
+	  NodeList: true
+	};
+
+	var forEach_1 = function (it) {
+	  var own = it.forEach;
+	  return it === ArrayPrototype$2 || (it instanceof Array && own === ArrayPrototype$2.forEach)
+	    // eslint-disable-next-line no-prototype-builtins
+	    || DOMIterables.hasOwnProperty(classof(it)) ? forEach$1 : own;
+	};
+
+	var forEach$2 = forEach_1;
 
 	const HTML_ATTRIBUTES = ['accept', 'accept-charset', 'accesskey', 'action', 'align', 'allow', 'alt', 'async', 'autocapitalize', 'autocomplete', 'autofocus', 'autoplay', 'background', 'bgcolor', 'border', 'buffered', 'capture', 'challenge', 'charset', 'checked', 'cite', 'class', 'code', 'codebase', 'color', 'cols', 'colspan', 'content', 'contenteditable', 'contextmenu', 'controls', 'coords', 'crossorigin', 'csp', 'data', 'data-*', 'datetime', 'decoding', 'default', 'defer', 'dir', 'dirname', 'disabled', 'download', 'draggable', 'dropzone', 'enctype', 'enterkeyhint', 'for', 'form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'http-equiv', 'icon', 'id', 'importance', 'integrity', 'intrinsicsize', 'inputmode', 'ismap', 'itemprop', 'keytype', 'kind', 'label', 'lang', 'language', 'loading', 'list', 'loop', 'low', 'manifest', 'max', 'maxlength', 'minlength', 'media', 'method', 'min', 'multiple', 'muted', 'name', 'novalidate', 'open', 'optimum', 'pattern', 'ping', 'placeholder', 'poster', 'preload', 'radiogroup', 'readonly', 'referrerpolicy', 'rel', 'required', 'reversed', 'rows', 'rowspan', 'sandbox', 'scope', 'scoped', 'selected', 'shape', 'size', 'sizes', 'slot', 'span', 'spellcheck', 'src', 'srcdoc', 'srclang', 'srcset', 'start', 'step', 'style', 'summary', 'tabindex', 'target', 'title', 'translate', 'type', 'usemap', 'value', 'width', 'wrap', 'aria', 'aria-*'];
 	const BOOLEAN_ATTRIBUTES = ['disabled', 'readonly', 'multiple', 'checked', 'autobuffer', 'autoplay', 'controls', 'loop', 'selected', 'hidden', 'scoped', 'async', 'defer', 'reversed', 'ismap', 'seemless', 'muted', 'required', 'autofocus', 'novalidate', 'formnovalidate', 'open', 'pubdate', 'itemscope'];
@@ -2187,15 +2258,23 @@
 
 	var Component = /*#__PURE__*/function () {
 	  function Component(options) {
-	    var _context;
+	    var _context, _context2;
 
 	    _classCallCheck(this, Component);
 
 	    options = options || {};
 	    this.eventListens = new Array();
 	    this.eventListeners = new Array();
-	    this.el = options.el || createElement('div', options); //TODO filter options to HTML_ATTRIBUTES
+	    var htmlAttributes = {};
 
+	    forEach$2(_context = keys$3(options)).call(_context, function (key) {
+	      if (includes$4(HTML_ATTRIBUTES).call(HTML_ATTRIBUTES, key)) {
+	        htmlAttributes[key] = options[key];
+	      }
+	    });
+
+	    delete htmlAttributes.content;
+	    this.el = options.el || createElement('div', htmlAttributes);
 	    this.cid = uniqueId('c');
 
 	    this.on = function (type, handler) {
@@ -2205,21 +2284,21 @@
 	      });
 	    };
 
-	    this.off = bind$2(_context = function _context(type, handler) {
-	      var _context2;
-
-	      if (!this.eventListeners) return;
-	      this.eventListeners = filter$2(_context2 = this.eventListeners).call(_context2, function (listener) {
-	        return !(listener.type == type && listener.handler);
-	      });
-	    }).call(_context, this);
-
-	    this.trigger = function (event_key) {
+	    this.off = bind$2(_context2 = function _context2(type, handler) {
 	      var _context3;
 
 	      if (!this.eventListeners) return;
+	      this.eventListeners = filter$2(_context3 = this.eventListeners).call(_context3, function (listener) {
+	        return !(listener.type == type && listener.handler);
+	      });
+	    }).call(_context2, this);
 
-	      forEach$2(_context3 = this.eventListeners).call(_context3, function (listener) {
+	    this.trigger = function (event_key) {
+	      var _context4;
+
+	      if (!this.eventListeners) return;
+
+	      forEach$2(_context4 = this.eventListeners).call(_context4, function (listener) {
 	        if (listener.type == "*" || listener.type == "all" || event_key == listener.type) {
 	          listener.handler(event_key, this);
 	        }
@@ -2258,7 +2337,7 @@
 	  }, {
 	    key: "listenTo",
 	    value: function listenTo(node, event, scope, callback, context) {
-	      var _context4;
+	      var _context5;
 
 	      // scope is optional param
 	      if (typeof scope != "string") {
@@ -2268,11 +2347,11 @@
 	      }
 
 	      context || (context = this);
-	      var listen = [node, event, bind$2(_context4 = function _context4(e) {
+	      var listen = [node, event, bind$2(_context5 = function _context5(e) {
 	        if (!scope || e.target.matches(scope) || e.target.closest(scope)) {
 	          return bind$2(callback).call(callback, context).apply(void 0, arguments);
 	        }
-	      }).call(_context4, context)];
+	      }).call(_context5, context)];
 	      this.eventListens.push(listen);
 	      node.addEventListener(event, listen[2]);
 	    }
@@ -2293,10 +2372,10 @@
 	  }, {
 	    key: "remove",
 	    value: function remove() {
-	      var _context5;
+	      var _context6;
 
 	      this.trigger('removed');
-	      if (this.eventListens) forEach$2(_context5 = this.eventListens).call(_context5, function (listen) {
+	      if (this.eventListens) forEach$2(_context6 = this.eventListens).call(_context6, function (listen) {
 	        listen[0].removeEventListener(listen[1], listen[2]);
 	      });
 	      delete this.eventListens;
@@ -2311,77 +2390,6 @@
 
 	  return Component;
 	}();
-
-	var $includes = arrayIncludes.includes;
-
-
-
-	var USES_TO_LENGTH$2 = arrayMethodUsesToLength('indexOf', { ACCESSORS: true, 1: 0 });
-
-	// `Array.prototype.includes` method
-	// https://tc39.github.io/ecma262/#sec-array.prototype.includes
-	_export({ target: 'Array', proto: true, forced: !USES_TO_LENGTH$2 }, {
-	  includes: function includes(el /* , fromIndex = 0 */) {
-	    return $includes(this, el, arguments.length > 1 ? arguments[1] : undefined);
-	  }
-	});
-
-	var includes = entryVirtual('Array').includes;
-
-	var MATCH = wellKnownSymbol('match');
-
-	// `IsRegExp` abstract operation
-	// https://tc39.github.io/ecma262/#sec-isregexp
-	var isRegexp = function (it) {
-	  var isRegExp;
-	  return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : classofRaw(it) == 'RegExp');
-	};
-
-	var notARegexp = function (it) {
-	  if (isRegexp(it)) {
-	    throw TypeError("The method doesn't accept regular expressions");
-	  } return it;
-	};
-
-	var MATCH$1 = wellKnownSymbol('match');
-
-	var correctIsRegexpLogic = function (METHOD_NAME) {
-	  var regexp = /./;
-	  try {
-	    '/./'[METHOD_NAME](regexp);
-	  } catch (e) {
-	    try {
-	      regexp[MATCH$1] = false;
-	      return '/./'[METHOD_NAME](regexp);
-	    } catch (f) { /* empty */ }
-	  } return false;
-	};
-
-	// `String.prototype.includes` method
-	// https://tc39.github.io/ecma262/#sec-string.prototype.includes
-	_export({ target: 'String', proto: true, forced: !correctIsRegexpLogic('includes') }, {
-	  includes: function includes(searchString /* , position = 0 */) {
-	    return !!~String(requireObjectCoercible(this))
-	      .indexOf(notARegexp(searchString), arguments.length > 1 ? arguments[1] : undefined);
-	  }
-	});
-
-	var includes$1 = entryVirtual('String').includes;
-
-	var ArrayPrototype$2 = Array.prototype;
-	var StringPrototype = String.prototype;
-
-	var includes$2 = function (it) {
-	  var own = it.includes;
-	  if (it === ArrayPrototype$2 || (it instanceof Array && own === ArrayPrototype$2.includes)) return includes;
-	  if (typeof it === 'string' || it === StringPrototype || (it instanceof String && own === StringPrototype.includes)) {
-	    return includes$1;
-	  } return own;
-	};
-
-	var includes$3 = includes$2;
-
-	var includes$4 = includes$3;
 
 	// a string of all valid unicode whitespaces
 	// eslint-disable-next-line max-len
@@ -3662,7 +3670,7 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      if (!isVisible(this.input)) return;
+	      if (!isVisible(this.input)) return this;
 
 	      var internalHeight = _parseInt$2(css(this.input, 'height')) - _parseInt$2(css(this.input, 'borderTopWidth')) - _parseInt$2(css(this.input, 'borderBottomWidth'));
 
