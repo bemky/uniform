@@ -43,15 +43,15 @@
         content: "";
         width: 1px;
         height: 1.5em;
-        transform-origin: 50% 50%;
-        transform: rotate(-45deg);
         background: currentColor;
         position:absolute;
         left: 50%;
-        top: 15%;
+        top: 50%;
+        transform-origin: 50% 50%;
+        transform: translateY(-50%) rotate(-45deg);
     }
     &:before{
-        transform: rotate(45deg);
+        transform: translateY(-50%) rotate(45deg);
     }
 }
 
