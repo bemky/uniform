@@ -2,10 +2,6 @@
 @import 'uniform/variables';
 @import 'uniform/mixins';
 *{
-    --bg-opacity: 1.0;
-    --shadow-opacity: 0.1;
-    --border-opacity: 1.0;
-    --border-color: #{red(color('gray'))}, #{green(color('gray'))}, #{blue(color('gray'))};
     border-width: 0;
     border-style: solid;
     border-color: rgba(var(--border-color), var(--border-opacity));
@@ -19,4 +15,8 @@
 
 body{
     --breakpoints: #{mapToString($breakpoints)};
+    --bg-opacity: 1.0;
+    --shadow-opacity: 0.1;
+    --border-opacity: 1.0;
+    --border-color: #{red(color('gray'))}, #{green(color('gray'))}, #{blue(color('gray'))};
 }
