@@ -32,6 +32,12 @@
     @include responsive-rule(".min-width-#{$i * 5}-vw"){ min-width: $i * 5vw };
     @include responsive-rule(".max-width-#{$i * 5}-vw"){ max-width: $i * 5vw };
 }
+
+@for $i from 0 through 20 {
+    @include responsive-rule(".height-#{$i * 5}-vh"){ height: $i * 5vh };
+    @include responsive-rule(".min-height-#{$i * 5}-vh"){ min-height: $i * 5vh };
+    @include responsive-rule(".max-height-#{$i * 5}-vh"){ max-height: $i * 5vh };
+}
 @include responsive-rule(".height-100-vh"){ height: 100vh; };
 @include responsive-rule(".min-height-100-vh"){ min-height: 100vh; };
 @include responsive-rule(".max-height-100-vh"){ max-height: 100vh; };
