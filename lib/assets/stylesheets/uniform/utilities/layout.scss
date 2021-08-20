@@ -1,24 +1,6 @@
 @import 'uniform/mixins';
 
 //----------------------------------------------------------------
-//             Container
-//----------------------------------------------------------------
-// TODO match this with breakpoints variable, so that breakpoints can change and adjust this
-.container{
-    margin: auto;
-    @include breakpoint('md'){
-        max-width: 720px;
-    }
-    @include breakpoint('lg'){
-        max-width: 1080px;
-    }
-    @include breakpoint('xl'){
-        max-width: 1400px;
-    }
-}
-
-
-//----------------------------------------------------------------
 //             Display
 //----------------------------------------------------------------
 @each $type in (

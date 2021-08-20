@@ -7,14 +7,15 @@
     padding-right: 1em;
 }
 
-@include breakpoint('lg'){
-    .container{
+// TODO match this with breakpoints variable, so that breakpoints can change and adjust this
+.container{
+    @include breakpoint('md'){
+        max-width: 720px;
+    }
+    @include breakpoint('lg'){
         max-width: 1080px;
     }
-}
-
-@include breakpoint('xl'){
-    .container{
-        max-width: 1440px;
+    @include breakpoint('xl'){
+        max-width: 1400px;
     }
 }

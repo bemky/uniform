@@ -9,11 +9,19 @@
 
 .uniformInput,
 .uniformInputGroup,
-.uniformSelect{
+.uniformSelect {
     --focus-color: #{red(color('blue'))}, #{green(color('blue'))}, #{blue(color('blue'))};
 }
 
-body{
+body {
+    --breakpoints: #{mapToString($breakpoints)};
+    --bg-opacity: 1.0;
+    --shadow-opacity: 0.1;
+    --border-opacity: 1.0;
+    --border-color: #{red(color('gray'))}, #{green(color('gray'))}, #{blue(color('gray'))};
+}
+
+@include responsive-rule('base') { 
     --breakpoints: #{mapToString($breakpoints)};
     --bg-opacity: 1.0;
     --shadow-opacity: 0.1;
