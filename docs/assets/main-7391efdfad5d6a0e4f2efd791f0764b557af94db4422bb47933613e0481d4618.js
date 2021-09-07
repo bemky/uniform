@@ -3830,6 +3830,7 @@
 	    disable
 	    hide
 	    show
+	    timeout
 	*/
 
 	var Tooltip = /*#__PURE__*/function (_Component) {
@@ -3858,6 +3859,7 @@
 	      this.enabled = true;
 	      this.content = options.content;
 	      this.el.tooltip = this;
+	      this.timeout = options.timeout;
 	      this.listenTo(this.el, 'mouseenter', this.show);
 	      this.listenTo(this.el, 'mouseleave', this.hide);
 	    }
@@ -3899,7 +3901,7 @@
 	        _this.el.classList.remove('-active');
 
 	        delete _this.popup;
-	      }, 300);
+	      }, this.timeout);
 	    }
 	  }, {
 	    key: "disable",
