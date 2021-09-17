@@ -151,6 +151,9 @@
         --pad-h: 3em;
         --border-radius: 0.5em;
     }
+    &.-input {
+        --pad-v: 0.75em;
+    }
 }
 
 
