@@ -3786,34 +3786,20 @@
 	  return Resizer;
 	}(Component);
 
-	var slice$4 = [].slice;
-	var MSIE = /MSIE .\./.test(engineUserAgent); // <- dirty ie9- check
+	function _defineProperty(obj, key, value) {
+	  if (key in obj) {
+	    defineProperty$2(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	  } else {
+	    obj[key] = value;
+	  }
 
-	var wrap$1 = function (scheduler) {
-	  return function (handler, timeout /* , ...arguments */) {
-	    var boundArgs = arguments.length > 2;
-	    var args = boundArgs ? slice$4.call(arguments, 2) : undefined;
-	    return scheduler(boundArgs ? function () {
-	      // eslint-disable-next-line no-new-func
-	      (typeof handler == 'function' ? handler : Function(handler)).apply(this, args);
-	    } : handler, timeout);
-	  };
-	};
-
-	// ie9- setTimeout & setInterval additional parameters fix
-	// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
-	_export({ global: true, bind: true, forced: MSIE }, {
-	  // `setTimeout` method
-	  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
-	  setTimeout: wrap$1(global_1.setTimeout),
-	  // `setInterval` method
-	  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
-	  setInterval: wrap$1(global_1.setInterval)
-	});
-
-	var setTimeout = path.setTimeout;
-
-	var setTimeout$1 = setTimeout;
+	  return obj;
+	}
 
 	function _createSuper$6(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$6(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
@@ -3878,30 +3864,38 @@
 	      if (this.popup) {
 	        this.popup.show();
 	      } else {
+	        var pointerDirection = {
+	          top: 'bottom',
+	          bottom: 'top',
+	          left: 'right',
+	          right: 'left'
+	        }[this.options.align];
+	        var align = {
+	          left: 'left center',
+	          right: 'right center',
+	          top: 'center top',
+	          bottom: 'center bottom'
+	        }[this.options.align];
+
+	        var offset = _defineProperty({}, this.options.align, -7);
+
 	        this.popup = new Popover({
 	          content: this.content,
-	          class: 'uniformPointer -bottom bg-gray-70 bg-opacity-85 text-white rounded pad-1/2x text-sm max-width-300-px',
+	          class: "uniformPointer -".concat(pointerDirection, " bg-gray-70 bg-opacity-85 text-white rounded pad-1/2x text-sm max-width-300-px "),
 	          anchor: this.el,
-	          align: this.options.align == "top" ? "center top" : 'center 100%',
-	          offset: {
-	            top: -7
-	          },
+	          align: align || this.options.align || 'center 100%',
+	          offset: offset,
 	          container: this.options.container
 	        }).render();
 	      }
 	    }
 	  }, {
 	    key: "hide",
-	    value: function hide() {
-	      var _this = this;
-
-	      this.hide_timeout = setTimeout$1(function () {
-	        _this.popup.remove();
-
-	        _this.el.classList.remove('-active');
-
-	        delete _this.popup;
-	      }, this.timeout);
+	    value: function hide() {// this.hide_timeout = setTimeout(() => {
+	      //   this.popup.remove();
+	      //   this.el.classList.remove('-active');
+	      //   delete this.popup;
+	      // }, this.timeout)
 	    }
 	  }, {
 	    key: "disable",
@@ -3917,21 +3911,6 @@
 
 	  return Tooltip;
 	}(Component);
-
-	function _defineProperty(obj, key, value) {
-	  if (key in obj) {
-	    defineProperty$2(obj, key, {
-	      value: value,
-	      enumerable: true,
-	      configurable: true,
-	      writable: true
-	    });
-	  } else {
-	    obj[key] = value;
-	  }
-
-	  return obj;
-	}
 
 	function _createSuper$7(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$7(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 

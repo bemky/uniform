@@ -5,7 +5,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1,user-scalable=0">
     <title>Uniform</title>
     
-    <link href="/assets/main-51484e54b2f1b6b93859dd832945fe70c7f1676199cf4fedcc8322cdb5448cf4.css" rel="stylesheet" />
+    <link href="/assets/main-f60925c5bdc7adebceb30a56edff281f04277381624cc77661085aa9b730af6c.css" rel="stylesheet" />
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static-assets/favicons/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static-assets/favicons/apple-touch-icon-114x114.png" />
@@ -182,6 +182,7 @@
                 document.addEventListener('DOMContentLoaded', function () {
                     new window.Uniform.Tooltip({
                         anchor: document.getElementById('example-1'),
+                        align: 'top',
                         content: "The umpire's declaration of an infield fly means that the batter is out (and all force plays are removed) regardless of whether the ball is caught. The rule exists to prevent the defense from achieving a double play or triple play by failing to catch a ball that an infielder could catch with ordinary effort."
                     }).render()
                 })
@@ -224,8 +225,8 @@
             <tr>
                 <td class="text-nowrap"><code>align</code></td>
                 <td>String</td>
-                <td>How to align the popover to the anchor <code>left|right|center|#px top|center|bottom|#px</code></td>
-                <td class="text-nowrap"> <code>'center bottom'</code></td>
+                <td>How to align the popover to the anchor <code>left|right|top|bottom</code></td>
+                <td class="text-nowrap"> <code>'top'</code></td>
                 <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
             </tr>
             <tr>
@@ -246,5 +247,5 @@
     </div>
 </div>
 </div>
-<script src="/assets/main-7391efdfad5d6a0e4f2efd791f0764b557af94db4422bb47933613e0481d4618.js"></script>
+<script src="/assets/main-a2e0ef2183d9799554a1b144001d6b5f6c8535ec8121a5493d7255e9e29e3382.js"></script>
 </body>
