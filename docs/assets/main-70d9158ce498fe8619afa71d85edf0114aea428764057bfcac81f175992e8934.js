@@ -3786,6 +3786,35 @@
 	  return Resizer;
 	}(Component);
 
+	var slice$4 = [].slice;
+	var MSIE = /MSIE .\./.test(engineUserAgent); // <- dirty ie9- check
+
+	var wrap$1 = function (scheduler) {
+	  return function (handler, timeout /* , ...arguments */) {
+	    var boundArgs = arguments.length > 2;
+	    var args = boundArgs ? slice$4.call(arguments, 2) : undefined;
+	    return scheduler(boundArgs ? function () {
+	      // eslint-disable-next-line no-new-func
+	      (typeof handler == 'function' ? handler : Function(handler)).apply(this, args);
+	    } : handler, timeout);
+	  };
+	};
+
+	// ie9- setTimeout & setInterval additional parameters fix
+	// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
+	_export({ global: true, bind: true, forced: MSIE }, {
+	  // `setTimeout` method
+	  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
+	  setTimeout: wrap$1(global_1.setTimeout),
+	  // `setInterval` method
+	  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
+	  setInterval: wrap$1(global_1.setInterval)
+	});
+
+	var setTimeout = path.setTimeout;
+
+	var setTimeout$1 = setTimeout;
+
 	function _defineProperty(obj, key, value) {
 	  if (key in obj) {
 	    defineProperty$2(obj, key, {
@@ -3891,11 +3920,16 @@
 	    }
 	  }, {
 	    key: "hide",
-	    value: function hide() {// this.hide_timeout = setTimeout(() => {
-	      //   this.popup.remove();
-	      //   this.el.classList.remove('-active');
-	      //   delete this.popup;
-	      // }, this.timeout)
+	    value: function hide() {
+	      var _this = this;
+
+	      this.hide_timeout = setTimeout$1(function () {
+	        _this.popup.remove();
+
+	        _this.el.classList.remove('-active');
+
+	        delete _this.popup;
+	      }, this.timeout);
 	    }
 	  }, {
 	    key: "disable",
