@@ -30,12 +30,51 @@
 <div class="section">
     <h1>Transition</h1>
     
+    <a id="transition-pre-built"></a>
+    <h3>Pre-built</h3>
+    <div class="flex space-h margin-bottom">
+        <div class="">
+            <p>Toggle class <code>-out</code> to trigger transition.</p>
+        </div>
+        <div class="">
+            <% code 'javascript', {css_class: 'tight'} do %>
+                button.addEventListener('click', e => button.classList.toggle('-out))
+            <% end %>
+        </div>
+    </div>
+    
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <button class="js-transition-example :selector uniformButton" type="button">
+            Try Me
+        </button>
+        HTML
+        whitelist: [/transition-fade/],
+        blacklist: [/-out/]
+    } %>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.js-transition-example').forEach(button => {
+                button.addEventListener('click', e => {
+                    button.classList.toggle('-out')
+                    setTimeout(() => {
+                        button.classList.remove('-out')
+                    }, 800)
+                })
+            })
+        })
+    </script>
+    
+    <h3>Utilities</h3>
     <%= partial :css_rule_table, locals: {
         css: css_rules('uniform/utilities/effects.css'),
         content: <<-HTML,
         <div class=""></div>
         HTML
-        whitelist: [/transition/]
+        whitelist: [/transition/],
+        blacklist: [/transition-fade/]
     } %>
 </div>
 

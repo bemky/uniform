@@ -60,6 +60,37 @@
     }
 }
 
+.transition-fade-down,
+.transition-fade-up,
+.transition-fade-left,
+.transition-fade-right {
+    transition: transform 100ms, opacity 100ms;
+    opacity: 1;
+    &.-out {
+        opacity: 0;
+    }
+}
+.transition-fade-down {
+    &.-out {
+        transform: translateY(10px);
+    }
+}
+.transition-fade-up {
+    &.-out {
+        transform: translateY(-10px);
+    }
+}
+.transition-fade-left {
+    &.-out {
+        transform: translateX(10px);
+    }
+}
+.transition-fade-right {
+    &.-out {
+        transform: translateX(-10px);
+    }
+}
+
 
 //----------------------------------------------------------------
 //             Transforms
