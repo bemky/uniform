@@ -3453,6 +3453,10 @@
 
 	var sort$2 = sort$1;
 
+	var from_1$3 = from_1;
+
+	var from_1$4 = from_1$3;
+
 	var isArray$4 = isArray$1;
 
 	var isArray$5 = isArray$4;
@@ -3500,27 +3504,7 @@
 	  _createClass(Select, [{
 	    key: "initialize",
 	    value: function initialize() {
-	      var _context;
-
 	      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	      this.htmlOptions = map$2(_context = options.options).call(_context, function (option) {
-	        if (typeof option == "string") {
-	          return {
-	            value: option,
-	            text: option
-	          };
-	        } else if (isArray$5(option)) {
-	          return {
-	            value: option[1],
-	            text: option[0],
-	            selected: option[2]
-	          };
-	        } else if (_typeof(option) == "object") {
-	          return option;
-	        } else {
-	          throw "option of unexpected type";
-	        }
-	      });
 	      this.options = {
 	        multiple: false,
 	        limit: 8,
@@ -3536,14 +3520,53 @@
 	      this.listenTo(this.el, 'click', '.uniformSelect-remove', this.removeSelection);
 	      this.listenTo(this.el, 'change', 'select', this.renderValue);
 	      this.listenTo(this.el, 'close', 'select', this.removeOptions);
+
+	      if (options.options) {
+	        var _context;
+
+	        this.htmlOptions = map$2(_context = options.options).call(_context, function (option) {
+	          if (typeof option == "string") {
+	            return {
+	              value: option,
+	              text: option
+	            };
+	          } else if (isArray$5(option)) {
+	            return {
+	              value: option[1],
+	              text: option[0],
+	              selected: option[2]
+	            };
+	          } else if (_typeof(option) == "object") {
+	            return option;
+	          } else {
+	            throw "option of unexpected type";
+	          }
+	        });
+	      }
+
+	      if (options.el) {
+	        this.select = options.el;
+
+	        if (!this.htmlOptions) {
+	          var _context2;
+
+	          this.htmlOptions = map$2(_context2 = from_1$4(this.select.querySelectorAll('option'))).call(_context2, function (option) {
+	            return {
+	              value: option.value,
+	              text: option.innerHTML,
+	              selected: option.selected
+	            };
+	          });
+	        }
+	      }
 	    }
 	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _context2,
+	      var _context3,
 	          _this = this,
-	          _context3,
-	          _context4;
+	          _context4,
+	          _context5;
 
 	      this.valueEl = createElement('span');
 	      this.valueEl.classList.add('uniformSelect-value');
@@ -3553,9 +3576,15 @@
 	      });
 	      this.indicatorEl.classList.add('uniformSelect-indicator');
 	      this.el.append(this.indicatorEl);
-	      this.select = createElement('select', this.el_options);
 
-	      forEach$2(_context2 = this.htmlOptions).call(_context2, function (option) {
+	      if (this.select) {
+	        this.select.replaceWith(this.el);
+	        this.select.innerHTML = '';
+	      } else {
+	        this.select = createElement('select', this.el_options);
+	      }
+
+	      forEach$2(_context3 = this.htmlOptions).call(_context3, function (option) {
 	        _this.select.append(createElement('option', assign$2({}, {
 	          children: option.text
 	        }, option)));
@@ -3563,9 +3592,9 @@
 
 	      this.el.append(this.select); // Append placeholder of longest option, to set width
 
-	      var longestText = sort$2(_context3 = map$2(_context4 = this.htmlOptions).call(_context4, function (x) {
+	      var longestText = sort$2(_context4 = map$2(_context5 = this.htmlOptions).call(_context5, function (x) {
 	        return x.text;
-	      })).call(_context3, function (a, b) {
+	      })).call(_context4, function (a, b) {
 	        return a.length < b.length;
 	      })[0];
 
@@ -3587,9 +3616,9 @@
 	      });
 
 	      var html = map$2(selectedOptions).call(selectedOptions, function (el) {
-	        var _context5;
+	        var _context6;
 
-	        return _this2.options.multiple ? concat$2(_context5 = "\n      <span class=\"uniformSelect-selection\">\n        <span>".concat(el.textContent, "</span><span class=\"uniformSelect-remove\">")).call(_context5, x, "</span>\n      </span>\n    ") : el.textContent;
+	        return _this2.options.multiple ? concat$2(_context6 = "\n      <span class=\"uniformSelect-selection\">\n        <span>".concat(el.textContent, "</span><span class=\"uniformSelect-remove\">")).call(_context6, x, "</span>\n      </span>\n    ") : el.textContent;
 	      }).join(" ");
 
 	      this.valueEl.innerHTML = html;
@@ -3600,9 +3629,9 @@
 	      var makeActive = !e.target.option.selected;
 
 	      if (!this.options.multiple && makeActive) {
-	        var _context6;
+	        var _context7;
 
-	        forEach$2(_context6 = e.target.offsetParent.querySelectorAll('.active')).call(_context6, function (el) {
+	        forEach$2(_context7 = e.target.offsetParent.querySelectorAll('.active')).call(_context7, function (el) {
 	          return el.classList.remove('active');
 	        });
 	      }
@@ -3622,9 +3651,9 @@
 	      e.preventDefault();
 	      e.stopPropagation();
 	      var option = filter$3(this.select.querySelectorAll("option"), function (el) {
-	        var _context7, _context8;
+	        var _context8, _context9;
 
-	        return trim$4(_context7 = el.innerText).call(_context7) == trim$4(_context8 = e.target.closest('.uniformSelect-selection').innerText).call(_context8);
+	        return trim$4(_context8 = el.innerText).call(_context8) == trim$4(_context9 = e.target.closest('.uniformSelect-selection').innerText).call(_context9);
 	      })[0];
 	      if (!option) return;
 	      option.selected = false;
@@ -3649,14 +3678,14 @@
 	  }, {
 	    key: "renderOptions",
 	    value: function renderOptions() {
-	      var _context9;
+	      var _context10;
 
 	      var options = createElement("div", {
 	        class: 'uniformSelect-options'
 	      });
 	      options.style.fontSize = css(this.el, 'font-size');
 
-	      forEach$2(_context9 = this.select.querySelectorAll('option')).call(_context9, function (option, index) {
+	      forEach$2(_context10 = this.select.querySelectorAll('option')).call(_context10, function (option, index) {
 	        var button = createElement("button", {
 	          type: 'button',
 	          class: 'uniformSelect-option'
@@ -3682,19 +3711,19 @@
 	      });
 
 	      if (this.options.limit && this.htmlOptions.length > this.options.limit) {
-	        var _context10;
+	        var _context11;
 
 	        var button = createElement('button', {
 	          type: 'button',
 	          class: 'uniformSelect-show-all',
 	          children: 'Show All'
 	        });
-	        this.listenTo(button, 'click', bind$2(_context10 = this.showAllOptions).call(_context10, this));
+	        this.listenTo(button, 'click', bind$2(_context11 = this.showAllOptions).call(_context11, this));
 	        actions.append(button);
 	      }
 
 	      if (this.options.multiple) {
-	        var _context11;
+	        var _context12;
 
 	        var _button = createElement('button', {
 	          type: 'button',
@@ -3702,7 +3731,7 @@
 	          children: ['Done']
 	        });
 
-	        this.listenTo(_button, 'click', bind$2(_context11 = this.removeOptions).call(_context11, this));
+	        this.listenTo(_button, 'click', bind$2(_context12 = this.removeOptions).call(_context12, this));
 	        actions.append(_button);
 	      }
 
@@ -3732,13 +3761,13 @@
 	  }, {
 	    key: "showAllOptions",
 	    value: function showAllOptions(e) {
-	      var _context12;
+	      var _context13;
 
 	      e.preventDefault();
 	      e.stopPropagation();
 	      if (!this.popover) return;
 
-	      forEach$2(_context12 = this.popover.el.querySelectorAll('button.hide')).call(_context12, function (el) {
+	      forEach$2(_context13 = this.popover.el.querySelectorAll('button.hide')).call(_context13, function (el) {
 	        return el.classList.remove('hide');
 	      });
 

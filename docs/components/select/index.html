@@ -322,9 +322,33 @@
                 <td>Accepts any html attribute that is then rendered on the select element and rendered element.</td>
                 <td></td>
             </tr>
+            <tr>
+                <td>
+                    <select id="example-4">
+                        <option>Employee</option>
+                        <option>Manager</option>
+                        <option selected="selected">Boss Man</option>
+                    </select>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function(){
+                            new window.Uniform.Select({
+                                el: document.getElementById('example-4'),
+                                name: 'account_type_3',
+                                limit: 3
+                            }).render()
+                        })
+                    </script>
+                </td>
+                <td class="text-nowrap"><code>el</code></td>
+                <td><code>Element</code></td>
+                <td>
+                    Optionally, can pass a select element to extract options and attributes from. In this case a select will not be generated
+                </td>
+                <td></td>
+            </tr>
         </table>
     </div>
 </div>
 </div>
-<script src="/assets/main-085a4f0fa2c6c7f65d908156a32edcc6f4a2b6cdaabd249342868d52a6c4d761.js"></script>
+<script src="/assets/main-2fd24daa5ab3afab89600c0642e5bb9e9b08335a33d0573b26a38bb4b9923778.js"></script>
 </body>
