@@ -38,6 +38,7 @@
 .uniformSelect-value{
     z-index: 2;
     text-align: left;
+    display:flex;
 }
 .uniformSelect-indicator{
     padding-left: 0.25em;
@@ -108,7 +109,9 @@
     }
 }
 
-
+.uniformSelect-selection + .uniformSelect-selection {
+    margin-left: 0.5em;
+}
 
 .uniformSelect-selection{
     display: inline-flex;
@@ -118,7 +121,7 @@
     padding: 0;
     line-height: 1;
     padding-left:0.5em;
-    background: darken(color('gray-10'), 5);
+    background: color('gray-10');
     border-radius: 0.25em;
     span{
         flex: 1 1 auto;
