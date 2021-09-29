@@ -2122,6 +2122,8 @@
 	    if (BOOLEAN_ATTRIBUTES.includes(key)) {
 	      if (value !== false) {
 	        return el[key] = true;
+	      } else {
+	        return;
 	      }
 	    }
 
@@ -2150,6 +2152,7 @@
 
 	        break;
 
+	      case 'content':
 	      case 'children':
 	        append(el, value);
 	        return;
@@ -2158,6 +2161,25 @@
 	    el.setAttribute(key, value);
 	  });
 	  return el;
+	}
+
+	function insertBefore(anchor, el) {
+	  if (Array.isArray(el) || el instanceof NodeList || el instanceof HTMLCollection) {
+	    Array.from(el).reverse().forEach(x => {
+	      anchor = insertBefore(anchor, x);
+	    });
+	  } else if (Array.isArray(anchor) || anchor instanceof NodeList || anchor instanceof HTMLCollection) {
+	    return insertBefore(anchor[0], el);
+	  } else if (anchor.parentNode) {
+	    if (!(el instanceof Node)) {
+	      el = new Text(el);
+	    }
+
+	    anchor.parentNode.insertBefore(el, anchor);
+	    return el;
+	  } else {
+	    throw 'argument of insertBefore unsupported';
+	  }
 	}
 
 	function append(el, item, escape, context) {
@@ -2175,15 +2197,10 @@
 	    if (item instanceof Promise) {
 	      const holder = document.createElement('span');
 	      el.append(holder);
+	      new Date().getMilliseconds();
 	      return item.then(resolvedItem => {
 	        append(holder, resolvedItem, escape, context);
-	        Array.from(holder.childNodes).forEach(child => {
-	          if (child instanceof Element) {
-	            holder.insertAdjacentElement('beforebegin', child);
-	          } else {
-	            holder.insertAdjacentText('beforebegin', child.textContent);
-	          }
-	        });
+	        insertBefore(holder, holder.childNodes);
 	        holder.parentNode.removeChild(holder);
 	      });
 	    } else if (item instanceof Element || item instanceof Node) {
@@ -2192,7 +2209,7 @@
 	      return append(el, item.bind(context)(el), escape, context);
 	    } else if (typeof item == "object") {
 	      return el.append(createElement(item));
-	    } else if (typeof item == "string") {
+	    } else {
 	      if (escape) {
 	        return el.append(item);
 	      } else {
@@ -2200,8 +2217,6 @@
 	        container.innerHTML = item;
 	        return el.append(...container.childNodes);
 	      }
-	    } else {
-	      throw 'item to append is unsupported';
 	    }
 	  }
 	}
@@ -2390,6 +2405,35 @@
 
 	  return Component;
 	}();
+
+	var slice$1 = [].slice;
+	var MSIE = /MSIE .\./.test(engineUserAgent); // <- dirty ie9- check
+
+	var wrap$1 = function (scheduler) {
+	  return function (handler, timeout /* , ...arguments */) {
+	    var boundArgs = arguments.length > 2;
+	    var args = boundArgs ? slice$1.call(arguments, 2) : undefined;
+	    return scheduler(boundArgs ? function () {
+	      // eslint-disable-next-line no-new-func
+	      (typeof handler == 'function' ? handler : Function(handler)).apply(this, args);
+	    } : handler, timeout);
+	  };
+	};
+
+	// ie9- setTimeout & setInterval additional parameters fix
+	// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
+	_export({ global: true, bind: true, forced: MSIE }, {
+	  // `setTimeout` method
+	  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
+	  setTimeout: wrap$1(global_1.setTimeout),
+	  // `setInterval` method
+	  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
+	  setInterval: wrap$1(global_1.setInterval)
+	});
+
+	var setTimeout = path.setTimeout;
+
+	var setTimeout$1 = setTimeout;
 
 	// a string of all valid unicode whitespaces
 	// eslint-disable-next-line max-len
@@ -2667,18 +2711,18 @@
 	  }
 	});
 
-	var slice$1 = entryVirtual('Array').slice;
+	var slice$2 = entryVirtual('Array').slice;
 
 	var ArrayPrototype$4 = Array.prototype;
 
 	var slice_1 = function (it) {
 	  var own = it.slice;
-	  return it === ArrayPrototype$4 || (it instanceof Array && own === ArrayPrototype$4.slice) ? slice$1 : own;
+	  return it === ArrayPrototype$4 || (it instanceof Array && own === ArrayPrototype$4.slice) ? slice$2 : own;
 	};
 
-	var slice$2 = slice_1;
+	var slice$3 = slice_1;
 
-	var slice$3 = slice$2;
+	var slice$4 = slice$3;
 
 	function _arrayLikeToArray(arr, len) {
 	  if (len == null || len > arr.length) len = arr.length;
@@ -2696,7 +2740,7 @@
 	  if (!o) return;
 	  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
 
-	  var n = slice$3(_context = Object.prototype.toString.call(o)).call(_context, 8, -1);
+	  var n = slice$4(_context = Object.prototype.toString.call(o)).call(_context, 8, -1);
 
 	  if (n === "Object" && o.constructor) n = o.constructor.name;
 	  if (n === "Map" || n === "Set") return from_1$2(o);
@@ -2709,6 +2753,78 @@
 
 	function _slicedToArray(arr, i) {
 	  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
+	}
+
+	var trim$1 = stringTrim.trim;
+
+
+	var $parseFloat = global_1.parseFloat;
+	var FORCED$3 = 1 / $parseFloat(whitespaces + '-0') !== -Infinity;
+
+	// `parseFloat` method
+	// https://tc39.github.io/ecma262/#sec-parsefloat-string
+	var numberParseFloat = FORCED$3 ? function parseFloat(string) {
+	  var trimmedString = trim$1(String(string));
+	  var result = $parseFloat(trimmedString);
+	  return result === 0 && trimmedString.charAt(0) == '-' ? -0 : result;
+	} : $parseFloat;
+
+	// `parseFloat` method
+	// https://tc39.github.io/ecma262/#sec-parsefloat-string
+	_export({ global: true, forced: parseFloat != numberParseFloat }, {
+	  parseFloat: numberParseFloat
+	});
+
+	var _parseFloat = path.parseFloat;
+
+	var _parseFloat$1 = _parseFloat;
+
+	var _parseFloat$2 = _parseFloat$1;
+
+	var $map = arrayIteration.map;
+
+
+
+	var HAS_SPECIES_SUPPORT$2 = arrayMethodHasSpeciesSupport('map');
+	// FF49- issue
+	var USES_TO_LENGTH$4 = arrayMethodUsesToLength('map');
+
+	// `Array.prototype.map` method
+	// https://tc39.github.io/ecma262/#sec-array.prototype.map
+	// with adding support of @@species
+	_export({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT$2 || !USES_TO_LENGTH$4 }, {
+	  map: function map(callbackfn /* , thisArg */) {
+	    return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+	  }
+	});
+
+	var map = entryVirtual('Array').map;
+
+	var ArrayPrototype$5 = Array.prototype;
+
+	var map_1 = function (it) {
+	  var own = it.map;
+	  return it === ArrayPrototype$5 || (it instanceof Array && own === ArrayPrototype$5.map) ? map : own;
+	};
+
+	var map$1 = map_1;
+
+	var map$2 = map$1;
+
+	function _arrayWithoutHoles(arr) {
+	  if (isArray$3(arr)) return _arrayLikeToArray(arr);
+	}
+
+	function _iterableToArray(iter) {
+	  if (typeof symbol$2 !== "undefined" && isIterable$1(Object(iter))) return from_1$2(iter);
+	}
+
+	function _nonIterableSpread() {
+	  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+	}
+
+	function _toConsumableArray(arr) {
+	  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 	}
 
 	function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
@@ -2726,6 +2842,7 @@
 	    zIndex:         # | default: unset
 	    offset:         {left: 0, top: 0}
 	    container:      element to append popover to. default: document
+	    transition:     string (reference transition classes in utilities)
 	*/
 
 	var Popover = /*#__PURE__*/function (_Component) {
@@ -2755,7 +2872,8 @@
 	        offset: {
 	          left: 0,
 	          top: 0
-	        }
+	        },
+	        transition: false
 	      };
 
 	      assign$2(this.options, this.pick(options, keys$3(this.options)));
@@ -2783,9 +2901,26 @@
 	      this.showing = true;
 	      this.el.style.position = 'absolute';
 	      this.el.style.zIndex = this.options.zIndex;
-	      append(this.el, this.options.content);
+	      this.content = document.createElement('div');
+
+	      if (this.options.transition) {
+	        this.content.classList.add(this.options.transition, '-out');
+	      }
+
+	      append(this.el, this.content);
+	      append(this.content, this.options.content);
 	      this.options.container.appendChild(this.el);
 	      this.resize();
+
+	      if (this.options.transition) {
+	        var _context2;
+
+	        this.content.classList.remove('-out');
+	        this.transitionDuration = Math.max.apply(Math, _toConsumableArray(map$2(_context2 = css(this.content, 'transition-duration').split(", ")).call(_context2, function (x) {
+	          return _parseFloat$2(x);
+	        }))) * 1000;
+	      }
+
 	      this.trigger('shown');
 	      return this;
 	    }
@@ -2842,7 +2977,7 @@
 	  }, {
 	    key: "setPosition",
 	    value: function setPosition(align) {
-	      var _context2;
+	      var _context3;
 
 	      align = align || this.options.align;
 
@@ -2906,7 +3041,7 @@
 	      this.el.classList.add('popover-' + topAlign);
 	      this.el.classList.add('popover-' + leftAlign);
 
-	      forEach$2(_context2 = keys$3(position)).call(_context2, function (key) {
+	      forEach$2(_context3 = keys$3(position)).call(_context3, function (key) {
 	        this.el.style[key] = position[key] + (key != "transform" ? "px" : "");
 	      }, this);
 	    }
@@ -2937,22 +3072,35 @@
 	  }, {
 	    key: "hide",
 	    value: function hide(options) {
+	      var _this2 = this;
+
 	      options = options || {};
 	      if (!this.showing) return;
-	      this.el.style.display = 'none';
+	      this.content.classList.add('-out');
 	      this.showing = false;
 
-	      if (options.silent !== true) {
-	        this.trigger('hidden');
-	      }
+	      setTimeout$1(function () {
+	        _this2.el.zIndexWas = _this2.el.style.zIndex;
+	        _this2.el.style.zIndex = '-99';
+
+	        if (options.silent !== true) {
+	          _this2.trigger('hidden');
+	        }
+	      }, this.transitionDuration || 0);
 	    }
 	  }, {
 	    key: "show",
 	    value: function show() {
+	      var _this3 = this;
+
 	      if (this.showing) return;
-	      this.el.style.display = 'block';
+	      this.el.style.zIndex = this.el.zIndexWas;
+	      this.content.classList.remove('-out');
 	      this.showing = true;
-	      this.trigger('shown');
+
+	      setTimeout$1(function () {
+	        _this3.trigger('shown');
+	      }, this.transitionDuration || 0);
 	    }
 	  }, {
 	    key: "toggle",
@@ -3084,36 +3232,6 @@
 
 	  return Dropdown;
 	}(Component);
-
-	var $map = arrayIteration.map;
-
-
-
-	var HAS_SPECIES_SUPPORT$2 = arrayMethodHasSpeciesSupport('map');
-	// FF49- issue
-	var USES_TO_LENGTH$4 = arrayMethodUsesToLength('map');
-
-	// `Array.prototype.map` method
-	// https://tc39.github.io/ecma262/#sec-array.prototype.map
-	// with adding support of @@species
-	_export({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT$2 || !USES_TO_LENGTH$4 }, {
-	  map: function map(callbackfn /* , thisArg */) {
-	    return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-	  }
-	});
-
-	var map = entryVirtual('Array').map;
-
-	var ArrayPrototype$5 = Array.prototype;
-
-	var map_1 = function (it) {
-	  var own = it.map;
-	  return it === ArrayPrototype$5 || (it instanceof Array && own === ArrayPrototype$5.map) ? map : own;
-	};
-
-	var map$1 = map_1;
-
-	var map$2 = map$1;
 
 	function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
@@ -3269,19 +3387,19 @@
 	  }
 	});
 
-	var trim$1 = entryVirtual('String').trim;
+	var trim$2 = entryVirtual('String').trim;
 
 	var StringPrototype$1 = String.prototype;
 
 	var trim_1 = function (it) {
 	  var own = it.trim;
 	  return typeof it === 'string' || it === StringPrototype$1
-	    || (it instanceof String && own === StringPrototype$1.trim) ? trim$1 : own;
+	    || (it instanceof String && own === StringPrototype$1.trim) ? trim$2 : own;
 	};
 
-	var trim$2 = trim_1;
+	var trim$3 = trim_1;
 
-	var trim$3 = trim$2;
+	var trim$4 = trim$3;
 
 	var concat = entryVirtual('Array').concat;
 
@@ -3310,11 +3428,11 @@
 	// Old WebKit
 	var STRICT_METHOD$1 = arrayMethodIsStrict('sort');
 
-	var FORCED$3 = FAILS_ON_UNDEFINED || !FAILS_ON_NULL || !STRICT_METHOD$1;
+	var FORCED$4 = FAILS_ON_UNDEFINED || !FAILS_ON_NULL || !STRICT_METHOD$1;
 
 	// `Array.prototype.sort` method
 	// https://tc39.github.io/ecma262/#sec-array.prototype.sort
-	_export({ target: 'Array', proto: true, forced: FORCED$3 }, {
+	_export({ target: 'Array', proto: true, forced: FORCED$4 }, {
 	  sort: function sort(comparefn) {
 	    return comparefn === undefined
 	      ? nativeSort.call(toObject(this))
@@ -3341,11 +3459,11 @@
 
 	var _context, _context2, _context3;
 
-	trim$3(_context = "\n<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 32 32\">\n<path d=\"M28.998 8.531l-2.134-2.134c-0.394-0.393-1.030-0.393-1.423 0l-12.795 12.795-6.086-6.13c-0.393-0.393-1.029-0.393-1.423 0l-2.134 2.134c-0.393 0.394-0.393 1.030 0 1.423l8.924 8.984c0.393 0.393 1.030 0.393 1.423 0l15.648-15.649c0.393-0.392 0.393-1.030 0-1.423z\"></path>\n</svg>\n").call(_context);
+	trim$4(_context = "\n<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 32 32\">\n<path d=\"M28.998 8.531l-2.134-2.134c-0.394-0.393-1.030-0.393-1.423 0l-12.795 12.795-6.086-6.13c-0.393-0.393-1.029-0.393-1.423 0l-2.134 2.134c-0.393 0.394-0.393 1.030 0 1.423l8.924 8.984c0.393 0.393 1.030 0.393 1.423 0l15.648-15.649c0.393-0.392 0.393-1.030 0-1.423z\"></path>\n</svg>\n").call(_context);
 
-	var arrow_down = trim$3(_context2 = "\n<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 20 20\">\n<path d=\"M13.418 7.601c0.271-0.268 0.709-0.268 0.979 0s0.271 0.701 0 0.969l-3.907 3.83c-0.271 0.268-0.709 0.268-0.979 0l-3.908-3.83c-0.27-0.268-0.27-0.701 0-0.969s0.708-0.268 0.979 0l3.418 3.14 3.418-3.14z\"></path>\n</svg>\n").call(_context2);
+	var arrow_down = trim$4(_context2 = "\n<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 20 20\">\n<path d=\"M13.418 7.601c0.271-0.268 0.709-0.268 0.979 0s0.271 0.701 0 0.969l-3.907 3.83c-0.271 0.268-0.709 0.268-0.979 0l-3.908-3.83c-0.27-0.268-0.27-0.701 0-0.969s0.708-0.268 0.979 0l3.418 3.14 3.418-3.14z\"></path>\n</svg>\n").call(_context2);
 
-	var x = trim$3(_context3 = "\n<svg version=\"1.2\" baseProfile=\"tiny\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"64px\" height=\"64px\" viewBox=\"0 0 64 64\" xml:space=\"preserve\">\n<g><rect x=\"-2.352\" y=\"29.385\" transform=\"matrix(0.7071 0.7071 -0.7071 0.7071 32.3545 -14.3899)\" width=\"71.799\" height=\"4.95\"/></g>\n<g><rect x=\"-2.374\" y=\"29.376\" transform=\"matrix(0.7071 -0.7071 0.7071 0.7071 -12.7023 33.0352)\" width=\"71.799\" height=\"4.95\"/></g>\n</svg>\n\n").call(_context3);
+	var x = trim$4(_context3 = "\n<svg version=\"1.2\" baseProfile=\"tiny\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"64px\" height=\"64px\" viewBox=\"0 0 64 64\" xml:space=\"preserve\">\n<g><rect x=\"-2.352\" y=\"29.385\" transform=\"matrix(0.7071 0.7071 -0.7071 0.7071 32.3545 -14.3899)\" width=\"71.799\" height=\"4.95\"/></g>\n<g><rect x=\"-2.374\" y=\"29.376\" transform=\"matrix(0.7071 -0.7071 0.7071 0.7071 -12.7023 33.0352)\" width=\"71.799\" height=\"4.95\"/></g>\n</svg>\n\n").call(_context3);
 
 	function _createSuper$3(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$3(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
@@ -3506,7 +3624,7 @@
 	      var option = filter$3(this.select.querySelectorAll("option"), function (el) {
 	        var _context7, _context8;
 
-	        return trim$3(_context7 = el.innerText).call(_context7) == trim$3(_context8 = e.target.closest('.uniformSelect-selection').innerText).call(_context8);
+	        return trim$4(_context7 = el.innerText).call(_context7) == trim$4(_context8 = e.target.closest('.uniformSelect-selection').innerText).call(_context8);
 	      })[0];
 	      if (!option) return;
 	      option.selected = false;
@@ -3522,10 +3640,10 @@
 
 	      this.el.classList.toggle('active');
 
-	      if (this.el.contains('active')) {
+	      if (this.el.classList.contains('active')) {
 	        this.renderOptions();
 	      } else {
-	        this.removeOptions();
+	        this.popover.toggle(false);
 	      }
 	    }
 	  }, {
@@ -3599,7 +3717,8 @@
 	        align: '0px bottom',
 	        anchor: this.el,
 	        content: options,
-	        container: this.options.container
+	        container: this.options.container,
+	        transition: 'transition-fade-up'
 	      }).render();
 	      this.listenTo(this.popover, 'hidden', this.removeOptions);
 	    }
@@ -3743,7 +3862,7 @@
 	            key = _breakpoint$split2[0],
 	            value = _breakpoint$split2[1];
 
-	        _this.breakpoints[trim$3(key).call(key)] = value;
+	        _this.breakpoints[trim$4(key).call(key)] = value;
 	      });
 
 	      this.listenTo(window, 'resize', this.resize);
@@ -3785,35 +3904,6 @@
 
 	  return Resizer;
 	}(Component);
-
-	var slice$4 = [].slice;
-	var MSIE = /MSIE .\./.test(engineUserAgent); // <- dirty ie9- check
-
-	var wrap$1 = function (scheduler) {
-	  return function (handler, timeout /* , ...arguments */) {
-	    var boundArgs = arguments.length > 2;
-	    var args = boundArgs ? slice$4.call(arguments, 2) : undefined;
-	    return scheduler(boundArgs ? function () {
-	      // eslint-disable-next-line no-new-func
-	      (typeof handler == 'function' ? handler : Function(handler)).apply(this, args);
-	    } : handler, timeout);
-	  };
-	};
-
-	// ie9- setTimeout & setInterval additional parameters fix
-	// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
-	_export({ global: true, bind: true, forced: MSIE }, {
-	  // `setTimeout` method
-	  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
-	  setTimeout: wrap$1(global_1.setTimeout),
-	  // `setInterval` method
-	  // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-setinterval
-	  setInterval: wrap$1(global_1.setInterval)
-	});
-
-	var setTimeout = path.setTimeout;
-
-	var setTimeout$1 = setTimeout;
 
 	function _defineProperty(obj, key, value) {
 	  if (key in obj) {

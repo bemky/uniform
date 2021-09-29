@@ -5,7 +5,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1,user-scalable=0">
     <title>Uniform</title>
     
-    <link href="/assets/main-f60925c5bdc7adebceb30a56edff281f04277381624cc77661085aa9b730af6c.css" rel="stylesheet" />
+    <link href="/assets/main-3e17ca1ea4db57dd8e0787c109c30a1c93a666d60dc19574d1a962a3ab0fda33.css" rel="stylesheet" />
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static-assets/favicons/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static-assets/favicons/apple-touch-icon-114x114.png" />
@@ -430,6 +430,91 @@
 <div class="section">
     <h1>Transition</h1>
     
+    <a id="transition-pre-built"></a>
+    <h3>Pre-built</h3>
+    <div class="flex space-h margin-bottom">
+        <div class="">
+            <p>Toggle class <code>-out</code> to trigger transition.</p>
+        </div>
+        <div class="">
+<div class="highlight"><pre class="tight javascript"><code><span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="nx">e</span> <span class="o">=&gt;</span> <span class="nx">button</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">toggle</span><span class="p">(</span><span class="dl">'</span><span class="s1">-out))</span></code></pre></div>        </div>
+    </div>
+    
+    
+    <div class="max-height-350-px overflow-y-scroll">
+    <table class="uniformTable align-top-*">
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-down
+                </td>
+                <td class="width-full">
+                                    <button class="js-transition-example transition-fade-down uniformButton" type="button">
+            Try Me
+        </button>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">transform</span> <span class="m">100ms</span><span class="p">,</span> <span class="n">opacity</span> <span class="m">100ms</span><span class="p">;</span>
+ <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-up
+                </td>
+                <td class="width-full">
+                                    <button class="js-transition-example transition-fade-up uniformButton" type="button">
+            Try Me
+        </button>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">transform</span> <span class="m">100ms</span><span class="p">,</span> <span class="n">opacity</span> <span class="m">100ms</span><span class="p">;</span>
+ <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-left
+                </td>
+                <td class="width-full">
+                                    <button class="js-transition-example transition-fade-left uniformButton" type="button">
+            Try Me
+        </button>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">transform</span> <span class="m">100ms</span><span class="p">,</span> <span class="n">opacity</span> <span class="m">100ms</span><span class="p">;</span>
+ <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-right
+                </td>
+                <td class="width-full">
+                                    <button class="js-transition-example transition-fade-right uniformButton" type="button">
+            Try Me
+        </button>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">transform</span> <span class="m">100ms</span><span class="p">,</span> <span class="n">opacity</span> <span class="m">100ms</span><span class="p">;</span>
+ <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+    </table>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.js-transition-example').forEach(button => {
+                button.addEventListener('click', e => {
+                    button.classList.toggle('-out')
+                    setTimeout(() => {
+                        button.classList.remove('-out')
+                    }, 800)
+                })
+            })
+        })
+    </script>
+    
+    <h3>Utilities</h3>
     <div class="max-height-350-px overflow-y-scroll">
     <table class="uniformTable align-top-*">
             <tr>
@@ -1409,6 +1494,98 @@
             </tr>
             <tr>
                 <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-down
+                </td>
+                <td class="width-full">
+                                    <div class="transform transition-fade-down inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">transform</span> <span class="m">100ms</span><span class="p">,</span> <span class="n">opacity</span> <span class="m">100ms</span><span class="p">;</span>
+ <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-up
+                </td>
+                <td class="width-full">
+                                    <div class="transform transition-fade-up inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">transform</span> <span class="m">100ms</span><span class="p">,</span> <span class="n">opacity</span> <span class="m">100ms</span><span class="p">;</span>
+ <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-left
+                </td>
+                <td class="width-full">
+                                    <div class="transform transition-fade-left inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">transform</span> <span class="m">100ms</span><span class="p">,</span> <span class="n">opacity</span> <span class="m">100ms</span><span class="p">;</span>
+ <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-right
+                </td>
+                <td class="width-full">
+                                    <div class="transform transition-fade-right inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">transition</span><span class="p">:</span> <span class="n">transform</span> <span class="m">100ms</span><span class="p">,</span> <span class="n">opacity</span> <span class="m">100ms</span><span class="p">;</span>
+ <span class="nl">opacity</span><span class="p">:</span> <span class="m">1</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-down.-out
+                </td>
+                <td class="width-full">
+                                    <div class="transform transition-fade-down-out inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">opacity</span><span class="p">:</span> <span class="m">0</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-up.-out
+                </td>
+                <td class="width-full">
+                                    <div class="transform transition-fade-up-out inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">opacity</span><span class="p">:</span> <span class="m">0</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-left.-out
+                </td>
+                <td class="width-full">
+                                    <div class="transform transition-fade-left-out inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">opacity</span><span class="p">:</span> <span class="m">0</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
+                    .transition-fade-right.-out
+                </td>
+                <td class="width-full">
+                                    <div class="transform transition-fade-right-out inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+
+                </td>
+                <td class="text-xs">
+<div class="highlight"><pre class="tight css"><code><span class="p">{</span> <span class="nl">opacity</span><span class="p">:</span> <span class="m">0</span> <span class="p">}</span></code></pre></div>                </td>
+            </tr>
+            <tr>
+                <td class="text-mono text-nowrap text-bold text-purple">
                     .rotate-0
                 </td>
                 <td class="width-full">
@@ -1911,5 +2088,5 @@
 </div>
 </div>
 </div>
-<script src="/assets/main-70d9158ce498fe8619afa71d85edf0114aea428764057bfcac81f175992e8934.js"></script>
+<script src="/assets/main-085a4f0fa2c6c7f65d908156a32edcc6f4a2b6cdaabd249342868d52a6c4d761.js"></script>
 </body>
