@@ -31,27 +31,6 @@ pre{
     margin: 0;
 }
 
-ul,
-ol,
-dl{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    ul,
-    ol,
-    dl{
-        margin-bottom: 0;
-    }
-}
-
-dd{
-    margin-left: 0;
-    margin-bottom: 0.5em;
-}
-dt{
-    font-weight: bold;
-}
-
 table{
     background-color: transparent;
     border-collapse: collapse;
