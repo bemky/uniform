@@ -3515,6 +3515,7 @@
 
 	      this.el_options = assign$2({}, this.pick(options, HTML_ATTRIBUTES));
 	      this.el = createElement('button', this.el_options);
+	      this.el.type = "button";
 	      this.el.classList.add('uniformSelect');
 	      this.listenTo(this.el, 'click', this.toggleOptions);
 	      this.listenTo(this.el, 'click', '.uniformSelect-remove', this.removeSelection);
@@ -3546,6 +3547,8 @@
 
 	      if (options.el) {
 	        this.select = options.el;
+	        this.el.setAttribute('class', this.select.getAttribute('class'));
+	        this.el.classList.add('uniformSelect');
 
 	        if (!this.htmlOptions) {
 	          var _context2;
