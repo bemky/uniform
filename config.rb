@@ -129,7 +129,7 @@ end
 
 configure :build do
   app.condenser.unregister_writer('application/gzip')
-  
+
   # Clear Dist
   Dir.children('./dist').each do |file|
     if File.directory?(file)
@@ -139,13 +139,13 @@ configure :build do
     end
   end
 
-  # Export to Dist    
+  # Export to Dist
   %w(uniform.css uniform.js).each do |asset|
     app.condenser.resolve(asset).each do |asset|
       asset.export.write('dist')
     end
   end
-  
+
   # Rename Dist files to remove sha ... Hack for lack of export_without_digest.. remove when available
   Dir.children('./dist').each do |file|
     next unless file =~ /\-\w{64}\..*$/
@@ -160,10 +160,13 @@ configure :build do
       zipFile.add(file, File.expand_path(File.join('./dist/', file)))
     end
   end
-  
+end
+
+after_build do |builder|
   # Update README
   rows = ""
-  source = app.condenser.find('uniform/base.css').to_s
+  Dir.mkdir('./docs/assets/colors') unless Dir.exist?('./docs/assets/colors')
+  source = builder.app.condenser.find('uniform/base.css').to_s
   scss_config = source.match(/UNIFORM\sCONFIGS\n(.*)\nUNIFORM\sCONFIGS\sEND/)[1]
   scss_config = JSON.parse(scss_config)
   colors = scss_config["colors"]
@@ -171,17 +174,17 @@ configure :build do
     colspan = 10
     colspan += 1 if colors.find("#{color}-10")
     
-    File.write("./docs/colors/#{color}.svg", "<img src=\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>\'>")
+    File.write("./docs/assets/colors/#{color}.svg", "<img src=\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>\'>")
     
     if colors.keys.include?("#{color}-10")
-      row = "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/#{color}.svg\" style=\"inline-block\">#{color}</td>"
+      row = "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{color}.svg\" style=\"inline-block\">#{color}</td>"
       (1..9).each do |i|
         sub_color = "#{color}-#{i*10}"
-        File.write("./docs/colors/#{sub_color}.svg", "<img src=\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[sub_color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>\'>")
-        row += "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/#{sub_color}.svg\" style=\"inline-block\">#{sub_color}</td>"
+        File.write("./docs/assets/colors/#{sub_color}.svg", "<img src=\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[sub_color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>\'>")
+        row += "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{sub_color}.svg\" style=\"inline-block\">#{sub_color}</td>"
       end
     else
-      row = "<td colspan=10><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/#{color}.svg\" style=\"inline-block\">#{color}</td>"
+      row = "<td colspan=10><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{color}.svg\" style=\"inline-block\">#{color}</td>"
     end
     rows += "<tr>#{row}</tr>"
   end

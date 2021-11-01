@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/bemky/middleman-condenser.git
+  revision: 53de4e7f51432a43f350e15e9ffccb79ca06bbf4
+  branch: dedup_assets
+  specs:
+    middleman-condenser (0.0.3)
+      condenser (>= 0.1)
+      middleman-core (>= 4.2.1)
+
+GIT
   remote: https://github.com/malomalo/condenser.git
   revision: 80983166441533560e5602cf042cc67bb73e7298
   specs:
@@ -6,14 +15,6 @@ GIT
       erubi (~> 1.0)
       listen
       rack (> 1, < 3)
-
-GIT
-  remote: https://github.com/malomalo/middleman-condenser.git
-  revision: 3664bffe88a14f5629f7d7aac90455603b4caee2
-  specs:
-    middleman-condenser (0.0.3)
-      condenser (>= 0.1)
-      middleman-core (>= 4.2.1)
 
 GIT
   remote: https://github.com/middleman/middleman.git
