@@ -2,25 +2,41 @@
     @return red($color), green($color), blue($color);
 }
 @function color($key) {
-    @return map-get($color_spectrum, $key);
+    @return map-get(map-get($uniform_configs, 'colors'), $key);
 }
 @function size($key) {
-    @return map-get($sizes, $key);
+    @return map-get(map-get($uniform_configs, 'sizes'), $key);
 }
 
 @function mapToString($map) {
     $string: '"';
     
     @each $key, $value in $map {
-        $string: str-insert($string, $key, -1);
-        $string: str-insert($string, "/", -1);
-        $string: str-insert($string, $value, -1);
-        $string: str-insert($string, ",", -1);
+        @if type-of($value) == "string" {
+            $string: str-insert($string, $key, -1);
+            $string: str-insert($string, "/", -1);
+            $string: str-insert($string, $value, -1);
+            $string: str-insert($string, ",", -1);
+        }
     }
     $string: str-slice($string, 1, -2);
     $string: str-insert($string, '"', -1);
     
     @return $string;
+}
+
+@function mapToJSON($map) {
+    $string: '';
+    
+    @each $key, $value in $map {
+        @if type-of($value) == "map" {
+            $string: str-insert($string, "\"#{$key}\": #{mapToJSON($value)},", -1);
+        } @else {
+            $string: str-insert($string, "\"#{$key}\": \"#{$value}\",", -1);
+        }
+    }
+    
+    @return "{#{str-slice($string, 0, -2)}}";
 }
 
 //----------------------------------------------------------------

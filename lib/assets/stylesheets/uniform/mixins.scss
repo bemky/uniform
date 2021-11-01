@@ -1,4 +1,4 @@
-@import 'uniform/variables';
+@import 'uniform/config';
 
 @mixin text-overflow($inherit:false){
     @if $inherit {
@@ -36,7 +36,7 @@
 }
 
 @mixin breakpoint($breakpoint){
-    @media only screen and (map-get($breakpoints, $breakpoint)){
+    @media only screen and (map-get(map-get($uniform_configs, 'breakpoints'), $breakpoint)){
         @content;
     }
 }
@@ -49,19 +49,19 @@
     .#{$selector}{
         @content
     }
-    @if $include_child_utilities {
+    @if map-get(map-get($uniform_configs, 'breakpoints'), 'include_containers') {
         @include child-rule($selector) {
             @content
         }
     }
     
-    @each $breakpoint, $breakpoint_query in $breakpoints {
+    @each $breakpoint, $breakpoint_query in map-get($uniform_configs, 'breakpoints') {
         @include media($breakpoint_query){
             .#{$breakpoint}\:#{$selector}{
                 @content
             }
         }
-        @if $include_breakpoint_container {
+        @if map-get(map-get($uniform_configs, 'breakpoints'), 'include_containers') {
             .#{$breakpoint}-container{
                 .#{$breakpoint}\:#{$selector}{
                     @content
@@ -87,7 +87,7 @@
         $selector: str-slice($selector, 2, -1);
     }
     
-    @each $name, $value in $color_spectrum {
+    @each $name, $value in map-get($uniform_configs, 'colors') {
         .#{$selector}-#{$name}{
             @content($value)
         }
@@ -96,10 +96,8 @@
             @content($value)
         }
         
-        @if $include_child_utilities {
-            @include child-rule($selector) {
-                @content($value)
-            }
+        @include combinator-rule("#{$selector}-#{$name}", false){
+            @content($value)
         }
     }
 }
@@ -119,7 +117,7 @@
         $key: str-slice($key, 1, str-index($key, '-') - 1);
     }
     
-    @each $size, $value in map-get($sizes, $key) {
+    @each $size, $value in map-get(map-get($uniform_configs, 'sizes'), $key) {
         $class: "#{$selector}-#{$size}";
         @if $size == '' {
             $class: $selector;
@@ -144,26 +142,35 @@
        } 
     }
 
-    @each $pseudo-selector, $pseudo-class in (
-        active: active,
-        focus: focus,
-        hover: hover,
-        checked: checked,
-        focus-within: focus-within,
-        first: first-child,
-        last: last-child
-    ) {
-        @if index($include_pseudo_utilities, $pseudo-class) {
+    @each $pseudo-selector, $pseudo-class in map-get($uniform_configs, 'pseudo_classes') {
+        @if $pseudo-selector == "group-hover" {
+            .group:hover{
+                .group-hover\:#{$selector} {
+                    @content
+                }
+            }
+        } @else {
             .#{$pseudo-selector}\:#{$selector}:#{$pseudo-class} {
                 @content
             }
         }
+        
     }
-    @if index($include_pseudo_utilities, group-hover) {
-        .group:hover{
-            .group-hover\:#{$selector} {
-                @content
-            }
+}
+
+@mixin combinator-rule($selector, $declare_self: true){
+    @if str-index($selector, '.') == 1 {
+        $selector: str-slice($selector, 2, -1);
+    }
+    @if $declare_self {
+       .#{$selector} {
+           @content
+       } 
+    }
+
+    @each $cominator_selector, $combinator in map-get($uniform_configs, 'combinators') {
+        .#{$selector}-#{$cominator_selector} #{$combinator} * {
+            @content
         }
     }
 }

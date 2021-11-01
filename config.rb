@@ -89,10 +89,6 @@ helpers do
     concat_content Middleman::Syntax::Highlighter.highlight(content, language, options).html_safe
   end
   
-  def colors
-    %w(gray green blue red yellow)
-  end
-  
   def css_rules(file='uniform.css')
     @parsers = {} unless @parsers
     if !@parsers[file]
@@ -113,6 +109,14 @@ helpers do
     end
     css_rules(file).find_by_selector(rule)
   end
+  
+  def css_configs
+    return @configs if @configs
+    
+    source = app.condenser.find('uniform/base.css').to_s
+    scss_config = source.match(/UNIFORM\sCONFIGS\n(.*)\nUNIFORM\sCONFIGS\sEND/)[1]
+    @configs = JSON.parse(scss_config)
+  end
 end
 
 # Build-specific configuration
@@ -125,11 +129,6 @@ end
 
 configure :build do
   app.condenser.unregister_writer('application/gzip')
-  # Can't purge because it messes up templates ability to read css
-  # app.condenser.register_postprocessor('text/css', ::Condenser::PurgeCSSProcessor.new(app.condenser.npm_path, {
-  #   content: [File.expand_path('./docs/**/*.html'), File.expand_path('./docs-src/assets/javascripts/**/*.js')],
-  #   safelist: ["/hljs*/", "/.*code.*/"]
-  # }))
   
   # Clear Dist
   Dir.children('./dist').each do |file|
@@ -162,6 +161,34 @@ configure :build do
     end
   end
   
+  # Update README
+  rows = ""
+  source = app.condenser.find('uniform/base.css').to_s
+  scss_config = source.match(/UNIFORM\sCONFIGS\n(.*)\nUNIFORM\sCONFIGS\sEND/)[1]
+  scss_config = JSON.parse(scss_config)
+  colors = scss_config["colors"]
+  colors.keys.filter{|color| !color.index("-")}.each do |color|
+    colspan = 10
+    colspan += 1 if colors.find("#{color}-10")
+    
+    File.write("./docs/colors/#{color}.svg", "<img src=\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>\'>")
+    
+    if colors.keys.include?("#{color}-10")
+      row = "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/#{color}.svg\" style=\"inline-block\">#{color}</td>"
+      (1..9).each do |i|
+        sub_color = "#{color}-#{i*10}"
+        File.write("./docs/colors/#{sub_color}.svg", "<img src=\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[sub_color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>\'>")
+        row += "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/#{sub_color}.svg\" style=\"inline-block\">#{sub_color}</td>"
+      end
+    else
+      row = "<td colspan=10><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/#{color}.svg\" style=\"inline-block\">#{color}</td>"
+    end
+    rows += "<tr>#{row}</tr>"
+  end
+  
+  readme = File.open('./README.md').read
+  readme.sub!(/\<\!\-\- COLORS \-\-\>.*\<\!\-\- COLORS END \-\-\>/m, rows)
+  File.write('./README.md', readme)
 end
 
 activate :directory_indexes

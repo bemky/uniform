@@ -1,18 +1,21 @@
 <div class="section">
     <h1>Colors</h1>
     <table class="width-full">
-    <% %w(gray green blue red yellow purple).each do |color| %>
-        <tr class="">
-            <td class="width-1/10 bg-<%= color %>">
-                <div class="uniformThumb aspect-4x3">
-                    <div class="text text-mono text-center"><%= color %></div>
-                </div>
+    <tr>
+        <th></th>
+        <% (1..9).each do |i| %>
+            <th class="text-center"><%= i*10 %></th>
+        <% end %>
+    </tr>
+    <% css_configs["colors"].keys.filter{|color| !color.index("-")}.each do |color| %>
+        <% next unless css_configs["colors"].keys.include?("#{color}-10") %>
+        <tr class="text-white">
+            <td class="width-1/10 bg-<%= color %> pad">
+                <%= color %>
             </td>
             <% (1..9).each do |i| %>
-                <td class="height-40-px bg-<%= color %>-<%= i*10 %>">
-                    <div class="uniformThumb aspect-4x3">
-                        <div class="text text-mono text-center"><%= color %>-<%= i*10 %></div>
-                    </div>
+                <td class="bg-<%= color %>-<%= i*10 %> text-xs pad">
+                    <%= color %>-<%= i*10 %>
                 </td>
             <% end %>
         </tr>

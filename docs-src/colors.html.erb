@@ -9,7 +9,7 @@
                     <th>class</th>
                 </tr>
             </thead>
-            <% colors.each do |color| %>
+            <% css_configs["colors"].keys.filter{|color| !color.index("-")}.each do |color| %>
                 <% (1..9).each do |i| %>
                     <tr>
                         <td><span class='swatch bg-<%= color %>-<%= i * 10 %>'></span></td>

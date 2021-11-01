@@ -1,5 +1,5 @@
 @import 'uniform/functions';
-@import 'uniform/variables';
+@import 'uniform/config';
 @import 'uniform/mixins';
 *{
     border-width: 0;
@@ -14,7 +14,7 @@
 }
 
 body {
-    --breakpoints: #{mapToString($breakpoints)};
+    --breakpoints: #{mapToString(map-get($uniform_configs, 'breakpoints'))};
     --bg-opacity: 1.0;
     --shadow-opacity: 0.1;
     --border-opacity: 1.0;
@@ -22,9 +22,16 @@ body {
 }
 
 @include responsive-rule('base') { 
-    --breakpoints: #{mapToString($breakpoints)};
+    --breakpoints: #{mapToString(map-get($uniform_configs, 'breakpoints'))};
     --bg-opacity: 1.0;
     --shadow-opacity: 0.1;
     --border-opacity: 1.0;
     --border-color: #{red(color('gray'))}, #{green(color('gray'))}, #{blue(color('gray'))};
 }
+
+/*
+The following is used to pass configs in scss
+UNIFORM CONFIGS
+#{mapToJSON($uniform_configs)}
+UNIFORM CONFIGS END
+*/

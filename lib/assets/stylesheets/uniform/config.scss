@@ -1,0 +1,184 @@
+$system-font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+
+$uniform_defaults: (
+    "base-font": $system-font,
+    "combinators": (),
+    "pseudo_classes": (
+        "hover": hover,
+    ),
+    "breakpoints": (
+        'include_containers': false,
+        'sm': "max-width: 719px",
+        'md': "min-width: 720px",
+        'lg': "min-width: 1080px",
+        'xl': "min-width: 1440px"
+    ),
+    "colors": (
+        'white': #FFFFFF,
+        'gray':  (
+            'spectrum': true,
+            'color': #505152
+        ),
+        'green':  (
+            'spectrum': true,
+            'color': #97C848
+        ),
+        'blue':   (
+            'spectrum': true,
+            'color': #0994E2
+        ),
+        'red':    (
+            'spectrum': true,
+            'color': #E1563E
+        ),
+        'yellow': (
+            'spectrum': true,
+            'color': #D7E542
+        ),
+        'purple': (
+            'spectrum': true,
+            'color': #9461b9
+        )
+    ),
+    "sizes":      (
+        'border': (
+          '':     1px,
+          'none': 0,
+          '2px':  2px,
+          '3px':  3px,
+          '4px':  4px
+        ),
+        'divide': (
+          '':       1px,
+          'none':   0,
+          '2px':    2px,
+          '3px':    3px,
+          '4px':    4px
+        ),
+        'rounded':  (
+          '':       0.25rem,
+          'none':   0,
+          "xs":     0.1rem,
+          "sm":     0.2rem,
+          "lg":     0.5rem,
+          "xl":     1rem,
+        ),
+        'margin':   (
+          '':       1rem,
+          'none':   0,
+          "1\\/4x": 0.25rem,
+          "1\\/2x": 0.5rem,
+          "3\\/4x": 0.75rem,
+          "xs":     0.8rem,
+          "sm":     0.9rem,
+          "lg":     1.2rem,
+          "xl":     1.4rem,
+          "2x":     2rem,
+        ),
+        'gap':      (
+          '':       1rem,
+          'none':   0,
+          "xs":     0.8rem,
+          "sm":     0.9rem,
+          "lg":     1.2rem,
+          "xl":     1.4rem,
+        ),
+        'space':    (
+          '':       1rem,
+          'none':   0,
+          "xs":     0.8rem,
+          "sm":     0.9rem,
+          "lg":     1.2rem,
+          "xl":     1.4rem,
+          "2x":     2rem,
+          "4x":     4rem,
+        ),
+        'pad':      (
+          ''       : 1rem,
+          'none'   : 0,
+          "1\\/4x" : 0.25rem,
+          "1\\/2x" : 0.5rem,
+          "3\\/4x" : 0.75rem,
+          "xs"     : 0.8rem,
+          "sm"     : 0.9rem,
+          "lg"     : 1.2rem,
+          "xl"     : 1.4rem,
+          "2x"     : 2rem,
+        ),
+        'text':     (
+          '':       1rem,
+          "xs" : 0.8rem,
+          "sm" : 0.9rem,
+          "lg" : 1.2rem,
+          "xl" : 1.4rem,
+          "2x" : 2rem,
+          "4x" : 4rem,
+          "8x" : 8rem
+
+        ),
+        'stroke':   (
+            "sm" : 0.5px,
+            "md" : 1px,
+            "lg" : 1.5px,
+            "2x" : 2px,
+            "3x" : 3px
+        )
+    )
+);
+
+$uniform_configs: if(variable-exists('$uniform_configs'), $uniform_configs, ());
+
+@each $key, $default_value in $uniform_defaults {
+    $value: map-get($uniform_configs, $key);
+    @if type-of($default_value) == 'map' and type-of($value) == 'map' {
+        $value: map-merge($default_value, $value);
+    } @else if type-of($value) == 'null' {
+        $value: $default_value;
+    }
+    $uniform_configs: map-merge($uniform_configs, ("#{$key}": $value));
+}
+
+//----------------------------------------------------------------
+//             Color Variations (ex. gray-30 from gray)
+//----------------------------------------------------------------
+$uniform_colors: map-get($uniform_configs, 'colors');
+@each $name, $color_options in $uniform_colors {
+    @if type-of($color_options) == 'map' {
+        $color: map-get($color_options, 'color');
+        $uniform_colors: map-merge($uniform_colors, ("#{$name}": $color));
+        
+        @if map-get($color_options, 'spectrum') {
+            @for $index from 1 through 9 {
+                $saturation_adjustment: 0;
+                @if saturation($color) > 20% {
+                    $saturation_adjustment: ((100 - saturation($color)) / 4) * abs(5 - $index);
+                }
+                $uniform_colors: map-merge($uniform_colors, ("#{$name}-#{(10 - $index) * 10}": change-color($color, $lightness: $index * 10, $saturation: saturation($color) + $saturation_adjustment)));
+            }
+        }
+    } @else if (type-of($color_options) == 'color') {
+        $uniform_colors: map-merge($uniform_colors, ("#{$name}": $color_options));
+    } @else {
+        $uniform_colors: map-remove($uniform_colors, $name);
+    }
+}
+$uniform_configs: map-merge($uniform_configs, (colors: $uniform_colors));
+
+
+//----------------------------------------------------------------
+//             Purge Sizes of false values
+//----------------------------------------------------------------
+$uniform_sizes: map-get($uniform_configs, 'sizes');
+@each $type, $sizes in $uniform_sizes {
+    @if type-of($sizes) == "bool" and $sizes == false {
+        $uniform_sizes: map-remove($uniform_sizes, $type);
+    } @else {
+        @each $size, $value in $sizes {
+            @if type-of($value) == 'bool' and $value == false {
+                $sizes: map-remove($sizes, $size);
+            }
+        }
+        $uniform_sizes: map-merge($uniform_sizes, ("#{$type}": $sizes));
+    }
+}
+$uniform_configs: map-merge($uniform_configs, (sizes: $uniform_sizes));

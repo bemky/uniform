@@ -12,9 +12,9 @@
 
 
 
-## Installation
+# Installation
 
-### Manual
+## Manual
 Download compiled CSS and JS: http://uniform-ui.com/uniform.zip
 
 Link to css and js in html document:
@@ -24,7 +24,7 @@ Link to css and js in html document:
 <script src="/uniform.js"></script>
 ```
 
-### Ruby
+## Ruby
 Add this line to your application's Gemfile:
 
     gem 'uniform-ui'
@@ -36,7 +36,7 @@ Example for [Condenser](https://github.com/malomalo/condenser):
     condenser.path = Dir.each_child(UniformUi::ASSET_PATH).map { |a| File.join(UniformUi::ASSET_PATH, a) }
 
 
-### NPM
+## NPM
     npm install uniform-ui
 
 ```javascript
@@ -47,71 +47,155 @@ new Uniform.Dropdown({
 })
 ```
 
-##### Sass Media Query Combiner
-The utility classes produce quite a bit of media queries which can bloat the library by 30ish%... use https://github.com/aaronjensen/sass-media_query_combiner to combine media queries together.
+### Media Query Combiner
+The breakpoint utilities can bloat the library by 30ish%. Use a media query combiner to condense the mean media queries into batches.
+
+For Rails Sprockets: https://github.com/aaronjensen/sass-media_query_combiner
+For Rails Condenser: https://github.com/malomalo/condenser
+```rails
+env.register_postprocessor('text/css', ::Condenser::CSSMediaCombinerProcessor)
+```
 
 
-## Usage
+# Usage
 
 Checkout the [documentation](http://uniform-ui.com)
 
-### Configuration
-Set these variables before `@import uniform` in sass to configure how uniform generates utility classes
+## Configuration
+Define configuration by setting keys of `$uniform_configs` prior to `@import 'uniform';` `$uniform_configs` is deep merged with defaults giving `$uniform_configs` priority. To remove default keys give them value of `false`.
+
+### Example
 ```scss
-$sizes: (
-  border: (
-    '': 1px,
-    'none': 0,
-    '2px': 2px
-    ...
-  ),
-  divide: (
-    ...
-  ),
-  rounded: (
-    ...
-  ),
-  margin: (
-    ...
-  ),
-  gap: (
-    ...
-  ),
-  space: (
-    ...
-  ),
-  pad: (
-    ...
-  ),
-  text: (
-    ...
-  )
-);
+$uniform_configs: (
+    sizes: (
+        padding: (
+            "8x": "8rem"
+        )
+    ),
+    colors: (),
+    pseudo_classes: (
+        "hover": hover,
+    ),
+    combinators: (
+        ">": ">"
+    ),
+    breakpoints: (
+        include_containers: true,
+    )
+)
+@import 'uniform';
+```
+### Sizes
+Size modifiers give a type of utility a size by postfixing to the type with a `-` (ex. `margin-bottom-2x`). Sizes are defined per type.
 
-$colors: (
-    'gray':               #505152,
-    'green':              #97C848,
-    ...
-);
+#### Extending `$uniform_configs.sizes`
+| key | defaults | description |
+| -- | -- | -- |
+| `border` | none, 2px, 3px, 4px | border-width |
+| `divide` | none, 2px, 3px, 4px | border-between objects |
+| `rounded` | none, xs, sm, lg, xl | border-radius |
+| `margin` | none, 1/4x, 1/2x, 3/4x, xs, sm, lg, xl, 2x | space around object |
+| `gap` | none, xs, sm, lg, xl | gap in grid |
+| `space` | none, xs, sm, lg, xl, 2x, 4x | space between objects |
+| `pad` | none, 1/4x, 1/2x, 3/4x, xs, sm, lg, xl, 2x | padding of an object |
+| `text` | xs, sm, lg, xl, 2x, 4x, 8x | font-size of text |
+| `stroke` | sm, md, lg, 2x, 3x | stroke of svg |
 
-$breakpoints: (
-    sm: "max-width: 719px",
-    md: "min-width: 720px",
-    lg: "min-width: 1080px",
-    xl: "min-width: 1440px"
-);
+### Colors
+Color modifiers build out an entire spectrum of utility classes related to color.
 
-$$include_pseudo_utilities: (hover focus active ...);
-$include_breakpoint_container: true; // Include responsive classes .xl-container .xl:margin-top
-$include_child_utilities: true; // Include responsive classes .text-red-* & > * {...}
+#### Extending `$uniform_configs.colors`
+You can configure a color to a color (hex, hsl, rgb...), `false`, or a hash (options below). Setting to a color ignores options for the color (mainly spectrum option). Setting to `false` removes the color (this is helpful to remove a uniform default color).
+
+##### Defaults
+<table>
+<tr><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/white.svg" style="inline-block">white</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/white-10.svg" style="inline-block">white-10</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/white-20.svg" style="inline-block">white-20</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/white-30.svg" style="inline-block">white-30</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/white-40.svg" style="inline-block">white-40</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/white-50.svg" style="inline-block">white-50</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/white-60.svg" style="inline-block">white-60</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/white-70.svg" style="inline-block">white-70</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/white-80.svg" style="inline-block">white-80</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/white-90.svg" style="inline-block">white-90</td></tr><tr><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/gray.svg" style="inline-block">gray</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/gray-10.svg" style="inline-block">gray-10</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/gray-20.svg" style="inline-block">gray-20</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/gray-30.svg" style="inline-block">gray-30</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/gray-40.svg" style="inline-block">gray-40</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/gray-50.svg" style="inline-block">gray-50</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/gray-60.svg" style="inline-block">gray-60</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/gray-70.svg" style="inline-block">gray-70</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/gray-80.svg" style="inline-block">gray-80</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/gray-90.svg" style="inline-block">gray-90</td></tr><tr><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/green.svg" style="inline-block">green</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/green-10.svg" style="inline-block">green-10</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/green-20.svg" style="inline-block">green-20</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/green-30.svg" style="inline-block">green-30</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/green-40.svg" style="inline-block">green-40</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/green-50.svg" style="inline-block">green-50</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/green-60.svg" style="inline-block">green-60</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/green-70.svg" style="inline-block">green-70</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/green-80.svg" style="inline-block">green-80</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/green-90.svg" style="inline-block">green-90</td></tr><tr><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/blue.svg" style="inline-block">blue</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/blue-10.svg" style="inline-block">blue-10</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/blue-20.svg" style="inline-block">blue-20</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/blue-30.svg" style="inline-block">blue-30</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/blue-40.svg" style="inline-block">blue-40</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/blue-50.svg" style="inline-block">blue-50</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/blue-60.svg" style="inline-block">blue-60</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/blue-70.svg" style="inline-block">blue-70</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/blue-80.svg" style="inline-block">blue-80</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/blue-90.svg" style="inline-block">blue-90</td></tr><tr><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/red.svg" style="inline-block">red</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/red-10.svg" style="inline-block">red-10</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/red-20.svg" style="inline-block">red-20</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/red-30.svg" style="inline-block">red-30</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/red-40.svg" style="inline-block">red-40</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/red-50.svg" style="inline-block">red-50</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/red-60.svg" style="inline-block">red-60</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/red-70.svg" style="inline-block">red-70</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/red-80.svg" style="inline-block">red-80</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/red-90.svg" style="inline-block">red-90</td></tr><tr><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/yellow.svg" style="inline-block">yellow</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/yellow-10.svg" style="inline-block">yellow-10</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/yellow-20.svg" style="inline-block">yellow-20</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/yellow-30.svg" style="inline-block">yellow-30</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/yellow-40.svg" style="inline-block">yellow-40</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/yellow-50.svg" style="inline-block">yellow-50</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/yellow-60.svg" style="inline-block">yellow-60</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/yellow-70.svg" style="inline-block">yellow-70</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/yellow-80.svg" style="inline-block">yellow-80</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/yellow-90.svg" style="inline-block">yellow-90</td></tr><tr><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/purple.svg" style="inline-block">purple</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/purple-10.svg" style="inline-block">purple-10</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/purple-20.svg" style="inline-block">purple-20</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/purple-30.svg" style="inline-block">purple-30</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/purple-40.svg" style="inline-block">purple-40</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/purple-50.svg" style="inline-block">purple-50</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/purple-60.svg" style="inline-block">purple-60</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/purple-70.svg" style="inline-block">purple-70</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/purple-80.svg" style="inline-block">purple-80</td><td><img src="https://raw.githubusercontent.com/bemky/uniform/master/docs/colors/purple-90.svg" style="inline-block">purple-90</td></tr>
+</table>
+
+#### Options for `$uniform_configs.colors.[color]`
+| key | type | description | default |
+| -- | -- | -- | -- |
+| `spectrum` | Boolean | expand the given color to a spectrum of lightness (10) to darkness (90) (ex. `text-red-30`) | false |
+| `color` | Hex, HSL, RGB | color value of key | – |
+| `[key]` | Hex, HSL, RGB | any extra key given will create an additional color with the given key as postfix modifier of the key (ex. `red: (light: #E1563E)` will produce `.text-red-light{color: #E1563E}`) | – |
+
+### Combinators
+Combinator modifiers give most utility classes the ability to apply a utility to the combinator by postfixing the combinator with `[utility]-[combinator]` (ex. `margin-bottom->`)
+**Example**
+```scss
+$uniform_configs: (
+    combinators: (">": ">")
+)
+```
+Generates
+```css
+.margin-bottom-> > * {
+    margin-bottom: 1em;
+}
 ```
 
-## Browser Support
-| [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/edge.png" alt="IE / Edge" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/firefox.png" alt="Firefox" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/chrome.png" alt="Chrome" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/godban/browsers-support-badges/master/src/images/safari.png" alt="Safari" width="16px" height="16px" />](http://godban.github.io/browsers-support-badges/)</br>Safari|
+### Pseudo Classes
+Pseudo class modifiers give most utility classes the ability to scope to the given pseudo class by prefixing a utility with `[pseudo class]:[utility]`. (ex `hover:text-red`).
+#### Example
+```scss
+$uniform_configs: (
+    pseudo_classes: (hover: "hover")
+)
+```
+Generates
+```css
+.hover:text-red {
+    color: #E1563E;
+}
+```
+
+#### Group Hover
+There is one predefined pseudo class for `group-hover`. If the key `group-hover` is set then the following will be generated:
+```css
+.group:hover{
+    .group-hover:bg-blue {
+        background: #0994E2
+    }
+}
+```
+
+### Breakpoints
+Breakpoint modifiers give most utility classes the ability to be responsive by prefixing a utlity with `[breakpoint]:[utility]` (ex. `md:margin-top`), so that that utility is only applied in the given media query.
+#### Example
+```scss
+$uniform_configs: (
+    breaking_points: (
+        include_containers: true,
+        mobile: "max-width: 719px"
+    )
+)
+```
+Generates
+```css
+@media only screen and (min-width: 720px){
+    .mobile:margin-top {
+        margin-top: 1em;
+    }
+}
+.mobile-container .margin-top {
+    margin-top: 1em;
+}
+```
+
+#### Options for `$uniform_configs.breakpoints`
+| key | type | description | default |
+| -- | -- | -- | -- |
+| `include_containers` | Boolean | toggle including containers for breakpoints like `.md-container > md:margin-top` | false |
+| `[key]` | media query | any key given will create a breakpoint with given key as utility name and value as the media query | – |
+
+
+
+# Browser Support
+| IE / Edge | Firefox | Chrome | Safari|
 | --------- | --------- | --------- | --------- |
 | IE11, Edge| 52+| 59+| 9+|
 
-## Development
+# Development
 
 Docs are generated using [Middleman](https://middlemanapp.com/)
 
@@ -122,14 +206,3 @@ To run server
 To package:
 
     middleman build
-
-
-#### TODO
-- Organize helpers page
-- Add docs about breakpoints and media queries
-- Add docs for sizes and colors mixins
-- docs on including scss in node module
-- UniformMainNav for mobile
-- Js for Collapse/Expand/Accordion
-- add sticky component
-- use Popover for Dropdown and Select

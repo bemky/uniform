@@ -51,34 +51,272 @@
 </div>
 <div class="section">
     <h1>Configuration</h1>
-    <h3>Scope Uniform Components</h3>
-    <p class="margin-v">You can scope the components you want included in your assets.</p>
     
-    <h4>Sass</h4>
-    <div class="margin-v">
-        <% code('css') do %>
-        @import 'uniform';
-        /* ------ */
-        /* - or - */
-        /* ------ */
-        @import 'uniform/base'; // required<% (Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform')).reject{|x| %w(variables.scss functions.scss mixins.scss base.scss).include?(x)}.to_a +
-            Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'utilities')).map{|x| "utilities/#{x}"}.to_a +
-            Dir.foreach(File.join('lib', 'assets', 'stylesheets', 'uniform', 'components')).map{|x| "components/#{x}"}.to_a).select{|x| x.split('.').last == "scss"}.each do |x| %>
-        @import 'uniform/<%= x.remove('.scss') %>';<% end %>
-        <% end %>
-    </div>
+    <p class="margin-v">
+        Define configuration by setting keys of <code>$uniform_configs</code> prior to <code>@import 'uniform';</code> <code>$uniform_configs</code> is deep merged with defaults giving <code>$uniform_configs</code> priority. To remove default keys give them value of <code>false</code>.
+    </p>
     
-    <h4>Javascript</h4>
-    <div class="margin-v">
-        <% code('js') do %>
-        // javascript
-        import {Dropdown} as Uniform from 'uniform';
+    <h3>Example</h3>
+    <% code('scss') do %>
+    $uniform_configs: (
+        sizes: (
+            padding: (
+                "8x": "8rem"
+            )
+        ),
+        colors: (),
+        pseudo_classes: (
+            "hover": hover,
+        ),
+        combinators: (
+            ">": ">"
+        ),
+        breakpoints: (
+            include_containers: true,
+        )
+    )
+    @import 'uniform';
+    <% end %>
+    
+    <h2>Sizes</h2>
+    Size modifiers give a type of utility a size by postfixing to the type with a <code>-</code> (ex. <code>margin-bottom-2x</code>). Sizes are defined per type.
 
-        new Dropdown({
-            el: $('.example')
-        })
+    <h4>Extending <code>$uniform_configs.sizes</code></h4>
+    <table class="uniformTable">
+    <thead>
+    <tr>
+    <th>key</th>
+    <th>defaults</th>
+    <th>description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><code>border</code></td>
+    <td>none, 2px, 3px, 4px</td>
+    <td>border-width</td>
+    </tr>
+    <tr>
+    <td><code>divide</code></td>
+    <td>none, 2px, 3px, 4px</td>
+    <td>border-between objects</td>
+    </tr>
+    <tr>
+    <td><code>rounded</code></td>
+    <td>none, xs, sm, lg, xl</td>
+    <td>border-radius</td>
+    </tr>
+    <tr>
+    <td><code>margin</code></td>
+    <td>none, 1/4x, 1/2x, 3/4x, xs, sm, lg, xl, 2x</td>
+    <td>space around object</td>
+    </tr>
+    <tr>
+    <td><code>gap</code></td>
+    <td>none, xs, sm, lg, xl</td>
+    <td>gap in grid</td>
+    </tr>
+    <tr>
+    <td><code>space</code></td>
+    <td>none, xs, sm, lg, xl, 2x, 4x</td>
+    <td>space between objects</td>
+    </tr>
+    <tr>
+    <td><code>pad</code></td>
+    <td>none, 1/4x, 1/2x, 3/4x, xs, sm, lg, xl, 2x</td>
+    <td>padding of an object</td>
+    </tr>
+    <tr>
+    <td><code>text</code></td>
+    <td>xs, sm, lg, xl, 2x, 4x, 8x</td>
+    <td>font-size of text</td>
+    </tr>
+    <tr>
+    <td><code>stroke</code></td>
+    <td>sm, md, lg, 2x, 3x</td>
+    <td>stroke of svg</td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+    <h2>Colors</h2>
+    <p>Color modifiers build out an entire spectrum of utility classes related to color.</p>
+
+    <h4>Extending <code>$uniform_configs.colors</code></h4>
+    <p>You can configure a color to a color (hex, hsl, rgb...), <code>false</code>, or a hash (options below). Setting to a color ignores options for the color (mainly spectrum option). Setting to <code>false</code> removes the color (this is helpful to remove a uniform default color).</p>
+    
+    <h4>Defaults</h4>
+
+    <table class="width-full">
+    <tr>
+        <th></th>
+        <% (1..9).each do |i| %>
+            <th class="text-center"><%= i*10 %></th>
+        <% end %>
+    </tr>
+    <% css_configs["colors"].keys.filter{|color| !color.index("-")}.each do |color| %>
+        <% next unless css_configs["colors"].keys.include?("#{color}-10") %>
+        <tr class="text-white">
+            <td class="width-1/10 bg-<%= color %> pad">
+                <%= color %>
+            </td>
+            <% (1..9).each do |i| %>
+                <td class="bg-<%= color %>-<%= i*10 %> text-xs pad">
+                    <%= color %>-<%= i*10 %>
+                </td>
+            <% end %>
+        </tr>
+    <% end %>
+    </table>
+    
+    <h4>Options for <code>$uniform_configs.colors.[color]</code></h4>
+    <table class="uniformTable">
+    <thead>
+    <tr>
+    <th>key</th>
+    <th>type</th>
+    <th>description</th>
+    <th>default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><code>spectrum</code></td>
+    <td>Boolean</td>
+    <td>expand the given color to a spectrum of lightness (10) to darkness (90) (ex. <code>text-red-30</code>)</td>
+    <td>false</td>
+    </tr>
+    <tr>
+    <td><code>color</code></td>
+    <td>Hex, HSL, RGB</td>
+    <td>color value of key</td>
+    <td>–</td>
+    </tr>
+    <tr>
+    <td><code>[key]</code></td>
+    <td>Hex, HSL, RGB</td>
+    <td>any extra key given will create an additional color with the given key as postfix modifier of the key (ex. <code>red: (light: #E1563E)</code> will produce <code>.text-red-light{color: #E1563E}</code>)</td>
+    <td>–</td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+    <h2>Combinators</h2>
+    Combinator modifiers give most utility classes the ability to apply a utility to the combinator by postfixing the combinator with <code>[utility]-[combinator]</code> (ex. <code>margin-bottom-></code>)
+    <h4>Example</h4>
+
+    <div class="flex space-h">
+    <% code('scss') do %>
+    $uniform_configs: (
+        combinators: (">": ">")
+    )
+    @import 'uniform';
+    <% end %>
+    <div class="text-bold pad-top">
+        Generates
+    </div>
+    <% code('css') do %>
+    .margin-bottom-> > * {
+        margin-bottom: 1em;
+    }
+    <% end %>
+    </div>
+
+
+    <h2>Pseudo Classes</h2>
+    <p>Pseudo class modifiers give most utility classes the ability to scope to the given pseudo class by prefixing a utility with <code>[pseudo class]:[utility]</code>. (ex <code>hover:text-red</code>).</p>
+    
+    <h4>Example</h4>
+
+    <div class="flex space-h">
+    <% code('scss') do %>
+    $uniform_configs: (
+        pseudo_classes: (hover: "hover")
+    )
+    @import 'uniform';
+    <% end %>
+    <div class="text-bold pad-top">
+        Generates
+    </div>
+    <% code('css') do %>
+    .hover:text-red {
+        color: #E1563E;
+    }
+    <% end %>
+    </div>
+    
+    <h4>Group Hover</h4>
+    <p>There is one predefined pseudo class for <code>group-hover</code>. If the key <code>group-hover</code> is set then the following will be generated:</p>
+    <% code('scss') do %>
+        .group:hover {
+            .group-hover:bg-blue {
+                background: #0994E2
+            }
+        }
+    <% end %>
+
+
+
+    <h2>Breakpoints</h2>
+    Breakpoint modifiers give most utility classes the ability to be responsive by prefixing a utlity with <code>[breakpoint]:[utility]</code> (ex. <code>md:margin-top</code>), so that that utility is only applied in the given media query.
+    <h4>Example</h4>
+    <div class="flex space-h">
+        <% code('scss') do %>
+        $uniform_configs: (
+            breaking_points: (
+                include_containers: true,
+                mobile: "max-width: 719px"
+            )
+        )
+        @import 'uniform';
+        <% end %>
+        <div class="text-bold pad-top">
+            Generates
+        </div>
+
+        <% code('css') do %>
+        @media only screen and (min-width: 720px){
+            .mobile:margin-top {
+                margin-top: 1em;
+            }
+        }
+        .mobile-container .margin-top {
+            margin-top: 1em;
+        }
         <% end %>
     </div>
+    
+    
+    <h4>Options for <code>$uniform_configs.breakpoints</code></h4>
+    <table class="uniformTable">
+    <thead>
+    <tr>
+    <th>key</th>
+    <th>type</th>
+    <th>description</th>
+    <th>default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><code>include_containers</code></td>
+    <td>Boolean</td>
+    <td>toggle including containers for breakpoints like <code>.md-container &gt; md:margin-top</code></td>
+    <td>false</td>
+    </tr>
+    <tr>
+    <td><code>[key]</code></td>
+    <td>media query</td>
+    <td>any key given will create a breakpoint with given key as utility name and value as the media query</td>
+    <td>–</td>
+    </tr>
+    </tbody>
+    </table>
+    
 </div>
 <div class="section">
     <h1>Contributors</h1>

@@ -77,7 +77,7 @@ button{
     cursor: pointer;
 }
 button{
-    font-family: $base-font;
+    font-family: map-get($uniform_configs, 'base-font');
     font-size: 1em;
 }
 

@@ -44,7 +44,7 @@
 //----------------------------------------------------------------
 //             Color
 //----------------------------------------------------------------
-@each $name, $color in $color_spectrum {
+@each $name, $color in map-get($uniform_configs, 'colors') {
     .uniformButton.-#{$name},
     .uniformButtonGroup.-#{$name} > *{
         background-color: rgba($color, var(--bg-opacity));
