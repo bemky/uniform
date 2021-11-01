@@ -174,17 +174,17 @@ after_build do |builder|
     colspan = 10
     colspan += 1 if colors.find("#{color}-10")
     
-    File.write("./docs/assets/colors/#{color}.svg", "<img src=\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>\'>")
+    File.write("./docs/assets/colors/#{color}-v2.svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>")
     
     if colors.keys.include?("#{color}-10")
-      row = "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{color}.svg\" style=\"inline-block\">#{color}</td>"
+      row = "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{color}-v2.svg\" style=\"inline-block\">#{color}</td>"
       (1..9).each do |i|
         sub_color = "#{color}-#{i*10}"
-        File.write("./docs/assets/colors/#{sub_color}.svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[sub_color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>")
-        row += "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{sub_color}.svg\" style=\"inline-block\">#{sub_color}</td>"
+        File.write("./docs/assets/colors/#{sub_color}-v2.svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[sub_color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>")
+        row += "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{sub_color}-v2.svg\" style=\"inline-block\">#{sub_color}</td>"
       end
     else
-      row = "<td colspan=10><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{color}.svg\" style=\"inline-block\">#{color}</td>"
+      row = "<td colspan=10><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{color}-v2docs/assets/colors\" style=\"inline-block\">#{color}</td>"
     end
     rows += "<tr>#{row}</tr>"
   end
