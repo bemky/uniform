@@ -1,4 +1,4 @@
-@import 'uniform/config';
+@import 'uniform/functions/map';
 
 @mixin text-overflow($inherit:false){
     @if $inherit {
@@ -36,7 +36,7 @@
 }
 
 @mixin breakpoint($breakpoint){
-    @media only screen and (map-get(map-get($uniform_configs, 'breakpoints'), $breakpoint)){
+    @media only screen and (get($uniform_configs, 'breakpoints', $breakpoint)){
         @content;
     }
 }
@@ -49,7 +49,7 @@
     .#{$selector}{
         @content
     }
-    @if map-get(map-get($uniform_configs, 'breakpoints'), 'include_containers') {
+    @if get($uniform_configs, 'breakpoints', 'include_containers') {
         @include child-rule($selector) {
             @content
         }
@@ -61,7 +61,7 @@
                 @content
             }
         }
-        @if map-get(map-get($uniform_configs, 'breakpoints'), 'include_containers') {
+        @if get($uniform_configs, 'breakpoints', 'include_containers') {
             .#{$breakpoint}-container{
                 .#{$breakpoint}\:#{$selector}{
                     @content
@@ -117,7 +117,7 @@
         $key: str-slice($key, 1, str-index($key, '-') - 1);
     }
     
-    @each $size, $value in map-get(map-get($uniform_configs, 'sizes'), $key) {
+    @each $size, $value in get($uniform_configs, 'sizes', $key) {
         $class: "#{$selector}-#{$size}";
         @if $size == '' {
             $class: $selector;

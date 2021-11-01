@@ -1,3 +1,5 @@
+@import 'uniform/functions/icons';
+
 .uniformSelect{
     --border-color: #{red(color('gray-40'))}, #{green(color('gray-40'))}, #{blue(color('gray-40'))};
     appearance: none;

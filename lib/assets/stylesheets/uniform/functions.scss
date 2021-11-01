@@ -1,102 +1,11 @@
+@import 'uniform/functions/map';
+
 @function toRGB($color){
     @return red($color), green($color), blue($color);
 }
 @function color($key) {
-    @return map-get(map-get($uniform_configs, 'colors'), $key);
+    @return get($uniform_configs, 'colors', $key);
 }
 @function size($key) {
-    @return map-get(map-get($uniform_configs, 'sizes'), $key);
-}
-
-@function mapToString($map) {
-    $string: '"';
-    
-    @each $key, $value in $map {
-        @if type-of($value) == "string" {
-            $string: str-insert($string, $key, -1);
-            $string: str-insert($string, "/", -1);
-            $string: str-insert($string, $value, -1);
-            $string: str-insert($string, ",", -1);
-        }
-    }
-    $string: str-slice($string, 1, -2);
-    $string: str-insert($string, '"', -1);
-    
-    @return $string;
-}
-
-@function mapToJSON($map) {
-    $string: '';
-    
-    @each $key, $value in $map {
-        @if type-of($value) == "map" {
-            $string: str-insert($string, "\"#{$key}\": #{mapToJSON($value)},", -1);
-        } @else {
-            $string: str-insert($string, "\"#{$key}\": \"#{$value}\",", -1);
-        }
-    }
-    
-    @return "{#{str-slice($string, 0, -2)}}";
-}
-
-//----------------------------------------------------------------
-//             Icons
-//----------------------------------------------------------------
-
-
-
-/// Replace `$search` with `$replace` in `$string`
-/// @author Hugo Giraudel
-/// @param {String} $string - Initial string
-/// @param {String} $search - Substring to replace
-/// @param {String} $replace ('') - New value
-/// @return {String} - Updated string
-@function str-replace($string, $search, $replace: '') {
-    $index: str-index($string, $search);
-  
-    @if $index {
-        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
-    }
-  
-    @return $string;
-}
-
-@function uri-encode($svg) {
-    $encoded: '';
-    $slice: 2000;
-    $index: 0;
-    $loops: ceil(str-length($svg) / $slice);
-
-    @for $i from 1 through $loops {
-        $chunk: str-slice($svg, $index, $index + $slice - 1);
-        $chunk: str-replace($chunk, '"', "'");
-        $chunk: str-replace($chunk, '<', '%3C');
-        $chunk: str-replace($chunk, '>', '%3E');
-        $chunk: str-replace($chunk, '&', '%26');
-        $chunk: str-replace($chunk, '#', '%23');
-        $encoded: #{$encoded}#{$chunk};
-        $index: $index + $slice;
-    }
-
-    @return $encoded;
-}
-
-@function svg-encode ($svg) {
-    @return url("data:image/svg+xml;charset=utf8,#{uri-encode($svg)}");
-}
-
-@function icon-check($color: #000000){
-    @return svg-encode('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32"><path d="M28.998 8.531l-2.134-2.134c-0.394-0.393-1.030-0.393-1.423 0l-12.795 12.795-6.086-6.13c-0.393-0.393-1.029-0.393-1.423 0l-2.134 2.134c-0.393 0.394-0.393 1.030 0 1.423l8.924 8.984c0.393 0.393 1.030 0.393 1.423 0l15.648-15.649c0.393-0.392 0.393-1.030 0-1.423z" fill="#{$color}"></path></svg>');
-}
-
-@function icon-x($size: 32, $color: #000000){
-    @return svg-encode('<svg version="1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="#{$size}px" height="#{$size}px" viewBox="0 0 64 64" xml:space="preserve" fill="#{$color}"><g><rect x="-2.352" y="29.385" transform="matrix(0.7071 0.7071 -0.7071 0.7071 32.3545 -14.3899)" width="71.799" height="4.95"/></g><g><rect x="-2.374" y="29.376" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -12.7023 33.0352)" width="71.799" height="4.95"/></g></svg>');
-}
-
-@function icon-circle($width: 2, $height: 2, $radius: 1, $color: #000000){
-    @return svg-encode('<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="#{$width}px" height="#{$height}px" viewBox="0 0 #{$width} #{$height}" enable-background="new 0 0 #{$width} #{$height}" xml:space="preserve"><circle cx="#{$width / 2}" cy="#{$height / 2}" r="#{$radius}" fill="#{$color}"/></svg>');
-}
-
-@function icon-x-block($size: 32, $color: #000000){
-    @return svg-encode('<svg width="#{$size}px" height="#{$size}px"  fill="#{$color}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 10.5 10.5" style="enable-background:new 0 0 10.5 10.5;" xml:space="preserve"><path d="M8.1,1.3C8.4,1,8.9,1,9.2,1.3c0,0,0,0,0,0c0.3,0.3,0.3,0.8,0,1.1L2.4,9.3c-0.3,0.3-0.8,0.3-1.1,0S1,8.4,1.3,8.1L8.1,1.3z"/><path d="M9.2,8.1c0.3,0.3,0.4,0.8,0.1,1.1c0,0,0,0,0,0l0,0c-0.3,0.3-0.8,0.3-1.1,0L1.3,2.4C1,2.1,0.9,1.6,1.3,1.3c0,0,0,0,0,0l0,0	C1.6,1,2.1,1,2.4,1.3L9.2,8.1z"/></svg>');
+    @return get($uniform_configs, 'sizes', $key);
 }

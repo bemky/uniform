@@ -1,0 +1,95 @@
+@function get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}
+
+@function set($map, $keys...) {
+    $maps: ($map,);
+    $result: null;
+    
+    @if length($keys) == 1 {
+        @error "Not enought key arguments";
+    } @else if length($keys) == 2 {
+        @return map-merge($map, (nth($keys, 1): nth($keys, 2)));
+    }
+    
+    @for $i from 1 through length($keys) - 2 {
+        $key: nth($keys, $i);
+        $map: nth($maps, -1);
+        @debug $map;
+        $value: get($map, $key);
+        @if type-of($value) != 'map' {
+            $value: ();
+        }
+        $maps: append($maps, $value);
+    }
+    
+    @for $i from length($maps) through 1 {
+        $map: nth($maps, $i);
+        $key: nth($keys, $i);
+        $value: if($i == length($maps), nth($keys, -1), $result);
+        $result: map-merge($map, ($key: $value));
+    }
+    
+    @return $result;
+}
+
+@function merge($maps...) {
+    $target: ();
+    @each $map in $maps {
+        @each $key, $value in $map {
+            $current: get($target, $key);
+            @if type-of($value) == 'map' and type-of($current) == "map" {
+                $target: set($target, $key, merge($current, $value))
+            } @else {
+                $target: set($target, $key, $value);
+            }
+        }
+    }
+    @return $target;
+}
+
+@function purge($map) {
+    $target: $map;
+    @each $key, $value in $map {
+        @if type-of($value) == "map" {
+            $target: set($map, $key, purge($value))
+        } @else if $value == false OR $value == "false" {
+            $target: map-remove($map, $key);
+        }
+    }
+    @return $target;
+}
+
+@function mapToString($map) {
+    $string: '"';
+    
+    @each $key, $value in $map {
+        @if type-of($value) == "string" {
+            $string: str-insert($string, $key, -1);
+            $string: str-insert($string, "/", -1);
+            $string: str-insert($string, $value, -1);
+            $string: str-insert($string, ",", -1);
+        }
+    }
+    $string: str-slice($string, 1, -2);
+    $string: str-insert($string, '"', -1);
+    
+    @return $string;
+}
+
+@function mapToJSON($map) {
+    $string: '';
+    
+    @each $key, $value in $map {
+        @if type-of($value) == "map" {
+            $string: str-insert($string, "\"#{$key}\": #{mapToJSON($value)},", -1);
+        } @else {
+            $string: str-insert($string, "\"#{$key}\": \"#{$value}\",", -1);
+        }
+    }
+    
+    @return "{#{str-slice($string, 0, -2)}}";
+}

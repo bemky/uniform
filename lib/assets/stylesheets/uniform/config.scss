@@ -1,6 +1,9 @@
+@import 'uniform/functions/map';
+
 $system-font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 
-$uniform_defaults: (
+$uniform_configs: if(variable-exists('uniform_configs'), $uniform_configs, ());
+$uniform_configs: purge(merge((
     "base-font": $system-font,
     "combinators": (),
     "pseudo_classes": (
@@ -124,19 +127,7 @@ $uniform_defaults: (
             "3x" : 3px
         )
     )
-);
-
-$uniform_configs: if(variable-exists('$uniform_configs'), $uniform_configs, ());
-
-@each $key, $default_value in $uniform_defaults {
-    $value: map-get($uniform_configs, $key);
-    @if type-of($default_value) == 'map' and type-of($value) == 'map' {
-        $value: map-merge($default_value, $value);
-    } @else if type-of($value) == 'null' {
-        $value: $default_value;
-    }
-    $uniform_configs: map-merge($uniform_configs, ("#{$key}": $value));
-}
+), $uniform_configs));
 
 //----------------------------------------------------------------
 //             Color Variations (ex. gray-30 from gray)
@@ -163,22 +154,3 @@ $uniform_colors: map-get($uniform_configs, 'colors');
     }
 }
 $uniform_configs: map-merge($uniform_configs, (colors: $uniform_colors));
-
-
-//----------------------------------------------------------------
-//             Purge Sizes of false values
-//----------------------------------------------------------------
-$uniform_sizes: map-get($uniform_configs, 'sizes');
-@each $type, $sizes in $uniform_sizes {
-    @if type-of($sizes) == "bool" and $sizes == false {
-        $uniform_sizes: map-remove($uniform_sizes, $type);
-    } @else {
-        @each $size, $value in $sizes {
-            @if type-of($value) == 'bool' and $value == false {
-                $sizes: map-remove($sizes, $size);
-            }
-        }
-        $uniform_sizes: map-merge($uniform_sizes, ("#{$type}": $sizes));
-    }
-}
-$uniform_configs: map-merge($uniform_configs, (sizes: $uniform_sizes));
