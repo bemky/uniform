@@ -180,7 +180,7 @@ after_build do |builder|
       row = "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{color}.svg\" style=\"inline-block\">#{color}</td>"
       (1..9).each do |i|
         sub_color = "#{color}-#{i*10}"
-        File.write("./docs/assets/colors/#{sub_color}.svg", "<img src=\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[sub_color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>\'>")
+        File.write("./docs/assets/colors/#{sub_color}.svg", "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"#{colors[sub_color]}\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle></svg>")
         row += "<td><img src=\"https://raw.githubusercontent.com/bemky/uniform/master/docs/assets/colors/#{sub_color}.svg\" style=\"inline-block\">#{sub_color}</td>"
       end
     else
