@@ -5,7 +5,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1,user-scalable=0">
     <title>Uniform</title>
     
-    <link href="/assets/main-a153a190a069f6dba0c8864bd8c4366c767131a3b490b44c4cd0fb1d851cdde1.css" rel="stylesheet" />
+    <link href="/assets/main-7fb2e60ab0df8a19577c796b8ef5def50ff2428249619b1b4820b60d0cca3737.css" rel="stylesheet" />
     
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/static-assets/favicons/apple-touch-icon-57x57.png" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/static-assets/favicons/apple-touch-icon-114x114.png" />
@@ -199,51 +199,433 @@
 </div>
 <div class="section">
     <h1>Configuration</h1>
-    <h3>Scope Uniform Components</h3>
-    <p class="margin-v">You can scope the components you want included in your assets.</p>
     
-    <h4>Sass</h4>
-    <div class="margin-v">
-<div class="highlight"><pre class=" css"><code><span class="k">@import</span> <span class="s2">'uniform'</span><span class="p">;</span>
-<span class="c">/* ------ */</span>
-<span class="c">/* - or - */</span>
-<span class="c">/* ------ */</span>
-<span class="k">@import</span> <span class="s2">'uniform/base'</span><span class="p">;</span> <span class="o">//</span> <span class="nt">required</span>
-<span class="k">@import</span> <span class="s2">'uniform/utilities'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/defaults'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/utilities/borders'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/utilities/text'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/utilities/svg'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/utilities/layout'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/utilities/effects'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/utilities/position'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/utilities/spacing'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/utilities/sizing'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/utilities/background'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/label'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/pointer'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/buttons'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/floating-label-input'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/select'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/checkbox'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/container'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/table'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/dropdown'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/loaders'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/z-input'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/nav'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/input-group'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/thumb'</span><span class="p">;</span>
-<span class="k">@import</span> <span class="s2">'uniform/components/modal'</span><span class="p">;</span></code></pre></div>    </div>
+    <p class="margin-v">
+        Define configuration by setting keys of <code>$uniform_configs</code> prior to <code>@import 'uniform';</code> <code>$uniform_configs</code> is deep merged with defaults giving <code>$uniform_configs</code> priority. To remove default keys give them value of <code>false</code>.
+    </p>
     
-    <h4>Javascript</h4>
-    <div class="margin-v">
-<div class="highlight"><pre class=" javascript"><code><span class="c1">// javascript</span>
-<span class="k">import</span> <span class="p">{</span><span class="nx">Dropdown</span><span class="p">}</span> <span class="k">as</span> <span class="nx">Uniform</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">uniform</span><span class="dl">'</span><span class="p">;</span>
+    <h3>Example</h3>
+<div class="highlight"><pre class=" scss"><code><span class="nv">$uniform_configs</span><span class="p">:</span> <span class="p">(</span>
+    <span class="n">sizes</span><span class="o">:</span> <span class="p">(</span>
+        <span class="n">padding</span><span class="o">:</span> <span class="p">(</span>
+            <span class="s2">"8x"</span><span class="o">:</span> <span class="s2">"8rem"</span>
+        <span class="p">)</span>
+    <span class="p">)</span><span class="o">,</span>
+    <span class="n">colors</span><span class="o">:</span> <span class="p">()</span><span class="o">,</span>
+    <span class="n">pseudo_classes</span><span class="o">:</span> <span class="p">(</span>
+        <span class="s2">"hover"</span><span class="o">:</span> <span class="n">hover</span><span class="o">,</span>
+    <span class="p">)</span><span class="o">,</span>
+    <span class="n">combinators</span><span class="o">:</span> <span class="p">(</span>
+        <span class="s2">"&gt;"</span><span class="o">:</span> <span class="s2">"&gt;"</span>
+    <span class="p">)</span><span class="o">,</span>
+    <span class="n">breakpoints</span><span class="o">:</span> <span class="p">(</span>
+        <span class="n">include_containers</span><span class="o">:</span> <span class="bp">true</span><span class="o">,</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="o">@</span><span class="n">import</span> <span class="s1">'uniform'</span><span class="p">;</span></code></pre></div>    
+    <h2>Sizes</h2>
+    Size modifiers give a type of utility a size by postfixing to the type with a <code>-</code> (ex. <code>margin-bottom-2x</code>). Sizes are defined per type.
 
-<span class="k">new</span> <span class="nx">Dropdown</span><span class="p">({</span>
-    <span class="na">el</span><span class="p">:</span> <span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">.example</span><span class="dl">'</span><span class="p">)</span>
-<span class="p">})</span></code></pre></div>    </div>
+    <h4>Extending <code>$uniform_configs.sizes</code></h4>
+    <table class="uniformTable">
+    <thead>
+    <tr>
+    <th>key</th>
+    <th>defaults</th>
+    <th>description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><code>border</code></td>
+    <td>none, 2px, 3px, 4px</td>
+    <td>border-width</td>
+    </tr>
+    <tr>
+    <td><code>divide</code></td>
+    <td>none, 2px, 3px, 4px</td>
+    <td>border-between objects</td>
+    </tr>
+    <tr>
+    <td><code>rounded</code></td>
+    <td>none, xs, sm, lg, xl</td>
+    <td>border-radius</td>
+    </tr>
+    <tr>
+    <td><code>margin</code></td>
+    <td>none, 1/4x, 1/2x, 3/4x, xs, sm, lg, xl, 2x</td>
+    <td>space around object</td>
+    </tr>
+    <tr>
+    <td><code>gap</code></td>
+    <td>none, xs, sm, lg, xl</td>
+    <td>gap in grid</td>
+    </tr>
+    <tr>
+    <td><code>space</code></td>
+    <td>none, xs, sm, lg, xl, 2x, 4x</td>
+    <td>space between objects</td>
+    </tr>
+    <tr>
+    <td><code>pad</code></td>
+    <td>none, 1/4x, 1/2x, 3/4x, xs, sm, lg, xl, 2x</td>
+    <td>padding of an object</td>
+    </tr>
+    <tr>
+    <td><code>text</code></td>
+    <td>xs, sm, lg, xl, 2x, 4x, 8x</td>
+    <td>font-size of text</td>
+    </tr>
+    <tr>
+    <td><code>stroke</code></td>
+    <td>sm, md, lg, 2x, 3x</td>
+    <td>stroke of svg</td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+    <h2>Colors</h2>
+    <p>Color modifiers build out an entire spectrum of utility classes related to color.</p>
+
+    <h4>Extending <code>$uniform_configs.colors</code></h4>
+    <p>You can configure a color to a color (hex, hsl, rgb...), <code>false</code>, or a hash (options below). Setting to a color ignores options for the color (mainly spectrum option). Setting to <code>false</code> removes the color (this is helpful to remove a uniform default color).</p>
+    
+    <h4>Defaults</h4>
+
+    <table class="width-full">
+    <tr>
+        <th></th>
+            <th class="text-center">10</th>
+            <th class="text-center">20</th>
+            <th class="text-center">30</th>
+            <th class="text-center">40</th>
+            <th class="text-center">50</th>
+            <th class="text-center">60</th>
+            <th class="text-center">70</th>
+            <th class="text-center">80</th>
+            <th class="text-center">90</th>
+    </tr>
+        <tr class="text-white">
+            <td class="width-1/10 bg-gray pad">
+                gray
+            </td>
+                <td class="bg-gray-10 text-xs pad">
+                    gray-10
+                </td>
+                <td class="bg-gray-20 text-xs pad">
+                    gray-20
+                </td>
+                <td class="bg-gray-30 text-xs pad">
+                    gray-30
+                </td>
+                <td class="bg-gray-40 text-xs pad">
+                    gray-40
+                </td>
+                <td class="bg-gray-50 text-xs pad">
+                    gray-50
+                </td>
+                <td class="bg-gray-60 text-xs pad">
+                    gray-60
+                </td>
+                <td class="bg-gray-70 text-xs pad">
+                    gray-70
+                </td>
+                <td class="bg-gray-80 text-xs pad">
+                    gray-80
+                </td>
+                <td class="bg-gray-90 text-xs pad">
+                    gray-90
+                </td>
+        </tr>
+        <tr class="text-white">
+            <td class="width-1/10 bg-green pad">
+                green
+            </td>
+                <td class="bg-green-10 text-xs pad">
+                    green-10
+                </td>
+                <td class="bg-green-20 text-xs pad">
+                    green-20
+                </td>
+                <td class="bg-green-30 text-xs pad">
+                    green-30
+                </td>
+                <td class="bg-green-40 text-xs pad">
+                    green-40
+                </td>
+                <td class="bg-green-50 text-xs pad">
+                    green-50
+                </td>
+                <td class="bg-green-60 text-xs pad">
+                    green-60
+                </td>
+                <td class="bg-green-70 text-xs pad">
+                    green-70
+                </td>
+                <td class="bg-green-80 text-xs pad">
+                    green-80
+                </td>
+                <td class="bg-green-90 text-xs pad">
+                    green-90
+                </td>
+        </tr>
+        <tr class="text-white">
+            <td class="width-1/10 bg-blue pad">
+                blue
+            </td>
+                <td class="bg-blue-10 text-xs pad">
+                    blue-10
+                </td>
+                <td class="bg-blue-20 text-xs pad">
+                    blue-20
+                </td>
+                <td class="bg-blue-30 text-xs pad">
+                    blue-30
+                </td>
+                <td class="bg-blue-40 text-xs pad">
+                    blue-40
+                </td>
+                <td class="bg-blue-50 text-xs pad">
+                    blue-50
+                </td>
+                <td class="bg-blue-60 text-xs pad">
+                    blue-60
+                </td>
+                <td class="bg-blue-70 text-xs pad">
+                    blue-70
+                </td>
+                <td class="bg-blue-80 text-xs pad">
+                    blue-80
+                </td>
+                <td class="bg-blue-90 text-xs pad">
+                    blue-90
+                </td>
+        </tr>
+        <tr class="text-white">
+            <td class="width-1/10 bg-red pad">
+                red
+            </td>
+                <td class="bg-red-10 text-xs pad">
+                    red-10
+                </td>
+                <td class="bg-red-20 text-xs pad">
+                    red-20
+                </td>
+                <td class="bg-red-30 text-xs pad">
+                    red-30
+                </td>
+                <td class="bg-red-40 text-xs pad">
+                    red-40
+                </td>
+                <td class="bg-red-50 text-xs pad">
+                    red-50
+                </td>
+                <td class="bg-red-60 text-xs pad">
+                    red-60
+                </td>
+                <td class="bg-red-70 text-xs pad">
+                    red-70
+                </td>
+                <td class="bg-red-80 text-xs pad">
+                    red-80
+                </td>
+                <td class="bg-red-90 text-xs pad">
+                    red-90
+                </td>
+        </tr>
+        <tr class="text-white">
+            <td class="width-1/10 bg-yellow pad">
+                yellow
+            </td>
+                <td class="bg-yellow-10 text-xs pad">
+                    yellow-10
+                </td>
+                <td class="bg-yellow-20 text-xs pad">
+                    yellow-20
+                </td>
+                <td class="bg-yellow-30 text-xs pad">
+                    yellow-30
+                </td>
+                <td class="bg-yellow-40 text-xs pad">
+                    yellow-40
+                </td>
+                <td class="bg-yellow-50 text-xs pad">
+                    yellow-50
+                </td>
+                <td class="bg-yellow-60 text-xs pad">
+                    yellow-60
+                </td>
+                <td class="bg-yellow-70 text-xs pad">
+                    yellow-70
+                </td>
+                <td class="bg-yellow-80 text-xs pad">
+                    yellow-80
+                </td>
+                <td class="bg-yellow-90 text-xs pad">
+                    yellow-90
+                </td>
+        </tr>
+        <tr class="text-white">
+            <td class="width-1/10 bg-purple pad">
+                purple
+            </td>
+                <td class="bg-purple-10 text-xs pad">
+                    purple-10
+                </td>
+                <td class="bg-purple-20 text-xs pad">
+                    purple-20
+                </td>
+                <td class="bg-purple-30 text-xs pad">
+                    purple-30
+                </td>
+                <td class="bg-purple-40 text-xs pad">
+                    purple-40
+                </td>
+                <td class="bg-purple-50 text-xs pad">
+                    purple-50
+                </td>
+                <td class="bg-purple-60 text-xs pad">
+                    purple-60
+                </td>
+                <td class="bg-purple-70 text-xs pad">
+                    purple-70
+                </td>
+                <td class="bg-purple-80 text-xs pad">
+                    purple-80
+                </td>
+                <td class="bg-purple-90 text-xs pad">
+                    purple-90
+                </td>
+        </tr>
+    </table>
+    
+    <h4>Options for <code>$uniform_configs.colors.[color]</code></h4>
+    <table class="uniformTable">
+    <thead>
+    <tr>
+    <th>key</th>
+    <th>type</th>
+    <th>description</th>
+    <th>default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><code>spectrum</code></td>
+    <td>Boolean</td>
+    <td>expand the given color to a spectrum of lightness (10) to darkness (90) (ex. <code>text-red-30</code>)</td>
+    <td>false</td>
+    </tr>
+    <tr>
+    <td><code>color</code></td>
+    <td>Hex, HSL, RGB</td>
+    <td>color value of key</td>
+    <td>–</td>
+    </tr>
+    <tr>
+    <td><code>[key]</code></td>
+    <td>Hex, HSL, RGB</td>
+    <td>any extra key given will create an additional color with the given key as postfix modifier of the key (ex. <code>red: (light: #E1563E)</code> will produce <code>.text-red-light{color: #E1563E}</code>)</td>
+    <td>–</td>
+    </tr>
+    </tbody>
+    </table>
+
+
+
+    <h2>Combinators</h2>
+    Combinator modifiers give most utility classes the ability to apply a utility to the combinator by postfixing the combinator with <code>[utility]-[combinator]</code> (ex. <code>margin-bottom-></code>)
+    <h4>Example</h4>
+
+    <div class="flex space-h">
+<div class="highlight"><pre class=" scss"><code><span class="nv">$uniform_configs</span><span class="p">:</span> <span class="p">(</span>
+    <span class="n">combinators</span><span class="o">:</span> <span class="p">(</span><span class="s2">"&gt;"</span><span class="o">:</span> <span class="s2">"&gt;"</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="o">@</span><span class="n">import</span> <span class="s1">'uniform'</span><span class="p">;</span></code></pre></div>    <div class="text-bold pad-top">
+        Generates
+    </div>
+<div class="highlight"><pre class=" css"><code><span class="nc">.margin-bottom-</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span>
+    <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>    </div>
+
+
+    <h2>Pseudo Classes</h2>
+    <p>Pseudo class modifiers give most utility classes the ability to scope to the given pseudo class by prefixing a utility with <code>[pseudo class]:[utility]</code>. (ex <code>hover:text-red</code>).</p>
+    
+    <h4>Example</h4>
+
+    <div class="flex space-h">
+<div class="highlight"><pre class=" scss"><code><span class="nv">$uniform_configs</span><span class="p">:</span> <span class="p">(</span>
+    <span class="n">pseudo_classes</span><span class="o">:</span> <span class="p">(</span><span class="n">hover</span><span class="o">:</span> <span class="s2">"hover"</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="o">@</span><span class="n">import</span> <span class="s1">'uniform'</span><span class="p">;</span></code></pre></div>    <div class="text-bold pad-top">
+        Generates
+    </div>
+<div class="highlight"><pre class=" css"><code><span class="nc">.hover</span><span class="nd">:text-red</span> <span class="p">{</span>
+    <span class="nl">color</span><span class="p">:</span> <span class="m">#E1563E</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>    </div>
+    
+    <h4>Group Hover</h4>
+    <p>There is one predefined pseudo class for <code>group-hover</code>. If the key <code>group-hover</code> is set then the following will be generated:</p>
+<div class="highlight"><pre class=" scss"><code><span class="nc">.group</span><span class="nd">:hover</span> <span class="p">{</span>
+    <span class="nc">.group-hover</span><span class="nd">:bg-blue</span> <span class="p">{</span>
+        <span class="nl">background</span><span class="p">:</span> <span class="mh">#0994E2</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+
+
+    <h2>Breakpoints</h2>
+    Breakpoint modifiers give most utility classes the ability to be responsive by prefixing a utlity with <code>[breakpoint]:[utility]</code> (ex. <code>md:margin-top</code>), so that that utility is only applied in the given media query.
+    <h4>Example</h4>
+    <div class="flex space-h">
+<div class="highlight"><pre class=" scss"><code><span class="nv">$uniform_configs</span><span class="p">:</span> <span class="p">(</span>
+    <span class="n">breaking_points</span><span class="o">:</span> <span class="p">(</span>
+        <span class="n">include_containers</span><span class="o">:</span> <span class="bp">true</span><span class="o">,</span>
+        <span class="n">mobile</span><span class="o">:</span> <span class="s2">"max-width: 719px"</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+<span class="o">@</span><span class="n">import</span> <span class="s1">'uniform'</span><span class="p">;</span></code></pre></div>        <div class="text-bold pad-top">
+            Generates
+        </div>
+
+<div class="highlight"><pre class=" css"><code><span class="k">@media</span> <span class="n">only</span> <span class="n">screen</span> <span class="n">and</span> <span class="p">(</span><span class="n">min-width</span><span class="p">:</span> <span class="m">720px</span><span class="p">){</span>
+    <span class="nc">.mobile</span><span class="nd">:margin-top</span> <span class="p">{</span>
+        <span class="nl">margin-top</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nc">.mobile-container</span> <span class="nc">.margin-top</span> <span class="p">{</span>
+    <span class="nl">margin-top</span><span class="p">:</span> <span class="m">1em</span><span class="p">;</span>
+<span class="p">}</span></code></pre></div>    </div>
+    
+    
+    <h4>Options for <code>$uniform_configs.breakpoints</code></h4>
+    <table class="uniformTable">
+    <thead>
+    <tr>
+    <th>key</th>
+    <th>type</th>
+    <th>description</th>
+    <th>default</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td><code>include_containers</code></td>
+    <td>Boolean</td>
+    <td>toggle including containers for breakpoints like <code>.md-container &gt; md:margin-top</code></td>
+    <td>false</td>
+    </tr>
+    <tr>
+    <td><code>[key]</code></td>
+    <td>media query</td>
+    <td>any key given will create a breakpoint with given key as utility name and value as the media query</td>
+    <td>–</td>
+    </tr>
+    </tbody>
+    </table>
+    
 </div>
 <div class="section">
     <h1>Contributors</h1>
