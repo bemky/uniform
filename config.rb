@@ -190,7 +190,7 @@ after_build do |builder|
   end
   
   readme = File.open('./README.md').read
-  readme.sub!(/\<\!\-\- COLORS \-\-\>.*\<\!\-\- COLORS END \-\-\>/m, rows)
+  readme.sub!(/\<\!\-\- COLORS \-\-\>.*\<\!\-\- COLORS END \-\-\>/m, "<!-- COLORS -->#{rows}<!-- COLORS END -->")
   File.write('./README.md', readme)
 end
 
