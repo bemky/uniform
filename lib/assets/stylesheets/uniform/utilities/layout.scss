@@ -47,9 +47,10 @@
 @include responsive-rule('flex-nowrap'){ flex-wrap: nowrap; }
 @include responsive-rule('flex-wrap'){ flex-wrap: wrap; }
 
-@include responsive-rule('flex-initial'){ flex: 0 1 auto; }
 @include responsive-rule('flex-fill'){ flex: 1 1 auto; }
-@include responsive-rule('flex-none'){ flex: none; }
+@include responsive-rule('flex-grow'){ flex: 1 0 auto; }
+@include responsive-rule('flex-shrink'){ flex: 0 1 auto; }
+@include responsive-rule('flex-none'){ flex: 0 0 auto; }
 
 @for $i from 1 through 12 {
     @include responsive-rule('order-#{$i}'){ order: $i; }
@@ -65,6 +66,16 @@
     @include responsive-rule('col-start-#{$i}'){ grid-column-start: $i; }
     @include responsive-rule('col-end-#{$i}'){ grid-column-end: $i; }
 }
+
+@for $i from 0 through 100 {
+    @include responsive-rule(".cols-fill-#{$i * 5}-px"){ 
+        grid-template-columns: repeat(auto-fill, minmax($i * 5px, 1fr));
+    };
+    @include responsive-rule(".cols-fit-#{$i * 5}-px"){ 
+        grid-template-columns: repeat(auto-fit, minmax($i * 5px, 1fr));
+    };
+}
+
 @for $i from 1 through 6 {
     @include responsive-rule('rows-#{$i}'){ grid-template-rows: repeat($i, minmax(0, 1fr)); }
     @include responsive-rule('row-span-#{$i}'){ grid-row: span $i / span $i; }

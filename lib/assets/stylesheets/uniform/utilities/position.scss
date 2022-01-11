@@ -13,6 +13,10 @@ static
 @each $direction in 'top' 'right' 'bottom' 'left' {
     @include responsive-rule('.#{$direction}-0'){ #{$direction}: 0; }
     @include responsive-rule('.#{$direction}-auto'){ #{$direction}: auto; }
+    .sticky-#{$direction}{
+        position:sticky;
+        #{$direction}: 0;
+    }
 }
 @include responsive-rule('position-fill'){
     position:absolute;

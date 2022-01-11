@@ -13,6 +13,9 @@
 .overflow-x{
     overflow-x: auto;
 }
+.overflow-x-scroll{
+    overflow-y: scroll;
+}
 
 //----------------------------------------------------------------
 //             Element Reset
@@ -46,6 +49,9 @@ grab
     .cursor-#{$type}{
         cursor: $type;
     }
+}
+.cursor-move-v {
+    cursor: ns-resize;
 }
 
 //----------------------------------------------------------------
