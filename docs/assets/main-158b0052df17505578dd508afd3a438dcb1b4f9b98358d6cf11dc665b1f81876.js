@@ -1,4 +1,4 @@
-var Uniform = (function (exports) {
+(function () {
 	'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -3626,20 +3626,21 @@ var Uniform = (function (exports) {
 
 	_defineProperty(Toggle, "CSSClass", "uniformToggle");
 
-	exports.Checkbox = Checkbox;
-	exports.Dropdown = Dropdown;
-	exports.Dropzone = Dropzone;
-	exports.FloatingLabelInput = FloatingLabel;
-	exports.Modal = Modal;
-	exports.Popover = Popover;
-	exports.Radio = Radio;
-	exports.Resizer = Resizer;
-	exports.Select = Select;
-	exports.Toggle = Toggle;
-	exports.Tooltip = Tooltip;
+	var Uniform = /*#__PURE__*/Object.freeze({
+		__proto__: null,
+		Dropdown: Dropdown,
+		Modal: Modal,
+		Select: Select,
+		FloatingLabelInput: FloatingLabel,
+		Resizer: Resizer,
+		Tooltip: Tooltip,
+		Popover: Popover,
+		Checkbox: Checkbox,
+		Radio: Radio,
+		Toggle: Toggle,
+		Dropzone: Dropzone
+	});
 
-	Object.defineProperty(exports, '__esModule', { value: true });
+	window.Uniform = Uniform;
 
-	return exports;
-
-})({});
+})();
