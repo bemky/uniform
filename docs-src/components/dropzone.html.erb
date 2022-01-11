@@ -1,0 +1,109 @@
+<div class="section">
+    <h1>
+        Dropzone
+        <span class="uniformLabel -yellow-60">JS</span>
+    </h1>
+    <p class="text-xl text-light margin-v-2x">
+        Render any content into a Drag and Drop File Zone.
+    </p>
+    
+    <div class="flex margin-v-2x space-h">
+        <div class="flex-auto width-1/3">
+            <div class="height-full" id="example-1">
+                <div class="height-full border-gray-20 border-dashed border-2px bg-gray-10 rounded overflow-hidden">
+                    <div class="position-center">
+                        Add File
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var dropzone = new window.Uniform.Dropzone({
+                        el: document.getElementById('example-1')
+                    })
+                    dropzone.addEventListener('drop', console.log)
+                })
+            </script>
+        </div>
+        <div class="flex-fill width-fill overflow-hidden">
+            <% code 'javascript', {css_class: 'width-fill overflow-x-scroll'} do %>
+                import { Dropzone } from 'uniform';
+                var dropzone = new Dropzone({
+                    el: document.getElementById('example-1')
+                })
+                dropzone.addEventListener('drop', console.log)
+            <% end %>
+        </div>
+    </div>
+    
+    <h3>Options</h3>
+    <div class="border border-gray-30 bg-white rounded">
+        <table class="uniformTable align-top-*">
+            <tr>
+                <th>Option</th>
+                <th>Type</th>
+                <th>Description</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                    <code>content</code>
+                </td>
+                <td>
+                    HTML or Elements
+                </td>
+                <td>
+                    HTML or Element to render inside area
+                </td>
+                <td>
+                    optional
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>el</code>
+                </td>
+                <td>
+                    Element
+                </td>
+                <td>
+                    Element to transform into dropzone
+                </td>
+                <td>
+                    optional
+                </td>
+            </tr>
+            <tr>
+                <td class="text-nowrap"><code>class, name, id, value</code></td>
+                <td>String</td>
+                <td>Accepts any html attribute that is then rendered on the modal element.</td>
+                <td>
+                    optional
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <h3>Events</h3>
+    <div class="border border-gray-30 bg-white rounded">
+        <table class="uniformTable align-top-*">
+            <tr>
+                <th>Event</th>
+                <th>Description</th>
+                <th>Arguments</th>
+            </tr>
+            <tr>
+                <td>
+                    drop
+                </td>
+                <td>
+                    After file is dropped on zone
+                </td>
+                <td>
+                    file
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

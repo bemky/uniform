@@ -1,0 +1,40 @@
+.uniformDropzone {
+    &:before {
+        display: none;
+        content: '';
+        position:absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align:center;
+        border: 2px dashed color('blue-50');
+        background: rgba(white, 0.5);
+        color: color('blue-50');
+        z-index:98;
+        backdrop-filter: blur(2px);
+    }
+    &:after {
+        display: none;
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform: translate(-50%, -50%);
+        content: 'Drag Here';
+        z-index:99;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    &.-show {
+        &:before {display: block;}
+        &:after {display: block;}
+    }
+    &.-active {
+        &:before {
+            background: rgba(color('blue'), 0.3);
+        }
+        &:after {
+            color: color('blue-70');
+        }
+    }
+}
