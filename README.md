@@ -51,6 +51,7 @@ new Uniform.Dropdown({
 The breakpoint utilities can bloat the library by 30ish%. Use a media query combiner to condense the mean media queries into batches.
 
 For Rails Sprockets: https://github.com/aaronjensen/sass-media_query_combiner
+
 For Rails Condenser: https://github.com/malomalo/condenser
 ```rails
 env.register_postprocessor('text/css', ::Condenser::CSSMediaCombinerProcessor)
