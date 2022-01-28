@@ -1,0 +1,154 @@
+<div class="section">
+    <h1>
+        Observer
+        <span class="uniformLabel -yellow-60">JS</span>
+    </h1>
+    <p class="text-xl text-light margin-v-2x">
+        Toggle <code>stuck</code> attribute on any element
+    </p>
+    
+    <div class="flex margin-v-2x space-h">
+        <div class="flex-auto">
+            <button class="sticky top-0 uniformButton text-nowrap" id="example-1">
+                Stuck Button
+            </button>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function(){
+                    new window.Uniform.Sticker(document.getElementById('example-1'))
+                })
+            </script>
+        </div>
+        <div class="flex-fill width-fill overflow-hidden">
+            <% code 'javascript', {css_class: 'width-fill overflow-x-scroll'} do %>
+                import {Modal} from 'uniform';
+                new Modal({
+                    content: '<div class="bg-green-20 border border-green text-green-80 pad rounded">Example Content</div>'
+                }).render()
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h1>Shadow</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class="bg-white pad">
+            <div class=":selector bg-white height-20-px width-full"></div>
+        </div>
+        HTML
+        whitelist: [/^\.shadow$/, /shadow\-[a-z]+$/]
+    } %>
+    
+    <h3>Opacity</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class="bg-white pad">
+            <div class="shadow-md :selector bg-white height-20-px width-full"></div>
+        </div>
+        HTML
+        whitelist: [/shadow\-opacity/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Transition</h1>
+    
+    <a id="transition-pre-built"></a>
+    <h3>Pre-built</h3>
+    <div class="flex space-h margin-bottom">
+        <div class="">
+            <p>Toggle class <code>-out</code> to trigger transition.</p>
+        </div>
+        <div class="">
+            <% code 'javascript', {css_class: 'tight'} do %>
+                button.addEventListener('click', e => button.classList.toggle('-out))
+            <% end %>
+        </div>
+    </div>
+    
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <button class="js-transition-example :selector uniformButton" type="button">
+            Try Me
+        </button>
+        HTML
+        whitelist: [/transition-fade/],
+        blacklist: [/-out/]
+    } %>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.js-transition-example').forEach(button => {
+                button.addEventListener('click', e => {
+                    button.classList.toggle('-out')
+                    setTimeout(() => {
+                        button.classList.remove('-out')
+                    }, 800)
+                })
+            })
+        })
+    </script>
+    
+    <h3>Utilities</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class=""></div>
+        HTML
+        whitelist: [/transition/],
+        blacklist: [/transition-fade/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Transform</h1>
+    
+    <p class="margin">Requires class <code>.transform</code></p>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class="transform :selector inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+        HTML
+        whitelist: [/rotate/]
+    } %>
+</div>
+
+
+<div class="section">
+    <h1>Animate</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class=":selector inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+        HTML
+        whitelist: [/animate/]
+    } %>
+    
+    <h3>Duration</h3>
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class="animate-bounce :selector inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+        HTML
+        whitelist: [/animation/]
+    } %>
+</div>
+
+<div class="section">
+    <h1>Miscellaneous</h1>
+    
+    <%= partial :css_rule_table, locals: {
+        css: css_rules('uniform/utilities/effects.css'),
+        content: <<-HTML,
+        <div class="transform :selector inline-block" style="border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid"></div>
+        HTML
+        blacklist: [/opacity/, /^\.transform$/]
+    } %>
+</div>

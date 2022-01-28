@@ -2420,6 +2420,7 @@
 	    this.el.classList.add('uniformModal');
 	    this.listenTo(document, 'keyup', this.keyup);
 	    this.listenTo(this.el, 'click', this.checkCloseButton);
+	    this.el.modal = this;
 	  }
 
 	  keyup(e) {
@@ -2468,7 +2469,7 @@
 	    const closeButton = createElement('div', {
 	      class: 'uniformModal-close-container',
 	      children: {
-	        class: 'uniformModal-close'
+	        class: 'uniformModal-close js-modal-close'
 	      }
 	    });
 	    this.el.append(this.overlay);
@@ -2481,7 +2482,7 @@
 	  }
 
 	  checkCloseButton(e) {
-	    if (e.target.classList.contains('uniformModal-close')) {
+	    if (e.target.classList.contains('js-modal-close')) {
 	      this.close();
 	    }
 	  }
