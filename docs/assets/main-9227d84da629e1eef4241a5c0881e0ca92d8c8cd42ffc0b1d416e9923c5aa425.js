@@ -3449,6 +3449,7 @@
 	    ===
 	    content:    string|$el|function
 	    el:         element
+	    zone:       element|function|html to render as the dropzon
 
 	*/
 
@@ -3462,7 +3463,15 @@
 	  initialize(options) {
 	    var _context, _context2, _context3, _context4, _context5, _context6, _context7;
 
-	    this.el.classList.add('uniformDropzone');
+	    if (options.zone) {
+	      this.zone = options.zone;
+	      append(this.el, this.zone);
+	    } else {
+	      this.zone = this.el.append(createElement({
+	        class: 'uniformDropzone',
+	        content: 'Drag Here'
+	      }));
+	    }
 
 	    if (getComputedStyle(this.el)['position'] == "static") {
 	      this.el.classList.add('relative');
