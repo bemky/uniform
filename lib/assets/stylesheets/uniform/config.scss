@@ -8,6 +8,7 @@ $uniform_configs: purge(merge((
     "combinators": (),
     "pseudo_classes": (
         "hover": hover,
+        "group-hover": group-hover
     ),
     "breakpoints": (
         'include_containers': false,

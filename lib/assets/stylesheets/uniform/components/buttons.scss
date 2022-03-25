@@ -64,6 +64,9 @@
         border-color: rgba($color, var(--border-opacity));
         color: rgba($color, var(--text-opacity));
     }
+    .uniformButton.-#{$name}.-clear{
+        color: rgba($color, var(--text-opacity));
+    }
     .uniformButtonGroup.-outline.-#{$name} > * {
         border-color: rgba($color, var(--border-opacity));
         color: rgba($color, var(--text-opacity));
