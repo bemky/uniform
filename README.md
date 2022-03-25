@@ -40,7 +40,7 @@ Example for [Condenser](https://github.com/malomalo/condenser):
     npm install uniform-ui
 
 ```javascript
-import {Dropdown} as Uniform from 'uniform';
+import { Dropdown } from 'uniform';
 
 new Uniform.Dropdown({
     el: $('.example')
