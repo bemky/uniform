@@ -76,48 +76,89 @@
             opacity: 1;
         }
     }
-    th:hover {
-        .uniformTable-settings-action {
-            display: block;
+    th:hover,
+    th.-active{
+        .uniformTable-th-header {
+            opacity: 1;
         }
     }
+    thead.-active {
+        th {
+            .uniformTable-th-header {
+                opacity: 0;
+            }
+            &.-active{
+                .uniformTable-th-header {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    
     th:first-child {
         .uniformTable-resize-handle {
             display: none;
         }
     }
     
-    td.-resizing {
-        box-shadow: 1px 0 0 color('blue');
+    th, td {
+        &.-resizing {
+            box-shadow: 1px 0 0 color('blue');
+        }
     }
 }
 
-.uniformTable-settings-action {
-    width: 1.5em;
-    height: 1.5em;
-    cursor: pointer;
-    position: relative;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="rgba(#{red(color('gray-60'))}, #{green(color('gray-60'))}, #{blue(color('gray-60'))}, 1)" stroke="none"><path d="M22,10.5c0,0.271-0.1,0.505-0.297,0.703l-7,7C14.505,18.4,14.271,18.5,14,18.5s-0.505-0.1-0.703-0.297l-7-7  C6.099,11.005,6,10.771,6,10.5s0.099-0.505,0.297-0.703C6.495,9.599,6.729,9.5,7,9.5h14c0.271,0,0.505,0.099,0.703,0.297  C21.9,9.995,22,10.229,22,10.5z"/></svg>');
-    background-size: contain;
-    align-self: center;
-    border: 1px solid rgba(color('gray'), 0.4);
-    border-radius: .25em;
-    margin-left: 1em;
+
+
+.uniformTable-th-header {
+    position:absolute;
+    background: rgba(color('gray'), 0.15);
+    border-radius: 0.5em 0.5em 0 0;
     display: none;
-    &:hover{
-        color: color('blue');
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    padding: 0.3em 0.5em;
+    text-align: right;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    opacity: 0;
+
+    .uniformTable-settings-action {
+        width: 1.5em;
+        height: 1.5em;
+        color: color('gray');
+        border-radius: 0.25em 0.25em 0 0;
+        cursor: pointer;
+        &:hover{
+            color: color('blue');
+        }
+        &.-active {
+            background-color: white;
+        }
+        svg {
+            height: 100%;
+            width: 100%;
+        }
     }
-    &.-active {
-        background-color: white;
-        display: block;
+    
+    .uniformTable-th-spacer {
+        width: 1.5em;
+    }
+    .uniformTable-th-order {
+        width: 1.5em;
+        height: 0.5em;
+        border-top: 1px solid rgba(black, 0.3);
+        border-bottom: 1px solid rgba(black, 0.3);
+        cursor: grab;
     }
 }
 
 .uniformTable-resize-handle {
     position: absolute;
     left: 0;
-    top: 0;
-    height: 100%;
+    bottom: 100%;
     width: 11px;
     margin-left: -5px;
     cursor: col-resize;
@@ -125,21 +166,22 @@
     &:after{
         border-left: 1px solid rgba(black, 0.3);
         border-right: 1px solid rgba(black, 0.3);
-        width: 3px;
         position: absolute;
+        width: 3px;
         left: 3px;
-        top: 30%;
-        height: 40%;
+        bottom: 0.5em;
+        height: 1em;
         content: '';
     }
     &:hover,
-    &.hover{
+    &.-hover{
         opacity: 1;
         &:before{
             position:absolute;
             left: 5px;
+            bottom: 0;
             width: 1px;
-            height: 100%;
+            height: 2em;
             background: color('blue');
             content: '';
         }

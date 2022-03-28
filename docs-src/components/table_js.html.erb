@@ -61,14 +61,15 @@
                     }, {
                         name: 'Elvis Andrus',
                         team: 'Texas Rangers',
-                            team_url: 'https://www.mlb.com/rangers',
+                        team_url: 'https://www.mlb.com/rangers',
                         position: 'SS'
                     }],
                     columns: {
-                        name: r => r.name,
+                            name: [r => r.name, {sort: true}],
                         team: r => "<a href=\"" + r.team_url + "\">" + r.team + "</a>",
                         position: [r => r.position, {
-                            class: 'text-right'
+                            class: 'text-right',
+                            sort: true
                         }]
                     }
                 }).render()
