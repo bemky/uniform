@@ -142,9 +142,9 @@
                                 JS
                             </span>
                     </a>
-                    <a href="/components/modal" class="active">
+                    <a href="/components/modal" class="">
                         Modal
-                            &nbsp;<span class="uniformLabel -green-60 text-xs">
+                            &nbsp;<span class="uniformLabel -yellow-60 text-xs">
                                 JS
                             </span>
                     </a>
@@ -166,9 +166,9 @@
                                 JS
                             </span>
                     </a>
-                    <a href="/components/spreadsheet" class="">
+                    <a href="/components/spreadsheet" class="active">
                         Spreadsheet
-                            &nbsp;<span class="uniformLabel -yellow-60 text-xs">
+                            &nbsp;<span class="uniformLabel -green-60 text-xs">
                                 JS
                             </span>
                     </a>
@@ -181,30 +181,55 @@
 <div class="main-content overflow-hidden">
     <div class="section">
     <h1>
-        Modal
+        Spreadsheet
         <span class="uniformLabel -yellow-60">JS</span>
     </h1>
     <p class="text-xl text-light margin-v-2x">
-        Render any content into a modal
+        Renders a <a href="/components/table_js"><code>Uniform Table</code></a> as a spreadsheet where each cell is an input.
     </p>
     
     <div class="flex margin-v-2x space-h">
-        <div class="flex-auto">
-            <button class="uniformButton text-nowrap" id="example-1">Toggle Example</button>
+        <div class="flex-fill width-fill">
+            <div id="example-1"></div>
             
             <script>
-                document.getElementById('example-1').addEventListener('click', function (e) {
-                    new window.Uniform.Modal({
-                        content: '<div class="bg-green-20 border border-green text-green-80 pad rounded">Example Content</div>'
-                    }).render()
+                document.addEventListener('DOMContentLoaded', function () {
+                    document.getElementById('example-1').append(new window.Uniform.Spreadsheet({
+                        records: [{
+                            name: 'Adrian Beltre',
+                            team: 'Texas Rangers',
+                            team_url: 'https://www.mlb.com/rangers',
+                            position: '3B'
+                        }, {
+                            name: 'Michael Young',
+                            team: 'Texas Rangers',
+                            team_url: 'https://www.mlb.com/rangers',
+                            position: '2B'
+                        }, {
+                            name: 'Elvis Andrus',
+                            team: 'Texas Rangers',
+                            team_url: 'https://www.mlb.com/rangers',
+                            position: 'SS'
+                        }],
+                        columns: {
+                            name: {},
+                            team: {},
+                            team_url: {
+                                load: v => v.replace(/https?\:\/\//, ""),
+                                dump: v => "https://" + v.team_url
+                            },
+                            position: {
+                                type: 'select',
+                                load: v => v.toUpperCase(),
+                                dump: v => v.toLowerCase()
+                            }
+                        }
+                    }).render().el)
                 })
             </script>
         </div>
-        <div class="flex-fill width-fill overflow-hidden">
-<div class="highlight"><pre class="width-fill overflow-x-scroll javascript"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Modal</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">uniform</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">new</span> <span class="nx">Modal</span><span class="p">({</span>
-    <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;div class="bg-green-20 border border-green text-green-80 pad rounded"&gt;Example Content&lt;/div&gt;</span><span class="dl">'</span>
-<span class="p">}).</span><span class="nx">render</span><span class="p">()</span></code></pre></div>        </div>
+        <div class="flex-auto width-1/3 overflow-hidden">
+<div class="highlight"><pre class="width-fill overflow-x-scroll javascript"><code><span class="c1">// TODO</span></code></pre></div>        </div>
     </div>
     
     <h3>Options</h3>
@@ -214,54 +239,103 @@
                 <th>Option</th>
                 <th>Type</th>
                 <th>Description</th>
+                <th></th>
             </tr>
             <tr>
                 <td>
-                    <code>content</code>
+                    <code>records</code>
                 </td>
                 <td>
-                    String or Element
+                    Array
                 </td>
                 <td>
-                    HTML or Element to render
+                    Row data to pass to columns
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>columns</code>
+                </td>
+                <td>
+                    function or [function, {options}]
+                </td>
+                <td>
+                    Function to render row cell
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-nowrap"><code>storeKey</code></td>
+                <td>String</td>
+                <td>Key for saving to LocalStorage. Defaults to <code>'uniform/table' + Object.keys(columns).join("-")</code>.</td>
+                <td>
+                    optional
                 </td>
             </tr>
             <tr>
                 <td class="text-nowrap"><code>class, name, id, value</code></td>
                 <td>String</td>
                 <td>Accepts any html attribute that is then rendered on the modal element.</td>
+                <td>
+                    optional
+                </td>
             </tr>
         </table>
     </div>
     
-    <h3>Events</h3>
+    <h3>Column Options</h3>
     <div class="border border-gray-30 bg-white rounded">
         <table class="uniformTable align-top-*">
             <tr>
-                <th>Event</th>
+                <th>Option</th>
+                <th>Type</th>
                 <th>Description</th>
-                <th>Arguments</th>
+                <th></th>
             </tr>
             <tr>
                 <td>
-                    rendered
+                    <code>render</code>
                 </td>
                 <td>
-                    After modal is rendered
+                    function(record)
                 </td>
                 <td>
-                    none
+                    Function to use to render cell. Can also be first argument of column model
+                </td>
+                <td>
                 </td>
             </tr>
             <tr>
                 <td>
-                    closed
+                    <code>header</code>
                 </td>
                 <td>
-                    After modal is closed
+                    string
                 </td>
                 <td>
-                    none
+                    Render as header, defaults to column key
+                </td>
+                <td>
+                    optional
+                </td>
+            </tr>
+            <tr>
+                <td><code>class</code></td>
+                <td>String</td>
+                <td>Render as class of cells of this column</td>
+                <td>
+                    optional
+                </td>
+            </tr>
+            <tr>
+                <td><code>order</code></td>
+                <td>boolean or function(records)</td>
+                <td>If column is orderable. If function passes records as arguments, and expects them to be returned ordered. If simply true, then orders by column key on records (ex. <code>name: {order: true}, r1.name < r2.name)</code></td>
+                <td>
+                    optional
                 </td>
             </tr>
         </table>

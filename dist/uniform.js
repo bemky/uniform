@@ -550,7 +550,7 @@ var Uniform = (function (exports) {
 	  return number !== number || number === 0 ? 0 : (number > 0 ? floor$1 : ceil)(number);
 	};
 
-	var max = Math.max;
+	var max$1 = Math.max;
 	var min$1 = Math.min;
 
 	// Helper for a popular repeating case of the spec:
@@ -558,7 +558,7 @@ var Uniform = (function (exports) {
 	// If integer < 0, let result be max((length + integer), 0); else let result be min(integer, length).
 	var toAbsoluteIndex = function (index, length) {
 	  var integer = toIntegerOrInfinity(index);
-	  return integer < 0 ? max(integer + length, 0) : min$1(integer, length);
+	  return integer < 0 ? max$1(integer + length, 0) : min$1(integer, length);
 	};
 
 	var min = Math.min;
@@ -606,7 +606,7 @@ var Uniform = (function (exports) {
 
 	var hiddenKeys = {};
 
-	var indexOf = arrayIncludes.indexOf;
+	var indexOf$4 = arrayIncludes.indexOf;
 
 
 	var push$2 = functionUncurryThis([].push);
@@ -619,7 +619,7 @@ var Uniform = (function (exports) {
 	  for (key in O) !hasOwnProperty_1(hiddenKeys, key) && hasOwnProperty_1(O, key) && push$2(result, key);
 	  // Don't enum bug & hidden keys
 	  while (names.length > i) if (hasOwnProperty_1(O, key = names[i++])) {
-	    ~indexOf(result, key) || push$2(result, key);
+	    ~indexOf$4(result, key) || push$2(result, key);
 	  }
 	  return result;
 	};
@@ -724,6 +724,43 @@ var Uniform = (function (exports) {
 	var keys$2 = keys$3;
 
 	var keys$1 = keys$2;
+
+	// `Object.defineProperty` method
+	// https://tc39.es/ecma262/#sec-object.defineproperty
+	_export({ target: 'Object', stat: true, forced: !descriptors, sham: !descriptors }, {
+	  defineProperty: objectDefineProperty.f
+	});
+
+	var defineProperty_1 = createCommonjsModule(function (module) {
+	var Object = path.Object;
+
+	var defineProperty = module.exports = function defineProperty(it, key, desc) {
+	  return Object.defineProperty(it, key, desc);
+	};
+
+	if (Object.defineProperty.sham) defineProperty.sham = true;
+	});
+
+	var defineProperty$3 = defineProperty_1;
+
+	var defineProperty$2 = defineProperty$3;
+
+	var defineProperty$1 = defineProperty$2;
+
+	function _defineProperty(obj, key, value) {
+	  if (key in obj) {
+	    defineProperty$1(obj, key, {
+	      value: value,
+	      enumerable: true,
+	      configurable: true,
+	      writable: true
+	    });
+	  } else {
+	    obj[key] = value;
+	  }
+
+	  return obj;
+	}
 
 	var iterators = {};
 
@@ -1027,7 +1064,7 @@ var Uniform = (function (exports) {
 	  return '[object ' + classof(this) + ']';
 	};
 
-	var defineProperty$3 = objectDefineProperty.f;
+	var defineProperty = objectDefineProperty.f;
 
 
 
@@ -1039,7 +1076,7 @@ var Uniform = (function (exports) {
 	  if (it) {
 	    var target = STATIC ? it : it.prototype;
 	    if (!hasOwnProperty_1(target, TO_STRING_TAG$1)) {
-	      defineProperty$3(target, TO_STRING_TAG$1, { configurable: true, value: TAG });
+	      defineProperty(target, TO_STRING_TAG$1, { configurable: true, value: TAG });
 	    }
 	    if (SET_METHOD && !toStringTagSupport) {
 	      createNonEnumerableProperty(target, 'toString', objectToString);
@@ -1272,7 +1309,7 @@ var Uniform = (function (exports) {
 	var empty = [];
 	var construct$1 = getBuiltIn('Reflect', 'construct');
 	var constructorRegExp = /^\s*(?:class|function)\b/;
-	var exec$1 = functionUncurryThis(constructorRegExp.exec);
+	var exec$2 = functionUncurryThis(constructorRegExp.exec);
 	var INCORRECT_TO_STRING = !constructorRegExp.exec(noop);
 
 	var isConstructorModern = function (argument) {
@@ -1292,7 +1329,7 @@ var Uniform = (function (exports) {
 	    case 'GeneratorFunction':
 	    case 'AsyncGeneratorFunction': return false;
 	    // we can't check .prototype since constructors produced by .bind haven't it
-	  } return INCORRECT_TO_STRING || !!exec$1(constructorRegExp, inspectSource(argument));
+	  } return INCORRECT_TO_STRING || !!exec$2(constructorRegExp, inspectSource(argument));
 	};
 
 	// `IsConstructor` abstract operation
@@ -1305,8 +1342,8 @@ var Uniform = (function (exports) {
 	    || called;
 	}) ? isConstructorLegacy : isConstructorModern;
 
-	var SPECIES$1 = wellKnownSymbol('species');
-	var Array$2 = global_1.Array;
+	var SPECIES$2 = wellKnownSymbol('species');
+	var Array$4 = global_1.Array;
 
 	// a part of `ArraySpeciesCreate` abstract operation
 	// https://tc39.es/ecma262/#sec-arrayspeciescreate
@@ -1315,12 +1352,12 @@ var Uniform = (function (exports) {
 	  if (isArray$3(originalArray)) {
 	    C = originalArray.constructor;
 	    // cross-realm fallback
-	    if (isConstructor(C) && (C === Array$2 || isArray$3(C.prototype))) C = undefined;
+	    if (isConstructor(C) && (C === Array$4 || isArray$3(C.prototype))) C = undefined;
 	    else if (isObject(C)) {
-	      C = C[SPECIES$1];
+	      C = C[SPECIES$2];
 	      if (C === null) C = undefined;
 	    }
-	  } return C === undefined ? Array$2 : C;
+	  } return C === undefined ? Array$4 : C;
 	};
 
 	// `ArraySpeciesCreate` abstract operation
@@ -1407,11 +1444,11 @@ var Uniform = (function (exports) {
 	var $forEach = arrayIteration.forEach;
 
 
-	var STRICT_METHOD$1 = arrayMethodIsStrict('forEach');
+	var STRICT_METHOD$2 = arrayMethodIsStrict('forEach');
 
 	// `Array.prototype.forEach` method implementation
 	// https://tc39.es/ecma262/#sec-array.prototype.foreach
-	var arrayForEach = !STRICT_METHOD$1 ? function forEach(callbackfn /* , thisArg */) {
+	var arrayForEach = !STRICT_METHOD$2 ? function forEach(callbackfn /* , thisArg */) {
 	  return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
 	// eslint-disable-next-line es/no-array-prototype-foreach -- safe
 	} : [].forEach;
@@ -1431,7 +1468,7 @@ var Uniform = (function (exports) {
 
 	var forEach$2 = forEach$3;
 
-	var ArrayPrototype$5 = Array.prototype;
+	var ArrayPrototype$8 = Array.prototype;
 
 	var DOMIterables = {
 	  DOMTokenList: true,
@@ -1440,7 +1477,7 @@ var Uniform = (function (exports) {
 
 	var forEach$1 = function (it) {
 	  var own = it.forEach;
-	  return it === ArrayPrototype$5 || (objectIsPrototypeOf(ArrayPrototype$5, it) && own === ArrayPrototype$5.forEach)
+	  return it === ArrayPrototype$8 || (objectIsPrototypeOf(ArrayPrototype$8, it) && own === ArrayPrototype$8.forEach)
 	    || hasOwnProperty_1(DOMIterables, classof(it)) ? forEach$2 : own;
 	};
 
@@ -1513,12 +1550,12 @@ var Uniform = (function (exports) {
 
 	var includes$3 = entryVirtual('String').includes;
 
-	var ArrayPrototype$4 = Array.prototype;
+	var ArrayPrototype$7 = Array.prototype;
 	var StringPrototype$1 = String.prototype;
 
 	var includes$2 = function (it) {
 	  var own = it.includes;
-	  if (it === ArrayPrototype$4 || (objectIsPrototypeOf(ArrayPrototype$4, it) && own === ArrayPrototype$4.includes)) return includes$4;
+	  if (it === ArrayPrototype$7 || (objectIsPrototypeOf(ArrayPrototype$7, it) && own === ArrayPrototype$7.includes)) return includes$4;
 	  if (typeof it == 'string' || it === StringPrototype$1 || (objectIsPrototypeOf(StringPrototype$1, it) && own === StringPrototype$1.includes)) {
 	    return includes$3;
 	  } return own;
@@ -1575,7 +1612,7 @@ var Uniform = (function (exports) {
 
 	var bind = bind$1;
 
-	var SPECIES = wellKnownSymbol('species');
+	var SPECIES$1 = wellKnownSymbol('species');
 
 	var arrayMethodHasSpeciesSupport = function (METHOD_NAME) {
 	  // We can't use this feature detection in V8 since it causes
@@ -1584,7 +1621,7 @@ var Uniform = (function (exports) {
 	  return engineV8Version >= 51 || !fails(function () {
 	    var array = [];
 	    var constructor = array.constructor = {};
-	    constructor[SPECIES] = function () {
+	    constructor[SPECIES$1] = function () {
 	      return { foo: 1 };
 	    };
 	    return array[METHOD_NAME](Boolean).foo !== 1;
@@ -1594,12 +1631,12 @@ var Uniform = (function (exports) {
 	var $filter = arrayIteration.filter;
 
 
-	var HAS_SPECIES_SUPPORT$1 = arrayMethodHasSpeciesSupport('filter');
+	var HAS_SPECIES_SUPPORT$2 = arrayMethodHasSpeciesSupport('filter');
 
 	// `Array.prototype.filter` method
 	// https://tc39.es/ecma262/#sec-array.prototype.filter
 	// with adding support of @@species
-	_export({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT$1 }, {
+	_export({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT$2 }, {
 	  filter: function filter(callbackfn /* , thisArg */) {
 	    return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
 	  }
@@ -1607,16 +1644,28 @@ var Uniform = (function (exports) {
 
 	var filter$4 = entryVirtual('Array').filter;
 
-	var ArrayPrototype$3 = Array.prototype;
+	var ArrayPrototype$6 = Array.prototype;
 
 	var filter$3 = function (it) {
 	  var own = it.filter;
-	  return it === ArrayPrototype$3 || (objectIsPrototypeOf(ArrayPrototype$3, it) && own === ArrayPrototype$3.filter) ? filter$4 : own;
+	  return it === ArrayPrototype$6 || (objectIsPrototypeOf(ArrayPrototype$6, it) && own === ArrayPrototype$6.filter) ? filter$4 : own;
 	};
 
 	var filter$2 = filter$3;
 
 	var filter$1 = filter$2;
+
+	function addEventListenerFor(el, selector, type, listener, options) {
+	  el.addEventListener(type, e => {
+	    if (e.target.matches(selector)) {
+	      e.delegateTarget = e.target;
+	      listener(e);
+	    } else if (e.target.closest(selector)) {
+	      e.delegateTarget = e.target.closest(selector);
+	      listener(e);
+	    }
+	  }, options);
+	}
 
 	const HTML_ATTRIBUTES = ['accept', 'accept-charset', 'accesskey', 'action', 'align', 'allow', 'alt', 'async', 'autocapitalize', 'autocomplete', 'autofocus', 'autoplay', 'background', 'bgcolor', 'border', 'buffered', 'capture', 'challenge', 'charset', 'checked', 'cite', 'class', 'code', 'codebase', 'color', 'cols', 'colspan', 'content', 'contenteditable', 'contextmenu', 'controls', 'coords', 'crossorigin', 'csp', 'data', 'data-*', 'datetime', 'decoding', 'default', 'defer', 'dir', 'dirname', 'disabled', 'download', 'draggable', 'dropzone', 'enctype', 'enterkeyhint', 'for', 'form', 'formaction', 'formenctype', 'formmethod', 'formnovalidate', 'formtarget', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'http-equiv', 'icon', 'id', 'importance', 'integrity', 'intrinsicsize', 'inputmode', 'ismap', 'itemprop', 'keytype', 'kind', 'label', 'lang', 'language', 'loading', 'list', 'loop', 'low', 'manifest', 'max', 'maxlength', 'minlength', 'media', 'method', 'min', 'multiple', 'muted', 'name', 'novalidate', 'open', 'optimum', 'pattern', 'ping', 'placeholder', 'poster', 'preload', 'radiogroup', 'readonly', 'referrerpolicy', 'rel', 'required', 'reversed', 'rows', 'rowspan', 'sandbox', 'scope', 'scoped', 'selected', 'shape', 'size', 'sizes', 'slot', 'span', 'spellcheck', 'src', 'srcdoc', 'srclang', 'srcset', 'start', 'step', 'style', 'summary', 'tabindex', 'target', 'title', 'translate', 'type', 'usemap', 'value', 'width', 'wrap', 'aria', 'aria-*'];
 	const BOOLEAN_ATTRIBUTES = ['disabled', 'readonly', 'multiple', 'checked', 'autobuffer', 'autoplay', 'controls', 'loop', 'selected', 'hidden', 'scoped', 'async', 'defer', 'reversed', 'ismap', 'seemless', 'muted', 'required', 'autofocus', 'novalidate', 'formnovalidate', 'open', 'pubdate', 'itemscope'];
@@ -1698,7 +1747,9 @@ var Uniform = (function (exports) {
 	  }
 	}
 
-	function append(el, item, escape, context) {
+	function append(el, item, escape, context, method) {
+	  if (!method) method = 'append';
+
 	  if (Array.isArray(item) || item instanceof NodeList || item instanceof HTMLCollection) {
 	    Array.from(item).forEach(i => append(el, i, escape, context));
 	  } else if (escape instanceof Element) {
@@ -1712,7 +1763,7 @@ var Uniform = (function (exports) {
 
 	    if (item instanceof Promise) {
 	      const holder = document.createElement('span');
-	      el.append(holder);
+	      el[method](holder);
 	      new Date().getMilliseconds();
 	      return item.then(resolvedItem => {
 	        append(holder, resolvedItem, escape, context);
@@ -1720,18 +1771,18 @@ var Uniform = (function (exports) {
 	        holder.parentNode.removeChild(holder);
 	      });
 	    } else if (item instanceof Element || item instanceof Node) {
-	      return el.append(item);
+	      return el[method](item);
 	    } else if (item === null || item === undefined) ; else if (typeof item == "function") {
 	      return append(el, item.bind(context)(el), escape, context);
 	    } else if (typeof item == "object") {
-	      return el.append(createElement(item));
+	      return el[method](createElement(item));
 	    } else {
 	      if (escape) {
-	        return el.append(item);
+	        return el[method](item);
 	      } else {
 	        const container = document.createElement('div');
 	        container.innerHTML = item;
-	        return el.append(...container.childNodes);
+	        return el[method](...container.childNodes);
 	      }
 	    }
 	  }
@@ -1749,6 +1800,28 @@ var Uniform = (function (exports) {
 	  return filteredNodes;
 	}
 
+	function getBoundingClientRect(...els) {
+	  if (Array.isArray(els[0]) && els.length == 1) {
+	    els = els[0];
+	  }
+
+	  let rect = els[0].getBoundingClientRect();
+	  rect = {
+	    left: rect.left,
+	    top: rect.top,
+	    right: rect.right,
+	    bottom: rect.bottom
+	  };
+	  els.slice(1).forEach(el => {
+	    const thisRect = el.getBoundingClientRect();
+	    if (thisRect.left < rect.left) rect.left = thisRect.left;
+	    if (thisRect.top < rect.top) rect.top = thisRect.top;
+	    if (thisRect.bottom > rect.bottom) rect.bottom = thisRect.bottom;
+	    if (thisRect.right > rect.right) rect.right = thisRect.right;
+	  });
+	  return new DOMRect(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
+	}
+
 	function isEmpty(element) {
 	  return element.innerHTML === "";
 	}
@@ -1757,11 +1830,28 @@ var Uniform = (function (exports) {
 	  return el.offsetParent !== null;
 	}
 
-	function offset(el) {
-	  var rect = el.getBoundingClientRect();
+	function listenerElement(...args) {
+	  let callback = args.pop();
+	  let listener = args.pop();
+
+	  if (typeof listener != 'string') {
+	    args = args.concat(listener);
+	    listener = 'click';
+	  }
+
+	  const el = createElement(...args);
+	  el.addEventListener(listener, callback);
+	  return el;
+	}
+
+	function offsetTo(el, target) {
+	  const elRect = getBoundingClientRect(el);
+	  const targetRect = target.getBoundingClientRect();
 	  return {
-	    top: rect.top + window.scrollY,
-	    left: rect.left + window.scrollX
+	    top: elRect.top - targetRect.top,
+	    left: elRect.left - targetRect.left,
+	    right: elRect.right - targetRect.left,
+	    bottom: elRect.bottom - targetRect.top
 	  };
 	}
 
@@ -1775,10 +1865,15 @@ var Uniform = (function (exports) {
 	  return el.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight);
 	}
 
+	function innerWidth(el) {
+	  var style = getComputedStyle(el);
+	  return el.offsetWidth - parseInt(style.paddingLeft) - parseInt(style.paddingRight);
+	}
+
 	function trigger(el, eventName) {
 	  var event = document.createEvent('HTMLEvents');
 	  event.initEvent(eventName, true, false);
-	  el.dispatchEvent(event);
+	  return el.dispatchEvent(event);
 	}
 
 	function uniqueId(prefix) {
@@ -1803,7 +1898,12 @@ var Uniform = (function (exports) {
 	    });
 
 	    delete htmlAttributes.content;
-	    this.el = options.el || createElement('div', htmlAttributes);
+	    this.el = options.el || createElement(this.constructor.tagName, htmlAttributes);
+
+	    if (this.constructor.className) {
+	      this.el.classList.add(...this.constructor.className.split(' '));
+	    }
+
 	    this.cid = uniqueId('c');
 
 	    this.on = function (type, handler) {
@@ -1874,6 +1974,14 @@ var Uniform = (function (exports) {
 	    var _context5;
 
 	    // scope is optional param
+	    if (typeof node == "string") {
+	      context = callback;
+	      callback = scope;
+	      scope = event;
+	      event = node;
+	      node = this.el;
+	    }
+
 	    if (typeof scope != "string") {
 	      context = callback;
 	      callback = scope;
@@ -1920,15 +2028,19 @@ var Uniform = (function (exports) {
 
 	}
 
+	_defineProperty(Component, "tagName", 'div');
+
+	_defineProperty(Component, "className", void 0);
+
 	var $map = arrayIteration.map;
 
 
-	var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('map');
+	var HAS_SPECIES_SUPPORT$1 = arrayMethodHasSpeciesSupport('map');
 
 	// `Array.prototype.map` method
 	// https://tc39.es/ecma262/#sec-array.prototype.map
 	// with adding support of @@species
-	_export({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+	_export({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT$1 }, {
 	  map: function map(callbackfn /* , thisArg */) {
 	    return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
 	  }
@@ -1936,11 +2048,11 @@ var Uniform = (function (exports) {
 
 	var map$3 = entryVirtual('Array').map;
 
-	var ArrayPrototype$2 = Array.prototype;
+	var ArrayPrototype$5 = Array.prototype;
 
 	var map$2 = function (it) {
 	  var own = it.map;
-	  return it === ArrayPrototype$2 || (objectIsPrototypeOf(ArrayPrototype$2, it) && own === ArrayPrototype$2.map) ? map$3 : own;
+	  return it === ArrayPrototype$5 || (objectIsPrototypeOf(ArrayPrototype$5, it) && own === ArrayPrototype$5.map) ? map$3 : own;
 	};
 
 	var map$1 = map$2;
@@ -1951,7 +2063,7 @@ var Uniform = (function (exports) {
 	var whitespaces = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002' +
 	  '\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
-	var replace = functionUncurryThis(''.replace);
+	var replace$1 = functionUncurryThis(''.replace);
 	var whitespace = '[' + whitespaces + ']';
 	var ltrim = RegExp('^' + whitespace + whitespace + '*');
 	var rtrim = RegExp(whitespace + whitespace + '*$');
@@ -1960,8 +2072,8 @@ var Uniform = (function (exports) {
 	var createMethod$1 = function (TYPE) {
 	  return function ($this) {
 	    var string = toString_1(requireObjectCoercible($this));
-	    if (TYPE & 1) string = replace(string, ltrim, '');
-	    if (TYPE & 2) string = replace(string, rtrim, '');
+	    if (TYPE & 1) string = replace$1(string, ltrim, '');
+	    if (TYPE & 2) string = replace$1(string, rtrim, '');
 	    return string;
 	  };
 	};
@@ -1981,20 +2093,20 @@ var Uniform = (function (exports) {
 	var trim$5 = stringTrim.trim;
 
 
-	var charAt$2 = functionUncurryThis(''.charAt);
+	var charAt$3 = functionUncurryThis(''.charAt);
 	var n$ParseFloat = global_1.parseFloat;
 	var Symbol$2 = global_1.Symbol;
 	var ITERATOR$4 = Symbol$2 && Symbol$2.iterator;
-	var FORCED$2 = 1 / n$ParseFloat(whitespaces + '-0') !== -Infinity
+	var FORCED$3 = 1 / n$ParseFloat(whitespaces + '-0') !== -Infinity
 	  // MS Edge 18- broken with boxed symbols
 	  || (ITERATOR$4 && !fails(function () { n$ParseFloat(Object(ITERATOR$4)); }));
 
 	// `parseFloat` method
 	// https://tc39.es/ecma262/#sec-parsefloat-string
-	var numberParseFloat = FORCED$2 ? function parseFloat(string) {
+	var numberParseFloat = FORCED$3 ? function parseFloat(string) {
 	  var trimmedString = trim$5(toString_1(string));
 	  var result = n$ParseFloat(trimmedString);
-	  return result === 0 && charAt$2(trimmedString, 0) == '-' ? -0 : result;
+	  return result === 0 && charAt$3(trimmedString, 0) == '-' ? -0 : result;
 	} : n$ParseFloat;
 
 	// `parseFloat` method
@@ -2016,16 +2128,16 @@ var Uniform = (function (exports) {
 	var Symbol$1 = global_1.Symbol;
 	var ITERATOR$3 = Symbol$1 && Symbol$1.iterator;
 	var hex = /^[+-]?0x/i;
-	var exec = functionUncurryThis(hex.exec);
-	var FORCED$1 = $parseInt(whitespaces + '08') !== 8 || $parseInt(whitespaces + '0x16') !== 22
+	var exec$1 = functionUncurryThis(hex.exec);
+	var FORCED$2 = $parseInt(whitespaces + '08') !== 8 || $parseInt(whitespaces + '0x16') !== 22
 	  // MS Edge 18- broken with boxed symbols
 	  || (ITERATOR$3 && !fails(function () { $parseInt(Object(ITERATOR$3)); }));
 
 	// `parseInt` method
 	// https://tc39.es/ecma262/#sec-parseint-string-radix
-	var numberParseInt = FORCED$1 ? function parseInt(string, radix) {
+	var numberParseInt = FORCED$2 ? function parseInt(string, radix) {
 	  var S = trim$4(toString_1(string));
-	  return $parseInt(S, (radix >>> 0) || (exec(hex, S) ? 16 : 10));
+	  return $parseInt(S, (radix >>> 0) || (exec$1(hex, S) ? 16 : 10));
 	} : $parseInt;
 
 	// `parseInt` method
@@ -2195,15 +2307,10 @@ var Uniform = (function (exports) {
 	    align = align || this.options.align;
 	    var [leftAlign, topAlign] = align.split(" ");
 	    leftAlign = leftAlign || "bottom";
-	    var anchorOffset = offset(this.options.anchor);
 	    var container = this.options.container;
+	    var anchorOffset = offsetTo(this.options.anchor, container);
 	    if (getComputedStyle(container)['position'] == "static") container = container.offsetParent;
 	    if (!container) container = document.body;
-	    var containerOffset = offset(container);
-	    anchorOffset = {
-	      top: anchorOffset.top - containerOffset.top,
-	      left: anchorOffset.left - containerOffset.left
-	    };
 	    var position = {};
 
 	    if (leftAlign == 'left') {
@@ -2525,8 +2632,8 @@ var Uniform = (function (exports) {
 
 	var isArray = isArray$1;
 
-	var charAt$1 = functionUncurryThis(''.charAt);
-	var charCodeAt = functionUncurryThis(''.charCodeAt);
+	var charAt$2 = functionUncurryThis(''.charAt);
+	var charCodeAt$1 = functionUncurryThis(''.charCodeAt);
 	var stringSlice = functionUncurryThis(''.slice);
 
 	var createMethod = function (CONVERT_TO_STRING) {
@@ -2536,11 +2643,11 @@ var Uniform = (function (exports) {
 	    var size = S.length;
 	    var first, second;
 	    if (position < 0 || position >= size) return CONVERT_TO_STRING ? '' : undefined;
-	    first = charCodeAt(S, position);
+	    first = charCodeAt$1(S, position);
 	    return first < 0xD800 || first > 0xDBFF || position + 1 === size
-	      || (second = charCodeAt(S, position + 1)) < 0xDC00 || second > 0xDFFF
+	      || (second = charCodeAt$1(S, position + 1)) < 0xDC00 || second > 0xDFFF
 	        ? CONVERT_TO_STRING
-	          ? charAt$1(S, position)
+	          ? charAt$2(S, position)
 	          : first
 	        : CONVERT_TO_STRING
 	          ? stringSlice(S, position, position + 2)
@@ -2557,7 +2664,7 @@ var Uniform = (function (exports) {
 	  charAt: createMethod(true)
 	};
 
-	var charAt = stringMultibyte.charAt;
+	var charAt$1 = stringMultibyte.charAt;
 
 
 
@@ -2582,7 +2689,7 @@ var Uniform = (function (exports) {
 	  var index = state.index;
 	  var point;
 	  if (index >= string.length) return { value: undefined, done: true };
-	  point = charAt(string, index);
+	  point = charAt$1(string, index);
 	  state.index += point.length;
 	  return { value: point, done: false };
 	});
@@ -2617,11 +2724,11 @@ var Uniform = (function (exports) {
 	};
 
 	var ITERATOR$2 = wellKnownSymbol('iterator');
-	var ArrayPrototype$1 = Array.prototype;
+	var ArrayPrototype$4 = Array.prototype;
 
 	// check on default Array iterator
 	var isArrayIteratorMethod = function (it) {
-	  return it !== undefined && (iterators.Array === it || ArrayPrototype$1[ITERATOR$2] === it);
+	  return it !== undefined && (iterators.Array === it || ArrayPrototype$4[ITERATOR$2] === it);
 	};
 
 	var createProperty = function (object, key, value) {
@@ -2646,7 +2753,7 @@ var Uniform = (function (exports) {
 	  throw TypeError$1(tryToString(argument) + ' is not iterable');
 	};
 
-	var Array$1 = global_1.Array;
+	var Array$3 = global_1.Array;
 
 	// `Array.from` method implementation
 	// https://tc39.es/ecma262/#sec-array.from
@@ -2661,7 +2768,7 @@ var Uniform = (function (exports) {
 	  var index = 0;
 	  var length, result, step, iterator, next, value;
 	  // if the target is not iterable or it's an array with the default iterator - use a simple case
-	  if (iteratorMethod && !(this == Array$1 && isArrayIteratorMethod(iteratorMethod))) {
+	  if (iteratorMethod && !(this == Array$3 && isArrayIteratorMethod(iteratorMethod))) {
 	    iterator = getIterator(O, iteratorMethod);
 	    next = iterator.next;
 	    result = IS_CONSTRUCTOR ? new this() : [];
@@ -2671,7 +2778,7 @@ var Uniform = (function (exports) {
 	    }
 	  } else {
 	    length = lengthOfArrayLike(O);
-	    result = IS_CONSTRUCTOR ? new this(length) : Array$1(length);
+	    result = IS_CONSTRUCTOR ? new this(length) : Array$3(length);
 	    for (;length > index; index++) {
 	      value = mapping ? mapfn(O[index], index) : O[index];
 	      createProperty(result, index, value);
@@ -2801,7 +2908,7 @@ var Uniform = (function (exports) {
 	  test.sort(null);
 	});
 	// Old WebKit
-	var STRICT_METHOD = arrayMethodIsStrict('sort');
+	var STRICT_METHOD$1 = arrayMethodIsStrict('sort');
 
 	var STABLE_SORT = !fails(function () {
 	  // feature detection can be too slow, so check engines versions
@@ -2838,7 +2945,7 @@ var Uniform = (function (exports) {
 	  return result !== 'DGBEFHACIJK';
 	});
 
-	var FORCED = FAILS_ON_UNDEFINED || !FAILS_ON_NULL || !STRICT_METHOD || !STABLE_SORT;
+	var FORCED$1 = FAILS_ON_UNDEFINED || !FAILS_ON_NULL || !STRICT_METHOD$1 || !STABLE_SORT;
 
 	var getSortCompare = function (comparefn) {
 	  return function (x, y) {
@@ -2851,7 +2958,7 @@ var Uniform = (function (exports) {
 
 	// `Array.prototype.sort` method
 	// https://tc39.es/ecma262/#sec-array.prototype.sort
-	_export({ target: 'Array', proto: true, forced: FORCED }, {
+	_export({ target: 'Array', proto: true, forced: FORCED$1 }, {
 	  sort: function sort(comparefn) {
 	    if (comparefn !== undefined) aCallable(comparefn);
 
@@ -2881,11 +2988,11 @@ var Uniform = (function (exports) {
 
 	var sort$3 = entryVirtual('Array').sort;
 
-	var ArrayPrototype = Array.prototype;
+	var ArrayPrototype$3 = Array.prototype;
 
 	var sort$2 = function (it) {
 	  var own = it.sort;
-	  return it === ArrayPrototype || (objectIsPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.sort) ? sort$3 : own;
+	  return it === ArrayPrototype$3 || (objectIsPrototypeOf(ArrayPrototype$3, it) && own === ArrayPrototype$3.sort) ? sort$3 : own;
 	};
 
 	var sort$1 = sort$2;
@@ -2934,12 +3041,24 @@ var Uniform = (function (exports) {
 	var trim = trim$1;
 
 	var _context, _context2, _context3;
+	trim(_context = `
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
+<path d="M28.998 8.531l-2.134-2.134c-0.394-0.393-1.030-0.393-1.423 0l-12.795 12.795-6.086-6.13c-0.393-0.393-1.029-0.393-1.423 0l-2.134 2.134c-0.393 0.394-0.393 1.030 0 1.423l8.924 8.984c0.393 0.393 1.030 0.393 1.423 0l15.648-15.649c0.393-0.392 0.393-1.030 0-1.423z"></path>
+</svg>
+`).call(_context);
+	const arrow_down = trim(_context2 = `
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 20">
+<path d="M13.418 7.601c0.271-0.268 0.709-0.268 0.979 0s0.271 0.701 0 0.969l-3.907 3.83c-0.271 0.268-0.709 0.268-0.979 0l-3.908-3.83c-0.27-0.268-0.27-0.701 0-0.969s0.708-0.268 0.979 0l3.418 3.14 3.418-3.14z"></path>
+</svg>
+`).call(_context2);
+	const x = trim(_context3 = `
+<svg version="1.2" baseProfile="tiny" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="64px" height="64px" viewBox="0 0 64 64" xml:space="preserve">
+<g><rect x="-2.352" y="29.385" transform="matrix(0.7071 0.7071 -0.7071 0.7071 32.3545 -14.3899)" width="71.799" height="4.95"/></g>
+<g><rect x="-2.374" y="29.376" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -12.7023 33.0352)" width="71.799" height="4.95"/></g>
+</svg>
 
-	trim(_context = "\n<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 32 32\">\n<path d=\"M28.998 8.531l-2.134-2.134c-0.394-0.393-1.030-0.393-1.423 0l-12.795 12.795-6.086-6.13c-0.393-0.393-1.029-0.393-1.423 0l-2.134 2.134c-0.393 0.394-0.393 1.030 0 1.423l8.924 8.984c0.393 0.393 1.030 0.393 1.423 0l15.648-15.649c0.393-0.392 0.393-1.030 0-1.423z\"></path>\n</svg>\n").call(_context);
-
-	var arrow_down = trim(_context2 = "\n<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 20 20\">\n<path d=\"M13.418 7.601c0.271-0.268 0.709-0.268 0.979 0s0.271 0.701 0 0.969l-3.907 3.83c-0.271 0.268-0.709 0.268-0.979 0l-3.908-3.83c-0.27-0.268-0.27-0.701 0-0.969s0.708-0.268 0.979 0l3.418 3.14 3.418-3.14z\"></path>\n</svg>\n").call(_context2);
-
-	var x = trim(_context3 = "\n<svg version=\"1.2\" baseProfile=\"tiny\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"64px\" height=\"64px\" viewBox=\"0 0 64 64\" xml:space=\"preserve\">\n<g><rect x=\"-2.352\" y=\"29.385\" transform=\"matrix(0.7071 0.7071 -0.7071 0.7071 32.3545 -14.3899)\" width=\"71.799\" height=\"4.95\"/></g>\n<g><rect x=\"-2.374\" y=\"29.376\" transform=\"matrix(0.7071 -0.7071 0.7071 0.7071 -12.7023 33.0352)\" width=\"71.799\" height=\"4.95\"/></g>\n</svg>\n\n").call(_context3);
+`).call(_context3);
+	const dots = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 4" fill=\"currentColor\"><circle cx="8" cy="2" r="2"/><circle cx="14" cy="2" r="2"/><circle cx="2" cy="2" r="2"/></svg>`;
 
 	/*
 	  options: array of html options, each item can be string | array | object
@@ -3407,43 +3526,6 @@ var Uniform = (function (exports) {
 
 	}
 
-	// `Object.defineProperty` method
-	// https://tc39.es/ecma262/#sec-object.defineproperty
-	_export({ target: 'Object', stat: true, forced: !descriptors, sham: !descriptors }, {
-	  defineProperty: objectDefineProperty.f
-	});
-
-	var defineProperty_1 = createCommonjsModule(function (module) {
-	var Object = path.Object;
-
-	var defineProperty = module.exports = function defineProperty(it, key, desc) {
-	  return Object.defineProperty(it, key, desc);
-	};
-
-	if (Object.defineProperty.sham) defineProperty.sham = true;
-	});
-
-	var defineProperty$2 = defineProperty_1;
-
-	var defineProperty$1 = defineProperty$2;
-
-	var defineProperty = defineProperty$1;
-
-	function _defineProperty(obj, key, value) {
-	  if (key in obj) {
-	    defineProperty(obj, key, {
-	      value: value,
-	      enumerable: true,
-	      configurable: true,
-	      writable: true
-	    });
-	  } else {
-	    obj[key] = value;
-	  }
-
-	  return obj;
-	}
-
 	/*  
 	    Options
 	    ===
@@ -3566,6 +3648,1211 @@ var Uniform = (function (exports) {
 
 	}
 
+	var $find = arrayIteration.find;
+
+
+	var FIND = 'find';
+	var SKIPS_HOLES = true;
+
+	// Shouldn't skip holes
+	if (FIND in []) Array(1)[FIND](function () { SKIPS_HOLES = false; });
+
+	// `Array.prototype.find` method
+	// https://tc39.es/ecma262/#sec-array.prototype.find
+	_export({ target: 'Array', proto: true, forced: SKIPS_HOLES }, {
+	  find: function find(callbackfn /* , that = undefined */) {
+	    return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+	  }
+	});
+
+	var find$3 = entryVirtual('Array').find;
+
+	var ArrayPrototype$2 = Array.prototype;
+
+	var find$2 = function (it) {
+	  var own = it.find;
+	  return it === ArrayPrototype$2 || (objectIsPrototypeOf(ArrayPrototype$2, it) && own === ArrayPrototype$2.find) ? find$3 : own;
+	};
+
+	var find$1 = find$2;
+
+	var find = find$1;
+
+	var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
+
+	var SPECIES = wellKnownSymbol('species');
+	var Array$2 = global_1.Array;
+	var max = Math.max;
+
+	// `Array.prototype.slice` method
+	// https://tc39.es/ecma262/#sec-array.prototype.slice
+	// fallback for not array-like ES3 strings and DOM objects
+	_export({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+	  slice: function slice(start, end) {
+	    var O = toIndexedObject(this);
+	    var length = lengthOfArrayLike(O);
+	    var k = toAbsoluteIndex(start, length);
+	    var fin = toAbsoluteIndex(end === undefined ? length : end, length);
+	    // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
+	    var Constructor, result, n;
+	    if (isArray$3(O)) {
+	      Constructor = O.constructor;
+	      // cross-realm fallback
+	      if (isConstructor(Constructor) && (Constructor === Array$2 || isArray$3(Constructor.prototype))) {
+	        Constructor = undefined;
+	      } else if (isObject(Constructor)) {
+	        Constructor = Constructor[SPECIES];
+	        if (Constructor === null) Constructor = undefined;
+	      }
+	      if (Constructor === Array$2 || Constructor === undefined) {
+	        return arraySlice(O, k, fin);
+	      }
+	    }
+	    result = new (Constructor === undefined ? Array$2 : Constructor)(max(fin - k, 0));
+	    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
+	    result.length = n;
+	    return result;
+	  }
+	});
+
+	var slice$3 = entryVirtual('Array').slice;
+
+	var ArrayPrototype$1 = Array.prototype;
+
+	var slice$2 = function (it) {
+	  var own = it.slice;
+	  return it === ArrayPrototype$1 || (objectIsPrototypeOf(ArrayPrototype$1, it) && own === ArrayPrototype$1.slice) ? slice$3 : own;
+	};
+
+	var slice$1 = slice$2;
+
+	var slice = slice$1;
+
+	var Array$1 = global_1.Array;
+	var $stringify = getBuiltIn('JSON', 'stringify');
+	var exec = functionUncurryThis(/./.exec);
+	var charAt = functionUncurryThis(''.charAt);
+	var charCodeAt = functionUncurryThis(''.charCodeAt);
+	var replace = functionUncurryThis(''.replace);
+	var numberToString = functionUncurryThis(1.0.toString);
+
+	var tester = /[\uD800-\uDFFF]/g;
+	var low = /^[\uD800-\uDBFF]$/;
+	var hi = /^[\uDC00-\uDFFF]$/;
+
+	var fix = function (match, offset, string) {
+	  var prev = charAt(string, offset - 1);
+	  var next = charAt(string, offset + 1);
+	  if ((exec(low, match) && !exec(hi, next)) || (exec(hi, match) && !exec(low, prev))) {
+	    return '\\u' + numberToString(charCodeAt(match, 0), 16);
+	  } return match;
+	};
+
+	var FORCED = fails(function () {
+	  return $stringify('\uDF06\uD834') !== '"\\udf06\\ud834"'
+	    || $stringify('\uDEAD') !== '"\\udead"';
+	});
+
+	if ($stringify) {
+	  // `JSON.stringify` method
+	  // https://tc39.es/ecma262/#sec-json.stringify
+	  // https://github.com/tc39/proposal-well-formed-stringify
+	  _export({ target: 'JSON', stat: true, forced: FORCED }, {
+	    // eslint-disable-next-line no-unused-vars -- required for `.length`
+	    stringify: function stringify(it, replacer, space) {
+	      for (var i = 0, l = arguments.length, args = Array$1(l); i < l; i++) args[i] = arguments[i];
+	      var result = functionApply($stringify, null, args);
+	      return typeof result == 'string' ? replace(result, tester, fix) : result;
+	    }
+	  });
+	}
+
+	// eslint-disable-next-line es/no-json -- safe
+	if (!path.JSON) path.JSON = { stringify: JSON.stringify };
+
+	// eslint-disable-next-line no-unused-vars -- required for `.length`
+	var stringify$2 = function stringify(it, replacer, space) {
+	  return functionApply(path.JSON.stringify, null, arguments);
+	};
+
+	var stringify$1 = stringify$2;
+
+	var stringify = stringify$1;
+
+	/* eslint-disable es/no-array-prototype-indexof -- required for testing */
+
+
+	var $IndexOf = arrayIncludes.indexOf;
+
+
+	var un$IndexOf = functionUncurryThis([].indexOf);
+
+	var NEGATIVE_ZERO = !!un$IndexOf && 1 / un$IndexOf([1], 1, -0) < 0;
+	var STRICT_METHOD = arrayMethodIsStrict('indexOf');
+
+	// `Array.prototype.indexOf` method
+	// https://tc39.es/ecma262/#sec-array.prototype.indexof
+	_export({ target: 'Array', proto: true, forced: NEGATIVE_ZERO || !STRICT_METHOD }, {
+	  indexOf: function indexOf(searchElement /* , fromIndex = 0 */) {
+	    var fromIndex = arguments.length > 1 ? arguments[1] : undefined;
+	    return NEGATIVE_ZERO
+	      // convert -0 to +0
+	      ? un$IndexOf(this, searchElement, fromIndex) || 0
+	      : $IndexOf(this, searchElement, fromIndex);
+	  }
+	});
+
+	var indexOf$3 = entryVirtual('Array').indexOf;
+
+	var ArrayPrototype = Array.prototype;
+
+	var indexOf$2 = function (it) {
+	  var own = it.indexOf;
+	  return it === ArrayPrototype || (objectIsPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.indexOf) ? indexOf$3 : own;
+	};
+
+	var indexOf$1 = indexOf$2;
+
+	var indexOf = indexOf$1;
+
+	class DragOrder {
+	  
+	    /*
+	    Due to limitations with the Drag and Drop API of javascript,
+	    this uses mouseover to manage the dragging and placement of an item
+	    */
+	    options = {
+	        drop: (items) => {},
+	        dragStart: (items) => {},
+	        dragEnd: (items) => {},
+	        placeholder: (item) => {
+	            const el = item.cloneNode(true);
+	            el.style.display = item.style.display;
+	            el.style.opacity = 0.5;
+	            return el
+	        },
+	        dragholder: item => {
+	            const el = item.cloneNode(true);
+	            el.style.display = item.style.display;
+	            el.style.width = item.offsetWidth + "px";
+	            el.style.height = item.offsetHeight + "px";
+	            el.style.minWidth = 'auto';
+	            el.style.maxWidth = 'auto';
+	            el.style.minHeight = 'auto';
+	            el.style.maxHeight = 'auto';
+	            el.style.position = 'fixed';
+	            el.style.zIndex = 999;
+	            el.style.cursor = "grabbing";
+	            
+	            if (this.options.handleSelector) {
+	                el.querySelector(this.options.handleSelector).style.cursor = "grabbing";
+	            }
+	        
+	            // Fix bug with table rows squishing width
+	            if (el.tagName == "TR") {
+	                Array.from(el.children).forEach((child, index) => {
+	                    child.style.width = item.children[index].offsetWidth + "px";
+	                });
+	            }
+	            return el
+	        },
+	        handleSelector: false,
+	        itemSelector: false
+	    }
+	  
+	    constructor(options){
+	        this.el = options.el;
+	    
+	        Object.keys(this.options).forEach(key => {
+	            if(options[key]) this.options[key] = options[key];
+	        });
+	    
+	        this.keyUp = this.keyUp.bind(this);
+	        this.mouseMove = this.mouseMove.bind(this);
+	        this.mouseDown = this.mouseDown.bind(this);
+	        this.mouseUp = this.mouseUp.bind(this);
+	        this.el.addEventListener('mousedown', this.mouseDown);
+	        this.el.addEventListener('mouseup', this.mouseUp);
+	    }
+	  
+	    remove () {
+	        this.el.removeEventListener('mousedown', this.mouseDown);
+	        this.el.removeEventListener('mouseup', this.mouseUp);
+	        this.dragEnd();
+	    }
+	  
+	    keyUp (e) {
+	        if(e.key == "Escape" && this.selectedItem !== undefined) {
+	            this.dragEnd();
+	        }
+	    }
+	  
+	    mouseUp (e) {
+	        if(this.dragging) this.drop();
+	    }
+	  
+	    mouseDown (e) {
+	        if(this.options.handleSelector) {
+	            const matchingEl = e.target.matches(this.options.handleSelector) || e.target.closest(this.options.handleSelector);
+	            if(!matchingEl) { 
+	                return
+	            }
+	        }
+	        this.dragStart(e);
+	    }
+
+	    mouseMove (e) {
+	        if (this.moving) return // debounce multiple async calls
+	        this.moving = true;
+	        this.dragItem.style.left = e.pageX + "px";
+	        this.dragItem.style.top = e.pageY + "px";
+	      
+	        const hoveredItem = this.getItem(e.pageX, e.pageY);
+	        if (hoveredItem && this.lastPosition) {
+	            const position = this.lastPosition.y > e.pageY || this.lastPosition.x > e.pageX ? 'beforebegin' : 'afterend';
+	            hoveredItem.insertAdjacentElement(position, this.placeholder);
+	        }
+	    
+	        this.lastPosition = {
+	            x: e.pageX,
+	            y: e.pageY
+	        };
+	    
+	        this.moving = false;
+	    }
+	  
+	    dragStart (e) {
+	        if (this.dragging) return
+	        this.dragging = true;
+	        this.getItems();
+	        this.selectedItem = this.getItem(e.pageX, e.pageY);
+	        const itemPosition = this.selectedItem.getBoundingClientRect();
+	        this.lastPosition = {
+	            x: e.pageX,
+	            y: e.pageY
+	        };
+		
+	        // Render dragItem
+	        this.dragItem = this.options.dragholder.call(this, this.selectedItem);
+	        this.selectedItem.insertAdjacentElement('beforebegin', this.dragItem);
+	        this.dragItem.style.left = e.pageX + "px";
+	        this.dragItem.style.top = e.pageY + "px";
+	        this.dragItem.style.marginTop = itemPosition.top - e.pageY + "px";
+	        this.dragItem.style.marginLeft = itemPosition.left - e.pageX + "px";
+	    
+	        // Render placeholder
+	        if (typeof this.options.placeholder == 'string') {
+	            this.placeholder = document.createElement('div');
+	            this.placeholder.innerHTML = this.options.placeholder;
+	            this.placeholder = this.placeholder.children[0];
+	        } else if (this.options.placeholder instanceof Element) {
+	            this.placeholder = this.options.placeholder;
+	        } else if (typeof this.options.placeholder == "function") {
+	            this.placeholder = this.options.placeholder(this.selectedItem);
+	        }
+	        this.selectedItem.insertAdjacentElement('beforebegin', this.placeholder);
+		
+	        // Hide selectedItem
+	        this.selectedItem.styleWas = {display: this.selectedItem.style.display};
+	        this.selectedItem.style.display = 'none';
+	    
+	        window.addEventListener('mousemove', this.mouseMove);
+	        window.addEventListener('keyup', this.keyUp);
+	    
+	        this.options.dragStart(this.items);
+	    }
+	  
+	    dragEnd () {
+	        if(!this.dragging) return;
+	        Object.keys(this.selectedItem.styleWas).forEach(style => {
+	            this.selectedItem.style[style] = this.selectedItem.styleWas[style];
+	        });
+	        this.dragItem.parentNode.removeChild(this.dragItem);
+	        this.placeholder.parentNode.removeChild(this.placeholder);
+	    
+	        delete this.lastPosition;
+	        delete this.placeholder;
+	        delete this.dragItem;
+	        delete this.selectedItem;
+	    
+	        window.removeEventListener('mousemove', this.mouseMove);
+	        window.removeEventListener('keyup', this.keyUp);
+	    
+	        this.options.dragEnd(this.items);
+	    
+	        this.dragging = false;
+	    }
+	  
+	    drop () {
+	        this.placeholder.insertAdjacentElement('beforebegin', this.selectedItem);
+	        this.dragEnd();
+	        this.options.drop(this.getItems());
+	    }
+	  
+	    getItem(x, y) {
+	        let item;
+	        this.items.forEach(i => {
+	            const viewportPosition = i.getBoundingClientRect();
+	            const position = {
+	                left: viewportPosition.left + window.scrollX,
+	                right: viewportPosition.right + window.scrollX,
+	                top: viewportPosition.top + window.scrollY,
+	                bottom: viewportPosition.bottom + window.scrollY
+	            };
+	            if (position.left <= x && position.right >= x && position.top <= y && position.bottom >= y){
+	                item = i;
+	            }
+	        });
+	        return item;
+	    }
+	  
+	    getItems() {
+	        this.items = this.options.itemSelector ? this.el.querySelectorAll(this.options.itemSelector) : Array.from(this.el.children);
+	        return this.items
+	    }
+	 
+	}
+
+	// Capitalizes all the words and replaces some characters in the string to
+	// create a nicer looking title. titleize is meant for creating pretty output.
+	//
+	// export function titleize(value: string): string
+	function titleize(value) {
+	  return humanize(underscore(value)).replace(/\b('?[a-z])/g, m => m.toUpperCase());
+	} // Capitalizes the first word and turns underscores into spaces and strips a
+	// trailing "_id", if any. Like titleize, this is meant for creating pretty
+	// output.
+	//
+	// export function humanize(value: string): string
+
+	function humanize(value) {
+	  return capitalize(value.toLowerCase().replace(/_id$/, '').replace(/_/g, ' ').replace(/([a-z\d]*)/g, m => m.toLowerCase()));
+	} // Makes an underscored, lowercase form from the expression in the string.
+	//
+	// Changes '.' to '/' to convert namespaces to paths.
+	//
+	// Examples:
+	// 
+	//     "ActiveModel".underscore         # => "active_model"
+	//     "ActiveModel.Errors".underscore # => "active_model/errors"
+	//
+	// As a rule of thumb you can think of underscore as the inverse of camelize,
+	// though there are cases where that does not hold:
+	//
+	//     "SSLError".underscore().camelize() # => "SslError"
+	//
+	// export function underscore(value: string): string
+
+	function underscore(value) {
+	  let result = value.replace('.', '/');
+	  result = result.replace(/([A-Z\d]+)([A-Z][a-z])/g, "$1_$2");
+	  result = result.replace(/([a-z\d])([A-Z])/g, "$1_$2");
+	  return result.replace('-', '_').toLowerCase();
+	} // Converts the first character to uppercase
+	//
+	// export function capitalize(value: string): string
+
+	function capitalize(value) {
+	  return value.charAt(0).toUpperCase() + slice(value).call(value, 1);
+	}
+
+	/*  
+	    Options
+	    ===
+	    columns: ƒ || [ƒ, {}]
+	        defaultWidth: integer
+	        header: string
+	        class: string
+	        order: boolean || ƒ(records, "asc"||"desc") 
+	    records:
+	    storeKey: string || ƒ // used to store settings in LocalStorage
+
+	    Extendable
+	    ===
+	    columns
+	    defaultColumns
+	    tagName
+	    records
+	    className
+
+	*/
+
+	class Table extends Component {
+	  initialize(options) {
+	    var _context, _context2, _context3, _context4, _context5;
+
+	    this.records = options.records;
+	    this._storeKey = options.storeKey;
+	    this.initColumns(options); // Bind Instance Methods
+
+	    this.columnResize = bind(_context = this.columnResize).call(_context, this);
+	    this.endColumnResize = bind(_context2 = this.endColumnResize).call(_context2, this); // Events
+
+	    addEventListenerFor(this.el, '.uniformTable-column-menu', 'click', bind(_context3 = this.showColumnPopover).call(_context3, this));
+	    addEventListenerFor(this.el, '.uniformTable-order-action', 'click', bind(_context4 = this.selectOrder).call(_context4, this));
+	    addEventListenerFor(this.el, '.uniformTable-resize-handle', 'mousedown', bind(_context5 = this.initiateColumnResize).call(_context5, this));
+	    this.render();
+	  }
+
+	  initColumns(options) {
+	    var _context6, _context7;
+
+	    // Column Models
+	    this.columnModels = options.columns || this.constructor.columns;
+
+	    forEach(_context6 = keys$1(this.columnModels)).call(_context6, key => {
+	      let model = this.columnModels[key];
+	      model.id = key;
+
+	      if (typeof model == "function") {
+	        model = {
+	          render: model
+	        };
+	      } else if (isArray(model)) {
+	        model[1].render = model[0];
+	        model = model[1];
+	      } else if (typeof model == "object") {
+	        if (!model.render) {
+	          model.render = this.defaultColumnRender;
+	        }
+	      } else {
+	        throw 'UniformTable column in inproperly configured. Accepts function or [function, options]';
+	      }
+
+	      this.columnModels[key] = model;
+	    }); // Default Columns
+
+
+	    this.defaultColumns = options.defaultColumns || this.constructor.defaultColumns || keys$1(this.columnModels);
+	    this.defaultOrder = options.defaultOrder || this.constructor.defaultOrder || find(_context7 = this.defaultColumns).call(_context7, key => this.columnModels[key].order);
+
+	    if (this.defaultOrder) {
+	      if (typeof this.defaultOrder != 'object') this.defaultOrder = {
+	        [this.defaultOrder]: 'asc'
+	      };
+	    }
+
+	    this.columns = this.readSettings().columns;
+	  }
+
+	  defaultColumnRender(record, model) {
+	    return r[model.id];
+	  }
+
+	  render() {
+	    var _context8;
+
+	    this.el.innerHTML = '';
+	    this.el.append(createElement('thead', {
+	      content: this.renderHead()
+	    }));
+	    this.el.append(createElement('tbody', {
+	      content: map(_context8 = this.orderedRecords()).call(_context8, this.renderRow, this)
+	    }));
+	    return this;
+	  }
+
+	  renderHead() {
+	    var _context9;
+
+	    return createElement('tr', {
+	      content: map(_context9 = this.columns).call(_context9, column => {
+	        const model = this.columnModels[column.id];
+	        const cell = createElement('th', {
+	          class: "uniformTable-header " + "col-" + column.id + " " + (model.class ? model.class : ""),
+	          id: column.id,
+	          style: {
+	            width: column.width || model.defaultWidth
+	          },
+	          content: {
+	            class: 'uniformTable-header-container',
+	            content: [{
+	              class: 'flex-fill',
+	              content: {
+	                tag: 'span',
+	                content: model.header || titleize(column.id)
+	              }
+	            }, {
+	              class: 'uniformTable-header-action',
+	              content: {
+	                class: 'uniformTable-column-menu',
+	                content: dots
+	              }
+	            }, {
+	              class: 'uniformTable-resize-handle'
+	            }]
+	          }
+	        });
+
+	        if (model.order) {
+	          cell.querySelector('span').classList.add('uniformTable-order-action');
+
+	          if (column.order) {
+	            cell.querySelector('span').classList.add('-active', "-active-" + column.order);
+	          }
+	        }
+
+	        return cell;
+	      })
+	    });
+	  }
+
+	  renderRow(record) {
+	    var _context10;
+
+	    return createElement('tr', {
+	      content: map(_context10 = this.columns).call(_context10, column => {
+	        const model = this.columnModels[column.id];
+	        return createElement('td', {
+	          content: model.render(record, model),
+	          class: "col-" + column.id + " " + model.class || ""
+	        });
+	      })
+	    });
+	  }
+
+	  orderedRecords() {
+	    var _context11;
+
+	    const orderingColumn = find(_context11 = this.columns).call(_context11, x => x.order);
+
+	    if (!orderingColumn) {
+	      return this.records;
+	    }
+
+	    const model = this.columnModels[orderingColumn.id];
+
+	    if (typeof model.order == "function") {
+	      return model.order(this.records, orderingColumn.order);
+	    } else if (model.order) {
+	      var _context12;
+
+	      const key = orderingColumn.id;
+	      return sort(_context12 = this.records).call(_context12, (r1, r2) => {
+	        if (orderingColumn.order == "asc") {
+	          return r1[key] > r2[key];
+	        } else {
+	          return r1[key] < r2[key];
+	        }
+	      });
+	    }
+	  }
+
+	  storeKey() {
+	    var _context13;
+
+	    return this._storeKey || ['uniform/table', map(_context13 = keys$1(this.columnModels)).call(_context13, x => slice(x).call(x, 0, 1)).join('')].join('/');
+	  }
+
+	  readSettings() {
+	    var _context14, _context15;
+
+	    let savedSettings = localStorage.getItem(this.storeKey());
+	    savedSettings = savedSettings ? JSON.parse(savedSettings) : {};
+
+	    const settings = assign(this.defaultSettings(), savedSettings); // Remove columns that are no longer in columnModels, because LocalStorage can persist code changes
+
+
+	    settings.columns = filter$1(_context14 = settings.columns).call(_context14, x => this.columnModels[x.id]);
+
+	    let orderingColumn = find(_context15 = settings.columns).call(_context15, x => x.order);
+
+	    if (!orderingColumn && this.defaultOrder) {
+	      var _context16;
+
+	      orderingColumn = find(_context16 = settings.columns).call(_context16, x => x.id == keys$1(this.defaultOrder)[0]);
+	      orderingColumn.order = this.defaultOrder[orderingColumn.id];
+	    }
+
+	    return settings;
+	  }
+
+	  saveSettings(settings) {
+	    localStorage.setItem(this.storeKey(), stringify(settings));
+	  }
+
+	  defaultSettings() {
+	    var _context17;
+
+	    return {
+	      columns: map(_context17 = this.defaultColumns).call(_context17, col => {
+	        return {
+	          id: col
+	        };
+	      })
+	    };
+	  }
+
+	  selectOrder(e, direction) {
+	    var _context18;
+
+	    const orderKey = e.delegateTarget.closest('th').id;
+
+	    const orderColumn = find(_context18 = this.columns).call(_context18, x => x.id == orderKey);
+
+	    if (direction) {
+	      var _context19;
+
+	      delete find(_context19 = this.columns).call(_context19, x => x.order).order;
+	      orderColumn.order = direction;
+	    } else {
+	      if (orderColumn.order) {
+	        orderColumn.order = orderColumn.order == 'asc' ? 'desc' : 'asc';
+	      } else {
+	        var _context20;
+
+	        delete find(_context20 = this.columns).call(_context20, x => x.order).order;
+	        orderColumn.order = 'asc';
+	      }
+	    }
+
+	    this.saveSettings({
+	      columns: this.columns
+	    });
+	    this.render();
+	  }
+
+	  showColumnPopover(e) {
+	    var _context21;
+
+	    const button = e.delegateTarget;
+
+	    forEach(_context21 = this.el.querySelectorAll('.uniformTable-header')).call(_context21, el => el.classList.add('-disabled'));
+
+	    button.closest('thead').classList.add('-active');
+	    button.closest('th').classList.add('-active');
+	    button.closest('th').classList.remove('-disabled');
+	    button.classList.add('-active');
+
+	    if (!button.popover) {
+	      const headerCell = button.closest('th');
+	      const columnModel = this.columnModels[headerCell.id];
+	      const actions = [listenerElement({
+	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
+	        content: 'Remove Column'
+	      }, e => {
+	        var _context22;
+
+	        button.popover.hide();
+	        this.columns = filter$1(_context22 = this.columns).call(_context22, x => x.id != headerCell.id);
+	        this.saveSettings({
+	          columns: this.columns
+	        });
+	        this.render();
+	      }), listenerElement({
+	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
+	        content: 'Table Settings'
+	      }, e => {
+	        button.popover.hide();
+	        this.showSettingsModal();
+	      })];
+
+	      if (columnModel.order) {
+	        actions.unshift(listenerElement({
+	          class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
+	          content: 'Order A to Z'
+	        }, e => {
+	          button.popover.hide();
+	          this.selectOrder({
+	            delegateTarget: button
+	          }, 'asc');
+	        }), listenerElement({
+	          class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
+	          content: 'Order Z to A'
+	        }, e => {
+	          button.popover.hide();
+	          this.selectOrder({
+	            delegateTarget: button
+	          }, 'desc');
+	        }));
+	      }
+
+	      button.popover = new Popover({
+	        anchor: button,
+	        align: '0px bottom',
+	        content: createElement({
+	          class: 'shadow shadow-opacity-40 bg-white rounded pad-1/2x text-sm text-nowrap',
+	          content: actions
+	        })
+	      }).render();
+	      button.popover.addEventListener('hidden', () => {
+	        var _context23;
+
+	        forEach(_context23 = this.el.querySelectorAll('.-disabled')).call(_context23, el => el.classList.remove('-disabled'));
+
+	        button.closest('th').classList.remove('-active');
+	        button.classList.remove('-active');
+	      });
+	    } else {
+	      button.popover.toggle();
+	    }
+	  }
+
+	  renderSettingsModalColumns(includedEl, excludedEl, columns) {
+	    var _context24;
+
+	    includedEl.innerHTML = '';
+	    excludedEl.innerHTML = '';
+
+	    forEach(columns).call(columns, column => {
+	      const model = this.columnModels[column.id];
+	      includedEl.append(createElement({
+	        class: 'text-nowrap pad-1/4x flex space-h-1/2x align-center group',
+	        children: [{
+	          tag: 'label',
+	          class: 'flex-fill',
+	          children: [{
+	            tag: 'input',
+	            type: 'checkbox',
+	            class: 'margin-right-1/4x',
+	            value: column.id,
+	            checked: true
+	          }, model.header || titleize(column.id)]
+	        }, {
+	          tag: 'span',
+	          class: 'js-move cursor-move opacity-0 group-hover:opacity-100',
+	          children: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.28 20" style="width:9px"><path d="M4.27,13.05a.54.54,0,0,0-.75,0,.53.53,0,0,0,0,.75l6.1,6a.54.54,0,0,0,.76,0l6.1-6a.53.53,0,0,0,0-.75.54.54,0,0,0-.75,0L10,18.56Z" transform="translate(-3.36 0)"/><path d="M15.73,6.94a.53.53,0,0,0,.75-.75l-6.1-6a.54.54,0,0,0-.76,0l-6.1,6a.53.53,0,1,0,.75.75L10,1.43Z" transform="translate(-3.36 0)"/></svg>`
+	        }]
+	      }));
+	    });
+
+	    forEach(_context24 = keys$1(this.columnModels)).call(_context24, key => {
+	      if (find(columns).call(columns, c => key == c.id)) return;
+	      const model = this.columnModels[key];
+	      excludedEl.append(createElement({
+	        class: 'text-nowrap pad-1/4x flex space-h-1/2x align-center group',
+	        children: [{
+	          tag: 'label',
+	          class: 'flex-fill',
+	          children: [{
+	            tag: 'input',
+	            type: 'checkbox',
+	            class: 'margin-right-1/4x',
+	            value: key
+	          }, model.header || titleize(key)]
+	        }, {
+	          tag: 'span',
+	          class: 'js-move cursor-move opacity-0 group-hover:opacity-100',
+	          children: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.28 20" style="width:9px"><path d="M4.27,13.05a.54.54,0,0,0-.75,0,.53.53,0,0,0,0,.75l6.1,6a.54.54,0,0,0,.76,0l6.1-6a.53.53,0,0,0,0-.75.54.54,0,0,0-.75,0L10,18.56Z" transform="translate(-3.36 0)"/><path d="M15.73,6.94a.53.53,0,0,0,.75-.75l-6.1-6a.54.54,0,0,0-.76,0l-6.1,6a.53.53,0,1,0,.75.75L10,1.43Z" transform="translate(-3.36 0)"/></svg>`
+	        }]
+	      }));
+	    });
+	  }
+
+	  showSettingsModal() {
+	    let modal;
+	    let settings = this.readSettings();
+	    const includedEl = createElement({
+	      class: 'border rounded flex-fill'
+	    });
+	    const excludedEl = createElement({
+	      class: 'border rounded flex-fill'
+	    });
+	    this.renderSettingsModalColumns(includedEl, excludedEl, settings.columns);
+	    const container = createElement('div', {
+	      class: 'pad-top bg-white rounded overflow-hidden min-width-300-px border-gray-20',
+	      children: [{
+	        tag: 'h2',
+	        class: "text-center margin-bottom",
+	        children: 'Customize Columns'
+	      }, {
+	        class: 'flex space-h-1/2x pad-h-1/2x',
+	        children: [includedEl, excludedEl]
+	      }, {
+	        class: 'text-xs text-uppercase text-center text-bold text-gray-30 hover:text-blue',
+	        content: listenerElement('button', {
+	          class: "reset pad-v-1/2x",
+	          content: "Restore Defaults"
+	        }, e => {
+	          settings = this.defaultSettings();
+	          this.renderSettingsModalColumns(includedEl, excludedEl, settings.columns);
+	        })
+	      }, {
+	        class: "flex pad bg-gray-10 bg-opacity-50 justify-content-end space-h",
+	        children: [listenerElement('button', {
+	          class: 'uniformButton -clear -gray-50',
+	          content: 'Cancel'
+	        }, e => {
+	          modal.close();
+	        }), listenerElement('button', {
+	          class: 'uniformButton -green',
+	          content: 'Update'
+	        }, e => {
+	          this.saveSettings(settings);
+	          this.columns = settings.columns;
+	          this.render();
+	          modal.close();
+	        })]
+	      }]
+	    });
+	    addEventListenerFor(container, 'input', 'change', e => {
+	      if (e.delegateTarget.checked) {
+	        settings.columns.push({
+	          id: e.delegateTarget.value
+	        });
+	        includedEl.append(e.delegateTarget.closest('div'));
+	      } else {
+	        var _context25;
+
+	        settings.columns = filter$1(_context25 = settings.columns).call(_context25, x => x.id != e.delegateTarget.value);
+	        excludedEl.append(e.delegateTarget.closest('div'));
+	      }
+	    });
+	    new DragOrder({
+	      el: includedEl,
+	      handleSelector: '.js-move',
+	      itemSelector: 'div',
+	      placeholder: item => {
+	        const el = item.cloneNode(true);
+	        el.style.display = item.style.display;
+	        el.style.opacity = 0.5;
+	        return el;
+	      },
+	      dragholder: item => {
+	        const el = item.cloneNode(true);
+	        el.style.display = item.style.display;
+	        el.style.width = item.offsetWidth + "px";
+	        el.style.height = item.offsetHeight + "px";
+	        el.style.minWidth = 'auto';
+	        el.style.maxWidth = 'auto';
+	        el.style.minHeight = 'auto';
+	        el.style.maxHeight = 'auto';
+	        el.style.position = 'fixed';
+	        el.style.cursor = "grabbing";
+	        el.style.background = 'rgba(255,255,255,0.8)';
+	        el.style.border = '1px dashed rgba(0, 0, 0, 0.5)';
+	        return el;
+	      },
+	      drop: items => {
+	        var _context26, _context27;
+
+	        const keys = map(_context26 = from_1(items)).call(_context26, item => item.querySelector('input').value);
+
+	        sort(_context27 = settings.columns).call(_context27, (a, b) => indexOf(keys).call(keys, a.id) - indexOf(keys).call(keys, b.id));
+	      }
+	    });
+	    modal = new Modal({
+	      content: container
+	    }).render();
+	    return modal;
+	  }
+	  /*
+	      Column Resizing
+	  */
+
+
+	  initiateColumnResize(e) {
+	    var _context28, _context29, _context31;
+
+	    forEach(_context28 = this.el.querySelectorAll('.uniformTable-header')).call(_context28, el => el.classList.add('-disabled'));
+
+	    e.delegateTarget.closest('th').classList.remove('-disabled');
+	    e.delegateTarget.closest('th').classList.add('-active');
+	    e.delegateTarget.classList.add('-hover');
+	    window.addEventListener('mousemove', this.columnResize);
+	    window.addEventListener('mouseup', this.endColumnResize);
+
+	    forEach(_context29 = this.el.querySelectorAll('thead th')).call(_context29, (el, i) => {
+	      var _context30;
+
+	      el.style.width = el.offsetWidth + "px";
+
+	      const column = find(_context30 = this.columns).call(_context30, x => x.id == el.id);
+
+	      if (column) {
+	        column.width = innerWidth(el) + "px";
+	      }
+	    });
+
+	    this.resizingColumn = e.delegateTarget.closest('th').previousElementSibling;
+	    this.startPageX = e.pageX;
+	    this.startWidth = this.resizingColumn.offsetWidth;
+
+	    forEach(_context31 = this.el.querySelectorAll(`.col-${this.resizingColumn.id}`)).call(_context31, el => {
+	      el.classList.add('-resizing');
+	    });
+	  }
+
+	  columnResize(e) {
+	    let newWidth = this.startWidth + (e.pageX - this.startPageX);
+	    this.resizingColumn.style.width = newWidth + "px";
+	  }
+
+	  endColumnResize(e) {
+	    var _context32, _context33, _context34;
+
+	    window.removeEventListener('mousemove', this.columnResize);
+	    window.removeEventListener('mouseup', this.endColumnResize);
+	    find(_context32 = this.columns).call(_context32, x => x.id == this.resizingColumn.id).width = this.resizingColumn.style.width;
+
+	    forEach(_context33 = this.el.querySelectorAll(`.-resizing`)).call(_context33, el => {
+	      el.classList.remove('-resizing');
+	    });
+
+	    this.el.querySelector('.uniformTable-resize-handle.-hover').classList.remove('-hover');
+
+	    forEach(_context34 = this.el.querySelectorAll('.-disabled')).call(_context34, el => el.classList.remove('-disabled'));
+
+	    this.el.querySelector('th.-active').classList.remove('-active');
+	    this.saveSettings({
+	      columns: this.columns
+	    });
+	  }
+
+	}
+
+	_defineProperty(Table, "tagName", 'table');
+
+	_defineProperty(Table, "className", 'uniformTable');
+
+	_defineProperty(Table, "columns", []);
+
+	_defineProperty(Table, "defaultColumns", null);
+
+	_defineProperty(Table, "defaultOrder", null);
+
+	/*  
+	    Options
+	    ===
+
+	    Extendable
+	    ===
+
+	    TODO
+	    ====
+	    Highlight selected cells
+	    Copy/Paste with selected cells
+
+	*/
+
+	class Spreadsheet extends Table {
+	  initialize(options) {
+	    var _context, _context2, _context3;
+
+	    super.initialize.call(this, options);
+	    addEventListenerFor(this.el, 'td', 'keydown', bind(_context = this.keydown).call(_context, this));
+	    addEventListenerFor(this.el, 'td', 'mousedown', bind(_context2 = this.initiateCellSelection).call(_context2, this));
+	    addEventListenerFor(this.el, 'td', 'mouseover', bind(_context3 = this.updateCellSelection).call(_context3, this));
+	  }
+
+	  defaultColumnRender(record, model) {
+	    const input = createElement('input', {
+	      value: model.load ? model.load(record[model.id]) : record[model.id]
+	    });
+	    input.addEventListener('change', e => {
+	      record[model.id] = model.dump ? model.dump(e.target.value) : e.target.value;
+	    });
+	    return input;
+	  }
+
+	  renderRow(record) {
+	    var _context4;
+
+	    return createElement('tr', {
+	      content: map(_context4 = this.columns).call(_context4, async column => {
+	        const model = this.columnModels[column.id];
+	        const input = await model.render(record, model);
+	        if (input) input.setAttribute('tabindex', '-1');
+	        return createElement('td', {
+	          tabindex: input ? '0' : '-1',
+	          content: input,
+	          class: "col-" + column.id + " " + model.class || ""
+	        });
+	      })
+	    });
+	  }
+
+	  initiateCellSelection(e) {
+	    var _context5;
+
+	    const cell = e.delegateTarget;
+	    this.selecting = cell;
+	    this.deselectCells();
+
+	    if (cell != document.activeElement && !cell.querySelector(':focus')) {
+	      e.preventDefault();
+	      cell.focus();
+	    }
+
+	    window.addEventListener('mouseup', bind(_context5 = this.endCellSelection).call(_context5, this), {
+	      once: true
+	    });
+	  }
+
+	  updateCellSelection(e) {
+	    if (this.selecting) {
+	      var _context6;
+
+	      const current = this.el.querySelector('td:focus, td:focus-within') || this.el.querySelector('td');
+	      const target = e.delegateTarget;
+	      [current.cellIndex, current.parentElement.rowIndex];
+	      [target.cellIndex, target.parentElement.rowIndex];
+
+	      forEach(_context6 = this.el.querySelectorAll('td.selecting')).call(_context6, el => el.classList.remove('selecting'));
+
+	      let i = Math.min(current.parentElement.rowIndex, target.parentElement.rowIndex);
+
+	      while (i <= Math.max(current.parentElement.rowIndex, target.parentElement.rowIndex)) {
+	        const row = current.closest('table').rows[i];
+	        let x = Math.min(current.cellIndex, target.cellIndex);
+
+	        while (x <= Math.max(current.cellIndex, target.cellIndex)) {
+	          row.cells[x].classList.add('selecting');
+	          x += 1;
+	        }
+
+	        i += 1;
+	      }
+	    }
+	  }
+
+	  endCellSelection(e) {
+	    var _context7;
+
+	    const cell = e.target.closest('td');
+
+	    if (this.selecting && cell != this.selecting) {
+	      this.selecting.focus();
+	      const selectedCells = this.el.querySelectorAll('td.selecting');
+
+	      forEach(selectedCells).call(selectedCells, el => el.classList.add('selected'));
+
+	      const offset = offsetTo(from_1(selectedCells), this.el);
+	      const pad = 1;
+	      const stroke = 1; // left
+
+	      this.el.append(createElement('selection', {
+	        class: 'uniformSpreadsheet-selectionOutline',
+	        style: {
+	          left: offset.left - pad + "px",
+	          top: offset.top - pad + "px",
+	          width: stroke + "px",
+	          height: offset.bottom - offset.top + pad + "px"
+	        }
+	      })); // Right
+
+	      this.el.append(createElement('selection', {
+	        class: 'uniformSpreadsheet-selectionOutline',
+	        style: {
+	          left: offset.right - pad + "px",
+	          top: offset.top - pad + "px",
+	          width: stroke + "px",
+	          height: offset.bottom - offset.top + pad + "px"
+	        }
+	      })); // Top
+
+	      this.el.append(createElement('selection', {
+	        class: 'uniformSpreadsheet-selectionOutline',
+	        style: {
+	          left: offset.left - pad + "px",
+	          top: offset.top - pad + "px",
+	          width: offset.right - offset.left + pad + "px",
+	          height: stroke + "px"
+	        }
+	      })); // Bottom
+
+	      this.el.append(createElement('selection', {
+	        class: 'uniformSpreadsheet-selectionOutline',
+	        style: {
+	          left: offset.left - pad + "px",
+	          top: offset.bottom - pad + "px",
+	          width: offset.right - offset.left + pad + "px",
+	          height: stroke + "px"
+	        }
+	      }));
+	    }
+
+	    forEach(_context7 = this.el.querySelectorAll('td.selecting')).call(_context7, el => {
+	      el.classList.remove('selecting');
+	    });
+
+	    delete this.selecting;
+	  }
+
+	  deselectCells() {
+	    var _context8, _context9;
+
+	    forEach(_context8 = this.el.querySelectorAll('td.selected')).call(_context8, el => {
+	      el.classList.remove('selected');
+	    });
+
+	    forEach(_context9 = this.el.querySelectorAll('selection')).call(_context9, el => el.parentNode.removeChild(el));
+	  }
+
+	  initiateColumnResize() {
+	    this.deselectCells();
+	    return super.initiateColumnResize(...arguments);
+	  }
+
+	  keydown(e) {
+	    if (document.activeElement == e.delegateTarget) {
+
+	      switch (e.key) {
+	        case 'Tab':
+	          this.focusCell(e.shiftKey ? "left" : "right");
+	          e.preventDefault();
+	          e.stopPropagation();
+	          return;
+
+	        case 'ArrowRight':
+	          this.focusCell('right');
+	          e.preventDefault();
+	          return;
+
+	        case 'ArrowLeft':
+	          this.focusCell('left');
+	          e.preventDefault();
+	          return;
+
+	        case 'ArrowUp':
+	          this.focusCell('up');
+	          e.preventDefault();
+	          return;
+
+	        case 'ArrowDown':
+	          this.focusCell('down');
+	          e.preventDefault();
+	          return;
+
+	        default:
+	          if (e.key != 'Shift') {
+	            e.delegateTarget.querySelector('input, select, textarea').focus();
+	            this.deselectCells();
+	          }
+
+	      }
+	    } else {
+	      switch (e.key) {
+	        case 'Enter':
+	          this.focusCell('down');
+	          return;
+
+	        case 'Escape':
+	          e.delegateTarget.focus();
+	      }
+	    }
+	  }
+
+	  focusCell(direction) {
+	    const current = this.el.querySelector('td:focus, td:focus-within') || this.el.querySelector('td');
+	    const action = (direction == "up" || direction == "left" ? "previous" : "next") + 'ElementSibling';
+
+	    if (direction == "left" || direction == "right") {
+	      const cell = current[action];
+	      if (cell) cell.focus();
+	    } else {
+	      const index = current.cellIndex;
+	      const row = current.parentElement[action];
+	      if (row) row.cells[index].focus();
+	    }
+
+	    this.deselectCells();
+	  }
+
+	}
+
+	_defineProperty(Spreadsheet, "className", "uniformTable uniformSpreadsheet");
+
 	class Checkbox extends Component {
 	  initialize(options) {
 	    if (options.input instanceof Element) {
@@ -3645,6 +4932,8 @@ var Uniform = (function (exports) {
 	exports.Radio = Radio;
 	exports.Resizer = Resizer;
 	exports.Select = Select;
+	exports.Spreadsheet = Spreadsheet;
+	exports.Table = Table;
 	exports.Toggle = Toggle;
 	exports.Tooltip = Tooltip;
 
