@@ -71,8 +71,9 @@
     .uniformTable-header-container {
         padding: 0.5em;
         position: relative;
-        display: flex;
-        align-items: center;
+        & > * {
+            z-index: 3;
+        }
     }
     //----------------------------------------------------------------
     //             Actions
@@ -90,13 +91,17 @@
     }
     
     .uniformTable-header-action {
-        position: relative;
+        position: absolute;
+        top: -1.5em;
+        bottom: 0;
+        left: 0;
+        right: 0;
         display: none;
+        z-index: 1;
         .uniformTable-column-menu {
             position:absolute;
             right: 0.5em;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 0;
             cursor: pointer;
             padding: 0 0.5em;
             color: color('gray-90');
@@ -212,7 +217,7 @@
             }
         }
         &.-active{
-            background: rgba(color('gray'), 0.15);
+            background: rgba(black, 0.08);
             color: color('blue-60');
             &:after,
             &:before{
