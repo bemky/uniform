@@ -31,7 +31,9 @@
                             position: 'SS'
                         }],
                         columns: {
-                            name: {},
+                            name: {
+                                order: true
+                            },
                             team: {},
                             team_url: {
                                 load: v => v.replace(/https?\:\/\//, ""),

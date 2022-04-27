@@ -1,6 +1,6 @@
 <div class="section">
     <h1>
-        Table
+        Table Grid
         <span class="uniformLabel -yellow-60">JS</span>
     </h1>
     <p class="text-xl text-light margin-v-2x">
@@ -15,7 +15,7 @@
             
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
-                    document.getElementById('example-1').append(new window.Uniform.Table({
+                    document.getElementById('example-1').append(new window.Uniform.TableGrid({
                         records: [{
                             name: 'Adrian Beltre',
                             team: 'Texas Rangers',
@@ -46,8 +46,8 @@
         </div>
         <div class="flex-auto width-1/3 overflow-hidden">
             <% code 'javascript', {css_class: 'width-fill overflow-x-scroll'} do %>
-                import { Table } from 'uniform';
-                new Table({
+                import { TableGrid } from 'uniform';
+                new TableGrid({
                     records: [{
                         name: 'Adrian Beltre',
                         team: 'Texas Rangers',

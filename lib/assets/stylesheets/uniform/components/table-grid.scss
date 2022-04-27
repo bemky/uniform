@@ -1,0 +1,219 @@
+.uniformTableGrid {
+    display: inline-grid;
+    gap: 1px;
+}
+
+.uniformTableGrid-row,
+.uniformTableGrid-header {
+    display: contents;
+    & > * {
+        padding: 0.5em;
+        z-index: 1;
+        position: relative;
+        &.sticky {
+            position: sticky;
+            z-index: 2;
+        }
+        &.-resizing + * {
+            z-index: 4;
+            &:after{
+                content: '';
+                position: absolute;
+                width: 1px;
+                left: -1px;
+                top: 0;
+                bottom:0;
+                background: color('blue');
+            }
+        }
+    }
+}
+
+.uniformTableGrid-row + .uniformTableGrid-row {
+    & > * {
+        border-top-width: 1px;
+    }
+}
+
+.uniformTableGrid-header {
+    user-select: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    & > * {
+        user-select: none;
+        position: relative;
+        & > * {
+            z-index: 3;
+        }
+    }
+}
+
+//----------------------------------------------------------------
+//             Actions
+//----------------------------------------------------------------
+.uniformTableGrid-header {
+    & > *:hover,
+    & > *.-active{
+        .uniformTableGrid-header-action {
+            display:block;
+        }
+    }
+    & > *.-disabled {
+        .uniformTableGrid-header-action {
+            display: none;
+        }
+    }
+}
+
+.uniformTableGrid-header-action {
+    position: absolute;
+    top: -1.5em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 1;
+    .uniformTableGrid-column-menu {
+        position:absolute;
+        right: 0.5em;
+        top: 0;
+        cursor: pointer;
+        padding: 0 0.5em;
+        color: color('gray-90');
+        border-radius: 0.25em;
+        background: white;
+        box-shadow: 1px 1px 2px rgba(black, 0.2);
+        &:hover{
+            color: color('blue');
+        }
+        svg {
+            height: 1.5em;
+            width: 1.5em;
+        }
+    }
+    
+}
+
+//----------------------------------------------------------------
+//             Resize Handle
+//----------------------------------------------------------------
+.uniformTableGrid-header {
+    & > *:first-child {
+        .uniformTableGrid-resize-handle {
+            display: none;
+        }
+    }
+
+    & > *:hover + *,
+    & > *:hover{
+        .uniformTableGrid-resize-handle {
+            opacity: 1;
+        }
+    }
+}
+
+.uniformTableGrid-resize-handle {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 11px;
+    margin-left: -6px;
+    cursor: col-resize;
+    opacity: 0;
+    &.-end {
+        left: auto;
+        right: 0;
+        margin-left: 0;
+        margin-right: -6px;
+    }
+    &:after{
+        border-left: 1px solid rgba(black, 0.3);
+        border-right: 1px solid rgba(black, 0.3);
+        position: absolute;
+        width: 3px;
+        left: 3px;
+        bottom: 25%;
+        height: 50%;
+        content: '';
+    }
+    &:hover,
+    &.-hover{
+        opacity: 1;
+        &:before{
+            position:absolute;
+            left: 5px;
+            bottom: 0;
+            width: 1px;
+            height: 90%;
+            background: color('blue');
+            content: '';
+        }
+    }
+}
+
+//----------------------------------------------------------------
+//             Sort Action
+//----------------------------------------------------------------
+
+.uniformTableGrid-order-action {
+    display: inline-block;
+    align-items: center;
+    padding-right: 2.25em;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    .uniformTableGrid-order-indicator {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 50%;
+        width: 2em;
+        height: 2em;
+        font-size: 0.9em;
+        & > * {
+            position: absolute;
+            left: 50%;
+            bottom: 35%;
+            transform: translateX(-50%);
+            width: 1.5em;
+            height: 1.5em;
+            color: rgba(black, 0.2);
+        }
+        & > *:last-child{
+            top: 35%;
+            bottom: auto;
+        }
+    }
+    
+    &.-active-asc{
+        .uniformTableGrid-order-indicator {
+            & > *:first-child {
+                color: color('blue-60');
+            }
+        }
+    }
+    &.-active-desc{
+        .uniformTableGrid-order-indicator {
+            & > *:last-child {
+                color: color('blue-60');
+            }
+        }
+    }
+    &.-active{
+        .uniformTableGrid-order-indicator {
+            background: rgba(black, 0.08);
+        }
+    }
+    
+    
+    &:hover{
+        .uniformTableGrid-order-indicator {
+            background: rgba(color('blue'), 0.2);
+            color: rgba(black, 0.3);
+        }
+    }
+}
