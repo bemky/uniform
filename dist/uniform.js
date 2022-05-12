@@ -71,19 +71,19 @@ var Uniform = (function (exports) {
 	  return call.apply(call, arguments);
 	};
 
-	var $propertyIsEnumerable = {}.propertyIsEnumerable;
+	var $propertyIsEnumerable$1 = {}.propertyIsEnumerable;
 	// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
 	var getOwnPropertyDescriptor$1 = Object.getOwnPropertyDescriptor;
 
 	// Nashorn ~ JDK8 bug
-	var NASHORN_BUG = getOwnPropertyDescriptor$1 && !$propertyIsEnumerable.call({ 1: 2 }, 1);
+	var NASHORN_BUG = getOwnPropertyDescriptor$1 && !$propertyIsEnumerable$1.call({ 1: 2 }, 1);
 
 	// `Object.prototype.propertyIsEnumerable` method implementation
 	// https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable
 	var f$3 = NASHORN_BUG ? function propertyIsEnumerable(V) {
 	  var descriptor = getOwnPropertyDescriptor$1(this, V);
 	  return !!descriptor && descriptor.enumerable;
-	} : $propertyIsEnumerable;
+	} : $propertyIsEnumerable$1;
 
 	var objectPropertyIsEnumerable = {
 		f: f$3
@@ -576,7 +576,7 @@ var Uniform = (function (exports) {
 	};
 
 	// `Array.prototype.{ indexOf, includes }` methods implementation
-	var createMethod$3 = function (IS_INCLUDES) {
+	var createMethod$4 = function (IS_INCLUDES) {
 	  return function ($this, el, fromIndex) {
 	    var O = toIndexedObject($this);
 	    var length = lengthOfArrayLike(O);
@@ -598,28 +598,28 @@ var Uniform = (function (exports) {
 	var arrayIncludes = {
 	  // `Array.prototype.includes` method
 	  // https://tc39.es/ecma262/#sec-array.prototype.includes
-	  includes: createMethod$3(true),
+	  includes: createMethod$4(true),
 	  // `Array.prototype.indexOf` method
 	  // https://tc39.es/ecma262/#sec-array.prototype.indexof
-	  indexOf: createMethod$3(false)
+	  indexOf: createMethod$4(false)
 	};
 
 	var hiddenKeys = {};
 
-	var indexOf$4 = arrayIncludes.indexOf;
+	var indexOf$5 = arrayIncludes.indexOf;
 
 
-	var push$2 = functionUncurryThis([].push);
+	var push$3 = functionUncurryThis([].push);
 
 	var objectKeysInternal = function (object, names) {
 	  var O = toIndexedObject(object);
 	  var i = 0;
 	  var result = [];
 	  var key;
-	  for (key in O) !hasOwnProperty_1(hiddenKeys, key) && hasOwnProperty_1(O, key) && push$2(result, key);
+	  for (key in O) !hasOwnProperty_1(hiddenKeys, key) && hasOwnProperty_1(O, key) && push$3(result, key);
 	  // Don't enum bug & hidden keys
 	  while (names.length > i) if (hasOwnProperty_1(O, key = names[i++])) {
-	    ~indexOf$4(result, key) || push$2(result, key);
+	    ~indexOf$5(result, key) || push$3(result, key);
 	  }
 	  return result;
 	};
@@ -1366,10 +1366,10 @@ var Uniform = (function (exports) {
 	  return new (arraySpeciesConstructor(originalArray))(length === 0 ? 0 : length);
 	};
 
-	var push$1 = functionUncurryThis([].push);
+	var push$2 = functionUncurryThis([].push);
 
 	// `Array.prototype.{ forEach, map, filter, some, every, find, findIndex, filterReject }` methods implementation
-	var createMethod$2 = function (TYPE) {
+	var createMethod$3 = function (TYPE) {
 	  var IS_MAP = TYPE == 1;
 	  var IS_FILTER = TYPE == 2;
 	  var IS_SOME = TYPE == 3;
@@ -1395,10 +1395,10 @@ var Uniform = (function (exports) {
 	          case 3: return true;              // some
 	          case 5: return value;             // find
 	          case 6: return index;             // findIndex
-	          case 2: push$1(target, value);      // filter
+	          case 2: push$2(target, value);      // filter
 	        } else switch (TYPE) {
 	          case 4: return false;             // every
-	          case 7: push$1(target, value);      // filterReject
+	          case 7: push$2(target, value);      // filterReject
 	        }
 	      }
 	    }
@@ -1409,28 +1409,28 @@ var Uniform = (function (exports) {
 	var arrayIteration = {
 	  // `Array.prototype.forEach` method
 	  // https://tc39.es/ecma262/#sec-array.prototype.foreach
-	  forEach: createMethod$2(0),
+	  forEach: createMethod$3(0),
 	  // `Array.prototype.map` method
 	  // https://tc39.es/ecma262/#sec-array.prototype.map
-	  map: createMethod$2(1),
+	  map: createMethod$3(1),
 	  // `Array.prototype.filter` method
 	  // https://tc39.es/ecma262/#sec-array.prototype.filter
-	  filter: createMethod$2(2),
+	  filter: createMethod$3(2),
 	  // `Array.prototype.some` method
 	  // https://tc39.es/ecma262/#sec-array.prototype.some
-	  some: createMethod$2(3),
+	  some: createMethod$3(3),
 	  // `Array.prototype.every` method
 	  // https://tc39.es/ecma262/#sec-array.prototype.every
-	  every: createMethod$2(4),
+	  every: createMethod$3(4),
 	  // `Array.prototype.find` method
 	  // https://tc39.es/ecma262/#sec-array.prototype.find
-	  find: createMethod$2(5),
+	  find: createMethod$3(5),
 	  // `Array.prototype.findIndex` method
 	  // https://tc39.es/ecma262/#sec-array.prototype.findIndex
-	  findIndex: createMethod$2(6),
+	  findIndex: createMethod$3(6),
 	  // `Array.prototype.filterReject` method
 	  // https://github.com/tc39/proposal-array-filtering
-	  filterReject: createMethod$2(7)
+	  filterReject: createMethod$3(7)
 	};
 
 	var arrayMethodIsStrict = function (METHOD_NAME, argument) {
@@ -1865,23 +1865,23 @@ var Uniform = (function (exports) {
 	  return el.offsetWidth + parseInt(style.marginLeft) + parseInt(style.marginRight);
 	}
 
-	function innerWidth(el) {
-	  var style = getComputedStyle(el);
-	  return el.offsetWidth - parseInt(style.paddingLeft) - parseInt(style.paddingRight);
-	}
-
 	function trigger(el, eventName) {
 	  var event = document.createEvent('HTMLEvents');
 	  event.initEvent(eventName, true, false);
 	  return el.dispatchEvent(event);
 	}
 
+	/*
+	    TODO
+	    ---
+	    - call remove via Mutation Observer
+	*/
+
 	function uniqueId(prefix) {
 	  window.idCounter || (window.idCounter = 0);
 	  var id = ++window.idCounter + '';
 	  return prefix ? prefix + id : id;
 	}
-
 	class Component {
 	  constructor(options) {
 	    var _context, _context2;
@@ -1898,7 +1898,7 @@ var Uniform = (function (exports) {
 	    });
 
 	    delete htmlAttributes.content;
-	    this.el = options.el || createElement(this.constructor.tagName, htmlAttributes);
+	    this.el = options.el || createElement(options.tagName || this.constructor.tagName, htmlAttributes);
 
 	    if (this.constructor.className) {
 	      this.el.classList.add(...this.constructor.className.split(' '));
@@ -1944,7 +1944,9 @@ var Uniform = (function (exports) {
 	      });
 	    };
 
-	    this.initialize(options);
+	    if (options.initialize !== false) {
+	      this.initialize(options);
+	    }
 	  }
 
 	  addEventListener() {
@@ -2069,7 +2071,7 @@ var Uniform = (function (exports) {
 	var rtrim = RegExp(whitespace + whitespace + '*$');
 
 	// `String.prototype.{ trim, trimStart, trimEnd, trimLeft, trimRight }` methods implementation
-	var createMethod$1 = function (TYPE) {
+	var createMethod$2 = function (TYPE) {
 	  return function ($this) {
 	    var string = toString_1(requireObjectCoercible($this));
 	    if (TYPE & 1) string = replace$1(string, ltrim, '');
@@ -2081,13 +2083,13 @@ var Uniform = (function (exports) {
 	var stringTrim = {
 	  // `String.prototype.{ trimLeft, trimStart }` methods
 	  // https://tc39.es/ecma262/#sec-string.prototype.trimstart
-	  start: createMethod$1(1),
+	  start: createMethod$2(1),
 	  // `String.prototype.{ trimRight, trimEnd }` methods
 	  // https://tc39.es/ecma262/#sec-string.prototype.trimend
-	  end: createMethod$1(2),
+	  end: createMethod$2(2),
 	  // `String.prototype.trim` method
 	  // https://tc39.es/ecma262/#sec-string.prototype.trim
-	  trim: createMethod$1(3)
+	  trim: createMethod$2(3)
 	};
 
 	var trim$5 = stringTrim.trim;
@@ -2526,7 +2528,7 @@ var Uniform = (function (exports) {
 	    this.el.removeAttribute('content');
 	    this.el.classList.add('uniformModal');
 	    this.listenTo(document, 'keyup', this.keyup);
-	    this.listenTo(this.el, 'click', this.checkCloseButton);
+	    this.listenTo(this.el, 'click', this.checkClose);
 	    this.el.modal = this;
 	  }
 
@@ -2537,14 +2539,6 @@ var Uniform = (function (exports) {
 
 	  render() {
 	    this.highest_z_index = 0;
-	    this.overlay = createElement('div', {
-	      class: 'uniformModal-overlay'
-	    });
-	    this.blur = createElement('div', {
-	      class: 'uniformModal-blur'
-	    });
-	    this.original_scroll = window.scrollY;
-	    this.blur.style.top = 0 - this.original_scroll + "px";
 
 	    if (document.body.querySelectorAll('.uniformModal').length > 0) {
 	      this.highest_z_index = Math.max(map(Array.prototype).call(document.body.querySelectorAll('.uniformModal'), function (el) {
@@ -2553,22 +2547,8 @@ var Uniform = (function (exports) {
 	      this.el.style.zIndex = this.highest_z_index + 2;
 	    }
 
-	    let next_element = document.body.children[0];
-
-	    while (next_element) {
-	      const element = next_element;
-	      next_element = element.nextElementSibling;
-
-	      if (!element.matches('[blurrable="false"]')) {
-	        this.blur.appendChild(element);
-	      }
-	    }
-
 	    document.body.classList.add('uniformModal-active');
-	    document.body.appendChild(this.blur);
 	    document.body.appendChild(this.el);
-	    this.el.style.top = window.scrollY;
-	    this.listenTo(this.overlay, 'click', this.close);
 	    const container = createElement('div', {
 	      class: 'uniformModal-container',
 	      children: this.content
@@ -2579,7 +2559,6 @@ var Uniform = (function (exports) {
 	        class: 'uniformModal-close js-modal-close'
 	      }
 	    });
-	    this.el.append(this.overlay);
 	    this.el.append(container);
 	    this.el.append(closeButton);
 	    if (this.options.klass) container.classList.add(this.options.klass);
@@ -2588,34 +2567,19 @@ var Uniform = (function (exports) {
 	    return this;
 	  }
 
-	  checkCloseButton(e) {
-	    if (e.target.classList.contains('js-modal-close')) {
+	  checkClose(e) {
+	    if (e.target.matches('.js-modal-close, .uniformModal')) {
 	      this.close();
 	    }
 	  }
 
 	  close() {
-	    var _context;
-
-	    forEach(_context = document.querySelectorAll('uniformModal-active')).call(_context, el => el.classList.remove('uniformModal-active'));
-
-	    var elements = this.blur.children;
-	    var elementCount = elements.length;
-
-	    for (var i = 0; i < elementCount; i++) {
-	      document.body.appendChild(elements[0]);
-	    }
-
-	    if (this.blur.parentNode) this.blur.parentNode.removeChild(this.blur);
-	    window.scrollTo(0, this.original_scroll);
 	    this.trigger('closed');
 	    this.remove();
-	  }
 
-	  remove() {
-	    Component.prototype.remove.apply(this, arguments);
-	    if (this.overlay && this.overlay.parentNode) this.overlay.parentNode.removeChild(this.overlay);
-	    delete this.overlay;
+	    if (document.querySelectorAll('.uniformModal').length == 0) {
+	      document.body.classList.remove('uniformModal-active');
+	    }
 	  }
 
 	}
@@ -2636,7 +2600,7 @@ var Uniform = (function (exports) {
 	var charCodeAt$1 = functionUncurryThis(''.charCodeAt);
 	var stringSlice = functionUncurryThis(''.slice);
 
-	var createMethod = function (CONVERT_TO_STRING) {
+	var createMethod$1 = function (CONVERT_TO_STRING) {
 	  return function ($this, pos) {
 	    var S = toString_1(requireObjectCoercible($this));
 	    var position = toIntegerOrInfinity(pos);
@@ -2658,10 +2622,10 @@ var Uniform = (function (exports) {
 	var stringMultibyte = {
 	  // `String.prototype.codePointAt` method
 	  // https://tc39.es/ecma262/#sec-string.prototype.codepointat
-	  codeAt: createMethod(false),
+	  codeAt: createMethod$1(false),
 	  // `String.prototype.at` method
 	  // https://github.com/mathiasbynens/String.prototype.at
-	  charAt: createMethod(true)
+	  charAt: createMethod$1(true)
 	};
 
 	var charAt$1 = stringMultibyte.charAt;
@@ -2897,7 +2861,7 @@ var Uniform = (function (exports) {
 
 	var test = [];
 	var un$Sort = functionUncurryThis(test.sort);
-	var push = functionUncurryThis(test.push);
+	var push$1 = functionUncurryThis(test.push);
 
 	// IE8-
 	var FAILS_ON_UNDEFINED = fails(function () {
@@ -2971,7 +2935,7 @@ var Uniform = (function (exports) {
 	    var itemsLength, index;
 
 	    for (index = 0; index < arrayLength; index++) {
-	      if (index in array) push(items, array[index]);
+	      if (index in array) push$1(items, array[index]);
 	    }
 
 	    arraySort(items, getSortCompare(comparefn));
@@ -3059,6 +3023,8 @@ var Uniform = (function (exports) {
 
 `).call(_context3);
 	const dots = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 4" fill=\"currentColor\"><circle cx="8" cy="2" r="2"/><circle cx="14" cy="2" r="2"/><circle cx="2" cy="2" r="2"/></svg>`;
+	const caretUp = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="currentColor" stroke="none"><path d="M22,17.5c0,0.271-0.1,0.505-0.297,0.703C21.505,18.4,21.271,18.5,21,18.5H7c-0.271,0-0.505-0.1-0.703-0.297  C6.099,18.005,6,17.771,6,17.5s0.099-0.505,0.297-0.703l7-7C13.495,9.599,13.729,9.5,14,9.5s0.505,0.099,0.703,0.297l7,7  C21.9,16.995,22,17.229,22,17.5z"/></svg>`;
+	const caretDown = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="currentColor" stroke="none"><path d="M22,10.5c0,0.271-0.1,0.505-0.297,0.703l-7,7C14.505,18.4,14.271,18.5,14,18.5s-0.505-0.1-0.703-0.297l-7-7  C6.099,11.005,6,10.771,6,10.5s0.099-0.505,0.297-0.703C6.495,9.599,6.729,9.5,7,9.5h14c0.271,0,0.505,0.099,0.703,0.297  C21.9,9.995,22,10.229,22,10.5z"/></svg>`;
 
 	/*
 	  options: array of html options, each item can be string | array | object
@@ -3728,6 +3694,55 @@ var Uniform = (function (exports) {
 
 	var slice = slice$1;
 
+	var $propertyIsEnumerable = objectPropertyIsEnumerable.f;
+
+	var propertyIsEnumerable = functionUncurryThis($propertyIsEnumerable);
+	var push = functionUncurryThis([].push);
+
+	// `Object.{ entries, values }` methods implementation
+	var createMethod = function (TO_ENTRIES) {
+	  return function (it) {
+	    var O = toIndexedObject(it);
+	    var keys = objectKeys(O);
+	    var length = keys.length;
+	    var i = 0;
+	    var result = [];
+	    var key;
+	    while (length > i) {
+	      key = keys[i++];
+	      if (!descriptors || propertyIsEnumerable(O, key)) {
+	        push(result, TO_ENTRIES ? [key, O[key]] : O[key]);
+	      }
+	    }
+	    return result;
+	  };
+	};
+
+	var objectToArray = {
+	  // `Object.entries` method
+	  // https://tc39.es/ecma262/#sec-object.entries
+	  entries: createMethod(true),
+	  // `Object.values` method
+	  // https://tc39.es/ecma262/#sec-object.values
+	  values: createMethod(false)
+	};
+
+	var $values = objectToArray.values;
+
+	// `Object.values` method
+	// https://tc39.es/ecma262/#sec-object.values
+	_export({ target: 'Object', stat: true }, {
+	  values: function values(O) {
+	    return $values(O);
+	  }
+	});
+
+	var values$2 = path.Object.values;
+
+	var values$1 = values$2;
+
+	var values = values$1;
+
 	var Array$1 = global_1.Array;
 	var $stringify = getBuiltIn('JSON', 'stringify');
 	var exec = functionUncurryThis(/./.exec);
@@ -3802,18 +3817,61 @@ var Uniform = (function (exports) {
 	  }
 	});
 
-	var indexOf$3 = entryVirtual('Array').indexOf;
+	var indexOf$4 = entryVirtual('Array').indexOf;
 
 	var ArrayPrototype = Array.prototype;
 
-	var indexOf$2 = function (it) {
+	var indexOf$3 = function (it) {
 	  var own = it.indexOf;
-	  return it === ArrayPrototype || (objectIsPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.indexOf) ? indexOf$3 : own;
+	  return it === ArrayPrototype || (objectIsPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.indexOf) ? indexOf$4 : own;
 	};
+
+	var indexOf$2 = indexOf$3;
 
 	var indexOf$1 = indexOf$2;
 
-	var indexOf = indexOf$1;
+	// Capitalizes all the words and replaces some characters in the string to
+	// create a nicer looking title. titleize is meant for creating pretty output.
+	//
+	// export function titleize(value: string): string
+	function titleize(value) {
+	  return humanize(underscore(value)).replace(/\b('?[a-z])/g, m => m.toUpperCase());
+	} // Capitalizes the first word and turns underscores into spaces and strips a
+	// trailing "_id", if any. Like titleize, this is meant for creating pretty
+	// output.
+	//
+	// export function humanize(value: string): string
+
+	function humanize(value) {
+	  return capitalize(value.toLowerCase().replace(/_id$/, '').replace(/_/g, ' ').replace(/([a-z\d]*)/g, m => m.toLowerCase()));
+	} // Makes an underscored, lowercase form from the expression in the string.
+	//
+	// Changes '.' to '/' to convert namespaces to paths.
+	//
+	// Examples:
+	// 
+	//     "ActiveModel".underscore         # => "active_model"
+	//     "ActiveModel.Errors".underscore # => "active_model/errors"
+	//
+	// As a rule of thumb you can think of underscore as the inverse of camelize,
+	// though there are cases where that does not hold:
+	//
+	//     "SSLError".underscore().camelize() # => "SslError"
+	//
+	// export function underscore(value: string): string
+
+	function underscore(value) {
+	  let result = value.replace('.', '/');
+	  result = result.replace(/([A-Z\d]+)([A-Z][a-z])/g, "$1_$2");
+	  result = result.replace(/([a-z\d])([A-Z])/g, "$1_$2");
+	  return result.replace('-', '_').toLowerCase();
+	} // Converts the first character to uppercase
+	//
+	// export function capitalize(value: string): string
+
+	function capitalize(value) {
+	  return value.charAt(0).toUpperCase() + slice(value).call(value, 1);
+	}
 
 	class DragOrder {
 	  
@@ -4013,54 +4071,11 @@ var Uniform = (function (exports) {
 	 
 	}
 
-	// Capitalizes all the words and replaces some characters in the string to
-	// create a nicer looking title. titleize is meant for creating pretty output.
-	//
-	// export function titleize(value: string): string
-	function titleize(value) {
-	  return humanize(underscore(value)).replace(/\b('?[a-z])/g, m => m.toUpperCase());
-	} // Capitalizes the first word and turns underscores into spaces and strips a
-	// trailing "_id", if any. Like titleize, this is meant for creating pretty
-	// output.
-	//
-	// export function humanize(value: string): string
-
-	function humanize(value) {
-	  return capitalize(value.toLowerCase().replace(/_id$/, '').replace(/_/g, ' ').replace(/([a-z\d]*)/g, m => m.toLowerCase()));
-	} // Makes an underscored, lowercase form from the expression in the string.
-	//
-	// Changes '.' to '/' to convert namespaces to paths.
-	//
-	// Examples:
-	// 
-	//     "ActiveModel".underscore         # => "active_model"
-	//     "ActiveModel.Errors".underscore # => "active_model/errors"
-	//
-	// As a rule of thumb you can think of underscore as the inverse of camelize,
-	// though there are cases where that does not hold:
-	//
-	//     "SSLError".underscore().camelize() # => "SslError"
-	//
-	// export function underscore(value: string): string
-
-	function underscore(value) {
-	  let result = value.replace('.', '/');
-	  result = result.replace(/([A-Z\d]+)([A-Z][a-z])/g, "$1_$2");
-	  result = result.replace(/([a-z\d])([A-Z])/g, "$1_$2");
-	  return result.replace('-', '_').toLowerCase();
-	} // Converts the first character to uppercase
-	//
-	// export function capitalize(value: string): string
-
-	function capitalize(value) {
-	  return value.charAt(0).toUpperCase() + slice(value).call(value, 1);
-	}
-
 	/*  
 	    Options
 	    ===
 	    columns: ƒ || [ƒ, {}]
-	        defaultWidth: integer
+	        width: integer
 	        header: string
 	        class: string
 	        order: boolean || ƒ(records, "asc"||"desc") 
@@ -4074,29 +4089,31 @@ var Uniform = (function (exports) {
 	    tagName
 	    records
 	    className
+	    static: always prepend or append column ("start" or true) and exclude from settings
 
 	*/
 
 	class Table extends Component {
-	  initialize(options) {
+	  async initialize(options) {
 	    var _context, _context2, _context3, _context4, _context5;
 
 	    this.records = options.records;
-	    this._storeKey = options.storeKey;
-	    this.initColumns(options); // Bind Instance Methods
+	    this._storeKey = options.storeKey || this.constructor._storeKey;
+	    await this.initColumns(options); // Bind Instance Methods
 
 	    this.columnResize = bind(_context = this.columnResize).call(_context, this);
 	    this.endColumnResize = bind(_context2 = this.endColumnResize).call(_context2, this); // Events
 
-	    addEventListenerFor(this.el, '.uniformTable-column-menu', 'click', bind(_context3 = this.showColumnPopover).call(_context3, this));
-	    addEventListenerFor(this.el, '.uniformTable-order-action', 'click', bind(_context4 = this.selectOrder).call(_context4, this));
-	    addEventListenerFor(this.el, '.uniformTable-resize-handle', 'mousedown', bind(_context5 = this.initiateColumnResize).call(_context5, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-column-menu', 'click', bind(_context3 = this.showColumnPopover).call(_context3, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-order-action', 'click', bind(_context4 = this.selectOrder).call(_context4, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-resize-handle', 'mousedown', bind(_context5 = this.initiateColumnResize).call(_context5, this));
 	    this.render();
 	  }
 
-	  initColumns(options) {
-	    var _context6, _context7;
+	  initColumns() {
+	    var _context6, _context7, _context8;
 
+	    let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	    // Column Models
 	    this.columnModels = options.columns || this.constructor.columns;
 
@@ -4123,8 +4140,8 @@ var Uniform = (function (exports) {
 	    }); // Default Columns
 
 
-	    this.defaultColumns = options.defaultColumns || this.constructor.defaultColumns || keys$1(this.columnModels);
-	    this.defaultOrder = options.defaultOrder || this.constructor.defaultOrder || find(_context7 = this.defaultColumns).call(_context7, key => this.columnModels[key].order);
+	    this.defaultColumns = options.defaultColumns || this.defaultColumns || this.constructor.defaultColumns || keys$1(this.columnModels);
+	    this.defaultOrder = options.defaultOrder || this.defaultOrder || this.constructor.defaultOrder || find(_context7 = this.defaultColumns).call(_context7, key => this.columnModels[key].order);
 
 	    if (this.defaultOrder) {
 	      if (typeof this.defaultOrder != 'object') this.defaultOrder = {
@@ -4132,60 +4149,70 @@ var Uniform = (function (exports) {
 	      };
 	    }
 
-	    this.columns = this.readSettings().columns;
+	    this.columns = this.getSettings().columns;
+
+	    forEach(_context8 = this.columns).call(_context8, col => {
+	      const model = this.columnModels[col.id];
+	      if (!col.width && model.width) col.width = model.width;
+	    });
 	  }
 
 	  defaultColumnRender(record, model) {
-	    return r[model.id];
+	    return record[model.id];
 	  }
 
-	  render() {
-	    var _context8;
+	  async render() {
+	    var _context9;
 
+	    this.setTemplate(map(_context9 = this.columns).call(_context9, col => col.width || "1fr"));
 	    this.el.innerHTML = '';
-	    this.el.append(createElement('thead', {
-	      content: this.renderHead()
-	    }));
-	    this.el.append(createElement('tbody', {
-	      content: map(_context8 = this.orderedRecords()).call(_context8, this.renderRow, this)
-	    }));
+	    this.el.append(this.renderHead());
+	    const records = await this.orderedRecords();
+	    this.el.append(...map(records).call(records, this.renderRow, this));
 	    return this;
 	  }
 
-	  renderHead() {
-	    var _context9;
+	  setTemplate(widths) {
+	    this.el.style.gridTemplateColumns = map(widths).call(widths, width => typeof width == "number" ? width + "px" : width).join(" ");
+	  }
 
-	    return createElement('tr', {
-	      content: map(_context9 = this.columns).call(_context9, column => {
+	  renderHead() {
+	    var _context10;
+
+	    return createElement({
+	      class: 'uniformTableGrid-header',
+	      content: map(_context10 = this.columns).call(_context10, (column, index) => {
 	        const model = this.columnModels[column.id];
-	        const cell = createElement('th', {
-	          class: "uniformTable-header " + "col-" + column.id + " " + (model.class ? model.class : ""),
+	        const cell = createElement({
+	          class: "uniformTableGrid-header-cell col-" + column.id + " " + (model.class ? model.class : ""),
 	          id: column.id,
-	          style: {
-	            width: column.width || model.defaultWidth
-	          },
-	          content: {
-	            class: 'uniformTable-header-container',
-	            content: [{
-	              class: 'flex-fill',
-	              content: {
-	                tag: 'span',
-	                content: model.header || titleize(column.id)
-	              }
-	            }, {
-	              class: 'uniformTable-header-action',
-	              content: {
-	                class: 'uniformTable-column-menu',
-	                content: dots
-	              }
-	            }, {
-	              class: 'uniformTable-resize-handle'
-	            }]
-	          }
+	          content: [{
+	            tag: 'span',
+	            content: model.header || titleize(column.id)
+	          }, {
+	            class: 'uniformTableGrid-header-action',
+	            content: {
+	              class: 'uniformTableGrid-column-menu',
+	              content: dots
+	            }
+	          }, {
+	            class: 'uniformTableGrid-resize-handle'
+	          }]
 	        });
 
+	        if (this.columns.length - 1 == index) {
+	          cell.append(createElement({
+	            class: 'uniformTableGrid-resize-handle -end'
+	          }));
+	        }
+
 	        if (model.order) {
-	          cell.querySelector('span').classList.add('uniformTable-order-action');
+	          cell.querySelector('span').classList.add('uniformTableGrid-order-action');
+	          cell.querySelector('span').append(createElement({
+	            tag: 'span',
+	            class: 'uniformTableGrid-order-indicator',
+	            content: [caretUp, caretDown]
+	          }));
 
 	          if (column.order) {
 	            cell.querySelector('span').classList.add('-active', "-active-" + column.order);
@@ -4198,12 +4225,13 @@ var Uniform = (function (exports) {
 	  }
 
 	  renderRow(record) {
-	    var _context10;
+	    var _context11;
 
-	    return createElement('tr', {
-	      content: map(_context10 = this.columns).call(_context10, column => {
+	    return createElement({
+	      class: 'uniformTableGrid-row',
+	      content: map(_context11 = this.columns).call(_context11, column => {
 	        const model = this.columnModels[column.id];
-	        return createElement('td', {
+	        return createElement({
 	          content: model.render(record, model),
 	          class: "col-" + column.id + " " + model.class || ""
 	        });
@@ -4211,10 +4239,10 @@ var Uniform = (function (exports) {
 	    });
 	  }
 
-	  orderedRecords() {
-	    var _context11;
+	  async orderedRecords() {
+	    var _context12;
 
-	    const orderingColumn = find(_context11 = this.columns).call(_context11, x => x.order);
+	    const orderingColumn = find(_context12 = this.columns).call(_context12, x => x.order);
 
 	    if (!orderingColumn) {
 	      return this.records;
@@ -4223,12 +4251,12 @@ var Uniform = (function (exports) {
 	    const model = this.columnModels[orderingColumn.id];
 
 	    if (typeof model.order == "function") {
-	      return model.order(this.records, orderingColumn.order);
+	      return await model.order(this.records, orderingColumn.order);
 	    } else if (model.order) {
-	      var _context12;
+	      var _context13;
 
 	      const key = orderingColumn.id;
-	      return sort(_context12 = this.records).call(_context12, (r1, r2) => {
+	      return sort(_context13 = this.records).call(_context13, (r1, r2) => {
 	        if (orderingColumn.order == "asc") {
 	          return r1[key] > r2[key];
 	        } else {
@@ -4239,43 +4267,60 @@ var Uniform = (function (exports) {
 	  }
 
 	  storeKey() {
-	    var _context13;
+	    var _context14;
 
-	    return this._storeKey || ['uniform/table', map(_context13 = keys$1(this.columnModels)).call(_context13, x => slice(x).call(x, 0, 1)).join('')].join('/');
+	    return this._storeKey || ['uniform/table', map(_context14 = keys$1(this.columnModels)).call(_context14, x => slice(x).call(x, 0, 1)).join('')].join('/');
 	  }
 
-	  readSettings() {
-	    var _context14, _context15;
+	  getSettings() {
+	    var _context15, _context16, _context18;
 
-	    let savedSettings = localStorage.getItem(this.storeKey());
-	    savedSettings = savedSettings ? JSON.parse(savedSettings) : {};
-
-	    const settings = assign(this.defaultSettings(), savedSettings); // Remove columns that are no longer in columnModels, because LocalStorage can persist code changes
+	    const settings = assign(this.defaultSettings(), this.readSettings()); // Remove columns that are no longer in columnModels, because LocalStorage can persist code changes
 
 
-	    settings.columns = filter$1(_context14 = settings.columns).call(_context14, x => this.columnModels[x.id]);
+	    settings.columns = filter$1(_context15 = settings.columns).call(_context15, x => this.columnModels[x.id]); // Add static columns
 
-	    let orderingColumn = find(_context15 = settings.columns).call(_context15, x => x.order);
+	    forEach(_context16 = values(this.columnModels)).call(_context16, model => {
+	      var _context17;
+
+	      if (model.static && !find(_context17 = settings.columns).call(_context17, x => x.id == model.id)) {
+	        const placementFunction = model.static == "start" ? "unshift" : "push";
+	        settings.columns[placementFunction](model);
+	      }
+	    });
+
+	    let orderingColumn = find(_context18 = settings.columns).call(_context18, x => x.order);
 
 	    if (!orderingColumn && this.defaultOrder) {
-	      var _context16;
+	      var _context19;
 
-	      orderingColumn = find(_context16 = settings.columns).call(_context16, x => x.id == keys$1(this.defaultOrder)[0]);
-	      orderingColumn.order = this.defaultOrder[orderingColumn.id];
+	      orderingColumn = find(_context19 = settings.columns).call(_context19, x => x.id == keys$1(this.defaultOrder)[0]);
+
+	      if (orderingColumn) {
+	        orderingColumn.order = this.defaultOrder[orderingColumn.id];
+	      }
 	    }
 
 	    return settings;
 	  }
 
+	  readSettings() {
+	    let savedSettings = localStorage.getItem(this.storeKey());
+	    return savedSettings ? JSON.parse(savedSettings) : {};
+	  }
+
 	  saveSettings(settings) {
+	    if (!settings) settings = {
+	      columns: this.columns
+	    };
 	    localStorage.setItem(this.storeKey(), stringify(settings));
 	  }
 
 	  defaultSettings() {
-	    var _context17;
+	    var _context20;
 
 	    return {
-	      columns: map(_context17 = this.defaultColumns).call(_context17, col => {
+	      columns: map(_context20 = this.defaultColumns).call(_context20, col => {
 	        return {
 	          id: col
 	        };
@@ -4284,24 +4329,28 @@ var Uniform = (function (exports) {
 	  }
 
 	  selectOrder(e, direction) {
-	    var _context18;
+	    var _context21, _context22;
 
-	    const orderKey = e.delegateTarget.closest('th').id;
+	    const orderKey = e.delegateTarget.closest('.uniformTableGrid-header-cell').id;
 
-	    const orderColumn = find(_context18 = this.columns).call(_context18, x => x.id == orderKey);
+	    const orderColumn = find(_context21 = this.columns).call(_context21, x => x.id == orderKey);
+
+	    const currentOrderColumn = find(_context22 = this.columns).call(_context22, x => x.order);
 
 	    if (direction) {
-	      var _context19;
+	      if (currentOrderColumn) {
+	        delete currentOrderColumn.order;
+	      }
 
-	      delete find(_context19 = this.columns).call(_context19, x => x.order).order;
 	      orderColumn.order = direction;
 	    } else {
 	      if (orderColumn.order) {
 	        orderColumn.order = orderColumn.order == 'asc' ? 'desc' : 'asc';
 	      } else {
-	        var _context20;
+	        if (currentOrderColumn) {
+	          delete currentOrderColumn.order;
+	        }
 
-	        delete find(_context20 = this.columns).call(_context20, x => x.order).order;
 	        orderColumn.order = 'asc';
 	      }
 	    }
@@ -4313,39 +4362,43 @@ var Uniform = (function (exports) {
 	  }
 
 	  showColumnPopover(e) {
-	    var _context21;
+	    var _context23;
 
 	    const button = e.delegateTarget;
 
-	    forEach(_context21 = this.el.querySelectorAll('.uniformTable-header')).call(_context21, el => el.classList.add('-disabled'));
+	    forEach(_context23 = this.el.querySelectorAll('.uniformTableGrid-header-cell')).call(_context23, el => el.classList.add('-disabled'));
 
-	    button.closest('thead').classList.add('-active');
-	    button.closest('th').classList.add('-active');
-	    button.closest('th').classList.remove('-disabled');
+	    button.closest('.uniformTableGrid-header').classList.add('-active');
+	    button.closest('.uniformTableGrid-header-cell').classList.add('-active');
+	    button.closest('.uniformTableGrid-header-cell').classList.remove('-disabled');
 	    button.classList.add('-active');
 
 	    if (!button.popover) {
-	      const headerCell = button.closest('th');
+	      const headerCell = button.closest('[id]');
 	      const columnModel = this.columnModels[headerCell.id];
 	      const actions = [listenerElement({
-	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
-	        content: 'Remove Column'
-	      }, e => {
-	        var _context22;
-
-	        button.popover.hide();
-	        this.columns = filter$1(_context22 = this.columns).call(_context22, x => x.id != headerCell.id);
-	        this.saveSettings({
-	          columns: this.columns
-	        });
-	        this.render();
-	      }), listenerElement({
 	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
 	        content: 'Table Settings'
 	      }, e => {
 	        button.popover.hide();
 	        this.showSettingsModal();
 	      })];
+
+	      if (!columnModel.static) {
+	        actions.unshift(listenerElement({
+	          class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
+	          content: 'Remove Column'
+	        }, e => {
+	          var _context24;
+
+	          button.popover.hide();
+	          this.columns = filter$1(_context24 = this.columns).call(_context24, x => x.id != headerCell.id);
+	          this.saveSettings({
+	            columns: this.columns
+	          });
+	          this.render();
+	        }));
+	      }
 
 	      if (columnModel.order) {
 	        actions.unshift(listenerElement({
@@ -4376,11 +4429,11 @@ var Uniform = (function (exports) {
 	        })
 	      }).render();
 	      button.popover.addEventListener('hidden', () => {
-	        var _context23;
+	        var _context25;
 
-	        forEach(_context23 = this.el.querySelectorAll('.-disabled')).call(_context23, el => el.classList.remove('-disabled'));
+	        forEach(_context25 = this.el.querySelectorAll('.-disabled')).call(_context25, el => el.classList.remove('-disabled'));
 
-	        button.closest('th').classList.remove('-active');
+	        button.closest('.uniformTableGrid-header-cell').classList.remove('-active');
 	        button.classList.remove('-active');
 	      });
 	    } else {
@@ -4389,13 +4442,14 @@ var Uniform = (function (exports) {
 	  }
 
 	  renderSettingsModalColumns(includedEl, excludedEl, columns) {
-	    var _context24;
+	    var _context26;
 
 	    includedEl.innerHTML = '';
 	    excludedEl.innerHTML = '';
 
 	    forEach(columns).call(columns, column => {
 	      const model = this.columnModels[column.id];
+	      if (model.static) return;
 	      includedEl.append(createElement({
 	        class: 'text-nowrap pad-1/4x flex space-h-1/2x align-center group',
 	        children: [{
@@ -4416,9 +4470,10 @@ var Uniform = (function (exports) {
 	      }));
 	    });
 
-	    forEach(_context24 = keys$1(this.columnModels)).call(_context24, key => {
+	    forEach(_context26 = keys$1(this.columnModels)).call(_context26, key => {
 	      if (find(columns).call(columns, c => key == c.id)) return;
 	      const model = this.columnModels[key];
+	      if (model.static) return;
 	      excludedEl.append(createElement({
 	        class: 'text-nowrap pad-1/4x flex space-h-1/2x align-center group',
 	        children: [{
@@ -4432,7 +4487,7 @@ var Uniform = (function (exports) {
 	          }, model.header || titleize(key)]
 	        }, {
 	          tag: 'span',
-	          class: 'js-move cursor-move opacity-0 group-hover:opacity-100',
+	          class: 'js-move cursor-move opacity-0 group-hover:opacity-100 hide',
 	          children: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.28 20" style="width:9px"><path d="M4.27,13.05a.54.54,0,0,0-.75,0,.53.53,0,0,0,0,.75l6.1,6a.54.54,0,0,0,.76,0l6.1-6a.53.53,0,0,0,0-.75.54.54,0,0,0-.75,0L10,18.56Z" transform="translate(-3.36 0)"/><path d="M15.73,6.94a.53.53,0,0,0,.75-.75l-6.1-6a.54.54,0,0,0-.76,0l-6.1,6a.53.53,0,1,0,.75.75L10,1.43Z" transform="translate(-3.36 0)"/></svg>`
 	        }]
 	      }));
@@ -4441,7 +4496,7 @@ var Uniform = (function (exports) {
 
 	  showSettingsModal() {
 	    let modal;
-	    let settings = this.readSettings();
+	    let settings = this.getSettings();
 	    const includedEl = createElement({
 	      class: 'border rounded flex-fill'
 	    });
@@ -4486,16 +4541,20 @@ var Uniform = (function (exports) {
 	      }]
 	    });
 	    addEventListenerFor(container, 'input', 'change', e => {
+	      const container = e.delegateTarget.closest('div');
+
 	      if (e.delegateTarget.checked) {
 	        settings.columns.push({
 	          id: e.delegateTarget.value
 	        });
-	        includedEl.append(e.delegateTarget.closest('div'));
+	        includedEl.append(container);
+	        container.querySelector('.js-move').classList.remove('hide');
 	      } else {
-	        var _context25;
+	        var _context27;
 
-	        settings.columns = filter$1(_context25 = settings.columns).call(_context25, x => x.id != e.delegateTarget.value);
-	        excludedEl.append(e.delegateTarget.closest('div'));
+	        settings.columns = filter$1(_context27 = settings.columns).call(_context27, x => x.id != e.delegateTarget.value);
+	        excludedEl.append(container);
+	        container.querySelector('.js-move').classList.add('hide');
 	      }
 	    });
 	    new DragOrder({
@@ -4524,11 +4583,11 @@ var Uniform = (function (exports) {
 	        return el;
 	      },
 	      drop: items => {
-	        var _context26, _context27;
+	        var _context28, _context29;
 
-	        const keys = map(_context26 = from_1(items)).call(_context26, item => item.querySelector('input').value);
+	        const keys = map(_context28 = from_1(items)).call(_context28, item => item.querySelector('input').value);
 
-	        sort(_context27 = settings.columns).call(_context27, (a, b) => indexOf(keys).call(keys, a.id) - indexOf(keys).call(keys, b.id));
+	        sort(_context29 = settings.columns).call(_context29, (a, b) => indexOf$1(keys).call(keys, a.id) - indexOf$1(keys).call(keys, b.id));
 	      }
 	    });
 	    modal = new Modal({
@@ -4542,58 +4601,64 @@ var Uniform = (function (exports) {
 
 
 	  initiateColumnResize(e) {
-	    var _context28, _context29, _context31;
+	    var _context30, _context31, _context32, _context33;
 
-	    forEach(_context28 = this.el.querySelectorAll('.uniformTable-header')).call(_context28, el => el.classList.add('-disabled'));
+	    forEach(_context30 = this.el.querySelectorAll('.uniformTableGrid-header-cell')).call(_context30, el => el.classList.add('-disabled'));
 
-	    e.delegateTarget.closest('th').classList.remove('-disabled');
-	    e.delegateTarget.closest('th').classList.add('-active');
+	    e.delegateTarget.closest('.uniformTableGrid-header-cell').classList.remove('-disabled');
+	    e.delegateTarget.closest('.uniformTableGrid-header-cell').classList.add('-active');
 	    e.delegateTarget.classList.add('-hover');
 	    window.addEventListener('mousemove', this.columnResize);
 	    window.addEventListener('mouseup', this.endColumnResize);
+	    this.columnTemplate = [];
 
-	    forEach(_context29 = this.el.querySelectorAll('thead th')).call(_context29, (el, i) => {
-	      var _context30;
-
-	      el.style.width = el.offsetWidth + "px";
-
-	      const column = find(_context30 = this.columns).call(_context30, x => x.id == el.id);
-
-	      if (column) {
-	        column.width = innerWidth(el) + "px";
-	      }
+	    forEach(_context31 = this.el.querySelectorAll('.uniformTableGrid-header-cell')).call(_context31, (el, i) => {
+	      this.columnTemplate.push(el.offsetWidth);
 	    });
 
-	    this.resizingColumn = e.delegateTarget.closest('th').previousElementSibling;
-	    this.startPageX = e.pageX;
-	    this.startWidth = this.resizingColumn.offsetWidth;
+	    this.setTemplate(this.columnTemplate);
+	    let resizingColumn = e.delegateTarget.closest('.uniformTableGrid-header-cell').previousElementSibling;
 
-	    forEach(_context31 = this.el.querySelectorAll(`.col-${this.resizingColumn.id}`)).call(_context31, el => {
+	    if (e.delegateTarget.classList.contains('-end')) {
+	      resizingColumn = e.delegateTarget.closest('.uniformTableGrid-header-cell');
+	    }
+
+	    this.resizingIndex = indexOf$1(_context32 = from_1(this.el.querySelectorAll('.uniformTableGrid-header-cell'))).call(_context32, resizingColumn);
+	    this.startPageX = e.pageX;
+	    this.startWidth = this.columnTemplate[this.resizingIndex];
+
+	    forEach(_context33 = this.el.querySelectorAll(`.col-${resizingColumn.id}`)).call(_context33, el => {
 	      el.classList.add('-resizing');
 	    });
 	  }
 
 	  columnResize(e) {
 	    let newWidth = this.startWidth + (e.pageX - this.startPageX);
-	    this.resizingColumn.style.width = newWidth + "px";
+	    this.columnTemplate[this.resizingIndex] = newWidth < 0 ? 0 : newWidth;
+	    this.setTemplate(this.columnTemplate);
 	  }
 
 	  endColumnResize(e) {
-	    var _context32, _context33, _context34;
+	    var _context34, _context36, _context37;
 
 	    window.removeEventListener('mousemove', this.columnResize);
 	    window.removeEventListener('mouseup', this.endColumnResize);
-	    find(_context32 = this.columns).call(_context32, x => x.id == this.resizingColumn.id).width = this.resizingColumn.style.width;
 
-	    forEach(_context33 = this.el.querySelectorAll(`.-resizing`)).call(_context33, el => {
+	    forEach(_context34 = this.el.querySelectorAll('.uniformTableGrid-header-cell')).call(_context34, (cell, i) => {
+	      var _context35;
+
+	      find(_context35 = this.columns).call(_context35, x => x.id == cell.id).width = this.columnTemplate[i] + "px";
+	    });
+
+	    forEach(_context36 = this.el.querySelectorAll(`.-resizing`)).call(_context36, el => {
 	      el.classList.remove('-resizing');
 	    });
 
-	    this.el.querySelector('.uniformTable-resize-handle.-hover').classList.remove('-hover');
+	    this.el.querySelector('.uniformTableGrid-resize-handle.-hover').classList.remove('-hover');
 
-	    forEach(_context34 = this.el.querySelectorAll('.-disabled')).call(_context34, el => el.classList.remove('-disabled'));
+	    forEach(_context37 = this.el.querySelectorAll('.-disabled')).call(_context37, el => el.classList.remove('-disabled'));
 
-	    this.el.querySelector('th.-active').classList.remove('-active');
+	    this.el.querySelector('.uniformTableGrid-header-cell.-active').classList.remove('-active');
 	    this.saveSettings({
 	      columns: this.columns
 	    });
@@ -4601,9 +4666,7 @@ var Uniform = (function (exports) {
 
 	}
 
-	_defineProperty(Table, "tagName", 'table');
-
-	_defineProperty(Table, "className", 'uniformTable');
+	_defineProperty(Table, "className", 'uniformTableGrid');
 
 	_defineProperty(Table, "columns", []);
 
@@ -4611,9 +4674,271 @@ var Uniform = (function (exports) {
 
 	_defineProperty(Table, "defaultOrder", null);
 
+	_defineProperty(Table, "_storeKey", null);
+
+	// ----
+	// record: object to get and set value from
+	//        if record has addEventListener, it will listen for change and update value
+	//
+	// attribute: attribute of record to get and set
+	// {...}: all html attributes allowed
+	//
+	// TODO
+	// ---
+	// default type based on value
+	//
+	// array: true for checkbox / radio
+	//
+	// invalid
+
+	class BoundInput extends Component {
+	  constructor(options) {
+	    let prototype;
+
+	    switch (options.type) {
+	      case 'button':
+	        options.tagName = 'button';
+	        prototype = BoundButton.prototype;
+	        break;
+
+	      case 'checkbox':
+	        prototype = BoundCheckbox.prototype;
+	        break;
+
+	      case 'radio':
+	        prototype = BoundRadio.prototype;
+	        break;
+
+	      case 'select':
+	        options.tagName = 'select';
+	        prototype = BoundSelect.prototype;
+	        break;
+
+	      case 'textarea':
+	        options.tagName = 'textarea';
+	        break;
+
+	      case 'date':
+	        prototype = BoundDate.prototype;
+	        break;
+	    }
+
+	    options.initialize = false;
+	    super(options);
+
+	    if (prototype) {
+	      this.__proto__ = prototype;
+	    }
+
+	    this.initialize(options);
+	  }
+
+	  initialize(options) {
+	    var _context;
+
+	    if (options.load) this.loadRecord = options.load;
+	    if (options.dump) this.dumpRecord = options.dump;
+	    this.record = options.record;
+	    this.attribute = options.attribute;
+	    this.el.id = uniqueId('input');
+	    this.loadEl();
+	    this.el.addEventListener('change', bind(_context = this.dumpEl).call(_context, this));
+
+	    if (this.record.addEventListener) {
+	      this.record.addEventListener('change', this.loadEl);
+	    }
+	  }
+
+	  remove() {
+	    this.record.removeEventListener('change', this.loadEl);
+	    super.remove();
+	  }
+
+	  loadRecord(v) {
+	    return v;
+	  }
+
+	  dumpRecord(v) {
+	    return v;
+	  }
+
+	  loadEl() {
+	    if (this.dumping) return;
+	    this.loading = true;
+	    this.loadElValue();
+	    this.loading = false;
+	  }
+
+	  loadElValue() {
+	    const value = this.loadRecord(this.record[this.attribute]);
+	    if (value !== undefined) this.el.value = value;
+	  }
+
+	  dumpEl(e) {
+	    if (this.loading) return;
+	    this.dumping = true;
+	    this.dumpElValue();
+	    this.dumping = false;
+	  }
+
+	  dumpElValue() {
+	    this.record[this.attribute] = this.dumpRecord(this.el.value);
+	  }
+
+	}
+
+	_defineProperty(BoundInput, "tagName", 'input');
+
+	class BoundCheckbox extends BoundInput {
+	  initialize(options) {
+	    super.initialize(options);
+
+	    if (options.array || options.isArray) {
+	      this.isArray = true;
+	    }
+	  }
+
+	  loadElValue() {
+	    // "on" is default, indiciating value has not been set by constructor
+	    if (this.el.value == "on") {
+	      this.el.value = "true";
+	      this.el.checked = this.loadRecord(this.record[this.attribute] === true);
+	    } else {
+	      this.el.checked = this.loadRecord(this.record[this.attribute] === this.el.value);
+	    }
+	  }
+
+	  dumpElValue(e) {
+	    if (this.el.value === "true") {
+	      this.record[this.attribute] = this.dumpRecord(this.el.checked === true);
+	    } else if (this.el.checked) {
+	      this.record[this.attribute] = this.dumpRecord(this.el.value);
+	    } else {
+	      this.record[this.attribute] = undefined;
+	    }
+	  }
+
+	}
+	class BoundRadio extends BoundCheckbox {}
+	class BoundDate extends BoundInput {
+	  loadRecord(value) {
+	    if (value instanceof Date) {
+	      var month = value.getMonth() + 1 + '';
+	      if (month.length == 1) month = '0' + month;
+	      var date = value.getDate() + '';
+	      if (date.length == 1) date = '0' + date;
+	      return [value.getUTCFullYear(), month, date].join("-");
+	    } else {
+	      return value;
+	    }
+	  }
+
+	}
+	class BoundButton extends BoundInput {
+	  initialize(options) {
+	    var _context2;
+
+	    // options.content removed by component, TODO fix
+	    const content = options.content;
+	    super.initialize(options);
+	    this.el.addEventListener('click', bind(_context2 = this.dumpEl).call(_context2, this));
+
+	    if (content) {
+	      append(this.el, content);
+	    }
+	  }
+
+	  loadEl() {}
+
+	}
+
+	_defineProperty(BoundButton, "tagName", "button");
+
+	class BoundSelect extends BoundInput {
+	  dumpElValue(v) {
+	    if (v == "null") return null;
+	    return v;
+	  }
+
+	  initialize(options) {
+	    const value = this.loadRecord(options.record[options.attribute]);
+
+	    if (options.options) {
+	      var _context3;
+
+	      if (options.includeBlank) {
+	        const el = document.createElement('option');
+	        el.innerHTML = options.includeBlank === true ? "Unset" : options.includeBlank;
+	        el.selected = value ? false : true;
+	        el.style.fontStyle = 'italic';
+	        el.setAttribute('value', null);
+	        this.el.append(el);
+	      }
+
+	      forEach(_context3 = options.options).call(_context3, option => {
+	        if (option instanceof Element) return this.el.append(option);
+	        const el = document.createElement('option');
+
+	        if (isArray(option)) {
+	          el.setAttribute('value', option[0]);
+	          el.innerHTML = option[1];
+	        } else {
+	          el.setAttribute('value', option);
+	          el.innerHTML = option;
+	        }
+
+	        this.el.append(el);
+	      });
+	    }
+
+	    super.initialize(options);
+	  }
+
+	  loadElValue() {
+	    const value = this.loadRecord(this.record[this.attribute]) || [];
+
+	    if (this.el.multiple) {
+	      var _context4;
+
+	      forEach(_context4 = this.el.querySelectorAll('option')).call(_context4, option => {
+	        if (includes(value).call(value, option.value)) {
+	          option.setAttribute('selected', true);
+	        } else {
+	          option.removeAttribute('selected');
+	        }
+	      });
+	    } else {
+	      super.loadElValue();
+	    }
+	  }
+
+	  dumpElValue(e) {
+	    if (this.el.multiple) {
+	      var _context5, _context6;
+
+	      const values = map(_context5 = filter$1(_context6 = from_1(this.el.options)).call(_context6, x => x.selected)).call(_context5, x => x.value);
+
+	      this.record[this.attribute] = this.dumpRecord(values);
+	    } else {
+	      super.dumpElValue();
+	    }
+	  }
+
+	}
+
+	_defineProperty(BoundSelect, "tagName", 'select');
+
 	/*  
 	    Options
 	    ===
+
+	    Column Options
+	    ===
+	    type: text|number|date
+	    options: [] if type=text renders select with options
+	    input: { options for BoundInput }
+
+	    use class -no-selection on cells to not allow selection
 
 	    Extendable
 	    ===
@@ -4630,30 +4955,39 @@ var Uniform = (function (exports) {
 	    var _context, _context2, _context3;
 
 	    super.initialize.call(this, options);
-	    addEventListenerFor(this.el, 'td', 'keydown', bind(_context = this.keydown).call(_context, this));
-	    addEventListenerFor(this.el, 'td', 'mousedown', bind(_context2 = this.initiateCellSelection).call(_context2, this));
-	    addEventListenerFor(this.el, 'td', 'mouseover', bind(_context3 = this.updateCellSelection).call(_context3, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-row > *', 'keydown', bind(_context = this.keydown).call(_context, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-row > *', 'mousedown', bind(_context2 = this.initiateCellSelection).call(_context2, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-row > *', 'mouseover', bind(_context3 = this.updateCellSelection).call(_context3, this));
 	  }
 
 	  defaultColumnRender(record, model) {
-	    const input = createElement('input', {
-	      value: model.load ? model.load(record[model.id]) : record[model.id]
-	    });
-	    input.addEventListener('change', e => {
-	      record[model.id] = model.dump ? model.dump(e.target.value) : e.target.value;
-	    });
-	    return input;
+	    let el = new BoundInput(assign({
+	      record: record,
+	      attribute: model.attribute || model.id,
+	      load: model.load,
+	      dump: model.dump
+	    }, model.input)).el;
+
+	    if (el.type == "checkbox") {
+	      el = createElement('label', {
+	        class: 'input',
+	        content: el
+	      });
+	    }
+
+	    return el;
 	  }
 
 	  renderRow(record) {
 	    var _context4;
 
-	    return createElement('tr', {
+	    return createElement({
+	      class: 'uniformTableGrid-row',
 	      content: map(_context4 = this.columns).call(_context4, async column => {
 	        const model = this.columnModels[column.id];
 	        const input = await model.render(record, model);
 	        if (input) input.setAttribute('tabindex', '-1');
-	        return createElement('td', {
+	        return createElement({
 	          tabindex: input ? '0' : '-1',
 	          content: input,
 	          class: "col-" + column.id + " " + model.class || ""
@@ -4666,11 +5000,13 @@ var Uniform = (function (exports) {
 	    var _context5;
 
 	    const cell = e.delegateTarget;
+	    if (cell.matches('.-no-selection')) return;
 	    this.selecting = cell;
 	    this.deselectCells();
 
 	    if (cell != document.activeElement && !cell.querySelector(':focus')) {
 	      e.preventDefault();
+	      e.stopPropagation();
 	      cell.focus();
 	    }
 
@@ -4683,21 +5019,21 @@ var Uniform = (function (exports) {
 	    if (this.selecting) {
 	      var _context6;
 
-	      const current = this.el.querySelector('td:focus, td:focus-within') || this.el.querySelector('td');
+	      const current = this.el.querySelector('.uniformTableGrid-row > *:focus, .uniformTableGrid-row > *:focus-within') || this.el.querySelector('.uniformTableGrid-row > *');
 	      const target = e.delegateTarget;
-	      [current.cellIndex, current.parentElement.rowIndex];
-	      [target.cellIndex, target.parentElement.rowIndex];
+	      const currentIndex = [indexOf(current), indexOf(current.parentElement)];
+	      const targetIndex = [indexOf(target), indexOf(target.parentElement)];
 
-	      forEach(_context6 = this.el.querySelectorAll('td.selecting')).call(_context6, el => el.classList.remove('selecting'));
+	      forEach(_context6 = this.el.querySelectorAll('.uniformTableGrid-row > *.selecting')).call(_context6, el => el.classList.remove('selecting'));
 
-	      let i = Math.min(current.parentElement.rowIndex, target.parentElement.rowIndex);
+	      let i = Math.min(currentIndex[1], targetIndex[1]);
 
-	      while (i <= Math.max(current.parentElement.rowIndex, target.parentElement.rowIndex)) {
-	        const row = current.closest('table').rows[i];
-	        let x = Math.min(current.cellIndex, target.cellIndex);
+	      while (i <= Math.max(currentIndex[1], targetIndex[1])) {
+	        const row = this.el.children[i];
+	        let x = Math.min(currentIndex[0], targetIndex[0]);
 
-	        while (x <= Math.max(current.cellIndex, target.cellIndex)) {
-	          row.cells[x].classList.add('selecting');
+	        while (x <= Math.max(currentIndex[0], targetIndex[0])) {
+	          row.children[x].classList.add('selecting');
 	          x += 1;
 	        }
 
@@ -4709,60 +5045,30 @@ var Uniform = (function (exports) {
 	  endCellSelection(e) {
 	    var _context7;
 
-	    const cell = e.target.closest('td');
+	    const cell = e.target.closest('.uniformTableGrid-row > *');
 
 	    if (this.selecting && cell != this.selecting) {
 	      this.selecting.focus();
-	      const selectedCells = this.el.querySelectorAll('td.selecting');
+	      const selectedCells = this.el.querySelectorAll('.uniformTableGrid-row > *.selecting');
 
-	      forEach(selectedCells).call(selectedCells, el => el.classList.add('selected'));
+	      if (selectedCells.length > 0) {
+	        forEach(selectedCells).call(selectedCells, el => el.classList.add('selected'));
 
-	      const offset = offsetTo(from_1(selectedCells), this.el);
-	      const pad = 1;
-	      const stroke = 1; // left
-
-	      this.el.append(createElement('selection', {
-	        class: 'uniformSpreadsheet-selectionOutline',
-	        style: {
-	          left: offset.left - pad + "px",
-	          top: offset.top - pad + "px",
-	          width: stroke + "px",
-	          height: offset.bottom - offset.top + pad + "px"
-	        }
-	      })); // Right
-
-	      this.el.append(createElement('selection', {
-	        class: 'uniformSpreadsheet-selectionOutline',
-	        style: {
-	          left: offset.right - pad + "px",
-	          top: offset.top - pad + "px",
-	          width: stroke + "px",
-	          height: offset.bottom - offset.top + pad + "px"
-	        }
-	      })); // Top
-
-	      this.el.append(createElement('selection', {
-	        class: 'uniformSpreadsheet-selectionOutline',
-	        style: {
-	          left: offset.left - pad + "px",
-	          top: offset.top - pad + "px",
-	          width: offset.right - offset.left + pad + "px",
-	          height: stroke + "px"
-	        }
-	      })); // Bottom
-
-	      this.el.append(createElement('selection', {
-	        class: 'uniformSpreadsheet-selectionOutline',
-	        style: {
-	          left: offset.left - pad + "px",
-	          top: offset.bottom - pad + "px",
-	          width: offset.right - offset.left + pad + "px",
-	          height: stroke + "px"
-	        }
-	      }));
+	        const offset = offsetTo(from_1(selectedCells), this.el);
+	        const pad = 1;
+	        this.el.append(createElement('selection', {
+	          class: 'uniformSpreadsheet-selectionOutline',
+	          style: {
+	            left: offset.left - pad + "px",
+	            top: offset.top - pad + "px",
+	            width: offset.right - offset.left + pad + "px",
+	            height: offset.bottom - offset.top + pad + "px"
+	          }
+	        }));
+	      }
 	    }
 
-	    forEach(_context7 = this.el.querySelectorAll('td.selecting')).call(_context7, el => {
+	    forEach(_context7 = this.el.querySelectorAll('.uniformTableGrid-row > *.selecting')).call(_context7, el => {
 	      el.classList.remove('selecting');
 	    });
 
@@ -4772,7 +5078,7 @@ var Uniform = (function (exports) {
 	  deselectCells() {
 	    var _context8, _context9;
 
-	    forEach(_context8 = this.el.querySelectorAll('td.selected')).call(_context8, el => {
+	    forEach(_context8 = this.el.querySelectorAll('.uniformTableGrid-row > *.selected')).call(_context8, el => {
 	      el.classList.remove('selected');
 	    });
 
@@ -4785,6 +5091,8 @@ var Uniform = (function (exports) {
 	  }
 
 	  keydown(e) {
+	    var _context10;
+
 	    if (document.activeElement == e.delegateTarget) {
 
 	      switch (e.key) {
@@ -4815,8 +5123,16 @@ var Uniform = (function (exports) {
 	          return;
 
 	        default:
-	          if (e.key != 'Shift') {
-	            e.delegateTarget.querySelector('input, select, textarea').focus();
+	          if (!includes(_context10 = ['Shift', 'Meta', 'Alt', 'Control']).call(_context10, e.key)) {
+	            const target = e.delegateTarget.querySelector('input, select, textarea, button');
+	            target.focus();
+
+	            if (target.matches('[type="file"]')) {
+	              setTimeout(() => target.click(), 100);
+	            } else if (target.matches('input')) {
+	              target.select();
+	            }
+
 	            this.deselectCells();
 	          }
 
@@ -4834,16 +5150,16 @@ var Uniform = (function (exports) {
 	  }
 
 	  focusCell(direction) {
-	    const current = this.el.querySelector('td:focus, td:focus-within') || this.el.querySelector('td');
+	    const current = this.el.querySelector('.uniformTableGrid-row > *:focus, .uniformTableGrid-row > *:focus-within') || this.el.querySelector('.uniformTableGrid-row > *');
 	    const action = (direction == "up" || direction == "left" ? "previous" : "next") + 'ElementSibling';
 
 	    if (direction == "left" || direction == "right") {
 	      const cell = current[action];
 	      if (cell) cell.focus();
 	    } else {
-	      const index = current.cellIndex;
+	      const index = indexOf(current);
 	      const row = current.parentElement[action];
-	      if (row) row.cells[index].focus();
+	      if (row) row.children.item(index).focus();
 	    }
 
 	    this.deselectCells();
@@ -4851,7 +5167,13 @@ var Uniform = (function (exports) {
 
 	}
 
-	_defineProperty(Spreadsheet, "className", "uniformTable uniformSpreadsheet");
+	_defineProperty(Spreadsheet, "className", "uniformTableGrid uniformSpreadsheet");
+
+	function indexOf(el) {
+	  var _context11;
+
+	  return indexOf$1(_context11 = from_1(el.parentNode.childNodes)).call(_context11, el);
+	}
 
 	class Checkbox extends Component {
 	  initialize(options) {
@@ -4923,6 +5245,7 @@ var Uniform = (function (exports) {
 
 	_defineProperty(Toggle, "CSSClass", "uniformToggle");
 
+	exports.BoundInput = BoundInput;
 	exports.Checkbox = Checkbox;
 	exports.Dropdown = Dropdown;
 	exports.Dropzone = Dropzone;
@@ -4933,7 +5256,7 @@ var Uniform = (function (exports) {
 	exports.Resizer = Resizer;
 	exports.Select = Select;
 	exports.Spreadsheet = Spreadsheet;
-	exports.Table = Table;
+	exports.TableGrid = Table;
 	exports.Toggle = Toggle;
 	exports.Tooltip = Tooltip;
 
