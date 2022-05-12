@@ -1,0 +1,82 @@
+<div class="section">
+    <h1>
+        BoundInput
+        <span class="uniformLabel -yellow-60">JS</span>
+    </h1>
+    <p class="text-xl text-light margin-v-2x">
+        Renders an <code>input</code>, <code>select</code>, <code>button</code>, or <code>textarea</code> that is bound to the designated object. Changing input updates object attribute, and changing object's attribute updates the input.
+    </p>
+    
+    <% [
+        {
+            type: 'text'
+        },{
+            type: 'number'
+        },{
+            type: 'date'
+        },{
+            type: 'checkbox'
+        },{
+            type: 'checkbox',
+            value: 'foo'
+        },{
+            type: 'button',
+            value: 'foo',
+            content: 'Set to "foo"'
+        },{
+            type: 'select',
+            includeBlank: true,
+            options: ['foo', 'bar']
+        }, {
+            type: 'select',
+            multiple: true,
+            options: [
+                ['foo', 'Option 1'],
+                ['bar', 'Option 2'],
+                ['zoo', 'Option 3']
+            ]
+        },{
+            type: 'textarea'
+        }
+    ].each_with_index do |attributes, index| %>
+        <% js_attributes = JSON.pretty_generate({
+            record: 'record',
+            attribute: 'foo'
+        }.merge(attributes)).gsub(/\"(\w+)\"\:/, '\1:').gsub("\"record\"", "record") %>
+        <div class="flex margin-v-2x space-h">
+            <div class="flex-fill width-fill">
+                <div class="text-bold">
+                    <%= attributes[:type].titleize %> Input
+                </div>
+                <div id="example-<%= index %>"></div>
+                <div>
+                    <code class="text-bold">object.foo</code>:
+                    <span id="value-<%= index %>"></span>
+                </div>
+            
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const record = {};
+                        const input = new window.Uniform.BoundInput(<%= js_attributes %>);
+                        document.getElementById('example-<%= index %>').append(input.el);
+                        input.el.addEventListener('<%= attributes[:type] == "button" ? "click" : 'change' %>', function (e) {
+                            document.getElementById('value-<%= index %>').innerHTML = record.foo
+                        })
+                    })
+                </script>
+            </div>
+            <div class="flex-auto width-1/3 overflow-hidden">
+                <% code 'javascript', {css_class: 'width-fill overflow-x-scroll'} do %>
+                    new BoundInput(<%=js_attributes %>).el
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+    
+    
+    
+    <h3>Options</h3>
+    <div class="border border-gray-30 bg-white rounded">
+        // TODO
+    </div>
+</div>

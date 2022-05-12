@@ -18,13 +18,14 @@
     .uniformTableGrid-row > * {
         background: white;
         padding: 0;
-        input{
+        display: flex;
+        input:not([type=checkbox]):not([type=radio]){
             border: none;
             background: none;
             box-shadow: none;
             outline: none;
         }
-        input, select, & > button {
+        input:not([type=checkbox]):not([type=radio]), select, & > button:not(.cursor-pointer):not(.cursor-grab), & > label {
             width: 100%;
             height: 100%;
             cursor: cell;
@@ -32,6 +33,10 @@
                 cursor: auto;
                 box-shadow: 1px 1px 5px 1px rgba(black, 0.5);
             }
+        } 
+        label.input {
+            display: block;
+            padding: 0.25em 0.5em;
         }
         &:focus,
         &:focus-within {

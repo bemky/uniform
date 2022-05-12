@@ -22,6 +22,7 @@
                         }, {
                             name: 'Michael Young',
                             team: 'Texas Rangers',
+                            captain: true,
                             team_url: 'https://www.mlb.com/rangers',
                             position: '2B'
                         }, {
@@ -35,6 +36,11 @@
                                 order: true
                             },
                             team: {},
+                            captain: {
+                                input: {
+                                    type: 'checkbox'
+                                }
+                            },
                             team_url: {
                                 load: v => v.replace(/https?\:\/\//, ""),
                                 dump: v => "https://" + v.team_url
@@ -45,7 +51,7 @@
                                 dump: v => v.toLowerCase()
                             }
                         }
-                    }).render().el)
+                    }).el)
                 })
             </script>
         </div>
