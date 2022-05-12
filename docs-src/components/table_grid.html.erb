@@ -17,22 +17,26 @@
                 document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('example-1').append(new window.Uniform.TableGrid({
                         records: [{
+                            number: 99,
                             name: 'Adrian Beltre',
                             team: 'Texas Rangers',
                             team_url: 'https://www.mlb.com/rangers',
                             position: '3B'
                         }, {
+                            number: 43,
                             name: 'Michael Young',
                             team: 'Texas Rangers',
                             team_url: 'https://www.mlb.com/rangers',
                             position: '2B'
                         }, {
+                            number: 9,
                             name: 'Elvis Andrus',
                             team: 'Texas Rangers',
                             team_url: 'https://www.mlb.com/rangers',
                             position: 'SS'
                         }],
                         columns: {
+                            number: {static: "start"},
                             name: [r => r.name, {order: true}],
                             team: r => "<a href=\"" + r.team_url + "\">" + r.team + "</a>",
                             position: [r => r.position, {
@@ -40,7 +44,7 @@
                                 order: true
                             }]
                         }
-                    }).render().el)
+                    }).el)
                 })
             </script>
         </div>
@@ -72,7 +76,7 @@
                             order: true
                         }]
                     }
-                }).render()
+                })
             <% end %>
         </div>
     </div>
@@ -162,6 +166,20 @@
                 </td>
                 <td>
                     Render as header, defaults to column key
+                </td>
+                <td>
+                    optional
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>static</code>
+                </td>
+                <td>
+                    string || boolean
+                </td>
+                <td>
+                    Always render column and exclude from removing/adding settings. <code>"start"</code> always prepends column, otherwise it will append
                 </td>
                 <td>
                     optional
