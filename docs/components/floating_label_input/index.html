@@ -112,9 +112,9 @@
                                 JS
                             </span>
                     </a>
-                    <a href="/components/floating_label_input" class="">
+                    <a href="/components/floating_label_input" class="active">
                         Floating Label Input
-                            &nbsp;<span class="uniformLabel -yellow-60 text-xs">
+                            &nbsp;<span class="uniformLabel -green-60 text-xs">
                                 JS
                             </span>
                     </a>
@@ -142,9 +142,9 @@
                                 JS
                             </span>
                     </a>
-                    <a href="/components/modal" class="active">
+                    <a href="/components/modal" class="">
                         Modal
-                            &nbsp;<span class="uniformLabel -green-60 text-xs">
+                            &nbsp;<span class="uniformLabel -yellow-60 text-xs">
                                 JS
                             </span>
                     </a>
@@ -187,91 +187,80 @@
 <div class="main-content overflow-hidden">
     <div class="section">
     <h1>
-        Modal
+        Floating Label Input
         <span class="uniformLabel -yellow-60">JS</span>
     </h1>
+    
     <p class="text-xl text-light margin-v-2x">
-        Render any content into a modal
+        FloatingLabelInput can be applied to any input. It appends a label on top of an input, and adds <code class="text-nowrap">aria-label</code> for accessibility.
     </p>
     
-    <div class="flex margin-v-2x space-h">
-        <div class="flex-auto">
-            <button class="uniformButton text-nowrap" id="example-1">Toggle Example</button>
-            
-            <script>
-                document.getElementById('example-1').addEventListener('click', function (e) {
-                    new window.Uniform.Modal({
-                    content: "<div class=\"bg-green-20 border border-green text-green-80 pad rounded max-width-30-vw\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>"
-                    }).render()
-                })
-            </script>
+    <div class="flex space-h">
+        <div class="">
+            <div class="text-bold">
+                Base
+            </div>
+            <input class="example pad-1/2x text-md width-full" type="text" id="example-1" />
         </div>
-        <div class="flex-fill width-fill overflow-hidden">
-<div class="highlight"><pre class="width-fill overflow-x-scroll javascript"><code><span class="k">import</span> <span class="p">{</span><span class="nx">Modal</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">uniform</span><span class="dl">'</span><span class="p">;</span>
-<span class="k">new</span> <span class="nx">Modal</span><span class="p">({</span>
-    <span class="na">content</span><span class="p">:</span> <span class="dl">'</span><span class="s1">&lt;div class="bg-green-20 border border-green text-green-80 pad rounded"&gt;
-        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
-    &lt;/div&gt;</span><span class="dl">'</span>
-<span class="p">}).</span><span class="nx">render</span><span class="p">()</span></code></pre></div>        </div>
+        <div class="">
+            <div class="text-bold">
+                Starting Value
+            </div>
+            <input class="example pad-1/2x text-md width-full" type="text" id="example-2" value="test" />
+        </div>
+        <div class="">
+            <div class="text-bold">
+                Original
+            </div>
+            <input class="pad-1/2x text-md width-full" type="text" id="example-3" value="test" />
+        </div>
+        <div class="flex-fill">
+<div class="highlight"><pre class=" javascript"><code><span class="k">import</span> <span class="p">{</span><span class="nx">FloatingLabelInput</span><span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">uniform</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">input</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FloatingLabelInput</span><span class="p">({</span>
+    <span class="na">label</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Name</span><span class="dl">'</span>
+<span class="p">}).</span><span class="nx">render</span><span class="p">()</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">input</span><span class="p">.</span><span class="nx">el</span><span class="p">)</span></code></pre></div>        </div>
     </div>
     
-    <h3>Options</h3>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            document.querySelectorAll('.example').forEach(el => {
+                new window.Uniform.FloatingLabelInput({
+                    label: 'Name',
+                    input: el
+                }).render()
+            })
+        })
+    </script>
+    
+    <h3 class="margin-none">Options</h3>
     <div class="border border-gray-30 bg-white rounded">
         <table class="uniformTable align-top-*">
+            <thead>
             <tr>
                 <th>Option</th>
                 <th>Type</th>
                 <th>Description</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tr>
+                <td class="text-nowrap"><code>label</code></td>
+                <td class="text-nowrap"><code>String</code></td>
+                <td>Label to float.</td>
+                <td class="text-nowrap"><span class="uniformLabel -red">REQUIRED</span></td>
             </tr>
             <tr>
-                <td>
-                    <code>content</code>
-                </td>
-                <td>
-                    String or Element
-                </td>
-                <td>
-                    HTML or Element to render
-                </td>
+                <td class="text-nowrap"><code>input</code></td>
+                <td class="text-nowrap"><code>Object || Element</code></td>
+                <td>What to use for the input. If not element, then it will render using options passed to <code>input</code></td>
+                <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
             </tr>
             <tr>
-                <td class="text-nowrap"><code>class, name, id, value</code></td>
-                <td>String</td>
-                <td>Accepts any html attribute that is then rendered on the modal element.</td>
-            </tr>
-        </table>
-    </div>
-    
-    <h3>Events</h3>
-    <div class="border border-gray-30 bg-white rounded">
-        <table class="uniformTable align-top-*">
-            <tr>
-                <th>Event</th>
-                <th>Description</th>
-                <th>Arguments</th>
-            </tr>
-            <tr>
-                <td>
-                    rendered
-                </td>
-                <td>
-                    After modal is rendered
-                </td>
-                <td>
-                    none
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    closed
-                </td>
-                <td>
-                    After modal is closed
-                </td>
-                <td>
-                    none
-                </td>
+                <td class="text-nowrap"><code>class: "text-red", ...</code></td>
+                <td></td>
+                <td>Accepts any html attribute that is then appended to the element that wraps the input.</td>
+                <td class="text-nowrap"><span class="uniformLabel">OPTIONAL</span></td>
             </tr>
         </table>
     </div>
