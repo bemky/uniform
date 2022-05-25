@@ -30,7 +30,7 @@
 }
 
 .uniformTableGrid-row + .uniformTableGrid-row {
-    & > * {
+    .uniformTableGrid-cell {
         border-top-width: 1px;
     }
 }

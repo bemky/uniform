@@ -1,6 +1,6 @@
 <div class="section">
     <h1>
-        Table Grid
+        TableGrid
         <span class="uniformLabel -yellow-60">JS</span>
     </h1>
     <p class="text-xl text-light margin-v-2x">
@@ -69,7 +69,8 @@
                         position: 'SS'
                     }],
                     columns: {
-                            name: [r => r.name, {order: true}],
+                        number: {static: "start"},
+                        name: [r => r.name, {order: true}],
                         team: r => "<a href=\"" + r.team_url + "\">" + r.team + "</a>",
                         position: [r => r.position, {
                             class: 'text-right',

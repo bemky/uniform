@@ -4,7 +4,7 @@
         <span class="uniformLabel -yellow-60">JS</span>
     </h1>
     <p class="text-xl text-light margin-v-2x">
-        Renders a <a href="/components/table_js"><code>Uniform Table</code></a> as a spreadsheet where each cell is an input.
+        Renders a <a href="/components/table_grid"><code>TableGrid</code></a> as a spreadsheet where each cell is an input.
     </p>
     
     <div class="flex margin-v-2x space-h">
@@ -42,13 +42,45 @@
                                 }
                             },
                             team_url: {
-                                load: v => v.replace(/https?\:\/\//, ""),
-                                dump: v => "https://" + v.team_url
+                                render: r => "<a href=\"" + r.team_url + "\">URL</a>",
+                                input: {
+                                    load: v => v.replace(/https?\:\/\//, ""),
+                                    dump: v => "https://" + v
+                                }
                             },
                             position: {
-                                type: 'select',
-                                load: v => v.toUpperCase(),
-                                dump: v => v.toLowerCase()
+                                input: {
+                                    type: 'select',
+                                    load: v => v.toUpperCase(),
+                                    dump: v => v.toUpperCase(),
+                                    options: ['C', '1B', '2B', '3B', 'SS', 'LF', 'RF', 'CF', 'P']
+                                }
+                            },
+                            notes: {
+                                input: (r, done) => {
+                                    const content = document.createElement('form');
+                                    content.classList.add('bg-white', 'rounded', 'pad')
+                                    content.innerHTML = "<h2>Notes</h2>"
+                                    content.append(new window.Uniform.BoundInput({
+                                        type: 'textarea',
+                                        attribute: 'notes',
+                                        record: r,
+                                        rows: "10",
+                                        class: "uniformInput min-width-300-px block"
+                                    }).el)
+                                    const modal = new window.Uniform.Modal({
+                                        content: content
+                                    }).render()
+                                    
+                                    const button = document.createElement('button')
+                                    button.classList.add('uniformButton', '-green', 'margin-top')
+                                    button.innerHTML = "Update"
+                                    button.addEventListener('click', e => {
+                                        modal.close()
+                                    })
+                                    content.append(button)
+                                    modal.addEventListener('closed', done)
+                                }
                             }
                         }
                     }).el)
