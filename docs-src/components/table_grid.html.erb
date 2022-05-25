@@ -49,7 +49,7 @@
             </script>
         </div>
         <div class="flex-auto width-1/3 overflow-hidden">
-            <% code 'javascript', {css_class: 'width-fill overflow-x-scroll'} do %>
+            <% code 'javascript', {css_class: 'width-fill overflow-x-scroll height-300-px'} do %>
                 import { TableGrid } from 'uniform';
                 new TableGrid({
                     records: [{
@@ -109,10 +109,10 @@
                     <code>columns</code>
                 </td>
                 <td>
-                    function or [function, {options}]
+                    function or {key: {options}, key2: {options}}
                 </td>
                 <td>
-                    Function to render row cell
+                    Hash of column options used to render columns
                 </td>
                 <td>
                 </td>
@@ -153,7 +153,7 @@
                     function(record)
                 </td>
                 <td>
-                    Function to use to render cell. Can also be first argument of column model
+                    Function to use to render cell
                 </td>
                 <td>
                 </td>
