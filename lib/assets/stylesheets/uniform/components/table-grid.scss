@@ -6,25 +6,29 @@
 .uniformTableGrid-row,
 .uniformTableGrid-header {
     display: contents;
-    & > * {
-        padding: 0.5em;
-        z-index: 1;
-        position: relative;
-        &.sticky {
-            position: sticky;
-            z-index: 2;
-        }
-        &.-resizing + * {
-            z-index: 4;
-            &:after{
-                content: '';
-                position: absolute;
-                width: 1px;
-                left: -1px;
-                top: 0;
-                bottom:0;
-                background: color('blue');
-            }
+}
+
+.uniformTableGrid-cell,
+.uniformTableGrid-header-cell {
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+    z-index: 1;
+    position: relative;
+    &.sticky {
+        position: sticky;
+        z-index: 2;
+    }
+    &.-resizing + * {
+        z-index: 4;
+        &:after{
+            content: '';
+            position: absolute;
+            width: 1px;
+            left: -1px;
+            top: 0;
+            bottom:0;
+            background: color('blue');
         }
     }
 }
