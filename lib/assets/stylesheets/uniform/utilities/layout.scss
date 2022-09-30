@@ -137,14 +137,11 @@
     flex-start
     flex-end
 ) {
-    .flex,
-    .grid{
-        @include responsive-rule('justify-self-#{$selector}') {
-            justify-self: $selector;
-        }
-        @include responsive-rule('align-self-#{$selector}') {
-            align-self: $selector;
-        }
+    @include responsive-rule('justify-self-#{$selector}') {
+        justify-self: $selector;
+    }
+    @include responsive-rule('align-self-#{$selector}') {
+        align-self: $selector;
     }
 }
 
