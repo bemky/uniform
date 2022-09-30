@@ -4457,7 +4457,7 @@
 	          id: column.id,
 	          content: [{
 	            tag: 'span',
-	            content: model.header || titleize(column.id)
+	            content: column.header || model.header || titleize(column.id)
 	          }, {
 	            class: 'uniformTableGrid-header-action',
 	            content: {
@@ -4684,55 +4684,19 @@
 	    if (!button.popover) {
 	      const headerCell = button.closest('[id]');
 	      const columnModel = this.columnModels[headerCell.id];
-	      const actions = [listenerElement({
-	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
-	        content: 'Table Settings'
-	      }, e => {
-	        button.popover.hide();
-	        this.showSettingsModal();
-	      })];
-
-	      if (!columnModel.static) {
-	        actions.unshift(listenerElement({
-	          class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
-	          content: 'Remove Column'
-	        }, e => {
-	          var _context27;
-
-	          button.popover.hide();
-	          this.updateColumns(filter$1(_context27 = this.getColumns()).call(_context27, x => x.id != headerCell.id));
-	          this.render();
-	        }));
-	      }
-
-	      if (columnModel.order) {
-	        actions.unshift(listenerElement({
-	          class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
-	          content: 'Order A to Z'
-	        }, e => {
-	          button.popover.hide();
-	          this.setOrder(columnModel.id, 'asc');
-	        }), listenerElement({
-	          class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
-	          content: 'Order Z to A'
-	        }, e => {
-	          button.popover.hide();
-	          this.setOrder(columnModel.id, 'desc');
-	        }));
-	      }
-
+	      const popoverContent = this.renderColumnPopover(columnModel);
 	      button.popover = new Popover({
 	        anchor: button,
 	        align: '0px bottom',
-	        content: createElement({
-	          class: 'shadow shadow-opacity-40 bg-white rounded pad-1/2x text-sm text-nowrap',
-	          content: actions
-	        })
+	        content: popoverContent
 	      }).render();
+	      popoverContent.addEventListener('actionSelected', () => {
+	        button.popover.hide();
+	      });
 	      button.popover.addEventListener('hidden', () => {
-	        var _context28;
+	        var _context27;
 
-	        forEach(_context28 = this.el.querySelectorAll('.-disabled')).call(_context28, el => el.classList.remove('-disabled'));
+	        forEach(_context27 = this.el.querySelectorAll('.-disabled')).call(_context27, el => el.classList.remove('-disabled'));
 
 	        button.closest('.uniformTableGrid-header-cell').classList.remove('-active');
 	        button.classList.remove('-active');
@@ -4740,6 +4704,52 @@
 	    } else {
 	      button.popover.toggle();
 	    }
+	  }
+
+	  renderColumnPopover(columnModel) {
+	    const popover = createElement({
+	      class: 'shadow shadow-opacity-40 bg-white rounded pad-1/2x text-sm text-nowrap'
+	    });
+	    const actions = [listenerElement({
+	      class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
+	      content: 'Table Settings'
+	    }, e => {
+	      trigger(popover, 'actionSelected');
+	      this.showSettingsModal();
+	    })];
+
+	    if (!columnModel.static) {
+	      actions.unshift(listenerElement({
+	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
+	        content: 'Remove Column'
+	      }, e => {
+	        var _context28;
+
+	        trigger(popover, 'actionSelected');
+	        this.updateColumns(filter$1(_context28 = this.getColumns()).call(_context28, x => x.id != columnModel.id));
+	        this.render();
+	      }));
+	    }
+
+	    if (columnModel.order) {
+	      actions.unshift(listenerElement({
+	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
+	        content: 'Order A to Z'
+	      }, e => {
+	        trigger(popover, 'actionSelected');
+	        button.popover.hide();
+	        this.setOrder(columnModel.id, 'asc');
+	      }), listenerElement({
+	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
+	        content: 'Order Z to A'
+	      }, e => {
+	        trigger(popover, 'actionSelected');
+	        this.setOrder(columnModel.id, 'desc');
+	      }));
+	    }
+
+	    append(popover, actions);
+	    return popover;
 	  }
 
 	  renderSettingsModalColumns(includedEl, excludedEl, columns) {
