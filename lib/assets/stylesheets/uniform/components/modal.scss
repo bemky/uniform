@@ -21,6 +21,9 @@
 }
 .uniformModal-container{
     appearance: none;
+    &:focus-visible{
+        outline: none;
+    }
 }
 
 .uniformModal-close-container {
