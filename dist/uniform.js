@@ -47,9 +47,9 @@ var Uniform = (function (exports) {
 	});
 
 	var FunctionPrototype$2 = Function.prototype;
-	var bind$5 = FunctionPrototype$2.bind;
+	var bind$6 = FunctionPrototype$2.bind;
 	var call$1 = FunctionPrototype$2.call;
-	var uncurryThis = functionBindNative && bind$5.bind(call$1, call$1);
+	var uncurryThis = functionBindNative && bind$6.bind(call$1, call$1);
 
 	var functionUncurryThis = functionBindNative ? function (fn) {
 	  return fn && uncurryThis(fn);
@@ -79,20 +79,20 @@ var Uniform = (function (exports) {
 
 	var $propertyIsEnumerable$1 = {}.propertyIsEnumerable;
 	// eslint-disable-next-line es-x/no-object-getownpropertydescriptor -- safe
-	var getOwnPropertyDescriptor$1 = Object.getOwnPropertyDescriptor;
+	var getOwnPropertyDescriptor$2 = Object.getOwnPropertyDescriptor;
 
 	// Nashorn ~ JDK8 bug
-	var NASHORN_BUG = getOwnPropertyDescriptor$1 && !$propertyIsEnumerable$1.call({ 1: 2 }, 1);
+	var NASHORN_BUG = getOwnPropertyDescriptor$2 && !$propertyIsEnumerable$1.call({ 1: 2 }, 1);
 
 	// `Object.prototype.propertyIsEnumerable` method implementation
 	// https://tc39.es/ecma262/#sec-object.prototype.propertyisenumerable
-	var f$4 = NASHORN_BUG ? function propertyIsEnumerable(V) {
-	  var descriptor = getOwnPropertyDescriptor$1(this, V);
+	var f$6 = NASHORN_BUG ? function propertyIsEnumerable(V) {
+	  var descriptor = getOwnPropertyDescriptor$2(this, V);
 	  return !!descriptor && descriptor.enumerable;
 	} : $propertyIsEnumerable$1;
 
 	var objectPropertyIsEnumerable = {
-		f: f$4
+		f: f$6
 	};
 
 	var createPropertyDescriptor = function (bitmap, value) {
@@ -123,12 +123,12 @@ var Uniform = (function (exports) {
 	  return classofRaw(it) == 'String' ? split(it, '') : Object$5(it);
 	} : Object$5;
 
-	var TypeError$c = global_1.TypeError;
+	var TypeError$g = global_1.TypeError;
 
 	// `RequireObjectCoercible` abstract operation
 	// https://tc39.es/ecma262/#sec-requireobjectcoercible
 	var requireObjectCoercible = function (it) {
-	  if (it == undefined) throw TypeError$c("Can't call method on " + it);
+	  if (it == undefined) throw TypeError$g("Can't call method on " + it);
 	  return it;
 	};
 
@@ -159,9 +159,9 @@ var Uniform = (function (exports) {
 
 	var engineUserAgent = getBuiltIn('navigator', 'userAgent') || '';
 
-	var process = global_1.process;
-	var Deno = global_1.Deno;
-	var versions = process && process.versions || Deno && Deno.version;
+	var process$3 = global_1.process;
+	var Deno$1 = global_1.Deno;
+	var versions = process$3 && process$3.versions || Deno$1 && Deno$1.version;
 	var v8 = versions && versions.v8;
 	var match, version;
 
@@ -214,22 +214,22 @@ var Uniform = (function (exports) {
 	  return isCallable($Symbol) && objectIsPrototypeOf($Symbol.prototype, Object$4(it));
 	};
 
-	var String$4 = global_1.String;
+	var String$5 = global_1.String;
 
 	var tryToString = function (argument) {
 	  try {
-	    return String$4(argument);
+	    return String$5(argument);
 	  } catch (error) {
 	    return 'Object';
 	  }
 	};
 
-	var TypeError$b = global_1.TypeError;
+	var TypeError$f = global_1.TypeError;
 
 	// `Assert: IsCallable(argument) is true`
 	var aCallable = function (argument) {
 	  if (isCallable(argument)) return argument;
-	  throw TypeError$b(tryToString(argument) + ' is not a function');
+	  throw TypeError$f(tryToString(argument) + ' is not a function');
 	};
 
 	// `GetMethod` abstract operation
@@ -239,7 +239,7 @@ var Uniform = (function (exports) {
 	  return func == null ? undefined : aCallable(func);
 	};
 
-	var TypeError$a = global_1.TypeError;
+	var TypeError$e = global_1.TypeError;
 
 	// `OrdinaryToPrimitive` abstract operation
 	// https://tc39.es/ecma262/#sec-ordinarytoprimitive
@@ -248,8 +248,10 @@ var Uniform = (function (exports) {
 	  if (pref === 'string' && isCallable(fn = input.toString) && !isObject(val = functionCall(fn, input))) return val;
 	  if (isCallable(fn = input.valueOf) && !isObject(val = functionCall(fn, input))) return val;
 	  if (pref !== 'string' && isCallable(fn = input.toString) && !isObject(val = functionCall(fn, input))) return val;
-	  throw TypeError$a("Can't convert object to primitive value");
+	  throw TypeError$e("Can't convert object to primitive value");
 	};
+
+	var isPure = true;
 
 	// eslint-disable-next-line es-x/no-object-defineproperty -- safe
 	var defineProperty$8 = Object.defineProperty;
@@ -322,7 +324,7 @@ var Uniform = (function (exports) {
 	  } return WellKnownSymbolsStore[name];
 	};
 
-	var TypeError$9 = global_1.TypeError;
+	var TypeError$d = global_1.TypeError;
 	var TO_PRIMITIVE = wellKnownSymbol('toPrimitive');
 
 	// `ToPrimitive` abstract operation
@@ -335,7 +337,7 @@ var Uniform = (function (exports) {
 	    if (pref === undefined) pref = 'default';
 	    result = functionCall(exoticToPrim, input, pref);
 	    if (!isObject(result) || isSymbol(result)) return result;
-	    throw TypeError$9("Can't convert object to primitive value");
+	    throw TypeError$d("Can't convert object to primitive value");
 	  }
 	  if (pref === undefined) pref = 'number';
 	  return ordinaryToPrimitive(input, pref);
@@ -348,12 +350,12 @@ var Uniform = (function (exports) {
 	  return isSymbol(key) ? key : key + '';
 	};
 
-	var document$1 = global_1.document;
+	var document$3 = global_1.document;
 	// typeof document.createElement is 'object' in old IE
-	var EXISTS$1 = isObject(document$1) && isObject(document$1.createElement);
+	var EXISTS$1 = isObject(document$3) && isObject(document$3.createElement);
 
 	var documentCreateElement = function (it) {
-	  return EXISTS$1 ? document$1.createElement(it) : {};
+	  return EXISTS$1 ? document$3.createElement(it) : {};
 	};
 
 	// Thanks to IE8 for its funny defineProperty
@@ -369,7 +371,7 @@ var Uniform = (function (exports) {
 
 	// `Object.getOwnPropertyDescriptor` method
 	// https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
-	var f$3 = descriptors ? $getOwnPropertyDescriptor$1 : function getOwnPropertyDescriptor(O, P) {
+	var f$5 = descriptors ? $getOwnPropertyDescriptor$1 : function getOwnPropertyDescriptor(O, P) {
 	  O = toIndexedObject(O);
 	  P = toPropertyKey(P);
 	  if (ie8DomDefine) try {
@@ -379,7 +381,7 @@ var Uniform = (function (exports) {
 	};
 
 	var objectGetOwnPropertyDescriptor = {
-		f: f$3
+		f: f$5
 	};
 
 	var replacement = /#|\.prototype\./;
@@ -402,12 +404,12 @@ var Uniform = (function (exports) {
 
 	var isForced_1 = isForced;
 
-	var bind$4 = functionUncurryThis(functionUncurryThis.bind);
+	var bind$5 = functionUncurryThis(functionUncurryThis.bind);
 
 	// optional / simple context binding
 	var functionBindContext = function (fn, that) {
 	  aCallable(fn);
-	  return that === undefined ? fn : functionBindNative ? bind$4(fn, that) : function (/* ...args */) {
+	  return that === undefined ? fn : functionBindNative ? bind$5(fn, that) : function (/* ...args */) {
 	    return fn.apply(that, arguments);
 	  };
 	};
@@ -422,16 +424,16 @@ var Uniform = (function (exports) {
 	  }).prototype != 42;
 	});
 
-	var String$3 = global_1.String;
-	var TypeError$8 = global_1.TypeError;
+	var String$4 = global_1.String;
+	var TypeError$c = global_1.TypeError;
 
 	// `Assert: Type(argument) is Object`
 	var anObject = function (argument) {
 	  if (isObject(argument)) return argument;
-	  throw TypeError$8(String$3(argument) + ' is not an object');
+	  throw TypeError$c(String$4(argument) + ' is not an object');
 	};
 
-	var TypeError$7 = global_1.TypeError;
+	var TypeError$b = global_1.TypeError;
 	// eslint-disable-next-line es-x/no-object-defineproperty -- safe
 	var $defineProperty = Object.defineProperty;
 	// eslint-disable-next-line es-x/no-object-getownpropertydescriptor -- safe
@@ -442,7 +444,7 @@ var Uniform = (function (exports) {
 
 	// `Object.defineProperty` method
 	// https://tc39.es/ecma262/#sec-object.defineproperty
-	var f$2 = descriptors ? v8PrototypeDefineBug ? function defineProperty(O, P, Attributes) {
+	var f$4 = descriptors ? v8PrototypeDefineBug ? function defineProperty(O, P, Attributes) {
 	  anObject(O);
 	  P = toPropertyKey(P);
 	  anObject(Attributes);
@@ -464,13 +466,13 @@ var Uniform = (function (exports) {
 	  if (ie8DomDefine) try {
 	    return $defineProperty(O, P, Attributes);
 	  } catch (error) { /* empty */ }
-	  if ('get' in Attributes || 'set' in Attributes) throw TypeError$7('Accessors not supported');
+	  if ('get' in Attributes || 'set' in Attributes) throw TypeError$b('Accessors not supported');
 	  if ('value' in Attributes) O[P] = Attributes.value;
 	  return O;
 	};
 
 	var objectDefineProperty = {
-		f: f$2
+		f: f$4
 	};
 
 	var createNonEnumerableProperty = descriptors ? function (object, key, value) {
@@ -480,7 +482,7 @@ var Uniform = (function (exports) {
 	  return object;
 	};
 
-	var getOwnPropertyDescriptor = objectGetOwnPropertyDescriptor.f;
+	var getOwnPropertyDescriptor$1 = objectGetOwnPropertyDescriptor.f;
 
 
 
@@ -538,7 +540,7 @@ var Uniform = (function (exports) {
 	    targetProperty = target[key];
 
 	    if (USE_NATIVE) if (options.dontCallGetSet) {
-	      descriptor = getOwnPropertyDescriptor(nativeSource, key);
+	      descriptor = getOwnPropertyDescriptor$1(nativeSource, key);
 	      nativeProperty = descriptor && descriptor.value;
 	    } else nativeProperty = nativeSource[key];
 
@@ -645,22 +647,22 @@ var Uniform = (function (exports) {
 	  return keys$3[key] || (keys$3[key] = uid(key));
 	};
 
-	var hiddenKeys = {};
+	var hiddenKeys$1 = {};
 
 	var OBJECT_ALREADY_INITIALIZED = 'Object already initialized';
-	var TypeError$6 = global_1.TypeError;
+	var TypeError$a = global_1.TypeError;
 	var WeakMap = global_1.WeakMap;
-	var set, get, has;
+	var set$1, get, has;
 
 	var enforce = function (it) {
-	  return has(it) ? get(it) : set(it, {});
+	  return has(it) ? get(it) : set$1(it, {});
 	};
 
 	var getterFor = function (TYPE) {
 	  return function (it) {
 	    var state;
 	    if (!isObject(it) || (state = get(it)).type !== TYPE) {
-	      throw TypeError$6('Incompatible receiver, ' + TYPE + ' required');
+	      throw TypeError$a('Incompatible receiver, ' + TYPE + ' required');
 	    } return state;
 	  };
 	};
@@ -670,8 +672,8 @@ var Uniform = (function (exports) {
 	  var wmget = functionUncurryThis(store.get);
 	  var wmhas = functionUncurryThis(store.has);
 	  var wmset = functionUncurryThis(store.set);
-	  set = function (it, metadata) {
-	    if (wmhas(store, it)) throw new TypeError$6(OBJECT_ALREADY_INITIALIZED);
+	  set$1 = function (it, metadata) {
+	    if (wmhas(store, it)) throw new TypeError$a(OBJECT_ALREADY_INITIALIZED);
 	    metadata.facade = it;
 	    wmset(store, it, metadata);
 	    return metadata;
@@ -684,9 +686,9 @@ var Uniform = (function (exports) {
 	  };
 	} else {
 	  var STATE = sharedKey('state');
-	  hiddenKeys[STATE] = true;
-	  set = function (it, metadata) {
-	    if (hasOwnProperty_1(it, STATE)) throw new TypeError$6(OBJECT_ALREADY_INITIALIZED);
+	  hiddenKeys$1[STATE] = true;
+	  set$1 = function (it, metadata) {
+	    if (hasOwnProperty_1(it, STATE)) throw new TypeError$a(OBJECT_ALREADY_INITIALIZED);
 	    metadata.facade = it;
 	    createNonEnumerableProperty(it, STATE, metadata);
 	    return metadata;
@@ -700,7 +702,7 @@ var Uniform = (function (exports) {
 	}
 
 	var internalState = {
-	  set: set,
+	  set: set$1,
 	  get: get,
 	  has: has,
 	  enforce: enforce,
@@ -798,17 +800,17 @@ var Uniform = (function (exports) {
 	var indexOf$5 = arrayIncludes.indexOf;
 
 
-	var push$3 = functionUncurryThis([].push);
+	var push$4 = functionUncurryThis([].push);
 
 	var objectKeysInternal = function (object, names) {
 	  var O = toIndexedObject(object);
 	  var i = 0;
 	  var result = [];
 	  var key;
-	  for (key in O) !hasOwnProperty_1(hiddenKeys, key) && hasOwnProperty_1(O, key) && push$3(result, key);
+	  for (key in O) !hasOwnProperty_1(hiddenKeys$1, key) && hasOwnProperty_1(O, key) && push$4(result, key);
 	  // Don't enum bug & hidden keys
 	  while (names.length > i) if (hasOwnProperty_1(O, key = names[i++])) {
-	    ~indexOf$5(result, key) || push$3(result, key);
+	    ~indexOf$5(result, key) || push$4(result, key);
 	  }
 	  return result;
 	};
@@ -834,7 +836,7 @@ var Uniform = (function (exports) {
 	// `Object.defineProperties` method
 	// https://tc39.es/ecma262/#sec-object.defineproperties
 	// eslint-disable-next-line es-x/no-object-defineproperties -- safe
-	var f$1 = descriptors && !v8PrototypeDefineBug ? Object.defineProperties : function defineProperties(O, Properties) {
+	var f$3 = descriptors && !v8PrototypeDefineBug ? Object.defineProperties : function defineProperties(O, Properties) {
 	  anObject(O);
 	  var props = toIndexedObject(Properties);
 	  var keys = objectKeys(Properties);
@@ -846,7 +848,7 @@ var Uniform = (function (exports) {
 	};
 
 	var objectDefineProperties = {
-		f: f$1
+		f: f$3
 	};
 
 	var html = getBuiltIn('document', 'documentElement');
@@ -918,7 +920,7 @@ var Uniform = (function (exports) {
 	  return NullProtoObject();
 	};
 
-	hiddenKeys[IE_PROTO$1] = true;
+	hiddenKeys$1[IE_PROTO$1] = true;
 
 	// `Object.create` method
 	// https://tc39.es/ecma262/#sec-object.create
@@ -1003,14 +1005,14 @@ var Uniform = (function (exports) {
 	  BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS$1
 	};
 
-	var TO_STRING_TAG$3 = wellKnownSymbol('toStringTag');
+	var TO_STRING_TAG$4 = wellKnownSymbol('toStringTag');
 	var test$1 = {};
 
-	test$1[TO_STRING_TAG$3] = 'z';
+	test$1[TO_STRING_TAG$4] = 'z';
 
 	var toStringTagSupport = String(test$1) === '[object z]';
 
-	var TO_STRING_TAG$2 = wellKnownSymbol('toStringTag');
+	var TO_STRING_TAG$3 = wellKnownSymbol('toStringTag');
 	var Object$1 = global_1.Object;
 
 	// ES3 wrong here
@@ -1028,7 +1030,7 @@ var Uniform = (function (exports) {
 	  var O, tag, result;
 	  return it === undefined ? 'Undefined' : it === null ? 'Null'
 	    // @@toStringTag case
-	    : typeof (tag = tryGet(O = Object$1(it), TO_STRING_TAG$2)) == 'string' ? tag
+	    : typeof (tag = tryGet(O = Object$1(it), TO_STRING_TAG$3)) == 'string' ? tag
 	    // builtinTag case
 	    : CORRECT_ARGUMENTS ? classofRaw(O)
 	    // ES3 arguments fallback
@@ -1047,13 +1049,13 @@ var Uniform = (function (exports) {
 
 
 
-	var TO_STRING_TAG$1 = wellKnownSymbol('toStringTag');
+	var TO_STRING_TAG$2 = wellKnownSymbol('toStringTag');
 
 	var setToStringTag = function (it, TAG, STATIC, SET_METHOD) {
 	  if (it) {
 	    var target = STATIC ? it : it.prototype;
-	    if (!hasOwnProperty_1(target, TO_STRING_TAG$1)) {
-	      defineProperty$1(target, TO_STRING_TAG$1, { configurable: true, value: TAG });
+	    if (!hasOwnProperty_1(target, TO_STRING_TAG$2)) {
+	      defineProperty$1(target, TO_STRING_TAG$2, { configurable: true, value: TAG });
 	    }
 	    if (SET_METHOD && !toStringTagSupport) {
 	      createNonEnumerableProperty(target, 'toString', objectToString);
@@ -1077,12 +1079,12 @@ var Uniform = (function (exports) {
 	  return IteratorConstructor;
 	};
 
-	var String$2 = global_1.String;
-	var TypeError$5 = global_1.TypeError;
+	var String$3 = global_1.String;
+	var TypeError$9 = global_1.TypeError;
 
 	var aPossiblePrototype = function (argument) {
 	  if (typeof argument == 'object' || isCallable(argument)) return argument;
-	  throw TypeError$5("Can't set " + String$2(argument) + ' as a prototype');
+	  throw TypeError$9("Can't set " + String$3(argument) + ' as a prototype');
 	};
 
 	/* eslint-disable no-proto -- safe */
@@ -1094,7 +1096,7 @@ var Uniform = (function (exports) {
 	// https://tc39.es/ecma262/#sec-object.setprototypeof
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
 	// eslint-disable-next-line es-x/no-object-setprototypeof -- safe
-	Object.setPrototypeOf || ('__proto__' in {} ? function () {
+	var objectSetPrototypeOf = Object.setPrototypeOf || ('__proto__' in {} ? function () {
 	  var CORRECT_SETTER = false;
 	  var test = {};
 	  var setter;
@@ -1192,7 +1194,7 @@ var Uniform = (function (exports) {
 
 
 	var ARRAY_ITERATOR = 'Array Iterator';
-	var setInternalState$1 = internalState.set;
+	var setInternalState$2 = internalState.set;
 	var getInternalState$1 = internalState.getterFor(ARRAY_ITERATOR);
 
 	// `Array.prototype.entries` method
@@ -1206,7 +1208,7 @@ var Uniform = (function (exports) {
 	// `CreateArrayIterator` internal method
 	// https://tc39.es/ecma262/#sec-createarrayiterator
 	defineIterator(Array, 'Array', function (iterated, kind) {
-	  setInternalState$1(this, {
+	  setInternalState$2(this, {
 	    type: ARRAY_ITERATOR,
 	    target: toIndexedObject(iterated), // target
 	    index: 0,                          // next index
@@ -1269,13 +1271,13 @@ var Uniform = (function (exports) {
 	  TouchList: 0
 	};
 
-	var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+	var TO_STRING_TAG$1 = wellKnownSymbol('toStringTag');
 
 	for (var COLLECTION_NAME in domIterables) {
 	  var Collection = global_1[COLLECTION_NAME];
 	  var CollectionPrototype = Collection && Collection.prototype;
-	  if (CollectionPrototype && classof(CollectionPrototype) !== TO_STRING_TAG) {
-	    createNonEnumerableProperty(CollectionPrototype, TO_STRING_TAG, COLLECTION_NAME);
+	  if (CollectionPrototype && classof(CollectionPrototype) !== TO_STRING_TAG$1) {
+	    createNonEnumerableProperty(CollectionPrototype, TO_STRING_TAG$1, COLLECTION_NAME);
 	  }
 	  iterators[COLLECTION_NAME] = iterators.Array;
 	}
@@ -1333,7 +1335,7 @@ var Uniform = (function (exports) {
 	    || called;
 	}) ? isConstructorLegacy : isConstructorModern;
 
-	var SPECIES$2 = wellKnownSymbol('species');
+	var SPECIES$5 = wellKnownSymbol('species');
 	var Array$4 = global_1.Array;
 
 	// a part of `ArraySpeciesCreate` abstract operation
@@ -1345,7 +1347,7 @@ var Uniform = (function (exports) {
 	    // cross-realm fallback
 	    if (isConstructor(C) && (C === Array$4 || isArray$3(C.prototype))) C = undefined;
 	    else if (isObject(C)) {
-	      C = C[SPECIES$2];
+	      C = C[SPECIES$5];
 	      if (C === null) C = undefined;
 	    }
 	  } return C === undefined ? Array$4 : C;
@@ -1357,7 +1359,7 @@ var Uniform = (function (exports) {
 	  return new (arraySpeciesConstructor(originalArray))(length === 0 ? 0 : length);
 	};
 
-	var push$2 = functionUncurryThis([].push);
+	var push$3 = functionUncurryThis([].push);
 
 	// `Array.prototype.{ forEach, map, filter, some, every, find, findIndex, filterReject }` methods implementation
 	var createMethod$3 = function (TYPE) {
@@ -1386,10 +1388,10 @@ var Uniform = (function (exports) {
 	          case 3: return true;              // some
 	          case 5: return value;             // find
 	          case 6: return index;             // findIndex
-	          case 2: push$2(target, value);      // filter
+	          case 2: push$3(target, value);      // filter
 	        } else switch (TYPE) {
 	          case 4: return false;             // every
-	          case 7: push$2(target, value);      // filterReject
+	          case 7: push$3(target, value);      // filterReject
 	        }
 	      }
 	    }
@@ -1518,19 +1520,19 @@ var Uniform = (function (exports) {
 	  return isObject(it) && ((isRegExp = it[MATCH$1]) !== undefined ? !!isRegExp : classofRaw(it) == 'RegExp');
 	};
 
-	var TypeError$4 = global_1.TypeError;
+	var TypeError$8 = global_1.TypeError;
 
 	var notARegexp = function (it) {
 	  if (isRegexp(it)) {
-	    throw TypeError$4("The method doesn't accept regular expressions");
+	    throw TypeError$8("The method doesn't accept regular expressions");
 	  } return it;
 	};
 
-	var String$1 = global_1.String;
+	var String$2 = global_1.String;
 
 	var toString_1 = function (argument) {
 	  if (classof(argument) === 'Symbol') throw TypeError('Cannot convert a Symbol value to a string');
-	  return String$1(argument);
+	  return String$2(argument);
 	};
 
 	var MATCH = wellKnownSymbol('match');
@@ -1580,26 +1582,26 @@ var Uniform = (function (exports) {
 
 	var arraySlice = functionUncurryThis([].slice);
 
-	var Function$2 = global_1.Function;
-	var concat$1 = functionUncurryThis([].concat);
+	var Function$3 = global_1.Function;
+	var concat$2 = functionUncurryThis([].concat);
 	var join = functionUncurryThis([].join);
 	var factories = {};
 
 	var construct = function (C, argsLength, args) {
 	  if (!hasOwnProperty_1(factories, argsLength)) {
 	    for (var list = [], i = 0; i < argsLength; i++) list[i] = 'a[' + i + ']';
-	    factories[argsLength] = Function$2('C,a', 'return new C(' + join(list, ',') + ')');
+	    factories[argsLength] = Function$3('C,a', 'return new C(' + join(list, ',') + ')');
 	  } return factories[argsLength](C, args);
 	};
 
 	// `Function.prototype.bind` method implementation
 	// https://tc39.es/ecma262/#sec-function.prototype.bind
-	var functionBind = functionBindNative ? Function$2.bind : function bind(that /* , ...args */) {
+	var functionBind = functionBindNative ? Function$3.bind : function bind(that /* , ...args */) {
 	  var F = aCallable(this);
 	  var Prototype = F.prototype;
 	  var partArgs = arraySlice(arguments, 1);
 	  var boundFunction = function bound(/* args... */) {
-	    var args = concat$1(partArgs, arraySlice(arguments));
+	    var args = concat$2(partArgs, arraySlice(arguments));
 	    return this instanceof boundFunction ? construct(F, args.length, args) : F.apply(that, args);
 	  };
 	  if (isObject(Prototype)) boundFunction.prototype = Prototype;
@@ -1616,20 +1618,20 @@ var Uniform = (function (exports) {
 	  bind: functionBind
 	});
 
-	var bind$3 = entryVirtual('Function').bind;
+	var bind$4 = entryVirtual('Function').bind;
 
 	var FunctionPrototype = Function.prototype;
 
-	var bind$2 = function (it) {
+	var bind$3 = function (it) {
 	  var own = it.bind;
-	  return it === FunctionPrototype || (objectIsPrototypeOf(FunctionPrototype, it) && own === FunctionPrototype.bind) ? bind$3 : own;
+	  return it === FunctionPrototype || (objectIsPrototypeOf(FunctionPrototype, it) && own === FunctionPrototype.bind) ? bind$4 : own;
 	};
+
+	var bind$2 = bind$3;
 
 	var bind$1 = bind$2;
 
-	var bind = bind$1;
-
-	var SPECIES$1 = wellKnownSymbol('species');
+	var SPECIES$4 = wellKnownSymbol('species');
 
 	var arrayMethodHasSpeciesSupport = function (METHOD_NAME) {
 	  // We can't use this feature detection in V8 since it causes
@@ -1638,7 +1640,7 @@ var Uniform = (function (exports) {
 	  return engineV8Version >= 51 || !fails(function () {
 	    var array = [];
 	    var constructor = array.constructor = {};
-	    constructor[SPECIES$1] = function () {
+	    constructor[SPECIES$4] = function () {
 	      return { foo: 1 };
 	    };
 	    return array[METHOD_NAME](Boolean).foo !== 1;
@@ -1747,9 +1749,13 @@ var Uniform = (function (exports) {
 
 	function insertBefore(anchor, el) {
 	  if (Array.isArray(el) || el instanceof NodeList || el instanceof HTMLCollection) {
-	    Array.from(el).reverse().forEach(x => {
-	      anchor = insertBefore(anchor, x);
-	    });
+	    const els = Array.from(el);
+
+	    while (els.length > 0) {
+	      anchor = insertBefore(anchor, els.pop());
+	    }
+
+	    return anchor;
 	  } else if (Array.isArray(anchor) || anchor instanceof NodeList || anchor instanceof HTMLCollection) {
 	    return insertBefore(anchor[0], el);
 	  } else if (anchor.parentNode) {
@@ -1762,6 +1768,17 @@ var Uniform = (function (exports) {
 	  } else {
 	    throw 'argument of insertBefore unsupported';
 	  }
+	}
+
+	function remove(el) {
+	  if (el instanceof NodeList || el instanceof Array || el instanceof HTMLCollection) {
+	    el = Array.from(el);
+	    el.forEach(remove);
+	  } else {
+	    el.parentNode.removeChild(el);
+	  }
+
+	  return el;
 	}
 
 	function append(el, item, escape, context, method) {
@@ -1785,7 +1802,7 @@ var Uniform = (function (exports) {
 	      return item.then(resolvedItem => {
 	        append(holder, resolvedItem, escape, context);
 	        insertBefore(holder, holder.childNodes);
-	        holder.parentNode.removeChild(holder);
+	        remove(holder);
 	      });
 	    } else if (item instanceof Element || item instanceof Node) {
 	      return el[method](item);
@@ -1851,13 +1868,18 @@ var Uniform = (function (exports) {
 	  let callback = args.pop();
 	  let listener = args.pop();
 
-	  if (typeof listener != 'string') {
+	  if (typeof listener != 'string' && !Array.isArray(listener)) {
 	    args = args.concat(listener);
 	    listener = 'click';
 	  }
 
+	  if (args.length == 0) {
+	    args = ['button'];
+	  }
+
 	  const el = createElement(...args);
-	  el.addEventListener(listener, callback);
+	  if (!Array.isArray(listener)) listener = [listener];
+	  listener.forEach(listener => el.addEventListener(listener, callback));
 	  return el;
 	}
 
@@ -1930,7 +1952,7 @@ var Uniform = (function (exports) {
 	      });
 	    };
 
-	    this.off = bind(_context2 = function (type, handler) {
+	    this.off = bind$1(_context2 = function (type, handler) {
 	      var _context3;
 
 	      if (!this.eventListeners) return;
@@ -2008,9 +2030,9 @@ var Uniform = (function (exports) {
 	    }
 
 	    context || (context = this);
-	    var listen = [node, event, bind(_context5 = function (e) {
+	    var listen = [node, event, bind$1(_context5 = function (e) {
 	      if (!scope || e.target.matches(scope) || e.target.closest(scope)) {
-	        return bind(callback).call(callback, context)(...arguments);
+	        return bind$1(callback).call(callback, context)(...arguments);
 	      }
 	    }).call(_context5, context)];
 	    this.eventListens.push(listen);
@@ -2052,17 +2074,17 @@ var Uniform = (function (exports) {
 	_defineProperty(Component, "className", void 0);
 
 	// eslint-disable-next-line es-x/no-object-getownpropertysymbols -- safe
-	var f = Object.getOwnPropertySymbols;
+	var f$2 = Object.getOwnPropertySymbols;
 
 	var objectGetOwnPropertySymbols = {
-		f: f
+		f: f$2
 	};
 
 	// eslint-disable-next-line es-x/no-object-assign -- safe
 	var $assign = Object.assign;
 	// eslint-disable-next-line es-x/no-object-defineproperty -- required for testing
 	var defineProperty = Object.defineProperty;
-	var concat = functionUncurryThis([].concat);
+	var concat$1 = functionUncurryThis([].concat);
 
 	// `Object.assign` method
 	// https://tc39.es/ecma262/#sec-object.assign
@@ -2094,7 +2116,7 @@ var Uniform = (function (exports) {
 	  var propertyIsEnumerable = objectPropertyIsEnumerable.f;
 	  while (argumentsLength > index) {
 	    var S = indexedObject(arguments[index++]);
-	    var keys = getOwnPropertySymbols ? concat(objectKeys(S), getOwnPropertySymbols(S)) : objectKeys(S);
+	    var keys = getOwnPropertySymbols ? concat$1(objectKeys(S), getOwnPropertySymbols(S)) : objectKeys(S);
 	    var length = keys.length;
 	    var j = 0;
 	    var key;
@@ -2149,7 +2171,7 @@ var Uniform = (function (exports) {
 	var whitespaces = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002' +
 	  '\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
-	var replace$1 = functionUncurryThis(''.replace);
+	var replace$2 = functionUncurryThis(''.replace);
 	var whitespace = '[' + whitespaces + ']';
 	var ltrim = RegExp('^' + whitespace + whitespace + '*');
 	var rtrim = RegExp(whitespace + whitespace + '*$');
@@ -2158,8 +2180,8 @@ var Uniform = (function (exports) {
 	var createMethod$2 = function (TYPE) {
 	  return function ($this) {
 	    var string = toString_1(requireObjectCoercible($this));
-	    if (TYPE & 1) string = replace$1(string, ltrim, '');
-	    if (TYPE & 2) string = replace$1(string, rtrim, '');
+	    if (TYPE & 1) string = replace$2(string, ltrim, '');
+	    if (TYPE & 2) string = replace$2(string, rtrim, '');
 	    return string;
 	  };
 	};
@@ -2238,20 +2260,20 @@ var Uniform = (function (exports) {
 
 	var _parseInt = _parseInt$1;
 
-	var TypeError$3 = global_1.TypeError;
+	var TypeError$7 = global_1.TypeError;
 
 	var validateArgumentsLength = function (passed, required) {
-	  if (passed < required) throw TypeError$3('Not enough arguments');
+	  if (passed < required) throw TypeError$7('Not enough arguments');
 	  return passed;
 	};
 
 	var MSIE = /MSIE .\./.test(engineUserAgent); // <- dirty ie9- check
-	var Function$1 = global_1.Function;
+	var Function$2 = global_1.Function;
 
 	var wrap = function (scheduler) {
 	  return MSIE ? function (handler, timeout /* , ...arguments */) {
 	    var boundArgs = validateArgumentsLength(arguments.length, 1) > 2;
-	    var fn = isCallable(handler) ? handler : Function$1(handler);
+	    var fn = isCallable(handler) ? handler : Function$2(handler);
 	    var args = boundArgs ? arraySlice(arguments, 2) : undefined;
 	    return scheduler(boundArgs ? function () {
 	      functionApply(fn, this, args);
@@ -2278,17 +2300,17 @@ var Uniform = (function (exports) {
 	  setInterval: setInterval
 	});
 
-	var setTimeout$2 = schedulersFix.setTimeout;
+	var setTimeout$3 = schedulersFix.setTimeout;
 
 	// ie9- setTimeout additional parameters fix
 	// https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
-	_export({ global: true, bind: true, forced: global_1.setTimeout !== setTimeout$2 }, {
-	  setTimeout: setTimeout$2
+	_export({ global: true, bind: true, forced: global_1.setTimeout !== setTimeout$3 }, {
+	  setTimeout: setTimeout$3
 	});
 
-	var setTimeout$1 = path.setTimeout;
+	var setTimeout$2 = path.setTimeout;
 
-	var setTimeout = setTimeout$1;
+	var setTimeout$1 = setTimeout$2;
 
 	/*
 	    Requirements
@@ -2332,7 +2354,7 @@ var Uniform = (function (exports) {
 	    this.listenTo(window, 'resize', () => {
 	      var _context;
 
-	      bind(_context = this.resize).call(_context, this)();
+	      bind$1(_context = this.resize).call(_context, this)();
 	    });
 
 	    if (typeof this.options.container == "string") {
@@ -2502,7 +2524,7 @@ var Uniform = (function (exports) {
 	    this.content.classList.add('-out');
 	    this.showing = false;
 
-	    setTimeout(() => {
+	    setTimeout$1(() => {
 	      this.el.remove();
 
 	      if (options.silent !== true) {
@@ -2518,7 +2540,7 @@ var Uniform = (function (exports) {
 	    this.content.classList.remove('-out');
 	    this.showing = true;
 
-	    setTimeout(() => {
+	    setTimeout$1(() => {
 	      this.trigger('shown');
 	    }, this.transitionDuration || 0);
 	  }
@@ -2763,13 +2785,13 @@ var Uniform = (function (exports) {
 
 
 	var STRING_ITERATOR = 'String Iterator';
-	var setInternalState = internalState.set;
+	var setInternalState$1 = internalState.set;
 	var getInternalState = internalState.getterFor(STRING_ITERATOR);
 
 	// `String.prototype[@@iterator]` method
 	// https://tc39.es/ecma262/#sec-string.prototype-@@iterator
 	defineIterator(String, 'String', function (iterated) {
-	  setInternalState(this, {
+	  setInternalState$1(this, {
 	    type: STRING_ITERATOR,
 	    string: toString_1(iterated),
 	    index: 0
@@ -2838,12 +2860,12 @@ var Uniform = (function (exports) {
 	    || iterators[classof(it)];
 	};
 
-	var TypeError$2 = global_1.TypeError;
+	var TypeError$6 = global_1.TypeError;
 
 	var getIterator = function (argument, usingIterator) {
 	  var iteratorMethod = arguments.length < 2 ? getIteratorMethod(argument) : usingIterator;
 	  if (aCallable(iteratorMethod)) return anObject(functionCall(iteratorMethod, argument));
-	  throw TypeError$2(tryToString(argument) + ' is not iterable');
+	  throw TypeError$6(tryToString(argument) + ' is not iterable');
 	};
 
 	var Array$3 = global_1.Array;
@@ -3003,7 +3025,7 @@ var Uniform = (function (exports) {
 
 	var test = [];
 	var un$Sort = functionUncurryThis(test.sort);
-	var push$1 = functionUncurryThis(test.push);
+	var push$2 = functionUncurryThis(test.push);
 
 	// IE8-
 	var FAILS_ON_UNDEFINED = fails(function () {
@@ -3077,7 +3099,7 @@ var Uniform = (function (exports) {
 	    var itemsLength, index;
 
 	    for (index = 0; index < arrayLength; index++) {
-	      if (index in array) push$1(items, array[index]);
+	      if (index in array) push$2(items, array[index]);
 	    }
 
 	    arraySort(items, getSortCompare(comparefn));
@@ -3385,7 +3407,7 @@ var Uniform = (function (exports) {
 	        class: 'uniformSelect-show-all',
 	        children: 'Show All'
 	      });
-	      this.listenTo(button, 'click', bind(_context10 = this.showAllOptions).call(_context10, this));
+	      this.listenTo(button, 'click', bind$1(_context10 = this.showAllOptions).call(_context10, this));
 	      actions.append(button);
 	    }
 
@@ -3397,7 +3419,7 @@ var Uniform = (function (exports) {
 	        class: 'uniformSelect-done',
 	        children: ['Done']
 	      });
-	      this.listenTo(button, 'click', bind(_context11 = this.removeOptions).call(_context11, this));
+	      this.listenTo(button, 'click', bind$1(_context11 = this.removeOptions).call(_context11, this));
 	      actions.append(button);
 	    }
 
@@ -3606,7 +3628,7 @@ var Uniform = (function (exports) {
 	  }
 
 	  hide() {
-	    this.hide_timeout = setTimeout(() => {
+	    this.hide_timeout = setTimeout$1(() => {
 	      this.popup.remove();
 	      this.anchor.classList.remove('-active');
 	      delete this.popup;
@@ -3660,13 +3682,13 @@ var Uniform = (function (exports) {
 	      this.enabled = options.enabled;
 	    }
 
-	    this.windowDragEnter = bind(_context = this.windowDragEnter).call(_context, this);
-	    this.windowDragLeave = bind(_context2 = this.windowDragLeave).call(_context2, this);
-	    this.windowDrop = bind(_context3 = this.windowDrop).call(_context3, this);
-	    this.el.addEventListener('drop', bind(_context4 = this.drop).call(_context4, this));
-	    this.el.addEventListener('dragover', bind(_context5 = this.dragOver).call(_context5, this));
-	    this.el.addEventListener('dragenter', bind(_context6 = this.dragEnter).call(_context6, this));
-	    this.el.addEventListener('dragleave', bind(_context7 = this.dragLeave).call(_context7, this));
+	    this.windowDragEnter = bind$1(_context = this.windowDragEnter).call(_context, this);
+	    this.windowDragLeave = bind$1(_context2 = this.windowDragLeave).call(_context2, this);
+	    this.windowDrop = bind$1(_context3 = this.windowDrop).call(_context3, this);
+	    this.el.addEventListener('drop', bind$1(_context4 = this.drop).call(_context4, this));
+	    this.el.addEventListener('dragover', bind$1(_context5 = this.dragOver).call(_context5, this));
+	    this.el.addEventListener('dragenter', bind$1(_context6 = this.dragEnter).call(_context6, this));
+	    this.el.addEventListener('dragleave', bind$1(_context7 = this.dragLeave).call(_context7, this));
 	    window.addEventListener('dragenter', this.windowDragEnter);
 	    window.addEventListener('dragleave', this.windowDragLeave);
 	    window.addEventListener('drop', this.windowDrop);
@@ -3778,7 +3800,7 @@ var Uniform = (function (exports) {
 	var $propertyIsEnumerable = objectPropertyIsEnumerable.f;
 
 	var propertyIsEnumerable = functionUncurryThis($propertyIsEnumerable);
-	var push = functionUncurryThis([].push);
+	var push$1 = functionUncurryThis([].push);
 
 	// `Object.{ entries, values }` methods implementation
 	var createMethod = function (TO_ENTRIES) {
@@ -3792,7 +3814,7 @@ var Uniform = (function (exports) {
 	    while (length > i) {
 	      key = keys[i++];
 	      if (!descriptors || propertyIsEnumerable(O, key)) {
-	        push(result, TO_ENTRIES ? [key, O[key]] : O[key]);
+	        push$1(result, TO_ENTRIES ? [key, O[key]] : O[key]);
 	      }
 	    }
 	    return result;
@@ -3856,7 +3878,7 @@ var Uniform = (function (exports) {
 
 	var HAS_SPECIES_SUPPORT$1 = arrayMethodHasSpeciesSupport('splice');
 
-	var TypeError$1 = global_1.TypeError;
+	var TypeError$5 = global_1.TypeError;
 	var max$1 = Math.max;
 	var min = Math.min;
 	var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
@@ -3882,7 +3904,7 @@ var Uniform = (function (exports) {
 	      actualDeleteCount = min(max$1(toIntegerOrInfinity(deleteCount), 0), len - actualStart);
 	    }
 	    if (len + insertCount - actualDeleteCount > MAX_SAFE_INTEGER) {
-	      throw TypeError$1(MAXIMUM_ALLOWED_LENGTH_EXCEEDED);
+	      throw TypeError$5(MAXIMUM_ALLOWED_LENGTH_EXCEEDED);
 	    }
 	    A = arraySpeciesCreate(O, actualDeleteCount);
 	    for (k = 0; k < actualDeleteCount; k++) {
@@ -3929,7 +3951,7 @@ var Uniform = (function (exports) {
 
 	var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
 
-	var SPECIES = wellKnownSymbol('species');
+	var SPECIES$3 = wellKnownSymbol('species');
 	var Array$1 = global_1.Array;
 	var max = Math.max;
 
@@ -3950,7 +3972,7 @@ var Uniform = (function (exports) {
 	      if (isConstructor(Constructor) && (Constructor === Array$1 || isArray$3(Constructor.prototype))) {
 	        Constructor = undefined;
 	      } else if (isObject(Constructor)) {
-	        Constructor = Constructor[SPECIES];
+	        Constructor = Constructor[SPECIES$3];
 	        if (Constructor === null) Constructor = undefined;
 	      }
 	      if (Constructor === Array$1 || Constructor === undefined) {
@@ -3981,7 +4003,7 @@ var Uniform = (function (exports) {
 	var exec = functionUncurryThis(/./.exec);
 	var charAt = functionUncurryThis(''.charAt);
 	var charCodeAt = functionUncurryThis(''.charCodeAt);
-	var replace = functionUncurryThis(''.replace);
+	var replace$1 = functionUncurryThis(''.replace);
 	var numberToString = functionUncurryThis(1.0.toString);
 
 	var tester = /[\uD800-\uDFFF]/g;
@@ -4032,7 +4054,7 @@ var Uniform = (function (exports) {
 	    stringify: function stringify(it, replacer, space) {
 	      var args = arraySlice(arguments);
 	      var result = functionApply(WRONG_SYMBOLS_CONVERSION ? stringifyWithSymbolsFix : $stringify, null, args);
-	      return ILL_FORMED_UNICODE && typeof result == 'string' ? replace(result, tester, fixIllFormed) : result;
+	      return ILL_FORMED_UNICODE && typeof result == 'string' ? replace$1(result, tester, fixIllFormed) : result;
 	    }
 	  });
 	}
@@ -4387,12 +4409,12 @@ var Uniform = (function (exports) {
 	    } // Bind Instance Methods
 
 
-	    this.columnResize = bind(_context3 = this.columnResize).call(_context3, this);
-	    this.endColumnResize = bind(_context4 = this.endColumnResize).call(_context4, this); // Events
+	    this.columnResize = bind$1(_context3 = this.columnResize).call(_context3, this);
+	    this.endColumnResize = bind$1(_context4 = this.endColumnResize).call(_context4, this); // Events
 
-	    addEventListenerFor(this.el, '.uniformTableGrid-column-menu', 'click', bind(_context5 = this.showColumnPopover).call(_context5, this));
-	    addEventListenerFor(this.el, '.uniformTableGrid-order-action', 'click', bind(_context6 = this.selectOrder).call(_context6, this));
-	    addEventListenerFor(this.el, '.uniformTableGrid-resize-handle', 'mousedown', bind(_context7 = this.initiateColumnResize).call(_context7, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-column-menu', 'click', bind$1(_context5 = this.showColumnPopover).call(_context5, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-order-action', 'click', bind$1(_context6 = this.selectOrder).call(_context6, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-resize-handle', 'mousedown', bind$1(_context7 = this.initiateColumnResize).call(_context7, this));
 	    this.render();
 	  }
 
@@ -4710,7 +4732,7 @@ var Uniform = (function (exports) {
 	    const popover = createElement({
 	      class: 'shadow shadow-opacity-40 bg-white rounded pad-1/2x text-sm text-nowrap'
 	    });
-	    const actions = [listenerElement({
+	    const actions = [listenerElement('div', {
 	      class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
 	      content: 'Table Settings'
 	    }, e => {
@@ -4719,7 +4741,7 @@ var Uniform = (function (exports) {
 	    })];
 
 	    if (!columnModel.static) {
-	      actions.unshift(listenerElement({
+	      actions.unshift(listenerElement('div', {
 	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
 	        content: 'Remove Column'
 	      }, e => {
@@ -4732,14 +4754,14 @@ var Uniform = (function (exports) {
 	    }
 
 	    if (columnModel.order) {
-	      actions.unshift(listenerElement({
+	      actions.unshift(listenerElement('div', {
 	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
 	        content: 'Order A to Z'
 	      }, e => {
 	        trigger(popover, 'actionSelected');
 	        button.popover.hide();
 	        this.setOrder(columnModel.id, 'asc');
-	      }), listenerElement({
+	      }), listenerElement('div', {
 	        class: 'block hover:text-blue hover:bg-blue-10 rounded pad-1/2x cursor-pointer',
 	        content: 'Order Z to A'
 	      }, e => {
@@ -5048,7 +5070,7 @@ var Uniform = (function (exports) {
 	    this.attribute = options.attribute;
 	    this.el.id = uniqueId('input');
 	    this.loadFromRecord();
-	    this.el.addEventListener('change', bind(_context = this.changeInput).call(_context, this));
+	    this.el.addEventListener('change', bind$1(_context = this.changeInput).call(_context, this));
 	    this.el.addEventListener('keyup', e => {
 	      if (e.key == "Escape") {
 	        this.loadFromRecord();
@@ -5152,7 +5174,7 @@ var Uniform = (function (exports) {
 	    // options.content removed by component, TODO fix
 	    const content = options.content;
 	    super.initialize(options);
-	    this.el.addEventListener('click', bind(_context2 = this.changeInput).call(_context2, this));
+	    this.el.addEventListener('click', bind$1(_context2 = this.changeInput).call(_context2, this));
 
 	    if (content) {
 	      append(this.el, content);
@@ -5236,6 +5258,962 @@ var Uniform = (function (exports) {
 
 	_defineProperty(BoundSelect, "tagName", 'select');
 
+	var hiddenKeys = enumBugKeys.concat('length', 'prototype');
+
+	// `Object.getOwnPropertyNames` method
+	// https://tc39.es/ecma262/#sec-object.getownpropertynames
+	// eslint-disable-next-line es-x/no-object-getownpropertynames -- safe
+	var f$1 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+	  return objectKeysInternal(O, hiddenKeys);
+	};
+
+	var objectGetOwnPropertyNames = {
+		f: f$1
+	};
+
+	var concat = functionUncurryThis([].concat);
+
+	// all object keys, includes non-enumerable and symbols
+	var ownKeys = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
+	  var keys = objectGetOwnPropertyNames.f(anObject(it));
+	  var getOwnPropertySymbols = objectGetOwnPropertySymbols.f;
+	  return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;
+	};
+
+	var copyConstructorProperties = function (target, source, exceptions) {
+	  var keys = ownKeys(source);
+	  var defineProperty = objectDefineProperty.f;
+	  var getOwnPropertyDescriptor = objectGetOwnPropertyDescriptor.f;
+	  for (var i = 0; i < keys.length; i++) {
+	    var key = keys[i];
+	    if (!hasOwnProperty_1(target, key) && !(exceptions && hasOwnProperty_1(exceptions, key))) {
+	      defineProperty(target, key, getOwnPropertyDescriptor(source, key));
+	    }
+	  }
+	};
+
+	var $Error = Error;
+	var replace = functionUncurryThis(''.replace);
+
+	var TEST = (function (arg) { return String($Error(arg).stack); })('zxcasd');
+	var V8_OR_CHAKRA_STACK_ENTRY = /\n\s*at [^:]*:[^\n]*/;
+	var IS_V8_OR_CHAKRA_STACK = V8_OR_CHAKRA_STACK_ENTRY.test(TEST);
+
+	var clearErrorStack = function (stack, dropEntries) {
+	  if (IS_V8_OR_CHAKRA_STACK && typeof stack == 'string' && !$Error.prepareStackTrace) {
+	    while (dropEntries--) stack = replace(stack, V8_OR_CHAKRA_STACK_ENTRY, '');
+	  } return stack;
+	};
+
+	// `InstallErrorCause` abstract operation
+	// https://tc39.es/proposal-error-cause/#sec-errorobjects-install-error-cause
+	var installErrorCause = function (O, options) {
+	  if (isObject(options) && 'cause' in options) {
+	    createNonEnumerableProperty(O, 'cause', options.cause);
+	  }
+	};
+
+	var TypeError$4 = global_1.TypeError;
+
+	var Result = function (stopped, result) {
+	  this.stopped = stopped;
+	  this.result = result;
+	};
+
+	var ResultPrototype = Result.prototype;
+
+	var iterate = function (iterable, unboundFunction, options) {
+	  var that = options && options.that;
+	  var AS_ENTRIES = !!(options && options.AS_ENTRIES);
+	  var IS_ITERATOR = !!(options && options.IS_ITERATOR);
+	  var INTERRUPTED = !!(options && options.INTERRUPTED);
+	  var fn = functionBindContext(unboundFunction, that);
+	  var iterator, iterFn, index, length, result, next, step;
+
+	  var stop = function (condition) {
+	    if (iterator) iteratorClose(iterator, 'normal', condition);
+	    return new Result(true, condition);
+	  };
+
+	  var callFn = function (value) {
+	    if (AS_ENTRIES) {
+	      anObject(value);
+	      return INTERRUPTED ? fn(value[0], value[1], stop) : fn(value[0], value[1]);
+	    } return INTERRUPTED ? fn(value, stop) : fn(value);
+	  };
+
+	  if (IS_ITERATOR) {
+	    iterator = iterable;
+	  } else {
+	    iterFn = getIteratorMethod(iterable);
+	    if (!iterFn) throw TypeError$4(tryToString(iterable) + ' is not iterable');
+	    // optimisation for array iterators
+	    if (isArrayIteratorMethod(iterFn)) {
+	      for (index = 0, length = lengthOfArrayLike(iterable); length > index; index++) {
+	        result = callFn(iterable[index]);
+	        if (result && objectIsPrototypeOf(ResultPrototype, result)) return result;
+	      } return new Result(false);
+	    }
+	    iterator = getIterator(iterable, iterFn);
+	  }
+
+	  next = iterator.next;
+	  while (!(step = functionCall(next, iterator)).done) {
+	    try {
+	      result = callFn(step.value);
+	    } catch (error) {
+	      iteratorClose(iterator, 'throw', error);
+	    }
+	    if (typeof result == 'object' && result && objectIsPrototypeOf(ResultPrototype, result)) return result;
+	  } return new Result(false);
+	};
+
+	var normalizeStringArgument = function (argument, $default) {
+	  return argument === undefined ? arguments.length < 2 ? '' : $default : toString_1(argument);
+	};
+
+	var errorStackInstallable = !fails(function () {
+	  var error = Error('a');
+	  if (!('stack' in error)) return true;
+	  // eslint-disable-next-line es-x/no-object-defineproperty -- safe
+	  Object.defineProperty(error, 'stack', createPropertyDescriptor(1, 7));
+	  return error.stack !== 7;
+	});
+
+	var TO_STRING_TAG = wellKnownSymbol('toStringTag');
+	var Error$1 = global_1.Error;
+	var push = [].push;
+
+	var $AggregateError = function AggregateError(errors, message /* , options */) {
+	  var options = arguments.length > 2 ? arguments[2] : undefined;
+	  var isInstance = objectIsPrototypeOf(AggregateErrorPrototype, this);
+	  var that;
+	  if (objectSetPrototypeOf) {
+	    that = objectSetPrototypeOf(new Error$1(), isInstance ? objectGetPrototypeOf(this) : AggregateErrorPrototype);
+	  } else {
+	    that = isInstance ? this : objectCreate(AggregateErrorPrototype);
+	    createNonEnumerableProperty(that, TO_STRING_TAG, 'Error');
+	  }
+	  if (message !== undefined) createNonEnumerableProperty(that, 'message', normalizeStringArgument(message));
+	  if (errorStackInstallable) createNonEnumerableProperty(that, 'stack', clearErrorStack(that.stack, 1));
+	  installErrorCause(that, options);
+	  var errorsArray = [];
+	  iterate(errors, push, { that: errorsArray });
+	  createNonEnumerableProperty(that, 'errors', errorsArray);
+	  return that;
+	};
+
+	if (objectSetPrototypeOf) objectSetPrototypeOf($AggregateError, Error$1);
+	else copyConstructorProperties($AggregateError, Error$1, { name: true });
+
+	var AggregateErrorPrototype = $AggregateError.prototype = objectCreate(Error$1.prototype, {
+	  constructor: createPropertyDescriptor(1, $AggregateError),
+	  message: createPropertyDescriptor(1, ''),
+	  name: createPropertyDescriptor(1, 'AggregateError')
+	});
+
+	// `AggregateError` constructor
+	// https://tc39.es/ecma262/#sec-aggregate-error-constructor
+	_export({ global: true, constructor: true, arity: 2 }, {
+	  AggregateError: $AggregateError
+	});
+
+	var engineIsNode = classofRaw(global_1.process) == 'process';
+
+	var SPECIES$2 = wellKnownSymbol('species');
+
+	var setSpecies = function (CONSTRUCTOR_NAME) {
+	  var Constructor = getBuiltIn(CONSTRUCTOR_NAME);
+	  var defineProperty = objectDefineProperty.f;
+
+	  if (descriptors && Constructor && !Constructor[SPECIES$2]) {
+	    defineProperty(Constructor, SPECIES$2, {
+	      configurable: true,
+	      get: function () { return this; }
+	    });
+	  }
+	};
+
+	var TypeError$3 = global_1.TypeError;
+
+	var anInstance = function (it, Prototype) {
+	  if (objectIsPrototypeOf(Prototype, it)) return it;
+	  throw TypeError$3('Incorrect invocation');
+	};
+
+	var TypeError$2 = global_1.TypeError;
+
+	// `Assert: IsConstructor(argument) is true`
+	var aConstructor = function (argument) {
+	  if (isConstructor(argument)) return argument;
+	  throw TypeError$2(tryToString(argument) + ' is not a constructor');
+	};
+
+	var SPECIES$1 = wellKnownSymbol('species');
+
+	// `SpeciesConstructor` abstract operation
+	// https://tc39.es/ecma262/#sec-speciesconstructor
+	var speciesConstructor = function (O, defaultConstructor) {
+	  var C = anObject(O).constructor;
+	  var S;
+	  return C === undefined || (S = anObject(C)[SPECIES$1]) == undefined ? defaultConstructor : aConstructor(S);
+	};
+
+	var engineIsIos = /(?:ipad|iphone|ipod).*applewebkit/i.test(engineUserAgent);
+
+	var set = global_1.setImmediate;
+	var clear = global_1.clearImmediate;
+	var process$2 = global_1.process;
+	var Dispatch = global_1.Dispatch;
+	var Function$1 = global_1.Function;
+	var MessageChannel = global_1.MessageChannel;
+	var String$1 = global_1.String;
+	var counter = 0;
+	var queue$1 = {};
+	var ONREADYSTATECHANGE = 'onreadystatechange';
+	var location, defer, channel, port;
+
+	try {
+	  // Deno throws a ReferenceError on `location` access without `--location` flag
+	  location = global_1.location;
+	} catch (error) { /* empty */ }
+
+	var run = function (id) {
+	  if (hasOwnProperty_1(queue$1, id)) {
+	    var fn = queue$1[id];
+	    delete queue$1[id];
+	    fn();
+	  }
+	};
+
+	var runner = function (id) {
+	  return function () {
+	    run(id);
+	  };
+	};
+
+	var listener = function (event) {
+	  run(event.data);
+	};
+
+	var post = function (id) {
+	  // old engines have not location.origin
+	  global_1.postMessage(String$1(id), location.protocol + '//' + location.host);
+	};
+
+	// Node.js 0.9+ & IE10+ has setImmediate, otherwise:
+	if (!set || !clear) {
+	  set = function setImmediate(handler) {
+	    validateArgumentsLength(arguments.length, 1);
+	    var fn = isCallable(handler) ? handler : Function$1(handler);
+	    var args = arraySlice(arguments, 1);
+	    queue$1[++counter] = function () {
+	      functionApply(fn, undefined, args);
+	    };
+	    defer(counter);
+	    return counter;
+	  };
+	  clear = function clearImmediate(id) {
+	    delete queue$1[id];
+	  };
+	  // Node.js 0.8-
+	  if (engineIsNode) {
+	    defer = function (id) {
+	      process$2.nextTick(runner(id));
+	    };
+	  // Sphere (JS game engine) Dispatch API
+	  } else if (Dispatch && Dispatch.now) {
+	    defer = function (id) {
+	      Dispatch.now(runner(id));
+	    };
+	  // Browsers with MessageChannel, includes WebWorkers
+	  // except iOS - https://github.com/zloirock/core-js/issues/624
+	  } else if (MessageChannel && !engineIsIos) {
+	    channel = new MessageChannel();
+	    port = channel.port2;
+	    channel.port1.onmessage = listener;
+	    defer = functionBindContext(port.postMessage, port);
+	  // Browsers with postMessage, skip WebWorkers
+	  // IE8 has postMessage, but it's sync & typeof its postMessage is 'object'
+	  } else if (
+	    global_1.addEventListener &&
+	    isCallable(global_1.postMessage) &&
+	    !global_1.importScripts &&
+	    location && location.protocol !== 'file:' &&
+	    !fails(post)
+	  ) {
+	    defer = post;
+	    global_1.addEventListener('message', listener, false);
+	  // IE8-
+	  } else if (ONREADYSTATECHANGE in documentCreateElement('script')) {
+	    defer = function (id) {
+	      html.appendChild(documentCreateElement('script'))[ONREADYSTATECHANGE] = function () {
+	        html.removeChild(this);
+	        run(id);
+	      };
+	    };
+	  // Rest old browsers
+	  } else {
+	    defer = function (id) {
+	      setTimeout(runner(id), 0);
+	    };
+	  }
+	}
+
+	var task$1 = {
+	  set: set,
+	  clear: clear
+	};
+
+	var engineIsIosPebble = /ipad|iphone|ipod/i.test(engineUserAgent) && global_1.Pebble !== undefined;
+
+	var engineIsWebosWebkit = /web0s(?!.*chrome)/i.test(engineUserAgent);
+
+	var getOwnPropertyDescriptor = objectGetOwnPropertyDescriptor.f;
+	var macrotask = task$1.set;
+
+
+
+
+
+	var MutationObserver = global_1.MutationObserver || global_1.WebKitMutationObserver;
+	var document$2 = global_1.document;
+	var process$1 = global_1.process;
+	var Promise$1 = global_1.Promise;
+	// Node.js 11 shows ExperimentalWarning on getting `queueMicrotask`
+	var queueMicrotaskDescriptor = getOwnPropertyDescriptor(global_1, 'queueMicrotask');
+	var queueMicrotask = queueMicrotaskDescriptor && queueMicrotaskDescriptor.value;
+
+	var flush, head, last, notify$1, toggle, node, promise$3, then;
+
+	// modern engines have queueMicrotask method
+	if (!queueMicrotask) {
+	  flush = function () {
+	    var parent, fn;
+	    if (engineIsNode && (parent = process$1.domain)) parent.exit();
+	    while (head) {
+	      fn = head.fn;
+	      head = head.next;
+	      try {
+	        fn();
+	      } catch (error) {
+	        if (head) notify$1();
+	        else last = undefined;
+	        throw error;
+	      }
+	    } last = undefined;
+	    if (parent) parent.enter();
+	  };
+
+	  // browsers with MutationObserver, except iOS - https://github.com/zloirock/core-js/issues/339
+	  // also except WebOS Webkit https://github.com/zloirock/core-js/issues/898
+	  if (!engineIsIos && !engineIsNode && !engineIsWebosWebkit && MutationObserver && document$2) {
+	    toggle = true;
+	    node = document$2.createTextNode('');
+	    new MutationObserver(flush).observe(node, { characterData: true });
+	    notify$1 = function () {
+	      node.data = toggle = !toggle;
+	    };
+	  // environments with maybe non-completely correct, but existent Promise
+	  } else if (!engineIsIosPebble && Promise$1 && Promise$1.resolve) {
+	    // Promise.resolve without an argument throws an error in LG WebOS 2
+	    promise$3 = Promise$1.resolve(undefined);
+	    // workaround of WebKit ~ iOS Safari 10.1 bug
+	    promise$3.constructor = Promise$1;
+	    then = functionBindContext(promise$3.then, promise$3);
+	    notify$1 = function () {
+	      then(flush);
+	    };
+	  // Node.js without promises
+	  } else if (engineIsNode) {
+	    notify$1 = function () {
+	      process$1.nextTick(flush);
+	    };
+	  // for other environments - macrotask based on:
+	  // - setImmediate
+	  // - MessageChannel
+	  // - window.postMessage
+	  // - onreadystatechange
+	  // - setTimeout
+	  } else {
+	    // strange IE + webpack dev server bug - use .bind(global)
+	    macrotask = functionBindContext(macrotask, global_1);
+	    notify$1 = function () {
+	      macrotask(flush);
+	    };
+	  }
+	}
+
+	var microtask = queueMicrotask || function (fn) {
+	  var task = { fn: fn, next: undefined };
+	  if (last) last.next = task;
+	  if (!head) {
+	    head = task;
+	    notify$1();
+	  } last = task;
+	};
+
+	var hostReportErrors = function (a, b) {
+	  var console = global_1.console;
+	  if (console && console.error) {
+	    arguments.length == 1 ? console.error(a) : console.error(a, b);
+	  }
+	};
+
+	var perform = function (exec) {
+	  try {
+	    return { error: false, value: exec() };
+	  } catch (error) {
+	    return { error: true, value: error };
+	  }
+	};
+
+	var Queue = function () {
+	  this.head = null;
+	  this.tail = null;
+	};
+
+	Queue.prototype = {
+	  add: function (item) {
+	    var entry = { item: item, next: null };
+	    if (this.head) this.tail.next = entry;
+	    else this.head = entry;
+	    this.tail = entry;
+	  },
+	  get: function () {
+	    var entry = this.head;
+	    if (entry) {
+	      this.head = entry.next;
+	      if (this.tail === entry) this.tail = null;
+	      return entry.item;
+	    }
+	  }
+	};
+
+	var queue = Queue;
+
+	var promiseNativeConstructor = global_1.Promise;
+
+	var engineIsBrowser = typeof window == 'object' && typeof Deno != 'object';
+
+	var NativePromisePrototype$2 = promiseNativeConstructor && promiseNativeConstructor.prototype;
+	var SPECIES = wellKnownSymbol('species');
+	var SUBCLASSING = false;
+	var NATIVE_PROMISE_REJECTION_EVENT$1 = isCallable(global_1.PromiseRejectionEvent);
+
+	var FORCED_PROMISE_CONSTRUCTOR$5 = isForced_1('Promise', function () {
+	  var PROMISE_CONSTRUCTOR_SOURCE = inspectSource(promiseNativeConstructor);
+	  var GLOBAL_CORE_JS_PROMISE = PROMISE_CONSTRUCTOR_SOURCE !== String(promiseNativeConstructor);
+	  // V8 6.6 (Node 10 and Chrome 66) have a bug with resolving custom thenables
+	  // https://bugs.chromium.org/p/chromium/issues/detail?id=830565
+	  // We can't detect it synchronously, so just check versions
+	  if (!GLOBAL_CORE_JS_PROMISE && engineV8Version === 66) return true;
+	  // We need Promise#{ catch, finally } in the pure version for preventing prototype pollution
+	  if (!(NativePromisePrototype$2['catch'] && NativePromisePrototype$2['finally'])) return true;
+	  // We can't use @@species feature detection in V8 since it causes
+	  // deoptimization and performance degradation
+	  // https://github.com/zloirock/core-js/issues/679
+	  if (engineV8Version >= 51 && /native code/.test(PROMISE_CONSTRUCTOR_SOURCE)) return false;
+	  // Detect correctness of subclassing with @@species support
+	  var promise = new promiseNativeConstructor(function (resolve) { resolve(1); });
+	  var FakePromise = function (exec) {
+	    exec(function () { /* empty */ }, function () { /* empty */ });
+	  };
+	  var constructor = promise.constructor = {};
+	  constructor[SPECIES] = FakePromise;
+	  SUBCLASSING = promise.then(function () { /* empty */ }) instanceof FakePromise;
+	  if (!SUBCLASSING) return true;
+	  // Unhandled rejections tracking support, NodeJS Promise without it fails @@species test
+	  return !GLOBAL_CORE_JS_PROMISE && engineIsBrowser && !NATIVE_PROMISE_REJECTION_EVENT$1;
+	});
+
+	var promiseConstructorDetection = {
+	  CONSTRUCTOR: FORCED_PROMISE_CONSTRUCTOR$5,
+	  REJECTION_EVENT: NATIVE_PROMISE_REJECTION_EVENT$1,
+	  SUBCLASSING: SUBCLASSING
+	};
+
+	var PromiseCapability = function (C) {
+	  var resolve, reject;
+	  this.promise = new C(function ($$resolve, $$reject) {
+	    if (resolve !== undefined || reject !== undefined) throw TypeError('Bad Promise constructor');
+	    resolve = $$resolve;
+	    reject = $$reject;
+	  });
+	  this.resolve = aCallable(resolve);
+	  this.reject = aCallable(reject);
+	};
+
+	// `NewPromiseCapability` abstract operation
+	// https://tc39.es/ecma262/#sec-newpromisecapability
+	var f = function (C) {
+	  return new PromiseCapability(C);
+	};
+
+	var newPromiseCapability$1 = {
+		f: f
+	};
+
+	var task = task$1.set;
+
+
+
+
+
+
+
+
+
+	var PROMISE = 'Promise';
+	var FORCED_PROMISE_CONSTRUCTOR$4 = promiseConstructorDetection.CONSTRUCTOR;
+	var NATIVE_PROMISE_REJECTION_EVENT = promiseConstructorDetection.REJECTION_EVENT;
+	var getInternalPromiseState = internalState.getterFor(PROMISE);
+	var setInternalState = internalState.set;
+	var NativePromisePrototype$1 = promiseNativeConstructor && promiseNativeConstructor.prototype;
+	var PromiseConstructor = promiseNativeConstructor;
+	var PromisePrototype = NativePromisePrototype$1;
+	var TypeError$1 = global_1.TypeError;
+	var document$1 = global_1.document;
+	var process = global_1.process;
+	var newPromiseCapability = newPromiseCapability$1.f;
+	var newGenericPromiseCapability = newPromiseCapability;
+
+	var DISPATCH_EVENT = !!(document$1 && document$1.createEvent && global_1.dispatchEvent);
+	var UNHANDLED_REJECTION = 'unhandledrejection';
+	var REJECTION_HANDLED = 'rejectionhandled';
+	var PENDING = 0;
+	var FULFILLED = 1;
+	var REJECTED = 2;
+	var HANDLED = 1;
+	var UNHANDLED = 2;
+
+	var Internal, OwnPromiseCapability, PromiseWrapper;
+
+	// helpers
+	var isThenable = function (it) {
+	  var then;
+	  return isObject(it) && isCallable(then = it.then) ? then : false;
+	};
+
+	var callReaction = function (reaction, state) {
+	  var value = state.value;
+	  var ok = state.state == FULFILLED;
+	  var handler = ok ? reaction.ok : reaction.fail;
+	  var resolve = reaction.resolve;
+	  var reject = reaction.reject;
+	  var domain = reaction.domain;
+	  var result, then, exited;
+	  try {
+	    if (handler) {
+	      if (!ok) {
+	        if (state.rejection === UNHANDLED) onHandleUnhandled(state);
+	        state.rejection = HANDLED;
+	      }
+	      if (handler === true) result = value;
+	      else {
+	        if (domain) domain.enter();
+	        result = handler(value); // can throw
+	        if (domain) {
+	          domain.exit();
+	          exited = true;
+	        }
+	      }
+	      if (result === reaction.promise) {
+	        reject(TypeError$1('Promise-chain cycle'));
+	      } else if (then = isThenable(result)) {
+	        functionCall(then, result, resolve, reject);
+	      } else resolve(result);
+	    } else reject(value);
+	  } catch (error) {
+	    if (domain && !exited) domain.exit();
+	    reject(error);
+	  }
+	};
+
+	var notify = function (state, isReject) {
+	  if (state.notified) return;
+	  state.notified = true;
+	  microtask(function () {
+	    var reactions = state.reactions;
+	    var reaction;
+	    while (reaction = reactions.get()) {
+	      callReaction(reaction, state);
+	    }
+	    state.notified = false;
+	    if (isReject && !state.rejection) onUnhandled(state);
+	  });
+	};
+
+	var dispatchEvent = function (name, promise, reason) {
+	  var event, handler;
+	  if (DISPATCH_EVENT) {
+	    event = document$1.createEvent('Event');
+	    event.promise = promise;
+	    event.reason = reason;
+	    event.initEvent(name, false, true);
+	    global_1.dispatchEvent(event);
+	  } else event = { promise: promise, reason: reason };
+	  if (!NATIVE_PROMISE_REJECTION_EVENT && (handler = global_1['on' + name])) handler(event);
+	  else if (name === UNHANDLED_REJECTION) hostReportErrors('Unhandled promise rejection', reason);
+	};
+
+	var onUnhandled = function (state) {
+	  functionCall(task, global_1, function () {
+	    var promise = state.facade;
+	    var value = state.value;
+	    var IS_UNHANDLED = isUnhandled(state);
+	    var result;
+	    if (IS_UNHANDLED) {
+	      result = perform(function () {
+	        if (engineIsNode) {
+	          process.emit('unhandledRejection', value, promise);
+	        } else dispatchEvent(UNHANDLED_REJECTION, promise, value);
+	      });
+	      // Browsers should not trigger `rejectionHandled` event if it was handled here, NodeJS - should
+	      state.rejection = engineIsNode || isUnhandled(state) ? UNHANDLED : HANDLED;
+	      if (result.error) throw result.value;
+	    }
+	  });
+	};
+
+	var isUnhandled = function (state) {
+	  return state.rejection !== HANDLED && !state.parent;
+	};
+
+	var onHandleUnhandled = function (state) {
+	  functionCall(task, global_1, function () {
+	    var promise = state.facade;
+	    if (engineIsNode) {
+	      process.emit('rejectionHandled', promise);
+	    } else dispatchEvent(REJECTION_HANDLED, promise, state.value);
+	  });
+	};
+
+	var bind = function (fn, state, unwrap) {
+	  return function (value) {
+	    fn(state, value, unwrap);
+	  };
+	};
+
+	var internalReject = function (state, value, unwrap) {
+	  if (state.done) return;
+	  state.done = true;
+	  if (unwrap) state = unwrap;
+	  state.value = value;
+	  state.state = REJECTED;
+	  notify(state, true);
+	};
+
+	var internalResolve = function (state, value, unwrap) {
+	  if (state.done) return;
+	  state.done = true;
+	  if (unwrap) state = unwrap;
+	  try {
+	    if (state.facade === value) throw TypeError$1("Promise can't be resolved itself");
+	    var then = isThenable(value);
+	    if (then) {
+	      microtask(function () {
+	        var wrapper = { done: false };
+	        try {
+	          functionCall(then, value,
+	            bind(internalResolve, wrapper, state),
+	            bind(internalReject, wrapper, state)
+	          );
+	        } catch (error) {
+	          internalReject(wrapper, error, state);
+	        }
+	      });
+	    } else {
+	      state.value = value;
+	      state.state = FULFILLED;
+	      notify(state, false);
+	    }
+	  } catch (error) {
+	    internalReject({ done: false }, error, state);
+	  }
+	};
+
+	// constructor polyfill
+	if (FORCED_PROMISE_CONSTRUCTOR$4) {
+	  // 25.4.3.1 Promise(executor)
+	  PromiseConstructor = function Promise(executor) {
+	    anInstance(this, PromisePrototype);
+	    aCallable(executor);
+	    functionCall(Internal, this);
+	    var state = getInternalPromiseState(this);
+	    try {
+	      executor(bind(internalResolve, state), bind(internalReject, state));
+	    } catch (error) {
+	      internalReject(state, error);
+	    }
+	  };
+
+	  PromisePrototype = PromiseConstructor.prototype;
+
+	  // eslint-disable-next-line no-unused-vars -- required for `.length`
+	  Internal = function Promise(executor) {
+	    setInternalState(this, {
+	      type: PROMISE,
+	      done: false,
+	      notified: false,
+	      parent: false,
+	      reactions: new queue(),
+	      rejection: false,
+	      state: PENDING,
+	      value: undefined
+	    });
+	  };
+
+	  // `Promise.prototype.then` method
+	  // https://tc39.es/ecma262/#sec-promise.prototype.then
+	  Internal.prototype = defineBuiltIn(PromisePrototype, 'then', function then(onFulfilled, onRejected) {
+	    var state = getInternalPromiseState(this);
+	    var reaction = newPromiseCapability(speciesConstructor(this, PromiseConstructor));
+	    state.parent = true;
+	    reaction.ok = isCallable(onFulfilled) ? onFulfilled : true;
+	    reaction.fail = isCallable(onRejected) && onRejected;
+	    reaction.domain = engineIsNode ? process.domain : undefined;
+	    if (state.state == PENDING) state.reactions.add(reaction);
+	    else microtask(function () {
+	      callReaction(reaction, state);
+	    });
+	    return reaction.promise;
+	  });
+
+	  OwnPromiseCapability = function () {
+	    var promise = new Internal();
+	    var state = getInternalPromiseState(promise);
+	    this.promise = promise;
+	    this.resolve = bind(internalResolve, state);
+	    this.reject = bind(internalReject, state);
+	  };
+
+	  newPromiseCapability$1.f = newPromiseCapability = function (C) {
+	    return C === PromiseConstructor || C === PromiseWrapper
+	      ? new OwnPromiseCapability(C)
+	      : newGenericPromiseCapability(C);
+	  };
+	}
+
+	_export({ global: true, constructor: true, wrap: true, forced: FORCED_PROMISE_CONSTRUCTOR$4 }, {
+	  Promise: PromiseConstructor
+	});
+
+	setToStringTag(PromiseConstructor, PROMISE, false, true);
+	setSpecies(PROMISE);
+
+	var FORCED_PROMISE_CONSTRUCTOR$3 = promiseConstructorDetection.CONSTRUCTOR;
+
+	var promiseStaticsIncorrectIteration = FORCED_PROMISE_CONSTRUCTOR$3 || !checkCorrectnessOfIteration(function (iterable) {
+	  promiseNativeConstructor.all(iterable).then(undefined, function () { /* empty */ });
+	});
+
+	// `Promise.all` method
+	// https://tc39.es/ecma262/#sec-promise.all
+	_export({ target: 'Promise', stat: true, forced: promiseStaticsIncorrectIteration }, {
+	  all: function all(iterable) {
+	    var C = this;
+	    var capability = newPromiseCapability$1.f(C);
+	    var resolve = capability.resolve;
+	    var reject = capability.reject;
+	    var result = perform(function () {
+	      var $promiseResolve = aCallable(C.resolve);
+	      var values = [];
+	      var counter = 0;
+	      var remaining = 1;
+	      iterate(iterable, function (promise) {
+	        var index = counter++;
+	        var alreadyCalled = false;
+	        remaining++;
+	        functionCall($promiseResolve, C, promise).then(function (value) {
+	          if (alreadyCalled) return;
+	          alreadyCalled = true;
+	          values[index] = value;
+	          --remaining || resolve(values);
+	        }, reject);
+	      });
+	      --remaining || resolve(values);
+	    });
+	    if (result.error) reject(result.value);
+	    return capability.promise;
+	  }
+	});
+
+	var FORCED_PROMISE_CONSTRUCTOR$2 = promiseConstructorDetection.CONSTRUCTOR;
+
+
+
+
+
+	promiseNativeConstructor && promiseNativeConstructor.prototype;
+
+	// `Promise.prototype.catch` method
+	// https://tc39.es/ecma262/#sec-promise.prototype.catch
+	_export({ target: 'Promise', proto: true, forced: FORCED_PROMISE_CONSTRUCTOR$2, real: true }, {
+	  'catch': function (onRejected) {
+	    return this.then(undefined, onRejected);
+	  }
+	});
+
+	// `Promise.race` method
+	// https://tc39.es/ecma262/#sec-promise.race
+	_export({ target: 'Promise', stat: true, forced: promiseStaticsIncorrectIteration }, {
+	  race: function race(iterable) {
+	    var C = this;
+	    var capability = newPromiseCapability$1.f(C);
+	    var reject = capability.reject;
+	    var result = perform(function () {
+	      var $promiseResolve = aCallable(C.resolve);
+	      iterate(iterable, function (promise) {
+	        functionCall($promiseResolve, C, promise).then(capability.resolve, reject);
+	      });
+	    });
+	    if (result.error) reject(result.value);
+	    return capability.promise;
+	  }
+	});
+
+	var FORCED_PROMISE_CONSTRUCTOR$1 = promiseConstructorDetection.CONSTRUCTOR;
+
+	// `Promise.reject` method
+	// https://tc39.es/ecma262/#sec-promise.reject
+	_export({ target: 'Promise', stat: true, forced: FORCED_PROMISE_CONSTRUCTOR$1 }, {
+	  reject: function reject(r) {
+	    var capability = newPromiseCapability$1.f(this);
+	    functionCall(capability.reject, undefined, r);
+	    return capability.promise;
+	  }
+	});
+
+	var promiseResolve = function (C, x) {
+	  anObject(C);
+	  if (isObject(x) && x.constructor === C) return x;
+	  var promiseCapability = newPromiseCapability$1.f(C);
+	  var resolve = promiseCapability.resolve;
+	  resolve(x);
+	  return promiseCapability.promise;
+	};
+
+	var FORCED_PROMISE_CONSTRUCTOR = promiseConstructorDetection.CONSTRUCTOR;
+
+
+	var PromiseConstructorWrapper = getBuiltIn('Promise');
+	var CHECK_WRAPPER = !FORCED_PROMISE_CONSTRUCTOR;
+
+	// `Promise.resolve` method
+	// https://tc39.es/ecma262/#sec-promise.resolve
+	_export({ target: 'Promise', stat: true, forced: isPure  }, {
+	  resolve: function resolve(x) {
+	    return promiseResolve(CHECK_WRAPPER && this === PromiseConstructorWrapper ? promiseNativeConstructor : this, x);
+	  }
+	});
+
+	// `Promise.allSettled` method
+	// https://tc39.es/ecma262/#sec-promise.allsettled
+	_export({ target: 'Promise', stat: true }, {
+	  allSettled: function allSettled(iterable) {
+	    var C = this;
+	    var capability = newPromiseCapability$1.f(C);
+	    var resolve = capability.resolve;
+	    var reject = capability.reject;
+	    var result = perform(function () {
+	      var promiseResolve = aCallable(C.resolve);
+	      var values = [];
+	      var counter = 0;
+	      var remaining = 1;
+	      iterate(iterable, function (promise) {
+	        var index = counter++;
+	        var alreadyCalled = false;
+	        remaining++;
+	        functionCall(promiseResolve, C, promise).then(function (value) {
+	          if (alreadyCalled) return;
+	          alreadyCalled = true;
+	          values[index] = { status: 'fulfilled', value: value };
+	          --remaining || resolve(values);
+	        }, function (error) {
+	          if (alreadyCalled) return;
+	          alreadyCalled = true;
+	          values[index] = { status: 'rejected', reason: error };
+	          --remaining || resolve(values);
+	        });
+	      });
+	      --remaining || resolve(values);
+	    });
+	    if (result.error) reject(result.value);
+	    return capability.promise;
+	  }
+	});
+
+	var PROMISE_ANY_ERROR = 'No one promise resolved';
+
+	// `Promise.any` method
+	// https://tc39.es/ecma262/#sec-promise.any
+	_export({ target: 'Promise', stat: true }, {
+	  any: function any(iterable) {
+	    var C = this;
+	    var AggregateError = getBuiltIn('AggregateError');
+	    var capability = newPromiseCapability$1.f(C);
+	    var resolve = capability.resolve;
+	    var reject = capability.reject;
+	    var result = perform(function () {
+	      var promiseResolve = aCallable(C.resolve);
+	      var errors = [];
+	      var counter = 0;
+	      var remaining = 1;
+	      var alreadyResolved = false;
+	      iterate(iterable, function (promise) {
+	        var index = counter++;
+	        var alreadyRejected = false;
+	        remaining++;
+	        functionCall(promiseResolve, C, promise).then(function (value) {
+	          if (alreadyRejected || alreadyResolved) return;
+	          alreadyResolved = true;
+	          resolve(value);
+	        }, function (error) {
+	          if (alreadyRejected || alreadyResolved) return;
+	          alreadyRejected = true;
+	          errors[index] = error;
+	          --remaining || reject(new AggregateError(errors, PROMISE_ANY_ERROR));
+	        });
+	      });
+	      --remaining || reject(new AggregateError(errors, PROMISE_ANY_ERROR));
+	    });
+	    if (result.error) reject(result.value);
+	    return capability.promise;
+	  }
+	});
+
+	var NativePromisePrototype = promiseNativeConstructor && promiseNativeConstructor.prototype;
+
+	// Safari bug https://bugs.webkit.org/show_bug.cgi?id=200829
+	var NON_GENERIC = !!promiseNativeConstructor && fails(function () {
+	  // eslint-disable-next-line unicorn/no-thenable -- required for testing
+	  NativePromisePrototype['finally'].call({ then: function () { /* empty */ } }, function () { /* empty */ });
+	});
+
+	// `Promise.prototype.finally` method
+	// https://tc39.es/ecma262/#sec-promise.prototype.finally
+	_export({ target: 'Promise', proto: true, real: true, forced: NON_GENERIC }, {
+	  'finally': function (onFinally) {
+	    var C = speciesConstructor(this, getBuiltIn('Promise'));
+	    var isFunction = isCallable(onFinally);
+	    return this.then(
+	      isFunction ? function (x) {
+	        return promiseResolve(C, onFinally()).then(function () { return x; });
+	      } : onFinally,
+	      isFunction ? function (e) {
+	        return promiseResolve(C, onFinally()).then(function () { throw e; });
+	      } : onFinally
+	    );
+	  }
+	});
+
+	var promise$2 = path.Promise;
+
+	var promise$1 = promise$2;
+
+	var promise = promise$1;
+
 	/*  
 	    Options
 	    ===
@@ -5303,9 +6281,7 @@ var Uniform = (function (exports) {
 	    let input;
 
 	    if (typeof this.options.input == 'function') {
-	      var _context2;
-
-	      input = this.options.input(this.record, bind(_context2 = this.render).call(_context2, this));
+	      input = this.options.input(this.record, this);
 	    } else {
 	      input = createElement({
 	        class: 'uniformSpreadsheet-cellInput',
@@ -5319,11 +6295,20 @@ var Uniform = (function (exports) {
 	      });
 	    }
 
-	    if (input) {
+	    console.log(input);
+
+	    if (input instanceof promise) {
+	      input.then(i => {
+	        var _context2;
+
+	        this.el.append(i);
+	        i.addEventListener('focusout', bind$1(_context2 = this.render).call(_context2, this));
+	      });
+	    } else if (input) {
 	      var _context3;
 
 	      this.el.append(input);
-	      input.addEventListener('focusout', bind(_context3 = this.render).call(_context3, this));
+	      input.addEventListener('focusout', bind$1(_context3 = this.render).call(_context3, this));
 	    }
 
 	    return input;
@@ -5364,11 +6349,11 @@ var Uniform = (function (exports) {
 	    var _context4, _context5, _context6, _context7, _context8;
 
 	    super.initialize.call(this, options);
-	    addEventListenerFor(this.el, '.uniformTableGrid-cell', 'keydown', bind(_context4 = this.keydown).call(_context4, this));
-	    addEventListenerFor(this.el, '.uniformTableGrid-cell', 'keyup', bind(_context5 = this.keyup).call(_context5, this));
-	    addEventListenerFor(this.el, '.uniformTableGrid-cell', 'mousedown', bind(_context6 = this.mousedownCell).call(_context6, this));
-	    addEventListenerFor(this.el, '.uniformTableGrid-cell', 'mouseup', bind(_context7 = this.mouseupCell).call(_context7, this));
-	    addEventListenerFor(this.el, '.uniformTableGrid-cell', 'mouseover', bind(_context8 = this.updateCellSelection).call(_context8, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-cell', 'keydown', bind$1(_context4 = this.keydown).call(_context4, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-cell', 'keyup', bind$1(_context5 = this.keyup).call(_context5, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-cell', 'mousedown', bind$1(_context6 = this.mousedownCell).call(_context6, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-cell', 'mouseup', bind$1(_context7 = this.mouseupCell).call(_context7, this));
+	    addEventListenerFor(this.el, '.uniformTableGrid-cell', 'mouseover', bind$1(_context8 = this.updateCellSelection).call(_context8, this));
 	  }
 
 	  initColumnModel(model, key) {
@@ -5424,7 +6409,7 @@ var Uniform = (function (exports) {
 	      cell.focus();
 	    }
 
-	    window.addEventListener('mouseup', bind(_context9 = this.endCellSelection).call(_context9, this), {
+	    window.addEventListener('mouseup', bind$1(_context9 = this.endCellSelection).call(_context9, this), {
 	      once: true
 	    });
 	  }
