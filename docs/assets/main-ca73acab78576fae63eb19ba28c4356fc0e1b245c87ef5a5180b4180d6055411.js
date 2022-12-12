@@ -3640,7 +3640,19 @@
 	  }
 
 	  enabled() {
+	    return this.enable();
+	  }
+
+	  enable() {
 	    this.enabled = true;
+	  }
+
+	  toggle() {
+	    if (this.popup) {
+	      this.popup.toggle(...arguments);
+	    } else {
+	      this.show();
+	    }
 	  }
 
 	}
@@ -6294,8 +6306,6 @@
 	        }, this.options.input)).el
 	      });
 	    }
-
-	    console.log(input);
 
 	    if (input instanceof promise) {
 	      input.then(i => {
