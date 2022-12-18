@@ -7,7 +7,10 @@ set :source, 'docs-src'
 set :build_dir, 'docs'
 
 activate :condenser do |config|
-  config.path = Dir.each_child(UniformUi::ASSET_PATH).map { |a| File.join(UniformUi::ASSET_PATH, a) }
+  config.path = [
+    File.realpath(File.expand_path("./src", __dir__)),
+    File.realpath(File.expand_path("./lib/assets/stylesheets", __dir__))
+  ]
 end
 app.condenser.register_postprocessor('text/css', ::Condenser::CSSMediaCombinerProcessor)
 app.condenser.unregister_preprocessor('application/javascript')
@@ -17,7 +20,7 @@ app.condenser.register_preprocessor('application/javascript', ::Condenser::Babel
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-export-default-from',
-    ["@babel/plugin-transform-runtime", { corejs: 3, useESModules: true }]
+    ["@babel/plugin-transform-runtime", { corejs: 3, useESModules: true }],
   ],
   presets: [
     ['@babel/preset-env', {

@@ -17,11 +17,10 @@
             </p>
             <script>
                 document.addEventListener('DOMContentLoaded', function () {
-                    new window.Uniform.Tooltip({
+                    document.body.append(new window.Uniform.Tooltip({
                         anchor: document.getElementById('example-1'),
-                        align: 'top',
                         content: "The umpire's declaration of an infield fly means that the batter is out (and all force plays are removed) regardless of whether the ball is caught. The rule exists to prevent the defense from achieving a double play or triple play by failing to catch a ball that an infielder could catch with ordinary effort."
-                    }).render()
+                    }).hide())
                 })
             </script>
         </div>

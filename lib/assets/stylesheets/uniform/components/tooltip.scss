@@ -1,0 +1,9 @@
+uniform-tooltip {
+    --bg-opacity: 0.85;
+    background: rgba(color('gray-70'), var(--bg-opacity));
+    color: white;
+    border-radius: 0.25em;
+    padding: 0.5em;
+    font-size: 0.8em;
+    max-width: 300px;
+}
