@@ -1860,6 +1860,10 @@ var Uniform = (function (exports) {
 	  return element.innerHTML === "";
 	}
 
+	function isFocus(element) {
+	  return document.activeElement === element;
+	}
+
 	function isVisible(el) {
 	  return el.offsetParent !== null;
 	}
@@ -1873,8 +1877,8 @@ var Uniform = (function (exports) {
 	    listener = 'click';
 	  }
 
-	  if (args.length == 0) {
-	    args = ['button'];
+	  if (typeof args[0] != 'string') {
+	    args.unshift('button');
 	  }
 
 	  const el = createElement(...args);
@@ -5166,6 +5170,13 @@ var Uniform = (function (exports) {
 	}
 	class BoundRadio extends BoundCheckbox {}
 	class BoundDate extends BoundInput {
+	  initialize(options) {
+	    var _context2;
+
+	    super.initialize(options);
+	    this.el.addEventListener('blur', bind$1(_context2 = this.blurInput).call(_context2, this));
+	  }
+
 	  load(value) {
 	    if (value instanceof Date) {
 	      var month = value.getMonth() + 1 + '';
@@ -5178,15 +5189,26 @@ var Uniform = (function (exports) {
 	    }
 	  }
 
+	  blurInput(e) {
+	    console.log('blur');
+	    return this.changeInput(e);
+	  }
+
+	  changeInput(e) {
+	    // date input types fire change with every number change, so ignore until blurred
+	    if (isFocus(this.el)) return;
+	    return super.changeInput(e);
+	  }
+
 	}
 	class BoundButton extends BoundInput {
 	  initialize(options) {
-	    var _context2;
+	    var _context3;
 
 	    // options.content removed by component, TODO fix
 	    const content = options.content;
 	    super.initialize(options);
-	    this.el.addEventListener('click', bind$1(_context2 = this.changeInput).call(_context2, this));
+	    this.el.addEventListener('click', bind$1(_context3 = this.changeInput).call(_context3, this));
 
 	    if (content) {
 	      append(this.el, content);
@@ -5204,7 +5226,7 @@ var Uniform = (function (exports) {
 	    const value = this.load(options.record[options.attribute]);
 
 	    if (options.options) {
-	      var _context3;
+	      var _context4;
 
 	      if (options.includeBlank) {
 	        const el = document.createElement('option');
@@ -5215,7 +5237,7 @@ var Uniform = (function (exports) {
 	        this.el.append(el);
 	      }
 
-	      forEach(_context3 = options.options).call(_context3, option => {
+	      forEach(_context4 = options.options).call(_context4, option => {
 	        if (option instanceof Element) return this.el.append(option);
 	        const el = document.createElement('option');
 
@@ -5238,9 +5260,9 @@ var Uniform = (function (exports) {
 	    const value = this.load(this.record[this.attribute]) || [];
 
 	    if (this.el.multiple) {
-	      var _context4;
+	      var _context5;
 
-	      forEach(_context4 = this.el.querySelectorAll('option')).call(_context4, option => {
+	      forEach(_context5 = this.el.querySelectorAll('option')).call(_context5, option => {
 	        if (includes(value).call(value, option.value)) {
 	          option.setAttribute('selected', true);
 	        } else {
@@ -5254,9 +5276,9 @@ var Uniform = (function (exports) {
 
 	  dumpToRecord(e) {
 	    if (this.el.multiple) {
-	      var _context5, _context6;
+	      var _context6, _context7;
 
-	      const values = map(_context5 = filter$1(_context6 = from_1(this.el.options)).call(_context6, x => x.selected)).call(_context5, x => x.value);
+	      const values = map(_context6 = filter$1(_context7 = from_1(this.el.options)).call(_context7, x => x.selected)).call(_context6, x => x.value);
 
 	      this.record[this.attribute] = this.dump(values);
 	    } else {
