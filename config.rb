@@ -153,7 +153,7 @@ configure :build do
   end
 
   # Build Zip File
-  File.delete("./docs-src/uniform.zip") if File.exists?("./docs-src/uniform.zip")
+  File.delete("./docs-src/uniform.zip") if File.exist?("./docs-src/uniform.zip")
   files = Dir.children('./dist')
   Zip::File.open("./docs-src/uniform.zip", Zip::File::CREATE) do |zipFile|
     files.each do |file|
