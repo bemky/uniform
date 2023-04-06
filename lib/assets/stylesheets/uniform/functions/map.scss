@@ -86,6 +86,10 @@
     @each $key, $value in $map {
         @if type-of($value) == "map" {
             $string: str-insert($string, "\"#{$key}\": #{mapToJSON($value)},", -1);
+        } @else if type-of($value) == "list" {
+            @if length($value) > 0 {
+                $string: str-insert($string, "\"#{$key}\": \"#{$value}\",", -1);
+            }
         } @else {
             $string: str-insert($string, "\"#{$key}\": \"#{$value}\",", -1);
         }
