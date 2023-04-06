@@ -2,6 +2,11 @@
 // filename is prepended with "z" so that it is imported after
 // uniformSelect so that it modifies uniformSelect
 //----------------------------------------------------------------
+.uniformInput,
+.uniformInputGroup,
+.uniformSelect {
+    --focus-color: #{red(color('blue'))}, #{green(color('blue'))}, #{blue(color('blue'))};
+}
 
 .uniformInput{
     border-width: 1px;

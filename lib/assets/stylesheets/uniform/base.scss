@@ -7,12 +7,6 @@
     border-color: rgba(var(--border-color), var(--border-opacity));
 }
 
-.uniformInput,
-.uniformInputGroup,
-.uniformSelect {
-    --focus-color: #{red(color('blue'))}, #{green(color('blue'))}, #{blue(color('blue'))};
-}
-
 body {
     --breakpoints: #{mapToString(map-get($uniform_configs, 'breakpoints'))};
     --bg-opacity: 1.0;
