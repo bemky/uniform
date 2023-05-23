@@ -73,6 +73,7 @@ mapping = {
   "([wh]-[\\w\\d\\-]*(?:vh|vw|px))": "[TODO:\\1]",
 
   # MISC
+  "(?<!\\s\\-)(gray|green|blue|red|yellow|purple|sand|midnight|space|ocean)#{trailing_seperator}": '\1\2-500',
   "(?<!\\s\\-)(gray|green|blue|red|yellow|purple|sand|midnight|space|ocean)(-\\d\\d)#{trailing_seperator}": '\1\+0',
   "(?<!\\s\\-)(gray|green|blue|red|yellow|purple|sand|midnight|space|ocean)-050#{trailing_seperator}": '\+-50',
   "hide": "hidden",
@@ -138,7 +139,7 @@ end
 
 scss_mapping = {
   "color\\(['\"](\\w+)\\-(\\d+)['\"]\\)": "theme(colors.\\1.\\+0)",
-  "color\\(['\"](\\w+)['\"]\\)": "theme(colors.\\1)"
+  "color\\(['\"](\\w+)['\"]\\)": "theme(colors.\\1.500)"
 }
 
 Dir.glob('app/**/*.scss').each do |path|
