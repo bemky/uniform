@@ -13,7 +13,7 @@
             
             <script>
                 document.getElementById('example-1').addEventListener('click', function (e) {
-                    e.currentTarget.popover.toggle()
+                    e.currentTarget.uniformPopover.toggle()
                 })
                 document.addEventListener('DOMContentLoaded', function () {
                     new window.Uniform.Popover({
@@ -117,8 +117,8 @@
     <script>
         document.querySelectorAll('.js-example').forEach(el => {
             el.addEventListener('click', function (e) {
-                if(e.currentTarget.popover) {
-                    e.currentTarget.popover.toggle()
+                if(e.currentTarget.uniformPopover) {
+                    e.currentTarget.uniformPopover.toggle()
                 } else {
                     new window.Uniform.Popover({
                         anchor: el,
@@ -148,8 +148,8 @@
     <script>
         document.querySelectorAll('.js-example-3').forEach(el => {
             el.addEventListener('click', function (e) {
-                if(e.currentTarget.popover) {
-                    e.currentTarget.popover.toggle()
+                if(e.currentTarget.uniformPopover) {
+                    e.currentTarget.uniformPopover.toggle()
                 } else {
                     new window.Uniform.Popover({
                         anchor: el,
@@ -189,8 +189,8 @@
     <script>
         document.querySelectorAll('.js-example-2').forEach(el => {
             el.addEventListener('click', function (e) {
-                if(e.currentTarget.popover) {
-                    e.currentTarget.popover.toggle()
+                if(e.currentTarget.uniformPopover) {
+                    e.currentTarget.uniformPopover.toggle()
                 } else {
                     new window.Uniform.Popover({
                         anchor: el,
