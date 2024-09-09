@@ -39,6 +39,8 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "dolla": "^0.6.16",
     "dragorder": "^0.1.8"
   }
