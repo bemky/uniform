@@ -36,22 +36,22 @@
     margin-right: $size;
 }
 @include size-rule('.margin-nest') using ($size) {
-    margin: -$size;
+    margin: calc(#{$size} * -1);
 }
 @include size-rule('.margin-v-nest') using ($size) {
-    margin-top: -$size;
-    margin-bottom: -$size;
+    margin-top: calc(#{$size} * -1);
+    margin-bottom: calc(#{$size} * -1);
 }
 @include size-rule('.margin-h-nest') using ($size) {
-    margin-left: -$size;
-    margin-right: -$size;
+    margin-left: calc(#{$size} * -1);
+    margin-right: calc(#{$size} * -1);
 }
 @each $direction in 'top' 'right' 'bottom' 'left' {
     @include size-rule('.margin-#{$direction}') using ($size) {
         margin-#{$direction}: $size;
     };
     @include size-rule('.margin-#{$direction}-nest') using ($size) {
-        margin-#{$direction}: -$size;
+        margin-#{$direction}: calc(#{$size} * -1);
     };
 }
 
